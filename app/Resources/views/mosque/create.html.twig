@@ -3,6 +3,7 @@
 {% block title %} {{ parent() }} Mosquée{% endblock %}
 
 {% block body %}
+    <h3>{% block form_title %}{{'mosque.add'|trans}}{% endblock %}</h3>
     <form action="{{ form_action|default(path('mosque_create'))}}" method="post">
         {% include 'mosque/form.html.twig' %}
     </form>

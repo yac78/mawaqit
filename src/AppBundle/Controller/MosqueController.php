@@ -30,12 +30,10 @@ class MosqueController extends Controller {
      */
     public function createAction(Request $request) {
 
-
         $mosque = new Mosque();
         $form = $this->createForm(MosqueType::class, $mosque);
 
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mosque = $form->getData();
@@ -43,13 +41,12 @@ class MosqueController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($mosque);
             $em->flush();
-
-//            $this->addFlash('error', "Une erreur est survenue, votre création de kit téléchargement n'a pu être réalisée.");
+            $this->addFlash('success', $this->get("translator")->trans("form.create.success", [
+                        "%object%" => "de la mosquée", "%name%" => $mosque->getName()
+            ]));
 
             return $this->redirectToRoute('mosque_index');
         }
-        
-//        die(dump($form->getErrors()));
 
         return $this->render('mosque/create.html.twig', [
                     'form' => $form->createView(),
@@ -59,14 +56,30 @@ class MosqueController extends Controller {
     /**
      * @Route("/edit/{id}", name="mosque_edit")
      */
-    public function editAction(Request $request, $id) {
-        return $this->render('mosque/create.html.twig', []);
+    public function editAction(Request $request, Mosque $mosque) {
+        $form = $this->createForm(MosqueType::class, $mosque);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mosque = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($mosque);
+            $em->flush();
+            $this->addFlash('success', $this->get("translator")->trans("form.edit.success", [
+                        "%object%" => "de la mosquée", "%name%" => $mosque->getName()
+            ]));
+
+            return $this->redirectToRoute('mosque_index');
+        }
+        return $this->render('mosque/edit.html.twig', [
+                    'mosque' => $mosque,
+                    'form' => $form->createView()
+        ]);
     }
 
     /**
      * @Route("/delete/{id}", name="mosque_delete")
      */
-    public function deleteAction(Request $request, $id) {
+    public function deleteAction(Request $request, Mosque $mosque) {
         
     }
 

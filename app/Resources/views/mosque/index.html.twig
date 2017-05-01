@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
 
     <a href="{{path('mosque_create')}}" class="btn btn-primary">Ajouter une mosquée</a><br><br>
 
@@ -13,16 +14,15 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{'globa.name'|trans}}</th>
-                <th>{{'globa.association_name'|trans}}</th>
-                <th>{{'globa.phone'|trans}}</th>
-                <th>{{'globa.email'|trans}}</th>
-                <th>{{'globa.address'|trans}}</th>
-                <th>{{'globa.city'|trans}}</th>
-                <th>{{'globa.zipcode'|trans}}</th>
-                <th>{{'globa.country'|trans}}</th>
-                <th>{{'globa.rib'|trans}}</th>
-                <th>{{'globa.action'|trans}}</th>
+                <th>{{'mosque.name'|trans}}</th>
+                <th>{{'global.association_name'|trans}}</th>
+                <th>{{'global.phone'|trans}}</th>
+                <th>{{'global.email'|trans}}</th>
+                <th>{{'global.address'|trans}}</th>
+                <th>{{'global.city'|trans}}</th>
+                <th>{{'global.zipcode'|trans}}</th>
+                <th>{{'global.country'|trans}}</th>
+                <th>{{'global.rib'|trans}}</th>
             </tr>
         </thead>
         <tbody>

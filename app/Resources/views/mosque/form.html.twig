@@ -1,14 +1,24 @@
 <div class="col-lg-8">
 
-{{ form_errors(form) }}
+    {% include 'partial/flash_msg.html.twig' %}
+    
+    {{ form_errors(form) }}
 
-{{ form_widget(form._token) }}
-{{ form_widget(form.name) }}
+    {{ form_widget(form._token) }}
+    {{ form_widget(form.name) }}
+    {{ form_widget(form.associationName) }}
+    {{ form_widget(form.phone) }}
+    {{ form_widget(form.email) }}
+    {{ form_widget(form.address) }}
+    {{ form_widget(form.city) }}
+    {{ form_widget(form.zipcode) }}
+    {{ form_widget(form.country) }}
+    {{ form_widget(form.rib) }}
 
-<div class="error-message">{{ form_errors(form.name) }}</div>
+    <div class="error-message">{{ form_errors(form.name) }}</div>
 
-<br>
-{{ form_widget(form.save) }}
-<a href="{{path("mosque_index")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans({}, 'messages')}}</a>
-<div>
+    <br>
+    {{ form_widget(form.save) }}
+    <a href="{{path("mosque_index")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans({}, 'messages')}}</a>
+</div>
 
