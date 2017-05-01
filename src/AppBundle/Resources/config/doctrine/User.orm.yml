@@ -28,5 +28,5 @@ AppBundle\Entity\User:
             nullable: true
             gedmo:
                 timestampable:
-                    on: update            
+                    on: update
     lifecycleCallbacks: {  }

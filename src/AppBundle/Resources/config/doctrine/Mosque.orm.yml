@@ -1,0 +1,65 @@
+AppBundle\Entity\Mosque:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\MosqueRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 1024
+        address:
+            type: string
+            length: 1024
+            nullable: true
+        city:
+            type: string
+            length: 255
+            nullable: true
+        country:
+            type: string
+            length: 255
+            nullable: true
+        associationName:
+            type: string
+            length: 255
+            nullable: true
+        phone:
+            type: string
+            length: 255
+            nullable: true
+        zipcode:
+            type: string
+            length: 255
+            nullable: true
+        rib:
+            type: string
+            length: 1024
+            nullable: true
+        email:
+            type: string
+            length: 255
+            nullable: true
+        latitude:
+            type: smallint
+            nullable: true
+        longitude:
+            type: smallint
+            nullable: true
+        created:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: create            
+        updated:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: update
+    lifecycleCallbacks: {  }

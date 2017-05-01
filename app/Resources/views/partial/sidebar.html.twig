@@ -2,6 +2,6 @@
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{path("")}}">Utilisateurs</a>
     {% endif %}
-    <a href="" class="">Profil</a>
-    <a href="{{path('mosque_index')}}">Mosquée</a>
+    <a><i class="glyphicon glyphicon-user"></i> Profil</a>
+    <a href="{{path('mosque_index')}}"><i class="glyphicon glyphicon-home"></i> Mosquées</a>
 </div>

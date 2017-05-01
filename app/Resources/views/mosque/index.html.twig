@@ -6,34 +6,44 @@
 {% endblock %}
 
 {% block body %}
+
+    <a href="" class="btn btn-primary">Ajouter une mosquée</a><br><br>
+
     <table class="table table-inverse">
         <thead>
             <tr>
                 <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>{{'globa.name'|trans}}</th>
+                <th>{{'globa.association_name'|trans}}</th>
+                <th>{{'globa.phone'|trans}}</th>
+                <th>{{'globa.email'|trans}}</th>
+                <th>{{'globa.address'|trans}}</th>
+                <th>{{'globa.city'|trans}}</th>
+                <th>{{'globa.zipcode'|trans}}</th>
+                <th>{{'globa.country'|trans}}</th>
+                <th>{{'globa.rib'|trans}}</th>
+                <th>{{'globa.action'|trans}}</th>
             </tr>
         </thead>
         <tbody>
+            {% for mosque in mosques %}
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{mosque.id}}</th>
+                <td>{{mosque.name}}</td>
+                <td>{{mosque.associationName}}</td>
+                <td>{{mosque.phone}}</td>
+                <td>{{mosque.email}}</td>
+                <td>{{mosque.address}}</td>
+                <td>{{mosque.city}}</td>
+                <td>{{mosque.zipcode}}</td>
+                <td>{{mosque.country}}</td>
+                <td>{{mosque.rib}}</td>
+                <td>
+                    <a class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>    
 {% endblock %}
