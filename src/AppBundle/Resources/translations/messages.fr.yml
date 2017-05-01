@@ -1,0 +1,7 @@
+global:
+    validate: Valider
+    cancel: Annuler
+
+security:
+    login:
+        authenticate_you: 'Identifiez-vous'

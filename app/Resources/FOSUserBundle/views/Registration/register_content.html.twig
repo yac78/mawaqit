@@ -1,0 +1,28 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="col-md-6 col-md-offset-3">
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    <div class="form-group ">
+        {{ form_widget(form.email , { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans} }) }}
+        <div class="error-message">{{ form_errors(form.email) }}</div>
+    </div>
+    <div class="form-group ">
+        {{ form_widget(form.username , { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans} }) }}
+        <div class="error-message">{{ form_errors(form.username) }}</div>
+    </div>
+    <div class="form-group ">
+        {{ form_widget(form.plainPassword.first , { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans} }) }}
+        <div class="error-message">{{ form_errors(form.plainPassword.first) }}</div>
+    </div>
+   <div class="form-group ">
+        {{ form_widget(form.plainPassword.second , { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans} }) }}
+        <div class="error-message">{{ form_errors(form.plainPassword.second) }}</div>
+    </div>
+    
+    <div>
+        <button type="submit" class="btn btn-lg btn-primary">{{'global.validate'|trans({}, 'messages')}}</button>
+        <a href="{{path("homepage")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans({}, 'messages')}}</a>
+    </div>
+    {{ form_end(form) }}
+</div>

@@ -29,11 +29,11 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse navbar-form navbar-right">
                         {% if not app.user %}
-                            <a href="{{path("fos_user_security_login")}}" class="btn btn-success">S'identifier</a>
+                            <a href="{{path("fos_user_security_login")}}" class="btn btn-success">{{'layout.login'|trans({}, 'FOSUserBundle')}}</a>
                         {% endif %}
-                        <a href="{{path("fos_user_registration_register")}}" class="btn btn-info">Créer un compte</a>
+                        <a href="{{path("fos_user_registration_register")}}" class="btn btn-primary">{{'layout.register'|trans({}, 'FOSUserBundle')}}</a>
                         {% if app.user %}
-                            <a href="{{path("fos_user_security_logout")}}" class="btn btn-danger">Se déconnecter</a>
+                            <a href="{{path("fos_user_security_logout")}}" class="btn btn-danger">{{'layout.logout'|trans({}, 'FOSUserBundle')}}</a>
                         {% endif %}
                     </div>
                 </div>
