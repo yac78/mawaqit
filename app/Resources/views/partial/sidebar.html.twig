@@ -1,0 +1,7 @@
+<div id="sidebar" class="sidebar">
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{path("")}}">Utilisateurs</a>
+    {% endif %}
+    <a href="" class="">Profil</a>
+    <a href="{{path('mosque_index')}}">Mosquée</a>
+</div>
