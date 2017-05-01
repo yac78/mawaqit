@@ -74,11 +74,11 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
+        address: %mailer_user%'
+        sender_name: '%mailer_user%'
     registration:
         confirmation:
             from_email: 
-                address: "%mailer_user%"
-                sender_name: %mailer_user%"
+                address: '%fos_no_replay_adress%'
+                sender_name: '%fos_no_replay_name%'
             enabled: true
