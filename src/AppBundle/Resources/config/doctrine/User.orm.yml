@@ -1,0 +1,31 @@
+AppBundle\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: AppBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstname:
+            type: string
+            length: 255
+            nullable: true
+        lastname:
+            type: string
+            length: 255
+            nullable: true
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: update            
+    lifecycleCallbacks: {  }

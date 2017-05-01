@@ -6,4 +6,4 @@ then
         exit
 fi
 
-docker exec -it welvtec "$@"
+docker exec -it prayer_times "$@"
