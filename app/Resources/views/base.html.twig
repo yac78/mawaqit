@@ -2,12 +2,54 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Horaires de prière - {% endblock %}</title>
+
+        {% stylesheets 
+            "@AppBundle/Resources/public/bootstrap-3.3.7/css/bootstrap.min.css"
+            "@AppBundle/Resources/public/css/main.css"
+            filter="cssrewrite"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}
+
+        {% block stylesheets %}
+        {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Horaires de prière - administration</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-form navbar-right">
+                        {% if not app.user %}
+                            <a href="{{path("fos_user_security_login")}}" class="btn btn-success">S'identifier</a>
+                        {% endif %}
+                        <a href="{{path("fos_user_registration_register")}}" class="btn btn-info">Créer un compte</a>
+                        {% if app.user %}
+                            <a href="{{path("fos_user_security_logout")}}" class="btn btn-danger">Se déconnecter</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    </div>
+
+    {% javascripts
+            '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+            '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}    
+
+    {% block javascripts %}
+    {% endblock %}
+</body>
 </html>

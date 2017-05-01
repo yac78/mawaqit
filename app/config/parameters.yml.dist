@@ -12,18 +12,9 @@ parameters:
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1
+    mailer_port: ~
     mailer_user: ~
     mailer_password: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
-    
-    # OVH API
-    ovh_api_url: 'https://eu.api.ovh.com/1.0'
-    ovh_zone_name: ''
-    ovh_api_ak: ''
-    ovh_api_as: ''
-    ovh_api_ck_get: ''
-    ovh_api_ck_post: ''
-    ovh_api_ck_delete: ''
-    ovh_api_ck_put: ''
