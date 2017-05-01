@@ -33,8 +33,7 @@ RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/lo
 RUN chmod +x /usr/local/bin/composer
 
 ADD vhost /etc/nginx/sites-available/default
-RUN sed -i "s/;date.timezone =.*/date.timezone = UTC/" /etc/php/7.1/fpm/php.ini && \
-    sed -i "s/;date.timezone =.*/date.timezone = UTC/" /etc/php/7.1/cli/php.ini && \
+RUN sed -i "s/;date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini && \
     sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini && \
     sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 
