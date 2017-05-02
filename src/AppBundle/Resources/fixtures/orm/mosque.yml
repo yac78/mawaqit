@@ -1,8 +1,24 @@
 AppBundle\Entity\Mosque:
     ESSOUNNA_HOUILLES:
-        name: Essounna
-        email: essounna\@horaires-de-priere.fr
         User: '@USER1'
+        name: Essounna
+        associationName: Essounna
+        email: essounna\@horaires-de-priere.fr
+        address: 14/16 rue Condorcet
+        city: Houilles
+        country: France
+        phone: '0100000000'
+        zipcode: 78800
+    ASCM_ORLY:
+        User: '@USER1'
+        name: ASCM
+        associationName: ASCM
+        email: ascm\@horaires-de-priere.fr
+        address: 12 rue de Paris
+        city: Orly
+        country: France
+        phone: '0100000000'
+        zipcode: 94310
     ENNOUR_GENNEVILLIERS:
         name: Ennour
         email: ennour\@horaires-de-priere.fr
