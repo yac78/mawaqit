@@ -1,0 +1,79 @@
+AppBundle\Entity\Configuration:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ConfigurationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        lang:
+            type: string
+            length: 255
+        joumouaaTime:
+            type: time
+            nullable: true
+        aidTime:
+            type: time
+            nullable: true
+        imsakNbMinBeforeSobh:
+            type: smallint
+            nullable: true
+        minimumIchaTime:
+            type: time
+            nullable: true
+        maximumIchaTimeForNoWaiting:
+            type: time
+            nullable: true
+        prayersWaitingTimes:
+            type: simple_array
+        prayerTimesAdjustment:
+            type: simple_array
+            nullable: true
+        prayerTimesFixing:
+            type: simple_array
+            nullable: true
+        hijriAdjustment:
+            type: smallint
+        hijriDateEnabled:
+            type: boolean
+        douaaAfterAdhanEnabled:
+            type: boolean
+        douaaAfterPrayerEnabled:
+            type: boolean
+        androidAppEnabled:
+            type: boolean
+        calculChoice:
+            type: string
+            length: 255
+        prayerMethod:
+            type: string
+            length: 255
+            nullable: true
+        fajrDegree:
+            type: smallint
+            nullable: true
+        ichaaDegree:
+            type: smallint
+            nullable: true
+        iqamaDisplayTime:
+            type: smallint
+        adhanDouaaDisplayTime:
+            type: smallint
+        site:
+            type: string
+            length: 255
+            nullable: true
+        prayerTimeSite:
+            type: string
+            length: 255
+            nullable: true
+        created:
+            type: datetime
+            nullable: true
+        updated:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks: {  }

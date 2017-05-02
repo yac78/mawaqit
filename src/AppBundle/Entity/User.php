@@ -139,5 +139,13 @@ class User extends BaseUser
     {
         return $this->updated;
     }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    function isAdmin() {
+        return $this->hasRole("ROLE_ADMIN");
+    }
 }
 

@@ -2,11 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\User;
+
 /**
  * Mosque
  */
-class Mosque
-{
+class Mosque {
+
     /**
      * @var int
      */
@@ -48,7 +50,7 @@ class Mosque
     private $zipcode;
 
     /**
-     * @var string
+     * @var string$updated
      */
     private $rib;
 
@@ -77,14 +79,17 @@ class Mosque
      */
     private $updated;
 
+    /**
+     * @var User
+     */
+    private $user;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -95,8 +100,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -107,8 +111,7 @@ class Mosque
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -119,8 +122,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setAddress($address)
-    {
+    public function setAddress($address) {
         $this->address = $address;
 
         return $this;
@@ -131,8 +133,7 @@ class Mosque
      *
      * @return string
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
 
@@ -143,8 +144,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setCity($city)
-    {
+    public function setCity($city) {
         $this->city = $city;
 
         return $this;
@@ -155,8 +155,7 @@ class Mosque
      *
      * @return string
      */
-    public function getCity()
-    {
+    public function getCity() {
         return $this->city;
     }
 
@@ -167,8 +166,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setCountry($country)
-    {
+    public function setCountry($country) {
         $this->country = $country;
 
         return $this;
@@ -179,8 +177,7 @@ class Mosque
      *
      * @return string
      */
-    public function getCountry()
-    {
+    public function getCountry() {
         return $this->country;
     }
 
@@ -191,8 +188,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setAssociationName($associationName)
-    {
+    public function setAssociationName($associationName) {
         $this->associationName = $associationName;
 
         return $this;
@@ -203,8 +199,7 @@ class Mosque
      *
      * @return string
      */
-    public function getAssociationName()
-    {
+    public function getAssociationName() {
         return $this->associationName;
     }
 
@@ -215,8 +210,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setPhone($phone)
-    {
+    public function setPhone($phone) {
         $this->phone = $phone;
 
         return $this;
@@ -227,8 +221,7 @@ class Mosque
      *
      * @return string
      */
-    public function getPhone()
-    {
+    public function getPhone() {
         return $this->phone;
     }
 
@@ -239,8 +232,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setZipcode($zipcode)
-    {
+    public function setZipcode($zipcode) {
         $this->zipcode = $zipcode;
 
         return $this;
@@ -251,8 +243,7 @@ class Mosque
      *
      * @return string
      */
-    public function getZipcode()
-    {
+    public function getZipcode() {
         return $this->zipcode;
     }
 
@@ -263,8 +254,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setRib($rib)
-    {
+    public function setRib($rib) {
         $this->rib = $rib;
 
         return $this;
@@ -275,8 +265,7 @@ class Mosque
      *
      * @return string
      */
-    public function getRib()
-    {
+    public function getRib() {
         return $this->rib;
     }
 
@@ -287,8 +276,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -299,8 +287,7 @@ class Mosque
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -311,8 +298,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setLatitude($latitude)
-    {
+    public function setLatitude($latitude) {
         $this->latitude = $latitude;
 
         return $this;
@@ -323,8 +309,7 @@ class Mosque
      *
      * @return int
      */
-    public function getLatitude()
-    {
+    public function getLatitude() {
         return $this->latitude;
     }
 
@@ -335,8 +320,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setLongitude($longitude)
-    {
+    public function setLongitude($longitude) {
         $this->longitude = $longitude;
 
         return $this;
@@ -347,8 +331,7 @@ class Mosque
      *
      * @return int
      */
-    public function getLongitude()
-    {
+    public function getLongitude() {
         return $this->longitude;
     }
 
@@ -359,8 +342,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
 
         return $this;
@@ -371,8 +353,7 @@ class Mosque
      *
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -383,8 +364,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setUpdated($updated)
-    {
+    public function setUpdated($updated) {
         $this->updated = $updated;
 
         return $this;
@@ -395,9 +375,16 @@ class Mosque
      *
      * @return \DateTime
      */
-    public function getUpdated()
-    {
+    public function getUpdated() {
         return $this->updated;
     }
-}
 
+    function getUser(): User {
+        return $this->user;
+    }
+
+    function setUser(User $user) {
+        $this->user = $user;
+    }
+
+}

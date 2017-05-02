@@ -62,4 +62,8 @@ AppBundle\Entity\Mosque:
             gedmo:
                 timestampable:
                     on: update
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\user
+            inversedBy: mosques
     lifecycleCallbacks: {  }

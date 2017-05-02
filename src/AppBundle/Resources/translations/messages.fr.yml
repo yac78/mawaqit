@@ -13,11 +13,18 @@ global:
     
 form:
     create:
-        success:  L'ajout %object% %name% a été réalisé avec succès
+        success:  L'ajout %object% %name% a été réalisé avec succès.
         error: 
     edit:
-        success:  L'édition %object% %name% a été réalisé avec succès
+        success:  L'édition %object% %name% a été réalisé avec succès.
         error: 
+        action: éditer
+    delete:
+        success:  La suppression %object% %name% a été réalisé avec succès.
+        error: 
+        action: supprimer
+    configure:
+        action: configurer le horaires de la mosquée
             
 
 mosque:
