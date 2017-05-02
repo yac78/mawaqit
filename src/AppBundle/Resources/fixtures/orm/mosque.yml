@@ -1,0 +1,9 @@
+AppBundle\Entity\Mosque:
+    ESSOUNNA_HOUILLES:
+        name: Essounna
+        email: essounna\@horaires-de-priere.fr
+        User: '@USER1'
+    ENNOUR_GENNEVILLIERS:
+        name: Ennour
+        email: ennour\@horaires-de-priere.fr
+        User: '@USER2'

@@ -1,0 +1,17 @@
+AppBundle\Entity\User:
+    ADMIN:
+        username: admin
+        plainPassword: admin
+        email: admin\@horaires-de-priere.fr
+        enabled: true
+        roles: [ROLE_ADMIN]
+    USER1:
+        username: user1
+        plainPassword: user1
+        email: user1\@horaires-de-priere.fr
+        enabled: true
+    USER2:
+        username: user2
+        plainPassword: user2
+        email: user2\@horaires-de-priere.fr
+        enabled: true

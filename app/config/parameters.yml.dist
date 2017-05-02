@@ -15,6 +15,9 @@ parameters:
     mailer_port: ~
     mailer_user: ~
     mailer_password: ~
+    fos_no_replay_address : no-replay@binary-consulting.fr
+    fos_no_replay_name : Horaires de prière
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+

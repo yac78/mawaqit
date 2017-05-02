@@ -1,6 +1,6 @@
 <div id="sidebar" class="sidebar">
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{path("")}}">Utilisateurs</a>
+        <a href="">Utilisateurs</a>
     {% endif %}
     <a><i class="glyphicon glyphicon-user"></i> Profil</a>
     <a href="{{path('mosque_index')}}"><i class="glyphicon glyphicon-home"></i> Mosquées</a>

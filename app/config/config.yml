@@ -79,6 +79,6 @@ fos_user:
     registration:
         confirmation:
             from_email: 
-                address: '%fos_no_replay_adress%'
+                address: '%fos_no_replay_address%'
                 sender_name: '%fos_no_replay_name%'
             enabled: true
