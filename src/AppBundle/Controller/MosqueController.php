@@ -10,7 +10,7 @@ use AppBundle\Form\MosqueType;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedException;
 
 /**
- * @Route("/mosque")
+ * @Route("/admin/mosque")
  */
 class MosqueController extends Controller {
 
