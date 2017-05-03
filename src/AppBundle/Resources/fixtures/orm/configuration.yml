@@ -1,5 +1,19 @@
 AppBundle\Entity\Configuration:
-    ESSOUNNA_HOUILLES:
+    ESSOUNNA_HOUILLES_CONF:
+        maximumIshaTimeForNoWaiting: 22:00
+        waitingTimes: [20,10,10,5,10]
+        fixedTimes: ["","","","","19:50"]
+        sourceCalcul: calendar
         
-        mosque : '@ESSOUNNA_HOUILLES'
+    ENNOUR_GENNEVILLIERS_CONF:
+        jumuaTime: 13:30
+        waitingTimes: [10,10,10,5,10]
+        sourceCalcul: api
+        imsakNbMinBeforeFajr: 30
+        fixedTimes: ["","14:00","","",""]
+        hijriAdjustment: 1
+        latitude: 48.90
+        longitude: 2.38
+        fajrDegree: 12
+        ishaaDegree: 15
 

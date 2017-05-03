@@ -55,6 +55,10 @@ AppBundle\Entity\Mosque:
             type: string
             length: 1024
             nullable: true
+        site:
+            type: string
+            length: 255
+            nullable: true            
         created:
             type: datetime
             nullable: true

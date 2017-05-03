@@ -12,40 +12,40 @@ AppBundle\Entity\Configuration:
         lang:
             type: string
             length: 255
-        joumouaaTime:
-            type: time
+        jumuaTime:
+            type: string
+            length: 255
             nullable: true
         aidTime:
-            type: time
+            type: string
+            length: 255
             nullable: true
-        imsakNbMinBeforeSobh:
+        imsakNbMinBeforeFajr:
             type: smallint
             nullable: true
-        minimumIchaTime:
-            type: time
+        maximumIshaTimeForNoWaiting:
+            type: string
+            length: 255
             nullable: true
-        maximumIchaTimeForNoWaiting:
-            type: time
-            nullable: true
-        prayersWaitingTimes:
+        waitingTimes:
             type: simple_array
-        prayerTimesAdjustment:
+        adjustedTimes:
             type: simple_array
             nullable: true
-        prayerTimesFixing:
+        fixedTimes:
             type: simple_array
             nullable: true
         hijriAdjustment:
             type: smallint
         hijriDateEnabled:
             type: boolean
-        douaaAfterAdhanEnabled:
+        duaAfterAzanEnabled:
             type: boolean
-        douaaAfterPrayerEnabled:
+        duaAfterPrayerEnabled:
             type: boolean
         androidAppEnabled:
             type: boolean
-        calculChoice:
+        sourceCalcul:
             type: string
             length: 255
         prayerMethod:
@@ -53,29 +53,21 @@ AppBundle\Entity\Configuration:
             length: 255
             nullable: true
         latitude:
-            type: smallint
+            type: float
             nullable: true
         longitude:
-            type: smallint
+            type: float
             nullable: true            
         fajrDegree:
             type: smallint
             nullable: true
-        ichaaDegree:
+        ishaDegree:
             type: smallint
             nullable: true
         iqamaDisplayTime:
             type: smallint
-        adhanDouaaDisplayTime:
+        azanDuaDisplayTime:
             type: smallint
-        site:
-            type: string
-            length: 255
-            nullable: true
-        prayerTimeSite:
-            type: string
-            length: 255
-            nullable: true
         created:
             type: datetime
             gedmo:

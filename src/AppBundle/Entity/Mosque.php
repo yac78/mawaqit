@@ -64,6 +64,11 @@ class Mosque {
      * @var string
      */
     private $email;
+    
+    /**
+     * @var string
+     */
+    private $site;
 
     /**
      * @var \DateTime
@@ -246,6 +251,28 @@ class Mosque {
      */
     public function getPhone() {
         return $this->phone;
+    }
+
+    /**
+     * Set site
+     *
+     * @param string $site
+     *
+     * @return Mosque
+     */
+    public function setSite($site) {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return string
+     */
+    public function getSite() {
+        return $this->site;
     }
 
     /**

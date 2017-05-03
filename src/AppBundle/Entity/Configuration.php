@@ -7,14 +7,14 @@ namespace AppBundle\Entity;
  */
 class Configuration {
 
-    const CUSTOM_CALCUL_CHOICE = 'custom';
-    const CSV_CALCUL_CHOICE = 'csv';
-    const CALCUL_CHOICE = [
-        self::CUSTOM_CALCUL_CHOICE,
-        self::CSV_CALCUL_CHOICE
+    const SOURCE_API = 'api';
+    const SOURCE_CALENDAR = 'calendar';
+    const SOURCE_CHOICES = [
+        self::SOURCE_API,
+        self::SOURCE_CALENDAR
     ];
     const METHOD_ISNA = 'ISNA';
-    const PRAYER_TIMES_METHODS = [
+    const METHOD_CHOICES = [
         self::METHOD_ISNA
     ];
 
@@ -29,44 +29,39 @@ class Configuration {
     private $lang = 'fr';
 
     /**
-     * @var \DateTime
+     * @var string
      */
-    private $joumouaaTime;
+    private $jumuaTime;
 
     /**
-     * @var \DateTime
+     * @var string
      */
     private $aidTime;
 
     /**
      * @var int
      */
-    private $imsakNbMinBeforeSobh = 0;
+    private $imsakNbMinBeforeFajr = 0;
 
     /**
-     * @var \DateTime
+     * @var string
      */
-    private $minimumIchaTime;
-
-    /**
-     * @var \DateTime
-     */
-    private $maximumIchaTimeForNoWaiting;
+    private $maximumIshaTimeForNoWaiting;
 
     /**
      * @var array
      */
-    private $prayersWaitingTimes;
+    private $waitingTimes;
 
     /**
      * @var array
      */
-    private $prayerTimesAdjustment = [0, 0, 0, 0, 0];
+    private $adjustedTimes = [0, 0, 0, 0, 0];
 
     /**
      * @var array
      */
-    private $prayerTimesFixing;
+    private $fixedTimes;
 
     /**
      * @var int
@@ -81,12 +76,12 @@ class Configuration {
     /**
      * @var bool
      */
-    private $douaaAfterAdhanEnabled = true;
+    private $duaAfterAzanEnabled = true;
 
     /**
      * @var bool
      */
-    private $douaaAfterPrayerEnabled = true;
+    private $duaAfterPrayerEnabled = true;
 
     /**
      * @var bool
@@ -96,12 +91,12 @@ class Configuration {
     /**
      * @var string
      */
-    private $calculChoice = self::CUSTOM_CALCUL_CHOICE;
+    private $sourceCalcul = self::SOURCE_API;
 
     /**
      * @var string
      */
-    private $prayerMethod = self::METHOD_ISNA;
+    private $prayerMethod;
 
     /**
      * @var int
@@ -121,7 +116,7 @@ class Configuration {
     /**
      * @var int
      */
-    private $ichaaDegree;
+    private $ishaDegree;
 
     /**
      * @var int
@@ -131,7 +126,7 @@ class Configuration {
     /**
      * @var int
      */
-    private $adhanDouaaDisplayTime = 30;
+    private $azanDuaDisplayTime = 30;
 
     /**
      * @var string
@@ -185,31 +180,31 @@ class Configuration {
     }
 
     /**
-     * Set joumouaaTime
+     * Set jumuaTime
      *
-     * @param \DateTime $joumouaaTime
+     * @param string $jumuaTime
      *
      * @return Configuration
      */
-    public function setJoumouaaTime($joumouaaTime) {
-        $this->joumouaaTime = $joumouaaTime;
+    public function setJumuaTime($jumuaTime) {
+        $this->jumuaTime = $jumuaTime;
 
         return $this;
     }
 
     /**
-     * Get joumouaaTime
+     * Get jumuaTime
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getJoumouaaTime() {
-        return $this->joumouaaTime;
+    public function getJumuaTime() {
+        return $this->jumuaTime;
     }
 
     /**
      * Set aidTime
      *
-     * @param \DateTime $aidTime
+     * @param string $aidTime
      *
      * @return Configuration
      */
@@ -222,142 +217,120 @@ class Configuration {
     /**
      * Get aidTime
      *
-     * @return \DateTime
+     * @return string
      */
     public function getAidTime() {
         return $this->aidTime;
     }
 
     /**
-     * Set imsakNbMinBeforeSobh
+     * Set imsakNbMinBeforeFajr
      *
-     * @param integer $imsakNbMinBeforeSobh
+     * @param integer $imsakNbMinBeforeFajr
      *
      * @return Configuration
      */
-    public function setImsakNbMinBeforeSobh($imsakNbMinBeforeSobh) {
-        $this->imsakNbMinBeforeSobh = $imsakNbMinBeforeSobh;
+    public function setImsakNbMinBeforeFajr($imsakNbMinBeforeFajr) {
+        $this->imsakNbMinBeforeFajr = $imsakNbMinBeforeFajr;
 
         return $this;
     }
 
     /**
-     * Get imsakNbMinBeforeSobh
+     * Get imsakNbMinBeforeFajr
      *
      * @return int
      */
-    public function getImsakNbMinBeforeSobh() {
-        return $this->imsakNbMinBeforeSobh;
+    public function getImsakNbMinBeforeFajr() {
+        return $this->imsakNbMinBeforeFajr;
     }
 
     /**
-     * Set minimumIchaTime
+     * Set maximumIshaTimeForNoWaiting
      *
-     * @param \DateTime $minimumIchaTime
+     * @param string $maximumIshaTimeForNoWaiting
      *
      * @return Configuration
      */
-    public function setMinimumIchaTime($minimumIchaTime) {
-        $this->minimumIchaTime = $minimumIchaTime;
+    public function setMaximumIshaTimeForNoWaiting($maximumIshaTimeForNoWaiting) {
+        $this->maximumIshaTimeForNoWaiting = $maximumIshaTimeForNoWaiting;
 
         return $this;
     }
 
     /**
-     * Get minimumIchaTime
+     * Get maximumIshaTimeForNoWaiting
      *
      * @return \DateTime
      */
-    public function getMinimumIchaTime() {
-        return $this->minimumIchaTime;
+    public function getMaximumIshaTimeForNoWaiting() {
+        return $this->maximumIshaTimeForNoWaiting;
     }
 
     /**
-     * Set maximumIchaTimeForNoWaiting
+     * Set waitingTimes
      *
-     * @param \DateTime $maximumIchaTimeForNoWaiting
+     * @param array $waitingTimes
      *
      * @return Configuration
      */
-    public function setMaximumIchaTimeForNoWaiting($maximumIchaTimeForNoWaiting) {
-        $this->maximumIchaTimeForNoWaiting = $maximumIchaTimeForNoWaiting;
+    public function setWaitingTimes($waitingTimes) {
+        $this->waitingTimes = $waitingTimes;
 
         return $this;
     }
 
     /**
-     * Get maximumIchaTimeForNoWaiting
-     *
-     * @return \DateTime
-     */
-    public function getMaximumIchaTimeForNoWaiting() {
-        return $this->maximumIchaTimeForNoWaiting;
-    }
-
-    /**
-     * Set prayersWaitingTimes
-     *
-     * @param array $prayersWaitingTimes
-     *
-     * @return Configuration
-     */
-    public function setPrayersWaitingTimes($prayersWaitingTimes) {
-        $this->prayersWaitingTimes = $prayersWaitingTimes;
-
-        return $this;
-    }
-
-    /**
-     * Get prayersWaitingTimes
+     * Get waitingTimes
      *
      * @return array
      */
-    public function getPrayersWaitingTimes() {
-        return $this->prayersWaitingTimes;
+    public function getWaitingTimes() {
+        return $this->waitingTimes;
     }
 
     /**
      * Set prayerTimesAdjustment
      *
-     * @param array $prayerTimesAdjustment
+     * @param array $adjustedTimes
      *
      * @return Configuration
      */
-    public function setPrayerTimesAdjustment($prayerTimesAdjustment) {
-        $this->prayerTimesAdjustment = $prayerTimesAdjustment;
+    public function setAdjustedTimes($adjustedTimes) {
+        $this->adjustedTimes = $adjustedTimes;
 
         return $this;
     }
 
     /**
-     * Get prayerTimesAdjustment
+     * Get adjustedTimes
      *
      * @return array
      */
-    public function getPrayerTimesAdjustment() {
-        return $this->prayerTimesAdjustment;
+    public function getAdjustedTimes() {
+        return $this->adjustedTimes;
     }
 
     /**
      * Set prayerTimesFixing
      *
-     * @param array $prayerTimesFixing
+     * @param array $fixedTimes
      *
      * @return Configuration
      */
-    public function setPrayerTimesFixing($prayerTimesFixing) {
-        $this->prayerTimesFixing = $prayerTimesFixing;
+    public function setFixedTimes($fixedTimes) {
+        $this->fixedTimes = $fixedTimes;
 
         return $this;
     }
 
     /**
-     * Get prayerTimesFixing
+     * Get fixedTimes
      *
      * @return array
      */
-    public function getPrayerTimesFixing() {
-        return $this->prayerTimesFixing;
+    public function getFixedTimes() {
+        return $this->fixedTimes;
     }
 
     /**
@@ -405,36 +378,36 @@ class Configuration {
     }
 
     /**
-     * Set douaaAfterAdhanEnabled
+     * Set duaAfterAzanEnabled
      *
-     * @param boolean $douaaAfterAdhanEnabled
+     * @param boolean $duaAfterAzanEnabled
      *
      * @return Configuration
      */
-    public function setDouaaAfterAdhanEnabled($douaaAfterAdhanEnabled) {
-        $this->douaaAfterAdhanEnabled = $douaaAfterAdhanEnabled;
+    public function setDuaAfterAdhanEnabled($duaAftertdhanEnabled) {
+        $this->duaAfterAzanEnabled = $duaAftertdhanEnabled;
 
         return $this;
     }
 
     /**
-     * Get douaaAfterAdhanEnabled
+     * Get duaAfterAzanEnabled
      *
      * @return bool
      */
-    public function getDouaaAfterAdhanEnabled() {
-        return $this->douaaAfterAdhanEnabled;
+    public function getDuaAfterAdhanEnabled() {
+        return $this->duaAfterAzanEnabled;
     }
 
     /**
-     * Set douaaAfterPrayerEnabled
+     * Set duaAfterPrayerEnabled
      *
-     * @param boolean $douaaAfterPrayerEnabled
+     * @param boolean $duaAfterPrayerEnabled
      *
      * @return Configuration
      */
-    public function setDouaaAfterPrayerEnabled($douaaAfterPrayerEnabled) {
-        $this->douaaAfterPrayerEnabled = $douaaAfterPrayerEnabled;
+    public function setDuaAfterPrayerEnabled($duaAfterPrayerEnabled) {
+        $this->duaAfterPrayerEnabled = $duaAfterPrayerEnabled;
 
         return $this;
     }
@@ -444,8 +417,8 @@ class Configuration {
      *
      * @return bool
      */
-    public function getDouaaAfterPrayerEnabled() {
-        return $this->douaaAfterPrayerEnabled;
+    public function getDuaAfterPrayerEnabled() {
+        return $this->duaAfterPrayerEnabled;
     }
 
     /**
@@ -471,25 +444,25 @@ class Configuration {
     }
 
     /**
-     * Set calculChoice
+     * Set sourceCalcul
      *
-     * @param string $calculChoice
+     * @param string $sourceCalcul
      *
      * @return Configuration
      */
-    public function setCalculChoice($calculChoice) {
-        $this->calculChoice = $calculChoice;
+    public function setSourceCalcul($sourceCalcul) {
+        $this->sourceCalcul = $sourceCalcul;
 
         return $this;
     }
 
     /**
-     * Get calculChoice
+     * Get sourceCalcul
      *
      * @return string
      */
-    public function getCalculChoice() {
-        return $this->calculChoice;
+    public function getSourceCalcul() {
+        return $this->sourceCalcul;
     }
 
     /**
@@ -581,14 +554,14 @@ class Configuration {
     }
 
     /**
-     * Set ichaaDegree
+     * Set ishaaDegree
      *
-     * @param integer $ichaaDegree
+     * @param integer $ishaaDegree
      *
      * @return Configuration
      */
-    public function setIchaaDegree($ichaaDegree) {
-        $this->ichaaDegree = $ichaaDegree;
+    public function setIshaaDegree($ishaaDegree) {
+        $this->ishaDegree = $ishaaDegree;
 
         return $this;
     }
@@ -598,8 +571,8 @@ class Configuration {
      *
      * @return int
      */
-    public function getIchaaDegree() {
-        return $this->ichaaDegree;
+    public function getIshaaDegree() {
+        return $this->ishaDegree;
     }
 
     /**
@@ -625,14 +598,14 @@ class Configuration {
     }
 
     /**
-     * Set adhanDouaaDisplayTime
+     * Set azanDuaDisplayTime
      *
-     * @param integer $adhanDouaaDisplayTime
+     * @param integer $azanDuaDisplayTime
      *
      * @return Configuration
      */
-    public function setAdhanDouaaDisplayTime($adhanDouaaDisplayTime) {
-        $this->adhanDouaaDisplayTime = $adhanDouaaDisplayTime;
+    public function setAzanDouaaDisplayTime($azanDuaDisplayTime) {
+        $this->azanDuaDisplayTime = $azanDuaDisplayTime;
 
         return $this;
     }
@@ -642,8 +615,8 @@ class Configuration {
      *
      * @return int
      */
-    public function getAdhanDouaaDisplayTime() {
-        return $this->adhanDouaaDisplayTime;
+    public function getAzanDouaaDisplayTime() {
+        return $this->azanDuaDisplayTime;
     }
 
     /**
