@@ -1,0 +1,5 @@
+AppBundle\Entity\Configuration:
+    ESSOUNNA_HOUILLES:
+        
+        mosque : '@ESSOUNNA_HOUILLES'
+
