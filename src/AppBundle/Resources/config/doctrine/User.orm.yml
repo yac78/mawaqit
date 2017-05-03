@@ -9,14 +9,6 @@ AppBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
-        firstname:
-            type: string
-            length: 255
-            nullable: true
-        lastname:
-            type: string
-            length: 255
-            nullable: true
         created:
             type: datetime
             nullable: true

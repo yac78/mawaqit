@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\Configuration;
 
 /**
  * Mosque
@@ -18,6 +19,11 @@ class Mosque {
      * @var string
      */
     private $name;
+
+    /**
+     * @var string
+     */
+    private $slug;
 
     /**
      * @var string
@@ -60,16 +66,6 @@ class Mosque {
     private $email;
 
     /**
-     * @var int
-     */
-    private $latitude;
-
-    /**
-     * @var int
-     */
-    private $longitude;
-
-    /**
      * @var \DateTime
      */
     private $created;
@@ -83,6 +79,11 @@ class Mosque {
      * @var User
      */
     private $user;
+
+    /**
+     * @var Configuration
+     */
+    private $configuration;
 
     /**
      * Get id
@@ -113,6 +114,28 @@ class Mosque {
      */
     public function getName() {
         return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $slug
+     *
+     * @return Mosque
+     */
+    public function setSlug($slug) {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getSlug() {
+        return $this->slug;
     }
 
     /**
@@ -292,50 +315,6 @@ class Mosque {
     }
 
     /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     *
-     * @return Mosque
-     */
-    public function setLatitude($latitude) {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return int
-     */
-    public function getLatitude() {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     *
-     * @return Mosque
-     */
-    public function setLongitude($longitude) {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return int
-     */
-    public function getLongitude() {
-        return $this->longitude;
-    }
-
-    /**
      * Set created
      *
      * @param \DateTime $created
@@ -385,6 +364,14 @@ class Mosque {
 
     function setUser(User $user) {
         $this->user = $user;
+    }
+
+    function getConfiguration(): Configuration {
+        return $this->configuration;
+    }
+
+    function setConfiguration(Configuration $configuration) {
+        $this->configuration = $configuration;
     }
 
 }

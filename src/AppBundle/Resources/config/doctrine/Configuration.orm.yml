@@ -52,6 +52,12 @@ AppBundle\Entity\Configuration:
             type: string
             length: 255
             nullable: true
+        latitude:
+            type: smallint
+            nullable: true
+        longitude:
+            type: smallint
+            nullable: true            
         fajrDegree:
             type: smallint
             nullable: true
@@ -72,8 +78,14 @@ AppBundle\Entity\Configuration:
             nullable: true
         created:
             type: datetime
-            nullable: true
+            gedmo:
+                timestampable:
+                    on: create  
         updated:
             type: datetime
             nullable: true
+            gedmo:
+                timestampable:
+                    on: update
+            
     lifecycleCallbacks: {  }

@@ -12,6 +12,29 @@ AppBundle\Entity\Mosque:
         name:
             type: string
             length: 1024
+        associationName:
+            type: string
+            length: 255
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            unique: true
+            gedmo:
+                slug:
+                  separator: "-"
+                  updatable: true
+                  fields:
+                    - name    
+                    - city    
+        phone:
+            type: string
+            length: 255
+            nullable: true
+        email:
+            type: string
+            length: 255
+            nullable: true
         address:
             type: string
             length: 1024
@@ -24,14 +47,6 @@ AppBundle\Entity\Mosque:
             type: string
             length: 255
             nullable: true
-        associationName:
-            type: string
-            length: 255
-            nullable: true
-        phone:
-            type: string
-            length: 255
-            nullable: true
         zipcode:
             type: string
             length: 255
@@ -39,16 +54,6 @@ AppBundle\Entity\Mosque:
         rib:
             type: string
             length: 1024
-            nullable: true
-        email:
-            type: string
-            length: 255
-            nullable: true
-        latitude:
-            type: smallint
-            nullable: true
-        longitude:
-            type: smallint
             nullable: true
         created:
             type: datetime
@@ -66,4 +71,12 @@ AppBundle\Entity\Mosque:
         user:
             targetEntity: AppBundle\Entity\user
             inversedBy: mosques
+    oneToOne:
+        configuration:
+            targetEntity: AppBundle\Entity\Configuration
+            inversedBy: mosque
+            joinColumns:
+                configuration_id:
+                    referencedColumnName: id
+                    onDelete: CASCADE
     lifecycleCallbacks: {  }
