@@ -78,7 +78,6 @@ AppBundle\Entity\Mosque:
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
-            inversedBy: mosque
             joinColumns:
                 configuration_id:
                     referencedColumnName: id

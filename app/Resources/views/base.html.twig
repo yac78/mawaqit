@@ -22,27 +22,12 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="col-md-10">
-                <div class="navbar-form navbar-left">
-                    <span id="sidebar-toggle" class="glyphicon glyphicon glyphicon-align-justify"></span> 
-                </div>
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Horaires de prière - administration</a>
-                </div>
-                <div class="navbar-form navbar-right">
-                    {% if not app.user %}
-                        <a href="{{path("fos_user_security_login")}}" class="btn btn-success">{{'layout.login'|trans({}, 'FOSUserBundle')}}</a>
-                    {% endif %}
-                    <a href="{{path("fos_user_registration_register")}}" class="btn btn-primary">{{'layout.register'|trans({}, 'FOSUserBundle')}}</a>
-                    {% if app.user %}
-                        <a href="{{path("fos_user_security_logout")}}" class="btn btn-danger">{{'layout.logout'|trans({}, 'FOSUserBundle')}}</a>
-                    {% endif %}
-                </div>
-            </div>
-        </nav>
 
-        {% include ("partial/sidebar.html.twig") %}
+        {% include ("partial/navbar.html.twig") %}
+
+        {% if app.user %}
+            {% include ("partial/sidebar.html.twig") %}
+        {% endif %}
 
         <div class="col-md-10 col-md-offset-1">
         {% block body %}{% endblock %}

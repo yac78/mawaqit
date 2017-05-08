@@ -17,6 +17,7 @@ class Configuration {
     const METHOD_CHOICES = [
         self::METHOD_ISNA
     ];
+    const LANG_CHOICES = ["fr", "ar", "en"];
 
     /**
      * @var int
@@ -46,7 +47,7 @@ class Configuration {
     /**
      * @var string
      */
-    private $maximumIshaTimeForNoWaiting;
+    private $maximumIshaTimeForNoWaiting = "22:00:00";
 
     /**
      * @var array
@@ -384,7 +385,7 @@ class Configuration {
      *
      * @return Configuration
      */
-    public function setDuaAfterAdhanEnabled($duaAftertdhanEnabled) {
+    public function setDuaAfterAzanEnabled($duaAftertdhanEnabled) {
         $this->duaAfterAzanEnabled = $duaAftertdhanEnabled;
 
         return $this;
@@ -395,7 +396,7 @@ class Configuration {
      *
      * @return bool
      */
-    public function getDuaAfterAdhanEnabled() {
+    public function getDuaAfterAzanEnabled() {
         return $this->duaAfterAzanEnabled;
     }
 
@@ -554,24 +555,24 @@ class Configuration {
     }
 
     /**
-     * Set ishaaDegree
+     * Set ishaDegree
      *
-     * @param integer $ishaaDegree
+     * @param integer $ishaDegree
      *
      * @return Configuration
      */
-    public function setIshaaDegree($ishaaDegree) {
-        $this->ishaDegree = $ishaaDegree;
+    public function setIshaDegree($ishaDegree) {
+        $this->ishaDegree = $ishaDegree;
 
         return $this;
     }
 
     /**
-     * Get ichaaDegree
+     * Get ishaDegree
      *
      * @return int
      */
-    public function getIshaaDegree() {
+    public function getIshaDegree() {
         return $this->ishaDegree;
     }
 
@@ -604,7 +605,7 @@ class Configuration {
      *
      * @return Configuration
      */
-    public function setAzanDouaaDisplayTime($azanDuaDisplayTime) {
+    public function setAzanDuaDisplayTime($azanDuaDisplayTime) {
         $this->azanDuaDisplayTime = $azanDuaDisplayTime;
 
         return $this;
@@ -615,7 +616,7 @@ class Configuration {
      *
      * @return int
      */
-    public function getAzanDouaaDisplayTime() {
+    public function getAzanDuaDisplayTime() {
         return $this->azanDuaDisplayTime;
     }
 

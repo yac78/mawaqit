@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} Mosquée{% endblock %}
+
+{% block body %}
+    <h3>{{'mosque.configure'|trans({"%mosque%":mosque.name})}}</h3> <br>
+    <form action="{{ path('mosque_configure', {id: mosque.configuration.id})}}" method="post">
+        <div class="col-lg-8">
+
+            {% include 'partial/flash_msg.html.twig' %}
+
+            {{ form_errors(form) }}
+
+            {{ form_widget(form._token) }}
+            {{ form_widget(form.lang) }}
+            {{ form_widget(form.jumuaTime) }}
+            {{ form_widget(form.aidTime) }}
+            {{ form_widget(form.imsakNbMinBeforeFajr) }}
+            {{ form_widget(form.maximumIshaTimeForNoWaiting) }}
+            {{ form_widget(form.waitingTimes) }}
+            {{ form_widget(form.adjustedTimes) }}
+            {{ form_widget(form.fixedTimes) }}
+            {{ form_widget(form.hijriAdjustment) }}
+            {{ form_widget(form.hijriDateEnabled) }}
+            {{ form_widget(form.duaAfterAzanEnabled) }}
+            {{ form_widget(form.duaAfterPrayerEnabled) }}
+            {{ form_widget(form.androidAppEnabled) }}
+            {{ form_widget(form.sourceCalcul) }}
+            {{ form_widget(form.prayerMethod) }}
+            {{ form_widget(form.latitude) }}
+            {{ form_widget(form.longitude) }}
+            {{ form_widget(form.ishaDegree) }}
+            {{ form_widget(form.iqamaDisplayTime) }}
+            {{ form_widget(form.azanDuaDisplayTime) }}
+
+            <br>
+            {{ form_widget(form.save) }}
+            <a href="{{path("mosque_index")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans}}</a>
+        </div>
+    </form>
+{% endblock %}

@@ -2,11 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Mosque;
+use AppBundle\Form\ConfigurationType;
+use AppBundle\Form\MosqueType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Mosque;
-use AppBundle\Form\MosqueType;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedException;
 
 /**
@@ -61,7 +62,7 @@ class MosqueController extends Controller {
     public function editAction(Request $request, Mosque $mosque) {
 
         $user = $this->getUser();
-         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException();
         }
 
@@ -106,7 +107,12 @@ class MosqueController extends Controller {
      * @Route("/configure/{id}", name="mosque_configure")
      */
     public function configureAction(Request $request, Mosque $mosque) {
-        return $this->redirectToRoute('mosque_index');
+        $configuration = $mosque->getConfiguration();
+        $form = $this->createForm(ConfigurationType::class, $configuration);
+        return $this->render('mosque/configure.html.twig', [
+                    'mosque' => $mosque,
+                    'form' => $form->createView()
+        ]);
     }
 
 }
