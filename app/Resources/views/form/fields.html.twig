@@ -1,0 +1,10 @@
+{% extends 'bootstrap_3_layout.html.twig' %}
+{%- block form_label -%}
+    {{ parent() }}
+
+    {# Display tooltip question mark near the label #}
+    {% if attr['data-tooltip'] is defined %}
+        <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="{{ attr['data-tooltip'] }}"></span>
+    {% endif %}
+
+{%- endblock form_label -%}

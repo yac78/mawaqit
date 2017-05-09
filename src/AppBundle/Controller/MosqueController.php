@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
+use AppBundle\Entity\Configuration;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MosqueType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -108,6 +109,16 @@ class MosqueController extends Controller {
      */
     public function configureAction(Request $request, Mosque $mosque) {
         $configuration = $mosque->getConfiguration();
+        if (!$configuration instanceof Configuration) {
+            $em = $this->getDoctrine()->getManager();
+            $configuration = new Configuration();
+            $mosque->setConfiguration($configuration);
+            $em->persist($mosque);
+            $em->flush();
+        }
+        
+//        die(dump($configuration));
+
         $form = $this->createForm(ConfigurationType::class, $configuration);
         return $this->render('mosque/configure.html.twig', [
                     'mosque' => $mosque,

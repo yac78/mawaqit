@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'form/fields.html.twig' %}
+
 {% block title %} {{ parent() }} Mosquée{% endblock %}
 
 {% block body %}
@@ -12,26 +14,52 @@
             {{ form_errors(form) }}
 
             {{ form_widget(form._token) }}
+            
+            {{ form_label(form.lang) }}
             {{ form_widget(form.lang) }}
+            
+            {{ form_label(form.jumuaTime) }}
             {{ form_widget(form.jumuaTime) }}
+            
+            {{ form_label(form.aidTime) }}
             {{ form_widget(form.aidTime) }}
+            
+            {{ form_label(form.imsakNbMinBeforeFajr) }}
             {{ form_widget(form.imsakNbMinBeforeFajr) }}
-            {{ form_widget(form.maximumIshaTimeForNoWaiting) }}
-            {{ form_widget(form.waitingTimes) }}
-            {{ form_widget(form.adjustedTimes) }}
-            {{ form_widget(form.fixedTimes) }}
+            
+{#            {{ form_widget(form.maximumIshaTimeForNoWaiting) }}#}
+{#            {{ form_widget(form.waitingTimes) }}#}
+{#            {{ form_widget(form.adjustedTimes) }}#}
+{#            {{ form_widget(form.fixedTimes) }}#}
+            {{ form_label(form.hijriAdjustment) }}
             {{ form_widget(form.hijriAdjustment) }}
+            
             {{ form_widget(form.hijriDateEnabled) }}
+            
             {{ form_widget(form.duaAfterAzanEnabled) }}
+            
             {{ form_widget(form.duaAfterPrayerEnabled) }}
-            {{ form_widget(form.androidAppEnabled) }}
+            
+            {{ form_label(form.sourceCalcul) }}
             {{ form_widget(form.sourceCalcul) }}
+            
+            {{ form_label(form.prayerMethod) }}
             {{ form_widget(form.prayerMethod) }}
+            
+            {{ form_label(form.latitude) }}
             {{ form_widget(form.latitude) }}
+            
+            {{ form_label(form.longitude) }}
             {{ form_widget(form.longitude) }}
+            
+            {{ form_label(form.ishaDegree) }}
             {{ form_widget(form.ishaDegree) }}
+            
+            {{ form_label(form.iqamaDisplayTime) }}
             {{ form_widget(form.iqamaDisplayTime) }}
-            {{ form_widget(form.azanDuaDisplayTime) }}
+            
+            {{ form_label(form.azanDuaDisplayTime) }}  
+            {{ form_widget(form.azanDuaDisplayTime) }}  
 
             <br>
             {{ form_widget(form.save) }}

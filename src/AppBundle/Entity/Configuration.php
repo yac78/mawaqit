@@ -17,7 +17,11 @@ class Configuration {
     const METHOD_CHOICES = [
         self::METHOD_ISNA
     ];
-    const LANG_CHOICES = ["fr", "ar", "en"];
+    const LANG_CHOICES = [
+        "Français" => "fr",
+        "عربي" => "ar",
+        "English" => "en"
+    ];
 
     /**
      * @var int
@@ -47,12 +51,12 @@ class Configuration {
     /**
      * @var string
      */
-    private $maximumIshaTimeForNoWaiting = "22:00:00";
+    private $maximumIshaTimeForNoWaiting;
 
     /**
      * @var array
      */
-    private $waitingTimes;
+    private $waitingTimes = [10, 10, 10, 5, 10];
 
     /**
      * @var array

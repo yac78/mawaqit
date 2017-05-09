@@ -393,7 +393,7 @@ class Mosque {
         $this->user = $user;
     }
 
-    function getConfiguration(): Configuration {
+    function getConfiguration() {
         return $this->configuration;
     }
 

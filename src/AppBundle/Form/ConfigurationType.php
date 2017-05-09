@@ -20,30 +20,27 @@ class ConfigurationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('lang', ChoiceType::class, [
-                    'label' => 'configuration.form.hijriDateEnabled'
+                    'label' => 'configuration.form.hijriDateEnabled',
+                    'choices' => Configuration::LANG_CHOICES
                 ])
                 ->add('jumuaTime', TimeType::class, [
-                    "input" => "string",
-                    "widget" => "choice",
+                    'input' => 'string',
+                    'widget' => 'choice',
                     'label' => 'configuration.form.hijriDateEnabled.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.hijriDateEnabled.placeholder"
-                    ]
                 ])
                 ->add('aidTime', TimeType::class, [
-                    "input" => "string",
-                    "widget" => "choice",
+                    'input' => 'string',
+                    'widget' => 'choice',
                     'label' => 'configuration.form.hijriDateEnabled.label'
                 ])
                 ->add('imsakNbMinBeforeFajr', IntegerType::class, [
                     'label' => 'configuration.form.imsakNbMinBeforeFajr'
                 ])
                 ->add('maximumIshaTimeForNoWaiting', TimeType::class, [
-                    "input" => "string",
-                    "widget" => "choice",
+                    'input' => 'string',
+                    'widget' => 'choice',
                     'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
-                    "placeholder" => "configuration.form.maximumIshaTimeForNoWaiting.placeholder",
-                    "attr" => [
+                    'attr' => [
                         'class' => 'form-control margin-bottom-10',
                     ]
                 ])
@@ -65,42 +62,50 @@ class ConfigurationType extends AbstractType {
                 ->add('androidAppEnabled', CheckboxType::class, [
                     'label' => 'configuration.form.androidAppEnabled.label',
                 ])
-                ->add('sourceCalcul')
-                ->add('prayerMethod')
+                ->add('sourceCalcul', ChoiceType::class, [
+                    'label' => 'configuration.form.sourceCalcul',
+                    'empty_data' => '',
+                    'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
+                ])
+                ->add('prayerMethod', ChoiceType::class, [
+                    'label' => 'configuration.form.prayerMethod',
+                    'empty_data' => '',
+                    'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
+                ])
                 ->add('latitude', IntegerType::class, [
                     'label' => 'configuration.form.latitude.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.latitude.placeholder"
+                    'attr' => [
+                        'placeholder' => 'configuration.form.latitude.placeholder'
                     ]
                 ])
                 ->add('longitude', IntegerType::class, [
                     'label' => 'configuration.form.longitude.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.longitude.placeholder"
+                    'attr' => [
+                        'placeholder' => 'configuration.form.longitude.placeholder'
                     ]
                 ])
                 ->add('fajrDegree', IntegerType::class, [
                     'label' => 'configuration.form.fajrDegree.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.fajrDegree.placeholder"
+                    'attr' => [
+                        'placeholder' => 'configuration.form.fajrDegree.placeholder'
                     ]
                 ])
                 ->add('ishaDegree', IntegerType::class, [
                     'label' => 'configuration.form.ishaDegree.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.ishaDegree.placeholder"
+                    'attr' => [
+                        'placeholder' => 'configuration.form.ishaDegree.placeholder'
                     ]
                 ])
                 ->add('iqamaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.iqamaDisplayTime.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.iqamaDisplayTime.placeholder"
+                    'attr' => [
+                        'placeholder' => 'configuration.form.iqamaDisplayTime.placeholder'
                     ]
                 ])
                 ->add('azanDuaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.azanDuaDisplayTime.label',
-                    "attr" => [
-                        "placeholder" => "configuration.form.azanDuaDisplayTime.placeholder"
+                    'attr' => [
+                        'placeholder' => 'configuration.form.azanDuaDisplayTime.placeholder'
                     ]
                 ])
                 ->add('save', SubmitType::class, [

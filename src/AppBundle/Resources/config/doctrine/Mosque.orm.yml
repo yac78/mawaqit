@@ -78,6 +78,9 @@ AppBundle\Entity\Mosque:
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
+            cascade:
+                - remove
+                - persist
             joinColumns:
                 configuration_id:
                     referencedColumnName: id
