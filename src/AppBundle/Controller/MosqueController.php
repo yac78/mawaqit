@@ -116,10 +116,23 @@ class MosqueController extends Controller {
             $em->persist($mosque);
             $em->flush();
         }
-        
-//        die(dump($configuration));
 
         $form = $this->createForm(ConfigurationType::class, $configuration);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $configuration = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($configuration);
+            $em->flush();
+            $this->addFlash('success', $this->get("translator")->trans("form.edit.success", [
+                        "%object%" => "de la mosquée", "%name%" => $mosque->getName()
+            ]));
+
+            return $this->redirectToRoute('mosque_index');
+        }
+
+
         return $this->render('mosque/configure.html.twig', [
                     'mosque' => $mosque,
                     'form' => $form->createView()

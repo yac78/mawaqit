@@ -14,8 +14,19 @@ class Configuration {
         self::SOURCE_CALENDAR
     ];
     const METHOD_ISNA = 'ISNA';
+    const METHOD_UOIF = 'UOIF';
+    const METHOD_Karachi = 'Karachi';
+    const METHOD_MWL = 'MWL';
+    const METHOD_Makkah = 'Makkah';
+    const METHOD_Egypt = 'Egypt';
+    
     const METHOD_CHOICES = [
-        self::METHOD_ISNA
+        self::METHOD_ISNA,
+        self::METHOD_UOIF,
+        self::METHOD_Karachi,
+        self::METHOD_MWL,
+        self::METHOD_Makkah,
+        self::METHOD_Egypt,
     ];
     const LANG_CHOICES = [
         "Français" => "fr",

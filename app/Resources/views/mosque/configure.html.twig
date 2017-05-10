@@ -5,65 +5,213 @@
 {% block title %} {{ parent() }} Mosquée{% endblock %}
 
 {% block body %}
-    <h3>{{'mosque.configure'|trans({"%mosque%":mosque.name})}}</h3> <br>
-    <form action="{{ path('mosque_configure', {id: mosque.configuration.id})}}" method="post">
-        <div class="col-lg-8">
 
-            {% include 'partial/flash_msg.html.twig' %}
-
-            {{ form_errors(form) }}
-
-            {{ form_widget(form._token) }}
-            
-            {{ form_label(form.lang) }}
-            {{ form_widget(form.lang) }}
-            
-            {{ form_label(form.jumuaTime) }}
-            {{ form_widget(form.jumuaTime) }}
-            
-            {{ form_label(form.aidTime) }}
-            {{ form_widget(form.aidTime) }}
-            
-            {{ form_label(form.imsakNbMinBeforeFajr) }}
-            {{ form_widget(form.imsakNbMinBeforeFajr) }}
-            
-{#            {{ form_widget(form.maximumIshaTimeForNoWaiting) }}#}
-{#            {{ form_widget(form.waitingTimes) }}#}
-{#            {{ form_widget(form.adjustedTimes) }}#}
-{#            {{ form_widget(form.fixedTimes) }}#}
-            {{ form_label(form.hijriAdjustment) }}
-            {{ form_widget(form.hijriAdjustment) }}
-            
-            {{ form_widget(form.hijriDateEnabled) }}
-            
-            {{ form_widget(form.duaAfterAzanEnabled) }}
-            
-            {{ form_widget(form.duaAfterPrayerEnabled) }}
-            
-            {{ form_label(form.sourceCalcul) }}
-            {{ form_widget(form.sourceCalcul) }}
-            
-            {{ form_label(form.prayerMethod) }}
-            {{ form_widget(form.prayerMethod) }}
-            
-            {{ form_label(form.latitude) }}
-            {{ form_widget(form.latitude) }}
-            
-            {{ form_label(form.longitude) }}
-            {{ form_widget(form.longitude) }}
-            
-            {{ form_label(form.ishaDegree) }}
-            {{ form_widget(form.ishaDegree) }}
-            
-            {{ form_label(form.iqamaDisplayTime) }}
-            {{ form_widget(form.iqamaDisplayTime) }}
-            
-            {{ form_label(form.azanDuaDisplayTime) }}  
-            {{ form_widget(form.azanDuaDisplayTime) }}  
-
-            <br>
-            {{ form_widget(form.save) }}
-            <a href="{{path("mosque_index")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans}}</a>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-success"> <strong> {{'mosque.configure'|trans({"%mosque%":mosque.name})}}</strong></h1><br>
+            <span class="glyphicon glyphicon-asterisk text-danger"></span> <span>{{'configuration.form.mandatory'|trans}}</span> <br><br>
         </div>
+    </div>
+
+    <form action="{{ path('mosque_configure', {id: mosque.id})}}" method="post">
+
+        {% include 'partial/flash_msg.html.twig' %}
+
+        {{ form_errors(form) }}
+
+        {{ form_widget(form._token) }}
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_label(form.lang) }}
+                {{ form_widget(form.lang) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_label(form.sourceCalcul) }}
+                {{ form_widget(form.sourceCalcul) }}
+            </div>
+        </div>
+
+
+        <div class="api hidden">
+            <div class="row">
+                <div class="col-md-5">
+                    {{ form_label(form.prayerMethod) }}
+                    {{ form_widget(form.prayerMethod) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_label(form.ishaDegree) }}
+                    {{ form_widget(form.ishaDegree) }}
+                </div>
+                <div class="col-md-4">
+
+                    {{ form_label(form.fajrDegree) }}
+                    {{ form_widget(form.fajrDegree) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_label(form.adjustedTimes) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.adjustedTimes.fajr) }}
+                    {{ form_widget(form.adjustedTimes.fajr) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.adjustedTimes.zuhr) }}
+                    {{ form_widget(form.adjustedTimes.zuhr) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.adjustedTimes.asr) }}
+                    {{ form_widget(form.adjustedTimes.asr) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.adjustedTimes.maghreb) }}
+                    {{ form_widget(form.adjustedTimes.maghreb) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.adjustedTimes.isha) }}
+                    {{ form_widget(form.adjustedTimes.isha) }}
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_label(form.fixedTimes) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.fixedTimes.fajr) }}
+                    {{ form_widget(form.fixedTimes.fajr) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.fixedTimes.zuhr) }}
+                    {{ form_widget(form.fixedTimes.zuhr) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.fixedTimes.asr) }}
+                    {{ form_widget(form.fixedTimes.asr) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.fixedTimes.maghreb) }}
+                    {{ form_widget(form.fixedTimes.maghreb) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ form_label(form.fixedTimes.isha) }}
+                    {{ form_widget(form.fixedTimes.isha) }}
+                </div> 
+            </div> 
+        </div>
+
+        <div class="calendar hidden">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{'january'|trans}}</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_label(form.jumuaTime) }}
+                {{ form_widget(form.jumuaTime) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_label(form.aidTime) }}
+                {{ form_widget(form.aidTime) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_label(form.maximumIshaTimeForNoWaiting) }}
+                {{ form_widget(form.maximumIshaTimeForNoWaiting) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_label(form.imsakNbMinBeforeFajr) }}
+                {{ form_widget(form.imsakNbMinBeforeFajr) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_label(form.waitingTimes) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_label(form.waitingTimes.fajr) }}
+                {{ form_widget(form.waitingTimes.fajr) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_label(form.waitingTimes.zuhr) }}
+                {{ form_widget(form.waitingTimes.zuhr) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_label(form.waitingTimes.asr) }}
+                {{ form_widget(form.waitingTimes.asr) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_label(form.waitingTimes.maghreb) }}
+                {{ form_widget(form.waitingTimes.maghreb) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_label(form.waitingTimes.isha) }}
+                {{ form_widget(form.waitingTimes.isha) }}
+            </div> 
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_label(form.hijriAdjustment) }}
+                {{ form_widget(form.hijriAdjustment) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_label(form.iqamaDisplayTime) }}
+                {{ form_widget(form.iqamaDisplayTime) }}
+            </div>
+
+            <div class="col-md-3">
+                {{ form_label(form.azanDuaDisplayTime) }}  
+                {{ form_widget(form.azanDuaDisplayTime) }}  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_widget(form.hijriDateEnabled) }}
+            </div>
+
+            <div class="col-md-4">
+                {{ form_widget(form.duaAfterAzanEnabled) }}
+            </div>
+
+            <div class="col-md-4">
+                {{ form_widget(form.duaAfterPrayerEnabled) }}
+            </div>
+        </div>
+        <br>
+        {{ form_widget(form.save) }}
+        <a href="{{path("mosque_index")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans}}</a>
     </form>
+{% endblock %}
+
+{% block javascripts %}
+
+    {% javascripts
+       '@AppBundle/Resources/public/js/configure.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}    
+
 {% endblock %}

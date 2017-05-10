@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\PrayerType;
 use AppBundle\Entity\Configuration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Form\DataTransformer\PrayerTransformer;
 
 class ConfigurationType extends AbstractType {
 
@@ -18,20 +20,21 @@ class ConfigurationType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        
         $builder
                 ->add('lang', ChoiceType::class, [
-                    'label' => 'configuration.form.hijriDateEnabled',
+                    'label' => 'configuration.form.lang',
                     'choices' => Configuration::LANG_CHOICES
                 ])
                 ->add('jumuaTime', TimeType::class, [
                     'input' => 'string',
                     'widget' => 'choice',
-                    'label' => 'configuration.form.hijriDateEnabled.label',
+                    'label' => 'configuration.form.jumuaTime.label',
                 ])
                 ->add('aidTime', TimeType::class, [
                     'input' => 'string',
                     'widget' => 'choice',
-                    'label' => 'configuration.form.hijriDateEnabled.label'
+                    'label' => 'configuration.form.aidTime.label'
                 ])
                 ->add('imsakNbMinBeforeFajr', IntegerType::class, [
                     'label' => 'configuration.form.imsakNbMinBeforeFajr'
@@ -39,14 +42,17 @@ class ConfigurationType extends AbstractType {
                 ->add('maximumIshaTimeForNoWaiting', TimeType::class, [
                     'input' => 'string',
                     'widget' => 'choice',
-                    'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
-                    'attr' => [
-                        'class' => 'form-control margin-bottom-10',
-                    ]
+                    'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label'
                 ])
-                ->add('waitingTimes')
-                ->add('adjustedTimes')
-                ->add('fixedTimes')
+                ->add('waitingTimes', PrayerType::class, [
+                        'sub_type' => IntegerType::class
+                ])
+                ->add('adjustedTimes', PrayerType::class, [
+                        'sub_type' => IntegerType::class
+                ])
+                ->add('fixedTimes', PrayerType::class, [
+                        'sub_type' => TimeType::class
+                ])
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment'
                 ])
@@ -64,12 +70,12 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('sourceCalcul', ChoiceType::class, [
                     'label' => 'configuration.form.sourceCalcul',
-                    'empty_data' => '',
+                    'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
                 ])
                 ->add('prayerMethod', ChoiceType::class, [
                     'label' => 'configuration.form.prayerMethod',
-                    'empty_data' => '',
+                    'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
                 ])
                 ->add('latitude', IntegerType::class, [
@@ -115,6 +121,14 @@ class ConfigurationType extends AbstractType {
                     ]
                 ])
         ;
+
+
+        $builder->get('waitingTimes')
+                ->addModelTransformer(new PrayerTransformer(IntegerType::class));
+        $builder->get('adjustedTimes')
+                ->addModelTransformer(new PrayerTransformer(IntegerType::class));
+        $builder->get('fixedTimes')
+                ->addModelTransformer(new PrayerTransformer(TimeType::class));
     }
 
     /**
