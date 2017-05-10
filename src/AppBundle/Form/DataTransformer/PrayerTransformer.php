@@ -39,6 +39,16 @@ class PrayerTransformer implements DataTransformerInterface {
 
     public function reverseTransform($prayerIssue) {
 
+         if ($this->type === TimeType::class) {
+             foreach ($prayerIssue as $key => $value) {
+                 $value = $value->format('H:i');
+                 if($value === "00:00"){
+                     $value = null;
+                 }
+                 $prayerIssue[$key] = $value;
+             }
+         }
+        
         return $prayerIssue;
     }
 

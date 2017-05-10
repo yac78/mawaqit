@@ -153,6 +153,11 @@ class Configuration {
      * @var string
      */
     private $prayerTimeSite;
+    
+    /**
+     * @var array
+     */
+    private $calendar;
 
     /**
      * @var \DateTime
@@ -677,6 +682,28 @@ class Configuration {
      */
     public function getPrayerTimeSite() {
         return $this->prayerTimeSite;
+    }
+    
+    /**
+     * Set calendar
+     *
+     * @param string $prayerTimeSite
+     *
+     * @return Configuration
+     */
+    public function setCalendar($calendar) {
+        $this->calendar = $calendar;
+
+        return $this;
+    }
+
+    /**
+     * Get calendar
+     *
+     * @return string
+     */
+    public function getCalendar():array {
+        return $this->calendar;
     }
 
     /**

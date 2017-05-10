@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedException;
+use AppBundle\Form\CalendarType;
 
 /**
  * @Route("/admin/mosque")
@@ -108,6 +109,9 @@ class MosqueController extends Controller {
      * @Route("/configure/{id}", name="mosque_configure")
      */
     public function configureAction(Request $request, Mosque $mosque) {
+        
+        die(dump($request->request->all()));
+        
         $configuration = $mosque->getConfiguration();
         if (!$configuration instanceof Configuration) {
             $em = $this->getDoctrine()->getManager();
@@ -134,6 +138,7 @@ class MosqueController extends Controller {
 
 
         return $this->render('mosque/configure.html.twig', [
+                    'months' => CalendarType::MONTHS,
                     'mosque' => $mosque,
                     'form' => $form->createView()
         ]);

@@ -97,7 +97,7 @@ class ConfigurationType extends AbstractType {
                     ]
                 ])
                 ->add('ishaDegree', IntegerType::class, [
-                    'label' => 'configuration.form.ishaDegree.label',
+                    'label' => 'configuration.form.ishaDegree.label',                    
                     'attr' => [
                         'placeholder' => 'configuration.form.ishaDegree.placeholder'
                     ]
@@ -114,6 +114,9 @@ class ConfigurationType extends AbstractType {
                         'placeholder' => 'configuration.form.azanDuaDisplayTime.placeholder'
                     ]
                 ])
+//                ->add('azanDuaDisplayTime', CalendarType::class, [
+//                    'label' => 'configuration.form.calendar.label',
+//                ])
                 ->add('save', SubmitType::class, [
                     'label' => 'global.save',
                     'attr' => [
@@ -136,7 +139,8 @@ class ConfigurationType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => Configuration::class
+            'data_class' => Configuration::class,
+            'required' => false
         ));
     }
 

@@ -4,6 +4,15 @@
 
 {% block title %} {{ parent() }} Mosquée{% endblock %}
 
+{% block stylesheets %}
+    {% stylesheets 
+            "bundles/app/css/configure.css"
+            filter="cssrewrite"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
 
     <div class="row">
@@ -111,18 +120,43 @@
 
         <div class="calendar hidden">
             <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{'january'|trans}}</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse in">
-                        <div class="panel-body">
-
+                {% for month,days in months %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">{{month|trans}}</a>
+                            </h4>
+                        </div>
+                        <div id="{{month}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-1 text-center">{{'day'|trans}}</div>
+                                    <div class="col-md-1 text-center">{{'fajr'|trans}}</div>
+                                    <div class="col-md-1 text-center">{{'churuck'|trans}}</div>
+                                    <div class="col-md-1 text-center">{{'zuhr'|trans}}</div>
+                                    <div class="col-md-1 text-center">{{'asr'|trans}}</div>
+                                    <div class="col-md-1 text-center">{{'maghreb'|trans}}</div>
+                                    <div class="col-md-1 text-center">{{'isha'|trans}}</div>
+                                </div>
+                                {% for day in 1..days %}
+                                    <div class="row">
+                                        <div class="col-md-1 text-center">
+                                            {{day}}
+                                        </div>
+                                        {% for prayer in 1..6 %}
+                                            <div class="col-md-1">
+                                                <input type="text" pattern="\d{2}:\d{2}" placeholder="ex: 19:00" class="form-control" name="prayer[{{month ~ '_' ~ day~ '_' ~ prayer}}]" maxlength="5" oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try {
+                                                            setCustomValidity('')
+                                                        } catch (e) {
+                                                        }">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 
@@ -207,11 +241,9 @@
 {% endblock %}
 
 {% block javascripts %}
-
     {% javascripts
        '@AppBundle/Resources/public/js/configure.js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}    
-
 {% endblock %}

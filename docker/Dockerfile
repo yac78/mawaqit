@@ -34,6 +34,7 @@ RUN chmod +x /usr/local/bin/composer
 
 ADD vhost /etc/nginx/sites-available/default
 RUN sed -i "s/;date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini && \
+    sed -i "s/;memory_limit =.*/memory_limit = 64/" /etc/php/7.1/fpm/php.ini && \
     sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini && \
     sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 

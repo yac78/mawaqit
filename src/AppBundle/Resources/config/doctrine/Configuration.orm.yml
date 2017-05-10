@@ -68,6 +68,9 @@ AppBundle\Entity\Configuration:
             type: smallint
         azanDuaDisplayTime:
             type: smallint
+        calendar:
+            type: json_array
+            nullable: true
         created:
             type: datetime
             gedmo:
