@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             {% for mosque in mosques %}
-            <tr>
+            <tr class="{{mosque.configuration is not defined or mosque.configuration.completed  == false ? 'danger' : '' }}">
                 <th scope="row">{{mosque.id}}</th>
                 <td>{{mosque.name}}</td>
                 <td>{{mosque.associationName}}</td>
