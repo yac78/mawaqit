@@ -145,7 +145,7 @@
                                         </div>
                                         {% for prayer in 1..6 %}
                                             <div class="col-md-1">
-                                                <input type="text" pattern="\d{2}:\d{2}" placeholder="ex: 19:00" class="form-control" name="prayer[{{month ~ '_' ~ day~ '_' ~ prayer}}]" maxlength="5" oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try {
+                                                <input type="text" value="{{form.vars.value.calendar[month][day][prayer]}}" pattern="\d{2}:\d{2}" placeholder="ex: 19:00" class="form-control" name="appbundle_configuration[calendar][{{month ~ '_' ~ day~ '_' ~ prayer}}]" maxlength="5" oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try {
                                                             setCustomValidity('')
                                                         } catch (e) {
                                                         }">

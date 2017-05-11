@@ -13,6 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\DataTransformer\PrayerTransformer;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+use AppBundle\Service\Calendar;
 
 class ConfigurationType extends AbstractType {
 
@@ -20,7 +23,7 @@ class ConfigurationType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        
+
         $builder
                 ->add('lang', ChoiceType::class, [
                     'label' => 'configuration.form.lang',
@@ -45,13 +48,13 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label'
                 ])
                 ->add('waitingTimes', PrayerType::class, [
-                        'sub_type' => IntegerType::class
+                    'sub_type' => IntegerType::class
                 ])
                 ->add('adjustedTimes', PrayerType::class, [
-                        'sub_type' => IntegerType::class
+                    'sub_type' => IntegerType::class
                 ])
                 ->add('fixedTimes', PrayerType::class, [
-                        'sub_type' => TimeType::class
+                    'sub_type' => TimeType::class
                 ])
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment'
@@ -97,7 +100,7 @@ class ConfigurationType extends AbstractType {
                     ]
                 ])
                 ->add('ishaDegree', IntegerType::class, [
-                    'label' => 'configuration.form.ishaDegree.label',                    
+                    'label' => 'configuration.form.ishaDegree.label',
                     'attr' => [
                         'placeholder' => 'configuration.form.ishaDegree.placeholder'
                     ]
@@ -114,15 +117,15 @@ class ConfigurationType extends AbstractType {
                         'placeholder' => 'configuration.form.azanDuaDisplayTime.placeholder'
                     ]
                 ])
-//                ->add('azanDuaDisplayTime', CalendarType::class, [
-//                    'label' => 'configuration.form.calendar.label',
-//                ])
+                ->add('calendar')
                 ->add('save', SubmitType::class, [
                     'label' => 'global.save',
                     'attr' => [
                         'class' => 'btn btn-lg btn-primary',
                     ]
-                ])
+                ])->addEventListener(
+                FormEvents::POST_SUBMIT, array($this, 'onPreSetData')
+        )
         ;
 
 
@@ -133,6 +136,15 @@ class ConfigurationType extends AbstractType {
         $builder->get('fixedTimes')
                 ->addModelTransformer(new PrayerTransformer(TimeType::class));
     }
+    
+    public function onPreSetData(FormEvent $event)
+    {
+        $configuration = $event->getData();
+        $calendarData = $configuration->getCalendar();
+        
+        // format calendar
+        $configuration->setCalendar(Calendar::format($calendarData));
+    }
 
     /**
      * {@inheritdoc}
@@ -140,6 +152,7 @@ class ConfigurationType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => Configuration::class,
+            'allow_extra_fields' => true,
             'required' => false
         ));
     }
