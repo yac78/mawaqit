@@ -123,9 +123,7 @@ class ConfigurationType extends AbstractType {
                     'attr' => [
                         'class' => 'btn btn-lg btn-primary',
                     ]
-                ])->addEventListener(
-                FormEvents::POST_SUBMIT, array($this, 'onPreSetData')
-        )
+                ])
         ;
 
 
@@ -137,15 +135,6 @@ class ConfigurationType extends AbstractType {
                 ->addModelTransformer(new PrayerTransformer(TimeType::class));
     }
     
-    public function onPreSetData(FormEvent $event)
-    {
-        $configuration = $event->getData();
-        $calendarData = $configuration->getCalendar();
-        
-        // format calendar
-        $configuration->setCalendar(Calendar::format($calendarData));
-    }
-
     /**
      * {@inheritdoc}
      */

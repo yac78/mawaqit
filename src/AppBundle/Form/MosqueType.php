@@ -14,57 +14,64 @@ class MosqueType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('name', null, [
+                    'label' => 'mosque.name',
+                    'required' => true,
                     'attr' => [
-                        'placeholder' => 'mosque.name',
-                        'class' => 'form-control margin-bottom-10',
+                        'placeholder' => 'mosque.form.placeholder.name',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('associationName', null, [
+                    'label' => 'global.association_name',
                     'attr' => [
-                        'placeholder' => 'global.association_name',
-                        'class' => 'form-control margin-bottom-10',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('phone', null, [
+                    'label' => 'global.phone',
+                    'required' => true,
                     'attr' => [
-                        'placeholder' => 'global.phone',
-                        'class' => 'form-control margin-bottom-10',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('email', EmailType::class, [
+                    'label' => 'global.email',
+                    'required' => true,
                     'attr' => [
-                        'placeholder' => 'global.email',
-                        'class' => 'form-control margin-bottom-10',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('address', null, [
+                    'label' => 'global.address',
                     'attr' => [
-                        'placeholder' => 'global.address',
-                        'class' => 'form-control margin-bottom-10',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('city', null, [
+                    'label' => 'global.city',
+                    'required' => true,
                     'attr' => [
-                        'placeholder' => 'global.city',
-                        'class' => 'form-control margin-bottom-10',
+                        'placeholder' => 'mosque.form.placeholder.city',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('zipcode', null, [
+                    'label' => 'global.zipcode',
                     'attr' => [
-                        'placeholder' => 'global.zipcode',
-                        'class' => 'form-control margin-bottom-10',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('country', null, [
+                    'label' => 'global.country',
                     'attr' => [
-                        'placeholder' => 'global.country',
-                        'class' => 'form-control margin-bottom-10',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('rib', null, [
+                    'label' => 'global.rib',
                     'attr' => [
-                        'placeholder' => 'global.rib',
-                        'class' => 'form-control margin-bottom-10',
+                        'placeholder' => 'mosque.form.placeholder.rib',
+                        'class' => 'form-control',
                     ]
                 ])
                 ->add('save', SubmitType::class, [
@@ -73,7 +80,7 @@ class MosqueType extends AbstractType {
                         'class' => 'btn btn-lg btn-primary',
                     ]
                 ])
-         ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver) {

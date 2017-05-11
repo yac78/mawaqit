@@ -120,11 +120,12 @@
 
         <div class="calendar hidden">
             <div class="panel-group" id="accordion">
+                <h3>{{'global.calendar'|trans}}</h3>
                 {% for month,days in months %}
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">{{month|trans}}</a>
+                                <span>{{month|trans}}</span>
                             </h4>
                         </div>
                         <div id="{{month}}" class="panel-collapse collapse">
@@ -145,10 +146,14 @@
                                         </div>
                                         {% for prayer in 1..6 %}
                                             <div class="col-md-1">
-                                                <input type="text" value="{{form.vars.value.calendar[month][day][prayer]}}" pattern="\d{2}:\d{2}" placeholder="ex: 19:00" class="form-control" name="appbundle_configuration[calendar][{{month ~ '_' ~ day~ '_' ~ prayer}}]" maxlength="5" oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try {
-                                                            setCustomValidity('')
-                                                        } catch (e) {
-                                                        }">
+                                                <input 
+                                                    name="appbundle_configuration[calendar][{{month}}][{{day}}][{{prayer}}]" 
+                                                    value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : ''}}" 
+                                                    type="text" pattern="\d{2}:\d{2}" 
+                                                    placeholder="ex: 19:00" 
+                                                    class="form-control text-center" 
+                                                    maxlength="5" 
+                                                    oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try { setCustomValidity('') } catch (e) {}">
                                             </div>
                                         {% endfor %}
                                     </div>

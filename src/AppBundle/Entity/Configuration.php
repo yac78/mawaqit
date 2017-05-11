@@ -19,7 +19,6 @@ class Configuration {
     const METHOD_MWL = 'MWL';
     const METHOD_Makkah = 'Makkah';
     const METHOD_Egypt = 'Egypt';
-    
     const METHOD_CHOICES = [
         self::METHOD_ISNA,
         self::METHOD_UOIF,
@@ -153,7 +152,7 @@ class Configuration {
      * @var string
      */
     private $prayerTimeSite;
-    
+
     /**
      * @var array
      */
@@ -683,7 +682,7 @@ class Configuration {
     public function getPrayerTimeSite() {
         return $this->prayerTimeSite;
     }
-    
+
     /**
      * Set calendar
      *
@@ -702,7 +701,7 @@ class Configuration {
      *
      * @return string
      */
-    public function getCalendar():array {
+    public function getCalendar(): array {
         return $this->calendar;
     }
 
@@ -748,6 +747,26 @@ class Configuration {
      */
     public function getUpdated() {
         return $this->updated;
+    }
+
+    /**
+     * True if configuration is completed
+     * @return boolean 
+     */
+    public function isCompleted() {
+
+        if ($this->sourceCalcul === self::SOURCE_CALENDAR) {
+            foreach ($this->calendar as $month => $days) {
+                foreach ($days as $day => $prayers) {
+                    foreach ($prayers as $prayerIndex => $prayer) {
+                        if (empty($prayer)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 }

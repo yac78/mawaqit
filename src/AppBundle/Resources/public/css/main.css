@@ -1,15 +1,21 @@
 body {
     padding-top: 100px;
     padding-bottom: 40px;
-    background-color: #eee;
+    /*background-color: #eee;*/
 }
 
-.margin-bottom-10 {
-    margin-bottom: 10px;
-}
 .upper-first {
     text-transform: capitalize;
 }
 .upper-first:first-letter {
     text-transform: uppercase;
+}
+
+.control-label 
+{
+    margin-top: 10px;
+}
+
+.pointer{
+    cursor: pointer;
 }

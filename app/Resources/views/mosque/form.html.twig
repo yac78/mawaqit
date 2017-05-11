@@ -5,14 +5,32 @@
     {{ form_errors(form) }}
 
     {{ form_widget(form._token) }}
+    {{ form_label(form.name) }}
+    {{ form_errors(form.name) }}
     {{ form_widget(form.name) }}
+    {{ form_label(form.associationName) }}
+    {{ form_errors(form.associationName) }}
     {{ form_widget(form.associationName) }}
+    {{ form_label(form.phone) }}
+    {{ form_errors(form.phone) }}
     {{ form_widget(form.phone) }}
+    {{ form_label(form.email) }}
+    {{ form_errors(form.email) }}
     {{ form_widget(form.email) }}
+    {{ form_label(form.address) }}
+    {{ form_errors(form.address) }}
     {{ form_widget(form.address) }}
+    {{ form_label(form.city) }}
+    {{ form_errors(form.city) }}
     {{ form_widget(form.city) }}
+    {{ form_label(form.zipcode) }}
+    {{ form_errors(form.zipcode) }}
     {{ form_widget(form.zipcode) }}
+    {{ form_label(form.country) }}
+    {{ form_errors(form.country) }}
     {{ form_widget(form.country) }}
+    {{ form_label(form.rib) }}
+    {{ form_errors(form.rib) }}
     {{ form_widget(form.rib) }}
 
     <div class="error-message">{{ form_errors(form.name) }}</div>
