@@ -25,5 +25,5 @@ parameters:
 
     # Google API
     google_api_key: ''
-    google_api_geocode_url: 'https://maps.googleapis.com/maps/api/geocode/json'
+    google_api_endpoint: 'https://maps.googleapis.com/maps/api'
 

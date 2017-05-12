@@ -64,7 +64,7 @@ class Mosque {
      * @var string
      */
     private $email;
-    
+
     /**
      * @var string
      */
@@ -383,6 +383,15 @@ class Mosque {
      */
     public function getUpdated() {
         return $this->updated;
+    }
+
+    /**
+     * Get city + zipcode
+     *
+     * @return string
+     */
+    public function getCityZipCode() {
+        return $this->city . " " . $this->zipcode;
     }
 
     function getUser(): User {

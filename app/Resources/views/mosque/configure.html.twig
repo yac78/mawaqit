@@ -125,19 +125,19 @@
                     <div class="panel panel-default">
                         <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">
                             <h4 class="panel-title">
-                                <span>{{month|trans}}</span>
+                                <strong>{{month|trans}}</strong>
                             </h4>
                         </div>
                         <div id="{{month}}" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-1 text-center">{{'day'|trans}}</div>
-                                    <div class="col-md-1 text-center">{{'fajr'|trans}}</div>
-                                    <div class="col-md-1 text-center">{{'churuck'|trans}}</div>
-                                    <div class="col-md-1 text-center">{{'zuhr'|trans}}</div>
-                                    <div class="col-md-1 text-center">{{'asr'|trans}}</div>
-                                    <div class="col-md-1 text-center">{{'maghreb'|trans}}</div>
-                                    <div class="col-md-1 text-center">{{'isha'|trans}}</div>
+                                <div class="row text-center">
+                                    <div class="col-md-1">{{'day'|trans}}</div>
+                                    <div class="col-md-1">{{'fajr'|trans}}</div>
+                                    <div class="col-md-1">{{'churuck'|trans}}</div>
+                                    <div class="col-md-1">{{'zuhr'|trans}}</div>
+                                    <div class="col-md-1">{{'asr'|trans}}</div>
+                                    <div class="col-md-1">{{'maghreb'|trans}}</div>
+                                    <div class="col-md-1">{{'isha'|trans}}</div>
                                 </div>
                                 {% for day in 1..days %}
                                     <div class="row">
@@ -145,7 +145,7 @@
                                             {{day}}
                                         </div>
                                         {% for prayer in 1..6 %}
-                                            <div class="col-md-1">
+                                            <div class="col-md-1 calendar-prayer">
                                                 <input 
                                                     name="appbundle_configuration[calendar][{{month}}][{{day}}][{{prayer}}]" 
                                                     value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : ''}}" 
@@ -153,7 +153,10 @@
                                                     placeholder="ex: 19:00" 
                                                     class="form-control text-center" 
                                                     maxlength="5" 
-                                                    oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try { setCustomValidity('') } catch (e) {}">
+                                                    oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try {
+                                                                setCustomValidity('')
+                                                            } catch (e) {
+                                                            }">
                                             </div>
                                         {% endfor %}
                                     </div>
@@ -243,6 +246,7 @@
         {{ form_widget(form.save) }}
         <a href="{{path("mosque_index")}}" class="btn btn-lg btn-danger">{{'global.cancel'|trans}}</a>
     </form>
+    <br><br>
 {% endblock %}
 
 {% block javascripts %}

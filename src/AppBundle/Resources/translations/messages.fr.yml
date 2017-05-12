@@ -24,6 +24,7 @@ form:
         error: 
         action: supprimer
     configure:
+        success: La configuration %object% %name% a été réalisé avec succès.
         action: configurer le horaires de la mosquée
             
 
