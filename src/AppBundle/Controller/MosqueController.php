@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class MosqueController extends Controller {
 
     /**
-     * @Route("/{slug}", name="mosque")
+     * @Route("/mosque/{slug}", name="mosque")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueAction(Request $request, Mosque $mosque) {

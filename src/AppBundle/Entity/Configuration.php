@@ -769,8 +769,12 @@ class Configuration {
      * @return boolean 
      */
     public function isCompleted() {
-
         if ($this->sourceCalcul === self::SOURCE_CALENDAR) {
+            
+            if (empty($this->calendar)) {
+                return false;
+            }
+            
             foreach ($this->calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
                     foreach ($prayers as $prayerIndex => $prayer) {

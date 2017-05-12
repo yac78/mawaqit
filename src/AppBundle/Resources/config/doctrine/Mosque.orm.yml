@@ -73,7 +73,7 @@ AppBundle\Entity\Mosque:
                     on: update
     manyToOne:
         user:
-            targetEntity: AppBundle\Entity\user
+            targetEntity: AppBundle\Entity\User
             inversedBy: mosques
     oneToOne:
         configuration:

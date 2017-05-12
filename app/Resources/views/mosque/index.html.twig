@@ -38,7 +38,7 @@
                     </td>
                     <td>
                         {% if confCompleted %}
-                            <a target="_blank" href="{{ baseUrl ~ mosque.slug  }}">{{ baseUrl ~ mosque.slug  }}</a>
+                            <a target="_blank" href="{{ path("mosque", {slug: mosque.slug})}}">{{ url("mosque", {slug: mosque.slug}) }}</a>
                         {% else %}
                             <span class="glyphicon glyphicon-alert" title="{{'configuration.list.conf_not_completed'|trans}}"> {{'configuration.list.conf_not_completed'|trans}}</span>
                         {% endif %}
