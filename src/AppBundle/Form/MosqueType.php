@@ -57,6 +57,7 @@ class MosqueType extends AbstractType {
                 ])
                 ->add('zipcode', null, [
                     'label' => 'global.zipcode',
+                    'required' => true,
                     'attr' => [
                         'class' => 'form-control',
                     ]

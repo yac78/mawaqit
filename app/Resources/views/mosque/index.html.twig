@@ -24,7 +24,7 @@
         </thead>
         <tbody>
             {% for mosque in mosques %}
-                {% set confCompleted = mosque.configuration is not defined or mosque.configuration.completed %}
+                {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
                 <tr class="{{ confCompleted == false ? 'danger' : '' }}">
                     <th scope="row">{{mosque.id}}</th>
                     <td>{{mosque.name}}</td>
@@ -38,9 +38,9 @@
                     </td>
                     <td>
                         {% if confCompleted %}
-                            {{ baseUrl ~ mosque.slug  }}
+                            <a target="_blank" href="{{ baseUrl ~ mosque.slug  }}">{{ baseUrl ~ mosque.slug  }}</a>
                         {% else %}
-                            <span class="glyphicon glyphicon-alert" title="{{'configuration.list.conf_not_completed'|trans}}"></span>
+                            <span class="glyphicon glyphicon-alert" title="{{'configuration.list.conf_not_completed'|trans}}"> {{'configuration.list.conf_not_completed'|trans}}</span>
                         {% endif %}
                     </td>
                     <td>
