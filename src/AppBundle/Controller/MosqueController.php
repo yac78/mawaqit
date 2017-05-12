@@ -26,7 +26,8 @@ class MosqueController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $mosques = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user);
         return $this->render('mosque/index.html.twig', [
-                    "mosques" => $mosques
+                    "mosques" => $mosques,
+                    "baseUrl" => $this->getParameter('base_url')
         ]);
     }
 

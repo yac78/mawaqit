@@ -20,6 +20,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+    
+    base_url: 'http://horaires-de-priere.fr/'
 
     # Google API
     google_api_key: ''

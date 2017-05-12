@@ -19,29 +19,36 @@
                 <th>{{'global.phone'|trans}}</th>
                 <th>{{'global.email'|trans}}</th>
                 <th>{{'global.address'|trans}}</th>
-                <th>{{'global.city'|trans}}</th>
-                <th>{{'global.zipcode'|trans}}</th>
-                <th>{{'global.country'|trans}}</th>
+                <th>{{'global.prayer_site'|trans}}</th>
             </tr>
         </thead>
         <tbody>
             {% for mosque in mosques %}
-            <tr class="{{mosque.configuration is not defined or mosque.configuration.completed  == false ? 'danger' : '' }}">
-                <th scope="row">{{mosque.id}}</th>
-                <td>{{mosque.name}}</td>
-                <td>{{mosque.associationName}}</td>
-                <td>{{mosque.phone}}</td>
-                <td>{{mosque.email}}</td>
-                <td>{{mosque.address}}</td>
-                <td>{{mosque.city}}</td>
-                <td>{{mosque.zipcode}}</td>
-                <td>{{mosque.country}}</td>
-                <td>
-                    <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a>
-                    <a href="{{path('mosque_delete', {id: mosque.id})}}" class="btn btn-danger" title={{'form.delete.action'|trans}}><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
-            </tr>
+                {% set confCompleted = mosque.configuration is not defined or mosque.configuration.completed %}
+                <tr class="{{ confCompleted == false ? 'danger' : '' }}">
+                    <th scope="row">{{mosque.id}}</th>
+                    <td>{{mosque.name}}</td>
+                    <td>{{mosque.associationName}}</td>
+                    <td>{{mosque.phone}}</td>
+                    <td>{{mosque.email}}</td>
+                    <td>
+                        {{mosque.address}}<br>
+                        {{mosque.city}} {{mosque.zipcode}}<br>
+                        {{mosque.country}}
+                    </td>
+                    <td>
+                        {% if confCompleted %}
+                            {{ baseUrl ~ mosque.slug  }}
+                        {% else %}
+                            <span class="glyphicon glyphicon-alert" title="{{'configuration.list.conf_not_completed'|trans}}"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a>
+                        <a href="{{path('mosque_delete', {id: mosque.id})}}" class="btn btn-danger" title={{'form.delete.action'|trans}}><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>    
