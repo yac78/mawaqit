@@ -1,28 +1,6 @@
 parameters:
 
 services:
-    ## App services
-    app.google_api:
-        abstract: true
-        class: AppBundle\Service\Api\GoogleApi
-        arguments: 
-          - '%google_api_endpoint%'
-          - '%google_api_key%'
-          
-    app.google_service:
-        parent: app.google_api
-        class: AppBundle\Service\GoogleService
-        calls:
-          - [setLogger, ['@logger']]
-          
-    app.form_configuration:
-        class: AppBundle\Form\ConfigurationType
-        arguments:
-            - "@app.google_service"
-        tags:
-            - { name: form.type }          
-    
-    ## Tiers services
     gedmo.listener.sluggable:
         class: Gedmo\Sluggable\SluggableListener
         tags:

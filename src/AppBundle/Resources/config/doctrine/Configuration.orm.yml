@@ -82,12 +82,5 @@ AppBundle\Entity\Configuration:
             gedmo:
                 timestampable:
                     on: update
-                    
-    oneToOne:
-        mosque:
-            targetEntity: AppBundle\Entity\Mosque
-            mappedBy: configuration
-            cascade:
-                - persist
             
     lifecycleCallbacks: {  }

@@ -2,8 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Mosque;
-
 /**
  * Configuration
  */
@@ -169,11 +167,6 @@ class Configuration {
      * @var \DateTime
      */
     private $updated;
-
-    /**
-     * @var Mosque
-     */
-    private $mosque;
 
     /**
      * Get id
@@ -754,14 +747,6 @@ class Configuration {
      */
     public function getUpdated() {
         return $this->updated;
-    }
-
-    function getMosque(): Mosque {
-        return $this->mosque;
-    }
-
-    function setMosque(Mosque $mosque) {
-        $this->mosque = $mosque;
     }
 
     /**

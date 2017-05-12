@@ -15,19 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\DataTransformer\PrayerTransformer;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use AppBundle\Service\GoogleService;
+use AppBundle\Service\Calendar;
 
 class ConfigurationType extends AbstractType {
-
-    /**
-     *
-     * @var GoogleService 
-     */
-    private $googleService;
-
-    public function __construct(GoogleService $googleService) {
-        $this->googleService = $googleService;
-    }
 
     /**
      * {@inheritdoc}
@@ -78,6 +68,9 @@ class ConfigurationType extends AbstractType {
                 ->add('duaAfterPrayerEnabled', CheckboxType::class, [
                     'label' => 'configuration.form.duaAfterPrayerEnabled.label',
                 ])
+                ->add('androidAppEnabled', CheckboxType::class, [
+                    'label' => 'configuration.form.androidAppEnabled.label',
+                ])
                 ->add('sourceCalcul', ChoiceType::class, [
                     'label' => 'configuration.form.sourceCalcul',
                     'choice_translation_domain' => true,
@@ -87,6 +80,18 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.prayerMethod',
                     'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
+                ])
+                ->add('latitude', IntegerType::class, [
+                    'label' => 'configuration.form.latitude.label',
+                    'attr' => [
+                        'placeholder' => 'configuration.form.latitude.placeholder'
+                    ]
+                ])
+                ->add('longitude', IntegerType::class, [
+                    'label' => 'configuration.form.longitude.label',
+                    'attr' => [
+                        'placeholder' => 'configuration.form.longitude.placeholder'
+                    ]
                 ])
                 ->add('fajrDegree', IntegerType::class, [
                     'label' => 'configuration.form.fajrDegree.label',
@@ -119,7 +124,6 @@ class ConfigurationType extends AbstractType {
                         'class' => 'btn btn-lg btn-primary',
                     ]
                 ])
-                ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'))
         ;
 
 
@@ -130,16 +134,7 @@ class ConfigurationType extends AbstractType {
         $builder->get('fixedTimes')
                 ->addModelTransformer(new PrayerTransformer(TimeType::class));
     }
-
-    public function onPostSetData(FormEvent $event) {
-        $configuration = $event->getData();
-        if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
-            $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
-            $configuration->setLongitude($position->lng);
-            $configuration->setLatitude($position->lat);
-        }
-    }
-
+    
     /**
      * {@inheritdoc}
      */
