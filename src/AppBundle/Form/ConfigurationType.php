@@ -50,7 +50,7 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.aidTime.label'
                 ])
                 ->add('imsakNbMinBeforeFajr', IntegerType::class, [
-                    'label' => 'configuration.form.imsakNbMinBeforeFajr'
+                    'label' => 'configuration.form.imsakNbMinBeforeFajr.label'
                 ])
                 ->add('maximumIshaTimeForNoWaiting', TimeType::class, [
                     'input' => 'string',
@@ -58,16 +58,19 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label'
                 ])
                 ->add('waitingTimes', PrayerType::class, [
+                    'label' => 'configuration.form.waitingTimes.label',
                     'sub_type' => IntegerType::class
                 ])
                 ->add('adjustedTimes', PrayerType::class, [
+                    'label' => 'configuration.form.adjustedTimes.label',
                     'sub_type' => IntegerType::class
                 ])
                 ->add('fixedTimes', PrayerType::class, [
+                    'label' => 'configuration.form.fixedTimes.label',
                     'sub_type' => TimeType::class
                 ])
                 ->add('hijriAdjustment', IntegerType::class, [
-                    'label' => 'configuration.form.hijriAdjustment'
+                    'label' => 'configuration.form.hijriAdjustment.label'
                 ])
                 ->add('hijriDateEnabled', CheckboxType::class, [
                     'label' => 'configuration.form.hijriDateEnabled.label',
@@ -79,12 +82,12 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.duaAfterPrayerEnabled.label',
                 ])
                 ->add('sourceCalcul', ChoiceType::class, [
-                    'label' => 'configuration.form.sourceCalcul',
+                    'label' => 'configuration.form.sourceCalcul.label',
                     'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
                 ])
                 ->add('prayerMethod', ChoiceType::class, [
-                    'label' => 'configuration.form.prayerMethod',
+                    'label' => 'configuration.form.prayerMethod.label',
                     'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
                 ])

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedException;
 use AppBundle\Service\Calendar;
+use AppBundle\Exception\GooglePositionException;
 
 /**
  * @Route("/admin/mosque")
@@ -121,21 +122,24 @@ class MosqueController extends Controller {
         }
 
         $form = $this->createForm(ConfigurationType::class, $configuration);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $configuration = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($configuration);
-            $em->flush();
-            $this->addFlash('success', $this->get("translator")->trans("form.configure.success", [
-                        "%object%" => "de la mosquée", "%name%" => $mosque->getName()
+        
+        try {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $configuration = $form->getData();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($configuration);
+                $em->flush();
+                $this->addFlash('success', $this->get("translator")->trans("form.configure.success", [
+                            "%object%" => "de la mosquée", "%name%" => $mosque->getName()
+                ]));
+                return $this->redirectToRoute('mosque_index');
+            }
+        } catch (GooglePositionException $exc) {
+            $this->addFlash('error', $this->get("translator")->trans("form.configure.geocode_error", [
+                        "%address%" => $mosque->getCityZipCode()
             ]));
-
-            return $this->redirectToRoute('mosque_index');
         }
-
-
         return $this->render('mosque/configure.html.twig', [
                     'months' => Calendar::MONTHS,
                     'mosque' => $mosque,

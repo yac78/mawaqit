@@ -12,6 +12,7 @@ global:
     association_name: Nom de l'association
     
 form:
+    mandatory_field:  Champ obligatoir
     create:
         success:  L'ajout %object% %name% a été réalisé avec succès.
         error: 
@@ -26,11 +27,63 @@ form:
     configure:
         success: La configuration %object% %name% a été réalisé avec succès.
         action: configurer le horaires de la mosquée
+        geocode_error: Impossible de géolocaliser votre mosquée "%address%"
             
 
 mosque:
     add: Ajout d'une nouvelle mosquée
     name: Nom de la mosquée
+    form:
+        placeholder:
+            name: Ex. Mosquée Essunna
+            city: La ville de la mosquée (Sert à calculer la position géographique)
+            rib: Si ranseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+    
+configuration:
+    title: Configuration des horaires de la mosquée "%mosque%"
+    list:
+        conf_not_completed: |
+            Votre mosquée est crée mais les horaires de prière ne sont pas encore configurées
+            <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite
+    form: 
+        calendar: Calendrier des horaires
+        lang: La langue d'affichage de l'écran 
+        sourceCalcul: 
+            label: Source de calcul des horaires
+        prayerMethod: 
+            label: Méthode de calcul
+        jumuaTime:
+            label: Heure du jumu`a
+        aidTime:
+            label: Heure du aid
+        adjustedTimes: 
+            label: Ajustement des horaires
+        maximumIshaTimeForNoWaiting: 
+            label: heure maximale du `isha (attente iqama = 0 min) 
+        imsakNbMinBeforeFajr: 
+            label: Nombre de minute avant sobh pour l'imsak 
+        waitingTimes: 
+            label: Temps d'attente entre adhan et iqama
+        fixedTimes: 
+            label: Fixation des horaires
+        hijriAdjustment: 
+            label: Ajustement de la date hégire
+        iqamaDisplayTime: 
+            label: Tems d'affichage du signal iqama (en secondes)
+        azanDuaDisplayTime: 
+            label: Tems d'affichage du du`aa entre adhan et iqama (en secondes)
+        hijriDateEnabled: 
+            label: Activer la date hégire
+        duaAfterAzanEnabled: 
+            label: Activer du`aa après adhan
+        duaAfterPrayerEnabled: 
+            label: Activer les invocations après salat
+        fajrDegree: 
+            label: Degré du fajr
+            placeholder: Ex. 18
+        ishaDegree: 
+            label: Degré du `isha
+            placeholder: Ex. 15
 
 security:
     login:
@@ -46,3 +99,24 @@ Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
 
 api: Automatique (Calcul des horaires par le logiciel)
 calendar: Manuel (Horaires renseignées pour toute l'année)
+
+day: Jour
+fajr: Fajr
+shuruk: Shuruk
+zuhr: Duhr
+asr: '`Asr'
+maghrib: Maghrib
+isha: '`Isha'
+
+januray: Janvier
+february: Février
+march: Mars
+april: Avril
+mai: Mai
+june: Juin
+july: Juillet
+august: Aout
+september: Septembre
+october: Octobre
+november: Novembre
+december: Décembre

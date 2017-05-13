@@ -23,17 +23,17 @@ class PrayerTransformer implements DataTransformerInterface {
                 "fajr" => $values[0] !== "" ? new \DateTime($values[0]) : null,
                 "zuhr" => $values[1] !== "" ? new \DateTime($values[1]) : null,
                 "asr" => $values[2] !== "" ? new \DateTime($values[2]) : null,
-                "maghreb" => $values[3] !== "" ? new \DateTime($values[3]) : null,
+                "maghrib" => $values[3] !== "" ? new \DateTime($values[3]) : null,
                 "isha" => $values[4] !== "" ? new \DateTime($values[4]) : null
             ];
         }
 
         return [
-            "fajr" => $values[0],
-            "zuhr" => $values[1],
-            "asr" => $values[2],
-            "maghreb" => $values[3],
-            "isha" => $values[4]
+            "fajr" => (int)$values[0],
+            "zuhr" => (int)$values[1],
+            "asr" => (int)$values[2],
+            "maghrib" => (int)$values[3],
+            "isha" => (int)$values[4]
         ];
     }
 

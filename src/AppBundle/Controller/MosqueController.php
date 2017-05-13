@@ -15,9 +15,7 @@ class MosqueController extends Controller {
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueAction(Request $request, Mosque $mosque) {
-        die(dump($mosque));
-        
-        return $this->render('mosque/index.html.twig', [
+        return $this->render('mosque/mosque.html.twig', [
         ]);
     }
 }

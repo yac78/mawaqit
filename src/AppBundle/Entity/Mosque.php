@@ -391,7 +391,7 @@ class Mosque {
      * @return string
      */
     public function getCityZipCode() {
-        return $this->city . " " . $this->zipcode;
+        return $this->city . "+" . $this->zipcode;
     }
 
     function getUser(): User {

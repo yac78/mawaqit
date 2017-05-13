@@ -12,11 +12,21 @@ class PrayerType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('fajr', $options["sub_type"])
-                ->add('zuhr', $options["sub_type"])
-                ->add('asr', $options["sub_type"])
-                ->add('maghreb', $options["sub_type"])
-                ->add('isha', $options["sub_type"])
+                ->add('fajr', $options["sub_type"],[
+                    'label'=> 'fajr'
+                ])
+                ->add('zuhr', $options["sub_type"],[
+                    'label'=> 'zuhr'
+                ])
+                ->add('asr', $options["sub_type"],[
+                    'label'=> 'asr'
+                ])
+                ->add('maghrib', $options["sub_type"],[
+                    'label'=> 'maghrib'
+                ])
+                ->add('isha', $options["sub_type"],[
+                    'label'=> 'isha'
+                ])
         ;
     }
 

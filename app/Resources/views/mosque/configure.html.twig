@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% form_theme form 'form/fields.html.twig' %}
+{% block title %} {{ parent() }} Configuration {% endblock %}
 
-{% block title %} {{ parent() }} Mosquée{% endblock %}
+{% form_theme form 'form/fields.html.twig' %}
 
 {% block stylesheets %}
     {% stylesheets 
@@ -14,31 +14,30 @@
 {% endblock %}
 
 {% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-success"> <strong> {{'mosque.configure'|trans({"%mosque%":mosque.name})}}</strong></h1><br>
-            <span class="glyphicon glyphicon-asterisk text-danger"></span> <span>{{'configuration.form.mandatory'|trans}}</span> <br><br>
+            <h1 class="text-success"> <strong> {{'configuration.title'|trans({"%mosque%":mosque.name})}}</strong></h1><br>
+            <span class="glyphicon glyphicon-asterisk text-danger"></span> <span>{{'form.mandatory_field'|trans}}</span> <br><br>
         </div>
     </div>
 
+
     <form action="{{ path('mosque_configure', {id: mosque.id})}}" method="post">
 
-        {% include 'partial/flash_msg.html.twig' %}
-
         {{ form_errors(form) }}
-
         {{ form_widget(form._token) }}
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{ form_label(form.lang) }}
                 {{ form_widget(form.lang) }}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{ form_label(form.sourceCalcul) }}
                 {{ form_widget(form.sourceCalcul) }}
             </div>
@@ -47,21 +46,17 @@
 
         <div class="api hidden">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     {{ form_label(form.prayerMethod) }}
                     {{ form_widget(form.prayerMethod) }}
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    {{ form_label(form.ishaDegree) }}
-                    {{ form_widget(form.ishaDegree) }}
-                </div>
-                <div class="col-md-4">
-
+                <div class="col-md-3">
                     {{ form_label(form.fajrDegree) }}
                     {{ form_widget(form.fajrDegree) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_label(form.ishaDegree) }}
+                    {{ form_widget(form.ishaDegree) }}
                 </div>
             </div>
 
@@ -82,8 +77,8 @@
                     {{ form_widget(form.adjustedTimes.asr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.adjustedTimes.maghreb) }}
-                    {{ form_widget(form.adjustedTimes.maghreb) }}
+                    {{ form_label(form.adjustedTimes.maghrib) }}
+                    {{ form_widget(form.adjustedTimes.maghrib) }}
                 </div> 
                 <div class="col-md-2">
                     {{ form_label(form.adjustedTimes.isha) }}
@@ -108,8 +103,8 @@
                     {{ form_widget(form.fixedTimes.asr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.fixedTimes.maghreb) }}
-                    {{ form_widget(form.fixedTimes.maghreb) }}
+                    {{ form_label(form.fixedTimes.maghrib) }}
+                    {{ form_widget(form.fixedTimes.maghrib) }}
                 </div> 
                 <div class="col-md-2">
                     {{ form_label(form.fixedTimes.isha) }}
@@ -120,7 +115,7 @@
 
         <div class="calendar hidden">
             <div class="panel-group" id="accordion">
-                <h3>{{'global.calendar'|trans}}</h3>
+                <h3>{{'configuration.form.calendar'|trans}}</h3>
                 {% for month,days in months %}
                     <div class="panel panel-default">
                         <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">
@@ -133,10 +128,10 @@
                                 <div class="row text-center">
                                     <div class="col-md-1">{{'day'|trans}}</div>
                                     <div class="col-md-1">{{'fajr'|trans}}</div>
-                                    <div class="col-md-1">{{'churuck'|trans}}</div>
+                                    <div class="col-md-1">{{'shuruk'|trans}}</div>
                                     <div class="col-md-1">{{'zuhr'|trans}}</div>
                                     <div class="col-md-1">{{'asr'|trans}}</div>
-                                    <div class="col-md-1">{{'maghreb'|trans}}</div>
+                                    <div class="col-md-1">{{'maghrib'|trans}}</div>
                                     <div class="col-md-1">{{'isha'|trans}}</div>
                                 </div>
                                 {% for day in 1..days %}
@@ -169,11 +164,11 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 {{ form_label(form.jumuaTime) }}
                 {{ form_widget(form.jumuaTime) }}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 {{ form_label(form.aidTime) }}
                 {{ form_widget(form.aidTime) }}
             </div>
@@ -204,8 +199,8 @@
                 {{ form_widget(form.waitingTimes.asr) }}
             </div> 
             <div class="col-md-2">
-                {{ form_label(form.waitingTimes.maghreb) }}
-                {{ form_widget(form.waitingTimes.maghreb) }}
+                {{ form_label(form.waitingTimes.maghrib) }}
+                {{ form_widget(form.waitingTimes.maghrib) }}
             </div> 
             <div class="col-md-2">
                 {{ form_label(form.waitingTimes.isha) }}
@@ -223,22 +218,22 @@
                 {{ form_widget(form.iqamaDisplayTime) }}
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{ form_label(form.azanDuaDisplayTime) }}  
                 {{ form_widget(form.azanDuaDisplayTime) }}  
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{ form_widget(form.hijriDateEnabled) }}
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{ form_widget(form.duaAfterAzanEnabled) }}
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{ form_widget(form.duaAfterPrayerEnabled) }}
             </div>
         </div>
