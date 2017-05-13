@@ -46,6 +46,7 @@ configuration:
             Votre mosquée est crée mais les horaires de prière ne sont pas encore configurées
             <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite
     form: 
+        fill_calendar_from_csv: Pré-remplir depuis un fichier csv
         calendar: Calendrier des horaires
         lang: La langue d'affichage de l'écran 
         sourceCalcul: 
