@@ -10,6 +10,7 @@ global:
     save: Sauvegarder
     email: Adresse mail
     association_name: Nom de l'association
+    prayer_site: Url de l'écran des horaires 
     
 form:
     mandatory_field:  Champ obligatoir
@@ -25,7 +26,7 @@ form:
         error: 
         action: supprimer
     configure:
-        success: La configuration %object% %name% a été réalisé avec succès.
+        success: La configuration %object% %name% a été réalisée avec succès.
         action: configurer le horaires de la mosquée
         geocode_error: Impossible de géolocaliser votre mosquée "%address%"
             
@@ -47,7 +48,7 @@ configuration:
             <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite
     form: 
         fill_calendar:
-            success: Les horaires du mois on été remplie avec succès.
+            success: Les horaires du mois on été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis.
         time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant XX:XX"
         fill_calendar_from_csv: Pré-remplir depuis un fichier csv
@@ -89,6 +90,16 @@ configuration:
         ishaDegree: 
             label: Degré du `isha
             placeholder: Ex. 15
+        calendar_explication: |
+            Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
+            Le fichier CSV doit respécter le format suivant : <br><br>
+            Day,Sobh,Chourouk,Dohr,Asr,Maghrib,Icha <br>
+            01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
+            02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
+            03,06:49,08:44,12:56,14:49,17:10,18:49 <br>
+            04,06:49,08:44,12:57,14:50,17:11,18:50 <br>
+            05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
+            ...            
 
 security:
     login:
@@ -120,7 +131,7 @@ april: Avril
 mai: Mai
 june: Juin
 july: Juillet
-august: Aout
+august: Août
 september: Septembre
 october: Octobre
 november: Novembre
@@ -133,7 +144,7 @@ month_3 : Avril
 month_4 : Mai
 month_5 : Juin
 month_6 : Juillet
-month_7 : Aout
+month_7 : Août
 month_8 : Septembre
 month_9: Octobre
 month_10: Novembre

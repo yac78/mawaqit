@@ -56,7 +56,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         month = month[1];
         var lines = csv.split(/\r\n|\n/);
         for (var day = 1; day < lines.length; day++) {
-            var line = lines[day].split(',');
+            var line = lines[day].split('/,|;/');
             for (var prayer = 1; prayer < line.length; prayer++) {
                 var inputPrayer = $("input[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
                 if (line[prayer].match(/\d{2}:\d{2}/g) ){

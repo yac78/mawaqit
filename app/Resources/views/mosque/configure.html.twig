@@ -131,47 +131,54 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="alert alert-success hidden alert-dismissible" role="alert">
-                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             {{'configuration.form.fill_calendar.success'|trans}}
                                         </div>
                                         <div class="alert alert-danger hidden alert-dismissible" role="alert">
-                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             {{'configuration.form.fill_calendar.error'|trans}}
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="row text-center">
-                                    <div class="col-md-1">{{'day'|trans}}</div>
-                                    <div class="col-md-1">{{'fajr'|trans}}</div>
-                                    <div class="col-md-1">{{'shuruk'|trans}}</div>
-                                    <div class="col-md-1">{{'zuhr'|trans}}</div>
-                                    <div class="col-md-1">{{'asr'|trans}}</div>
-                                    <div class="col-md-1">{{'maghrib'|trans}}</div>
-                                    <div class="col-md-1">{{'isha'|trans}}</div>
-                                </div>
-                                {% for day in 1..days %}
-                                    <div class="row">
-                                        <div class="col-md-1 text-center">
-                                            {{day}}
-                                        </div>
-                                        {% for prayer in 1..6 %}
-                                            <div class="col-md-1 calendar-prayer">
-                                                <input 
-                                                    name="appbundle_configuration[calendar][{{month}}][{{day}}][{{prayer}}]" 
-                                                    value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : ''}}" 
-                                                    type="text" pattern="\d{2}:\d{2}" 
-                                                    placeholder="ex: 19:00" 
-                                                    class="form-control text-center calendar-prayer-time" 
-                                                    maxlength="5" 
-                                                    oninvalid="setCustomValidity('{{'configuration.form.time_invalid'|trans}}')" onchange="try {
-                                                                setCustomValidity('')
-                                                            } catch (e) {
-                                                            }">
-                                            </div>
-                                        {% endfor %}
+                                <div class="col-md-7">
+                                    <div class="row text-center">
+                                        <div class="col-md-1 calendar-prayer">{{'day'|trans}}</div>
+                                        <div class="col-md-1 calendar-prayer">{{'fajr'|trans}}</div>
+                                        <div class="col-md-1 calendar-prayer">{{'shuruk'|trans}}</div>
+                                        <div class="col-md-1 calendar-prayer">{{'zuhr'|trans}}</div>
+                                        <div class="col-md-1 calendar-prayer">{{'asr'|trans}}</div>
+                                        <div class="col-md-1 calendar-prayer">{{'maghrib'|trans}}</div>
+                                        <div class="col-md-1 calendar-prayer">{{'isha'|trans}}</div>
                                     </div>
-                                {% endfor %}
+                                    {% for day in 1..days %}
+                                        <div class="row">
+                                            <div class="col-md-1 text-center calendar-prayer">
+                                                {{day}}
+                                            </div>
+                                            {% for prayer in 1..6 %}
+                                                <div class="col-md-1 calendar-prayer">
+                                                    <input 
+                                                        name="appbundle_configuration[calendar][{{month}}][{{day}}][{{prayer}}]" 
+                                                        value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : ''}}" 
+                                                        type="text" pattern="\d{2}:\d{2}" 
+                                                        placeholder="ex: 19:00" 
+                                                        class="form-control text-center calendar-prayer-time" 
+                                                        maxlength="5" 
+                                                        oninvalid="setCustomValidity('{{'configuration.form.time_invalid'|trans}}')" onchange="try {
+                                                                        setCustomValidity('')
+                                                                    } catch (e) {
+                                                                    }">
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="alert alert-info">
+                                        <strong>Important!</strong> {{'configuration.form.calendar_explication'|trans|raw}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
