@@ -17,43 +17,57 @@ $(".calendar-prayer input").bind("change keyup", function (event) {
     $(this).css("background-color", $(this).val().match(/\d{2}:\d{2}/g) ? "#ffffff" : "#f8d4d4");
 });
 
-//$(".fill-calendar").change(function (e){
-//    console.dir(this.files);
-//})
-
-function handleFiles(fileInput) {
-    if (window.FileReader) {
-        getAsText(fileInput);
+/**
+ * On change file input (fill calendar) process fill prayer times from csv file
+ */
+$(".fill-calendar").change(function (e) {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        var self = this;
+        var reader = new FileReader();
+        // Read file into memory as UTF-8      
+        reader.readAsText(this.files[0]);
+        // Handel load file
+        reader.onload = function (event) {
+            var csv = event.target.result;
+            processFillMonthPrayerTimes(csv, self);
+        };
+        // Handle errors load
+        reader.onerror = function (evt) {
+            if (evt.target.error.name == "NotReadableError") {
+                alert("Unable to read csv file");
+            }
+        };
     } else {
-        alert("Cette fonctionalité n'est pas supporté par votre navigateur");
+        alert("This fonctionality is not fully supported in your browser.");
     }
-}
+});
 
-function getAsText(fileInput) {
-    var reader = new FileReader();
-    // Read file into memory as UTF-8      
-    reader.readAsText(fileInput.files[0]);
-    // Handle errors load
-    reader.onload = function (event) {
-        var csv = event.target.result;
-        processData(csv);
-    };
-    reader.onerror = function (evt) {
-        if (evt.target.error.name == "NotReadableError") {
-            alert("Impossible de lire le fichier csv");
-        }
-    };
-}
 
-function processData(csv) {
-    var lines = csv.split(/\r\n|\n/);
-    for (var i = 1; i < lines.length; i++) {
-        var line = lines[i].split(',');
-        for (var j = 1; j < line.length; j++) {
-            var inputPrayer = $("input[name='appbundle_configuration[calendar][january][" + i + "][" + j + "]']");
-            inputPrayer.val(line[j]);
-            inputPrayer.trigger("change");
+/**
+ * Read CSV and fill prayerTimes in input elements 
+ * @param {string} csv
+ * @param {object} inputFile
+ */
+function processFillMonthPrayerTimes(csv, inputFile) {
+    try {
+        var panel = $(inputFile).parents(".month-panel");
+        var panelId = panel.attr("id");
+        var month = panelId.split('_');
+        month = month[1];
+        var lines = csv.split(/\r\n|\n/);
+        for (var day = 1; day < lines.length; day++) {
+            var line = lines[day].split(',');
+            for (var prayer = 1; prayer < line.length; prayer++) {
+                var inputPrayer = $("input[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
+                if (line[prayer].match(/\d{2}:\d{2}/g) ){
+                    inputPrayer.val(line[prayer]);
+                    inputPrayer.trigger("change");
+                }
+            }
         }
+        $(panel).find(".alert-success").removeClass("hidden");
+    } catch (e) {
+        $(panel).find(".alert-danger").removeClass("hidden");
     }
 }
 

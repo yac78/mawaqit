@@ -46,6 +46,10 @@ configuration:
             Votre mosquée est crée mais les horaires de prière ne sont pas encore configurées
             <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite
     form: 
+        fill_calendar:
+            success: Les horaires du mois on été remplie avec succès.
+            error: Les horaires du mois n'ont pas pu être remplis.
+        time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant XX:XX"
         fill_calendar_from_csv: Pré-remplir depuis un fichier csv
         calendar: Calendrier des horaires
         lang: La langue d'affichage de l'écran 
@@ -121,3 +125,16 @@ september: Septembre
 october: Octobre
 november: Novembre
 december: Décembre
+
+month_0 : Janvier
+month_1 : Février
+month_2 : Mars
+month_3 : Avril
+month_4 : Mai
+month_5 : Juin
+month_6 : Juillet
+month_7 : Aout
+month_8 : Septembre
+month_9: Octobre
+month_10: Novembre
+month_11: Décembre

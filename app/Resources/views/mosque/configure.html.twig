@@ -119,15 +119,25 @@
                 {% for month,days in months %}
                     <div class="panel panel-default">
                         <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">
-                            <h4 class="panel-title"><strong>{{month|trans}}</strong></h4>
+                            <h4 class="panel-title"><strong>{{('month_' ~ month)|trans}}</strong></h4>
                         </div>
                         <div id="{{month}}" class="panel-collapse collapse">
-                            <div class="panel-body">
+                            <div class="panel-body month-panel" id="{{'month_' ~ month}}">
                                 <div class="row">
-                                    <div class="col-md-offset-1">
-                                        <label class="btn btn-info btn-file fill-calendar">
-                                            {{'configuration.form.fill_calendar_from_csv'|trans}} <input type="file" accept=".csv" onchange="handleFiles(this)" class="hidden">
+                                    <div class="col-md-2 col-md-offset-1">
+                                        <label class="btn btn-info btn-file">
+                                            {{'configuration.form.fill_calendar_from_csv'|trans}} <input type="file" accept=".csv" class="hidden fill-calendar">
                                         </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-success hidden alert-dismissible" role="alert">
+                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            {{'configuration.form.fill_calendar.success'|trans}}
+                                        </div>
+                                        <div class="alert alert-danger hidden alert-dismissible" role="alert">
+                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            {{'configuration.form.fill_calendar.error'|trans}}
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
@@ -152,9 +162,9 @@
                                                     value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : ''}}" 
                                                     type="text" pattern="\d{2}:\d{2}" 
                                                     placeholder="ex: 19:00" 
-                                                    class="form-control text-center" 
+                                                    class="form-control text-center calendar-prayer-time" 
                                                     maxlength="5" 
-                                                    oninvalid="setCustomValidity('{{'configure.form.time.invalidate'|trans}}' )" onchange="try {
+                                                    oninvalid="setCustomValidity('{{'configuration.form.time_invalid'|trans}}')" onchange="try {
                                                                 setCustomValidity('')
                                                             } catch (e) {
                                                             }">
