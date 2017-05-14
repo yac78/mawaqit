@@ -1,6 +1,7 @@
 .sidebar {
     height: 100%;
-    width: 0;
+    width: 250px;
+    margin-left: -250px;
     position: fixed;
     z-index: 1;
     top: 50px;
@@ -44,5 +45,5 @@
 }
 
 .active {
-    width : 250px;
+    margin-left: 0;
 }

@@ -22,61 +22,62 @@ class MosqueType extends AbstractType {
                     ]
                 ])
                 ->add('associationName', null, [
-                    'label' => 'global.association_name',
+                    'label' => 'association_name',
                     'attr' => [
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('phone', null, [
-                    'label' => 'global.phone',
+                    'label' => 'phone',
                     'required' => true,
                     'attr' => [
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('email', EmailType::class, [
-                    'label' => 'global.email',
+                    'label' => 'email',
                     'required' => true,
                     'attr' => [
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('address', null, [
-                    'label' => 'global.address',
+                    'label' => 'address',
                     'attr' => [
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('city', null, [
-                    'label' => 'global.city',
+                    'label' => 'city',
                     'required' => true,
                     'attr' => [
-                        'placeholder' => 'mosque.form.placeholder.city',
+                        'placeholder' => 'mosque.form.city.placeholder',
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('zipcode', null, [
-                    'label' => 'global.zipcode',
+                    'label' => 'zipcode',
                     'required' => true,
                     'attr' => [
+                        'placeholder' => 'mosque.form.zipcode.placeholder',
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('country', null, [
-                    'label' => 'global.country',
+                    'label' => 'country',
                     'attr' => [
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('rib', null, [
-                    'label' => 'global.rib',
+                    'label' => 'rib',
                     'attr' => [
                         'placeholder' => 'mosque.form.placeholder.rib',
                         'class' => 'form-control',
                     ]
                 ])
                 ->add('save', SubmitType::class, [
-                    'label' => 'global.save',
+                    'label' => 'save',
                     'attr' => [
                         'class' => 'btn btn-lg btn-primary',
                     ]

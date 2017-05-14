@@ -117,7 +117,7 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('calendar')
                 ->add('save', SubmitType::class, [
-                    'label' => 'global.save',
+                    'label' => 'save',
                     'attr' => [
                         'class' => 'btn btn-lg btn-primary',
                     ]

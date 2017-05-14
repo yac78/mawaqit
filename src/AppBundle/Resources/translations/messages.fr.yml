@@ -1,17 +1,3 @@
-global:
-    validate: Valider
-    cancel: Annuler
-    address: Adresse
-    phone: Téléphone
-    city: Ville
-    zipcode: Code postal
-    country: Pays
-    rib: RIB
-    save: Sauvegarder
-    email: Adresse mail
-    association_name: Nom de l'association
-    prayer_site: Url de l'écran des horaires 
-    
 form:
     mandatory_field:  Champ obligatoir
     create:
@@ -35,10 +21,14 @@ mosque:
     add: Ajout d'une nouvelle mosquée
     name: Nom de la mosquée
     form:
-        placeholder:
-            name: Ex. Mosquée Essunna
-            city: La ville de la mosquée (Sert à calculer la position géographique)
-            rib: Si ranseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+        name: 
+            placeholder : Ex. Mosquée Essunna
+        city: 
+            placeholder: La ville de la mosquée (Sert à calculer la position géographique)
+        zipcode: 
+            placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
+        rib: 
+            placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
@@ -105,6 +95,22 @@ security:
     login:
         authenticate_you: Identifiez-vous
         
+
+validate: Valider
+cancel: Annuler
+address: Adresse
+phone: Téléphone
+city: Ville
+zipcode: Code postal
+country: Pays
+rib: RIB
+save: Sauvegarder
+email: Adresse mail
+association_name: Nom de l'association
+prayer_site: Url de l'écran des horaires
+users: Utilisateurs
+my_mosques: Mes mosquées
+my_profile: Mon profil
         
 ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
 UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
