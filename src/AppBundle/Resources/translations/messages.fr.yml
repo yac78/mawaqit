@@ -48,6 +48,7 @@ configuration:
             label: Source de calcul des horaires
         prayerMethod: 
             label: Méthode de calcul
+            placeholder: Veuillez choisir une méthode de calcul
         jumuaTime:
             label: Heure du jumu`a
         aidTime:

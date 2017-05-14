@@ -50,7 +50,7 @@ class Configuration {
     /**
      * @var string
      */
-    private $jumuaTime;
+    private $jumuaTime = "13:30:00";
 
     /**
      * @var string
@@ -80,7 +80,7 @@ class Configuration {
     /**
      * @var array
      */
-    private $fixedTimes;
+    private $fixedTimes = ["", "", "", "", ""];
 
     /**
      * @var int
@@ -115,7 +115,7 @@ class Configuration {
     /**
      * @var string
      */
-    private $prayerMethod;
+    private $prayerMethod = 'ISNA';
 
     /**
      * @var int
@@ -160,7 +160,7 @@ class Configuration {
     /**
      * @var array
      */
-    private $calendar;
+    private $calendar = [];
 
     /**
      * @var \DateTime
@@ -771,12 +771,17 @@ class Configuration {
      * @return boolean 
      */
     public function isCompleted() {
+        if ($this->sourceCalcul === self::SOURCE_API) {
+            if (empty($this->longitude) || empty($this->latitude)) {
+                return false;
+            }
+        }
+
         if ($this->sourceCalcul === self::SOURCE_CALENDAR) {
-            
             if (empty($this->calendar)) {
                 return false;
             }
-            
+
             foreach ($this->calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
                     foreach ($prayers as $prayerIndex => $prayer) {

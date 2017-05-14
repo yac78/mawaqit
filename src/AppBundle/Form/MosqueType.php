@@ -17,7 +17,7 @@ class MosqueType extends AbstractType {
                     'label' => 'mosque.name',
                     'required' => true,
                     'attr' => [
-                        'placeholder' => 'mosque.form.placeholder.name',
+                        'placeholder' => 'mosque.form.name.placeholder',
                         'class' => 'form-control',
                     ]
                 ])
@@ -72,7 +72,7 @@ class MosqueType extends AbstractType {
                 ->add('rib', null, [
                     'label' => 'rib',
                     'attr' => [
-                        'placeholder' => 'mosque.form.placeholder.rib',
+                        'placeholder' => 'mosque.form.rib.placeholder',
                         'class' => 'form-control',
                     ]
                 ])

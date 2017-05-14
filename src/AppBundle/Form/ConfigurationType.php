@@ -43,11 +43,17 @@ class ConfigurationType extends AbstractType {
                     'input' => 'string',
                     'widget' => 'choice',
                     'label' => 'configuration.form.jumuaTime.label',
+                    'placeholder' => array(
+                        'hour' => 'hh', 'minute' => 'mm'
+                    )
                 ])
                 ->add('aidTime', TimeType::class, [
                     'input' => 'string',
                     'widget' => 'choice',
-                    'label' => 'configuration.form.aidTime.label'
+                    'label' => 'configuration.form.aidTime.label',
+                    'placeholder' => array(
+                        'hour' => 'hh', 'minute' => 'mm'
+                    )
                 ])
                 ->add('imsakNbMinBeforeFajr', IntegerType::class, [
                     'label' => 'configuration.form.imsakNbMinBeforeFajr.label'
@@ -55,7 +61,10 @@ class ConfigurationType extends AbstractType {
                 ->add('maximumIshaTimeForNoWaiting', TimeType::class, [
                     'input' => 'string',
                     'widget' => 'choice',
-                    'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label'
+                    'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
+                    'placeholder' => array(
+                        'hour' => 'hh', 'minute' => 'mm'
+                    )
                 ])
                 ->add('waitingTimes', PrayerType::class, [
                     'label' => 'configuration.form.waitingTimes.label',

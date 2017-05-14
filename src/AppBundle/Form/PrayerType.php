@@ -11,22 +11,30 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 class PrayerType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        $timeOption = [];
+
+        if ($options["sub_type"] === TimeType::class) {
+            $timeOption = [
+                'placeholder' => [
+                    'hour' => 'hh', 'minute' => 'mm'
+            ]];
+        }
+
         $builder
-                ->add('fajr', $options["sub_type"],[
-                    'label'=> 'fajr'
-                ])
-                ->add('zuhr', $options["sub_type"],[
-                    'label'=> 'zuhr'
-                ])
-                ->add('asr', $options["sub_type"],[
-                    'label'=> 'asr'
-                ])
-                ->add('maghrib', $options["sub_type"],[
-                    'label'=> 'maghrib'
-                ])
-                ->add('isha', $options["sub_type"],[
-                    'label'=> 'isha'
-                ])
+                ->add('fajr', $options["sub_type"], array_merge($timeOption, ['label' => 'fajr']))
+                ->add('zuhr', $options["sub_type"], array_merge($timeOption, [
+                    'label' => 'zuhr'
+                ]))
+                ->add('asr', $options["sub_type"], array_merge($timeOption, [
+                    'label' => 'asr'
+                ]))
+                ->add('maghrib', $options["sub_type"], array_merge($timeOption, [
+                    'label' => 'maghrib'
+                ]))
+                ->add('isha', $options["sub_type"], array_merge($timeOption, [
+                    'label' => 'isha'
+                ]))
         ;
     }
 
@@ -35,7 +43,7 @@ class PrayerType extends AbstractType {
         $resolver->setDefaults(array(
             'sub_type' => IntegerType::class
         ));
-        
+
         $resolver->setAllowedValues('sub_type', array(
             IntegerType::class,
             TimeType::class

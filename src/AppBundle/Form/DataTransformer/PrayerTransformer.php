@@ -29,26 +29,15 @@ class PrayerTransformer implements DataTransformerInterface {
         }
 
         return [
-            "fajr" => (int)$values[0],
-            "zuhr" => (int)$values[1],
-            "asr" => (int)$values[2],
-            "maghrib" => (int)$values[3],
-            "isha" => (int)$values[4]
+            "fajr" => (int) $values[0],
+            "zuhr" => (int) $values[1],
+            "asr" => (int) $values[2],
+            "maghrib" => (int) $values[3],
+            "isha" => (int) $values[4]
         ];
     }
 
     public function reverseTransform($prayerIssue) {
-
-         if ($this->type === TimeType::class) {
-             foreach ($prayerIssue as $key => $value) {
-                 $value = $value->format('H:i');
-                 if($value === "00:00"){
-                     $value = null;
-                 }
-                 $prayerIssue[$key] = $value;
-             }
-         }
-        
         return $prayerIssue;
     }
 
