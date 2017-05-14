@@ -136,6 +136,10 @@ class ConfigurationType extends AbstractType {
 
     public function onPostSetData(FormEvent $event) {
         $configuration = $event->getData();
+        if ($configuration->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
+            $configuration->setFajrDegree(null);
+            $configuration->setIshaDegree(null);
+        }
         if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
             $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
             $configuration->setLongitude($position->lng);

@@ -112,6 +112,7 @@ Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
 MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
 Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 min après maghrib)"
 Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
+CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)
 calendar: Manuel (Horaires renseignées pour toute l'année)

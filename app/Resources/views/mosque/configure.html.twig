@@ -46,17 +46,19 @@
 
         <div class="api hidden">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     {{ form_label(form.prayerMethod) }}
                     {{ form_widget(form.prayerMethod) }}
                 </div>
-                <div class="col-md-3">
-                    {{ form_label(form.fajrDegree) }}
-                    {{ form_widget(form.fajrDegree) }}
-                </div>
-                <div class="col-md-3">
-                    {{ form_label(form.ishaDegree) }}
-                    {{ form_widget(form.ishaDegree) }}
+                <div class="degree hidden">
+                    <div class="col-md-2">
+                        {{ form_label(form.fajrDegree) }}
+                        {{ form_widget(form.fajrDegree) }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ form_label(form.ishaDegree) }}
+                        {{ form_widget(form.ishaDegree) }}
+                    </div>
                 </div>
             </div>
 
@@ -166,9 +168,9 @@
                                                         class="form-control text-center calendar-prayer-time" 
                                                         maxlength="5" 
                                                         oninvalid="setCustomValidity('{{'configuration.form.time_invalid'|trans}}')" onchange="try {
-                                                                        setCustomValidity('')
-                                                                    } catch (e) {
-                                                                    }">
+                                                                    setCustomValidity('')
+                                                                } catch (e) {
+                                                                }">
                                                 </div>
                                             {% endfor %}
                                         </div>
@@ -176,7 +178,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="alert alert-info">
-                                        <strong>Important!</strong> {{'configuration.form.calendar_explication'|trans|raw}}
+                                        <strong>Info ! </strong> {{'configuration.form.calendar_explication'|trans|raw}}
                                     </div>
                                 </div>
                             </div>

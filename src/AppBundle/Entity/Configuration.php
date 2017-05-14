@@ -21,6 +21,7 @@ class Configuration {
     const METHOD_MWL = 'MWL';
     const METHOD_Makkah = 'Makkah';
     const METHOD_Egypt = 'Egypt';
+    const METHOD_CUSTOM = 'CUSTOM';
     const METHOD_CHOICES = [
         self::METHOD_ISNA,
         self::METHOD_UOIF,
@@ -28,6 +29,7 @@ class Configuration {
         self::METHOD_MWL,
         self::METHOD_Makkah,
         self::METHOD_Egypt,
+        self::METHOD_CUSTOM,
     ];
     const LANG_CHOICES = [
         "Français" => "fr",

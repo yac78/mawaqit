@@ -6,11 +6,19 @@ $(document).ready(function () {
             $(this).css("background-color", "#f8d4d4");
         }
     });
+    $("#appbundle_configuration_prayerMethod").trigger("change");
 });
 
 $("#appbundle_configuration_sourceCalcul").bind("change keyup", function (event) {
     $(".api, .calendar").addClass("hidden");
     $("." + $(this).val()).removeClass("hidden");
+});
+
+$("#appbundle_configuration_prayerMethod").bind("change keyup", function (event) {
+    $(".degree").addClass("hidden");
+    if ($(this).val() === 'CUSTOM') {
+        $(".degree").removeClass("hidden");
+    }
 });
 
 $(".calendar-prayer input").bind("change keyup", function (event) {
@@ -56,10 +64,10 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         month = month[1];
         var lines = csv.split(/\r\n|\n/);
         for (var day = 1; day < lines.length; day++) {
-            var line = lines[day].split('/,|;/');
+            var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
                 var inputPrayer = $("input[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
-                if (line[prayer].match(/\d{2}:\d{2}/g) ){
+                if (line[prayer].match(/\d{2}:\d{2}/g)) {
                     inputPrayer.val(line[prayer]);
                     inputPrayer.trigger("change");
                 }
