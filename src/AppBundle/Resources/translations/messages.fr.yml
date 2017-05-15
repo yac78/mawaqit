@@ -40,7 +40,7 @@ configuration:
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis.
-        time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant XX:XX"
+        time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant hh:mm"
         fill_calendar_from_csv: Pré-remplir depuis un fichier csv
         calendar: Calendrier des horaires
         lang: La langue d'affichage de l'écran 

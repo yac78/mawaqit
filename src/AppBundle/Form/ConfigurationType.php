@@ -6,6 +6,7 @@ use AppBundle\Form\PrayerType;
 use AppBundle\Entity\Configuration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,6 +17,7 @@ use AppBundle\Form\DataTransformer\PrayerTransformer;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use AppBundle\Service\GoogleService;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class ConfigurationType extends AbstractType {
 
@@ -25,8 +27,15 @@ class ConfigurationType extends AbstractType {
      */
     private $googleService;
 
-    public function __construct(GoogleService $googleService) {
+    /**
+     *
+     * @var Translator 
+     */
+    private $translator;
+
+    public function __construct(GoogleService $googleService, TranslatorInterface $translator) {
         $this->googleService = $googleService;
+        $this->translator = $translator;
     }
 
     /**
@@ -39,32 +48,38 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.lang',
                     'choices' => Configuration::LANG_CHOICES
                 ])
-                ->add('jumuaTime', TimeType::class, [
-                    'input' => 'string',
-                    'widget' => 'choice',
+                ->add('jumuaTime', null, [
                     'label' => 'configuration.form.jumuaTime.label',
-                    'placeholder' => array(
-                        'hour' => 'hh', 'minute' => 'mm'
-                    )
+                    'attr' => [
+                        'placeholder' => 'hh:mm',
+                        'pattern' => '\d{2}:\d{2}',
+                        'maxlength' => 5,
+                        'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
+                        'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    ]
                 ])
-                ->add('aidTime', TimeType::class, [
-                    'input' => 'string',
-                    'widget' => 'choice',
+                ->add('aidTime', null, [
                     'label' => 'configuration.form.aidTime.label',
-                    'placeholder' => array(
-                        'hour' => 'hh', 'minute' => 'mm'
-                    )
+                    'attr' => [
+                        'placeholder' => 'hh:mm',
+                        'pattern' => '\d{2}:\d{2}',
+                        'maxlength' => '5',
+                        'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
+                        'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    ]
                 ])
                 ->add('imsakNbMinBeforeFajr', IntegerType::class, [
                     'label' => 'configuration.form.imsakNbMinBeforeFajr.label'
                 ])
-                ->add('maximumIshaTimeForNoWaiting', TimeType::class, [
-                    'input' => 'string',
-                    'widget' => 'choice',
+                ->add('maximumIshaTimeForNoWaiting', null, [
                     'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
-                    'placeholder' => array(
-                        'hour' => 'hh', 'minute' => 'mm'
-                    )
+                    'attr' => [
+                        'placeholder' => 'hh:mm',
+                        'pattern' => '\d{2}:\d{2}',
+                        'maxlength' => '5',
+                        'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
+                        'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    ]
                 ])
                 ->add('waitingTimes', PrayerType::class, [
                     'label' => 'configuration.form.waitingTimes.label',
@@ -76,7 +91,7 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('fixedTimes', PrayerType::class, [
                     'label' => 'configuration.form.fixedTimes.label',
-                    'sub_type' => TimeType::class
+                    'sub_type' => TextType::class
                 ])
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment.label'

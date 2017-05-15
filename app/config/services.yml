@@ -19,6 +19,14 @@ services:
         class: AppBundle\Form\ConfigurationType
         arguments:
             - "@app.google_service"
+            - "@translator"
+        tags:
+            - { name: form.type }          
+            
+    app.form_prayer:
+        class: AppBundle\Form\PrayerType
+        arguments:
+            - "@translator"
         tags:
             - { name: form.type }          
     

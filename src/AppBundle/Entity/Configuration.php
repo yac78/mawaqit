@@ -50,7 +50,7 @@ class Configuration {
     /**
      * @var string
      */
-    private $jumuaTime = "13:30:00";
+    private $jumuaTime = "13:30";
 
     /**
      * @var string
