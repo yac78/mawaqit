@@ -252,7 +252,7 @@ class Mosque {
     public function getPhone() {
         return $this->phone;
     }
-
+    
     /**
      * Set site
      *

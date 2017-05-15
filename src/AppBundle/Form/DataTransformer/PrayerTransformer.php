@@ -20,11 +20,11 @@ class PrayerTransformer implements DataTransformerInterface {
     public function transform($values) {
         if ($this->type === TimeType::class) {
             return [
-                "fajr" => $values[0] !== "" ? new \DateTime($values[0]) : null,
-                "zuhr" => $values[1] !== "" ? new \DateTime($values[1]) : null,
-                "asr" => $values[2] !== "" ? new \DateTime($values[2]) : null,
-                "maghrib" => $values[3] !== "" ? new \DateTime($values[3]) : null,
-                "isha" => $values[4] !== "" ? new \DateTime($values[4]) : null
+                "fajr" => $values[0] ,
+                "zuhr" => $values[1] ,
+                "asr" => $values[2] ,
+                "maghrib" => $values[3] ,
+                "isha" => $values[4]
             ];
         }
 
@@ -38,6 +38,16 @@ class PrayerTransformer implements DataTransformerInterface {
     }
 
     public function reverseTransform($prayerIssue) {
+
+        if ($this->type === TimeType::class) {
+            foreach ($prayerIssue as $key => $value) {
+                if($value instanceof \DateTime) {
+                    $value = $value->format('H:i');
+                }
+                $prayerIssue[$key] = $value;
+            }
+        }
+
         return $prayerIssue;
     }
 

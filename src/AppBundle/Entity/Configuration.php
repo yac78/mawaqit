@@ -794,5 +794,40 @@ class Configuration {
         }
         return true;
     }
+    
+    function getFooterText() {
+        $rib = $this->mosque->getRib();
+        $rib = empty($rib) ? "" : " | " . $rib;
+        return "Association " . $this->mosque->getAssociationName() . " Tél. " . $this->mosque->getPhone() . $rib;
+    }
 
+    public function getFormatedConfig() {
+        return [
+            "lang" => $this->getLang(),
+            "joumouaaTime" => $this->getJumuaTime(),
+            "aidTime" => $this->getAidTime(),
+            "imsakNbMinBeforeSobh" => $this->getImsakNbMinBeforeFajr(),
+            "minimumIchaTime" => $this->getFixedTimes()[4],
+            "maximumIchaTimeForNoWaiting" => $this->getMaximumIshaTimeForNoWaiting(),
+            "prayersWaitingTimes" => $this->getWaitingTimes(),
+            "prayerTimesAdjustment" => $this->getAdjustedTimes(),
+            "prayerTimesFixing" => $this->getFixedTimes(),
+            "hijriAdjustment" => $this->getHijriAdjustment(),
+            "hijriDateEnabled" => $this->getHijriDateEnabled(),
+            "douaaAfterAdhanEnabled" => $this->getDuaAfterAzanEnabled(),
+            "douaaAfterPrayerEnabled" => $this->getDuaAfterPrayerEnabled(),
+            "androidAppEnabled" => false,
+            "calculChoice" => $this->getSourceCalcul(),
+            "city" => "null",
+            "prayerMethod" => $this->getPrayerMethod(),
+            "latitude" => $this->getLatitude(),
+            "longitude" => $this->getLongitude(),
+            "fajrDegree" => $this->getFajrDegree(),
+            "ichaaDegree" => $this->getIshaDegree(),
+            "iqamaDisplayTime" => $this->getIqamaDisplayTime(),
+            "adhanDouaaDisplayTime" => $this->getAzanDuaDisplayTime(),
+            "headerText" => $this->mosque->getName() . " - " . $this->mosque->getCity(),
+            "footerText" => $this->getFooterText()
+        ];
+    }
 }

@@ -32,7 +32,7 @@ var prayer = {
      * Conf from conf.json
      * @type Json
      */
-    confData: null,
+    confData: confData,
     /**
      * init the app
      */
@@ -42,7 +42,7 @@ var prayer = {
         this.setDate();
         this.setTimes();
         this.setWaitings();
-        this.translateToArabic();
+//        this.translateToArabic();
         this.initNextTimeHilight();
         this.initAdhanFlash();
         this.initIqamaFlash();
@@ -56,37 +56,17 @@ var prayer = {
      * load all data
      */
     loadData: function () {
-        this.loadVersion();
-        this.setConfData();
         this.loadTimes();
 
         // if current time > ichaa time + 5 minutes we load tomorrow times
-        var date = new Date();
-        if (date.getHours() !== 0) {
-            var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIchaTime());
-            ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
-            if (date > ichaaDateTime ){
-                this.loadTimes(true);
-            }
-        }
-    },
-    /**
-     * load app version
-     */
-    loadVersion: function () {
-        $.ajax({
-            url: "version?" + (new Date()).getTime(),
-            async: false,
-            success: function (data) {
-                // reset conf if new version
-                if (getVersion() !== data) {
-                    removeConfFromLocalStorage();
-                    setVersion(data);
-                }
-
-                $(".version").text("v" + data);
-            }
-        });
+//        var date = new Date();
+//        if (date.getHours() !== 0) {
+//            var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIchaTime());
+//            ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
+//            if (date > ichaaDateTime ){
+//                this.loadTimes(true);
+//            }
+//        }
     },
     /**
      * load custom data
@@ -103,9 +83,9 @@ var prayer = {
      * @param {boolean} tomorrow if true we load tomorrow time, otherxise we load today times
      */
     loadTimes: function (tomorrow) {
-        if (this.confData.calculChoice === "csv") {
+        if (this.confData.calculChoice === "calendar") {
             this.loadTimesFromCsv(tomorrow);
-        } else if (this.confData.calculChoice === "custom") {
+        } else if (this.confData.calculChoice === "api") {
             this.loadTimesFromApi(tomorrow);
         }
     },
@@ -138,10 +118,10 @@ var prayer = {
      */
     loadTimesFromApi: function (tomorrow) {
         var prayTimes = new PrayTimes(prayer.confData.prayerMethod);
-        if (prayer.confData.fajrDegree !== "") {
+        if (prayer.confData.fajrDegree) {
             prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
         }
-        if (prayer.confData.ichaaDegree !== "") {
+        if (prayer.confData.ichaaDegree) {
             prayTimes.adjust({"isha": parseFloat(prayer.confData.ichaaDegree)});
         }
 
@@ -158,8 +138,10 @@ var prayer = {
         if (typeof tomorrow === 'boolean' && tomorrow === true) {
             date = dateTime.tomorrow();
         }
-        var pt = prayTimes.getTimes(date, [parseFloat(prayer.confData.latitude), parseFloat(prayer.confData.longitude)]);
+        console.dir(prayer.confData);
+        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude]);
         this.times = [pt.fajr, pt.sunrise, pt.dhuhr, pt.asr, pt.maghrib, pt.isha];
+//        console.dir(this.times);
     },
     /**
      * get today prayer times, array of only five prayer times

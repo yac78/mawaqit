@@ -131,6 +131,14 @@ zuhr: Duhr
 asr: '`Asr'
 maghrib: Maghrib
 isha: '`Isha'
+jumua: 'Jumu`a'
+aid: '`Aid'
+imsak: Imsak
+support: Support
+iqama: El Iqâma
+azan: El Adhân
+
+power-off-phones: Éteignez vos portables SVP !
 
 january: Janvier
 february: Février

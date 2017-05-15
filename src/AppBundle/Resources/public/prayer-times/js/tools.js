@@ -63,13 +63,13 @@ function loadConfData() {
 }
 
 /* ##### version ##### */
-function getVersion() {
-    return localStorage.getItem("version");
-}
-
-function setVersion(version) {
-    return localStorage.setItem("version", version);
-}
+//function getVersion() {
+//    return localStorage.getItem("version");
+//}
+//
+//function setVersion(version) {
+//    return localStorage.setItem("version", version);
+//}
 
 /* ##### others ##### */
 /**

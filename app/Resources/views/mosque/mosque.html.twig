@@ -24,9 +24,9 @@
 
             <!-- Iqama screen -->
             <div class="iqama hidden">
-                <div class="top" data-text="iqama">El-iqama</div>
+                <div class="top">{{'iqama'|trans}}</div>
                 <div class="image"></div>
-                <div class="bottom" data-text="power-off-phones"></div>
+                <div class="bottom">{{'power-off-phones'|trans}}</div>
             </div>
 
             <!-- Douaa after prayer slider -->
@@ -67,26 +67,26 @@
                 <div class="top-content">
                     <div class="adhan-flash hidden">
                         <div class="col-lg-2">
-                            <img src="img/loudspeaker.png">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
                         </div>
                         <div class="col-lg-8">
-                            <span data-text="adhan"></span>
+                            <span>{{'azan'|trans}}</span>
                         </div>
                         <div class="col-lg-2">
-                            <img src="img/loudspeaker.png" style="transform: scaleX(-1);">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
                         </div>
                     </div>
                     <div class="content">
                         <div class="col-lg-3 aid custom-time">
-                            <div data-text="aid-prayer"></div>
+                            <div>{{'aid'|trans}}</div>
                             <div class="aid-id"></div>
                         </div>
                         <div class="col-lg-3 chourouk custom-time">
-                            <div data-text="chourouk"></div>
+                            <div>{{'shuruk'|trans}}</div>
                             <div class="chourouk-id"></div>
                         </div>
                         <div class="col-lg-3 imsak custom-time">
-                            <div data-text="imsak"></div>
+                            <div>{{'imsak'|trans}}</div>
                             <div class="imsak-id"></div>
                         </div>
                         <div class="col-lg-6">
@@ -95,7 +95,7 @@
                             <div class="gregorianDate"></div>
                         </div>
                         <div class=" col-lg-3 joumouaa">
-                            <div data-text="joumouaa"></div>
+                            <div>{{'jumua'|trans}}</div>
                             <div class="prayer joumouaa-id"></div>
                         </div>
                     </div>
@@ -103,11 +103,11 @@
 
                 <div class="prayer-content">
                     <div class="prayer-text">
-                        <div class="text _0" data-text="sobh"></div>
-                        <div class="text _1" data-text="zuhr"></div>
-                        <div class="text _2" data-text="asr"></div>
-                        <div class="text _3" data-text="maghrib"></div>
-                        <div class="text _4" data-text="isha"></div>
+                        <div class="text _0">{{'fajr'|trans}}</div>
+                        <div class="text _1">{{'zuhr'|trans}}</div>
+                        <div class="text _2">{{'asr'|trans}}</div>
+                        <div class="text _3">{{'maghrib'|trans}}</div>
+                        <div class="text _4">{{'isha'|trans}}</div>
                     </div>
 
                     <div class="prayer-time">
@@ -136,13 +136,13 @@
                         <div class="site"></div>
                         <div class="assosciation"></div>
                         <div class="support">
-                            <span data-text="support"></span> 
+                            <span>{{'support'|trans}}</span> 
                             <i class="glyphicon glyphicon-phone"></i> <span class="supportTel"></span>&nbsp;
                             <i class="glyphicon glyphicon-envelope"></i> <span class="supportEmail"></span>
                         </div>
                     </div>
                     <div class="col-lg-1 version-parent">
-                        <span class="version fr"></span>
+                        <span class="version fr">v{{version}}</span>
                     </div>
                 </div>
             </div>
@@ -161,42 +161,42 @@
 
                 <div class="prayer-content">
                     <div class="row">
-                        <div class="col-xs-4 text">Sobh</div>
+                        <div class="col-xs-4 text">{{'fajr'|trans}}</div>
                         <div class="col-xs-4 prayer prayer0 sobh"></div> 
                         <div class="col-xs-4 adhan0 hidden">
-                            <img src="img/loudspeaker.png" class="athan-img">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">Dohr</div>
+                        <div class="col-xs-4 text">{{'zuhr'|trans}}</div>
                         <div class="col-xs-4 prayer prayer1 dohr"></div>
                         <div class="col-xs-4 adhan1 hidden">
-                            <img src="img/loudspeaker.png" class="athan-img">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">Asr</div>
+                        <div class="col-xs-4 text">{{'asr'|trans}}</div>
                         <div class="col-xs-4 prayer prayer2 asr"></div>
                         <div class="col-xs-4 adhan2 hidden">
-                            <img src="img/loudspeaker.png" class="athan-img">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">Maghrib</div>
+                        <div class="col-xs-4 text">{{'maghrib'|trans}}</div>
                         <div class="col-xs-4 prayer prayer3 maghrib"></div>
                         <div class="col-xs-4 adhan3 hidden">
-                            <img src="img/loudspeaker.png" class="athan-img">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">Icha</div>
+                        <div class="col-xs-4 text">{{'isha'|trans}}</div>
                         <div class="col-xs-4 prayer prayer4 ichaa"></div>
                         <div class="col-xs-4 adhan4 hidden">
-                            <img src="img/loudspeaker.png" class="athan-img">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
                         <div class="col-xs-4 wait"></div>
                     </div>
@@ -204,10 +204,10 @@
 
                 <div class="chourouk-joumouaa">
                     <div class="row">
-                        <div class="col-xs-4 col-xs-offset-1 imsak custom-time">Imsak</div> 
-                        <div class="col-xs-4 col-xs-offset-1 chourouk custom-time">Chourouk</div> 
+                        <div class="col-xs-4 col-xs-offset-1 imsak custom-time">{{'imsak'|trans}}</div> 
+                        <div class="col-xs-4 col-xs-offset-1 chourouk custom-time">{{'shuruk'|trans}}</div> 
                         <div class="col-xs-2"></div>
-                        <div class="col-xs-4 joumouaa">Joumouaa</div>
+                        <div class="col-xs-4 joumouaa">{{'jumua'|trans}}</div>
                         <div class="col-xs-1"></div>
                     </div>
                     <div class="row">
@@ -222,24 +222,31 @@
                 <div class="footer">
                     <div class="assosciation text-center"></div>
                     <div class="support">
-                        <span data-text="support"></span> <br>
+                        <span>{{'support'|trans}}</span> <br>
                         <i class="glyphicon glyphicon-phone"></i> <a href=""><span class="supportTel"></span></a><br>
                         <i class="glyphicon glyphicon-envelope"></i> <a href=""><span class="supportEmail"></span></a>
                     </div>
-                    <div class="version text-right"></div>
+                    <div class="version text-right">v{{version}}</div>
 
                 </div>
             </div>
         </div>
 
-        <script src="js/vendor/jquery.min.js"></script>
-        <script src="js/vendor/jquery.countdown.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/vendor/hijriDate.js"></script>
-        <script src="js/vendor/PrayTimes.js"></script>
-        <script src="js/tools.js"></script>
-        <script src="js/i18n.js"></script>
-        <script src="js/date.js"></script>
-        <script src="js/prayer.js"></script>
+        <script>
+            var confData = {{config|raw}};
+        </script>
+
+        {% javascripts
+                '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+                '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
+                '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
+                '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
+                '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
+                '@AppBundle/Resources/public/prayer-times/js/tools.js'
+                '@AppBundle/Resources/public/prayer-times/js/date.js'
+                '@AppBundle/Resources/public/prayer-times/js/prayer.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}    
     </body>
 </html>

@@ -87,7 +87,8 @@ var dateTime = {
         var date = new Date();
         var dayIndex = date.getDay();
         days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-        return days[dayIndex].trans(getConfFromLocalStorage().lang);
+        return days[dayIndex];
+//        return days[dayIndex].trans(getConfFromLocalStorage().lang);
     },
     getLastSundayOfMonth: function (month) {
         var date = new Date();
