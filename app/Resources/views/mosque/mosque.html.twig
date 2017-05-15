@@ -60,7 +60,7 @@
 
             <!-- main screen -->
             <div class="main display-none">
-                <div class="header col-lg-offset-1 col-lg-10"></div> 
+                <div class="header col-lg-offset-1 col-lg-10">{{header}}</div> 
                 <div class="col-lg-1 text-right" >
                 </div>
 
@@ -133,12 +133,12 @@
                         <img class="app-qr-code" src="" />
                     </div>
                     <div class="col-lg-10">
-                        <div class="site"></div>
-                        <div class="assosciation"></div>
+                        <div class="site">{{site|raw}}</div>
+                        <div class="assosciation">{{footer}}</div>
                         <div class="support">
                             <span>{{'support'|trans}}</span> 
-                            <i class="glyphicon glyphicon-phone"></i> <span class="supportTel"></span>&nbsp;
-                            <i class="glyphicon glyphicon-envelope"></i> <span class="supportEmail"></span>
+                            <i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}" class="supportTel">{{supportTel}}</a>&nbsp;
+                            <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}" class="supportEmail">{{supportEmail}}</a>
                         </div>
                     </div>
                     <div class="col-lg-1 version-parent">
@@ -152,7 +152,7 @@
             <div class="spinner"></div>
 
             <div class="main display-none">
-                <div class="header"></div>
+                <div class="header">{{header}}</div>
                 <div class="top-content">
                     <div class="time"></div>
                     <div class="hijriDate ar"></div>

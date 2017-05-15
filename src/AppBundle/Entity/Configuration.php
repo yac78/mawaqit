@@ -795,12 +795,8 @@ class Configuration {
         return true;
     }
     
-    function getFooterText() {
-        $rib = $this->mosque->getRib();
-        $rib = empty($rib) ? "" : " | " . $rib;
-        return "Association " . $this->mosque->getAssociationName() . " Tél. " . $this->mosque->getPhone() . $rib;
-    }
 
+    
     public function getFormatedConfig() {
         return [
             "lang" => $this->getLang(),
@@ -826,8 +822,6 @@ class Configuration {
             "ichaaDegree" => $this->getIshaDegree(),
             "iqamaDisplayTime" => $this->getIqamaDisplayTime(),
             "adhanDouaaDisplayTime" => $this->getAzanDuaDisplayTime(),
-            "headerText" => $this->mosque->getName() . " - " . $this->mosque->getCity(),
-            "footerText" => $this->getFooterText()
         ];
     }
 }

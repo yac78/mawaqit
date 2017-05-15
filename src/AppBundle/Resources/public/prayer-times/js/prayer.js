@@ -48,7 +48,7 @@ var prayer = {
         this.initIqamaFlash();
         this.initCronHandlingTimes();
         this.setCustomTime();
-        this.setCustomContent();
+//        this.setCustomContent();
         this.hideSpinner();
         douaaSlider.init();
     },
@@ -138,10 +138,8 @@ var prayer = {
         if (typeof tomorrow === 'boolean' && tomorrow === true) {
             date = dateTime.tomorrow();
         }
-        console.dir(prayer.confData);
         var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude]);
         this.times = [pt.fajr, pt.sunrise, pt.dhuhr, pt.asr, pt.maghrib, pt.isha];
-//        console.dir(this.times);
     },
     /**
      * get today prayer times, array of only five prayer times
@@ -565,7 +563,7 @@ var prayer = {
         $(".custom-time").hide();
 
         // if aid time enabled we set/show it
-        if (this.confData.aidTime !== "") {
+        if (this.confData.aidTime) {
             $(".aid-id").text(this.confData.aidTime);
             $(".aid").show();
             return;
@@ -632,17 +630,17 @@ var prayer = {
      * set static custom content, header, footer ...
      */
     setCustomContent: function () {
-        $(".header").html(this.confData.headerText);
-        $(".site").html(this.confData.site);
-        $(".assosciation").html(this.confData.footerText);
-        $(".supportTel").text(this.confData.supportTel);
-        $(".supportTel").parent().attr("href", "tel:" + this.confData.supportTel);
-        $(".supportEmail").text(this.confData.supportEmail);
-        $(".supportEmail").parent().attr("href", "mailto:" + this.confData.supportEmail);
-        if (this.confData.androidAppEnabled) {
-            $(".app-qr-code").attr("src", "img/app-qr-code.png");
-            $(".android-app").removeClass("visibilty-hidden");
-        }
+//        $(".header").html(this.confData.headerText);
+//        $(".site").html(this.confData.site);
+//        $(".assosciation").html(this.confData.footerText);
+//        $(".supportTel").text(this.confData.supportTel);
+//        $(".supportTel").parent().attr("href", "tel:" + this.confData.supportTel);
+//        $(".supportEmail").text(this.confData.supportEmail);
+//        $(".supportEmail").parent().attr("href", "mailto:" + this.confData.supportEmail);
+//        if (this.confData.androidAppEnabled) {
+//            $(".app-qr-code").attr("src", "img/app-qr-code.png");
+//            $(".android-app").removeClass("visibilty-hidden");
+//        }
     },
     hideSpinner: function () {
         $(document).ready(function () {

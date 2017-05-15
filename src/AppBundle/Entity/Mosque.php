@@ -252,7 +252,7 @@ class Mosque {
     public function getPhone() {
         return $this->phone;
     }
-    
+
     /**
      * Set site
      *
@@ -408,6 +408,16 @@ class Mosque {
 
     function setConfiguration(Configuration $configuration) {
         $this->configuration = $configuration;
+    }
+
+    function getHeader() {
+        return $this->getName() . " - " . $this->getCity();
+    }
+
+    function getFooterText() {
+        $rib = $this->getRib();
+        $rib = empty($rib) ? "" : " | " . $rib;
+        return "Association " . $this->getAssociationName() . " Tél. " . $this->getPhone() . $rib;
     }
 
 }
