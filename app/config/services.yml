@@ -15,6 +15,9 @@ services:
         calls:
           - [setLogger, ['@logger']]
           
+    app.prayer_times_service:
+        class: AppBundle\Service\PrayerTimeService
+          
     app.form_configuration:
         class: AppBundle\Form\ConfigurationType
         arguments:

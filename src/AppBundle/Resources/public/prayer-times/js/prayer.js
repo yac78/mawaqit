@@ -509,7 +509,7 @@ var prayer = {
      * set date
      */
     setDate: function () {
-        $(".gregorianDate").text(dateTime.getCurrentDate());
+//        $(".gregorianDate").text(dateTime.getCurrentDate());
         this.setCurrentHijriDate();
     },
     /**
