@@ -825,6 +825,7 @@ class Configuration {
             "iqamaDisplayTime" => $this->getIqamaDisplayTime(),
             "adhanDouaaDisplayTime" => $this->getAzanDuaDisplayTime(),
             "slug" => $this->mosque->getSlug(),
+            "lastUpdatedDate" => $this->mosque->getUpdated(),
         ];
     }
 

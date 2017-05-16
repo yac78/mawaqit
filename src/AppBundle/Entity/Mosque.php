@@ -382,7 +382,12 @@ class Mosque {
      * @return \DateTime
      */
     public function getUpdated() {
-        return $this->updated;
+        $thisUpdated = $this->updated;
+        $configurationUpdated = $this->configuration->getUpdated();
+        if ($thisUpdated > $configurationUpdated) {
+            return $thisUpdated->format("Y-m-d H:i:s");
+        }
+        return $configurationUpdated->format("Y-m-d H:i:s");
     }
 
     /**
@@ -418,7 +423,7 @@ class Mosque {
         return $this->getName() . " - " . $this->getCity();
     }
 
-     /**
+    /**
      * get footer text
      * @return string
      */

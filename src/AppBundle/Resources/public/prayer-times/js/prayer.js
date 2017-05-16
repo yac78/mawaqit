@@ -49,6 +49,7 @@ var prayer = {
         this.initCronHandlingTimes();
         this.setCustomTime();
 //        this.setCustomContent();
+        this.initUpdateConfData();
         this.hideSpinner();
         douaaSlider.init();
     },
@@ -59,22 +60,31 @@ var prayer = {
         this.loadTimes();
 
         // if current time > ichaa time + 5 minutes we load tomorrow times
-//        var date = new Date();
-//        if (date.getHours() !== 0) {
-//            var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIchaTime());
-//            ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
-//            if (date > ichaaDateTime ){
-//                this.loadTimes(true);
-//            }
-//        }
+        var date = new Date();
+        if (date.getHours() !== 0) {
+            var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIchaTime());
+            ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
+            if (date > ichaaDateTime ){
+                this.loadTimes(true);
+            }
+        }
     },
     /**
-     * load custom data
-     * from localStorage if data exists, from json file otherwise
+     * 
      */
-    setConfData: function () {
-        loadConfData();
-        prayer.confData = JSON.parse(localStorage.getItem("config"));
+    initUpdateConfData: function () {
+        setInterval(function () {
+            $.ajax({
+                url: prayer.confData.slug + "/has-been-updated/" + prayer.confData.lastUpdatedDate,
+                success: function (resp) {
+                    if (resp.hasBeenUpdated === true) {
+                        location.reload();
+                    }
+                }
+            });
+        }, prayer.oneSecond * 3);
+        
+      
     },
     /**
      * load prayer times
@@ -509,7 +519,13 @@ var prayer = {
      * set date
      */
     setDate: function () {
-//        $(".gregorianDate").text(dateTime.getCurrentDate());
+        $.ajax({
+            url: prayer.confData.slug +"/date",
+            success: function (date) {
+               $(".gregorianDate").text(date);
+            }
+        });
+        
         this.setCurrentHijriDate();
     },
     /**
