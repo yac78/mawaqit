@@ -165,3 +165,5 @@ month_8 : Septembre
 month_9: Octobre
 month_10: Novembre
 month_11: Décembre
+
+prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"

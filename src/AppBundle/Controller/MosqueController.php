@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 
 class MosqueController extends Controller {
 
@@ -18,11 +19,13 @@ class MosqueController extends Controller {
 
         return $this->render('mosque/mosque.html.twig', [
                     'header' => $mosque->getHeader(),
-                    'footer' => $mosque->getFooterText(),
+                    'footer' => $mosque->getFooter(),
                     'version' => $this->getParameter('version'),
-                    "site" => "Horaires de prière sur mobile et tablette <a href='http://falah-cachan.horaires-de-priere.fr'>http://falah-cachan.horaires-de-priere.fr</a>",
-                    "supportTel" => "+33629111641",
-                    "supportEmail" => "horaires-priere@binary-consulting.fr",
+                    "site" => $this->get("translator")->trans("prayer_mobile_site", [
+                        "%site%" => $this->generateUrl("mosque", ["slug" => $mosque->getSlug()], UrlGenerator::ABSOLUTE_URL)
+                    ]),
+                    "supportTel" => $this->getParameter("supportTel"),
+                    "supportEmail" => $this->getParameter("supportEmail"),
                     'config' => json_encode($mosque->getConfiguration()->getFormatedConfig())
         ]);
     }

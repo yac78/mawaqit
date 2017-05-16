@@ -794,9 +794,11 @@ class Configuration {
         }
         return true;
     }
-    
 
-    
+    /**
+     * Get formated array config for js use
+     * @return array
+     */
     public function getFormatedConfig() {
         return [
             "lang" => $this->getLang(),
@@ -824,4 +826,5 @@ class Configuration {
             "adhanDouaaDisplayTime" => $this->getAzanDuaDisplayTime(),
         ];
     }
+
 }

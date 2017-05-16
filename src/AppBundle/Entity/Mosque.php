@@ -410,11 +410,19 @@ class Mosque {
         $this->configuration = $configuration;
     }
 
+    /**
+     * get header text
+     * @return string
+     */
     function getHeader() {
         return $this->getName() . " - " . $this->getCity();
     }
 
-    function getFooterText() {
+     /**
+     * get footer text
+     * @return string
+     */
+    function getFooter() {
         $rib = $this->getRib();
         $rib = empty($rib) ? "" : " | " . $rib;
         return "Association " . $this->getAssociationName() . " Tél. " . $this->getPhone() . $rib;
