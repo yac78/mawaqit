@@ -164,6 +164,7 @@ class ConfigurationType extends AbstractType {
             $configuration->setFajrDegree(null);
             $configuration->setIshaDegree(null);
         }
+        
         if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
             $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
             $configuration->setLongitude($position->lng);

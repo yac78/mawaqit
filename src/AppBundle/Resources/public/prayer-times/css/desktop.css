@@ -151,7 +151,7 @@ body {
 }
 
 .iqama .image{
-    background-image: url(/img/phone.png);
+    background-image: url(/bundles/app/prayer-times/img/phone.png);
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: contain;

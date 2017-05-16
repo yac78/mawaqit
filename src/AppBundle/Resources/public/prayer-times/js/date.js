@@ -34,16 +34,14 @@ var dateTime = {
      */
     getCurrentMonth: function () {
         var date = new Date();
-        var month = date.getMonth() + 1;
-        return addZero(month);
+        return date.getMonth();
     },
     /**
      * get tomorrow month 01, 02 ... 12
      */
     getTomorrowMonth: function () {
         var date = this.tomorrow();
-        var month = date.getMonth() + 1;
-        return addZero(month);
+        return date.getMonth();
     },
     /**
      * get full current year ex: 2017

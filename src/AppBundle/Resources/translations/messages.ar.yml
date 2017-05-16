@@ -122,10 +122,10 @@ Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)
-calendar: Manuel (Horaires renseignées pour toute l'année) - Recommandé
+calendar: Manuel (Horaires renseignées pour toute l'année)
 
 day: Jour
-fajr: Fajr
+fajr: الفجر
 shuruk: Shuruk
 zuhr: Duhr
 asr: '`Asr'

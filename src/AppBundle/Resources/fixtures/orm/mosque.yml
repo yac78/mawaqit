@@ -4,13 +4,14 @@ AppBundle\Entity\Mosque:
         configuration: '@ESSOUNNA_HOUILLES_CONF'
         name: Essounna
         associationName: SFI
-        email: essounna\@horaires-de-priere.fr
+        email: contact\@mosque-houilles.fr
         address: 14/16 rue Condorcet
         city: Houilles
         country: France
-        phone: '0100000000'
+        phone: 06.61.49.91.70
         zipcode: 78800
         site: "http://mosquee-houilles.fr"
+        rib: "IBAN FR76 3000 3018 6200 0504 6187 693 / BIC SOGEFRPP"
     ENNOUR_GENNEVILLIERS:
         user: '@USER1'
         configuration: '@ENNOUR_GENNEVILLIERS_CONF'
