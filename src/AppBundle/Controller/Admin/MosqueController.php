@@ -9,7 +9,7 @@ use AppBundle\Form\MosqueType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use AppBundle\Service\Calendar;
 use AppBundle\Exception\GooglePositionException;
 

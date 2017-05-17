@@ -648,7 +648,6 @@ var prayer = {
             }
             $("body").css("font-family", "Amiri");
             $("body").css("font-size", "13px");
-            $(".header").css("font-size", "600%");
             $(".adhan .fr, .douaa-between-adhan-iqama .fr").remove();
             $(".adhan .ar, .douaa-between-adhan-iqama .ar").css("font-size", "900%");
         }

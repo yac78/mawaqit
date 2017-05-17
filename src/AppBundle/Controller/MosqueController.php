@@ -25,8 +25,7 @@ class MosqueController extends Controller {
 
         return $this->render('mosque/mosque.html.twig', [
                     'lang' => $request->getLocale(),
-                    'header' => $mosque->getHeader(),
-                    'footer' => $mosque->getFooter(),
+                    'mosque' => $mosque,
                     'version' => $this->getParameter('version'),
                     "site" => $this->get("translator")->trans("prayer_mobile_site", [
                         "%site%" => $this->generateUrl("mosque", ["slug" => $mosque->getSlug()], UrlGenerator::ABSOLUTE_URL)

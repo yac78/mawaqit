@@ -1,5 +1,5 @@
 form:
-    mandatory_field:  Champ obligatoir
+    mandatory_field:  حقل اجباري
     create:
         success:  L'ajout %object% %name% a été réalisé avec succès.
         error: 
@@ -113,7 +113,7 @@ users: Utilisateurs
 my_mosques: Mes mosquées
 my_profile: Mon profil
         
-ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
+ISNA: "(fajr 15°, ichaa 15°) الإتحاد الإسلامي بأمريكا الشمالية"
 UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
 Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
 MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
@@ -135,10 +135,11 @@ jumua: الجمعة
 aid: '`Aid'
 imsak: Imsak
 support: Support
-iqama: El Iqâma
-azan: El Adhân
+iqama: الإفامة
+azan: الأذان
 
-power-off-phones: Éteignez vos portables SVP !
+power-off-phones: ! أطفؤوا الهواتف المحمول من فضلكم
+hi: مرحبا
 
 january: Janvier
 february: Février
@@ -166,4 +167,4 @@ month_9: Octobre
 month_10: Novembre
 month_11: Décembre
 
-prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
+prayer_mobile_site: "<a href='%site%'>%site%</a> أوقات الصلاة على المحمول"

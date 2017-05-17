@@ -95,7 +95,8 @@ configuration:
 security:
     login:
         authenticate_you: Identifiez-vous
-        
+
+admin_title: Horaires de prière - administration        
 
 validate: Valider
 cancel: Annuler
@@ -139,6 +140,7 @@ iqama: El Iqâma
 azan: El Adhân
 
 power-off-phones: Éteignez vos portables SVP !
+hi: Bonjour %name%
 
 january: Janvier
 february: Février
@@ -167,3 +169,6 @@ month_10: Novembre
 month_11: Décembre
 
 prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
+association_info: "Association %name% - Tél. %phone%"
+rib_info: "| RIB %rib%"
+info_dst_change: Ne pas tenir compte du changement d'heure, le logiciel s'en chargera en fonction du dernier dimanche du mois de %month% de chaque année 

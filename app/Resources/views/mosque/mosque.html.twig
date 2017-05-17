@@ -60,7 +60,7 @@
 
             <!-- main screen -->
             <div class="main display-none">
-                <div class="header col-lg-offset-1 col-lg-10">{{header}}</div> 
+                <div class="header col-lg-offset-1 col-lg-10">{{mosque.name}} - {{mosque.city}}</div> 
                 <div class="col-lg-1 text-right" >
                 </div>
 
@@ -134,7 +134,10 @@
                     </div>
                     <div class="col-lg-10">
                         <div class="site">{{site|raw}}</div>
-                        <div class="assosciation">{{footer}}</div>
+                        <div class="assosciation">
+                            {{'association_info'|trans({'%name%': mosque.associationName, '%phone%': mosque.phone})}}
+                            {{ mosque.rib is not empty ? 'rib_info'|trans({'%rib%': mosque.rib}) : '' }}
+                        </div>
                         <div class="support">
                             <span>{{'support'|trans}}</span> 
                             <i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}" class="supportTel">{{supportTel}}</a>&nbsp;
@@ -152,7 +155,7 @@
             <div class="spinner"></div>
 
             <div class="main display-none">
-                <div class="header">{{header}}</div>
+                <div class="header">{{mosque.name}} - {{mosque.city}}</div>
                 <div class="top-content">
                     <div class="time"></div>
                     <div class="hijriDate ar"></div>
@@ -220,7 +223,10 @@
                 </div>
 
                 <div class="footer">
-                    <div class="assosciation text-center">{{footer}}</div>
+                    <div class="assosciation text-center">
+                        {{'association_info'|trans({'%name%': mosque.associationName, '%phone%': mosque.phone})}}
+                        {{ mosque.rib is not empty ? 'rib_info'|trans({'%rib%': mosque.rib}) : '' }}
+                    </div>
                     <div class="support">
                         <span>{{'support'|trans}}</span> : <br>
                         <i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}" class="supportTel">{{supportTel}}</a>&nbsp;
@@ -233,8 +239,9 @@
         </div>
 
         <script>
-            var confData = {{config|raw}};
-            var lang = "{{lang}}";
+            var confData
+            = {{config|raw}};
+                    var lang = "{{lang}}";
         </script>
 
         {% javascripts

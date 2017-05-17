@@ -19,3 +19,7 @@ body {
 .pointer{
     cursor: pointer;
 }
+
+.white {
+    color: white;
+}

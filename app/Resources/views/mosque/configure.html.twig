@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-success"> <strong> {{'configuration.title'|trans({"%mosque%":mosque.name})}}</strong></h1><br>
-            <span class="glyphicon glyphicon-asterisk text-danger"></span> <span>{{'form.mandatory_field'|trans}}</span> <br><br>
+            {#            <span class="glyphicon glyphicon-asterisk text-danger"></span> <span>{{'form.mandatory_field'|trans}}</span> <br><br>#}
         </div>
     </div>
 
@@ -28,13 +28,6 @@
 
         {{ form_errors(form) }}
         {{ form_widget(form._token) }}
-
-        <div class="row">
-            <div class="col-md-2">
-                {{ form_label(form.lang) }}
-                {{ form_widget(form.lang) }}
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-6">
@@ -132,11 +125,6 @@
                                         </label>
                                     </div>
                                     <div class="col-md-6">
-                                        {% if month == 2 %}
-                                            <div class="alert alert-warning hidden">
-                                                {{'Ne pas tenir compte du changement d\'heure, le logiciel s\'en chargera en fonction du dernier dimanche du mois de chaque année '|trans}}
-                                            </div>
-                                        {% endif %}
                                         <div class="alert alert-success hidden alert-dismissible" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             {{'configuration.form.fill_calendar.success'|trans}}
@@ -145,6 +133,16 @@
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             {{'configuration.form.fill_calendar.error'|trans}}
                                         </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-11 col-md-offset-1">
+                                        {% if month == 2 or month == 9 %}
+                                            <div class="alert alert-warning">
+                                                {{'info_dst_change'|trans({'%month%': ('month_'~month)|trans})}}
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <br>
