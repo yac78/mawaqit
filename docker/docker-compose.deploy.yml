@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  prayer_times_deploy:
+    container_name : prayer_times_deploy
+    build: .
+    tty: true
+    links:
+      - prayer_times_db_deploy:mysql
+    ports:
+      - "1100:80"
+    volumes:
+      - ../:/var/www
+      - $SSH_AUTH_SOCK:/ssh-agent
+    environment:
+      SSH_AUTH_SOCK: /ssh-agent
+      
+  prayer_times_db_deploy:
+    container_name : prayer_times_db_deploy
+    image: mysql:5.6
+    expose:
+      - "1106"
+    ports:
+      - "1106:3306"
+    environment:
+      MYSQL_DATABASE: prayer_times
+      MYSQL_ROOT_PASSWORD: prayer_times
