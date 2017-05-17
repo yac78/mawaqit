@@ -19,7 +19,7 @@ form:
 
 mosque:
     add: Ajout d'une nouvelle mosquée
-    name: Nom de la mosquée
+    name: إسم المسجد
     form:
         name: 
             placeholder : Ex. Mosquée Essunna

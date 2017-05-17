@@ -14,7 +14,7 @@ use AppBundle\Service\Calendar;
 use AppBundle\Exception\GooglePositionException;
 
 /**
- * @Route("/admin/mosque")
+ * @Route("/{_locale}/admin/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
  */
 class MosqueController extends Controller {
 

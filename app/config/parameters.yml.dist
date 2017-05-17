@@ -10,6 +10,7 @@ parameters:
     mailer_user: ~
     mailer_password: ~
     secret: ThisTokenIsNotSoSecretChangeIt
+    languages: [ar, fr, en]
     version: 3.0.0
     supportTel: +33629111641
     supportEmail: "horaires-priere@binary-consulting.fr"
