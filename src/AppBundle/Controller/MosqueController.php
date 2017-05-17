@@ -18,12 +18,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class MosqueController extends Controller {
 
     /**
-     * @Route("/{slug}", name="mosque")
+     * @Route("/{slug}/{_locale}", name="mosque", requirements={"_locale"= "en|fr|ar"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueAction(Request $request, Mosque $mosque) {
 
         return $this->render('mosque/mosque.html.twig', [
+                    'lang' => $request->getLocale(),
                     'header' => $mosque->getHeader(),
                     'footer' => $mosque->getFooter(),
                     'version' => $this->getParameter('version'),
@@ -37,13 +38,13 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/{slug}/date")
+     * @Route("/{slug}/date/{_locale}", requirements={"_locale"= "en|fr|ar"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function currentDateAjaxAction(Request $request, Mosque $mosque) {
 
         $mosqueService = $this->get("app.prayer_times_service");
-        $date = $mosqueService->getCurrentFormtatedtDate($mosque->getConfiguration()->getLang());
+        $date = $mosqueService->getCurrentFormtatedtDate($request->getLocale());
         return new Response($date);
     }
 

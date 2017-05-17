@@ -9,9 +9,6 @@ AppBundle\Entity\Configuration:
             generator:
                 strategy: AUTO
     fields:
-        lang:
-            type: string
-            length: 255
         jumuaTime:
             type: string
             length: 255

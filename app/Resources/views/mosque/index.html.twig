@@ -16,7 +16,7 @@
                 <th>{{'phone'|trans}}</th>
                 <th>{{'email'|trans}}</th>
                 <th>{{'address'|trans}}</th>
-                <th>{{'prayer_site'|trans}}</th>
+                <th>{{'prayer_sites'|trans}}</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +35,9 @@
                     </td>
                     <td>
                         {% if confCompleted %}
-                            <a target="_blank" href="{{ path("mosque", {slug: mosque.slug})}}">{{ url("mosque", {slug: mosque.slug}) }}</a>
+                            {% for lang in languages %}
+                                <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
+                            {% endfor %}
                         {% else %}
                             <div class="row">
                                  <div class="col-md-1">

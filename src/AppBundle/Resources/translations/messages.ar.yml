@@ -124,14 +124,14 @@ CUSTOM: "Choisir le degré du Fajr et `Isha"
 api: Automatique (Calcul des horaires par le logiciel)
 calendar: Manuel (Horaires renseignées pour toute l'année)
 
-day: Jour
+day: اليوم
 fajr: الفجر
-shuruk: Shuruk
-zuhr: Duhr
-asr: '`Asr'
-maghrib: Maghrib
-isha: '`Isha'
-jumua: 'Jumu`a'
+shuruk: الشروق
+zuhr: الظهر
+asr: العصر
+maghrib: المغرب
+isha: العشاء
+jumua: الجمعة
 aid: '`Aid'
 imsak: Imsak
 support: Support

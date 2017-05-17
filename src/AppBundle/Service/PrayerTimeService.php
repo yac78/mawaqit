@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 use AppBundle\Entity\Mosque;
+use AppBundle\Entity\Configuration;
 
 class PrayerTimeService {
 
@@ -10,6 +11,9 @@ class PrayerTimeService {
      * @return array
      */
     function getCurrentFormtatedtDate($local) {
+        if($local === "ar"){
+            return (new \DateTime())->format("Y/m/d");
+        }
         $intl = new \IntlDateFormatter($local, \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
         $dateTime = new \DateTime();
         return $intl->format($dateTime);

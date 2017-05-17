@@ -31,21 +31,11 @@ class Configuration {
         self::METHOD_Egypt,
         self::METHOD_CUSTOM,
     ];
-    const LANG_CHOICES = [
-        "Français" => "fr",
-        "عربي" => "ar",
-        "English" => "en"
-    ];
-
+    
     /**
      * @var int
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $lang = 'fr';
 
     /**
      * @var string
@@ -184,28 +174,6 @@ class Configuration {
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * Set lang
-     *
-     * @param string $lang
-     *
-     * @return Configuration
-     */
-    public function setLang($lang) {
-        $this->lang = $lang;
-
-        return $this;
-    }
-
-    /**
-     * Get lang
-     *
-     * @return string
-     */
-    public function getLang() {
-        return $this->lang;
     }
 
     /**
@@ -803,7 +771,6 @@ class Configuration {
      */
     public function getFormatedConfig() {
         return [
-            "lang" => $this->getLang(),
             "joumouaaTime" => $this->getJumuaTime(),
             "aidTime" => $this->getAidTime(),
             "imsakNbMinBeforeSobh" => $this->getImsakNbMinBeforeFajr(),

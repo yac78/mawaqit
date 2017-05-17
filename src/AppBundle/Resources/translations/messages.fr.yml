@@ -108,7 +108,7 @@ rib: RIB
 save: Sauvegarder
 email: Adresse mail
 association_name: Nom de l'association
-prayer_site: Url de l'écran des horaires
+prayer_sites: Urls de l'écran des horaires
 users: Utilisateurs
 my_mosques: Mes mosquées
 my_profile: Mon profil

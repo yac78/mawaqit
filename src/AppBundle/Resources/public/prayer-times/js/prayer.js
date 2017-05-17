@@ -74,7 +74,7 @@ var prayer = {
     initUpdateConfData: function () {
         setInterval(function () {
             $.ajax({
-                url: prayer.confData.slug + "/has-been-updated/" + prayer.confData.lastUpdatedDate,
+                url: "has-been-updated/" + prayer.confData.lastUpdatedDate,
                 success: function (resp) {
                     if (resp.hasBeenUpdated === true) {
                         location.reload();
@@ -164,17 +164,8 @@ var prayer = {
         });
         return times;
     },
-    /**
-     * array of only five prayer times
-     * @returns {Array}
-     */
-    getTimesWithAdjustedIchaa: function () {
-        var times = this.getTimes().slice(0, 4);
-        times.push(this.getIchaTime());
-        return times;
-    },
     getTimeByIndex: function (index) {
-        return this.getTimesWithAdjustedIchaa()[index];
+        return this.getTimes()[index];
     },
     getWaitingByIndex: function (index) {
         var waiting = this.getWaitingTimes()[index];
@@ -280,7 +271,7 @@ var prayer = {
         setInterval(function () {
             if (!prayer.adhanIsFlashing) {
                 var currentTime = dateTime.getCurrentTime(false);
-                $(prayer.getTimesWithAdjustedIchaa()).each(function (currentPrayerIndex, time) {
+                $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                     if (time === dateTime.getCurrentTime()) {
                         var prayerElm = $(".prayer:contains(" + currentTime + ")");
                         if (prayerElm.length) {
@@ -303,7 +294,7 @@ var prayer = {
     initIqamaFlash: function () {
         setInterval(function () {
             if (!prayer.iqamaIsFlashing) {
-                $(prayer.getTimesWithAdjustedIchaa()).each(function (currentPrayerIndex, time) {
+                $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                     var diffTimeInMiniute = Math.floor((new Date() - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
                     var currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
                     if (diffTimeInMiniute === currentPrayerWaitingTime) {
@@ -395,8 +386,8 @@ var prayer = {
     initNextTimeHilight: function () {
         var date = new Date();
         // sobh is default
-        prayer.hilighByIndex(0);
-        var times = this.getTimesWithAdjustedIchaa();
+        prayer.hilightByIndex(0);
+        var times = this.getTimes();
         $.each(times, function (index, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             // adding 15 minute
@@ -406,7 +397,7 @@ var prayer = {
                 if (index === 5) {
                     index = 0;
                 }
-                prayer.hilighByIndex(index);
+                prayer.hilightByIndex(index);
             }
         });
     },
@@ -414,7 +405,7 @@ var prayer = {
      * hilight prayer by index
      * @param {Number} prayerIndex
      */
-    hilighByIndex: function (prayerIndex) {
+    hilightByIndex: function (prayerIndex) {
         var time = this.getTimeByIndex(prayerIndex);
         $(".prayer").removeClass("prayer-hilighted");
         $(".prayer-text .text").removeClass("text-hilighted");
@@ -441,7 +432,7 @@ var prayer = {
             nextTimeIndex = 0;
         }
         setTimeout(function () {
-            prayer.hilighByIndex(nextTimeIndex);
+            prayer.hilightByIndex(nextTimeIndex);
             // if ichaa we load tomorrow times
             var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
@@ -513,7 +504,7 @@ var prayer = {
      */
     setDate: function () {
         $.ajax({
-            url: prayer.confData.slug + "/date",
+            url: "date/" + lang,
             success: function (date) {
                 $(".gregorianDate").text(date);
             }
@@ -554,7 +545,7 @@ var prayer = {
      */
     getPrayerIndexByTime: function (time) {
         var index = null;
-        $.each(prayer.getTimesWithAdjustedIchaa(), function (i, t) {
+        $.each(prayer.getTimes(), function (i, t) {
             if (t === time) {
                 index = i;
             }
@@ -646,7 +637,7 @@ var prayer = {
      * Arabic handler
      */
     translateToArabic: function () {
-        if (prayer.confData.lang === "ar") {
+        if (lang === "ar") {
             var texts = $(".prayer-text").find("div");
             var times = $(".prayer-time").find("div");
             var waits = $(".prayer-wait").find("div");
@@ -689,7 +680,7 @@ var douaaSlider = {
             return;
         }
 
-        $('.douaa-after-prayer').load("dua-slider/" + $(window).width(), function () {
+        $('.douaa-after-prayer').load("../dua-slider/" + $(window).width(), function () {
             var screenWidth = $(window).width();
             $('#slider ul li').width(screenWidth);
             var slideCount = $('#slider ul li').length;

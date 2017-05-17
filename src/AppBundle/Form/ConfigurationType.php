@@ -44,10 +44,6 @@ class ConfigurationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-                ->add('lang', ChoiceType::class, [
-                    'label' => 'configuration.form.lang',
-                    'choices' => Configuration::LANG_CHOICES
-                ])
                 ->add('jumuaTime', null, [
                     'label' => 'configuration.form.jumuaTime.label',
                     'attr' => [

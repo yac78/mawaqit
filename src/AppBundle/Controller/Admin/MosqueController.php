@@ -28,7 +28,8 @@ class MosqueController extends Controller {
         $mosques = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user);
         return $this->render('mosque/index.html.twig', [
                     "mosques" => $mosques,
-                    "baseUrl" => $this->getParameter('base_url')
+                    "baseUrl" => $this->getParameter('base_url'),
+                    "languages" => $this->getParameter('languages')
         ]);
     }
 
@@ -112,6 +113,11 @@ class MosqueController extends Controller {
      */
     public function configureAction(Request $request, Mosque $mosque) {
 
+        $user = $this->getUser();
+        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+            throw new AccessDeniedException;
+        }
+
         $configuration = $mosque->getConfiguration();
         if (!$configuration instanceof Configuration) {
             $em = $this->getDoctrine()->getManager();
@@ -122,7 +128,7 @@ class MosqueController extends Controller {
         }
 
         $form = $this->createForm(ConfigurationType::class, $configuration);
-        
+
         try {
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
