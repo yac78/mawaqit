@@ -60,4 +60,14 @@ class MosqueController extends Controller {
         return new JsonResponse($response, 200);
     }
 
+    /**
+     * @Route("/dua-slider/{width}")
+     */
+    public function duaSliderAction(Request $request, $width) {
+        if ((int) $width > 1800) {
+            return $this->render('partial/dua-slider-one-screen.html.twig');
+        }
+        return $this->render('partial/dua-slider.html.twig');
+    }
+
 }

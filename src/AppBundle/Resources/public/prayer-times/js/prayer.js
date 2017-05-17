@@ -306,7 +306,7 @@ var prayer = {
                 $(prayer.getTimesWithAdjustedIchaa()).each(function (currentPrayerIndex, time) {
                     var diffTimeInMiniute = Math.floor((new Date() - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
                     var currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
-                    if (diffTimeInMiniute === parseInt(currentPrayerWaitingTime)) {
+                    if (diffTimeInMiniute === currentPrayerWaitingTime) {
                         prayer.iqamaIsFlashing = true;
                         // iqama flashing
                         prayer.flashIqama(currentPrayerIndex);
@@ -674,7 +674,7 @@ var douaaSlider = {
      * Time to wait before showing douaa after prayer (in minutes)
      * @type Array
      */
-    douaaAfterPrayerWait: [12, 10, 10, 10, 11],
+    douaaAfterPrayerWait: [12, 1, 10, 10, 11],
     /**
      * it saves html (ul,li)
      * @type String
@@ -689,12 +689,7 @@ var douaaSlider = {
             return;
         }
 
-        var douaaSliderFile = 'douaa-slider.html';
-        if ($(window).width() > 1900) {
-            douaaSliderFile = 'douaa-slider-one-screen.html';
-        }
-
-        $('.douaa-after-prayer').load(douaaSliderFile, function () {
+        $('.douaa-after-prayer').load("dua-slider/" + $(window).width(), function () {
             var screenWidth = $(window).width();
             $('#slider ul li').width(screenWidth);
             var slideCount = $('#slider ul li').length;

@@ -315,7 +315,9 @@ class Configuration {
      * @return array
      */
     public function getWaitingTimes() {
-        return $this->waitingTimes;
+        return array_map(function($value) {
+            return  (int) $value;
+        }, $this->waitingTimes);
     }
 
     /**
