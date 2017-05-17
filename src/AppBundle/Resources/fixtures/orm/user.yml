@@ -1,8 +1,8 @@
 AppBundle\Entity\User:
     ADMIN:
         username: admin
-        plainPassword: admin
-        email: admin\@horaires-de-priere.fr
+        plainPassword: admin2017.
+        email: horaires-priere\@binary-consulting.fr
         enabled: true
         roles: [ROLE_ADMIN]
     USER1:

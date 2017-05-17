@@ -28,7 +28,6 @@ class MosqueController extends Controller {
         $mosques = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user);
         return $this->render('mosque/index.html.twig', [
                     "mosques" => $mosques,
-                    "baseUrl" => $this->getParameter('base_url'),
                     "languages" => $this->getParameter('languages')
         ]);
     }
@@ -122,8 +121,8 @@ class MosqueController extends Controller {
         if (!$configuration instanceof Configuration) {
             $em = $this->getDoctrine()->getManager();
             $configuration = new Configuration();
-            $mosque->setConfiguration($configuration);
-            $em->persist($mosque);
+            $configuration->setMosque($mosque);
+            $em->persist($configuration);
             $em->flush();
         }
 

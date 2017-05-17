@@ -75,15 +75,13 @@ AppBundle\Entity\Mosque:
         user:
             targetEntity: AppBundle\Entity\User
             inversedBy: mosques
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+                onDelete: CASCADE            
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
-            inversedBy: mosque
-            cascade:
-                - remove
-                - persist
-            joinColumn:
-                name: configuration_id
-                referencedColumnName: id
-                onDelete: CASCADE
+            mappedBy: mosque
+
     lifecycleCallbacks: {  }

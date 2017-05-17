@@ -15,3 +15,6 @@
 /vendor/
 /web/bundles/
 /app/ovh
+/app/config/parameters.prod.yml
+/web/css/
+/web/js/

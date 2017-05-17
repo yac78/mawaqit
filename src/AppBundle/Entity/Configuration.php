@@ -728,7 +728,7 @@ class Configuration {
         return $this->updated;
     }
 
-    function getMosque(): Mosque {
+    function getMosque() {
         return $this->mosque;
     }
 
