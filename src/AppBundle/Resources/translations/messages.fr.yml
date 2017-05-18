@@ -110,11 +110,14 @@ country: Pays
 rib: RIB
 save: Sauvegarder
 email: Adresse mail
+name: Nom
 association_name: Nom de l'association
 prayer_sites: Urls de l'écran des horaires
 users: Utilisateurs
 my_mosques: Mes mosquées
 my_profile: Mon profil
+contact: Contact
+association: Association
         
 ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
 UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} Accueil{% endblock %}
+
+{% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-10"><h3>{{'users'|trans}}</h3></div>
+    </div>
+    <br>
+
+    <table class="table table-inverse">
+        <thead>
+            <tr class="warning">
+                <th>ID</th>
+                <th>{{'name'|trans}}</th>
+                <th>{{'email'|trans}}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        {% if user.id != app.user.id %}
+                        <a href="{{path('user_delete', {id: user.id})}}" class="btn btn-danger" title={{'form.delete.action'|trans}}><span class="glyphicon glyphicon-trash"></span></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+{% endblock %}

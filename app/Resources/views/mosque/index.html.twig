@@ -5,18 +5,24 @@
 {% block body %}
     {% include 'partial/flash_msg.html.twig' %}
 
-    <a href="{{path('mosque_create')}}" class="btn btn-primary">Ajouter une mosquée</a><br><br>
+    <div class="row">
+    <div class="col-md-10"><h3>{{'my_mosques'|trans}}</h3></div>
+    <div class="col-md-2 text-right"><a href="{{path('mosque_create')}}" class="btn btn-primary">Ajouter une mosquée</a></div>
+    </div>
+    <br>
 
     <table class="table table-inverse">
         <thead>
-            <tr>
-                <th>#</th>
+            <tr class="warning">
+                <th>ID</th>
                 <th>{{'mosque.name'|trans}}</th>
-                <th>{{'association_name'|trans}}</th>
-                <th>{{'phone'|trans}}</th>
-                <th>{{'email'|trans}}</th>
-                <th>{{'address'|trans}}</th>
+                <th>{{'association'|trans}}</th>
+                <th>{{'contact'|trans}}</th>
                 <th>{{'prayer_sites'|trans}}</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <th>{{'user'|trans}}</th>
+                    {% endif %}
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,12 +32,12 @@
                     <th scope="row">{{mosque.id}}</th>
                     <td>{{mosque.name}}</td>
                     <td>{{mosque.associationName}}</td>
-                    <td>{{mosque.phone}}</td>
-                    <td>{{mosque.email}}</td>
                     <td>
-                        {{mosque.address}}<br>
+                        <span class="fa fa-envelope">&nbsp;</span>{{mosque.address}}<br>
                         {{mosque.city}} {{mosque.zipcode}}<br>
-                        {{mosque.country}}
+                        {{mosque.country}} <br>
+                        <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
+                        <span class="fa fa-mail-reply">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
                     </td>
                     <td>
                         {% if confCompleted %}
@@ -39,16 +45,14 @@
                                 <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
                             {% endfor %}
                         {% else %}
-                            <div class="row">
-                                 <div class="col-md-1">
-                                    <span class="glyphicon glyphicon-alert"></span>
-                                </div>
-                                <div class="col-md-11">
-                                    {{'configuration.list.conf_not_completed'|trans|raw}}
-                                </div> 
-                            </div> 
+                            <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
                         {% endif %}
                     </td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>
+                            {{mosque.user.username}}
+                        </td>
+                    {% endif %}
                     <td>
                         <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a>
