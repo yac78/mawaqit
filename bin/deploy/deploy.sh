@@ -24,7 +24,7 @@ cd ..
 ./dock-deploy php bin/console assetic:dump --env=prod --no-debug
 cp ~/perso/projects/prayer-times-v3-parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
 
-rm -rf bin docker
+#rm -rf bin docker
 
 cd ..
 
