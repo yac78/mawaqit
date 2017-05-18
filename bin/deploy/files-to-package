@@ -6,3 +6,4 @@ var
 vendor
 web
 dock-deploy
+composer.lock
