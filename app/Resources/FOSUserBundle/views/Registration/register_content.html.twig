@@ -1,6 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="col-md-6 col-md-offset-3">
+    <h3>{{'registration.registration'|trans({}, 'messages')}}</h3><br>
+    
     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
     <div class="form-group ">

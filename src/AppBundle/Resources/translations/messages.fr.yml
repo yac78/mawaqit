@@ -16,6 +16,8 @@ form:
         action: configurer le horaires de la mosquée
         geocode_error: Impossible de géolocaliser votre mosquée "%address%"
             
+registration:
+    registration: Inscription
 
 mosque:
     add: Ajout d'une nouvelle mosquée
