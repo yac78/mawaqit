@@ -7,3 +7,4 @@ vendor
 web
 dock-deploy
 composer.lock
+composer.json
