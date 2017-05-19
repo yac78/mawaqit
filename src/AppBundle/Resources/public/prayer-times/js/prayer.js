@@ -82,8 +82,6 @@ var prayer = {
                 }
             });
         }, prayer.oneSecond * 3);
-
-
     },
     /**
      * load prayer times

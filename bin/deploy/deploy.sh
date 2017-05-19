@@ -16,15 +16,18 @@ cd ~/www/prayer-times-v3/$1
 
 cp docker/docker-compose.deploy.yml docker/docker-compose.yml 
 cd docker
-docker-compose kill & docker-compose up -d --build
+docker-compose up -d kill & docker-compose up -d --remove-orphans
 cd ..
+
+cp ~/perso/projects/prayer-times-v3-parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
+
+chmod -R 777 var/cache var/logs var/sessions
 
 ./dock-deploy composer install --no-dev --optimize-autoloader
 ./dock-deploy php bin/console assets:install --env=prod --no-debug
 ./dock-deploy php bin/console assetic:dump --env=prod --no-debug
-cp ~/perso/projects/prayer-times-v3-parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
 
-rm -rf bin docker dock-deploy composer.*
+#rm -rf bin docker dock-deploy composer.*
 
 cd ..
 
