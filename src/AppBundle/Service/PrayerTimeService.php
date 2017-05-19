@@ -2,7 +2,6 @@
 
 namespace AppBundle\Service;
 use AppBundle\Entity\Mosque;
-use AppBundle\Entity\Configuration;
 
 class PrayerTimeService {
 

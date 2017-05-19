@@ -7,8 +7,8 @@ AppBundle\Entity\User:
         roles: [ROLE_ADMIN]
     USER1:
         username: user1
-        plainPassword: user1
-        email: user1\@horaires-de-priere.fr
+        plainPassword: ibra
+        email: ibrahim.zehhaf\@gmail.com
         enabled: true
     USER2:
         username: user2

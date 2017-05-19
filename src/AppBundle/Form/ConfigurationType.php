@@ -125,21 +125,15 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('iqamaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.iqamaDisplayTime.label',
-                    'attr' => [
-                        'placeholder' => 'configuration.form.iqamaDisplayTime.placeholder'
-                    ]
                 ])
                 ->add('azanDuaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.azanDuaDisplayTime.label',
-                    'attr' => [
-                        'placeholder' => 'configuration.form.azanDuaDisplayTime.placeholder'
-                    ]
                 ])
                 ->add('calendar')
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
                     'attr' => [
-                        'class' => 'btn btn-lg btn-primary',
+                        'class' => 'btn btn-primary',
                     ]
                 ])
                 ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'))
