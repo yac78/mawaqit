@@ -15,11 +15,11 @@ rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/dep
 cd ~/www/prayer-times-v3/$1
 
 cp docker/docker-compose.deploy.yml docker/docker-compose.yml 
-cd docker
-docker-compose up -d
+cd docker & docker-compose up -d
 cd ..
 
 cp ~/perso/projects/prayer-times-v3-parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
+sed -i "s/version:.*$/version=$1/g" ~/www/prayer-times-v3/$1/app/config/parameters.yml
 
 ./dock-deploy chmod -R 777 var/cache var/logs var/sessions
 ./dock-deploy composer install --optimize-autoloader
