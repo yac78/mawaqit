@@ -33,11 +33,11 @@
                     <td>{{mosque.name}}</td>
                     <td>{{mosque.associationName}}</td>
                     <td>
-                        <span class="fa fa-envelope">&nbsp;</span>{{mosque.address}}<br>
+                        {{mosque.address}}<br>
                         {{mosque.city}} {{mosque.zipcode}}<br>
                         {{mosque.country}} <br>
                         <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
-                        <span class="fa fa-mail-reply">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
+                        <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
                     </td>
                     <td>
                         {% if confCompleted %}
@@ -56,7 +56,7 @@
                     <td>
                         <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a>
-                        <a href="{{path('mosque_delete', {id: mosque.id})}}" class="btn btn-danger" title={{'form.delete.action'|trans}}><span class="glyphicon glyphicon-trash"></span></a>
+                        {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
                     </td>
                 </tr>
             {% endfor %}

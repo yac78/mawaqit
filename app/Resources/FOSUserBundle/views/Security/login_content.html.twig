@@ -10,11 +10,12 @@
         <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control"  placeholder="{{ 'security.login.username'|trans }}" required autofocus />
         <br>
         <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" class="form-control"  required />
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"id="remember_me" name="_remember_me" value="on" value="remember-me"> {{ 'security.login.remember_me'|trans }}
-            </label>
+        
+        <br>
+        <div class="form-group">
+            <a href="{{ path('fos_user_resetting_request') }}">{{'forgot_password'|trans({}, 'messages')}}</a>
         </div>
+
         <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block text-capitalize" >{{ 'security.login.submit'|trans }}</button>
         {% if error %}
             <div class="text-danger text-capitalize" style="padding: 10px">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

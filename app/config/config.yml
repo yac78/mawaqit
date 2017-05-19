@@ -85,3 +85,8 @@ fos_user:
                 address: '%fos_no_replay_address%'
                 sender_name: '%fos_no_replay_name%'
             enabled: true
+    resetting:
+        email:
+            from_email:
+                address:  '%fos_no_replay_address%'
+                sender_name: '%fos_no_replay_name%'      

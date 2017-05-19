@@ -2,15 +2,12 @@ form:
     mandatory_field:  Champ obligatoir
     create:
         success:  L'ajout %object% %name% a été réalisé avec succès.
-        error: 
     edit:
         success:  L'édition %object% %name% a été réalisé avec succès.
-        error: 
-        action: éditer
+        action: Éditer
     delete:
         success:  La suppression %object% %name% a été réalisé avec succès.
-        error: 
-        action: supprimer
+        action: Supprimer
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
         action: configurer le horaires de la mosquée
@@ -146,6 +143,12 @@ azan: El Adhân
 
 power-off-phones: Éteignez vos portables SVP !
 hi: Bonjour %name%
+user: Utilisateur
+active: Activé ?
+delete_element_question: Êtes-vous sûr de vouloir supprimer cette élément ?
+forgot_password: Mot de passe oublié ?
+resetting_password: Réinitialiser votre mot de passe
+changing_password: Modifier votre mot de passe
 
 january: Janvier
 february: Février
@@ -174,6 +177,6 @@ month_10: Novembre
 month_11: Décembre
 
 prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
-association_info: "Association %name% - Tél. %phone%"
+association_info: "%name% - Tél. %phone%"
 rib_info: "| RIB %rib%"
 info_dst_change: Ne pas tenir compte du changement d'heure d'été/hiver, le logiciel s'en chargera en fonction du dernier dimanche du mois de "%month%" de chaque année.
