@@ -14,7 +14,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/app/ovh
 /app/config/parameters.prod.yml
 /web/css/
 /web/js/
+/web/upload/*
+!web/upload/.gitkeep
