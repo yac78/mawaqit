@@ -15,14 +15,14 @@
         <thead>
             <tr class="warning">
                 <th>ID</th>
-                <th>{{'mosque.name'|trans}}</th>
-                <th>{{'association'|trans}}</th>
-                <th>{{'contact'|trans}}</th>
+                <th style="width: 10%">{{'mosque.name'|trans}}</th>
+                <th style="width: 10%">{{'association'|trans}}</th>
+                <th style="width: 20%">{{'contact'|trans}}</th>
                 <th>{{'prayer_sites'|trans}}</th>
                     {% if is_granted('ROLE_ADMIN') %}
                     <th>{{'user'|trans}}</th>
                     {% endif %}
-                <th></th>
+                <th style="width: 10%"></th>
             </tr>
         </thead>
         <tbody>
