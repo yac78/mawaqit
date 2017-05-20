@@ -17,5 +17,5 @@
 /app/config/parameters.prod.yml
 /web/css/
 /web/js/
-/web/upload/images/*
-!web/upload/images/.gitkeep
+/web/upload/images/mosques/*
+!web/upload/images/mosques/.gitkeep
