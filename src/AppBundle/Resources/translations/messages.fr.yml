@@ -28,6 +28,12 @@ mosque:
             placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
         rib: 
             placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+        image1: 
+            label: Image 1
+        image2: 
+            label: Image 2
+        image3: 
+            label: Image 3
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
@@ -74,6 +80,8 @@ configuration:
             label: Activer du`aa après adhan
         duaAfterPrayerEnabled: 
             label: Activer les invocations après salat
+        smallScreen: 
+            label: Petit écran ?
         fajrDegree: 
             label: Degré du fajr
             placeholder: Ex. 18

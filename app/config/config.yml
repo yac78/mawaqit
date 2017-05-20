@@ -46,6 +46,7 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'form/fields.html.twig'
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -92,4 +93,12 @@ fos_user:
                 sender_name: '%no_replay_name%'
 
 vich_uploader:
-    db_driver: orm                
+    db_driver: orm
+    mappings:
+        mosque_image:
+            uri_prefix: /upload/images/mosques
+            upload_destination: '%kernel.root_dir%/../web/upload/images/mosques'
+            namer:  vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

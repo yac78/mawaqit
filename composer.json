@@ -38,6 +38,7 @@
         "vich/uploader-bundle": "^1.5"
     },
     "require-dev": {
+        "doctrine/doctrine-migrations-bundle": "^1.2",
         "doctrine/data-fixtures": "^1.2",
         "hautelook/alice-bundle": "^2.0@beta",
         "nelmio/alice": "^3.0@beta",

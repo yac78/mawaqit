@@ -1,39 +1,36 @@
 <div class="col-lg-8">
 
     {% include 'partial/flash_msg.html.twig' %}
-    
+
     {{ form_errors(form) }}
 
     {{ form_widget(form._token) }}
-    {{ form_label(form.name) }}
-    {{ form_errors(form.name) }}
-    {{ form_widget(form.name) }}
-    {{ form_label(form.associationName) }}
-    {{ form_errors(form.associationName) }}
-    {{ form_widget(form.associationName) }}
-    {{ form_label(form.phone) }}
-    {{ form_errors(form.phone) }}
-    {{ form_widget(form.phone) }}
-    {{ form_label(form.email) }}
-    {{ form_errors(form.email) }}
-    {{ form_widget(form.email) }}
-    {{ form_label(form.address) }}
-    {{ form_errors(form.address) }}
-    {{ form_widget(form.address) }}
-    {{ form_label(form.city) }}
-    {{ form_errors(form.city) }}
-    {{ form_widget(form.city) }}
-    {{ form_label(form.zipcode) }}
-    {{ form_errors(form.zipcode) }}
-    {{ form_widget(form.zipcode) }}
-    {{ form_label(form.country) }}
-    {{ form_errors(form.country) }}
-    {{ form_widget(form.country) }}
-    {{ form_label(form.rib) }}
-    {{ form_errors(form.rib) }}
-    {{ form_widget(form.rib) }}
 
-    <div class="error-message">{{ form_errors(form.name) }}</div>
+    <div class="row">
+        <div class="col-md-8">
+            {{ form_row(form.name) }}
+            {{ form_row(form.associationName) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.address) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.zipcode) }}
+            {{ form_row(form.country) }}
+            {{ form_row(form.rib) }}
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="col-md-4">
+                {{ form_row(form.file1) }}
+{#                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" style="width: 300px"/>#}
+                {{ form_row(form.file2) }}
+{#                <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" style="width: 300px"/>#}
+                {{ form_row(form.file3) }}
+{#                <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" style="width: 300px"/>#}
+            </div>
+        {% endif %}
+    </div>
+
 
     <br>
     {{ form_widget(form.save) }}

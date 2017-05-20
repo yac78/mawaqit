@@ -31,8 +31,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                {{ form_label(form.sourceCalcul) }}
-                {{ form_widget(form.sourceCalcul) }}
+                {{ form_row(form.sourceCalcul) }}
             </div>
         </div>
 
@@ -40,17 +39,14 @@
         <div class="api hidden">
             <div class="row">
                 <div class="col-md-6">
-                    {{ form_label(form.prayerMethod) }}
-                    {{ form_widget(form.prayerMethod) }}
+                    {{ form_row(form.prayerMethod) }}
                 </div>
                 <div class="degree hidden">
                     <div class="col-md-2">
-                        {{ form_label(form.fajrDegree) }}
-                        {{ form_widget(form.fajrDegree) }}
+                        {{ form_row(form.fajrDegree) }}
                     </div>
                     <div class="col-md-2">
-                        {{ form_label(form.ishaDegree) }}
-                        {{ form_widget(form.ishaDegree) }}
+                        {{ form_row(form.ishaDegree) }}
                     </div>
                 </div>
             </div>
@@ -60,24 +56,19 @@
                     {{ form_label(form.adjustedTimes) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.adjustedTimes.fajr) }}
-                    {{ form_widget(form.adjustedTimes.fajr) }}
+                    {{ form_row(form.adjustedTimes.fajr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.adjustedTimes.zuhr) }}
-                    {{ form_widget(form.adjustedTimes.zuhr) }}
+                    {{ form_row(form.adjustedTimes.zuhr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.adjustedTimes.asr) }}
-                    {{ form_widget(form.adjustedTimes.asr) }}
+                    {{ form_row(form.adjustedTimes.asr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.adjustedTimes.maghrib) }}
-                    {{ form_widget(form.adjustedTimes.maghrib) }}
+                    {{ form_row(form.adjustedTimes.maghrib) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.adjustedTimes.isha) }}
-                    {{ form_widget(form.adjustedTimes.isha) }}
+                    {{ form_row(form.adjustedTimes.isha) }}
                 </div> 
             </div>
 
@@ -86,24 +77,19 @@
                     {{ form_label(form.fixedTimes) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.fixedTimes.fajr) }}
-                    {{ form_widget(form.fixedTimes.fajr) }}
+                    {{ form_row(form.fixedTimes.fajr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.fixedTimes.zuhr) }}
-                    {{ form_widget(form.fixedTimes.zuhr) }}
+                    {{ form_row(form.fixedTimes.zuhr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.fixedTimes.asr) }}
-                    {{ form_widget(form.fixedTimes.asr) }}
+                    {{ form_row(form.fixedTimes.asr) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.fixedTimes.maghrib) }}
-                    {{ form_widget(form.fixedTimes.maghrib) }}
+                    {{ form_row(form.fixedTimes.maghrib) }}
                 </div> 
                 <div class="col-md-2">
-                    {{ form_label(form.fixedTimes.isha) }}
-                    {{ form_widget(form.fixedTimes.isha) }}
+                    {{ form_row(form.fixedTimes.isha) }}
                 </div> 
             </div> 
         </div>
@@ -195,20 +181,16 @@
 
         <div class="row">
             <div class="col-md-2">
-                {{ form_label(form.jumuaTime) }}
-                {{ form_widget(form.jumuaTime) }}
+                {{ form_row(form.jumuaTime) }}
             </div>
             <div class="col-md-2">
-                {{ form_label(form.aidTime) }}
-                {{ form_widget(form.aidTime) }}
+                {{ form_row(form.aidTime) }}
             </div>
             <div class="col-md-3">
-                {{ form_label(form.maximumIshaTimeForNoWaiting) }}
-                {{ form_widget(form.maximumIshaTimeForNoWaiting) }}
+                {{ form_row(form.maximumIshaTimeForNoWaiting) }}
             </div>
             <div class="col-md-3">
-                {{ form_label(form.imsakNbMinBeforeFajr) }}
-                {{ form_widget(form.imsakNbMinBeforeFajr) }}
+                {{ form_row(form.imsakNbMinBeforeFajr) }}
             </div>
         </div>
 
@@ -217,40 +199,33 @@
                 {{ form_label(form.waitingTimes) }}
             </div> 
             <div class="col-md-2">
-                {{ form_label(form.waitingTimes.fajr) }}
-                {{ form_widget(form.waitingTimes.fajr) }}
+                {{ form_row(form.waitingTimes.fajr) }}
             </div> 
             <div class="col-md-2">
-                {{ form_label(form.waitingTimes.zuhr) }}
-                {{ form_widget(form.waitingTimes.zuhr) }}
+                {{ form_row(form.waitingTimes.zuhr) }}
             </div> 
             <div class="col-md-2">
-                {{ form_label(form.waitingTimes.asr) }}
-                {{ form_widget(form.waitingTimes.asr) }}
+                {{ form_row(form.waitingTimes.asr) }}
             </div> 
             <div class="col-md-2">
-                {{ form_label(form.waitingTimes.maghrib) }}
-                {{ form_widget(form.waitingTimes.maghrib) }}
+                {{ form_row(form.waitingTimes.maghrib) }}
             </div> 
             <div class="col-md-2">
-                {{ form_label(form.waitingTimes.isha) }}
-                {{ form_widget(form.waitingTimes.isha) }}
+                {{ form_row(form.waitingTimes.isha) }}
             </div> 
         </div>
 
         <div class="row">
             <div class="col-md-3">
-                {{ form_label(form.hijriAdjustment) }}
+                {{ form_row(form.hijriAdjustment) }}
                 {{ form_widget(form.hijriAdjustment) }}
             </div>
             <div class="col-md-3">
-                {{ form_label(form.iqamaDisplayTime) }}
-                {{ form_widget(form.iqamaDisplayTime) }}
+                {{ form_row(form.iqamaDisplayTime) }}
             </div>
 
             <div class="col-md-4">
-                {{ form_label(form.azanDuaDisplayTime) }}  
-                {{ form_widget(form.azanDuaDisplayTime) }}  
+                {{ form_row(form.azanDuaDisplayTime) }}  
             </div>
         </div>
 
@@ -265,6 +240,9 @@
 
             <div class="col-md-3">
                 {{ form_widget(form.duaAfterPrayerEnabled) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_widget(form.smallScreen) }}
             </div>
         </div>
         <br>

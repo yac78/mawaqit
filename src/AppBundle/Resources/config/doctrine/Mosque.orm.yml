@@ -59,6 +59,18 @@ AppBundle\Entity\Mosque:
             type: string
             length: 255
             nullable: true            
+        image1:
+            type: string
+            length: 255
+            nullable: true            
+        image2:
+            type: string
+            length: 255
+            nullable: true            
+        image3:
+            type: string
+            length: 255
+            nullable: true            
         created:
             type: datetime
             nullable: true
@@ -71,6 +83,9 @@ AppBundle\Entity\Mosque:
             gedmo:
                 timestampable:
                     on: update
+        updatedAt:
+            type: datetime
+            nullable: true
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
@@ -82,5 +97,3 @@ AppBundle\Entity\Mosque:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
             mappedBy: mosque
-
-    lifecycleCallbacks: {  }

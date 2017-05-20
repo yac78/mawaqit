@@ -677,20 +677,18 @@ var douaaSlider = {
             return;
         }
 
-        $('.douaa-after-prayer').load("../dua-slider/" + $(window).width(), function () {
-            var screenWidth = $(window).width();
-            $('#slider ul li').width(screenWidth);
-            var slideCount = $('#slider ul li').length;
-            var sliderUlWidth = slideCount * screenWidth;
-            $('#slider').css({width: screenWidth});
-            $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-            $('#slider ul li:last-child').prependTo('#slider ul');
-            if (prayer.confData.lang === "ar") {
-                $("#slider .fr").remove();
-            }
-            //save html slider
-            douaaSlider.sliderHtmlContent = $('#slider').html();
-        });
+        var screenWidth = $(window).width();
+        $('#slider ul li').width(screenWidth);
+        var slideCount = $('#slider ul li').length;
+        var sliderUlWidth = slideCount * screenWidth;
+        $('#slider').css({width: screenWidth});
+        $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
+        $('#slider ul li:last-child').prependTo('#slider ul');
+        if (prayer.confData.lang === "ar") {
+            $("#slider .fr").remove();
+        }
+        //save html slider
+        douaaSlider.sliderHtmlContent = $('#slider').html();
     },
     /**
      * If enabled show douaa after prayer for 5 minutes

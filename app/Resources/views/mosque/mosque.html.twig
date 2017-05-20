@@ -30,7 +30,13 @@
             </div>
 
             <!-- Douaa after prayer slider -->
-            <div class="douaa-after-prayer display-none"></div>
+            <div class="douaa-after-prayer display-none">
+                {% if mosque.configuration.smallScreen  %}
+                    {% include 'partial/dua-slider.html.twig' %}
+                {% else %}
+                    {% include 'partial/dua-slider-one-screen.html.twig' %}
+                {% endif %}
+            </div>
 
             <!-- Adhan screen -->
             <div class="adhan display-none">

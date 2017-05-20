@@ -65,6 +65,8 @@ AppBundle\Entity\Configuration:
             type: smallint
         azanDuaDisplayTime:
             type: smallint
+        smallScreen:
+            type: boolean            
         calendar:
             type: json_array
             nullable: true

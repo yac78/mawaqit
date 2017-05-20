@@ -129,6 +129,9 @@ class ConfigurationType extends AbstractType {
                 ->add('azanDuaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.azanDuaDisplayTime.label',
                 ])
+                ->add('smallScreen', CheckboxType::class, [
+                    'label' => 'configuration.form.smallScreen.label',
+                ])
                 ->add('calendar')
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
@@ -154,7 +157,7 @@ class ConfigurationType extends AbstractType {
             $configuration->setFajrDegree(null);
             $configuration->setIshaDegree(null);
         }
-        
+
         if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
             $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
             $configuration->setLongitude($position->lng);

@@ -4,9 +4,12 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Configuration;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Mosque
+ * @Vich\Uploadable
  */
 class Mosque {
 
@@ -71,6 +74,39 @@ class Mosque {
     private $site;
 
     /**
+     * @Vich\UploadableField(mapping="mosque_image", fileNameProperty="image1")
+     * @var File
+     */
+    private $file1;
+
+    /**
+     * @Vich\UploadableField(mapping="mosque_image", fileNameProperty="image2")
+     * @var File
+     */
+    private $file2;
+
+    /**
+     * @Vich\UploadableField(mapping="mosque_image", fileNameProperty="image3")
+     * @var File
+     */
+    private $file3;
+
+    /**
+     * @var string
+     */
+    private $image1;
+
+    /**
+     * @var string
+     */
+    private $image2;
+
+    /**
+     * @var string
+     */
+    private $image3;
+
+    /**
      * @var \DateTime
      */
     private $created;
@@ -79,6 +115,12 @@ class Mosque {
      * @var \DateTime
      */
     private $updated;
+
+    /**
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @var User
@@ -416,21 +458,130 @@ class Mosque {
     }
 
     /**
-     * get header text
-     * @return string
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return self
      */
-    function getHeader() {
-        return $this->getName() . " - " . $this->getCity();
+    public function setFile1(File $image = null) {
+        $this->file1 = $image;
+        die(dump($image));
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime();
+        }
+
+        return $this;
     }
 
     /**
-     * get footer text
-     * @return string
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return self
      */
-    function getFooter() {
-        $rib = $this->getRib();
-        $rib = empty($rib) ? "" : " | " . $rib;
-        return "Association " . $this->getAssociationName() . " Tél. " . $this->getPhone() . $rib;
+    public function setFile2(File $image = null) {
+        $this->file2 = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return self
+     */
+    public function setFile3(File $image = null) {
+        $this->file3 = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFile1() {
+        return $this->file1;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFile2() {
+        return $this->file2;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFile3() {
+        return $this->file3;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return self
+     */
+    public function setImage1($imageName) {
+        $this->image1 = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return self
+     */
+    public function setImage2($imageName) {
+        $this->image2 = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return self
+     */
+    public function setImage3($imageName) {
+        $this->image3 = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImage1() {
+        return new File($this->image1, false);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImage2() {
+        return new File($this->image2, false);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImage3() {
+        return new File($this->image3, false);
     }
 
 }

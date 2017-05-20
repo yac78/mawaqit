@@ -31,7 +31,7 @@ class Configuration {
         self::METHOD_Egypt,
         self::METHOD_CUSTOM,
     ];
-    
+
     /**
      * @var int
      */
@@ -168,6 +168,11 @@ class Configuration {
     private $mosque;
 
     /**
+     * @var bool
+     */
+    private $smallScreen = false;
+
+    /**
      * Get id
      *
      * @return int
@@ -284,7 +289,7 @@ class Configuration {
      */
     public function getWaitingTimes() {
         return array_map(function($value) {
-            return  (int) $value;
+            return (int) $value;
         }, $this->waitingTimes);
     }
 
@@ -797,6 +802,17 @@ class Configuration {
             "lastUpdatedDate" => $this->mosque->getUpdated(),
             "calendar" => $this->getCalendar(),
         ];
+    }
+
+    /**
+     * @return boolean
+     */
+    function getSmallScreen() {
+        return $this->smallScreen;
+    }
+
+    function setSmallScreen($smallScreen) {
+        $this->smallScreen = $smallScreen;
     }
 
 }
