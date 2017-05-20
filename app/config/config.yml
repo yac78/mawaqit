@@ -89,4 +89,7 @@ fos_user:
         email:
             from_email:
                 address:  '%no_replay_address%'
-                sender_name: '%no_replay_name%'      
+                sender_name: '%no_replay_name%'
+
+vich_uploader:
+    db_driver: orm                

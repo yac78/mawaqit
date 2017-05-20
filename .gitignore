@@ -17,5 +17,5 @@
 /app/config/parameters.prod.yml
 /web/css/
 /web/js/
-/web/upload/*
-!web/upload/.gitkeep
+/web/upload/images/*
+!web/upload/images/.gitkeep
