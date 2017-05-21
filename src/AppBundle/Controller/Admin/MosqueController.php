@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use AppBundle\Service\Calendar;
 use AppBundle\Exception\GooglePositionException;
+use AppBundle\Service\MailService;
 
 /**
  * @Route("/{_locale}/admin/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
@@ -48,6 +49,8 @@ class MosqueController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($mosque);
             $em->flush();
+            $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, ['mosque' => $mosque]);
+            $this->get("app.mail_service")->mosqueCreated($mosque, $mailBody);
             $this->addFlash('success', $this->get("translator")->trans("form.create.success", [
                         "%object%" => "de la mosquée", "%name%" => $mosque->getName()
             ]));
@@ -116,14 +119,16 @@ class MosqueController extends Controller {
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
+        $em = $this->getDoctrine()->getManager();
 
         $configuration = $mosque->getConfiguration();
+        
         if (!$configuration instanceof Configuration) {
-            $em = $this->getDoctrine()->getManager();
             $configuration = new Configuration();
             $configuration->setMosque($mosque);
             $em->persist($configuration);
             $em->flush();
+            $em->refresh($mosque);
         }
 
         $form = $this->createForm(ConfigurationType::class, $configuration);
@@ -132,7 +137,6 @@ class MosqueController extends Controller {
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $configuration = $form->getData();
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($configuration);
                 $em->flush();
                 $this->addFlash('success', $this->get("translator")->trans("form.configure.success", [

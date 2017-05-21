@@ -67,6 +67,8 @@ AppBundle\Entity\Configuration:
             type: smallint
         smallScreen:
             type: boolean            
+        backgroundColor:
+            type: string            
         calendar:
             type: json_array
             nullable: true

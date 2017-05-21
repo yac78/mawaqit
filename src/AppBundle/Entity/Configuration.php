@@ -171,6 +171,10 @@ class Configuration {
      * @var bool
      */
     private $smallScreen = false;
+    /**
+     * @var string
+     */
+    private $backgroundColor = "#000000";
 
     /**
      * Get id
@@ -800,6 +804,7 @@ class Configuration {
             "adhanDouaaDisplayTime" => $this->getAzanDuaDisplayTime(),
             "slug" => $this->mosque->getSlug(),
             "lastUpdatedDate" => $this->mosque->getUpdated(),
+            "backgroundColor" => $this->getBackgroundColor(),
             "calendar" => $this->getCalendar(),
         ];
     }
@@ -813,6 +818,17 @@ class Configuration {
 
     function setSmallScreen($smallScreen) {
         $this->smallScreen = $smallScreen;
+    }
+    
+    /**
+     * @return string
+     */
+    function getBackgroundColor() {
+        return $this->backgroundColor;
+    }
+
+    function setBackgroundColor($backgroundColor) {
+        $this->backgroundColor = $backgroundColor;
     }
 
 }

@@ -82,6 +82,8 @@ configuration:
             label: Activer les invocations après salat
         smallScreen: 
             label: Petit écran ?
+        backgroundColor: 
+            label: Couleur de fond
         fajrDegree: 
             label: Degré du fajr
             placeholder: Ex. 18

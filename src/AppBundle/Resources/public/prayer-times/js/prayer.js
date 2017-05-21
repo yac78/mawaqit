@@ -38,6 +38,7 @@ var prayer = {
      */
     init: function () {
         this.loadData();
+        this.setBackgroundColor();
         this.setTime();
         this.setDate();
         this.setTimes();
@@ -51,6 +52,12 @@ var prayer = {
         this.initUpdateConfData();
         this.hideSpinner();
         douaaSlider.init();
+    },
+    /**
+     * load all data
+     */
+    setBackgroundColor: function () {
+        $("body").css("backgroundColor", prayer.confData.backgroundColor);
     },
     /**
      * load all data
@@ -81,7 +88,7 @@ var prayer = {
                     }
                 }
             });
-        }, prayer.oneSecond * 3);
+        }, prayer.oneSecond * 5);
     },
     /**
      * load prayer times

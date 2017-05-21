@@ -43,22 +43,12 @@ services:
     app.mail_service:
         class: AppBundle\Service\MailService
         arguments:
-            - "@service_container"
+            - "@mailer"
             - ["%no_replay_address%", "%no_replay_name%"]
-#        calls:
-#            - [ setMailer, [ "@mailer" ] ]                 
-#            - [ setTemplating, [ "@templating" ] ]                 
             
     app.form_prayer:
         class: AppBundle\Form\PrayerType
         arguments:
             - "@translator"
         tags:
-            - { name: form.type }          
-    
-    app.mosque_listener:
-        class: AppBundle\EventListener\MosqueListener
-        arguments:
-            - "@app.mail_service"
-        tags:
-            - { name: doctrine.event_listener, event: postPersist }            
+            - { name: form.type }

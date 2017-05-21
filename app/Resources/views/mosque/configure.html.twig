@@ -245,6 +245,13 @@
                 {{ form_widget(form.smallScreen) }}
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{ form_label(form.backgroundColor) }}
+                <input class="form-control" type="color" name="appbundle_configuration[backgroundColor]" value="{{mosque.configuration.backgroundColor}}">
+                
+            </div>
+        </div>
         <br>
         {{ form_widget(form.save) }}
         <a href="{{path("mosque_index")}}" class="btn btn-danger">{{'cancel'|trans}}</a>

@@ -132,6 +132,9 @@ class ConfigurationType extends AbstractType {
                 ->add('smallScreen', CheckboxType::class, [
                     'label' => 'configuration.form.smallScreen.label',
                 ])
+                ->add('backgroundColor', null, [
+                    'label' => 'configuration.form.backgroundColor.label',
+                ])
                 ->add('calendar')
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
