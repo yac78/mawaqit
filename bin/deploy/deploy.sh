@@ -19,7 +19,6 @@ cd docker
 docker-compose up -d
 cd ..
 
-cp ~/perso/projects/prayer-times-v3-parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
 sed -i "s/version:.*/version: '$1'/g" ~/www/prayer-times-v3/$1/app/config/parameters.yml
 
 ./dock-deploy chmod -R 777 var/cache var/logs var/sessions
