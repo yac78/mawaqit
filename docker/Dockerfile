@@ -15,7 +15,8 @@ RUN \
   git \
   nginx \
   zip \
-  unzip 
+  unzip \
+  imagemagick
 
 # install PHP7.1
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
@@ -29,7 +30,8 @@ RUN apt-get update && apt-get install -y \
   php7.1-intl \
   php7.1-json \
   php7.1-xml \
-  php7.0-zip
+  php7.1-zip \
+  php7.1-imagick
 
 # install composer
 RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

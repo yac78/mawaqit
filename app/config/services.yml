@@ -52,3 +52,9 @@ services:
             - "@translator"
         tags:
             - { name: form.type }
+
+    # Listeners
+    app.event.vich_uploader_post_upload:
+        class: AppBundle\EventListener\VichImageHandling
+        tags:
+            - { name: kernel.event_listener, event: vich_uploader.post_upload , method: resizeImage }            
