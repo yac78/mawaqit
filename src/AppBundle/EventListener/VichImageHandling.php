@@ -14,7 +14,6 @@ class VichImageHandling {
     public function resizeImage(Event $event) {
         $object = $event->getObject();
         if ($object instanceof Mosque) {
-
             $destinationDir = $event->getMapping()->getUploadDestination();
             $fileName = $event->getMapping()->getFileName($object);
             $filePath = $destinationDir . '/' . $fileName;
