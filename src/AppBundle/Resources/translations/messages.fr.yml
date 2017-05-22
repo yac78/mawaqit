@@ -17,8 +17,12 @@ registration:
     registration: Inscription
 
 mosque:
+    add_new: Ajouter une mosquée
     add: Ajout d'une nouvelle mosquée
     name: Nom de la mosquée
+    force_update_all:
+        action: Forcer la MAJ
+        success: Toutes les mosquées ont bien été forcées de se mettre à jour
     form:
         name: 
             placeholder : Ex. Mosquée Essunna

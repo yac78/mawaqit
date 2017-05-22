@@ -34,6 +34,20 @@ class MosqueController extends Controller {
     }
 
     /**
+     * @Route("/force-update-all", name="mosque_force_update_all")
+     */
+    public function forceUpdateAllAction() {
+        $user = $this->getUser();
+        if (!$user->isAdmin()) {
+            throw new AccessDeniedException;
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository("AppBundle:Mosque")->forceYpdateAll();
+        $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
+        return $this->redirectToRoute('mosque_index');
+    }
+
+    /**
      * @Route("/create", name="mosque_create")
      */
     public function createAction(Request $request) {
@@ -122,7 +136,7 @@ class MosqueController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $configuration = $mosque->getConfiguration();
-        
+
         if (!$configuration instanceof Configuration) {
             $configuration = new Configuration();
             $configuration->setMosque($mosque);

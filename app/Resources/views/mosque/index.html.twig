@@ -6,8 +6,13 @@
     {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
-    <div class="col-md-10"><h3>{{'my_mosques'|trans}}</h3></div>
-    <div class="col-md-2 text-right"><a href="{{path('mosque_create')}}" class="btn btn-primary">Ajouter une mosquée</a></div>
+        <div class="col-md-8"><h3>{{'my_mosques'|trans}}</h3></div>
+        <div class="col-md-4 text-right">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path('mosque_force_update_all')}}" class="btn btn-danger">{{'mosque.force_update_all.action'|trans}}</a>
+            {% endif %}
+            <a href="{{path('mosque_create')}}" class="btn btn-primary">{{'mosque.add_new'|trans}}</a>
+        </div>
     </div>
     <br>
 
@@ -56,7 +61,7 @@
                     <td>
                         <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a>
-                        {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
+                            {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
                     </td>
                 </tr>
             {% endfor %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\User;
+use Doctrine\DBAL\Types\Type;
 
 /**
  * MosqueRepository
@@ -30,12 +31,28 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->createQueryBuilder("m")
                 ->innerJoin("m.configuration", "c")
                 ->where("m.image1 IS NOT NULL");
-        
+
         if (is_numeric($nbMax)) {
             $qb->setMaxResults($nbMax);
         }
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * set updated to now for all mosques
+     */
+    function forceYpdateAll() {
+        $qb = $this->createQueryBuilder("m")
+                ->update()
+                ->set("m.updated", ":date")
+                ->setParameter(":date", (new \DateTime())->format("Y-m-d h:i:s"));
+        $qb->getQuery()->execute();
+        $qb = $this->getEntityManager()->createQueryBuilder()
+                ->update("AppBundle:Configuration", "c")
+                ->set("c.updated", ":date")
+                ->setParameter(":date", (new \DateTime())->format("Y-m-d h:i:s"));
+        $qb->getQuery()->execute();
     }
 
 }
