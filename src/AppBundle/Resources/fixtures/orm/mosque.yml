@@ -1,6 +1,6 @@
 AppBundle\Entity\Mosque:
     ESSOUNNA_HOUILLES:
-        user: '@USER1'
+        user: '@IBRA'
         name: Essounna
         associationName: SFI
         email: contact\@mosque-houilles.fr
@@ -12,7 +12,7 @@ AppBundle\Entity\Mosque:
         site: "http://mosquee-houilles.fr"
         rib: "IBAN FR76 3000 3018 6200 0504 6187 693 / BIC SOGEFRPP"
     ENNOUR_GENNEVILLIERS:
-        user: '@USER1'
+        user: '@IBRA'
         name: Ennour
         email: ennour\@horaires-de-priere.fr
         associationName: Ennour
@@ -23,7 +23,7 @@ AppBundle\Entity\Mosque:
         zipcode: 92000
         site: "http://mosquee-gennevilliers.fr"
     ASCM_ORLY:
-        user: '@USER2'
+        user: '@USER'
         name: ASCM
         associationName: ASCM
         email: ascm\@horaires-de-priere.fr
