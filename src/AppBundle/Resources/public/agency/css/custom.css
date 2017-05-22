@@ -22,3 +22,8 @@ section#contact :-ms-input-placeholder {
 .form-control {
     color: #444;
 }
+
+.mosque-image{
+    width: 400px;
+    height: 250px;
+}

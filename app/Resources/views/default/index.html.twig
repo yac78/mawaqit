@@ -43,11 +43,11 @@
         <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header page-scroll">
+                <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-{#                    <a class="navbar-brand page-scroll" href="#page-top">Horaires de prière</a>#}
+                    {#                    <a class="navbar-brand page-scroll" href="#page-top">Horaires de prière</a>#}
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -200,415 +200,69 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a href="#mosquee-gennevilliers" class="portfolio-link" data-toggle="modal">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content">
-                                    <i class="fa fa-plus fa-3x"></i>
-                                </div>
-                            </div>
-                            <img src="{{ asset('bundles/app/agency/img/mosques/gennevilliers/1.jpg') }}" class="img-responsive" alt="">
-                        </a>
-                        <div class="portfolio-caption">
-                            <h4>La mosquée de gennevilliers</h4>
-                            <a target="_blank" href="http://horaires.mosquee-gennevilliers.com/">Version mobile</a>
-                        </div>
-                    </div>
 
-                    <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a target="_blank" href="#mosquee-houilles" class="portfolio-link" data-toggle="modal">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content">
-                                    <i class="fa fa-plus fa-3x"></i>
-                                </div>
-                            </div>
-                            <img src="{{ asset('bundles/app/agency/img/mosques/houilles/1.jpg') }}" class="img-responsive" alt="">
-                        </a>
-                        <div class="portfolio-caption">
-                            <h4>La mosquée Essounna de Houilles</h4>
-                            <a target="_blank" href="http://priere.mosquee-houilles.fr">Version mobile</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a target="_blank" href="#mosquee-orly" class="portfolio-link" data-toggle="modal">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content">
-                                    <i class="fa fa-plus fa-3x"></i>
-                                </div>
-                            </div>
-                            <img src="{{ asset('bundles/app/agency/img/mosques/orly/1.jpg') }}" class="img-responsive" alt="">
-                        </a>
-                        <div class="portfolio-caption">
-                            <h4>La grande mosquée d'Orly</h4>
-                            <a target="_blank" href="http://priere.ascm-orly.fr">Version mobile</a>
-                        </div>
-                    </div>
-
-                    <!-- Partie cachée -->
-                    <div id="all-mosques" class="collapse">
+                    {% for mosque in mosques %}
                         <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a target="_blank" href="#mosquee-goussainville" class="portfolio-link" data-toggle="modal">
+                            <a href="#{{mosque.slug}}" class="portfolio-link" data-toggle="modal">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img src="{{ asset('bundles/app/agency/img/mosques/goussainville/1.jpg') }}" class="img-responsive" alt="">
+                                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
                             </a>
                             <div class="portfolio-caption">
-                                <h4>La mosquée de Goussainville</h4>
-                                <a target="_blank" href="http://priere.mosquee-goussainville.com">Version mobile</a>
+                                <h4>{{mosque.name}}</h4>
+                                <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">Version mobile</a>
                             </div>
                         </div>
-
-                        <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a target="_blank" href="#mosquee-iesh" class="portfolio-link" data-toggle="modal">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content">
-                                        <i class="fa fa-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('bundles/app/agency/img/mosques/iesh/1.jpg') }}" class="img-responsive" alt="">
-                            </a>
-                            <div class="portfolio-caption">
-                                <h4>La mosquée de l'instiut IESH</h4>
-                                <!--<a target="_blank" href="http://priere.mosquee-goussainville.com">Version mobile</a>-->
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a target="_blank" href="#mosquee-faif" class="portfolio-link" data-toggle="modal">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content">
-                                        <i class="fa fa-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('bundles/app/agency/img/mosques/faif/1.jpg') }}" class="img-responsive" alt="">
-                            </a>
-                            <div class="portfolio-caption">
-                                <h4>La mosquée FAIF</h4>
-                                <a target="_blank" href="http://faif.horaires-de-priere.fr">Version mobile</a>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a target="_blank" href="#mosquee-rahma-vitry" class="portfolio-link" data-toggle="modal">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content">
-                                        <i class="fa fa-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('bundles/app/agency/img/mosques/rahma-vitry/1.jpg') }}" class="img-responsive" alt="">
-                            </a>
-                            <div class="portfolio-caption">
-                                <h4>La mosquée Rahma</h4>
-                                <a target="_blank" href="http://rahma-vitry.horaires-de-priere.fr">Version mobile</a>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a target="_blank" href="#mosquee-dignite-colombes" class="portfolio-link" data-toggle="modal">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content">
-                                        <i class="fa fa-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('bundles/app/agency/img/mosques/dignite-colombes/1.jpg') }}" class="img-responsive" alt="">
-                            </a>
-                            <div class="portfolio-caption">
-                                <h4>La mosquée Dignité - Colombes</h4>
-                                <a target="_blank" href="http://musc.horaires-de-priere.fr">Version mobile</a>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
-                <div class="row text-center">
-                    <button type="button" data-toggle="collapse" data-target="#all-mosques" class="page-scroll btn btn-xl">Voir toutes les mosquée</button>
-                </div>
-            </div>
+                {% if app.request.get('mosque_nb') != 'all' %}
+                    <div class="row text-center">
+                        <a href="{{path("homepage", {'mosque_nb':'all'})}}#mosquees" type="button" class="page-scroll btn btn-xl">Voir toutes les mosquée</a>
+                    </div>
+                {% endif %}
         </section>
 
 
         <!-- Mosques Modals -->
 
-        <!-- Mosquée Gennevilliers -->
-        <div class="portfolio-modal modal fade" id="mosquee-gennevilliers" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
+        {% for mosque in mosques %}
+            <div class="portfolio-modal modal fade" id="{{mosque.slug}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="close-modal" data-dismiss="modal">
+                            <div class="lr">
+                                <div class="rl">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La grande mosquée de Gennevilliers</h2>
-                                    <p class="item-intro text-muted">Mosquée Ennour</p>
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/gennevilliers/mosquee-gennevilliers.jpg') }}" alt="">
-                                    <p>Une très belle mosquée située dans la ville de Gennevilliers (Département 92)</p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="modal-body">
+                                        <h2>{{mosque.name}}</h2>
+                                        <p class="item-intro text-muted">{{mosque.associationName}}</p>
+                                        <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
+                                        {#<p>{{mosque.comment}}</p>#}
 
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/gennevilliers/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/gennevilliers/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/gennevilliers/3.jpg') }}" alt="">
+                                        <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file2') }}">
+                                        <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file3') }}">
 
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Février 2017</li>
-                                        <li>Version mobile: <a target="_blank" href="http://horaires.mosquee-gennevilliers.com/">http://horaires.mosquee-gennevilliers.com</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                                        <ul class="list-inline">
+                                            <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li> <br>
+                                            <li>Version mobile: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Mosquée de Houilles -->
-        <div class="portfolio-modal modal fade" id="mosquee-houilles" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La mosquée de Houilles</h2>
-                                    <p class="item-intro text-muted">Mosquée Essounna</p>
-                                    <!--<img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/houilles/mosquee-houilles.jpg') }}" alt="">-->
-                                    <p>Une petite mosquée située dans la ville de Houilles (Département 78)</p>
-
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/houilles/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/houilles/2.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Décembre 2016</li>
-                                        <li>Version mobile: <a target="_blank" href="http://priere.mosquee-houilles.fr">http://priere.mosquee-houilles.fr</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mosquée d'Orly -->
-        <div class="portfolio-modal modal fade" id="mosquee-orly" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La grande mosquée d'Orly</h2>
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/mosquee-orly.png') }}" alt="">
-                                    <p>Une très belle mosquée qui propose plein d'activité, située dans la ville d'Orly (Département 94)</p>
-
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/3.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/4.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Janvier 2017</li>
-                                        <li>Version mobile: <a target="_blank" href="http://priere.mosquee-houilles.fr">http://priere.mosquee-houilles.fr</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mosquée de Goussainville -->
-        <div class="portfolio-modal modal fade" id="mosquee-goussainville" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La mosquée de Goussainville</h2>
-                                    <p class="item-intro text-muted">Mosquée Essalam</p>
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/goussainville/mosquee-goussainville.jpg') }}" alt="">
-                                    <p>Une petite mosquée aujoud'hui mais un grand chantier en cours, elle est située dans la ville de Goussaiville (Département 95)</p>
-
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/goussainville/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/goussainville/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/goussainville/3.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Janvier 2017</li>
-                                        <li>Version mobile: <a target="_blank" href="http://priere.mosquee-goussainville.com">http://priere.mosquee-goussainville.com</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mosquée de l'institut IESH -->
-        <div class="portfolio-modal modal fade" id="mosquee-iesh" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La mosquée de l'institut IESH</h2>
-                                    <!--<img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/mosquee-iesh.png') }}" alt="">-->
-                                    <p>Une petite mosquée située au sein de l'institut Européen des Sciences Humaines de Paris dans la ville de Saint-denis (Département 93)</p>
-
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/iesh/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/iesh/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/iesh/3.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Mars 2017</li>
-                                        <!--<li>Version mobile: <a target="_blank" href="http://priere.mosquee-goussainville.com">http://priere.mosquee-goussainville.com</a></li>-->
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mosquée de l'association FAIF -->
-        <div class="portfolio-modal modal fade" id="mosquee-faif" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La mosquée de l'association FAIF</h2>
-                                    <!--<img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/orly/mosquee-faif.png') }}" alt="">-->
-                                    <p>Une petite mosquée située dans le 11 ème arrondissement de Paris (Département 75)</p>
-
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/faif/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/faif/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/faif/3.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Avril 2017</li>
-                                        <li>Version mobile: <a target="_blank" href="http://faif.horaires-de-priere.fr">http://faif.horaires-de-priere.fr</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mosquée Rahma de vitry -->
-        <div class="portfolio-modal modal fade" id="mosquee-rahma-vitry" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La mosquée Rahma à Vitry-Sur-Seine</h2>
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/rahma-vitry/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/rahma-vitry/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/rahma-vitry/3.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Avril 2017</li>
-                                        <li>Version mobile: <a target="_blank" href="http://rahma-vitry.horaires-de-priere.fr">http://rahma-vitry.horaires-de-priere.fr</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mosquée Dignité à Colombes -->
-        <div class="portfolio-modal modal fade" id="mosquee-dignite-colombes" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>La mosquée Dignité à Colombes</h2>
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/dignite-colombes/1.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/dignite-colombes/2.jpg') }}" alt="">
-                                    <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/mosques/dignite-colombes/3.jpg') }}" alt="">
-
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: Avril 2017</li>
-                                        <li>Version mobile: <a target="_blank" href="http://musc.horaires-de-priere.fr">http://musc.horaires-de-priere.fr</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
         <!-- Participez Section -->
         <section id="participer" style="padding-bottom: 0">

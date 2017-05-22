@@ -21,4 +21,21 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * get configured mosques with minimum one image set (image1)
+     * @param integer $nbMax
+     * @return array
+     */
+    function getConfiguredMosques($nbMax) {
+        $qb = $this->createQueryBuilder("m")
+                ->innerJoin("m.configuration", "c")
+                ->where("m.image1 IS NOT NULL");
+        
+        if (is_numeric($nbMax)) {
+            $qb->setMaxResults($nbMax);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

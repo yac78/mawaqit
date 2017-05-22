@@ -14,7 +14,14 @@ class DefaultController extends Controller {
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request) {
-        return $this->render('default/index.html.twig');
+        
+        $mosqueNb = $request->query->get("mosque_nb", 6);
+
+        $em = $this->getDoctrine()->getManager();
+        $mosques = $em->getRepository("AppBundle:Mosque")->getConfiguredMosques($mosqueNb);
+        return $this->render('default/index.html.twig', [
+                    "mosques" => $mosques,
+        ]);
     }
 
     /**
