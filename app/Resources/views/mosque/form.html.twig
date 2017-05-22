@@ -1,39 +1,39 @@
-<div class="col-lg-8">
+{% include 'partial/flash_msg.html.twig' %}
 
-    {% include 'partial/flash_msg.html.twig' %}
+{{ form_errors(form) }}
 
-    {{ form_errors(form) }}
+{{ form_widget(form._token) }}
 
-    {{ form_widget(form._token) }}
-
-    <div class="row">
-        <div class="col-md-8">
-            {{ form_row(form.name) }}
-            {{ form_row(form.associationName) }}
-            {{ form_row(form.phone) }}
-            {{ form_row(form.email) }}
-            {{ form_row(form.address) }}
-            {{ form_row(form.city) }}
-            {{ form_row(form.zipcode) }}
-            {{ form_row(form.country) }}
-            {{ form_row(form.rib) }}
-        </div>
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="col-md-4">
-                {{ form_row(form.file1) }}
-{#                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" style="width: 300px"/>#}
-                {{ form_row(form.file2) }}
-{#                <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" style="width: 300px"/>#}
-                {{ form_row(form.file3) }}
-{#                <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" style="width: 300px"/>#}
-            </div>
-        {% endif %}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.name) }}
+        {{ form_row(form.associationName) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.address) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.zipcode) }}
+        {{ form_row(form.country) }}
+        {{ form_row(form.rib) }}
     </div>
 
-
-    <br>
-    {{ form_widget(form.save) }}
-    <a href="{{path("mosque_index")}}" class="btn btn-danger">{{'cancel'|trans({}, 'messages')}}</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="col-md-6">
+            <div class="col-md-6 block-image">
+                {{ form_row(form.file1) }}
+            </div>
+            <div class="col-md-6 block-image"">
+                {{ form_row(form.file2) }}
+            </div>
+            <div class="col-md-6 block-image"">
+                {{ form_row(form.file3) }}
+            </div>
+        </div>
+    {% endif %}
 </div>
+
+
+<br>
+{{ form_widget(form.save) }}
+<a href="{{path("mosque_index")}}" class="btn btn-danger">{{'cancel'|trans({}, 'messages')}}</a>
 

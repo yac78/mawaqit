@@ -5,11 +5,9 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Configuration;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Mosque
- * @Vich\Uploadable
  */
 class Mosque {
 
@@ -74,19 +72,16 @@ class Mosque {
     private $site;
 
     /**
-     * @Vich\UploadableField(mapping="mosque_image", fileNameProperty="image1")
      * @var File
      */
     private $file1;
 
     /**
-     * @Vich\UploadableField(mapping="mosque_image", fileNameProperty="image2")
      * @var File
      */
     private $file2;
 
     /**
-     * @Vich\UploadableField(mapping="mosque_image", fileNameProperty="image3")
      * @var File
      */
     private $file3;
@@ -115,12 +110,6 @@ class Mosque {
      * @var \DateTime
      */
     private $updated;
-
-    /**
-     *
-     * @var \DateTime
-     */
-    private $updatedAt;
 
     /**
      * @var User
@@ -464,12 +453,11 @@ class Mosque {
      */
     public function setFile1(File $image = null) {
         $this->file1 = $image;
-        die(dump($image));
 
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime();
+            $this->updated = new \DateTime();
         }
 
         return $this;
@@ -486,7 +474,7 @@ class Mosque {
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime();
+            $this->updated = new \DateTime();
         }
 
         return $this;
@@ -503,7 +491,7 @@ class Mosque {
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime();
+            $this->updated = new \DateTime();
         }
 
         return $this;
@@ -567,21 +555,21 @@ class Mosque {
      * @return string|null
      */
     public function getImage1() {
-        return new File($this->image1, false);
+        return $this->image1;
     }
 
     /**
      * @return string|null
      */
     public function getImage2() {
-        return new File($this->image2, false);
+        return $this->image2;
     }
 
     /**
      * @return string|null
      */
     public function getImage3() {
-        return new File($this->image3, false);
+        return $this->image3;
     }
 
 }
