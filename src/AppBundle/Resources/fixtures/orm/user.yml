@@ -1,17 +1,17 @@
 AppBundle\Entity\User:
     ADMIN:
         username: admin
-        plainPassword: admin
+        plainPassword: 0000
         email: admin\@horaires-de-priere.fr
         enabled: true
         roles: [ROLE_ADMIN]
     USER1:
-        username: user1
-        plainPassword: ibra
+        username: Ibrahim Zehhaf
+        plainPassword: 0000
         email: ibrahim.zehhaf\@gmail.com
         enabled: true
     USER2:
-        username: user2
-        plainPassword: user2
-        email: user2\@horaires-de-priere.fr
+        username: user
+        plainPassword: 0000
+        email: user\@horaires-de-priere.fr
         enabled: true
