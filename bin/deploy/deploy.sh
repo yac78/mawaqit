@@ -12,17 +12,12 @@ git archive $1 | (cd /tmp/prayer-times-v3 && tar xf -)
 
 mkdir -p ~/www/prayer-times-v3/$1
 rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/deploy/files-to-exclude /tmp/prayer-times-v3 ~/www/prayer-times-v3/$1
-cd ~/www/prayer-times-v3/$1
-
-cd docker 
-rm docker-compose.yml 
-ln -s ~/perso/projects/prayer-times-v3/docker/docker-compose.deploy.yml docker-compose.yml 
+cd ~/www/prayer-times-v3/$1/docker
+cp ~/perso/projects/prayer-times-v3/docker/docker-compose.deploy.yml docker-compose.yml 
+cp ~/perso/projects/prayer-times-v3/app/config/parameters.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
 docker-compose up -d
+
 cd ..
-
-rm ~/www/prayer-times-v3/$1/app/config/parameters.yml
-ln -s ~/perso/projects/prayer-times-v3/app/config/parameters.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
-
 ./dock-deploy chmod -R 777 var/cache var/logs var/sessions
 ./dock-deploy composer install --optimize-autoloader
 ./dock-deploy php bin/console assets:install --env=prod --no-debug
