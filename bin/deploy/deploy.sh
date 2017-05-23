@@ -14,13 +14,14 @@ mkdir -p ~/www/prayer-times-v3/$1
 rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/deploy/files-to-exclude /tmp/prayer-times-v3 ~/www/prayer-times-v3/$1
 cd ~/www/prayer-times-v3/$1
 
-rm docker/docker-compose.yml 
-ln -s ~/perso/projects/prayer-times-v3/docker/docker-compose.pp.yml docker/docker-compose.yml 
 cd docker 
+rm docker-compose.yml 
+ln -s ~/perso/projects/prayer-times-v3/docker/docker-compose.deploy.yml docker-compose.yml 
 docker-compose up -d
 cd ..
 
-ln -s ~/perso/projects/prayer-times-v3/app/config/parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
+rm ~/www/prayer-times-v3/$1/app/config/parameters.yml
+ln -s ~/perso/projects/prayer-times-v3/app/config/parameters.yml ~/www/prayer-times-v3/$1/app/config/parameters.yml
 
 ./dock-deploy chmod -R 777 var/cache var/logs var/sessions
 ./dock-deploy composer install --optimize-autoloader
