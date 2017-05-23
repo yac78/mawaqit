@@ -14,7 +14,8 @@ services:
       - $SSH_AUTH_SOCK:/ssh-agent
     environment:
       SSH_AUTH_SOCK: /ssh-agent
-      
+      environment:
+        SYMFONY_ENV: prod
   prayer_times_db_pp:
     container_name : prayer_times_db_pp
     image: mysql:5.6
