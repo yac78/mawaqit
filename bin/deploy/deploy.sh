@@ -24,7 +24,7 @@ cd ..
 ./dock-deploy php bin/console assetic:dump --env=prod --no-debug
 
 ./dock-deploy chmod -R 777 var/cache var/logs var/sessions
-#rm -rf bin docker dock-deploy composer.* app/config/routing_dev.yml app/config/config_dev.yml app/config/parameters.yml.dist
+rm -rf bin docker dock-deploy composer.* app/config/routing_dev.yml app/config/config_dev.yml app/config/parameters.yml.dist
 
 cd ..
 
