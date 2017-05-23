@@ -15,7 +15,7 @@ rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/dep
 cd ~/www/prayer-times-v3/$1
 
 rm docker/docker-compose.yml 
-ln -s docker/docker-compose.pp.yml docker/docker-compose.yml 
+ln -s ~/perso/projects/prayer-times-v3/docker/docker-compose.pp.yml docker/docker-compose.yml 
 cd docker 
 docker-compose up -d
 cd ..
