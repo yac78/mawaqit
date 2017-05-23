@@ -19,3 +19,4 @@
 /web/js/
 /web/upload/images/mosques/*
 !web/upload/images/mosques/.gitkeep
+/docker/docker-compose.pp.yml
