@@ -12,7 +12,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     languages: [fr, ar, en]
     version: 3.0.0
-    supportTel: +33629111641
+    supportTel: '+33629111641'
     supportEmail: %supportTel%
 
     no_replay_address : no-replay@binary-consulting.fr

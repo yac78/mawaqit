@@ -18,13 +18,13 @@ cp ~/perso/projects/prayer-times-v3/app/config/parameters.yml ~/www/prayer-times
 docker-compose up -d
 
 cd ..
-./dock-deploy chmod -R 777 var/cache var/logs var/sessions
 ./dock-deploy composer install --optimize-autoloader
 ./dock-deploy php bin/console assets:install --env=prod --no-debug
 ./dock-deploy php bin/console assetic:dump --env=prod --no-debug
 
 rm -rf bin docker dock-deploy composer.* app/config/routing_dev.yml app/config/config_dev.yml app/config/parameters.yml.dist
 
+./dock-deploy chmod -R 777 var/cache var/logs var/sessions
 cd ..
 
 rm -f current
