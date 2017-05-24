@@ -324,10 +324,11 @@
                         </p>
                         <br>
                         <ol class="text-muted text-left">
-                            <li>Télécharger l'image système pré configurée <a target="_blank" href="https://drive.google.com/open?id=0B0SYpfAYE6RecDlmamUtQTNZMlk">ici</a> puis extrayez le contenu de l'archive</li>
+                            <li>Télécharger l'image système pré configurée <strong><a target="_blank" href="https://drive.google.com/open?id=0B0SYpfAYE6RecDlmamUtQTNZMlk">ICI</a></strong> puis extrayez le contenu de l'archive</li>
                             <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB</li>
                         </ol>
 
+                        <br>
                         <h5>Vous êtes sous Windows :</h5>
                         <ol class="text-muted text-left">
                             <li>Formater la carte mémoire</li>
@@ -345,7 +346,7 @@
                                 <li>Choisissez l'image système précédemment téléchargée et sélectionnez la carte mémoire, puis appuyez sur Write</li>
                             </ol>
                         </ol>
-
+                        <br>
                         <h5>Vous êtes sous Linux :</h5>
                         <ol class="text-muted text-left">
                             <li>Identifiez le montage de la carte mémoire <code>sudo fdisk -l</code></li>
@@ -354,7 +355,28 @@
                                 Exp: <code>sudo dd bs=4M if=/home/ibrahim/prayer-times-raspbian-stable.img of=/dev/sdb</code>
                             </li>
                         </ol>
+                        <br>
+                        <h5>Dernière étape</h5>
+                        <p class="text-muted text-left">Maintenant que vous avez installé le l'image système sur la carte mémoire vous avez deux possibiltés: <br>
+                            <strong>Lancer le logiciel embarqué : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br>
+                            <strong>Vous avez le WIFI dans la mosquée ? </strong> Utilisez la version en ligne elle a l'avantage d'être synchronisée sur tous les terminaux (mobile, 
+                            tablette et écran de la mosquée) et les modifications se font en ligne, pas besoin de se brancher au raspberry il se mettrea à jour automatiquement, pour le faire suivez les étapes suivantes : </p>
+                        <ol class="text-muted text-left">
+                            <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('mosque_index')}}">{{url('mosque_index')}}</a></li>
+                            <li>Identifiez-vous puis créez et configurez votre mosquée</li>
+                            <li>A la fin de ces étapes un lien internet est généré, copier ce lien dans la carte micro sd à l'endroit suivant: <code>/home/prayer/current/bin/run.sh</code> (remplacez localhost par votre lien)</code></li>
+                            exemple: <br>
+                            <code>
+                                #!/bin/bash<br>
 
+                                iceweasel {{url('mosque', {slug: 'essounna-houilles'})}} &<br>
+                                sleep 20<br>
+                                xdotool key F11
+                            </code>
+
+                            <li>Reste plus qu'à brancher le raspberry sur l'écran et le connecter au WIFI, le logiciel se lancera tout seul</li>
+                        </ol>
+                        <p class="text-muted text-left">Vous pouvez nous envoyer un message <a href="#contact">ici</a> si vous rencontrez des diffucltées.</p>
                     </div>
                 </div>
             </div>
