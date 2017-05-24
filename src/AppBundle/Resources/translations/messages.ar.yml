@@ -135,10 +135,10 @@ jumua: الجمعة
 aid: صلاة العيد
 imsak: الإمساك
 support: Support
-iqama: الإفامة
+iqama: الإقامة
 azan: الأذان
 
-power-off-phones: ! أطفؤوا الهواتف المحمول من فضلكم
+power-off-phones: '! أطفؤوا الهاتف المحمول من فضلكم'
 hi: مرحبا
 
 january: Janvier
