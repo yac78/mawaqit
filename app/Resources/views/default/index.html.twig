@@ -212,7 +212,7 @@
                                 <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
                             </a>
                             <div class="portfolio-caption">
-                                <h4>{{mosque.name}}</h4>
+                                <h4>{{mosque.name}} - {{mosque.city}}</h4>
                                 <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">Version mobile</a>
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="modal-body">
-                                        <h2>{{mosque.name}}</h2>
+                                        <h2>{{mosque.name}} - {{mosque.city}}</h2>
                                         <p class="item-intro text-muted">{{mosque.associationName}}</p>
                                         <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
                                         {#<p>{{mosque.comment}}</p>#}
@@ -364,7 +364,7 @@
                         <ol class="text-muted text-left">
                             <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('mosque_index')}}">{{url('mosque_index')}}</a></li>
                             <li>Identifiez-vous puis créez et configurez votre mosquée</li>
-                            <li>A la fin de ces étapes un lien internet est généré, copier ce lien dans la carte micro sd à l'endroit suivant: <code>/home/prayer/current/bin/run.sh</code> (remplacez localhost par votre lien)</code></li>
+                            <li>A la fin de ces étapes un lien internet est généré, copier ce lien dans la carte micro sd à l'endroit suivant: <code>/home/pi/prayer/current/bin/run.sh</code> (remplacez localhost par votre lien)</code></li>
                             exemple: <br>
                             <code>
                                 #!/bin/bash<br>
