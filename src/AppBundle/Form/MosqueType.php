@@ -6,14 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Mosque;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use AppBundle\Entity\User;
 
 class MosqueType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
+                ->add('user', EntityType::class, [
+                    'label' => 'user',
+                    'choice_label' => 'username',
+                    'required' => true,
+                    'class' => User::class,
+                ])
                 ->add('name', null, [
                     'label' => 'mosque.name',
                     'required' => true,

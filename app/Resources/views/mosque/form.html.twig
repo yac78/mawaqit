@@ -6,6 +6,9 @@
 
 <div class="row">
     <div class="col-md-6">
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ form_row(form.user) }}
+        {% endif %}
         {{ form_row(form.name) }}
         {{ form_row(form.associationName) }}
         {{ form_row(form.phone) }}
@@ -17,7 +20,7 @@
         {{ form_row(form.rib) }}
     </div>
 
-    {% if not is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="col-md-6">
             <div class="col-md-6 block-image">
                 {{ form_row(form.file1) }}
