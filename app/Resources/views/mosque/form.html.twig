@@ -17,7 +17,7 @@
         {{ form_row(form.rib) }}
     </div>
 
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if not is_granted('ROLE_ADMIN') %}
         <div class="col-md-6">
             <div class="col-md-6 block-image">
                 {{ form_row(form.file1) }}
@@ -27,6 +27,18 @@
             </div>
             <div class="col-md-6 block-image">
                 {{ form_row(form.file3) }}
+            </div>
+        </div>
+    {% elseif mosque is defined %}
+        <div class="col-md-6">
+            <div class="col-md-6 block-image">
+                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
+            </div>
+            <div class="col-md-6 block-image">
+                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
+            </div>
+            <div class="col-md-6 block-image">
+                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
             </div>
         </div>
     {% endif %}
