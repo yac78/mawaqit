@@ -22,11 +22,12 @@ class MosqueController extends Controller {
     /**
      * @Route("/", name="mosque_index")
      */
-    public function indexAction() {
+    public function indexAction(Request $request) {
 
+        $search = $request->query->get("search");
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $mosques = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user);
+        $mosques = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user, $search);
         return $this->render('mosque/index.html.twig', [
                     "mosques" => $mosques,
                     "languages" => $this->getParameter('languages')

@@ -13,10 +13,26 @@ use Doctrine\DBAL\Types\Type;
  */
 class MosqueRepository extends \Doctrine\ORM\EntityRepository {
 
-    function getMosquesByUser(User $user) {
+    /**
+     * 
+     * @param User $user
+     * @param string $search
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    function getMosquesByUser(User $user, $search) {
         $qb = $this->createQueryBuilder("m");
+
+        if (!empty($search)) {
+            $qb->andWhere("m.name LIKE :search "
+                            . "OR m.associationName LIKE :search "
+                            . "OR m.email LIKE :search "
+                            . "OR m.address LIKE :search "
+                            . "OR m.city LIKE :search"
+                    )
+                    ->setParameter(":search", "%$search%");
+        }
         if (!$user->isAdmin()) {
-            $qb->where("m.user = :user_id")
+            $qb->andWhere("m.user = :user_id")
                     ->setParameter(":user_id", $user->getId());
         }
         return $qb->getQuery()->getResult();
