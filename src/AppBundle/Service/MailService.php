@@ -30,7 +30,7 @@ class MailService {
         $message = $this->mailer->createMessage();
         $message->setSubject('Mosquée crée')
                 ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
-                ->setTo($mosque->getUser()->getEmail())
+                ->setTo([$this->emailFrom[0] => $this->emailFrom[1]])
                 ->setBody($body, 'text/html');
         $this->mailer->send($message);
     }

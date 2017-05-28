@@ -11,57 +11,60 @@ use AppBundle\Entity\Mosque;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use AppBundle\Entity\User;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 class MosqueType extends AbstractType {
 
+    /**
+     *
+     * @var AuthorizationChecker 
+     */
+    private $securityChecker;
+
+    public function __construct(AuthorizationChecker $securityChecker) {
+        $this->securityChecker = $securityChecker;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        
+        if ( $this->securityChecker->isGranted('ROLE_ADMIN')) {
+            $builder
+                    ->add('user', EntityType::class, [
+                        'label' => 'user',
+                        'choice_label' => 'username',
+                        'required' => true,
+                        'empty_data' => null,
+                        'class' => User::class,
+            ]);
+        }
+
         $builder
-                ->add('user', EntityType::class, [
-                    'label' => 'user',
-                    'choice_label' => 'username',
-                    'required' => true,
-                    'class' => User::class,
-                ])
                 ->add('name', null, [
                     'label' => 'mosque.name',
                     'required' => true,
                     'attr' => [
                         'placeholder' => 'mosque.form.name.placeholder',
-                        'class' => 'form-control',
                     ]
                 ])
                 ->add('associationName', null, [
                     'label' => 'association_name',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ])
                 ->add('phone', null, [
                     'label' => 'phone',
                     'required' => true,
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ])
                 ->add('email', EmailType::class, [
                     'label' => 'email',
                     'required' => true,
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ])
                 ->add('address', null, [
                     'label' => 'address',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ])
                 ->add('city', null, [
                     'label' => 'city',
                     'required' => true,
                     'attr' => [
                         'placeholder' => 'mosque.form.city.placeholder',
-                        'class' => 'form-control',
                     ]
                 ])
                 ->add('zipcode', null, [
@@ -69,7 +72,6 @@ class MosqueType extends AbstractType {
                     'required' => true,
                     'attr' => [
                         'placeholder' => 'mosque.form.zipcode.placeholder',
-                        'class' => 'form-control',
                     ]
                 ])
                 ->add('country', null, [
@@ -82,7 +84,6 @@ class MosqueType extends AbstractType {
                     'label' => 'rib',
                     'attr' => [
                         'placeholder' => 'mosque.form.rib.placeholder',
-                        'class' => 'form-control',
                     ]
                 ])
                 ->add('file1', VichImageType::class, [
@@ -97,17 +98,11 @@ class MosqueType extends AbstractType {
                     'label' => 'mosque.form.image2.label',
                     'download_link' => false,
                     'required' => false,
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ])
                 ->add('file3', VichImageType::class, [
                     'required' => false,
                     'download_link' => false,
                     'label' => 'mosque.form.image3.label',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
                 ])
                 ->add('save', SubmitType::class, [
                     'label' => 'save',

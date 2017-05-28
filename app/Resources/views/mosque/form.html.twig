@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if mosque is defined  and is_granted('ROLE_ADMIN') %}
             {{ form_row(form.user) }}
         {% endif %}
         {{ form_row(form.name) }}
@@ -34,15 +34,21 @@
         </div>
     {% elseif mosque is defined %}
         <div class="col-md-6">
-            <div class="col-md-6 block-image">
-                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
-            </div>
-            <div class="col-md-6 block-image">
-                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
-            </div>
-            <div class="col-md-6 block-image">
-                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
-            </div>
+            {% if  mosque.image1 %}
+                <div class="col-md-6 block-image">
+                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
+                </div>
+            {% endif %}
+            {% if  mosque.image2 %}
+                <div class="col-md-6 block-image">
+                    <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" />
+                </div>
+            {% endif %}
+            {% if  mosque.image3 %}
+                <div class="col-md-6 block-image">
+                    <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" />
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 </div>

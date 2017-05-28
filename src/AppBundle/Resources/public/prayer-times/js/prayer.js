@@ -668,7 +668,7 @@ var douaaSlider = {
      * Time to wait before showing douaa after prayer (in minutes)
      * @type Array
      */
-    douaaAfterPrayerWait: [12, 1, 10, 10, 11],
+    douaaAfterPrayerWait: [11, 9, 9, 9, 10],
     /**
      * it saves html (ul,li)
      * @type String
@@ -701,7 +701,7 @@ var douaaSlider = {
      * @param {Number} currentTimeIndex
      */
     show: function (currentTimeIndex) {
-        if (prayer.confData.douaaAfterPrayerEnabled === true) {
+        if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
             setTimeout(function () {
                 $(".desktop .main").fadeOut(2000, function () {
                     $(".douaa-after-prayer").fadeIn(1000);

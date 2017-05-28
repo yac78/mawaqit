@@ -32,6 +32,14 @@ services:
     app.prayer_times_service:
         class: AppBundle\Service\PrayerTimeService
           
+            
+    app.mail_service:
+        class: AppBundle\Service\MailService
+        arguments:
+            - "@mailer"
+            - ["%no_replay_address%", "%no_replay_name%"]
+            
+    # Forms
     app.form_configuration:
         class: AppBundle\Form\ConfigurationType
         arguments:
@@ -40,16 +48,17 @@ services:
         tags:
             - { name: form.type }          
             
-    app.mail_service:
-        class: AppBundle\Service\MailService
-        arguments:
-            - "@mailer"
-            - ["%no_replay_address%", "%no_replay_name%"]
-            
     app.form_prayer:
         class: AppBundle\Form\PrayerType
         arguments:
             - "@translator"
+        tags:
+            - { name: form.type }
+            
+    app.form_mosque:
+        class: AppBundle\Form\MosqueType
+        arguments:
+            - "@security.authorization_checker"
         tags:
             - { name: form.type }
 
