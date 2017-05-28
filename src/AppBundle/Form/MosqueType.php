@@ -99,11 +99,17 @@ class MosqueType extends AbstractType {
                     'label' => 'mosque.form.image2.label',
                     'download_link' => false,
                     'required' => false,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ]
                 ])
                 ->add('file3', VichImageType::class, [
                     'required' => false,
                     'download_link' => false,
                     'label' => 'mosque.form.image3.label',
+                    'attr' => [
+                        'class' => 'form-control',
+                    ]
                 ])
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
