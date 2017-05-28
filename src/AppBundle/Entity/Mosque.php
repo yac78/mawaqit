@@ -430,7 +430,7 @@ class Mosque {
         return $this->city . "+" . $this->zipcode;
     }
 
-    function getUser(): User {
+    function getUser() {
         return $this->user;
     }
 

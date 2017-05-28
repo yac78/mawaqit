@@ -26,8 +26,9 @@ class MosqueType extends AbstractType {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        
-        if ( $this->securityChecker->isGranted('ROLE_ADMIN')) {
+
+        if ( $builder->getData()->getUser() instanceof User
+                && $this->securityChecker->isGranted('ROLE_ADMIN')) {
             $builder
                     ->add('user', EntityType::class, [
                         'label' => 'user',
