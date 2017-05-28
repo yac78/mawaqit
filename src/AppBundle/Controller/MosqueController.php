@@ -11,14 +11,19 @@ use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * @Route("/mosque")
- * 
- */
 class MosqueController extends Controller {
 
     /**
-     * @Route("/{slug}/{_locale}", name="mosque", requirements={"_locale"= "en|fr|ar"})
+     * @Route("/mosque/{slug}/{_locale}", name="mosque_deprected", requirements={"_locale"= "en|fr|ar"})
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     */
+    public function mosqueDeprectedAction(Request $request, Mosque $mosque) {
+
+        return $this->forward("AppBundle:Mosque:mosque", ["mosque"=> $mosque]);
+    }
+    
+    /**
+     * @Route("/{slug}/{_locale}", name="mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueAction(Request $request, Mosque $mosque) {
