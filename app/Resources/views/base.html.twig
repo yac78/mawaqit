@@ -9,7 +9,6 @@
         {% stylesheets 
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
             "bundles/app/css/main.css"
-            "bundles/app/css/sidebar.css"
             "bundles/app/font-awesome/css/font-awesome.min.css"
             filter="cssrewrite"
         %}
@@ -26,10 +25,6 @@
 
         {% include ("partial/navbar.html.twig") %}
 
-        {% if app.user %}
-            {% include ("partial/sidebar.html.twig") %}
-        {% endif %}
-
         <div class="col-md-10 col-md-offset-1">
         {% block body %}{% endblock %}
     </div>
@@ -38,7 +33,6 @@
                 '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
                 '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
                 '@AppBundle/Resources/public/js/main.js'
-                '@AppBundle/Resources/public/js/sidebar.js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}    

@@ -1,21 +1,41 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="col-md-12">
-        <div class="navbar-form navbar-left">
-            {% if app.user %}
-                <span id="sidebar-toggle" class="glyphicon glyphicon glyphicon-align-justify"></span> 
-            {% endif %}
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll hidden-xs" href="{{path('mosque_index')}}">{{'admin_title'|trans}}</a>
         </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">{{'admin_title'|trans}}</a>
-        </div>
-        <div class="navbar-form navbar-right">
-            {% if not app.user %}
-                <a href="{{path("fos_user_security_login")}}" class="btn btn-success">{{'layout.login'|trans({}, 'FOSUserBundle')}}</a>
-                <a href="{{path("fos_user_registration_register")}}" class="btn btn-primary">{{'layout.register'|trans({}, 'FOSUserBundle')}}</a>
-            {% else %}
-                <span class="white">{{'salam'|trans({'%name%': app.user.username})}}</span> &nbsp;
-                <a href="{{path("fos_user_security_logout")}}" class="btn btn-danger">{{'layout.logout'|trans({}, 'FOSUserBundle')}}</a>
-            {% endif %}
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                {% if app.user %}
+                    <li>
+                        <a href="{{path('fos_user_profile_show')}}">{{'salam'|trans({'%name%': app.user.username})}}</a> 
+                    </li>
+                    <li>
+                        <a href="{{path('fos_user_profile_show')}}"><i class="fa fa-user"></i>&nbsp;{{'my_profile'|trans}}</a>
+                    </li>
+                    <li>
+                        <a href="{{path('mosque_index')}}"><i class="fa fa-home"></i>&nbsp;{{'my_mosques'|trans}}</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{path('user_index')}}"><i class="fa fa-users"></i>&nbsp;{{'users'|trans}}</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{path("fos_user_security_logout")}}"><i class="fa fa-sign-out"></i>&nbsp;{{'layout.logout'|trans({}, 'FOSUserBundle')}}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{path("fos_user_registration_register")}}"><i class="fa fa-user"></i>&nbsp;{{'layout.register'|trans({}, 'FOSUserBundle')}}</a>
+                    </li>
+                    <li>
+                        <a href="{{path("fos_user_security_login")}}"><i class="fa fa-sign-out"></i>&nbsp;{{'layout.login'|trans({}, 'FOSUserBundle')}}</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </div>
 </nav>
