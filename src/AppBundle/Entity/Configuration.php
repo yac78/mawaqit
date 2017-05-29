@@ -108,14 +108,19 @@ class Configuration {
     private $prayerMethod = 'ISNA';
 
     /**
-     * @var int
+     * @var float
      */
     private $latitude;
 
     /**
-     * @var int
+     * @var float
      */
     private $longitude;
+
+    /**
+     * @var int
+     */
+    private $timezone;
 
     /**
      * @var int
@@ -171,6 +176,7 @@ class Configuration {
      * @var bool
      */
     private $smallScreen = false;
+
     /**
      * @var string
      */
@@ -530,6 +536,14 @@ class Configuration {
         return $this->longitude;
     }
 
+    function getTimezone() {
+        return $this->timezone;
+    }
+
+    function setTimezone($timezone) {
+        $this->timezone = $timezone;
+    }
+
     /**
      * Get prayerMethod
      *
@@ -798,6 +812,7 @@ class Configuration {
             "prayerMethod" => $this->getPrayerMethod(),
             "latitude" => $this->getLatitude(),
             "longitude" => $this->getLongitude(),
+            "timezone" => $this->getTimezone(),
             "fajrDegree" => $this->getFajrDegree(),
             "ichaaDegree" => $this->getIshaDegree(),
             "iqamaDisplayTime" => $this->getIqamaDisplayTime(),
@@ -819,7 +834,7 @@ class Configuration {
     function setSmallScreen($smallScreen) {
         $this->smallScreen = $smallScreen;
     }
-    
+
     /**
      * @return string
      */

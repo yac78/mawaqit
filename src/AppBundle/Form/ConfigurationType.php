@@ -155,6 +155,9 @@ class ConfigurationType extends AbstractType {
     }
 
     public function onPostSetData(FormEvent $event) {
+        /**
+         * @var Configuration
+         */
         $configuration = $event->getData();
         if ($configuration->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
             $configuration->setFajrDegree(null);
@@ -165,6 +168,8 @@ class ConfigurationType extends AbstractType {
             $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
             $configuration->setLongitude($position->lng);
             $configuration->setLatitude($position->lat);
+            $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
+            $configuration->setTimezone($timezone);
         }
     }
 

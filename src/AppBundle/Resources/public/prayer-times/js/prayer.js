@@ -144,7 +144,12 @@ var prayer = {
         if (typeof tomorrow === 'boolean' && tomorrow === true) {
             date = dateTime.tomorrow();
         }
+
         var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude]);
+        if (prayer.confData.timezone !== null) {
+            var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone);
+        }
+
         this.times = {
             1: pt.fajr,
             2: pt.sunrise,

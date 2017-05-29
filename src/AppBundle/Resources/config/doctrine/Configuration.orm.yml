@@ -55,6 +55,9 @@ AppBundle\Entity\Configuration:
         longitude:
             type: float
             nullable: true            
+        timezone:
+            type: integer
+            nullable: true            
         fajrDegree:
             type: smallint
             nullable: true

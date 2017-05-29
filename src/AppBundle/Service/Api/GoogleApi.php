@@ -13,7 +13,8 @@ abstract class GoogleApi {
     }
 
     function call($method, $path, $body = NULL) {
-        $url = $this->endpoint . $path;
+        $url = $this->endpoint . $path. "&key=".$this->key;
+        
         if ($body) {
             $body = json_encode($body);
         } else {
