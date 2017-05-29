@@ -1,7 +1,0 @@
-<div id="sidebar" class="sidebar">
-    <a href="{{path('fos_user_profile_show')}}"><i class="glyphicon glyphicon-user"></i> {{'my_profile'|trans}}</a>
-    <a href="{{path('mosque_index')}}"><i class="glyphicon glyphicon-home"></i> {{'my_mosques'|trans}}</a>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{path('user_index')}}"><i class="fa fa-users"></i> {{'users'|trans}}</a>
-    {% endif %}
-</div>
