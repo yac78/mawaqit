@@ -79,7 +79,10 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('waitingTimes', PrayerType::class, [
                     'label' => 'configuration.form.waitingTimes.label',
-                    'sub_type' => IntegerType::class
+                    'sub_type' => IntegerType::class,
+                    'attr' => [
+                        'min' => 0
+                    ]
                 ])
                 ->add('adjustedTimes', PrayerType::class, [
                     'label' => 'configuration.form.adjustedTimes.label',
@@ -87,11 +90,21 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('fixedTimes', PrayerType::class, [
                     'label' => 'configuration.form.fixedTimes.label',
-                    'sub_type' => TextType::class
+                    'sub_type' => TextType::class,
+                    'attr' => [
+                        'placeholder' => "hh:mm",
+                        'pattern' => '\d{2}:\d{2}',
+                        'maxlength' => 5,
+                        'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
+                        'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    ]
                 ])
                 ->add('duaAfterPrayerShowTimes', PrayerType::class, [
                     'label' => 'configuration.form.duaAfterPrayerShowTimes.label',
-                    'sub_type' => IntegerType::class
+                    'sub_type' => IntegerType::class,
+                    'attr' => [
+                        'min' => 5
+                    ]
                 ])
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment.label'

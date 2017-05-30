@@ -22,35 +22,23 @@ class PrayerType extends AbstractType {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-
-        $timeOption = [];
-
-        if ($options["sub_type"] === TextType::class) {
-            $timeOption = [
-                'attr' => [
-                    'placeholder' => "hh:mm",
-                    'pattern' => '\d{2}:\d{2}',
-                    'maxlength' => 5,
-                    'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
-                    'onchange' => 'try {setCustomValidity("")} catch (e) {}'
-                ]
-            ];
-        }
+        $type = $options['sub_type'];
+        unset($options['sub_type']);
 
         $builder
-                ->add('fajr', $options["sub_type"], array_merge($timeOption, [
+                ->add('fajr', $type, array_merge($options, [
                     'label' => 'fajr'
                 ]))
-                ->add('zuhr', $options["sub_type"], array_merge($timeOption, [
+                ->add('zuhr', $type, array_merge($options, [
                     'label' => 'zuhr'
                 ]))
-                ->add('asr', $options["sub_type"], array_merge($timeOption, [
+                ->add('asr', $type, array_merge($options, [
                     'label' => 'asr'
                 ]))
-                ->add('maghrib', $options["sub_type"], array_merge($timeOption, [
+                ->add('maghrib', $type, array_merge($options, [
                     'label' => 'maghrib'
                 ]))
-                ->add('isha', $options["sub_type"], array_merge($timeOption, [
+                ->add('isha', $type, array_merge($options, [
                     'label' => 'isha'
                 ]))
         ;
