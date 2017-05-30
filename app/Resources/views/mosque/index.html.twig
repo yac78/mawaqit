@@ -15,11 +15,8 @@
     {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
-
-    </div>
-    <div class="row">
         <div class="col-md-6"><h3>{{'my_mosques'|trans}}</h3></div>
-        <div class="col-md-3">
+        <div class="col-md-3 hidden-xs">
             <form action="{{path('mosque_index')}}" class="search-form">
                 <div class="form-group has-feedback">
                     <input type="text" value="{{app.request.get('search')}}" class="form-control" name="search" placeholder="{{'search'|trans}}">
@@ -36,7 +33,7 @@
     </div>
     <br>
 
-    <table class="table table-inverse">
+    <table class="table table-inverse hidden-xs hidden-sm">
         <thead>
             <tr class="warning">
                 <th>ID</th>
@@ -91,4 +88,43 @@
             {% endfor %}
         </tbody>
     </table>    
+
+    <div class="hidden-lg hidden-md">
+        {% for mosque in mosques %}
+            {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
+            <div class="row {{ confCompleted == false ? 'alert-danger' : '' }}" style="padding: 10px 0; border-bottom: solid gray 1px">
+                <div class="col-xs-10">
+                    <strong>{{mosque.name}}</strong><br>
+                    {{mosque.associationName}}<br>
+                    {{mosque.address}}<br>
+                    {{mosque.city}} {{mosque.zipcode}}<br>
+                    {{mosque.country}} <br>
+                    <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
+                    <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a><br>
+
+                    {% if confCompleted %}
+                        <strong>Urls</strong>: 
+                        {% for lang in languages %}
+                            <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{lang|trans}}</a>{{loop.last ? '' : ' | '}}
+                        {% endfor %}
+                    {% else %}
+                        <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
+                    {% endif %}
+                    <br>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {{'user'|trans}}: {{mosque.user.username}} <br>
+                        {{'creation_date'|trans}}: {{mosque.user.created|date('d/m/Y')}}
+                    {% endif %}
+
+                </div>
+                <div class="col-xs-2">
+                    <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title="{{'form.edit.action'|trans}}" style="margin-bottom: 3px"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title="{{'form.configure.action'|trans}}" style="margin-bottom: 3px"><span class="glyphicon glyphicon-cog"></span></a>
+                        {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
