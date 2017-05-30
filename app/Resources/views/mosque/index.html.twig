@@ -45,7 +45,7 @@
                     <th>{{'user'|trans}}</th>
                     <th>{{'creation_date'|trans}}</th>
                     {% endif %}
-                <th style="width: 10%"></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -80,8 +80,8 @@
                         </td>
                     {% endif %}
                     <td>
-                        <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a>
+                        <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a><br>
+                        <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a><br>
                             {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
                     </td>
                 </tr>
@@ -119,8 +119,8 @@
 
                 </div>
                 <div class="col-xs-2">
-                    <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info" title="{{'form.edit.action'|trans}}" style="margin-bottom: 3px"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning" title="{{'form.configure.action'|trans}}" style="margin-bottom: 3px"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a>
                         {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
                 </div>
             </div>
