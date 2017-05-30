@@ -3,7 +3,6 @@
 namespace AppBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class PrayerTransformer implements DataTransformerInterface {
 

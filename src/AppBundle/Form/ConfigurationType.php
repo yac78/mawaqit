@@ -89,6 +89,10 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.fixedTimes.label',
                     'sub_type' => TextType::class
                 ])
+                ->add('duaAfterPrayerShowTimes', PrayerType::class, [
+                    'label' => 'configuration.form.duaAfterPrayerShowTimes.label',
+                    'sub_type' => IntegerType::class
+                ])
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment.label'
                 ])
@@ -152,6 +156,8 @@ class ConfigurationType extends AbstractType {
                 ->addModelTransformer(new PrayerTransformer(IntegerType::class));
         $builder->get('fixedTimes')
                 ->addModelTransformer(new PrayerTransformer(TimeType::class));
+        $builder->get('duaAfterPrayerShowTimes')
+                ->addModelTransformer(new PrayerTransformer(IntegerType::class));
     }
 
     public function onPostSetData(FormEvent $event) {

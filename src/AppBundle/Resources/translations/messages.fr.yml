@@ -72,6 +72,8 @@ configuration:
             label: Temps d'attente entre adhan et iqama
         fixedTimes: 
             label: Fixation des horaires
+        duaAfterPrayerShowTimes: 
+            label: Temps avant affichage des invocations post prière (en min)
         hijriAdjustment: 
             label: Ajustement de la date hégire
         iqamaDisplayTime: 

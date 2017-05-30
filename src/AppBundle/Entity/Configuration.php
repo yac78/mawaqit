@@ -71,6 +71,10 @@ class Configuration {
      * @var array
      */
     private $fixedTimes = ["", "", "", "", ""];
+    /**
+     * @var array
+     */
+    private $duaAfterPrayerShowTimes = [11, 9, 9, 9, 10];
 
     /**
      * @var int
@@ -345,6 +349,28 @@ class Configuration {
      */
     public function getFixedTimes() {
         return $this->fixedTimes;
+    }
+    
+    /**
+     * Set duaAfterPrayerShowTimes
+     *
+     * @param array $duaAfterPrayerShowTimes
+     *
+     * @return Configuration
+     */
+    public function setDuaAfterPrayerShowTimes($duaAfterPrayerShowTimes) {
+        $this->duaAfterPrayerShowTimes = $duaAfterPrayerShowTimes;
+
+        return $this;
+    }
+
+    /**
+     * Get duaAfterPrayerShowTimes
+     *
+     * @return array
+     */
+    public function getDuaAfterPrayerShowTimes() {
+        return $this->duaAfterPrayerShowTimes;
     }
 
     /**
@@ -800,6 +826,7 @@ class Configuration {
             "minimumIchaTime" => $this->getFixedTimes()[4],
             "maximumIchaTimeForNoWaiting" => $this->getMaximumIshaTimeForNoWaiting(),
             "prayersWaitingTimes" => $this->getWaitingTimes(),
+            "duaAfterPrayerShowTimes" => $this->getDuaAfterPrayerShowTimes(),
             "prayerTimesAdjustment" => $this->getAdjustedTimes(),
             "prayerTimesFixing" => $this->getFixedTimes(),
             "hijriAdjustment" => $this->getHijriAdjustment(),
