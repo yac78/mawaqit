@@ -15,7 +15,7 @@ rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/dep
 cd ~/www/prayer-times-v3/$1/docker
 cp ~/perso/projects/prayer-times-v3/docker/docker-compose.deploy.yml docker-compose.yml 
 cp ~/perso/projects/prayer-times-v3/app/config/parameters.prod.yml ~/www/prayer-times-v3/$1/app/config/parameters.prod.yml
-sed -i "s/version.*/version: $1/g" ~/www/prayer-times-v3/$1/app/config/parameters.prod.yml
+sed -i "s/version.*/version: $2/g" ~/www/prayer-times-v3/$1/app/config/parameters.prod.yml
 docker-compose up -d
 
 cd ..
