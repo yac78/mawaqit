@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/{_locale}/admin/user", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
@@ -23,9 +24,6 @@ class UserController extends Controller {
                     "users" => $users
         ]);
     }
-
-    
-    
 
     /**
      * @Route("/delete/{id}", name="user_delete")
@@ -44,6 +42,14 @@ class UserController extends Controller {
         return $this->redirectToRoute('user_index');
     }
 
-   
+    /**
+     * @Route("/show/{id}", name="user_show")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function showAction(Request $request, User $user) {
+        return $this->render('user/show.html.twig', [
+                    "user" => $user
+        ]);
+    }
 
 }

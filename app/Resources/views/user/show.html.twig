@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} Accueil{% endblock %}
+
+{% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
+
+    <h3>{{'user'|trans}}:  {{user.username}}</h3>
+    <div class="row col-md-6">
+        <i class="fa fa-envelope"></i> <a href="mailto:{{user.email}}">{{user.email}}</a> <br>
+        {{'creation_date'|trans}} : {{user.created|date('d/m/y')}}
+    </div>
+    
+{% endblock %}
