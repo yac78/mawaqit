@@ -19,9 +19,9 @@ class MosqueController extends Controller {
      */
     public function mosqueDeprectedAction(Request $request, Mosque $mosque) {
 
-        return $this->forward("AppBundle:Mosque:mosque", ["mosque"=> $mosque]);
+        return $this->forward("AppBundle:Mosque:mosque", ["mosque" => $mosque]);
     }
-    
+
     /**
      * @Route("/{slug}/{_locale}", name="mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
@@ -39,17 +39,6 @@ class MosqueController extends Controller {
                     "supportEmail" => $this->getParameter("supportEmail"),
                     'config' => json_encode($mosque->getConfiguration()->getFormatedConfig())
         ]);
-    }
-
-    /**
-     * @Route("/{slug}/date/{_locale}", requirements={"_locale"= "en|fr|ar"})
-     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     */
-    public function currentDateAjaxAction(Request $request, Mosque $mosque) {
-
-        $mosqueService = $this->get("app.prayer_times_service");
-        $date = $mosqueService->getCurrentFormtatedtDate($request->getLocale());
-        return new Response($date);
     }
 
     /**

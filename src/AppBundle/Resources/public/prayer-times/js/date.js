@@ -68,25 +68,12 @@ var dateTime = {
      * get current gregorian date ex: Vendredi 26/05/2017
      * @returns {String}
      */
-    getCurrentDate: function () {
-        var day = addZero(this.getCurrentDay());
-        var year = this.getCurrentYear();
-        var dateText = (getConfFromLocalStorage().lang === "ar" ? "" : this.getCurrentDayText())
-                + ' ' + day
-                + '/' + this.getCurrentMonth()
-                + '/' + year;
-        return dateText;
-    },
-    /**
-     * get current day name ex: Vendredi
-     * @returns {Array}
-     */
-    getCurrentDayText: function () {
+    getCurrentDate: function (lang) {
+        if (lang === 'ar') {
+            return;
+        }
         var date = new Date();
-        var dayIndex = date.getDay();
-        days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-        return days[dayIndex];
-//        return days[dayIndex].trans(getConfFromLocalStorage().lang);
+        return date.toLocaleDateString(lang, {weekday: "long", year: "numeric", month: "long", day: "numeric"});
     },
     getLastSundayOfMonth: function (month) {
         var date = new Date();

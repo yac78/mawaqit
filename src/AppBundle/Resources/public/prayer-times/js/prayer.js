@@ -513,13 +513,7 @@ var prayer = {
      * set date
      */
     setDate: function () {
-        $.ajax({
-            url: "date/" + lang,
-            success: function (date) {
-                $(".gregorianDate").text(date);
-            }
-        });
-
+       $(".gregorianDate").text(dateTime.getCurrentDate(lang));
         this.setCurrentHijriDate();
     },
     /**
