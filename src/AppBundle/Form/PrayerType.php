@@ -17,28 +17,28 @@ class PrayerType extends AbstractType {
      */
     private $translator;
 
-    public function __construct( TranslatorInterface $translator) {
+    public function __construct(TranslatorInterface $translator) {
         $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $type = $options['sub_type'];
-        unset($options['sub_type']);
+        $type = $options['sub_options']['type'];
+        unset($options['sub_options']['type']);
 
         $builder
-                ->add('fajr', $type, array_merge($options, [
+                ->add('fajr', $type, array_merge($options['sub_options'], [
                     'label' => 'fajr'
                 ]))
-                ->add('zuhr', $type, array_merge($options, [
+                ->add('zuhr', $type, array_merge($options['sub_options'], [
                     'label' => 'zuhr'
                 ]))
-                ->add('asr', $type, array_merge($options, [
+                ->add('asr', $type, array_merge($options['sub_options'], [
                     'label' => 'asr'
                 ]))
-                ->add('maghrib', $type, array_merge($options, [
+                ->add('maghrib', $type, array_merge($options['sub_options'], [
                     'label' => 'maghrib'
                 ]))
-                ->add('isha', $type, array_merge($options, [
+                ->add('isha', $type, array_merge($options['sub_options'], [
                     'label' => 'isha'
                 ]))
         ;
@@ -47,12 +47,7 @@ class PrayerType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver) {
 
         $resolver->setDefaults(array(
-            'sub_type' => IntegerType::class
-        ));
-
-        $resolver->setAllowedValues('sub_type', array(
-            IntegerType::class,
-            TextType::class
+            'sub_options' => []
         ));
     }
 

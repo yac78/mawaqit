@@ -160,7 +160,7 @@ class MosqueController extends Controller {
                 return $this->redirectToRoute('mosque_index');
             }
         } catch (GooglePositionException $exc) {
-            $this->addFlash('error', $this->get("translator")->trans("form.configure.geocode_error", [
+            $this->addFlash('danger', $this->get("translator")->trans("form.configure.geocode_error", [
                         "%address%" => $mosque->getCityZipCode()
             ]));
         }
