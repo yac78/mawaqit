@@ -11,7 +11,7 @@ form:
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
         action: configurer le horaires de la mosquée
-        geocode_error: Impossible de géolocaliser votre mosquée "%address%"
+        geocode_error: Impossible de géolocaliser votre mosquée. Veuillez vérifier l'orthographe de votre ville et code postal ("%address%") 
             
 registration:
     registration: Inscription
