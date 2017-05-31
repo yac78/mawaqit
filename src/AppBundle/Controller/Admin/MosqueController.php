@@ -13,9 +13,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use AppBundle\Service\Calendar;
 use AppBundle\Exception\GooglePositionException;
 use AppBundle\Service\MailService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * @Route("/{_locale}/admin/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
+ * @Route("/admin/mosque/{_locale}", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
  */
 class MosqueController extends Controller {
 
@@ -35,13 +36,11 @@ class MosqueController extends Controller {
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/force-update-all", name="mosque_force_update_all")
      */
     public function forceUpdateAllAction() {
         $user = $this->getUser();
-        if (!$user->isAdmin()) {
-            throw new AccessDeniedException;
-        }
         $em = $this->getDoctrine()->getManager();
         $em->getRepository("AppBundle:Mosque")->forceYpdateAll();
         $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
