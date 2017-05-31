@@ -145,9 +145,11 @@ var prayer = {
             date = dateTime.tomorrow();
         }
 
-        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude]);
+//        var dst = dateTime.isDst(prayer.confData.timezone) ? '1' : '0';
+        var dst = '1';
+        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], 1, dst);
         if (prayer.confData.timezone !== null) {
-            var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone);
+            pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, dst);
         }
 
         this.times = {
@@ -513,7 +515,7 @@ var prayer = {
      * set date
      */
     setDate: function () {
-       $(".gregorianDate").text(dateTime.getCurrentDate(lang));
+        $(".gregorianDate").text(dateTime.getCurrentDate(lang));
         this.setCurrentHijriDate();
     },
     /**

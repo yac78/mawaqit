@@ -12,9 +12,9 @@ abstract class GoogleApi {
         $this->key = $key;
     }
 
-    function call($method, $path, $body = NULL) {
-        $url = $this->endpoint . $path. "&key=".$this->key;
-        
+    function call($method, $path, $body = null) {
+        $url = $this->endpoint . $path . "&key=" . $this->key;
+
         if ($body) {
             $body = json_encode($body);
         } else {
@@ -25,6 +25,8 @@ abstract class GoogleApi {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 5);
 
         if ($body) {
             curl_setopt($curl, CURLOPT_POSTFIELDS, $body);

@@ -73,7 +73,14 @@ var dateTime = {
             return;
         }
         var date = new Date();
-        return date.toLocaleDateString(lang, {weekday: "long", year: "numeric", month: "long", day: "numeric"}).firstCapitalize();
+        var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}
+        try {
+            return date.toLocaleString(lang, options).firstCapitalize();
+        } catch (e) {
+            options.timeZone = "Europe/Paris";
+            return date.toLocaleString(lang, options).firstCapitalize();
+        }
+
     },
     getLastSundayOfMonth: function (month) {
         var date = new Date();
