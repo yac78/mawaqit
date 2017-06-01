@@ -76,7 +76,7 @@
                             <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a>
                         </td>
                         <td>
-                            {{mosque.created|date('d/m/Y')}}
+                            {{mosque.created|date('d/m/Y h:i')}}
                         </td>
                     {% endif %}
                     <td>
@@ -113,8 +113,8 @@
                     <br>
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a><br>
-                        {{'creation_date'|trans}}: {{mosque.user.created|date('d/m/Y')}}
+                        {{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a><br>
+                        {{'creation_date'|trans}}: {{mosque.user.created|date('d/m/Y h:i')}}
                     {% endif %}
 
                 </div>
