@@ -82,7 +82,7 @@
                     <td>
                         <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a><br>
                         <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a><br>
-                            {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
+                        {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
                     </td>
                 </tr>
             {% endfor %}
@@ -121,10 +121,11 @@
                 <div class="col-xs-2">
                     <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a>
                     <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a>
-                        {% include 'partial/modal_delete.html.twig' with {entity: mosque, path: 'mosque_delete'} %}
+                    {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
                 </div>
             </div>
         {% endfor %}
     </div>
 
+    {% include 'partial/delete_modal.html.twig' with {path: 'mosque_delete'} %}
 {% endblock %}

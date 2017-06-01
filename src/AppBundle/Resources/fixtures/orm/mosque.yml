@@ -1,8 +1,8 @@
 AppBundle\Entity\Mosque:
     ESSOUNNA_HOUILLES:
         user: '@IBRA'
-        name: Essounna
-        associationName: SFI
+        name: Mosquée Essunna
+        associationName: Association SFI
         email: contact\@mosque-houilles.fr
         address: 14/16 rue Condorcet
         city: Houilles
@@ -13,9 +13,9 @@ AppBundle\Entity\Mosque:
         rib: "IBAN FR76 3000 3018 6200 0504 6187 693 / BIC SOGEFRPP"
     ENNOUR_GENNEVILLIERS:
         user: '@IBRA'
-        name: Ennour
+        name: Mosquée Ennour
         email: ennour\@horaires-de-priere.fr
-        associationName: Ennour
+        associationName: Association Ennour
         address: 1 rue Marceau
         city: Gennevilliers
         country: France
@@ -24,8 +24,8 @@ AppBundle\Entity\Mosque:
         site: "http://mosquee-gennevilliers.fr"
     ASCM_ORLY:
         user: '@USER'
-        name: ASCM
-        associationName: ASCM
+        name: Mosquée d'Orly
+        associationName: Association ASCM
         email: ascm\@horaires-de-priere.fr
         address: 12 rue de Paris
         city: Orly

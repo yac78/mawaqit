@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>{% block title %}Horaires de prière | {% endblock %}</title>
 
         {% stylesheets 
@@ -22,23 +22,23 @@
     </head>
 
     <body>
-
+        
         {% include ("partial/navbar.html.twig") %}
+        
+        {% javascripts
+            '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+            '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}    
+
 
         <div class="col-md-10 col-md-offset-1">
-            {% block body %}{% endblock %}
+            {% block body %}
+            {% endblock %}
         </div>
-
-    {% javascripts
-                '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
-                '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
-                '@AppBundle/Resources/public/js/main.js'
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}    
-
-    {% block javascripts %}
-    {% endblock %}
-
-</body>
+        
+        {% block javascripts %}
+        {% endblock %}
+    </body>
 </html>
