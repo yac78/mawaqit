@@ -6,7 +6,7 @@ form:
         success:  L'édition %object% %name% a été réalisé avec succès.
         action: Éditer
     delete:
-        success:  La suppression %object% %name% a été réalisé avec succès.
+        success:  La suppression %object% "%name%" a été réalisé avec succès.
         action: Supprimer
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
@@ -38,6 +38,9 @@ mosque:
             label: Image 2
         image3: 
             label: Image 3
+
+message:
+    mosque: Message de la moquée "%mosque%"
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
@@ -173,6 +176,7 @@ delete_element_question: Êtes-vous sûr de vouloir supprimer cette élément ?
 forgot_password: Mot de passe oublié ?
 resetting_password: Réinitialiser votre mot de passe
 changing_password: Modifier votre mot de passe
+add: Ajouter
 
 january: Janvier
 february: Février
