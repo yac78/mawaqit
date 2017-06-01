@@ -19,9 +19,11 @@ class UserController extends Controller {
     /**
      * @Route("/", name="user_index")
      */
-    public function indexAction() {
+    public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository("AppBundle:User")->findAll();
+        $qb =  $em->getRepository("AppBundle:User")->createQueryBuilder("u");
+                 $paginator = $this->get('knp_paginator');
+        $users = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
         return $this->render('user/index.html.twig', [
                     "users" => $users
         ]);
