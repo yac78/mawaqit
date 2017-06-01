@@ -139,8 +139,11 @@
                     <div class="col-lg-10">
                         <div class="site">{{site|raw}}</div>
                         <div class="assosciation">
-                            {{'association_info'|trans({'%name%': mosque.associationName, '%phone%': mosque.phone})}}
-                            {{ mosque.rib is not empty ? 'rib_info'|trans({'%rib%': mosque.rib}) : '' }}
+                            {{ mosque.associationName }}
+                            {% if mosque.phone %}
+                                &nbsp;Tel {{ mosque.phone }}
+                            {% endif %}
+                            {{ mosque.rib }}
                         </div>
                         <div class="support">
                             <span>{{'support'|trans}}</span> 
@@ -228,8 +231,11 @@
 
                 <div class="footer">
                     <div class="assosciation text-center">
-                        {{'association_info'|trans({'%name%': mosque.associationName, '%phone%': mosque.phone})}}
-                        {{ mosque.rib is not empty ? 'rib_info'|trans({'%rib%': mosque.rib}) : '' }}
+                        {{ mosque.associationName }}
+                        {% if mosque.phone %}
+                            &nbsp;Tel {{ mosque.phone }}
+                        {% endif %}
+                        {{ mosque.rib }}
                     </div>
                     <div class="support">
                         <span>{{'support'|trans}}</span> : <br>
@@ -243,8 +249,9 @@
         </div>
 
         <script>
-            var confData = {{config|raw}};
-            var lang = "{{lang}}";
+            var confData
+            = {{config|raw}};
+                    var lang = "{{lang}}";
         </script>
 
         {% javascripts

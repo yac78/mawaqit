@@ -202,5 +202,4 @@ month_11: Décembre
 
 prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
-rib_info: "| RIB %rib%"
 info_dst_change: Ne pas tenir compte du changement d'heure d'été/hiver, le logiciel s'en chargera en fonction du dernier dimanche du mois de "%month%" de chaque année.
