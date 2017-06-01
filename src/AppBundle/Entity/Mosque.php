@@ -3,8 +3,10 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Configuration;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Mosque
@@ -120,6 +122,15 @@ class Mosque {
      * @var Configuration
      */
     private $configuration;
+    
+    /**
+     * @var ArrayCollection[Message]
+     */
+    private $messages;
+    
+    public function __construct() {
+        $this->messages = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -571,5 +582,12 @@ class Mosque {
     public function getImage3() {
         return $this->image3;
     }
+    
+    function getMessages(): array {
+        return $this->messages;
+    }
 
+    function setMessages(array $messages) {
+        $this->messages = $messages;
+    }
 }

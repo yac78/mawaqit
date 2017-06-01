@@ -89,7 +89,7 @@ AppBundle\Entity\Mosque:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-                onDelete: CASCADE            
+                onDelete: CASCADE 
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
