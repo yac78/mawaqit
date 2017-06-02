@@ -10,7 +10,7 @@ form:
         action: Supprimer
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
-        action: configurer le horaires de la mosquée
+        action: "Configurer le horaires de la mosquée"
         geocode_error: Impossible de géolocaliser votre mosquée. Veuillez vérifier l'orthographe de votre ville et code postal ("%address%") 
             
 registration:
@@ -40,7 +40,15 @@ mosque:
             label: Image 3
 
 message:
-    mosque: Message de la moquée "%mosque%"
+    mosque: Messages de la moquée "%mosque%"
+    add: Ajout d'un message
+    edit: Édition du message %title%
+    manage: Gérer les messages
+    form:
+        title: 
+            placeholder : Ex. Cours de coran
+        content: 
+            placeholder : 500 caractères maximum
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
@@ -118,6 +126,7 @@ admin_title: Horaires de prière - administration
 
 validate: Valider
 cancel: Annuler
+return: Retour
 address: Adresse
 phone: Téléphone
 city: Ville
@@ -177,6 +186,8 @@ forgot_password: Mot de passe oublié ?
 resetting_password: Réinitialiser votre mot de passe
 changing_password: Modifier votre mot de passe
 add: Ajouter
+title: Titre
+content: Contenu
 
 january: Janvier
 february: Février

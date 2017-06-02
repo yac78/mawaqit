@@ -2,21 +2,22 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Mosque;
 use AppBundle\Entity\Configuration;
+use AppBundle\Entity\Mosque;
+use AppBundle\Exception\GooglePositionException;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MosqueType;
+use AppBundle\Service\Calendar;
+use AppBundle\Service\MailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use AppBundle\Service\Calendar;
-use AppBundle\Exception\GooglePositionException;
-use AppBundle\Service\MailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
 /**
- * @Route("/admin/mosque/{_locale}", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
+ * @Route("/admin/{_locale}/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
  */
 class MosqueController extends Controller {
 

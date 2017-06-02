@@ -80,8 +80,9 @@
                         </td>
                     {% endif %}
                     <td>
-                        <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title={{'form.edit.action'|trans}}><span class="glyphicon glyphicon-pencil"></span></a><br>
-                        <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title={{'form.configure.action'|trans}}><span class="glyphicon glyphicon-cog"></span></a><br>
+                        <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
+                        <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a><br>
+                        <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-envelope"></span></a><br>
                             {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
                     </td>
                 </tr>
