@@ -17,8 +17,6 @@ AppBundle\Entity\Message:
             type: text
         enabled:
             type: boolean
-        delay:
-            type: integer
     manyToOne:
         mosque:
             targetEntity: AppBundle\Entity\Mosque

@@ -22,7 +22,6 @@
                     <th>ID</th>
                     <th style="width: 20%">{{'title'|trans}}</th>
                     <th>{{'content'|trans}}</th>
-                    <th>{{'message.delay'|trans}}</th>
                     <th class="text-center" style="width: 5%">{{'active'|trans}}</th>
                     <th></th>
                 </tr>
@@ -33,7 +32,6 @@
                         <th scope="row">{{message.id}}</th>
                         <td>{{message.title}}</td>
                         <td>{{message.content}}</td>
-                        <td>{{message.delay}}</td>
                         <td class="text-center">
                             <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span>
                         </td>

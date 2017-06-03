@@ -33,9 +33,6 @@ class MessageType extends AbstractType {
                         'rows' => "6"
                     ],
                 ])
-                ->add('delay', IntegerType::class, [
-                    'label' => 'message.form.delay.label',
-                ])
                 ->add('enabled', CheckboxType::class, [
                     'label' => 'enabled',
                     'required' => false

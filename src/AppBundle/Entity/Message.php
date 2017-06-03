@@ -30,11 +30,6 @@ class Message {
     private $enabled = true;
 
     /**
-     * @var integer
-     */
-    private $delay = 3;
-
-    /**
      * @var Mosque
      */
     public $mosque;
@@ -98,14 +93,6 @@ class Message {
 
     function setEnabled($enabled) {
         $this->enabled = $enabled;
-    }
-
-    function getDelay() {
-        return $this->delay;
-    }
-
-    function setDelay($delay) {
-        $this->delay = $delay;
     }
     
     function getMosque(): Mosque {

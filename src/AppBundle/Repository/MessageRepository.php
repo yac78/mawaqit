@@ -18,7 +18,7 @@ class MessageRepository extends \Doctrine\ORM\EntityRepository
      */
     function getMessagesByMosque(Mosque $mosque) {
         $qb = $this->createQueryBuilder("mes")
-                ->select("mes.title, mes.content, mes.delay")
+                ->select("mes.title, mes.content")
                 ->innerJoin("mes.mosque", "mos", Join::WITH, "mes.mosque = :mosqueId")
                 ->where("mes.enabled = 1")
                 ->setParameter(":mosqueId", $mosque->getId());
