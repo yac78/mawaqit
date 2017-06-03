@@ -1,0 +1,50 @@
+.slider {
+    font-family: 'Amiri';
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.slider .title{ 
+    color: yellowgreen;
+    padding: 15px 0 20px 0;
+}
+
+.slider .ar{
+    line-height: 180%;
+}
+
+.slider .fr{
+    font-family: 'Arial';
+}
+
+
+.slider ul {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.slider ul li {
+    position: relative;
+    display: block;
+    float: left;
+    margin: auto;
+}
+
+.slider .title {
+    font-size: 800%;
+    color: yellowgreen;
+}
+
+.message-info-slider li .title {
+    font-size: 1100%;
+    color: #f0ad4e;
+}
+
+.message-info-slider li .content {
+    font-size: 1400%;
+}
+
+

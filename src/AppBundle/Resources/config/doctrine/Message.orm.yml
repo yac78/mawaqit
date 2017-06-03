@@ -24,5 +24,7 @@ AppBundle\Entity\Message:
             targetEntity: AppBundle\Entity\Mosque
             inversedBy: messages
             joinColumn:
+                name: mosque_id
+                referencedColumnName: id
                 onDelete: CASCADE             
     lifecycleCallbacks: {  }

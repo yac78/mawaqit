@@ -583,11 +583,11 @@ class Mosque {
         return $this->image3;
     }
     
-    function getMessages(): array {
+    public function getMessages() {
         return $this->messages;
     }
 
-    function setMessages(array $messages) {
+    public function setMessages($messages) {
         $this->messages = $messages;
     }
 }
