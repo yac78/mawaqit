@@ -744,7 +744,7 @@ var douaaSlider = {
  * @type {Object}
  */
 var messageInfoSlider = {
-    oneMessageShowingTime: 5000,
+    oneMessageShowingTime: 20000,
     /**
      * it saves html (ul,li)
      * @type String
@@ -781,8 +781,7 @@ var messageInfoSlider = {
 
                         //save html slider
                         messageInfoSlider.sliderHtmlContent = $('.message-info-slider .slider').html();
-
-
+                        
                         $(".desktop .main").fadeOut(2000, function () {
                             $(".message-info-slider").fadeIn(1000);
                         });
@@ -814,8 +813,6 @@ var messageInfoSlider = {
         });
     }
 };
-
-
 
 $(document).ready(function () {
     prayer.init();
