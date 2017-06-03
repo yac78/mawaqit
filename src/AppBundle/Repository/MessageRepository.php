@@ -1,7 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
-
+use AppBundle\Entity\Mosque;
+use Doctrine\ORM\Query\Expr\Join;
 /**
  * MessageRepository
  *
@@ -10,4 +11,18 @@ namespace AppBundle\Repository;
  */
 class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    /**
+     * @param Mosque $mosque
+     * @return array
+     */
+    function getMessagesByMosque(Mosque $mosque) {
+        $qb = $this->createQueryBuilder("mes")
+                ->select("mes.title, mes.content, mes.delay")
+                ->innerJoin("mes.mosque", "mos", Join::WITH, "mes.mosque = :mosqueId")
+                ->where("mes.enabled = 1")
+                ->setParameter(":mosqueId", $mosque->getId());
+
+        return $qb->getQuery()->getResult();
+    }
 }

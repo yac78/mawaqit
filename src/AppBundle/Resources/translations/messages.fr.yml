@@ -44,11 +44,14 @@ message:
     add: Ajout d'un message
     edit: Édition du message %title%
     manage: Gérer les messages
+    delay: Délai
     form:
         title: 
             placeholder : Ex. Cours de coran
         content: 
             placeholder : 500 caractères maximum
+        delay: 
+            label : Délai d'affichage (minutes)
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
@@ -76,7 +79,7 @@ configuration:
         adjustedTimes: 
             label: Ajustement des horaires
         maximumIshaTimeForNoWaiting: 
-            label: heure maximale du `isha (attente iqama = 0 min) 
+            label: heure maximale du `isha (attente iqama = 0 minute) 
         imsakNbMinBeforeFajr: 
             label: Nombre de minute avant sobh pour l'imsak 
         waitingTimes: 
@@ -84,7 +87,7 @@ configuration:
         fixedTimes: 
             label: Fixation des horaires
         duaAfterPrayerShowTimes: 
-            label: Temps avant affichage des invocations post prière (en min)
+            label: Temps avant affichage des invocations post prière (en minute)
         hijriAdjustment: 
             label: Ajustement de la date hégire
         iqamaDisplayTime: 
@@ -155,7 +158,7 @@ ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
 UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
 Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
 MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
-Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 min après maghrib)"
+Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
 Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 

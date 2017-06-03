@@ -22,16 +22,18 @@
                     <th>ID</th>
                     <th style="width: 20%">{{'title'|trans}}</th>
                     <th>{{'content'|trans}}</th>
+                    <th>{{'message.delay'|trans}}</th>
                     <th class="text-center" style="width: 5%">{{'active'|trans}}</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {% for message in messages %}
+                {% for message in mosque.messages %}
                     <tr>
                         <th scope="row">{{message.id}}</th>
                         <td>{{message.title}}</td>
                         <td>{{message.content}}</td>
+                        <td>{{message.delay}}</td>
                         <td class="text-center">
                             <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span>
                         </td>
@@ -46,7 +48,7 @@
     </div>
 
     <div class="hidden-lg hidden-md">
-        {% for message in messages %}
+        {% for message in mosque.messages %}
             <div class="row" style="border-bottom: 1px solid gray; padding: 10px 0; ">
                 <div class="col-xs-10">
                     <strong>{{message.title}}</strong><br>

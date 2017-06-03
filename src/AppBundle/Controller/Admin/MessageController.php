@@ -24,13 +24,8 @@ class MessageController extends Controller {
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
-
-        $em = $this->getDoctrine()->getManager();
-        $messages = $em->getRepository("AppBundle:Message")->findBy(["mosque" => $mosque]);
-
         return $this->render('message/index.html.twig', [
                     "mosque" => $mosque,
-                    "messages" => $messages
         ]);
     }
 

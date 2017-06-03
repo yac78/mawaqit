@@ -94,3 +94,9 @@ AppBundle\Entity\Mosque:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
             mappedBy: mosque
+    oneToMany:
+        messages:
+            targetEntity: AppBundle\Entity\Message
+            mappedBy: mosque
+            joinColumn:
+                onDelete: CASCADE

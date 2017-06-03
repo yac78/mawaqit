@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class MosqueController extends Controller {
 
@@ -51,5 +52,18 @@ class MosqueController extends Controller {
             "lastUpdatedDate" => $mosque->getUpdated(),
         ];
         return new JsonResponse($response, 200);
+    }
+    
+    /**
+     * @Route("/{slug}/get-messages")
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     */
+    public function getMessagesAjaxAction(Request $request, Mosque $mosque) {
+        $em = $this->getDoctrine()->getManager();
+        $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque);
+        return new Response($this->get("serializer")->serialize($messages, "json"), 200,
+            [
+                'content-type' => 'application/json'
+            ]);
     }
 }
