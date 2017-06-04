@@ -4,7 +4,7 @@
  * @type {Object}
  */
 var douaaSlider = {
-    oneDouaaShowingTime: 20000,
+    oneDouaaShowingTime: 45000,
     /**
      * it saves html (ul,li)
      * @type String
@@ -39,7 +39,7 @@ var douaaSlider = {
     show: function (currentTimeIndex) {
         if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
             setTimeout(function () {
-                $(".desktop .main").fadeOut(2000, function () {
+                $(".desktop .main").fadeOut(1000, function () {
                     $(".douaa-after-prayer").fadeIn(1000);
                 });
 
@@ -49,7 +49,7 @@ var douaaSlider = {
 
                 setTimeout(function () {
                     clearInterval(douaaInterval);
-                    $(".douaa-after-prayer").fadeOut(2000, function () {
+                    $(".douaa-after-prayer").fadeOut(1000, function () {
                         $(".desktop .main").fadeIn(1000);
                         $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
                     });
@@ -57,7 +57,7 @@ var douaaSlider = {
                     // show messages if exist
                     messageInfoSlider.show();
                 }, douaaSlider.getTimeForShow());
-            }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
+            },prayer.oneSecond);
         }
     },
     /**
@@ -110,13 +110,13 @@ var messageInfoSlider = {
 
                         $(".message-info-slider .slider ul").html(items.join(""));
 
-                        $(".desktop .main").fadeOut(2000, function () {
+                        $(".desktop .main").fadeOut(1000, function () {
                             $(".message-info-slider").fadeIn(1000);
                         });
 
                         if (data.length === 1) {
                             setTimeout(function () {
-                                $(".message-info-slider").fadeOut(2000, function () {
+                                $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                 });
                             }, messageInfoSlider.oneMessageShowingTime);
@@ -128,13 +128,13 @@ var messageInfoSlider = {
                             
                             setTimeout(function () {
                                 $(".message-info-slider li:eq(0)").hide(1000, function () {
-                                    $(".message-info-slider li:eq(1)").show(500);
+                                    $(".message-info-slider li:eq(1)").show(1000);
                                 });
                                 
                             }, messageInfoSlider.oneMessageShowingTime);
                             
                             setTimeout(function () {
-                                $(".message-info-slider").fadeOut(2000, function () {
+                                $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                 });
                             }, messageInfoSlider.oneMessageShowingTime * 2);
@@ -158,7 +158,7 @@ var messageInfoSlider = {
 
                             setTimeout(function () {
                                 clearInterval(interval);
-                                $(".message-info-slider").fadeOut(2000, function () {
+                                $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                     $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
                                 });

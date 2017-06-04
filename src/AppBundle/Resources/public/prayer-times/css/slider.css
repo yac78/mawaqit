@@ -10,15 +10,14 @@
     padding: 15px 0 20px 0;
 }
 
-.slider .ar{
-    line-height: 180%;
+.slider .ar {
+    line-height: inherit;
 }
 
 .slider .fr{
-    font-family: 'Arial';
+    font-family: Arial;
 }
-
-
+    
 .slider ul {
     position: relative;
     margin: auto;
@@ -33,18 +32,20 @@
     margin: auto;
 }
 
-.slider .title {
-    font-size: 800%;
-    color: yellowgreen;
+.slider .ar .title  {
+    font-size: 900%;
+}
+.slider .fr .title {
+    font-size: 700%;
 }
 
 .message-info-slider li .title {
-    font-size: 1300%;
+    font-size: 900%;
     color: #f0ad4e;
 }
 
 .message-info-slider li .content {
-    font-size: 1200%;
+    font-size: 800%;
 }
 
 

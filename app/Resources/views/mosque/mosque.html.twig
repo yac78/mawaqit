@@ -37,10 +37,10 @@
                     {% include 'partial/dua-slider-one-screen.html.twig' %}
                 {% endif %}
             </div>
-            
+
             <!-- message info slider -->
             <div class="message-info-slider display-none">
-                <div class="slider">
+                <div class="slider" style="font-size: 12px">
                     <ul></ul>
                 </div>
             </div>
@@ -139,11 +139,7 @@
                 </div>
 
                 <div class="footer">
-                    <div class="col-lg-1 text-center android-app visibilty-hidden">
-                        <span>App Android</span>
-                        <img class="app-qr-code" src="" />
-                    </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="site">{{site|raw}}</div>
                         <div class="assosciation">
                             {{ mosque.associationName }}
@@ -158,10 +154,8 @@
                             <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}" class="supportEmail">{{supportEmail}}</a>
                         </div>
                     </div>
-                    <div class="col-lg-1 version-parent">
-                        <span class="version fr">v{{version}}</span>
-                    </div>
                 </div>
+                <div class="version">v{{version}}</div>
             </div>
         </div>
 
