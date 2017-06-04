@@ -97,7 +97,7 @@ class MessageController extends Controller {
     }
 
     /**
-     * @Route("/delete/{id}", name="message_delete")
+     * @Route("/message/delete/{id}", name="message_delete")
      */
     public function deleteAction(Request $request, Message $message) {
         $user = $this->getUser();
