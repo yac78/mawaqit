@@ -8,7 +8,7 @@ use AppBundle\Entity\Mosque;
 class VichImageHandling {
 
     const MOSQUE_IMAGE_WIDTH = 1280;
-    const MOSQUE_IMAGE_HEIGHT = 720;
+    const MOSQUE_IMAGE_HEIGHT = 840;
 
 
     public function resizeImage(Event $event) {
