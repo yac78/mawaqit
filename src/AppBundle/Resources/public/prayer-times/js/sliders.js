@@ -57,7 +57,7 @@ var douaaSlider = {
                     // show messages if exist
                     messageInfoSlider.show();
                 }, douaaSlider.getTimeForShow());
-            },prayer.oneSecond);
+            }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
         }
     },
     /**
