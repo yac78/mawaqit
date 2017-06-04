@@ -123,6 +123,11 @@ configuration:
 
 security:
     login:
+        info:
+            title: 3 étapes pour créer votre écran d'horaires de prière
+            step1: Inscrivez-vous
+            step2: Créez et configurez votre mosquée
+            step3: Mettez le lien généré dans le navigarteur du raspberry
         authenticate_you: Identifiez-vous
 
 admin_title: Horaires de prière - administration        

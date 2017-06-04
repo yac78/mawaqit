@@ -2,6 +2,30 @@
 
 {% block body %}
     {% block fos_user_content %}
-        {{ include('@FOSUser/Security/login_content.html.twig') }}
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="alert alert-info">
+                    <h4>{{'security.login.info.title'|trans}}</h4>
+                    <ul>
+                        <li>
+                            {{'security.login.info.step1'|trans}}
+                        </li>
+                        <li>
+                            {{'security.login.info.step2'|trans}}
+                        </li>
+                        <li>
+                            {{'security.login.info.step3'|trans}}
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                {{ include('@FOSUser/Security/login_content.html.twig') }}
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
     {% endblock fos_user_content %}
 {% endblock %}
