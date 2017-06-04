@@ -4,7 +4,7 @@
  * @type {Object}
  */
 var douaaSlider = {
-    oneDouaaShowingTime: 45000,
+    oneDouaaShowingTime: 15000,
     /**
      * it saves html (ul,li)
      * @type String
@@ -83,7 +83,7 @@ var douaaSlider = {
  * @type {Object}
  */
 var messageInfoSlider = {
-    oneMessageShowingTime: 20000,
+    oneMessageShowingTime: 30000,
     /**
      * it saves html (ul,li)
      * @type String
