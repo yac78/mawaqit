@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Entity\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +28,7 @@ class MessageType extends AbstractType {
                     'label' => 'content',
                     'attr' => [
                         'placeholder' => 'message.form.content.placeholder',
-                        'maxlength' => "160",
+                        'maxlength' => "200",
                         'rows' => "6"
                     ],
                 ])
