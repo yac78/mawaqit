@@ -121,6 +121,7 @@ var messageInfoSlider = {
                                 $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                 });
+                                messageInfoSlider.messageInfoIshowing = false;
                             }, messageInfoSlider.oneMessageShowingTime);
                         }
 
@@ -132,13 +133,13 @@ var messageInfoSlider = {
                                 $(".message-info-slider li:eq(0)").hide(1000, function () {
                                     $(".message-info-slider li:eq(1)").show(1000);
                                 });
-
                             }, messageInfoSlider.oneMessageShowingTime);
 
                             setTimeout(function () {
                                 $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                 });
+                                messageInfoSlider.messageInfoIshowing = false;
                             }, messageInfoSlider.oneMessageShowingTime * 2);
                         }
 
@@ -162,7 +163,7 @@ var messageInfoSlider = {
                                     $(".desktop .main").fadeIn(1000);
                                     $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
                                 });
-
+                                messageInfoSlider.messageInfoIshowing = false;
                             }, (items.length * messageInfoSlider.oneMessageShowingTime) - 1000);
                         }
                     }
@@ -178,5 +179,23 @@ var messageInfoSlider = {
             $('.message-info-slider .slider ul li:first-child').appendTo('.message-info-slider .slider ul');
             $('.message-info-slider .slider ul').css('left', '');
         });
-    }
+    },
+    messageInfoIshowing: false,
+    /**
+     * Cron handling message info showing
+     * 5 before every adhan the messages will be shown
+     */
+    initCronMessageInfo: function () {
+        setInterval(function () {
+            if (messageInfoSlider.messageInfoIshowing === false) {
+                $(prayer.getTimes()).each(function (i, time) {
+                    var diffTimeInMiniute = Math.floor((new Date() - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
+                    if (diffTimeInMiniute === -5) {
+                        messageInfoSlider.messageInfoIshowing = true;
+                        messageInfoSlider.show();
+                    }
+                });
+            }
+        }, prayer.oneMinute);
+    },
 };

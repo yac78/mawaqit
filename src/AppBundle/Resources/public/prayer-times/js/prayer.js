@@ -1,5 +1,6 @@
 /* global dateTime */
 /* global douaaSlider */
+/* global messageInfoSlider */
 
 /**
  * Class handling prayers 
@@ -53,6 +54,7 @@ var prayer = {
         this.initUpdateConfData();
         this.hideSpinner();
         douaaSlider.init();
+        messageInfoSlider.initCronMessageInfo();
     },
     /**
      * load all data
