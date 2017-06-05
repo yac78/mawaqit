@@ -99,6 +99,7 @@ var messageInfoSlider = {
                 url: "get-messages",
                 success: function (data) {
                     if (data.length > 0) {
+                        messageInfoSlider.messageInfoIsShowing = true;
                         var items = [];
                         $.each(data, function (i, message) {
                             items.push('<li>'
@@ -121,7 +122,7 @@ var messageInfoSlider = {
                                 $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                 });
-                                messageInfoSlider.messageInfoIshowing = false;
+                                messageInfoSlider.messageInfoIsShowing = false;
                             }, messageInfoSlider.oneMessageShowingTime);
                         }
 
@@ -139,7 +140,7 @@ var messageInfoSlider = {
                                 $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
                                 });
-                                messageInfoSlider.messageInfoIshowing = false;
+                                messageInfoSlider.messageInfoIsShowing = false;
                             }, messageInfoSlider.oneMessageShowingTime * 2);
                         }
 
@@ -163,7 +164,7 @@ var messageInfoSlider = {
                                     $(".desktop .main").fadeIn(1000);
                                     $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
                                 });
-                                messageInfoSlider.messageInfoIshowing = false;
+                                messageInfoSlider.messageInfoIsShowing = false;
                             }, (items.length * messageInfoSlider.oneMessageShowingTime) - 1000);
                         }
                     }
@@ -180,18 +181,17 @@ var messageInfoSlider = {
             $('.message-info-slider .slider ul').css('left', '');
         });
     },
-    messageInfoIshowing: false,
+    messageInfoIsShowing: false,
     /**
      * Cron handling message info showing
      * 5 before every adhan the messages will be shown
      */
     initCronMessageInfo: function () {
         setInterval(function () {
-            if (messageInfoSlider.messageInfoIshowing === false) {
+            if (messageInfoSlider.messageInfoIsShowing === false) {
                 $(prayer.getTimes()).each(function (i, time) {
                     var diffTimeInMiniute = Math.floor((new Date() - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
                     if (diffTimeInMiniute === -5) {
-                        messageInfoSlider.messageInfoIshowing = true;
                         messageInfoSlider.show();
                     }
                 });
