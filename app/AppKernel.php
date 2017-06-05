@@ -18,6 +18,7 @@ class AppKernel extends Kernel {
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new AppBundle\AppBundle(),
         ];
 

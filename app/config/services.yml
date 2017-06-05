@@ -39,6 +39,13 @@ services:
             - "@mailer"
             - ["%no_replay_address%", "%no_replay_name%"]
             
+    app.user_service:
+        class: AppBundle\Service\UserService
+        arguments:
+            - "@mailer"
+            - ["%no_replay_address%", "%no_replay_name%"]
+            - "@doctrine.orm.entity_manager"
+            
     # Forms
     app.form_configuration:
         class: AppBundle\Form\ConfigurationType

@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\EmailType;
 
 /**
  * @Route("/{_locale}/admin/user", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
@@ -64,6 +65,28 @@ class UserController extends Controller {
         $em->persist($user);
         $em->flush();
         return new Response();
+    }
+    
+    /**
+     * send email to all users
+     * @Route("/send-email", name="users_send_email")
+     */
+    public function sendEmailAction(Request $request) {
+
+        $form = $this->createForm(EmailType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->get("app.user_service")->sendEmailToAllUsers($form->getData());
+            $this->addFlash('success', $this->get("translator")->trans("email.send.success"));
+
+            return $this->redirectToRoute('user_index');
+        }
+
+        return $this->render('user/send_email.html.twig', [
+                    'form' => $form->createView(),
+        ]);
     }
 
 }

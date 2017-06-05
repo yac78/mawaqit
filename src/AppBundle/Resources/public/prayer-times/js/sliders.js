@@ -4,7 +4,7 @@
  * @type {Object}
  */
 var douaaSlider = {
-    oneDouaaShowingTime: 15000,
+    oneDouaaShowingTime: 20000,
     /**
      * it saves html (ul,li)
      * @type String
@@ -114,6 +114,8 @@ var messageInfoSlider = {
                             $(".message-info-slider").fadeIn(1000);
                         });
 
+                        var screenWidth = $(window).width();
+                        $('.message-info-slider .slider ul li').width(screenWidth);
                         if (data.length === 1) {
                             setTimeout(function () {
                                 $(".message-info-slider").fadeOut(1000, function () {
@@ -125,14 +127,14 @@ var messageInfoSlider = {
                         if (data.length === 2) {
                             $(".message-info-slider li").hide();
                             $(".message-info-slider li:eq(0)").show();
-                            
+
                             setTimeout(function () {
                                 $(".message-info-slider li:eq(0)").hide(1000, function () {
                                     $(".message-info-slider li:eq(1)").show(1000);
                                 });
-                                
+
                             }, messageInfoSlider.oneMessageShowingTime);
-                            
+
                             setTimeout(function () {
                                 $(".message-info-slider").fadeOut(1000, function () {
                                     $(".desktop .main").fadeIn(1000);
@@ -141,8 +143,6 @@ var messageInfoSlider = {
                         }
 
                         if (data.length > 2) {
-                            var screenWidth = $(window).width();
-                            $('.message-info-slider .slider ul li').width(screenWidth);
                             var slideCount = items.length;
                             var sliderUlWidth = slideCount * screenWidth;
                             $('.message-info-slider .slider').css({width: screenWidth});
@@ -168,7 +168,7 @@ var messageInfoSlider = {
                     }
                 }
             });
-        }, 10 * prayer.oneSecond);
+        }, 5 * prayer.oneSecond);
     },
     moveRight: function () {
         var screenWidth = $(window).width();

@@ -142,7 +142,6 @@ zipcode: Code postal
 country: Pays
 rib: RIB
 save: Sauvegarder
-email: Adresse mail
 name: Nom
 association_name: Nom de l'association
 prayer_sites: Urls de l'écran des horaires
@@ -157,6 +156,13 @@ ar: عربي
 fr: Français
 en: English   
 enabled: Activé
+send: Envoyer
+
+email:
+    text: Adresse mail
+    send:        
+        action: Envoyer un mail
+        success: Email envoyé avec succès
         
         
 ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
