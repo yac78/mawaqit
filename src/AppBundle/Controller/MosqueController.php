@@ -18,8 +18,7 @@ class MosqueController extends Controller {
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueDeprectedAction(Request $request, Mosque $mosque) {
-
-        return $this->forward("AppBundle:Mosque:mosque", ["mosque" => $mosque]);
+        return $this->redirectToRoute("mosque", ["slug" => $mosque->getSlug()]);
     }
 
     /**
