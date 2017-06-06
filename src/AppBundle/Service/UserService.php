@@ -43,7 +43,7 @@ class UserService {
         $message = $this->mailer->createMessage();
         $message->setSubject($subject)
                 ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
-                ->setTo(array_map('current',$usersEmail))
+                ->setBcc(array_map('current',$usersEmail))
                 ->setBody($body, 'text/html');
         $this->mailer->send($message);
     }
