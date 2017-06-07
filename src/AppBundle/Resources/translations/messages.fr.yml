@@ -44,7 +44,7 @@ message:
     add: Ajout d'un message
     edit: Édition du message %title%
     manage: Gérer les messages
-    info: Les messages seront affichés sur l'écran, après les invocations post prière.
+    info: Les messages défileront  sur l'écran, avant et après chaque prière.
     form:
         title: 
             placeholder : Ex. Cours de coran
