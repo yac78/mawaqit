@@ -82,6 +82,7 @@ class ConfigurationType extends AbstractType {
                     'sub_options' => [
                         'type' => IntegerType::class,
                         'attr' => [
+                            'required' => true,
                             'min' => 0
                         ]
                     ]
@@ -110,6 +111,7 @@ class ConfigurationType extends AbstractType {
                     'sub_options' => [
                         'type' => IntegerType::class,
                         'attr' => [
+                            'required' => true,
                             'min' => 5
                         ]
                     ]

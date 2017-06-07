@@ -5,17 +5,17 @@ parameters:
     database_user: root
     database_password: ~
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_port: ~
-    mailer_user: ~
+    mailer_host: SSL0.OVH.NET
+    mailer_port: 587
+    mailer_user: %supportEmail%
     mailer_password: ~
     secret: ThisTokenIsNotSoSecretChangeIt
     languages: [fr, ar, en]
     version: 3.0.0
     supportTel: '+33629111641'
-    supportEmail: %supportTel%
+    supportEmail: contat@horaires-de-priere.fr
 
-    no_replay_address : no-replay@binary-consulting.fr
+    no_replay_address : %supportEmail%
     no_replay_name : Horaires de prière
 
     # Google API
