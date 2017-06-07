@@ -186,7 +186,6 @@ isha: '`Isha'
 jumua: 'Jumu`a'
 aid: 'Salat El `Aïd'
 imsak: Imsak
-support: Support
 iqama: El Iqâma
 azan: El Adhân
 
@@ -202,6 +201,7 @@ changing_password: Modifier votre mot de passe
 add: Ajouter
 title: Titre
 content: Contenu
+developed_by: Développé par Binary consulting SAS
 
 january: Janvier
 february: Février

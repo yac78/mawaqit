@@ -132,3 +132,12 @@ body {
 .display-none {
     display: none;
 }
+
+.support{
+    margin-top: 20px;
+    font-size: 90%;
+    color: gray;
+}
+.support a {
+    color: gray !important;
+}
