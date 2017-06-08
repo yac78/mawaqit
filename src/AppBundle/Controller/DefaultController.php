@@ -45,7 +45,7 @@ class DefaultController extends Controller {
         $phone = strip_tags(htmlspecialchars($params['phone']));
         $message = strip_tags(htmlspecialchars($params['message']));
 
-        $to = 'horaires-priere@binary-consulting.fr';
+        $to = $this->getParameter('supportEmail');
         $emailSubject = "Contact depuis le site web";
         $emailBody = "Email envoyé depuis le site internet.<br><br>"
                 . "Voici le détail:<br><br>Nom: $name<br><br>"
