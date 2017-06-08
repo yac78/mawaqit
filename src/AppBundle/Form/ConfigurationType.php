@@ -18,6 +18,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use AppBundle\Service\GoogleService;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ConfigurationType extends AbstractType {
 
@@ -80,20 +81,23 @@ class ConfigurationType extends AbstractType {
                 ->add('waitingTimes', PrayerType::class, [
                     'label' => 'configuration.form.waitingTimes.label',
                     'sub_options' => [
+                        'required' => true,
                         'type' => IntegerType::class,
+                        'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                         'attr' => [
-                            'required' => true,
                             'min' => 0
                         ]
                     ]
                 ])
                 ->add('adjustedTimes', PrayerType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.adjustedTimes.label',
                     'sub_options' => [
                         'type' => IntegerType::class
                     ]
                 ])
                 ->add('fixedTimes', PrayerType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.fixedTimes.label',
                     'sub_options' => [
                         'type' => TextType::class,
@@ -110,8 +114,9 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.duaAfterPrayerShowTimes.label',
                     'sub_options' => [
                         'type' => IntegerType::class,
+                        'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
+                        'required' => true,
                         'attr' => [
-                            'required' => true,
                             'min' => 5
                         ]
                     ]
@@ -120,31 +125,38 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.hijriAdjustment.label'
                 ])
                 ->add('hijriDateEnabled', CheckboxType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.hijriDateEnabled.label',
                 ])
                 ->add('duaAfterAzanEnabled', CheckboxType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.duaAfterAzanEnabled.label',
                 ])
                 ->add('duaAfterPrayerEnabled', CheckboxType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.duaAfterPrayerEnabled.label',
                 ])
                 ->add('sourceCalcul', ChoiceType::class, [
+                    'required' => true,
                     'label' => 'configuration.form.sourceCalcul.label',
                     'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
                 ])
                 ->add('prayerMethod', ChoiceType::class, [
+                    'required' => true,
                     'label' => 'configuration.form.prayerMethod.label',
                     'choice_translation_domain' => true,
                     'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
                 ])
                 ->add('fajrDegree', IntegerType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.fajrDegree.label',
                     'attr' => [
                         'placeholder' => 'configuration.form.fajrDegree.placeholder'
                     ]
                 ])
                 ->add('ishaDegree', IntegerType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.ishaDegree.label',
                     'attr' => [
                         'placeholder' => 'configuration.form.ishaDegree.placeholder'
@@ -157,6 +169,7 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.azanDuaDisplayTime.label',
                 ])
                 ->add('smallScreen', CheckboxType::class, [
+                    'required' => false,
                     'label' => 'configuration.form.smallScreen.label',
                 ])
                 ->add('backgroundColor', null, [
@@ -208,8 +221,7 @@ class ConfigurationType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => Configuration::class,
-            'allow_extra_fields' => true,
-            'required' => false
+            'allow_extra_fields' => true
         ));
     }
 

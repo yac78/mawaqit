@@ -91,9 +91,9 @@ configuration:
         hijriAdjustment: 
             label: Ajustement de la date hégire
         iqamaDisplayTime: 
-            label: Tems d'affichage du signal iqama (en secondes)
+            label: Temps d'affichage du signal iqama (en secondes)
         azanDuaDisplayTime: 
-            label: Tems d'affichage du du`aa entre adhan et iqama (en secondes)
+            label: Temps d'affichage du du`aa entre adhan et iqama (en secondes)
         hijriDateEnabled: 
             label: Activer la date hégire
         duaAfterAzanEnabled: 
@@ -157,6 +157,7 @@ fr: Français
 en: English   
 enabled: Activé
 send: Envoyer
+required: Champ obligatoire
 
 email:
     text: Adresse mail
@@ -201,7 +202,7 @@ changing_password: Modifier votre mot de passe
 add: Ajouter
 title: Titre
 content: Contenu
-developed_by: Développé par Binary consulting SAS
+developed_by: Développé par Binary Consulting SAS
 
 january: Janvier
 february: Février
