@@ -91,7 +91,7 @@ var prayer = {
                     }
                 }
             });
-        }, prayer.oneSecond * 5);
+        }, prayer.oneSecond * 30);
     },
     /**
      * load prayer times

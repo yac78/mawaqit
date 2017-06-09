@@ -74,20 +74,25 @@ configuration:
             placeholder: Veuillez choisir une méthode de calcul
         jumuaTime:
             label: Heure du jumu`a
+            title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 12:15 en hiver et 13h:15 en été
         aidTime:
-            label: Heure du aid
+            label: Heure du aïd
+            title: Si cette valeur est renseignée elle remplacera l'heure du shuruk, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
         adjustedTimes: 
             label: Ajustement des horaires
         maximumIshaTimeForNoWaiting: 
-            label: heure maximale du `isha (attente iqama = 0 minute) 
+            label: Heure du `isha (Iqama tout de suite après adhan) 
+            title: Si cette valeur est renseignée le temps d'attente entre adhan et iqama sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhan
         imsakNbMinBeforeFajr: 
-            label: Nombre de minute avant sobh pour l'imsak 
+            label: Afficher l'imsak (nombre de minute avant fajr)
+            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souaité, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
         waitingTimes: 
             label: Temps d'attente entre adhan et iqama
         fixedTimes: 
             label: Fixation des horaires
         duaAfterPrayerShowTimes: 
             label: Temps avant affichage des invocations post prière (en minute)
+            title: Ces valeurs sont à titre estimatif, ça permet d'afficher les invocations après que l'imam termine la prière
         hijriAdjustment: 
             label: Ajustement de la date hégire
         iqamaDisplayTime: 
@@ -102,6 +107,7 @@ configuration:
             label: Activer les invocations après salat
         smallScreen: 
             label: Petit écran ?
+            title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
         backgroundColor: 
             label: Couleur de fond
         fajrDegree: 
@@ -113,7 +119,7 @@ configuration:
         calendar_explication: |
             Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
             Le fichier CSV doit respécter le format suivant : <br><br>
-            Day,Sobh,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
+            Day,Fajr,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
             01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
             02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
             03,06:49,08:44,12:56,14:49,17:10,18:49 <br>
@@ -185,7 +191,7 @@ asr: '`Asr'
 maghrib: Maghrib
 isha: '`Isha'
 jumua: 'Jumu`a'
-aid: 'Salat El `Aïd'
+aid: 'Salat el `Aïd'
 imsak: Imsak
 iqama: El Iqâma
 azan: El Adhân

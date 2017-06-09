@@ -48,6 +48,7 @@ class ConfigurationType extends AbstractType {
                 ->add('jumuaTime', null, [
                     'label' => 'configuration.form.jumuaTime.label',
                     'attr' => [
+                        'title' => $this->translator->trans('configuration.form.jumuaTime.title'),
                         'placeholder' => 'hh:mm',
                         'pattern' => '\d{2}:\d{2}',
                         'maxlength' => 5,
@@ -58,6 +59,7 @@ class ConfigurationType extends AbstractType {
                 ->add('aidTime', null, [
                     'label' => 'configuration.form.aidTime.label',
                     'attr' => [
+                        'title' => $this->translator->trans('configuration.form.aidTime.title'),
                         'placeholder' => 'hh:mm',
                         'pattern' => '\d{2}:\d{2}',
                         'maxlength' => '5',
@@ -66,12 +68,17 @@ class ConfigurationType extends AbstractType {
                     ]
                 ])
                 ->add('imsakNbMinBeforeFajr', IntegerType::class, [
-                    'label' => 'configuration.form.imsakNbMinBeforeFajr.label'
+                    'label' => 'configuration.form.imsakNbMinBeforeFajr.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.imsakNbMinBeforeFajr.title'),
+                        'min' => 0
+                    ]
                 ])
                 ->add('maximumIshaTimeForNoWaiting', null, [
                     'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
                     'attr' => [
-                        'placeholder' => 'hh:mm',
+                        'title' => $this->translator->trans('configuration.form.maximumIshaTimeForNoWaiting.title'),
+                        'placeholder' => 'hh:mm ex: 22:30',
                         'pattern' => '\d{2}:\d{2}',
                         'maxlength' => '5',
                         'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
@@ -90,8 +97,9 @@ class ConfigurationType extends AbstractType {
                     ]
                 ])
                 ->add('adjustedTimes', PrayerType::class, [
-                    'required' => false,
+                    'required' => true,
                     'label' => 'configuration.form.adjustedTimes.label',
+                    'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                     'sub_options' => [
                         'type' => IntegerType::class
                     ]
@@ -119,7 +127,10 @@ class ConfigurationType extends AbstractType {
                         'attr' => [
                             'min' => 5
                         ]
-                    ]
+                    ],
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.duaAfterPrayerShowTimes.title'),
+                    ],
                 ])
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment.label'
@@ -171,6 +182,10 @@ class ConfigurationType extends AbstractType {
                 ->add('smallScreen', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.smallScreen.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.smallScreen.title'),
+                        'placeholder' => 'configuration.form.ishaDegree.placeholder'
+                    ]
                 ])
                 ->add('backgroundColor', null, [
                     'label' => 'configuration.form.backgroundColor.label',

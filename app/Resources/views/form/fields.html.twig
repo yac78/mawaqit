@@ -6,4 +6,8 @@
     {% if required %}
         <span style="color: red" title="{{'required'|trans}}">*</span>
     {% endif %}
+
+    {% if attr.title is defined and  attr.title is not empty %}
+        <span class="fa fa-question-circle" title="{{attr.title}}"></span>
+    {% endif %}
 {% endblock %}

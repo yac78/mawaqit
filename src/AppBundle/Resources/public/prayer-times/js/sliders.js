@@ -184,17 +184,28 @@ var messageInfoSlider = {
     messageInfoIsShowing: false,
     /**
      * Cron handling message info showing
-     * 5 before every adhan the messages will be shown
+     * The messages will be shown
+     *  - 5 before every adhan 
+     *  - 5 before jumu`a
      */
     initCronMessageInfo: function () {
         setInterval(function () {
             if (messageInfoSlider.messageInfoIsShowing === false) {
+                var date = new Date();
+                var diffTimeInMiniute;
                 $(prayer.getTimes()).each(function (i, time) {
-                    var diffTimeInMiniute = Math.floor((new Date() - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
+                    diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
                     if (diffTimeInMiniute === -5) {
                         messageInfoSlider.show();
                     }
                 });
+
+                if (date.getDay() === 5) {
+                    diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(prayer.getJoumouaaTime())) / prayer.oneMinute);
+                    if (diffTimeInMiniute === -5) {
+                        messageInfoSlider.show();
+                    }
+                }
             }
         }, prayer.oneMinute);
     },
