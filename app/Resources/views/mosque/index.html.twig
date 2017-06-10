@@ -31,7 +31,10 @@
             <a href="{{path('mosque_create')}}" class="btn btn-primary">{{'mosque.add_new'|trans}}</a>
         </div>
     </div>
-    <br>
+        
+    <div class="navigation text-center">
+        {{ knp_pagination_render(mosques) }}
+    </div>
 
     <table class="table table-inverse hidden-xs hidden-sm">
         <thead>

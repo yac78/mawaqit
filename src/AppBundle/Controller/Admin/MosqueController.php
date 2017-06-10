@@ -32,7 +32,7 @@ class MosqueController extends Controller {
         $qb = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user, $search);
 
         $paginator = $this->get('knp_paginator');
-        $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
+        $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 5);
 
         return $this->render('mosque/index.html.twig', [
                     "mosques" => $mosques,
