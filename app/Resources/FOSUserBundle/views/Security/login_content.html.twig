@@ -1,11 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<form action="{{ path("fos_user_security_check") }}" method="post" style="margin: auto; width: 350px">
+<form action="{{ path("fos_user_security_check") }}" method="post" style="margin: auto;">
     <h2 class="form-signin-heading">{{ 'security.login.authenticate_you'|trans({}, 'messages') }}</h2>
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
 
-    <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control"  placeholder="{{ 'security.login.username'|trans }}" required autofocus />
+    <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control"  placeholder="{{ 'form.email'|trans }}" required autofocus />
     <br>
     <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" class="form-control"  required />
 
