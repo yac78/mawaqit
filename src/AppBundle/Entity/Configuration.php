@@ -99,7 +99,7 @@ class Configuration {
     /**
      * @var bool
      */
-    private $androidAppEnabled = false;
+     private $urlQrCodeEnabled = true;
 
     /**
      * @var string
@@ -462,25 +462,25 @@ class Configuration {
     }
 
     /**
-     * Set androidAppEnabled
+     * Set urlQrCodeEnabled
      *
-     * @param boolean $androidAppEnabled
+     * @param boolean $urlQrCodeEnabled
      *
      * @return Configuration
      */
-    public function setAndroidAppEnabled($androidAppEnabled) {
-        $this->androidAppEnabled = $androidAppEnabled;
+    public function setUrlQrCodeEnabled($urlQrCodeEnabled) {
+        $this->urlQrCodeEnabled = $urlQrCodeEnabled;
 
         return $this;
     }
 
     /**
-     * Get androidAppEnabled
+     * Get urlQrCodeEnabled
      *
      * @return bool
      */
-    public function getAndroidAppEnabled() {
-        return $this->androidAppEnabled;
+    public function getUrlQrCodeEnabled() {
+        return $this->urlQrCodeEnabled;
     }
 
     /**
@@ -823,7 +823,6 @@ class Configuration {
             "joumouaaTime" => $this->getJumuaTime(),
             "aidTime" => $this->getAidTime(),
             "imsakNbMinBeforeSobh" => $this->getImsakNbMinBeforeFajr(),
-            "minimumIchaTime" => $this->getFixedTimes()[4],
             "maximumIchaTimeForNoWaiting" => $this->getMaximumIshaTimeForNoWaiting(),
             "prayersWaitingTimes" => $this->getWaitingTimes(),
             "duaAfterPrayerShowTimes" => $this->getDuaAfterPrayerShowTimes(),
@@ -833,9 +832,7 @@ class Configuration {
             "hijriDateEnabled" => $this->getHijriDateEnabled(),
             "douaaAfterAdhanEnabled" => $this->getDuaAfterAzanEnabled(),
             "douaaAfterPrayerEnabled" => $this->getDuaAfterPrayerEnabled(),
-            "androidAppEnabled" => false,
             "calculChoice" => $this->getSourceCalcul(),
-            "city" => "null",
             "prayerMethod" => $this->getPrayerMethod(),
             "latitude" => $this->getLatitude(),
             "longitude" => $this->getLongitude(),

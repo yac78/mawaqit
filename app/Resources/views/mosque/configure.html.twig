@@ -212,7 +212,7 @@
                 {{ form_row(form.fixedTimes.isha) }}
             </div> 
         </div> 
-            
+
         <div class="row">
             <div class="col-md-12">
                 {{ form_label(form.duaAfterPrayerShowTimes) }}
@@ -233,7 +233,7 @@
                 {{ form_row(form.duaAfterPrayerShowTimes.isha) }}
             </div> 
         </div> 
-            
+
         <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.hijriAdjustment) }}
@@ -249,21 +249,25 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{ form_widget(form.hijriDateEnabled) }}
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{ form_widget(form.duaAfterAzanEnabled) }}
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{ form_widget(form.duaAfterPrayerEnabled) }}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{ form_widget(form.smallScreen) }}
             </div>
+            <div class="col-md-4">
+                {{ form_widget(form.urlQrCodeEnabled) }}
+            </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-2">
                 {{ form_label(form.backgroundColor) }}

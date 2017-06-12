@@ -108,6 +108,8 @@ configuration:
         smallScreen: 
             label: Petit écran ?
             title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
+        urlQrCodeEnabled: 
+            label: Activer le QR code pour le lien du site
         backgroundColor: 
             label: Couleur de fond
         fajrDegree: 

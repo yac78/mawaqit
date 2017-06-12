@@ -42,7 +42,7 @@ AppBundle\Entity\Configuration:
             type: boolean
         duaAfterPrayerEnabled:
             type: boolean
-        androidAppEnabled:
+        urlQrCodeEnabled:
             type: boolean
         sourceCalcul:
             type: string

@@ -179,12 +179,18 @@ class ConfigurationType extends AbstractType {
                 ->add('azanDuaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.azanDuaDisplayTime.label',
                 ])
+                ->add('urlQrCodeEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.urlQrCodeEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.urlQrCodeEnabled.title'),
+                    ]
+                ])
                 ->add('smallScreen', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.smallScreen.label',
                     'attr' => [
                         'title' => $this->translator->trans('configuration.form.smallScreen.title'),
-                        'placeholder' => 'configuration.form.ishaDegree.placeholder'
                     ]
                 ])
                 ->add('backgroundColor', null, [
