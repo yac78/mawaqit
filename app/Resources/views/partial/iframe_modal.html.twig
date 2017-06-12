@@ -1,0 +1,27 @@
+<div class="modal fade" id="iframe-modal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>{{'iframe_add_title'|trans}}</h4>
+            </div>
+            <div class="modal-body">
+                {{'iframe_copy_text'|trans}} <br>  <br>
+
+                <div id="iframe-text"></div><br>
+                <div id="iframe-html" class="text-center" ></div>
+            </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{'close'|trans}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    {% javascripts
+       '@AppBundle/Resources/public/js/iframe_modal.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}    
+{% endblock %} 

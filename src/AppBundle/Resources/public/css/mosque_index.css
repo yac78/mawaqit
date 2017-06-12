@@ -45,3 +45,10 @@
     left: initial;
     font-size: 14px;
 }
+.iframe-button{
+    cursor: pointer;
+}
+
+#iframe-text{
+    color: #005fb3;
+}

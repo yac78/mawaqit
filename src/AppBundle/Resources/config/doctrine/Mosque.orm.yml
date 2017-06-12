@@ -22,8 +22,7 @@ AppBundle\Entity\Mosque:
             unique: true
             gedmo:
                 slug:
-                  separator: "-"
-                  updatable: true
+                  updatable: false
                   fields:
                     - name    
                     - city    

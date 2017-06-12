@@ -164,6 +164,11 @@ en: English
 enabled: Activé
 send: Envoyer
 required: Champ obligatoire
+close: Fermer
+iframe_copy_text: Pour afficher le widget ci-dessous dans votre site il suffit de copiez/collez ce code html
+iframe_add_title: Ajouter le widget à votre site
+widget_for_your_site: Widget pour votre site
+show: voir
 
 email:
     text: Adresse mail

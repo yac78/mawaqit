@@ -31,7 +31,7 @@
             <a href="{{path('mosque_create')}}" class="btn btn-primary">{{'mosque.add_new'|trans}}</a>
         </div>
     </div>
-        
+
     <div class="navigation text-center">
         {{ knp_pagination_render(mosques) }}
     </div>
@@ -70,6 +70,8 @@
                             {% for lang in languages %}
                                 <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
                             {% endfor %}
+                            
+                            {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
                         {% else %}
                             <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
                         {% endif %}
@@ -133,6 +135,7 @@
     </div>
 
     {% include 'partial/delete_modal.html.twig' with {path: 'mosque_delete'} %}
+    {% include 'partial/iframe_modal.html.twig' %}
 
     <div class="navigation text-center">
         {{ knp_pagination_render(mosques) }}
