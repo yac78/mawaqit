@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManager;
 
 class UserService {
 
+    const SIGNATURE = "Fraternellement<br>L'équipe horaires-de-priere.fr";
+    
     /**
      * @var \Swift_Mailer 
      */
@@ -33,7 +35,7 @@ class UserService {
      */
     function sendEmailToAllUsers($data) {
         $subject = $data["subject"];
-        $body = $data["content"];
+        $body = $data["content"] . self::SIGNATURE;
         $usersEmail = $this->em->createQueryBuilder()
                 ->from("AppBundle:User", "u")
                 ->select("u.email")
