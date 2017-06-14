@@ -57,8 +57,8 @@ configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
     list:
         conf_not_completed: |
-            Votre mosquée est crée mais les horaires de prière ne sont pas encore configurées
-            <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite
+            Votre mosquée est ajoutée, en revanche les horaires de prière ne sont pas encore configurées
+            <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite.
     form: 
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
@@ -169,8 +169,9 @@ required: Champ obligatoire
 close: Fermer
 iframe_copy_text: Pour afficher le widget ci-dessous dans votre site il suffit de copiez/collez ce code html
 iframe_add_title: Ajouter le widget à votre site
-widget_for_your_site: Widget pour votre site
+widget_for_your_site: Widget pour votre site internet
 show: voir
+links: Liens
 
 email:
     text: Adresse mail

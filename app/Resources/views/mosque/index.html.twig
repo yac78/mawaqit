@@ -70,7 +70,7 @@
                             {% for lang in languages %}
                                 <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
                             {% endfor %}
-                            
+
                             {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
                         {% else %}
                             <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
@@ -109,14 +109,18 @@
                     <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a><br>
 
                     {% if confCompleted %}
-                        <strong>Urls</strong>: 
+                        <strong>{{'links'|trans}}</strong>: 
                         {% for lang in languages %}
                             <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{lang|trans}}</a>{{loop.last ? '' : ' | '}}
-                        {% endfor %}
+                        {% endfor %}    
+                        <div>
+                            {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
+                        </div>
                     {% else %}
-                        <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
+                        <div>
+                            <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
+                        </div>
                     {% endif %}
-                    <br>
 
                     {% if is_granted('ROLE_ADMIN') %}
                         {{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a><br>
