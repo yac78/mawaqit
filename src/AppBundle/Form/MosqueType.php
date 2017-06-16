@@ -56,6 +56,10 @@ class MosqueType extends AbstractType {
                     'label' => 'email.text',
                     'required' => false,
                 ])
+                ->add('site', null, [
+                    'label' => 'site',
+                    'required' => false,
+                ])
                 ->add('address', null, [
                     'label' => 'address',
                 ])

@@ -33,6 +33,7 @@
     </div>
 
     {% if is_granted('ROLE_ADMIN') %}
+        <br>
         <div class="row alert alert-warning">
             <ul>
                 <div class="col-md-4">
@@ -84,7 +85,11 @@
                             {{mosque.city}} {{mosque.zipcode}}<br>
                             {{mosque.country}} <br>
                             <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
-                            <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
+                            {% if mosque.email %}
+                                <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
+                            {% else %}
+                                <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.user.email}}">{{mosque.user.email}}</a>
+                            {% endif %}
                         </td>
                         <td>
                             {% if confCompleted %}
@@ -128,7 +133,11 @@
                     {{mosque.city}} {{mosque.zipcode}}<br>
                     {{mosque.country}} <br>
                     <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
-                    <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a><br>
+                    {% if mosque.email %}
+                        <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
+                    {% else %}
+                        <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.user.email}}">{{mosque.user.email}}</a>
+                    {% endif %}
 
                     {% if confCompleted %}
                         <strong>{{'links'|trans}}</strong>: 

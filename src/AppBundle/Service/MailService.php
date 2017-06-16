@@ -28,7 +28,7 @@ class MailService {
      */
     function mosqueCreated(Mosque $mosque, $body) {
         $message = $this->mailer->createMessage();
-        $message->setSubject('Mosquée crée')
+        $message->setSubject('Mosquée créée')
                 ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
                 ->setTo([$this->emailFrom[0] => $this->emailFrom[1]])
                 ->setBody($body, 'text/html');

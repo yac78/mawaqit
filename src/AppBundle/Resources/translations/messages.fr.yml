@@ -172,7 +172,8 @@ iframe_add_title: Ajouter le widget à votre site
 widget_for_your_site: Widget pour votre site internet
 show: voir
 links: Liens
-
+site: Site internet
+    
 stats:
     title: Statistiques
     total: Mosquées
