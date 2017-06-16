@@ -107,6 +107,9 @@ class ConfigurationType extends AbstractType {
                 ->add('fixedTimes', PrayerType::class, [
                     'required' => false,
                     'label' => 'configuration.form.fixedTimes.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.fixedTimes.title')
+                    ],
                     'sub_options' => [
                         'type' => TextType::class,
                         'attr' => [
