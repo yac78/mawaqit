@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-
 /**
  * @Route("/admin/{_locale}/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
  */
@@ -29,15 +28,25 @@ class MosqueController extends Controller {
         $search = $request->query->get("search");
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $qb = $em->getRepository("AppBundle:Mosque")->getMosquesByUser($user, $search);
+        $mosqueRepository = $em->getRepository("AppBundle:Mosque");
+        $qb = $mosqueRepository->getMosquesByUser($user, $search);
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 5);
 
-        return $this->render('mosque/index.html.twig', [
-                    "mosques" => $mosques,
-                    "languages" => $this->getParameter('languages')
-        ]);
+        $renderArray = [
+            "mosques" => $mosques,
+            "languages" => $this->getParameter('languages')
+        ];
+
+        if ($user->isAdmin()) {
+            $renderArray["stats"] = [
+                'configured' => $mosqueRepository->getConfiguredMosquesCount(),
+                'autoCalcul' => $mosqueRepository->getApiCalculConfiguredMosquesCount(),
+            ];
+        }
+
+        return $this->render('mosque/index.html.twig', $renderArray);
     }
 
     /**
@@ -47,7 +56,7 @@ class MosqueController extends Controller {
     public function forceUpdateAllAction() {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $em->getRepository("AppBundle:Mosque")->forceYpdateAll();
+        $em->getRepository("AppBundle:Mosque")->forceUpdateAll();
         $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
         return $this->redirectToRoute('mosque_index');
     }

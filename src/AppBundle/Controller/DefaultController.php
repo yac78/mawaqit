@@ -18,7 +18,7 @@ class DefaultController extends Controller {
         $mosqueNb = $request->query->get("mosque_nb", 6);
 
         $em = $this->getDoctrine()->getManager();
-        $mosques = $em->getRepository("AppBundle:Mosque")->getConfiguredMosques($mosqueNb);
+        $mosques = $em->getRepository("AppBundle:Mosque")->getConfiguredMosquesWithImage($mosqueNb);
         return $this->render('default/index.html.twig', [
                     "mosques" => $mosques,
         ]);

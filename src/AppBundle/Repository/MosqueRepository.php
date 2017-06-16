@@ -3,7 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\User;
-use Doctrine\DBAL\Types\Type;
+use AppBundle\Entity\Configuration;
 
 /**
  * MosqueRepository
@@ -35,9 +35,25 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
             $qb->andWhere("m.user = :user_id")
                     ->setParameter(":user_id", $user->getId());
         }
-        
+
         $qb->orderBy("m.id", "ASC");
-        
+
+        return $qb;
+    }
+
+    /**
+     * get configured mosques 
+     * @param integer $nbMax
+     * @return array
+     */
+    private function getConfiguredMosquesQuery($nbMax = null) {
+        $qb = $this->createQueryBuilder("m")
+                ->innerJoin("m.configuration", "c")
+                ->orderBy("m.id", "ASC");
+
+        if (is_numeric($nbMax)) {
+            $qb->setMaxResults($nbMax);
+        }
         return $qb;
     }
 
@@ -46,22 +62,42 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
      * @param integer $nbMax
      * @return array
      */
-    function getConfiguredMosques($nbMax) {
-        $qb = $this->createQueryBuilder("m")
-                ->innerJoin("m.configuration", "c")
-                ->where("m.image1 IS NOT NULL");
+    function getConfiguredMosquesWithImage($nbMax = null) {
+        return $this->getConfiguredMosquesQuery($nbMax)
+                        ->where("m.image1 IS NOT NULL")
+                        ->getQuery()
+                        ->getResult();
+    }
 
-        if (is_numeric($nbMax)) {
-            $qb->setMaxResults($nbMax);
-        }
+    /**
+     * get configured mosques count
+     * @return integer
+     */
+    function getConfiguredMosquesCount() {
+        return $this->getConfiguredMosquesQuery()
+                        ->select("count(m.id)")
+                        ->getQuery()
+                        ->getSingleScalarResult();
+    }
 
-        return $qb->getQuery()->getResult();
+    /**
+     * get configured mosques with api calcul mode 
+     * @param integer $nbMax
+     * @return integer
+     */
+    function getApiCalculConfiguredMosquesCount() {
+        return $this->getConfiguredMosquesQuery()
+                        ->select("count(m.id)")
+                        ->where("c.sourceCalcul = :calcul")
+                        ->setParameter(":calcul", Configuration::SOURCE_API)
+                        ->getQuery()
+                        ->getSingleScalarResult();
     }
 
     /**
      * set updated to now for all mosques
      */
-    function forceYpdateAll() {
+    function forceUpdateAll() {
         $qb = $this->createQueryBuilder("m")
                 ->update()
                 ->set("m.updated", ":date")

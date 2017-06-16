@@ -173,6 +173,14 @@ widget_for_your_site: Widget pour votre site internet
 show: voir
 links: Liens
 
+stats:
+    title: Statistiques
+    total: Mosquées
+    total_configured: Mosquées configurées
+    total_not_configured: Mosquées non configurées
+    total_auto_calcul: Mosquées utilisant un calcul auto
+    total_auto_calendar: Mosquées utilisant un calcul calendrier
+
 email:
     text: Adresse mail
     send:        

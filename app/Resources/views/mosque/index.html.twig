@@ -32,68 +32,90 @@
         </div>
     </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="row alert alert-warning">
+            <ul>
+                <div class="col-md-4">
+                    <li>{{'stats.total'|trans}}:  {{mosques.totalItemCount}}</li>
+                </div>
+                <div class="col-md-4">
+                    <li>{{'stats.total_configured'|trans}}:  {{stats.configured}}</li>
+                    <li>{{'stats.total_not_configured'|trans}}:  {{mosques.totalItemCount - stats.configured}}</li>
+                </div>
+                <div class="col-md-4">
+                    <li>{{'stats.total_auto_calcul'|trans}}:  {{stats.autoCalcul}}</li>
+                    <li>{{'stats.total_auto_calendar'|trans}}:  {{stats.configured - stats.autoCalcul}}</li>
+                </div>
+            </ul>
+        </div>
+        <br>
+    {% endif %}
+
+
     <div class="navigation text-center">
         {{ knp_pagination_render(mosques) }}
     </div>
 
-    <table class="table table-inverse hidden-xs hidden-sm">
-        <thead>
-            <tr class="warning">
-                <th>ID</th>
-                <th>{{'name'|trans}}</th>
-                <th >{{'association'|trans}}</th>
-                <th style="width: 20%">{{'contact'|trans}}</th>
-                <th style="width: 35%">{{'prayer_sites'|trans}}</th>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <th>{{'user'|trans}}</th>
-                    <th>{{'creation_date'|trans}}</th>
-                    {% endif %}
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for mosque in mosques %}
-                {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
-                <tr class="{{ confCompleted == false ? 'danger' : '' }}">
-                    <th scope="row">{{mosque.id}}</th>
-                    <td>{{mosque.name}}</td>
-                    <td>{{mosque.associationName}}</td>
-                    <td>
-                        {{mosque.address}}<br>
-                        {{mosque.city}} {{mosque.zipcode}}<br>
-                        {{mosque.country}} <br>
-                        <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
-                        <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
-                    </td>
-                    <td>
-                        {% if confCompleted %}
-                            {% for lang in languages %}
-                                <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
-                            {% endfor %}
-
-                            {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
-                        {% else %}
-                            <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
+    <div class="row">
+        <table class="table table-inverse hidden-xs hidden-sm">
+            <thead>
+                <tr class="warning">
+                    <th>ID</th>
+                    <th>{{'name'|trans}}</th>
+                    <th >{{'association'|trans}}</th>
+                    <th style="width: 20%">{{'contact'|trans}}</th>
+                    <th style="width: 35%">{{'prayer_sites'|trans}}</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <th>{{'user'|trans}}</th>
+                        <th>{{'creation_date'|trans}}</th>
                         {% endif %}
-                    </td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>
-                            <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a>
-                        </td>
-                        <td>
-                            {{mosque.created|date('d/m/Y h:i')}}
-                        </td>
-                    {% endif %}
-                    <td>
-                        <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-                        <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a><br>
-                        <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-envelope"></span></a><br>
-                            {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
-                    </td>
+                    <th></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>    
+            </thead>
+            <tbody>
+                {% for mosque in mosques %}
+                    {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
+                    <tr class="{{ confCompleted == false ? 'danger' : '' }}">
+                        <th scope="row">{{mosque.id}}</th>
+                        <td>{{mosque.name}}</td>
+                        <td>{{mosque.associationName}}</td>
+                        <td>
+                            {{mosque.address}}<br>
+                            {{mosque.city}} {{mosque.zipcode}}<br>
+                            {{mosque.country}} <br>
+                            <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
+                            <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
+                        </td>
+                        <td>
+                            {% if confCompleted %}
+                                {% for lang in languages %}
+                                    <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
+                                {% endfor %}
+
+                                {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
+                            {% else %}
+                                <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
+                            {% endif %}
+                        </td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a>
+                            </td>
+                            <td>
+                                {{mosque.created|date('d/m/Y h:i')}}
+                            </td>
+                        {% endif %}
+                        <td>
+                            <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
+                            <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a><br>
+                            <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-envelope"></span></a><br>
+                                {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+    </div>
 
     <div class="hidden-lg hidden-md">
         {% for mosque in mosques %}
