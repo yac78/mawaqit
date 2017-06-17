@@ -77,9 +77,13 @@ body {
     font-size: 150%;
 }
 
-.prayer-content .prayer, .chourouk-id, .joumouaa-id, .imsak-id {
+.prayer-content .prayer, .chourouk-id, .joumouaa-id, .imsak-id, .aid-id{
     font-size: 250% !important;
     color: yellowgreen;
+}
+
+.aid-id {
+    color: red;
 }
 
 .prayer-hilighted {
