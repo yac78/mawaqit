@@ -1,3 +1,5 @@
 form:
     configuration:
         mandatory: Ce champ est obligatoire
+    registration:
+        short_password_message: Le mot de passe doit contenir 8 caractères minimum        

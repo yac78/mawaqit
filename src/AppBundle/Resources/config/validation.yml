@@ -1,0 +1,7 @@
+AppBundle\Entity\User:
+    properties:
+        plainPassword:
+          - Length:
+              min: 8
+              minMessage: "form.registration.short_password_message"
+              groups: [appChangePassword]

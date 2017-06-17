@@ -83,11 +83,16 @@ fos_user:
         address: %mailer_user%'
         sender_name: '%mailer_user%'
     registration:
+        form:
+            validation_groups: [Registration, appChangePassword]
         confirmation:
             from_email: 
                 address: '%no_replay_address%'
                 sender_name: '%no_replay_name%'
             enabled: true
+    change_password:
+        form:
+            validation_groups: [appChangePassword]
     resetting:
         email:
             from_email:

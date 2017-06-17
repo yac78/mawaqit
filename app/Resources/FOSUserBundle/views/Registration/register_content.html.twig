@@ -2,29 +2,10 @@
 
 <div class="col-md-6 col-md-offset-3">
     <h3>{{'registration.registration'|trans({}, 'messages')}}</h3><br>
-    
-    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-    <div class="form-group ">
-        {{ form_widget(form.email , { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans} }) }}
-        <div class="error-message">{{ form_errors(form.email) }}</div>
-    </div>
-    <div class="form-group ">
-        {{ form_widget(form.username , { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans} }) }}
-        <div class="error-message">{{ form_errors(form.username) }}</div>
-    </div>
-    <div class="form-group ">
-        {{ form_widget(form.plainPassword.first , { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans} }) }}
-        <div class="error-message">{{ form_errors(form.plainPassword.first) }}</div>
-    </div>
-   <div class="form-group ">
-        {{ form_widget(form.plainPassword.second , { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans} }) }}
-        <div class="error-message">{{ form_errors(form.plainPassword.second) }}</div>
-    </div>
-    
-    <div>
-        <button type="submit" class="btn btn-primary">{{'validate'|trans({}, 'messages')}}</button>
-        <a href="{{path("fos_user_security_login")}}" class="btn btn-danger">{{'cancel'|trans({}, 'messages')}}</a>
-    </div>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary">{{'validate'|trans({}, 'messages')}}</button>
+    <a href="{{path("fos_user_security_login")}}" class="btn btn-danger">{{'cancel'|trans({}, 'messages')}}</a>
     {{ form_end(form) }}
 </div>
