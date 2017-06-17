@@ -27,3 +27,8 @@ section#contact :-ms-input-placeholder {
     width: 400px;
     height: 220px;
 }
+
+#mosquees .portfolio-item .portfolio-caption {
+    padding: 15px;
+    height: 90px;
+}
