@@ -45,31 +45,8 @@
                 </div>
             </div>
 
-            <!-- Adhan screen -->
-            <div class="adhan display-none">
-                <div class="ar">
-                    <div class="title">دعاء ما بعد الأذان</div>
-                    اللّهُـمَّ رَبَّ هَذِهِ الدّعْـوَةِ التّـامَّة وَالصّلاةِ القَـائِمَة آتِ محَـمَّداً الوَسيـلةَ وَالْفَضـيلَة وَابْعَـثْه مَقـامـاً مَحـموداً الَّذي وَعَـدْتَه 
-                </div>
-
-                <div class="fr">
-                    <div class="title">Invocation après l'adhân</div>
-                    Ô Allah, Maître de cet appel parfait et de la prière que l'on va accomplir, donne à Mohammed le pouvoir d'intercéder 
-                    (le Jour du Jugement) et la place d'honneur [au Paradis], et ressuscite-le dans la position louable que Tu lui as promise
-                </div>
-            </div>
-
-            <div class="douaa-between-adhan-iqama display-none">
-                <div class="ar">
-                    <div class="title">الدعاء لا يرد بين الأذان والإقامة</div>
-                    عَنْ أَنَسِ بْنِ مَالِكٍ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: الدُّعَاءُ لَا يُرَدُّ بَيْنَ الْأَذَانِ وَالْإِقَامَةِ
-                </div>
-
-                <div class="fr">
-                    <div class="title">Les invocations entre le Adhân et l’Iqâmah ne sont pas rejetées</div>
-                    Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit : « Les invocations entre le Adhân et l’Iqâmah ne sont pas rejetées»
-                </div>
-            </div>
+            {% include 'partial/dua-after-adhan.html.twig' %}
+            {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
 
             <!-- main screen -->
             <div class="main display-none">
@@ -156,8 +133,8 @@
                 </div>
                 <div class="version">v{{version}}</div>
                 {% if mosque.configuration.urlQrCodeEnabled %}
-                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=120x120"/></div>
-                {% endif %}
+                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=110x110"/></div>
+                    {% endif %}
             </div>
         </div>
 
@@ -252,9 +229,8 @@
         </div>
 
         <script>
-            var confData
-            = {{config|raw}};
-                    var lang = "{{lang}}";
+            var confData = {{config|raw}};
+            var lang = "{{lang}}";
         </script>
 
         {% javascripts

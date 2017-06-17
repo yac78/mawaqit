@@ -276,8 +276,8 @@
                     <h5>Dernière étape</h5>
                     <p class="text-muted text-left">Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br>
                         <strong>1. Lancer le logiciel embarqué : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br>
-                        <strong>2. Vous avez le WIFI dans la mosquée ? </strong> Utilisez la version en ligne elle a l'avantage d'être synchronisée sur tous les terminaux (mobile, 
-                        tablette et écran de la mosquée) et les modifications se font en ligne, pas besoin de se brancher au raspberry il se mettrea à jour automatiquement, pour le faire suivez les étapes suivantes : </p>
+                        <strong>2. Vous avez le WIFI dans la mosquée ? </strong> Utilisez la version en ligne (RECOMMANDÉE) elle a l'avantage d'être synchronisée sur tous les terminaux (mobile, 
+                        tablette et écran de la mosquée) et les modifications se font en ligne, pas besoin de brancher un clavier et une souris au raspberry il se mettrea à jour automatiquement, pour le faire suivez les étapes suivantes : </p>
                     <ol class="text-muted text-left">
                         <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('mosque_index')}}">{{url('mosque_index')}}</a></li>
                         <li>Identifiez-vous puis créez et configurez votre mosquée</li>
@@ -286,7 +286,7 @@
                         <code>
                             #!/bin/bash<br>
 
-                            iceweasel {{url('mosque', {slug: 'essounna-houilles'})}} &<br>
+                            iceweasel {{url('mosque', {slug: 'mosquee-essunna-houilles'})}} &<br>
                             sleep 20<br>
                             xdotool key F11
                         </code>
