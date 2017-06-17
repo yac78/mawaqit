@@ -121,13 +121,14 @@
                         <div class="assosciation">
                             {{ mosque.associationName }}
                             {% if mosque.phone %}
-                                &nbsp;Tel {{ mosque.phone }}
+                                &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
                             {% endif %}
-                            {{ mosque.rib }}
+                            &nbsp;&nbsp;{{ mosque.rib }}
                         </div>
                         <div class="support">
                             <span>{{'developed_by'|trans}}</span> 
-                            &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}" class="supportEmail">{{supportEmail}}</a>
+                            &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}">{{supportTel}}</a>
+                            &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>
                         </div>
                     </div>
                 </div>
@@ -215,12 +216,13 @@
                     <div class="assosciation text-center">
                         {{ mosque.associationName }}
                         {% if mosque.phone %}
-                            &nbsp;Tel {{ mosque.phone }}
+                             &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
                         {% endif %}
-                        {{ mosque.rib }}
+                        <div>{{ mosque.rib }}</div>
                     </div>
                     <div class="support">
                         <span>{{'developed_by'|trans}}</span><br>
+                        <i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}">{{supportTel}}</a>
                         <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}" class="supportEmail">{{supportEmail}}</a>
                     </div>
                     <div class="version text-right">v{{version}}</div>
