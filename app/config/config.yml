@@ -102,11 +102,11 @@ fos_user:
 vich_uploader:
     db_driver: orm
     mappings:
-        mosque_image:
-            uri_prefix: /upload/images/mosques
-            upload_destination: '%kernel.root_dir%/../web/upload/images/mosques'
+        image:
+            uri_prefix: /upload/images
+            upload_destination: '%kernel.root_dir%/../web/upload/images'
             namer:  vich_uploader.namer_origname
-            inject_on_load:     false
+            inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
 

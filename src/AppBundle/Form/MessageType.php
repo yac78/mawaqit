@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Entity\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class MessageType extends AbstractType {
 
@@ -26,7 +27,7 @@ class MessageType extends AbstractType {
                 ])
                 ->add('content', TextareaType::class, [
                     'label' => 'content',
-                    'required' => true,
+                    'required' => false,
                     'attr' => [
                         'placeholder' => 'message.form.content.placeholder',
                         'maxlength' => "200",
@@ -36,6 +37,14 @@ class MessageType extends AbstractType {
                 ->add('enabled', CheckboxType::class, [
                     'label' => 'enabled',
                     'required' => false
+                ])
+                ->add('file', VichImageType::class, [
+                    'required' => false,
+                    'download_link' => false,
+                    'label' => 'message.form.image.label',
+                    'attr' => [
+                        'class' => 'form-control',
+                    ]
                 ])
                 ->add('save', SubmitType::class, [
                     'label' => 'save',

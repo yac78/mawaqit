@@ -102,11 +102,18 @@ var messageInfoSlider = {
                         messageInfoSlider.messageInfoIsShowing = true;
                         var items = [];
                         $.each(data, function (i, message) {
-                            items.push('<li>'
-                                    + '<div class="title">' + message.title + '</div>'
-                                    + '<div class="content">' + message.content + '</div>'
-                                    + "</li>"
-                                    );
+                            if (message.image) {
+                                items.push('<li class="message-image">'
+                                        + '<img src="/upload/images/' + message.image + '"/>'
+                                        + "</li>"
+                                        );
+                            } else {
+                                items.push('<li>'
+                                        + '<div class="title">' + message.title + '</div>'
+                                        + '<div class="content">' + message.content + '</div>'
+                                        + "</li>"
+                                        );
+                            }
                         });
 
                         $(".message-info-slider .slider ul").html(items.join(""));

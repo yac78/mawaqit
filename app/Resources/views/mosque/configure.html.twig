@@ -137,17 +137,18 @@
                                                             maxlength="5" 
                                                             oninvalid="setCustomValidity('{{'configuration.form.time_invalid'|trans}}')" 
                                                             onchange="try {
-                                                                    setCustomValidity('')
-                                                                } catch (e) {
-                                                                }">
+                                                                        setCustomValidity('')
+                                                                    } catch (e) {
+                                                                    }">
                                                     </div>
                                                 {% endfor %}
                                             </div>
                                         {% endfor %}
                                     </div>
-                                <div class="col-md-5">
+                                    <div class="col-md-5">
                                         <div class="alert alert-info">
-                                            <strong>Info ! </strong> {{'configuration.form.calendar_explication'|trans|raw}}
+                                            <div><strong>Info ! </strong> {{'configuration.form.calendar_explication'|trans|raw}}</div>
+                                            <div><a href="/static/01.csv">{{'csv_file_exemple'|trans}}</a></div>
                                         </div>
                                     </div>
                                 </div>

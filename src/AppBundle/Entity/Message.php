@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Mosque;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Message
@@ -28,6 +29,16 @@ class Message {
      * @var boolean
      */
     private $enabled = true;
+
+    /**
+     * @var File
+     */
+    private $file;
+
+    /**
+     * @var string
+     */
+    private $image;
 
     /**
      * @var Mosque
@@ -94,7 +105,47 @@ class Message {
     function setEnabled($enabled) {
         $this->enabled = $enabled;
     }
-    
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return self
+     */
+    public function setFile(File $image = null) {
+        $this->file = $image;
+
+        if ($image) {
+            $this->updated = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFile() {
+        return $this->file;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return self
+     */
+    public function setImage($imageName) {
+        $this->image = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImage() {
+        return $this->image;
+    }
+
     function getMosque(): Mosque {
         return $this->mosque;
     }
@@ -102,4 +153,5 @@ class Message {
     function setMosque(Mosque $mosque) {
         $this->mosque = $mosque;
     }
+
 }

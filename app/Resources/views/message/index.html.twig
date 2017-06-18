@@ -38,6 +38,7 @@
                     <th>ID</th>
                     <th style="width: 20%">{{'title'|trans}}</th>
                     <th>{{'content'|trans}}</th>
+                    <th style="width: 5%">Photo ?</th>
                     <th class="text-center" style="width: 5%">{{'active'|trans}}</th>
                     <th></th>
                 </tr>
@@ -48,6 +49,9 @@
                         <th scope="row">{{message.id}}</th>
                         <td>{{message.title}}</td>
                         <td>{{message.content|raw}}</td>
+                        <td class="text-center">
+                            <span class="fa fa-{{message.image ? 'check' : 'close'}}"></span>
+                        </td>
                         <td class="text-center">
                             <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span>
                         </td>
@@ -65,9 +69,10 @@
         {% for message in mosque.messages %}
             <div class="row" style="border-bottom: 1px solid gray; padding: 10px 0; ">
                 <div class="col-xs-10">
-                    <strong>{{message.title}}</strong><br>
-                    {{message.content|raw}}<br>
-                    {{'enabled'|trans}} ? <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span>
+                    <div><strong>{{message.title}}</strong></div>
+                    <div>{{message.content|raw}}</div>
+                    <div>Photo ? <span class="fa fa-{{message.image ? 'check' : 'close'}}"></span></div>
+                    <div>{{'enabled'|trans}} ? <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span></div>
                 </div>     
 
                 <div class="col-xs-2">

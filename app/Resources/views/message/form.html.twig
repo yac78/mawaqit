@@ -4,6 +4,9 @@
 {{ form_row(form._token) }}
 {{ form_row(form.title) }}
 {{ form_row(form.content) }}
+<div class="block-image">
+    {{ form_row(form.file) }}
+</div>
 {{ form_row(form.enabled) }}
 <br>
 {{ form_widget(form.save) }}

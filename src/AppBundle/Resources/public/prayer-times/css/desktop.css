@@ -232,3 +232,7 @@ body {
 .display-none {
     display: none;
 }
+
+.message-image img {
+    width: 99%;
+}

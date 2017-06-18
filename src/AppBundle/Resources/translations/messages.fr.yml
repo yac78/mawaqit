@@ -55,6 +55,8 @@ message:
             placeholder : 200 caractères maximum
         delay: 
             label : Délai d'affichage (minutes)
+        image: 
+            label : Charger une photo (Si une photo est chargée elle sera affichée à la place du message)
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
@@ -177,6 +179,7 @@ widget_for_your_site: Widget pour votre site internet
 show: voir
 links: Liens
 site: Site internet
+csv_file_exemple: Voici un exemple de fichier csv du mois de janvier pour Paris UOIF
     
 stats:
     title: Statistiques

@@ -78,10 +78,7 @@ class MosqueType extends AbstractType {
                     ]
                 ])
                 ->add('country', null, [
-                    'label' => 'country',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
+                    'label' => 'country'
                 ])
                 ->add('rib', null, [
                     'label' => 'rib',
