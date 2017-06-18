@@ -122,12 +122,12 @@ class Mosque {
      * @var Configuration
      */
     private $configuration;
-    
+
     /**
      * @var ArrayCollection[Message]
      */
     private $messages;
-    
+
     public function __construct() {
         $this->messages = new ArrayCollection();
     }
@@ -582,12 +582,23 @@ class Mosque {
     public function getImage3() {
         return $this->image3;
     }
-    
+
     public function getMessages() {
         return $this->messages;
+    }
+
+    public function getNbOfEnabledMessages() {
+        $nb = 0;
+        foreach ($this->messages as $message) {
+            if ($message->isEnabled()) {
+                $nb++;
+            }
+        }
+        return $nb;
     }
 
     public function setMessages($messages) {
         $this->messages = $messages;
     }
+
 }

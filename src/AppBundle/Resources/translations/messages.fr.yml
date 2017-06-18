@@ -45,6 +45,9 @@ message:
     edit: Édition du message %title%
     manage: Gérer les messages
     info: Les messages défileront  sur l'écran, avant et après chaque prière.
+    add_max_reached: |
+        Vous avez atteint le nombre maximum autorisé de messages activés (8 Max), 
+        pour pouvoir ajouter d'autre message veuillez supprimer ou désactiver les anciens messages. 
     form:
         title: 
             placeholder : Ex. Cours de coran

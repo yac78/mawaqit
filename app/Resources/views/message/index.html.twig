@@ -9,10 +9,10 @@
         <div class="col-md-8 col-xs-12" style="margin-top: 10px"><h3>{{'message.mosque'|trans({'%mosque%': mosque.name})}}</h3></div>
         <div class="col-md-4 col-xs-12 text-right">
             <a href="{{path('mosque_index')}}" class="btn btn-danger">{{'return'|trans}}</a>
-            <a href="{{path('message_create', {'mosque': mosque.id})}}" class="btn btn-primary">{{'add'|trans}}</a>
+            <a href="{{path('message_create', {'mosque': mosque.id})}}" class="btn btn-primary {{disable_add_message ? 'disabled' : ''}} ">{{'add'|trans}}</a>
         </div>
     </div>
-        <div class="row" style="margin-top:10px">
+    <div class="row" style="margin-top:10px">
         <div class="col-md-8 col-xs-12">
             <div class="alert alert-info" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -20,7 +20,15 @@
             </div>
         </div>
     </div>
-
+    {% if disable_add_message %}
+        <div class="row">
+            <div class="col-md-10 col-xs-12">
+                <div class="alert alert-danger" role="alert">
+                    {{'message.add_max_reached'|trans}}
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <br>
 
     <div class="hidden-xs hidden-sm">

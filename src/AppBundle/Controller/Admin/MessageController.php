@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * @Route("/admin/{_locale}/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
  */
 class MessageController extends Controller {
+    const MAX_MESSAGE = 8;
 
     /**
      * @Route("/{mosque}/message/", name="message_index")
@@ -25,6 +26,7 @@ class MessageController extends Controller {
             throw new AccessDeniedException;
         }
         return $this->render('message/index.html.twig', [
+                    "disable_add_message" => $mosque->getNbOfEnabledMessages() >= self::MAX_MESSAGE,
                     "mosque" => $mosque,
         ]);
     }
@@ -34,6 +36,10 @@ class MessageController extends Controller {
      */
     public function createAction(Request $request, Mosque $mosque) {
 
+        if($mosque->getNbOfEnabledMessages() >= self::MAX_MESSAGE){
+            throw new AccessDeniedException();
+        }
+        
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
