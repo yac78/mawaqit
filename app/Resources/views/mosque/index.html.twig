@@ -74,7 +74,8 @@
             <tbody>
                 {% for mosque in mosques %}
                     {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
-                    <tr class="{{ confCompleted == false ? 'danger' : '' }}">
+                    {% set calendarCompleted = mosque.configuration is not null and mosque.configuration.calendarCompleted %}
+                    <tr class="{{ confCompleted == false or calendarCompleted == false ? 'danger' : '' }}">
                         <th scope="row">{{mosque.id}}</th>
                         <td>{{mosque.name}}</td>
                         <td>{{mosque.associationName}}</td>
@@ -91,9 +92,13 @@
                         </td>
                         <td>
                             {% if confCompleted %}
+                                {% if calendarCompleted == false %}
+                                    <div><span class="glyphicon glyphicon-alert"></span> {{'configuration.list.calendar_not_completed'|trans|raw}}</div>
+                                {% endif %}
+
                                 {% for lang in languages %}
-                                    <strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a><br>
-                                {% endfor %}
+                                    <div><strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a></div>
+                                    {% endfor %}
 
                                 {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
                             {% else %}
@@ -123,7 +128,8 @@
     <div class="hidden-lg hidden-md">
         {% for mosque in mosques %}
             {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
-            <div class="row {{ confCompleted == false ? 'alert-danger' : '' }}" style="padding: 10px 0; border-bottom: solid gray 1px">
+            {% set calendarCompleted = mosque.configuration is not null and mosque.configuration.calendarCompleted %}
+            <div class="row {{ confCompleted == false or calendarCompleted == false ? 'alert-danger' : '' }}" style="padding: 10px 0; border-bottom: solid gray 1px">
                 <div class="col-xs-10">
                     <strong>{{mosque.name}}</strong><br>
                     {{mosque.associationName}}<br>
@@ -138,6 +144,9 @@
                     {% endif %}
 
                     {% if confCompleted %}
+                        {% if calendarCompleted == false %}
+                            <div><span class="glyphicon glyphicon-alert"></span> {{'configuration.list.calendar_not_completed'|trans|raw}}</div>
+                        {% endif %}
                         <strong>{{'links'|trans}}</strong>: 
                         {% for lang in languages %}
                             <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{lang|trans}}</a>{{loop.last ? '' : ' | '}}

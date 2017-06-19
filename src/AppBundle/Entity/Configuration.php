@@ -71,6 +71,7 @@ class Configuration {
      * @var array
      */
     private $fixedTimes = ["", "", "", "", ""];
+
     /**
      * @var array
      */
@@ -99,7 +100,7 @@ class Configuration {
     /**
      * @var bool
      */
-     private $urlQrCodeEnabled = true;
+    private $urlQrCodeEnabled = true;
 
     /**
      * @var string
@@ -350,7 +351,7 @@ class Configuration {
     public function getFixedTimes() {
         return $this->fixedTimes;
     }
-    
+
     /**
      * Set duaAfterPrayerShowTimes
      *
@@ -800,12 +801,23 @@ class Configuration {
             if (empty($this->calendar)) {
                 return false;
             }
+        }
+        return true;
+    }
 
-            foreach ($this->calendar as $month => $days) {
-                foreach ($days as $day => $prayers) {
-                    foreach ($prayers as $prayerIndex => $prayer) {
-                        if (empty($prayer)) {
-                            return false;
+    /**
+     * True if calendar is completed
+     * @return boolean 
+     */
+    function isCalendarCompleted() {
+        if ($this->sourceCalcul === self::SOURCE_CALENDAR) {
+            if (!empty($this->calendar)) {
+                foreach ($this->calendar as $month => $days) {
+                    foreach ($days as $day => $prayers) {
+                        foreach ($prayers as $prayerIndex => $prayer) {
+                            if (empty($prayer)) {
+                                return false;
+                            }
                         }
                     }
                 }

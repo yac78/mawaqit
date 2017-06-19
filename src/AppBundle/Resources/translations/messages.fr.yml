@@ -62,8 +62,10 @@ configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
     list:
         conf_not_completed: |
-            Votre mosquée est ajoutée, en revanche les horaires de prière ne sont pas encore configurées
-            <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite.
+            Votre mosquée est ajoutée, en revanche les horaires de prière ne sont pas encore configurées.<br>
+            Veuillez procéder à la configuration en cliquant sur le bouton orange à droite.
+        calendar_not_completed: |
+            Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
