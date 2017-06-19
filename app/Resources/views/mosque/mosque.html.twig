@@ -134,7 +134,7 @@
                 </div>
                 <div class="version">v{{version}}</div>
                 {% if mosque.configuration.urlQrCodeEnabled %}
-                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=110x110"/></div>
+                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=110x110" alt=""/></div>
                     {% endif %}
             </div>
         </div>
