@@ -147,10 +147,12 @@
                         {% if calendarCompleted == false %}
                             <div><span class="glyphicon glyphicon-alert"></span> {{'configuration.list.calendar_not_completed'|trans|raw}}</div>
                         {% endif %}
-                        <strong>{{'links'|trans}}</strong>: 
-                        {% for lang in languages %}
-                            <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{lang|trans}}</a>{{loop.last ? '' : ' | '}}
-                        {% endfor %}    
+                        <div>
+                            <strong>{{'links'|trans}}</strong>: 
+                            {% for lang in languages %}
+                                <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{lang|trans}}</a>{{loop.last ? '' : ' | '}}
+                            {% endfor %}    
+                        </div>
                         <div>
                             {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
                         </div>
