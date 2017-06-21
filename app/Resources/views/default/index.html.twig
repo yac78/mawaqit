@@ -39,7 +39,7 @@
             </div>
             <div class="row text-center">
                 <div class="col-md-12">
-                    <h4 class="service-heading">Affichage en plusieurs langues</h4>
+                    <h4 class="service-heading">Affichage des horaires de prière en plusieurs langues</h4>
                     <p class="text-muted">
                         Le logiciel permet un affichage en français, arabe et anglais.<br>
                         Aucun réglage à faire, tout est paramétré automatiquement tout comme le changement d'heure été/ hiver.
@@ -75,7 +75,7 @@
                         directement configurables depuis l'interface dédiée.
                     </p>
                     <ul class="text-muted text-left">
-                        <li>Personnalisation du type de calcul et lecture depuis un fichier CSV</li>
+                        <li>Choix de méthode de calcul ou lecture depuis des fichiers CSV</li>
                         <li>Choix de la langue</li>
                         <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
                         <li>Fixation des horaires (exemple: fixer l'heure du ichaa en hiver)</li>
@@ -83,6 +83,7 @@
                         <li>Ajustement des horaires </li>
                         <li>Modification des textes affichés en haut et en bas de l'écran</li>
                         <li>Modification de la couleur de fond</li>
+                        <li>Affichange d'annonces en texte ou image</li>
                     </ul>
 
                     <div class="col-lg-12 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/configure.png') }}" class="img-responsive" alt=""><br></div>
@@ -270,13 +271,13 @@
                     </ol>
                     <br>
                     <h5>Dernière étape</h5>
-                    <p class="text-muted text-left">Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br>
-                        <strong>1. Lancer le logiciel embarqué : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br>
+                    <p class="text-muted text-left">Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
+                        <strong>1. Lancer le logiciel embarqué : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br><br>
                         <strong>2. Vous avez le WIFI dans la mosquée ? </strong> Utilisez la version en ligne (RECOMMANDÉE) elle a l'avantage d'être synchronisée sur tous les terminaux (mobile, 
                         tablette et écran de la mosquée) et les modifications se font en ligne, pas besoin de brancher un clavier et une souris au raspberry il se mettrea à jour automatiquement, pour le faire suivez les étapes suivantes : </p>
                     <ol class="text-muted text-left">
-                        <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('mosque_index')}}">{{url('mosque_index')}}</a></li>
-                        <li>Identifiez-vous puis créez et configurez votre mosquée</li>
+                        <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('fos_user_registration_register')}}">{{url('fos_user_registration_register')}}</a></li>
+                        <li>Identifiez-vous puis ajoutez et configurez votre mosquée</li>
                         <li>A la fin de ces étapes un lien internet est généré, copier ce lien dans la carte micro sd à l'endroit suivant: <code>/home/pi/prayer/current/bin/run.sh</code> (remplacez localhost par votre lien)</code></li>
                         exemple: <br>
                         <code>

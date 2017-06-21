@@ -1,6 +1,9 @@
 /*
 binary consulting custom css
 */
+body, p{
+    font-size: 16px !important;
+}
 
 header {
     background-image: url('../img/mosque.jpg');
@@ -31,4 +34,10 @@ section#contact :-ms-input-placeholder {
 #mosquees .portfolio-item .portfolio-caption {
     padding: 15px;
     height: 90px;
+}
+
+@media screen and (max-width: 767px) {
+    P{
+        text-align: justify;     
+    }
 }
