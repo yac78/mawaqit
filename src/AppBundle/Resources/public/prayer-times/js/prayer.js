@@ -284,7 +284,7 @@ var prayer = {
             }
 
             prayer.setCustomTime();
-        }, prayer.oneSecond);
+        }, prayer.oneMinute);
     },
     /**
      * Check every minute if athan time is ok
@@ -859,9 +859,19 @@ var prayer = {
      */
     aidIsCommingSoon: function () {
         var hijriDateInfo = kuwaiticalendar(prayer.confData.hijriAdjustment);
-        console.dir(hijriDateInfo);
-
-        return ((hijriDateInfo[6] === 8 && hijriDateInfo[5] >= 27 && hijriDateInfo[5] <= 30) || (hijriDateInfo[6] === 9 && hijriDateInfo[5] === 1)) || (hijriDateInfo[6] === 11 && hijriDateInfo[5] >= 7 && hijriDateInfo[5] <= 10)
+        // if aid al-fitr
+        if(hijriDateInfo[6] === 8 && hijriDateInfo[5] >= 27 && hijriDateInfo[5] <= 30){
+            return true;
+        }
+        if(hijriDateInfo[6] === 9 && hijriDateInfo[5] === 1){
+            return true;
+        }
+        
+        // if aid al-adha
+        if(hijriDateInfo[6] === 11 && hijriDateInfo[5] >= 7 && hijriDateInfo[5] <= 10){
+            return true;
+        }
+        return false;
     },
     /**
      * Test main app features 
