@@ -105,7 +105,7 @@ vich_uploader:
         image:
             uri_prefix: /upload/images
             upload_destination: '%kernel.root_dir%/../web/upload/images'
-            namer:  vich_uploader.namer_origname
+            namer:  vich_uploader.namer_uniqid
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true

@@ -4,7 +4,9 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>{% block title %}Horaires de prière {% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{asset('favicon.png')}}?aaaa" />
+        
+        <title>{% block title %}Horaires de prière{% endblock %}</title>
 
         {% stylesheets 
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
@@ -17,14 +19,10 @@
 
         {% block stylesheets %}
         {% endblock %}
-
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
     <body>
-        
         {% include ("partial/navbar.html.twig") %}
-        
         {% javascripts
             '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
             '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
@@ -32,11 +30,8 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}    
 
-
-        <div class="col-md-10 col-md-offset-1">
-            {% block body %}
-            {% endblock %}
-        </div>
+        {% block body %}
+        {% endblock %}
         
         {% block javascripts %}
         {% endblock %}

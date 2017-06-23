@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} Message{% endblock %}
-
 {% block stylesheets %}
     {% stylesheets 
             "bundles/app/css/message.css"
@@ -12,10 +10,12 @@
 {% endblock %}
 
 {% block body %}
-    <div class="col-md-8">
-        <h3>{% block form_title %}{{'message.add'|trans}}{% endblock %}</h3>
-        <form action="{{ form_action|default(path('message_create', {'mosque': mosque.id}))}}" method="post" enctype="multipart/form-data">
-            {% include 'message/form.html.twig' %}
-        </form>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>{% block form_title %}{{'message.add'|trans}}{% endblock %}</h3>
+            <form action="{{ form_action|default(path('message_create', {'mosque': mosque.id}))}}" method="post" enctype="multipart/form-data">
+                {% include 'message/form.html.twig' %}
+            </form>
+        </div>
     </div>
 {% endblock %}
