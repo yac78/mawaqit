@@ -31,6 +31,8 @@ services:
           
     app.prayer_times_service:
         class: AppBundle\Service\PrayerTimeService
+        arguments:
+            - "%kernel.cache_dir%"
           
             
     app.mail_service:

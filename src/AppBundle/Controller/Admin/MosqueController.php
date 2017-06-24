@@ -14,6 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/admin/{_locale}/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
@@ -182,6 +184,20 @@ class MosqueController extends Controller {
                     'mosque' => $mosque,
                     'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/getCsvFiles/{id}", name="mosque_csv_files")
+     */
+    public function getCsvFilesAction(Request $request, Mosque $mosque) {
+
+        $zipFilePath = $this->get("app.prayer_times_service")->getFilesFromCalendar($mosque);
+        if (is_file($zipFilePath)) {
+            $zipFileName = $mosque->getSlug() . ".zip";
+            return new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
+        }
+
+        return new Response("Cette mosquée n'as pas de calendier renseignée");
     }
 
 }
