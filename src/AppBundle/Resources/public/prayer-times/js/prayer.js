@@ -421,7 +421,7 @@ var prayer = {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             // adding 15 minute
             prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.nextPrayerHilightWait);
-            if (date > prayerDateTime) {
+            if (prayerDateTime.getHours() !== 0 && date > prayerDateTime) {
                 index++;
                 if (index === 5) {
                     index = 0;
