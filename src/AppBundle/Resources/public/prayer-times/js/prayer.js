@@ -325,6 +325,9 @@ var prayer = {
      * @param {Number} currentPrayerIndex
      */
     flashAdhan: function (currentPrayerIndex) {
+        if (prayer.confData.azanBip === true) {
+            this.playBip();
+        }
         // iqama countdown
         prayer.iqamaCountdown(currentPrayerIndex);
         // timeout for douaa show
@@ -352,6 +355,9 @@ var prayer = {
      * @param {Number} currentPrayerIndex 
      */
     flashIqama: function (currentPrayerIndex) {
+        if (prayer.confData.iqamaBip === true) {
+            this.playBip();
+        }
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
@@ -373,6 +379,18 @@ var prayer = {
         setTimeout(function () {
             prayer.iqamaIsFlashing = false;
         }, prayer.oneMinute);
+    },
+    /**
+     * Play bip 3 times
+     */
+    playBip: function () {
+        var audio = new Audio('/static/bip.mp3');
+        audio.play();
+        for (var i = 1; i <= 2; i++) {
+            setTimeout(function () {
+                audio.play();
+            }, i * 3 * prayer.oneSecond);
+        }
     },
     /**
      * Set iqama countdonwn

@@ -150,6 +150,14 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.duaAfterPrayerEnabled.label',
                 ])
+                ->add('azanBip', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.azanBip.label',
+                ])
+                ->add('iqamaBip', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.iqamaBip.label',
+                ])
                 ->add('sourceCalcul', ChoiceType::class, [
                     'required' => true,
                     'label' => 'configuration.form.sourceCalcul.label',

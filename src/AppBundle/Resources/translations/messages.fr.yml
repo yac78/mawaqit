@@ -116,6 +116,10 @@ configuration:
         smallScreen: 
             label: Petit écran ?
             title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
+        azanBip: 
+            label: Bip quand c'est l'heure du adhân
+        iqamaBip: 
+            label:  Bip quand c'est l'heure de Iqâma
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
         backgroundColor: 

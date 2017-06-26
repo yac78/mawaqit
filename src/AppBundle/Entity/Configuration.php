@@ -100,6 +100,16 @@ class Configuration {
     /**
      * @var bool
      */
+    private $azanBip = false;
+
+    /**
+     * @var bool
+     */
+    private $iqamaBip = false;
+
+    /**
+     * @var bool
+     */
     private $urlQrCodeEnabled = true;
 
     /**
@@ -826,6 +836,22 @@ class Configuration {
         return true;
     }
 
+    function getAzanBip() {
+        return $this->azanBip;
+    }
+
+    function getIqamaBip() {
+        return $this->iqamaBip;
+    }
+
+    function setAzanBip($azanBip) {
+        $this->azanBip = $azanBip;
+    }
+
+    function setIqamaBip($iqamaBip) {
+        $this->iqamaBip = $iqamaBip;
+    }
+
     /**
      * Get formated array config for js use
      * @return array
@@ -842,6 +868,8 @@ class Configuration {
             "prayerTimesFixing" => $this->getFixedTimes(),
             "hijriAdjustment" => $this->getHijriAdjustment(),
             "hijriDateEnabled" => $this->getHijriDateEnabled(),
+            "azanBip" => $this->getAzanBip(),
+            "iqamaBip" => $this->getIqamaBip(),
             "douaaAfterAdhanEnabled" => $this->getDuaAfterAzanEnabled(),
             "douaaAfterPrayerEnabled" => $this->getDuaAfterPrayerEnabled(),
             "calculChoice" => $this->getSourceCalcul(),
