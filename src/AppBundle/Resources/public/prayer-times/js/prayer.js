@@ -71,9 +71,11 @@ var prayer = {
         var date = new Date();
         if (date.getHours() !== 0) {
             var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIchaTime());
-            ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
-            if (date > ichaaDateTime) {
-                this.loadTimes(true);
+            if (ichaaDateTime.getHours() !== 0) {
+                ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
+                if (date > ichaaDateTime) {
+                    this.loadTimes(true);
+                }
             }
         }
     },
@@ -466,9 +468,9 @@ var prayer = {
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
             // if ichaa we load tomorrow times
-            var date = new Date();
+                var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
-                prayer.loadTimes(true);
+                    prayer.loadTimes(true);
                 prayer.setTimes();
             }
         }, prayer.nextPrayerHilightWait * prayer.oneMinute);
