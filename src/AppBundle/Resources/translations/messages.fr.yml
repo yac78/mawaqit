@@ -45,6 +45,7 @@ message:
     edit: Édition du message %title%
     manage: Gérer les messages
     info: Les messages défileront  sur l'écran, avant et après chaque prière.
+    maj_alert: Attention ! Les messages écrits entièrement en majuscule peuvent déborder sur l'écran.
     add_max_reached: |
         Vous avez atteint le nombre maximum autorisé de messages activés (8 Max), 
         pour pouvoir ajouter d'autre message veuillez supprimer ou désactiver les anciens messages. 

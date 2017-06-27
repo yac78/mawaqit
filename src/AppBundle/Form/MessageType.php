@@ -22,7 +22,7 @@ class MessageType extends AbstractType {
                     'required' => false,
                     'attr' => [
                         'placeholder' => 'message.form.title.placeholder',
-                        'maxlength' => "50",
+                        'maxlength' => "40",
                     ]
                 ])
                 ->add('content', TextareaType::class, [
