@@ -383,16 +383,11 @@ var prayer = {
         }, prayer.oneMinute);
     },
     /**
-     * Play bip 3 times
+     * Play a bip
      */
     playBip: function () {
         var audio = new Audio('/static/bip.mp3');
         audio.play();
-        for (var i = 1; i <= 2; i++) {
-            setTimeout(function () {
-                audio.play();
-            }, i * 3 * prayer.oneSecond);
-        }
     },
     /**
      * Set iqama countdonwn
@@ -468,9 +463,9 @@ var prayer = {
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
             // if ichaa we load tomorrow times
-                var date = new Date();
+            var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
-                    prayer.loadTimes(true);
+                prayer.loadTimes(true);
                 prayer.setTimes();
             }
         }, prayer.nextPrayerHilightWait * prayer.oneMinute);
