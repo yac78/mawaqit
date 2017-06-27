@@ -56,7 +56,7 @@ message:
         delay: 
             label : Délai d'affichage (minutes)
         image: 
-            label : Charger une photo (La photo sera affichée à la place du message, elle doit être en format paysage)
+            label : Image (Elle sera affichée à la place du message. Pour un meilleur confort d'affichage chargez que des images au format paysage)
     
 configuration:
     title: Configuration des horaires de la mosquée "%mosque%"
