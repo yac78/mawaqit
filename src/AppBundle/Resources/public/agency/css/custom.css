@@ -36,8 +36,53 @@ section#contact :-ms-input-placeholder {
     height: 90px;
 }
 
+header .intro-text .intro-heading  {
+    font-size: 50px;
+}
+header .intro-text .intro-subheading {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 25px;
+    color: #f7ecb5;
+}
+
 @media screen and (max-width: 767px) {
     P{
         text-align: justify;     
+    }
+
+    header .intro-text .intro-heading {
+        font-size: 30px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+
+    header .intro-text .intro-subheading {
+        font-size: 20px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .btn-xl {
+        padding: 15px 30px;
+    }
+}
+
+@media (min-width: 768px)
+{
+    header .intro-text {
+        padding-top: 180px;
+        padding-bottom: 100px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        width: 1200px;
     }
 }

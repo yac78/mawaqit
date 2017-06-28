@@ -70,7 +70,7 @@ var dateTime = {
      */
     getCurrentDate: function (lang) {
         if (lang === 'ar') {
-            return;
+            lang = 'fr';
         }
         var date = new Date();
         var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}
