@@ -54,8 +54,11 @@ var douaaSlider = {
                         $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
                     });
 
-                    // show messages if exist
-                    messageInfoSlider.show();
+                    // show messages if exist after 5 sec
+                    setTimeout(function () {
+                        messageInfoSlider.get();
+                    }, 5 * prayer.oneSecond);
+
                 }, douaaSlider.getTimeForShow());
             }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
         }
@@ -90,94 +93,108 @@ var messageInfoSlider = {
      */
     sliderHtmlContent: '',
     /**
-     *  show message slider
+     *  run message slider
      */
-    show: function () {
-        setTimeout(function () {
-            $.ajax({
-                dataType: "json",
-                url: "get-messages",
-                success: function (data) {
-                    if (data.length > 0) {
-                        messageInfoSlider.messageInfoIsShowing = true;
-                        var items = [];
-                        $.each(data, function (i, message) {
-                            if (message.image) {
-                                items.push('<li class="message-image">'
-                                        + '<img src="/upload/images/' + message.image + '"/>'
-                                        + "</li>"
-                                        );
-                            } else {
-                                items.push('<li>'
-                                        + '<div class="title">' + message.title + '</div>'
-                                        + '<div class="content">' + message.content + '</div>'
-                                        + "</li>"
-                                        );
-                            }
-                        });
+    run: function () {
+        messageInfoSlider.messageInfoIsShowing = true;
+        var screenWidth = $(window).width();
+        var screenHeight = $(window).height();
+        var nbSlides = $('.message-info-slider .slider ul li').length;
 
-                        $(".message-info-slider .slider ul").html(items.join(""));
+        $('.message-info-slider .slider ul li').width(screenWidth);
 
-                        $(".desktop .main").fadeOut(1000, function () {
-                            $(".message-info-slider").fadeIn(1000);
-                        });
+        $(".desktop .main").fadeOut(1000, function () {
+            $(".message-info-slider").fadeIn(1000);
+        });
 
-                        var screenWidth = $(window).width();
-                        $('.message-info-slider .slider ul li').width(screenWidth);
-                        if (data.length === 1) {
-                            setTimeout(function () {
-                                $(".message-info-slider").fadeOut(1000, function () {
-                                    $(".desktop .main").fadeIn(1000);
-                                });
-                                messageInfoSlider.messageInfoIsShowing = false;
-                            }, messageInfoSlider.oneMessageShowingTime);
+        if (nbSlides === 1) {
+            setTimeout(function () {
+                $(".message-info-slider").fadeOut(1000, function () {
+                    $(".desktop .main").fadeIn(1000);
+                });
+                messageInfoSlider.messageInfoIsShowing = false;
+            }, messageInfoSlider.oneMessageShowingTime);
+        }
+
+        if (nbSlides === 2) {
+            $(".message-info-slider li").hide();
+            $(".message-info-slider li:eq(0)").show();
+
+            setTimeout(function () {
+                $(".message-info-slider li:eq(0)").hide(1000, function () {
+                    $(".message-info-slider li:eq(1)").show(1000);
+                });
+            }, messageInfoSlider.oneMessageShowingTime);
+
+            setTimeout(function () {
+                $(".message-info-slider").fadeOut(1000, function () {
+                    $(".desktop .main").fadeIn(1000);
+                });
+                messageInfoSlider.messageInfoIsShowing = false;
+            }, messageInfoSlider.oneMessageShowingTime * 2);
+        }
+
+        if (nbSlides > 2) {
+            var sliderUlWidth = nbSlides * screenWidth;
+            $('.message-info-slider .slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
+            $('.message-info-slider .slider ul li:last-child').prependTo('.message-info-slider .slider ul');
+
+            //save html slider
+            messageInfoSlider.sliderHtmlContent = $('.message-info-slider .slider').html();
+
+            var interval = setInterval(function () {
+                messageInfoSlider.moveRight();
+            }, messageInfoSlider.oneMessageShowingTime);
+
+            setTimeout(function () {
+                clearInterval(interval);
+                $(".message-info-slider").fadeOut(1000, function () {
+                    $(".desktop .main").fadeIn(1000);
+                    $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
+                });
+                messageInfoSlider.messageInfoIsShowing = false;
+            }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
+        }
+
+        $(".message-info-slider .slider").css({width: screenWidth, height: screenHeight});
+    },
+    /**
+     * Get message from server
+     */
+    get: function () {
+        $.ajax({
+            dataType: "json",
+            url: "get-messages",
+            success: function (data) {
+                if (data.length > 0) {
+                    var items = [];
+                    $.each(data, function (i, message) {
+                        if (message.image) {
+                            items.push('<li class="message-image">'
+                                    + '<img src="/upload/images/' + message.image + '"/>'
+                                    + "</li>"
+                                    );
+                        } else {
+                            items.push('<li>'
+                                    + '<div class="title">' + message.title + '</div>'
+                                    + '<div class="content">' + message.content + '</div>'
+                                    + "</li>"
+                                    );
                         }
-
-                        if (data.length === 2) {
-                            $(".message-info-slider li").hide();
-                            $(".message-info-slider li:eq(0)").show();
-
-                            setTimeout(function () {
-                                $(".message-info-slider li:eq(0)").hide(1000, function () {
-                                    $(".message-info-slider li:eq(1)").show(1000);
-                                });
-                            }, messageInfoSlider.oneMessageShowingTime);
-
-                            setTimeout(function () {
-                                $(".message-info-slider").fadeOut(1000, function () {
-                                    $(".desktop .main").fadeIn(1000);
-                                });
-                                messageInfoSlider.messageInfoIsShowing = false;
-                            }, messageInfoSlider.oneMessageShowingTime * 2);
-                        }
-
-                        if (data.length > 2) {
-                            var slideCount = items.length;
-                            var sliderUlWidth = slideCount * screenWidth;
-                            $('.message-info-slider .slider').css({width: screenWidth});
-                            $('.message-info-slider .slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-                            $('.message-info-slider .slider ul li:last-child').prependTo('.message-info-slider .slider ul');
-
-                            //save html slider
-                            messageInfoSlider.sliderHtmlContent = $('.message-info-slider .slider').html();
-
-                            var interval = setInterval(function () {
-                                messageInfoSlider.moveRight();
-                            }, messageInfoSlider.oneMessageShowingTime);
-
-                            setTimeout(function () {
-                                clearInterval(interval);
-                                $(".message-info-slider").fadeOut(1000, function () {
-                                    $(".desktop .main").fadeIn(1000);
-                                    $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
-                                });
-                                messageInfoSlider.messageInfoIsShowing = false;
-                            }, (items.length * messageInfoSlider.oneMessageShowingTime) - 1000);
-                        }
-                    }
+                    });
+                    $(".message-info-slider .slider ul").html(items.join(""));
+                    messageInfoSlider.run();
                 }
-            });
-        }, 5 * prayer.oneSecond);
+            },
+            /**
+             * If error show offline existing message
+             */
+            error: function (data) {
+                if($(".message-info-slider .slider ul li").length > 0){
+                    messageInfoSlider.run();
+                }
+            },
+        });
     },
     moveRight: function () {
         var screenWidth = $(window).width();
@@ -194,25 +211,40 @@ var messageInfoSlider = {
      * The messages will be shown
      *  - 5 before every adhan 
      *  - 5 before jumu`a
+     *  - At defined time
      */
     initCronMessageInfo: function () {
         setInterval(function () {
             if (messageInfoSlider.messageInfoIsShowing === false) {
                 var date = new Date();
                 var diffTimeInMiniute;
+                // 5 before every adhan
                 $(prayer.getTimes()).each(function (i, time) {
                     diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
                     if (diffTimeInMiniute === -5) {
-                        messageInfoSlider.show();
+                        messageInfoSlider.get();
+                        return;
                     }
                 });
 
+                // 5 min before jumu`a time
                 if (date.getDay() === 5) {
                     diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(prayer.getJoumouaaTime())) / prayer.oneMinute);
                     if (diffTimeInMiniute === -5) {
-                        messageInfoSlider.show();
+                        messageInfoSlider.get();
+                        return;
                     }
                 }
+
+                // At defined time
+//                prayer.confData.messageDefinedTimes = ["21:00", "21:05", "21:10"]
+//                $.each(prayer.confData.messageDefinedTimes, function (i, time) {
+//                    time = time.split(":");
+//                    if (date.getHours() === parseInt(time[0]) && date.getMinutes() === parseInt(time[1])) {
+//                        messageInfoSlider.show();
+//                        return false;
+//                    }
+//                });
             }
         }, prayer.oneMinute);
     },

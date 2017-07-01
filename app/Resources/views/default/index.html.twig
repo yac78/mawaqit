@@ -238,7 +238,14 @@
                     </p>
                     <br>
                     <ol class="text-muted text-left">
-                        <li>Télécharger l'image système pré configurée <strong><a target="_blank" href="/static/prayer-times-raspbian-stabe-2.6.6.img.zip">prayer-times-raspbian-stabe-2.6.6.img.zip</a></strong> puis extrayez le contenu de l'archive</li>
+                        <li>
+                            Télécharger l'image système pré configurée 
+                            <strong>
+                                <a target="_blank" href="/static/prayer-times-raspbian-stabe.img.zip">
+                                    prayer-times-raspbian-stabe.img.zip
+                                </a>
+                            </strong> puis extrayez le contenu du zip
+                        </li>
                         <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB</li>
                     </ol>
 
@@ -278,11 +285,20 @@
                     <ol class="text-muted text-left">
                         <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('fos_user_registration_register')}}">{{url('fos_user_registration_register')}}</a></li>
                         <li>Identifiez-vous puis ajoutez et configurez votre mosquée</li>
-                        <li>A la fin de ces étapes un lien internet est généré, copier ce lien dans la carte micro sd à l'endroit suivant: <code>/home/pi/prayer/current/bin/run.sh</code> (remplacez localhost par votre lien)</code></li>
+                        <li>A la fin de ces étapes un lien internet est généré.<br> 
+                            Démmarez le raspberry, branchez un clavier et une souris usb<br>
+                            Connectez-le au WIFI<br>
+                            Allez dans le menu de la barre de tache > Accessoires > Ouvrire dans le gestionaire de fichier<br><br>
+                            <img src="{{ asset('bundles/app/agency/img/software/install-1.png') }}" class="img-responsive" alt="">
+                            <br>
+                            Ouvrez le fichier <code>prayer/current/bin/run.sh</code><br><br>
+                            <img src="{{ asset('bundles/app/agency/img/software/install-2.png') }}" class="img-responsive" alt="">
+                            <br>
+                            Remplacez <code>localhost</code> par lien généré dans votre compte
+                        </li>
                         exemple: <br>
                         <code>
                             #!/bin/bash<br>
-
                             iceweasel {{url('mosque', {slug: 'mosquee-essunna-houilles'})}} &<br>
                             sleep 20<br>
                             xdotool key F11
