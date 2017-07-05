@@ -198,7 +198,9 @@ var prayer = {
      */
     getWaitingTimes: function () {
         var waitings = this.confData.prayersWaitingTimes;
-        if (this.confData.maximumIchaTimeForNoWaiting !== "" && this.getIchaTime() >= this.confData.maximumIchaTimeForNoWaiting) {
+        var ichaDate = this.getCurrentDateForPrayerTime(this.getIchaTime());
+        var maximumIchaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIchaTimeForNoWaiting);
+        if (this.confData.maximumIchaTimeForNoWaiting !== "" && (ichaDate.getHours() === 0 || ichaDate >= maximumIchaTimeForNoWaitingDate)) {
             waitings[4] = 0;
         }
         return waitings;
@@ -310,9 +312,17 @@ var prayer = {
     initIqamaFlash: function () {
         setInterval(function () {
             if (!prayer.iqamaIsFlashing) {
+                var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-                    var diffTimeInMiniute = Math.floor((new Date() - prayer.getCurrentDateForPrayerTime(time)) / prayer.oneMinute);
-                    var currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
+                    date = new Date();
+                    currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
+                    
+                    if (date.getHours() === 0 && currentDateForPrayerTime.getHours() === 23) {
+                        currentDateForPrayerTime.setDate(currentDateForPrayerTime.getDate() - 1);
+                    }
+
+                    diffTimeInMiniute = Math.floor((date - currentDateForPrayerTime) / prayer.oneMinute);
+                    currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
                     if (diffTimeInMiniute === currentPrayerWaitingTime) {
                         prayer.iqamaIsFlashing = true;
                         // iqama flashing
@@ -410,7 +420,7 @@ var prayer = {
         $(".desktop .iqama").addClass("hidden");
     },
     /**
-     * serch and set the next prayer time hilight
+     * search and set the next prayer time hilight
      */
     initNextTimeHilight: function () {
         var date = new Date();
