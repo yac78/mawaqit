@@ -131,7 +131,7 @@
                         </a>
                         <div class="portfolio-caption">
                             <h4>{{mosque.name}} - {{mosque.city}}</h4>
-                            <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">Version mobile</a>
+                            <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">Consultez les horaires</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -170,7 +170,7 @@
 
                                     <ul class="list-inline">
                                         <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li> <br>
-                                        <li>Version mobile: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
+                                        <li>Consultez les horaires: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
                                     </ul>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
                                 </div>
@@ -239,7 +239,7 @@
                     <br>
                     <ol class="text-muted text-left">
                         <li>
-                            Télécharger l'image système pré configurée 
+                            Télécharger l'image système pré configurée ici <i class="fa fa-hand-o-right"></i> 
                             <strong>
                                 <a target="_blank" href="/static/prayer-times-raspbian-stabe.img.zip">
                                     prayer-times-raspbian-stabe.img.zip
@@ -247,54 +247,46 @@
                             </strong> puis extrayez le contenu du zip
                         </li>
                         <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB</li>
+                        <li>Téléchargez le logiciel Etcher ici 
+                            <i class="fa fa-hand-o-right"></i> 
+                            <a href="https://etcher.io">https://etcher.io</a> puis installez-le sur votre ordinateur
+                        </li>
+                        <li>
+                            Flashez l'image système prayer-times-raspbian-stabe.img sur la carte micro sd avec Etcher<br><br>
+                            <img src="{{ asset('bundles/app/agency/img/software/etcher.gif') }}" class="img-responsive" alt="">
+                        </li>
                     </ol>
 
                     <br>
-                    <h5>Vous êtes sous Windows :</h5>
-                    <ol class="text-muted text-left">
-                        <li>Formater la carte mémoire</li>
-                        <ol class="text-muted text-left">
-                            <li>Téléchargez le logiciel <a target="_blank" href="/static/SDFormatterv4.exe">SDFormatterv4.exe</a> et installez le sur votre ordinateur</li>
-                            <li>Lancez le SDFormeter, dans le menu "Options", mettez "FORMAT TYPE" à QUICK et "FORMAT SIZE ADJUSTMENT" à "ON".</li>
-                            <li>Sélectionnez la carte mémoire et appuyez sur Format</li>
-                            <br>
-                            <img class="img-responsive img-centered" style="display: inline; width: 250px; height: 200px; margin-right: 20px" src="{{ asset('bundles/app/agency/img/install-raspberry/SDFORmatter_V3.0.0.0.png') }}" alt="">
-                            <img class="img-responsive img-centered" style="display: inline; width: 250px; height: 200px"  src="{{ asset('bundles/app/agency/img/install-raspberry/SDFORmatter_V3.0.0.0-2.png') }}" alt="">
-                        </ol>
-                        <li style="margin-top: 10px">Flasher l'image système</li>
-                        <ol class="text-muted text-left">
-                            <li>Téléchargez le logiciel <a target="_blank" href="/static/win32diskimager-1.0.0-install.exe">win32diskimager-1.0.0-install.exe</a> et installez le sur votre ordinateur</li>
-                            <li>Choisissez l'image système précédemment téléchargée et sélectionnez la carte mémoire, puis appuyez sur Write</li>
-                        </ol>
-                    </ol>
-                    <br>
-                    <h5>Vous êtes sous Linux :</h5>
-                    <ol class="text-muted text-left">
-                        <li>Identifiez le montage de la carte mémoire <code>sudo fdisk -l</code></li>
-                        <li>
-                            Flashez la carte mémoire <code>sudo dd bs=4M if=/chemin/vers/l'image of=/dev/sdx</code><br>
-                            Exp: <code>sudo dd bs=4M if=/home/ibrahim/prayer-times-raspbian-stable.img of=/dev/sdb</code>
-                        </li>
-                    </ol>
-                    <br>
-                    <h5>Dernière étape</h5>
+                    <h3>Dernière étape</h3>
                     <p class="text-muted text-left">Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
                         <strong>1. Lancer le logiciel embarqué : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br><br>
-                        <strong>2. Vous avez le WIFI dans la mosquée ? </strong> Utilisez la version en ligne (RECOMMANDÉE) elle a l'avantage d'être synchronisée sur tous les terminaux (mobile, 
-                        tablette et écran de la mosquée) et les modifications se font en ligne, pas besoin de brancher un clavier et une souris au raspberry il se mettrea à jour automatiquement, pour le faire suivez les étapes suivantes : </p>
+                        <strong>2. Vous avez une connexion internet (WIFI ou Ethernet) dans la mosquée ? 
+                        </strong> Utilisez la version en ligne <strong>(RECOMMANDÉE)</strong> qui bénéficie des avantages suivants  <br>
+                    </p>
+                    <ul class="text-muted text-left">
+                        <li>Pilotage à distance depuis votre smartphone ou n'importe qu'elle ordinateur et tablette</li>
+                        <li>Une version synchronisée sur tous les terminaux, mobile, tablette et écran de la mosquée</li>
+                        <li>Vous bénificiez des dernières mise à jour automatiquement sans aucune manipulation de votre part</li>
+                        <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
+                    </ul>
+                    <br>
+                    <h4 class="text-muted text-left">
+                        Suivez les étapes ci-dessous : 
+                    </h4>
                     <ol class="text-muted text-left">
                         <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('fos_user_registration_register')}}">{{url('fos_user_registration_register')}}</a></li>
-                        <li>Identifiez-vous puis ajoutez et configurez votre mosquée</li>
-                        <li>A la fin de ces étapes un lien internet est généré.<br> 
-                            Démmarez le raspberry, branchez un clavier et une souris usb<br>
-                            Connectez-le au WIFI<br>
-                            Allez dans le menu de la barre de tache > Accessoires > Ouvrire dans le gestionaire de fichier<br><br>
+                        <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la fin de cette étape</li>
+                        <li>Démmarez le raspberry et branchez un clavier et une souris usb dessus</li>
+                        <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
+                        <li>
+                            Allez dans le menu de la barre de tache > Accessoires > Ouvrire dans le gestionaire de fichiers<br><br>
                             <img src="{{ asset('bundles/app/agency/img/software/install-1.png') }}" class="img-responsive" alt="">
                             <br>
                             Ouvrez le fichier <code>prayer/current/bin/run.sh</code><br><br>
                             <img src="{{ asset('bundles/app/agency/img/software/install-2.png') }}" class="img-responsive" alt="">
                             <br>
-                            Remplacez <code>localhost</code> par lien généré dans votre compte
+                            Remplacez <code>localhost</code> par le lien généré dans votre compte
                         </li>
                         exemple: <br>
                         <code>
@@ -304,7 +296,7 @@
                             xdotool key F11
                         </code>
 
-                        <li>Reste plus qu'à brancher le raspberry sur l'écran et le connecter au WIFI, le logiciel se lancera tout seul</li>
+                        <li>Sauvegardez et redémarrez le raspberry</li>
                     </ol>
                     <p class="text-muted text-left">Vous pouvez nous envoyer un message <a href="#contact">ici</a> si vous rencontrez des diffucltées.</p>
                 </div>
