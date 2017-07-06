@@ -199,9 +199,11 @@ var prayer = {
     getWaitingTimes: function () {
         var waitings = this.confData.prayersWaitingTimes;
         var ichaDate = this.getCurrentDateForPrayerTime(this.getIchaTime());
-        var maximumIchaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIchaTimeForNoWaiting);
-        if (this.confData.maximumIchaTimeForNoWaiting !== "" && (ichaDate.getHours() === 0 || ichaDate >= maximumIchaTimeForNoWaitingDate)) {
-            waitings[4] = 0;
+        if (this.confData.maximumIchaTimeForNoWaiting != null && this.confData.maximumIchaTimeForNoWaiting.matchTime()) {
+            var maximumIchaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIchaTimeForNoWaiting);
+            if (ichaDate.getHours() === 0 || ichaDate >= maximumIchaTimeForNoWaitingDate) {
+                waitings[4] = 0;
+            }
         }
         return waitings;
     },
@@ -316,7 +318,7 @@ var prayer = {
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                     date = new Date();
                     currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
-                    
+
                     if (date.getHours() === 0 && currentDateForPrayerTime.getHours() === 23) {
                         currentDateForPrayerTime.setDate(currentDateForPrayerTime.getDate() - 1);
                     }

@@ -3,6 +3,15 @@ String.prototype.firstCapitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+/**
+ * check if string match time hh:mm
+ * @returns {Boolean}
+ */
+String.prototype.matchTime = function () {
+    var regex = /^\d{2}:\d{2}$/g;
+    return regex.test(this);
+};
+
 
 /* ##### time ##### */
 Date.prototype.stdTimezoneOffset = function () {
