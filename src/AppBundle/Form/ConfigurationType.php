@@ -138,6 +138,13 @@ class ConfigurationType extends AbstractType {
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment.label'
                 ])
+                ->add('timezone', IntegerType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.timezone.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.timezone.title'),
+                    ],
+                ])
                 ->add('hijriDateEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.hijriDateEnabled.label',
@@ -242,8 +249,10 @@ class ConfigurationType extends AbstractType {
             $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
             $configuration->setLongitude($position->lng);
             $configuration->setLatitude($position->lat);
-            $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
-            $configuration->setTimezone($timezone);
+            if(is_null($configuration->getTimezone())) {
+                $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
+                $configuration->setTimezone($timezone);
+            }
         }
     }
 

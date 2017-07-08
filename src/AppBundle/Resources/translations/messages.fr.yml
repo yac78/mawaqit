@@ -104,6 +104,9 @@ configuration:
             title: Ces valeurs sont à titre estimatif, ça permet d'afficher les invocations après que l'imam termine la prière
         hijriAdjustment: 
             label: Ajustement de la date hégire
+        timezone: 
+            label: Modifier le timezone (décalage horaire)
+            title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqama (en secondes)
         azanDuaDisplayTime: 
