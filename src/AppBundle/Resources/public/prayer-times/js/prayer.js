@@ -44,13 +44,13 @@ var prayer = {
         this.setDate();
         this.setTimes();
         this.setWaitings();
-        this.translateToArabic();
         this.initNextTimeHilight();
         this.initAdhanFlash();
         this.initIqamaFlash();
         this.initCronHandlingTimes();
         this.setCustomTime();
         this.initUpdateConfData();
+        this.translateToArabic();
         this.hideSpinner();
         douaaSlider.init();
         messageInfoSlider.initCronMessageInfo();
@@ -362,7 +362,7 @@ var prayer = {
             $(".top-content .adhan-flash").addClass("hidden");
             $(".mobile .prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
             $(".mobile .prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
-        }, prayer.oneMinute);
+        }, 90 * prayer.oneSecond);
     },
     /**
      * flash iqama for 30 sec
@@ -681,9 +681,12 @@ var prayer = {
                 $(".prayer-time").append(times[i]);
                 $(".prayer-wait").append(waits[i]);
             }
-            $(".prayer-text, .joumouaa>div:first, .chourouk>div:first, .imsak>div:first, .aid>div:first").css("font-family", "Amiri");
-            $(".header").css("font-family", "Amiri");
+            $(".ar").css({"font-family": "Amiri", 'font-size': '130%'});
+            $(".adhan .title, .douaa-between-adhan-iqama .title").css("margin-bottom", "80px");
             $(".adhan .ar, .douaa-between-adhan-iqama .ar").css("font-size", "900%");
+            $(".slider .title").css("font-size", "1000%");
+            $(".header").css("font-size", "700%");
+            $(".site").css("font-size", "200%");
         }
     }
 };

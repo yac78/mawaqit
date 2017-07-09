@@ -50,7 +50,7 @@
 
             <!-- main screen -->
             <div class="main display-none">
-                <div class="header">{{mosque.name}} - {{mosque.city}}</div> 
+                <div class="header ar">{{mosque.name ~ (mosque.city not in mosque.name ?  ' - ' ~ mosque.city : '') }}</div> 
 
                 <div class="top-content">
                     <div class="adhan-flash hidden">
@@ -66,15 +66,15 @@
                     </div>
                     <div class="content">
                         <div class="col-lg-3 aid custom-time">
-                            <div>{{'aid'|trans}}</div>
+                            <div class="ar">{{'aid'|trans}}</div>
                             <div class="aid-id"></div>
                         </div>
                         <div class="col-lg-3 chourouk custom-time">
-                            <div>{{'shuruk'|trans}}</div>
+                            <div class="ar">{{'shuruk'|trans}}</div>
                             <div class="chourouk-id"></div>
                         </div>
                         <div class="col-lg-3 imsak custom-time">
-                            <div>{{'imsak'|trans}}</div>
+                            <div class="ar">{{'imsak'|trans}}</div>
                             <div class="imsak-id"></div>
                         </div>
                         <div class="col-lg-6">
@@ -83,7 +83,7 @@
                             <div class="gregorianDate"></div>
                         </div>
                         <div class=" col-lg-3 joumouaa">
-                            <div>{{'jumua'|trans}}</div>
+                            <div class="ar">{{'jumua'|trans}}</div>
                             <div class="prayer joumouaa-id"></div>
                         </div>
                     </div>
@@ -91,11 +91,11 @@
 
                 <div class="prayer-content">
                     <div class="prayer-text">
-                        <div class="text _0">{{'fajr'|trans}}</div>
-                        <div class="text _1">{{'zuhr'|trans}}</div>
-                        <div class="text _2">{{'asr'|trans}}</div>
-                        <div class="text _3">{{'maghrib'|trans}}</div>
-                        <div class="text _4">{{'isha'|trans}}</div>
+                        <div class="text _0 ar">{{'fajr'|trans}}</div>
+                        <div class="text _1 ar">{{'zuhr'|trans}}</div>
+                        <div class="text _2 ar">{{'asr'|trans}}</div>
+                        <div class="text _3 ar">{{'maghrib'|trans}}</div>
+                        <div class="text _4 ar">{{'isha'|trans}}</div>
                     </div>
 
                     <div class="prayer-time">
@@ -117,7 +117,7 @@
 
                 <div class="footer">
                     <div class="col-lg-12">
-                        <div class="site">{{site|raw}}</div>
+                        <div class="site ar">{{site|raw}}</div>
                         <div class="assosciation">
                             {{ mosque.associationName }}
                             {% if mosque.phone %}
@@ -134,8 +134,8 @@
                 </div>
                 <div class="version">v{{version}}</div>
                 {% if mosque.configuration.urlQrCodeEnabled %}
-                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=110x110" alt=""/></div>
-                    {% endif %}
+                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=100x100" alt=""/></div>
+                {% endif %}
             </div>
         </div>
 

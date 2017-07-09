@@ -8,16 +8,9 @@
 .slider .title{ 
     color: yellowgreen;
     padding: 5px 0 20px 0;
+    font-size: 900%;
 }
-
-.slider .ar {
-    line-height: inherit;
-}
-
-.slider .fr{
-    font-family: Arial;
-}
-    
+   
 .slider ul {
     position: relative;
     margin: auto;
@@ -30,13 +23,6 @@
     display: block;
     float: left;
     margin: auto;
-}
-
-.slider .ar .title  {
-    font-size: 700%;
-}
-.slider .fr .title {
-    font-size: 600%;
 }
 
 .message-info-slider li .title {
