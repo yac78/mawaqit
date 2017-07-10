@@ -663,6 +663,10 @@ var prayer = {
     },
     hideSpinner: function () {
         $(document).ready(function () {
+            var screenWidth = $(window).width();
+            var screenHeight = $(window).height();
+            $("body").css({width: screenWidth, height: screenHeight});
+            
             $(".main").fadeIn(1000, function () {
                 $(".spinner").hide();
             });
