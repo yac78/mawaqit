@@ -44,30 +44,30 @@
                         Le logiciel permet un affichage en français, arabe et anglais.<br>
                         Aucun réglage à faire, tout est paramétré automatiquement tout comme le changement d'heure été/ hiver.
                     </p>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive" alt=""><br></div>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/arabic.png') }}" class="img-responsive" alt=""><br></div>
                 </div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive" alt=""><br></div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/arabic.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
                     <h4 class="service-heading">Signal visuel Adhan et Iqama</h4>
                     <p class="text-muted">Lorsqu’il est l'heure du adhan ou de la  iqama, l'écran se met à clignoter.</p>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-1.png') }}" class="img-responsive" alt=""><br></div>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-2.png') }}" class="img-responsive" alt=""><br></div>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/iqama.png') }}" class="img-responsive" alt=""><br></div>
                 </div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-1.png') }}" class="img-responsive" alt=""><br></div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-2.png') }}" class="img-responsive" alt=""><br></div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/iqama.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
                     <h4 class="service-heading">Affichage de rappels et invocations</h4>
                     <p class="text-muted">Entre chaque adhan et iqama, ainsi qu'à la fin de chaque prière, des rappels et invocations sont affichés.</p>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-adhan.png') }}" class="img-responsive" alt=""><br></div>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-between-adhan-and-iqama.png') }}" class="img-responsive" alt=""><br></div>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-prayer.png') }}" class="img-responsive" alt=""><br></div>
                 </div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-adhan.png') }}" class="img-responsive" alt=""><br></div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-between-adhan-and-iqama.png') }}" class="img-responsive" alt=""><br></div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-prayer.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
                     <h4 class="service-heading">Affichage d'annonces (version en ligne uniquement)</h4>
                     <p class="text-muted">
                         Avant et après chaque prière, si configurés depuis l'éspace utilisateur les annonces défileront sur l'écran.<br>
                     </p>
-                    <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/message.png') }}" class="img-responsive" alt=""><br></div>
                 </div>
+                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/message.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
                     <h4 class="service-heading">Entièrement configurable</h4>
                     <p class="text-muted">
@@ -86,9 +86,7 @@
                         <li>Affichange d'annonces en texte ou image</li>
                     </ul>
 
-                    <div class="col-lg-12 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/configure.png') }}" class="img-responsive" alt=""><br></div>
                 </div>
-
                 <div class="col-md-12">
                     <h4 class="service-heading">Une version adaptée aux mobiles et tablettes</h4>
                     <p class="text-muted">
@@ -96,13 +94,13 @@
                         nous créons un site internet adatapté au mobile et tablette pour chaque installation.<br>
                     </p>
                     <div class="text-left">
-                        Exemples: <br>
-                        <a target="_blank" href="http://priere.mosquee-houilles.fr">http://priere.mosquee-houilles.fr</a> <br>
-                        <a target="_blank" href="http://horaires.mosquee-gennevilliers.com">http://horaires.mosquee-gennevilliers.com</a><br>
-                        <a target="_blank" href="http://faif.horaires-de-priere.fr">http://faif.horaires-de-priere.fr</a><br><br>
+                        <div>Exemples: </div>
+                        <div><a target="_blank" href="{{path('mosque', {'slug': 'mosquee-essunna-houilles'})}}">{{url('mosque', {'slug': 'mosquee-essunna-houilles'})}}</a> </div>
+                        <div><a target="_blank" href="{{path('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}">{{url('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}</a> </div>
+                        </br>
                     </div>
-                    <div class="col-lg-12 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
                 </div>
+                <div class="col-lg-12 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
 
             </div>
         </div>
