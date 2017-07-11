@@ -162,6 +162,7 @@ body {
 
 .adhan .ar {
     font-size: 700%;
+    font-family: 'Amiri';
 }
 
 .adhan .fr {
@@ -171,6 +172,7 @@ body {
 
 .douaa-between-adhan-iqama .ar {
     font-size: 700%;
+    font-family: 'Amiri';
 }
 
 .douaa-between-adhan-iqama .fr {
@@ -229,3 +231,4 @@ body {
     width: 98%;
     height: 99vh;
 }
+
