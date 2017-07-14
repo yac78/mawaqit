@@ -37,7 +37,7 @@ body {
 }
 
 .header{
-    font-size: 200%;
+    font-size: 20px;
     color: yellowgreen;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -122,10 +122,6 @@ body {
     color: #adadad;
     text-align: right;
     padding: 3px;
-}
-
-.ar{
-    font-family: 'Amiri';
 }
 
 .title {

@@ -686,10 +686,12 @@ var prayer = {
                 $(".prayer-wait").append(waits[i]);
             }
             $(".ar").css({"font-family": "Amiri", 'font-size': '130%'});
+            $(".mobile .ar").css({'font-size': '180%'});
             $(".adhan .title, .douaa-between-adhan-iqama .title").css("margin-bottom", "80px");
             $(".adhan .ar, .douaa-between-adhan-iqama .ar").css("font-size", "900%");
             $(".slider .title").css("font-size", "1000%");
             $(".header").css("font-size", "700%");
+            $(".mobile .header").css("font-size", "250%");
             $(".site").css("font-size", "200%");
         }
     }

@@ -30,11 +30,18 @@ var dateTime = {
         return date.getDate();
     },
     /**
-     * get current month numbre 01, 02 ... 12
+     * get current month numbre 0, 1, 2 ...
      */
     getCurrentMonth: function () {
         var date = new Date();
         return date.getMonth();
+    },
+    /**
+     * get current month numbre 01, 02 ... 12
+     */
+    getCurrentMonthText: function () {
+        var date = new Date();
+        return addZero(date.getMonth() + 1);
     },
     /**
      * get tomorrow month 01, 02 ... 12
@@ -69,10 +76,10 @@ var dateTime = {
      * @returns {String}
      */
     getCurrentDate: function (lang) {
-        if (lang === 'ar') {
-            lang = 'fr';
-        }
         var date = new Date();
+        if (lang === 'ar') {
+            return this.getCurrentDay() + "/" + this.getCurrentMonthText() + "/" + date.getFullYear();
+        }
         var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}
         try {
             return date.toLocaleString(lang, options).firstCapitalize();

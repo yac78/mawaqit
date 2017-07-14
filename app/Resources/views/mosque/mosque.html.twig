@@ -143,7 +143,7 @@
             <div class="spinner"></div>
 
             <div class="main display-none">
-                <div class="header">{{mosque.name}} - {{mosque.city}}</div>
+                <div class="header ar">{{mosque.name ~ (mosque.city not in mosque.name ?  ' - ' ~ mosque.city : '') }}</div> 
                 <div class="top-content">
                     <div class="time"></div>
                     <div class="hijriDate ar"></div>
@@ -152,7 +152,7 @@
 
                 <div class="prayer-content">
                     <div class="row">
-                        <div class="col-xs-4 text">{{'fajr'|trans}}</div>
+                        <div class="col-xs-4 text ar">{{'fajr'|trans}}</div>
                         <div class="col-xs-4 prayer prayer0 sobh"></div> 
                         <div class="col-xs-4 adhan0 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
@@ -160,7 +160,7 @@
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">{{'zuhr'|trans}}</div>
+                        <div class="col-xs-4 text ar">{{'zuhr'|trans}}</div>
                         <div class="col-xs-4 prayer prayer1 dohr"></div>
                         <div class="col-xs-4 adhan1 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
@@ -168,7 +168,7 @@
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">{{'asr'|trans}}</div>
+                        <div class="col-xs-4 text ar">{{'asr'|trans}}</div>
                         <div class="col-xs-4 prayer prayer2 asr"></div>
                         <div class="col-xs-4 adhan2 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
@@ -176,7 +176,7 @@
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">{{'maghrib'|trans}}</div>
+                        <div class="col-xs-4 text ar">{{'maghrib'|trans}}</div>
                         <div class="col-xs-4 prayer prayer3 maghrib"></div>
                         <div class="col-xs-4 adhan3 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
@@ -184,7 +184,7 @@
                         <div class="col-xs-4 wait"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 text">{{'isha'|trans}}</div>
+                        <div class="col-xs-4 text ar">{{'isha'|trans}}</div>
                         <div class="col-xs-4 prayer prayer4 ichaa"></div>
                         <div class="col-xs-4 adhan4 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
@@ -195,11 +195,11 @@
 
                 <div class="chourouk-joumouaa">
                     <div class="row">
-                        <div class="col-xs-4 col-xs-offset-1 imsak custom-time">{{'imsak'|trans}}</div> 
-                        <div class="col-xs-4 col-xs-offset-1 chourouk custom-time">{{'shuruk'|trans}}</div> 
-                        <div class="col-xs-4 col-xs-offset-1 aid custom-time">{{'aid'|trans}}</div> 
+                        <div class="col-xs-4 col-xs-offset-1 imsak custom-time ar">{{'imsak'|trans}}</div> 
+                        <div class="col-xs-4 col-xs-offset-1 chourouk custom-time ar">{{'shuruk'|trans}}</div> 
+                        <div class="col-xs-4 col-xs-offset-1 aid custom-time ar">{{'aid'|trans}}</div> 
                         <div class="col-xs-2"></div>
-                        <div class="col-xs-4 joumouaa">{{'jumua'|trans}}</div>
+                        <div class="col-xs-4 joumouaa ar">{{'jumua'|trans}}</div>
                         <div class="col-xs-1"></div>
                     </div>
                     <div class="row">
