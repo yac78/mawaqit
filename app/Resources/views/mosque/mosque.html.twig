@@ -135,7 +135,7 @@
                 <div class="version">v{{version}}</div>
                 {% if mosque.configuration.urlQrCodeEnabled %}
                     <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=100x100" alt=""/></div>
-                {% endif %}
+                    {% endif %}
             </div>
         </div>
 
@@ -151,46 +151,89 @@
                 </div>
 
                 <div class="prayer-content">
-                    <div class="row">
-                        <div class="col-xs-4 text ar">{{'fajr'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer0 sobh"></div> 
-                        <div class="col-xs-4 adhan0 hidden">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                    {% if lang == 'ar' %}
+                        <div class="row">
+                            <div class="col-xs-4 wait text-left"></div>
+                            <div class="col-xs-4 prayer prayer0 sobh"></div> 
+                            <div class="col-xs-4 adhan0 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 text ar text-right">{{'fajr'|trans}}</div>
                         </div>
-                        <div class="col-xs-4 wait"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 text ar">{{'zuhr'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer1 dohr"></div>
-                        <div class="col-xs-4 adhan1 hidden">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                        <div class="row">
+                            <div class="col-xs-4 wait text-left"></div>
+                            <div class="col-xs-4 prayer prayer1 dohr"></div>
+                            <div class="col-xs-4 adhan1 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 text ar text-right">{{'zuhr'|trans}}</div>
                         </div>
-                        <div class="col-xs-4 wait"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 text ar">{{'asr'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer2 asr"></div>
-                        <div class="col-xs-4 adhan2 hidden">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                        <div class="row">
+                            <div class="col-xs-4 wait text-left"></div>
+                            <div class="col-xs-4 prayer prayer2 asr"></div>
+                            <div class="col-xs-4 adhan2 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 text ar text-right">{{'asr'|trans}}</div>
                         </div>
-                        <div class="col-xs-4 wait"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 text ar">{{'maghrib'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer3 maghrib"></div>
-                        <div class="col-xs-4 adhan3 hidden">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                        <div class="row">
+                            <div class="col-xs-4 wait text-left"></div>
+                            <div class="col-xs-4 prayer prayer3 maghrib"></div>
+                            <div class="col-xs-4 adhan3 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 text ar text-right">{{'maghrib'|trans}}</div>
                         </div>
-                        <div class="col-xs-4 wait"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 text ar">{{'isha'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer4 ichaa"></div>
-                        <div class="col-xs-4 adhan4 hidden">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                        <div class="row">
+                            <div class="col-xs-4 wait text-left"></div>
+                            <div class="col-xs-4 prayer prayer4 ichaa"></div>
+                            <div class="col-xs-4 adhan4 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 text ar text-right">{{'isha'|trans}}</div>
                         </div>
-                        <div class="col-xs-4 wait"></div>
-                    </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-xs-4 text text-left">{{'fajr'|trans}}</div>
+                            <div class="col-xs-4 prayer prayer0 sobh"></div> 
+                            <div class="col-xs-4 adhan0 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 wait text-right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 text text-left">{{'zuhr'|trans}}</div>
+                            <div class="col-xs-4 prayer prayer1 dohr"></div>
+                            <div class="col-xs-4 adhan1 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 wait text-right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 text text-left">{{'asr'|trans}}</div>
+                            <div class="col-xs-4 prayer prayer2 asr"></div>
+                            <div class="col-xs-4 adhan2 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 wait text-right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 text text-left">{{'maghrib'|trans}}</div>
+                            <div class="col-xs-4 prayer prayer3 maghrib"></div>
+                            <div class="col-xs-4 adhan3 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 wait text-right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 text text-left">{{'isha'|trans}}</div>
+                            <div class="col-xs-4 prayer prayer4 ichaa"></div>
+                            <div class="col-xs-4 adhan4 hidden">
+                                <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
+                            </div>
+                            <div class="col-xs-4 wait text-right"></div>
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="chourouk-joumouaa">
@@ -216,7 +259,7 @@
                     <div class="assosciation text-center">
                         {{ mosque.associationName }}
                         {% if mosque.phone %}
-                             &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                            &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
                         {% endif %}
                         <div>{{ mosque.rib }}</div>
                     </div>
@@ -231,8 +274,9 @@
         </div>
 
         <script>
-            var confData = {{config|raw}};
-            var lang = "{{lang}}";
+            var confData
+            = {{config|raw}};
+                    var lang = "{{lang}}";
         </script>
 
         {% javascripts
