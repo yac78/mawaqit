@@ -8,9 +8,12 @@
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Le projet</h2>
                     <p class="text-muted">
-                        Aujourd’hui les mosquées sont équipées d’horloges digitales de mauvaise qualité. Ces dernières ne répondent 
-                        malheureusement pas aux besoins de nos mosquées. Les horloges digitales sont généralement dotées d’un réglage manuel
-                        (à faire tous les jours), ou d’un réglage automatique avec donc des horaires inexacts.
+                        La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau éléctronique. Ces horloges ne répondent 
+                        malheureusement pas aux besoins de plus en plus variés et exigents de nos mosquées. 
+                        Les horloges digitales sont généralement dotées d’un réglage manuel
+                        (à faire tous les jours), ou d’un réglage automatique avec donc des horaires parfois inexacts 
+                        et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
+                        De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
                     </p>
                     <br><br>
                     <div class="row text-center">
@@ -24,32 +27,34 @@
                         <br><br>
                         Notre logiciel est entièrement gratuit et open source, il est accessible sur github à l'adresse suivante 
                         <a target="_blank" href="https://github.com/binary010100/prayer-times">https://github.com/binary010100/prayer-times</a><br>
-                        <i style="font-weight: bold">TOUTE UTILISATION A BUT LUCRATIF EST STRICTEMENT INTERDITE.</i>
+                        <i style="font-weight: bold" class="fa fa-warning"> TOUTE UTILISATION A BUT LUCRATIF EST STRICTEMENT INTERDITE</i>
                     </p>
                     <br>
                     <h3 class="section-heading">Comment ça fonctionne ?</h3>
                     <p class="text-muted">
-                        Notre logiciel est développé en JavaScript, un langage web très connu, exécuté par un mini ordinateur, le Raspberry Pi 3, ce dernier est branché sur un grand écran via un câble HDMI.
+                        Notre logiciel est développé en JavaScript, un langage web très connu, exécuté par un mini ordinateur, le Raspberry Pi 3 ou par n'importe qu'elle autre ordinateur, 
+                        TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet (Firefox ou chrome). En effet le logiciel est une simple page internet est toute l'intelligence est 
+                        concentrée dans du code javascript.
                     </p>
                     <img src="{{ asset('bundles/app/agency/img/raspberry.jpg') }}" class="img-responsive" style="display: inline" alt="">
-                    <br>
-                    <h4 class="section-heading">Quelles sont les fonctionnalités principales du logiciel ?</h4>
-                    <br>
                 </div>
             </div>
             <div class="row text-center">
                 <div class="col-md-12">
+                    <br>
+                    <h4 class="section-heading">Quelles sont les fonctionnalités principales du logiciel ?</h4>
+                    <br>
                     <h4 class="service-heading">Affichage des horaires de prière en plusieurs langues</h4>
                     <p class="text-muted">
                         Le logiciel permet un affichage en français, arabe et anglais.<br>
-                        Aucun réglage à faire, tout est paramétré automatiquement tout comme le changement d'heure été/ hiver.
+                        Aucun réglage à faire, tout est paramétré automatiquement tout comme le changement d'heure été/hiver.
                     </p>
                 </div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/arabic.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
-                    <h4 class="service-heading">Signal visuel Adhan et Iqama</h4>
-                    <p class="text-muted">Lorsqu’il est l'heure du adhan ou de la  iqama, l'écran se met à clignoter.</p>
+                    <h4 class="service-heading">Signal sonor et visuel du adhân et Iqâma</h4>
+                    <p class="text-muted">Lorsqu’il est l'heure du adhan ou de la  iqama, l'écran se met à clignoter et un signal sonor retentira.</p>
                 </div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-1.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-2.png') }}" class="img-responsive" alt=""><br></div>
@@ -62,7 +67,7 @@
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-between-adhan-and-iqama.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-prayer.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
-                    <h4 class="service-heading">Affichage d'annonces (version en ligne uniquement)</h4>
+                    <h4 class="service-heading">Affichage d'annonces (version connectée uniquement)</h4>
                     <p class="text-muted">
                         Avant et après chaque prière, si configurés depuis l'éspace utilisateur les annonces défileront sur l'écran.<br>
                     </p>
@@ -75,7 +80,7 @@
                         directement configurables depuis l'interface dédiée.
                     </p>
                     <ul class="text-muted text-left">
-                        <li>Choix de méthode de calcul ou lecture depuis des fichiers CSV</li>
+                        <li>Choix entre calcul des horaires automatique par le logiciel ou lecture depuis des fichiers CSV</li>
                         <li>Choix de la langue</li>
                         <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
                         <li>Fixation des horaires (exemple: fixer l'heure du ichaa en hiver)</li>
@@ -84,11 +89,13 @@
                         <li>Modification des textes affichés en haut et en bas de l'écran</li>
                         <li>Modification de la couleur de fond</li>
                         <li>Affichange d'annonces en texte ou image</li>
+                        <li>Bip lors du adhân et iqâma</li>
+                        <li>Affichage du QR code pour faciliter la copie du lien internet</li>
                     </ul>
 
                 </div>
                 <div class="col-md-12">
-                    <h4 class="service-heading">Une version adaptée aux mobiles et tablettes</h4>
+                    <h4 class="service-heading">Une version adaptée au mobile et tablette</h4>
                     <p class="text-muted">
                         Afin de faciliter aux fideles la consultation des horaires de prière de leur mosquées, 
                         nous créons un site internet adatapté au mobile et tablette pour chaque installation.<br>
@@ -112,7 +119,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Quelques mosquées équipées</h2>
-                    <h3 class="section-subheading text-muted">Grace à Allah nous avons pu installé notre logiciel dans plusieurs mosquée partout en France, voici quelques exemples</h3>
+                    <h3 class="section-subheading text-muted">Grace à Allah nous avons pu installé notre logiciel dans plusieurs mosquée partout en France et autres pays, voici quelques exemples</h3>
                 </div>
             </div>
             <div class="row">
@@ -128,7 +135,7 @@
                             <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
                         </a>
                         <div class="portfolio-caption">
-                            <h4>{{mosque.name}} - {{mosque.city}}</h4>
+                            <h4>{{mosque.name}} - {{mosque.city}} {{mosque.country}} </h4>
                             <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">Consultez les horaires</a>
                         </div>
                     </div>
@@ -200,14 +207,14 @@
                             </a> (des écrans d'occasion sont les bienvenus aussi)
                         </li>
 
-                        <li>Un kit Raspberry PI 3, prix 65€
+                        <li>Un kit Raspberry PI 3, prix 55€
                             <a target="_blank" href="https://www.amazon.fr/Raspberry-Pi-Official-Desktop-Starter/dp/B01CI5879A/ref=sr_1_2?ie=UTF8&qid=1492881089&sr=8-2&keywords=un%2Braspberry%2Bpi%2B3&th=1">
                                 chez amzon par exemple
                             </a>
                             <img class="img-responsive img-centered" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br>
                             Ou encore moins cher chez
                             <a target="_blank" href="https://fr.aliexpress.com/item/H-Raspberry-Pi-3-Model-B-kit-pi-3-board-pi-3-case-European-power-supply/32785912149.html?spm=2114.13010608.0.0.UlZLi4">
-                                Aliexpress 44€ environ
+                                Aliexpress 41€ environ
                             </a>
                             mais livraison sous 15-24 jours
                             <br>
@@ -258,9 +265,9 @@
                     <br>
                     <h3>Dernière étape</h3>
                     <p class="text-muted text-left">Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
-                        <strong>1. Lancer le logiciel embarqué : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br><br>
+                        <strong>1. Lancer le logiciel embarqué (version non connectée) : </strong> Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul, vous pouvez après configurer les horaires de votre mosquée.<br><br>
                         <strong>2. Vous avez une connexion internet (WIFI ou Ethernet) dans la mosquée ? 
-                        </strong> Utilisez la version en ligne <strong>(RECOMMANDÉE)</strong> qui bénéficie des avantages suivants  <br>
+                        </strong> Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> qui bénéficie des avantages suivants  <br>
                     </p>
                     <ul class="text-muted text-left">
                         <li>Pilotage à distance depuis votre smartphone ou n'importe qu'elle ordinateur et tablette</li>

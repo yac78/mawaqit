@@ -246,7 +246,7 @@ class ConfigurationType extends AbstractType {
         }
 
         if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
-            $position = $this->googleService->getPosition($configuration->getMosque()->getCityZipCode());
+            $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
             $configuration->setLongitude($position->lng);
             $configuration->setLatitude($position->lat);
             if(is_null($configuration->getTimezone())) {

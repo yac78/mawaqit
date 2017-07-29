@@ -176,7 +176,7 @@ class MosqueController extends Controller {
             }
         } catch (GooglePositionException $exc) {
             $this->addFlash('danger', $this->get("translator")->trans("form.configure.geocode_error", [
-                        "%address%" => $mosque->getCityZipCode()
+                        "%address%" => $mosque->getLocalisation()
             ]));
         }
         return $this->render('mosque/configure.html.twig', [

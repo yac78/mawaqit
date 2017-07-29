@@ -78,7 +78,8 @@ class MosqueType extends AbstractType {
                     ]
                 ])
                 ->add('country', null, [
-                    'label' => 'country'
+                    'label' => 'country',
+                    'required' => true,
                 ])
                 ->add('rib', null, [
                     'label' => 'rib',
