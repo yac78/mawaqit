@@ -254,7 +254,7 @@
                         <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB</li>
                         <li>Téléchargez le logiciel Etcher ici 
                             <i class="fa fa-hand-o-right"></i> 
-                            <a href="https://etcher.io">https://etcher.io</a> puis installez-le sur votre ordinateur
+                            <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre ordinateur
                         </li>
                         <li>
                             Flashez l'image système prayer-times-raspbian-stabe.img sur la carte micro sd avec Etcher<br><br>
@@ -282,24 +282,16 @@
                     <ol class="text-muted text-left">
                         <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('fos_user_registration_register')}}">{{url('fos_user_registration_register')}}</a></li>
                         <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la fin de cette étape</li>
-                        <li>Démmarez le raspberry et branchez un clavier et une souris usb dessus</li>
+                        <li>Démmarez le raspberry et branchez un clavier et une souris usb</li>
                         <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
                         <li>
-                            Allez dans le menu de la barre de tache > Accessoires > Ouvrire dans le gestionaire de fichiers<br><br>
-                            <img src="{{ asset('bundles/app/agency/img/software/install-1.png') }}" class="img-responsive" alt="">
-                            <br>
-                            Ouvrez le fichier <code>prayer/current/bin/run.sh</code><br><br>
-                            <img src="{{ asset('bundles/app/agency/img/software/install-2.png') }}" class="img-responsive" alt="">
-                            <br>
-                            Remplacez <code>localhost</code> par le lien généré dans votre compte
+                            Ouvrez le fichier <code>site.txt</code> présent sur le bureau et remplacez <code>http://localhost</code> 
+                            par le lien généré dans votre compte, 
+                            exemple: <br>
+                            <code>
+                                {{url('mosque', {slug: 'mosquee-essunna-houilles'})}}<br>
+                            </code>
                         </li>
-                        exemple: <br>
-                        <code>
-                            #!/bin/bash<br>
-                            iceweasel {{url('mosque', {slug: 'mosquee-essunna-houilles'})}} &<br>
-                            sleep 20<br>
-                            xdotool key F11
-                        </code>
 
                         <li>Sauvegardez et redémarrez le raspberry</li>
                     </ol>

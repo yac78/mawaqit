@@ -100,12 +100,12 @@ class Configuration {
     /**
      * @var bool
      */
-    private $azanBip = false;
+    private $azanBip = true;
 
     /**
      * @var bool
      */
-    private $iqamaBip = false;
+    private $iqamaBip = true;
 
     /**
      * @var bool
