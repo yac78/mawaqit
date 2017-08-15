@@ -8,9 +8,11 @@ framework:
 monolog:
     handlers:
         main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
             type:  rotating_file
             path: '%kernel.logs_dir%/%kernel.environment%.log'
-            action_level: error
             level: debug
-            max_files: 10
-            channels: ['!event']
+            max_files: 10      
