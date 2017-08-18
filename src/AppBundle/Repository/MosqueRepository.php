@@ -36,7 +36,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
                     ->setParameter(":user_id", $user->getId());
         }
 
-        $qb->orderBy("m.id", "ASC");
+        $qb->orderBy("m.id", "DESC");
 
         return $qb;
     }

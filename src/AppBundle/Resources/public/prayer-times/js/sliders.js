@@ -55,9 +55,11 @@ var douaaSlider = {
                     });
 
                     // show messages if exist after 5 sec
-                    setTimeout(function () {
-                        messageInfoSlider.get();
-                    }, 5 * prayer.oneSecond);
+                    if (typeof currentTimeIndex !== 'undefined') {
+                        setTimeout(function () {
+                            messageInfoSlider.get();
+                        }, 5 * prayer.oneSecond);
+                    }
 
                 }, douaaSlider.getTimeForShow());
             }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
@@ -190,7 +192,7 @@ var messageInfoSlider = {
              * If error show offline existing message
              */
             error: function (data) {
-                if($(".message-info-slider .slider ul li").length > 0){
+                if ($(".message-info-slider .slider ul li").length > 0) {
                     messageInfoSlider.run();
                 }
             },

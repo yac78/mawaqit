@@ -139,3 +139,21 @@ body {
 .support a {
     color: gray !important;
 }
+
+.iqama{
+    color: #fff;
+    padding: 10px;
+}
+
+.iqama .top{
+    height: 25%;
+    font-size: 400%;
+}
+
+.iqama .image{
+    background-image: url(/bundles/app/prayer-times/img/phone.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+    height: 400px;
+}
