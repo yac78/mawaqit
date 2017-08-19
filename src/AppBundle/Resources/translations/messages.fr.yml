@@ -65,7 +65,8 @@ configuration:
         download_csv_files: Télécharger le calendrier
         conf_not_completed: |
             Votre mosquée est ajoutée, en revanche les horaires de prière ne sont pas encore configurées.<br>
-            Veuillez procéder à la configuration en cliquant sur le bouton orange à droite.
+            Veuillez procéder à la configuration en cliquant sur le bouton orange à droite.<br>
+            Dans le cas du choix de réglage par calendrier, vérifiez si ce dernier est bien complété.
         calendar_not_completed: |
             Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 

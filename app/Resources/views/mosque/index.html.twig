@@ -71,37 +71,32 @@
             </thead>
             <tbody>
                 {% for mosque in mosques %}
-                    {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
-                    {% set calendarCompleted = mosque.configuration is not null and mosque.configuration.calendarCompleted %}
-                    <tr class="{{ confCompleted == false or calendarCompleted == false ? 'danger' : '' }}">
+                    <tr class="{{ not mosque.isConfCompleted ? 'danger' : '' }}">
                         <th scope="row">{{mosque.id}}</th>
                         <td>
                             {{mosque.name}}<br>
-                            {% if is_granted('ROLE_ADMIN') and  calendarCompleted %}
+                            {% if is_granted('ROLE_ADMIN') and mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}
                                 <a href="{{path('mosque_csv_files', {id: mosque.id})}}">{{'configuration.list.download_csv_files'|trans}}</a>
                             {% endif %}
                         </td>
                         <td>{{mosque.associationName}}</td>
                         <td>
-                            {{mosque.address}}<br>
-                            {{mosque.city}} {{mosque.zipcode}}<br>
-                            {{mosque.country}} <br>
-                            <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
-                            {% if mosque.email %}
-                                <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
-                            {% else %}
-                                <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.user.email}}">{{mosque.user.email}}</a>
-                            {% endif %}
+                            <div>{{mosque.address}}</div>
+                            <div>{{mosque.city}} {{mosque.zipcode}}</div>
+                            <div>{{mosque.country}}</div>
+                            {% if mosque.phone %}
+                                <div><span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a></div>
+                                {% endif %}
+                            <div>
+                                <span class="fa fa-envelope">&nbsp;</span>
+                                <a href="mailto:{{mosque.email ? mosque.email : mosque.user.email}}">{{mosque.email ? mosque.email : mosque.user.email}}</a>
+                            </div>
                         </td>
                         <td>
-                            {% if confCompleted %}
-                                {% if calendarCompleted == false %}
-                                    <div><span class="glyphicon glyphicon-alert"></span> {{'configuration.list.calendar_not_completed'|trans|raw}}</div>
-                                {% endif %}
-
+                            {% if mosque.isConfCompleted %}
                                 {% for lang in languages %}
                                     <div><strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a></div>
-                                    {% endfor %}
+                               {% endfor %}
 
                                 {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
                             {% else %}
@@ -119,7 +114,7 @@
                         <td>
                             <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
                             <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a><br>
-                            <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-envelope"></span></a><br>
+                            <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-bullhorn"></span></a><br>
                                 {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
                         </td>
                     </tr>
@@ -130,26 +125,22 @@
 
     <div class="hidden-lg hidden-md">
         {% for mosque in mosques %}
-            {% set confCompleted = mosque.configuration is not null and mosque.configuration.completed %}
-            {% set calendarCompleted = mosque.configuration is not null and mosque.configuration.calendarCompleted %}
-            <div class="row {{ confCompleted == false or calendarCompleted == false ? 'alert-danger' : '' }}" style="padding: 10px 0; border-bottom: solid gray 1px">
+            <div class="row {{ not mosque.isConfCompleted ? 'alert-danger' : '' }}" style="padding: 10px 0; border-bottom: solid gray 1px">
                 <div class="col-xs-10">
-                    <strong>{{mosque.name}}</strong><br>
-                    {{mosque.associationName}}<br>
-                    {{mosque.address}}<br>
-                    {{mosque.city}} {{mosque.zipcode}}<br>
-                    {{mosque.country}} <br>
-                    <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
-                    {% if mosque.email %}
-                        <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.email}}">{{mosque.email}}</a>
-                    {% else %}
-                        <span class="fa fa-envelope">&nbsp;</span><a href="mailto:{{mosque.user.email}}">{{mosque.user.email}}</a>
+                    <div><strong>{{mosque.name}}</strong></div>
+                    <div>{{mosque.associationName}}</div>
+                    <div>{{mosque.address}}</div>
+                    <div>{{mosque.city}} {{mosque.zipcode}}</div>
+                    <div>{{mosque.country}} </div>
+                    {% if mosque.phone %}
+                        <span class="fa fa-phone">&nbsp;</span><a href="tel:{{mosque.phone}}">{{mosque.phone}}</a><br>
                     {% endif %}
+                    <div>
+                        <span class="fa fa-envelope">&nbsp;</span>
+                        <a href="mailto:{{mosque.email ? mosque.email : mosque.user.email}}">{{mosque.email ? mosque.email : mosque.user.email}}</a>
+                    </div>
 
-                    {% if confCompleted %}
-                        {% if calendarCompleted == false %}
-                            <div><span class="glyphicon glyphicon-alert"></span> {{'configuration.list.calendar_not_completed'|trans|raw}}</div>
-                        {% endif %}
+                    {% if mosque.isConfCompleted %}
                         <div>
                             <strong>{{'links'|trans}}</strong>: 
                             {% for lang in languages %}
@@ -166,15 +157,14 @@
                     {% endif %}
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        {{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a><br>
+                        <div>{{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a></div>
                         {{'creation_date'|trans}}: {{mosque.user.created|date('d/m/Y h:i')}}
                     {% endif %}
-
                 </div>
                 <div class="col-xs-2">
                     <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a>
                     <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a>
-                    <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-envelope"></span></a><br>
+                    <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-bullhorn"></span></a><br>
                         {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
                 </div>
             </div>

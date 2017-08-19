@@ -796,47 +796,6 @@ class Configuration {
         $this->mosque = $mosque;
     }
 
-    /**
-     * True if configuration is completed
-     * @return boolean 
-     */
-    public function isCompleted() {
-        if ($this->sourceCalcul === self::SOURCE_API) {
-            if (empty($this->longitude) || empty($this->latitude)) {
-                return false;
-            }
-        }
-
-        if ($this->sourceCalcul === self::SOURCE_CALENDAR) {
-            if (empty($this->calendar)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * True if calendar is completed
-     * @return boolean 
-     */
-    function isCalendarCompleted() {
-        if ($this->sourceCalcul === self::SOURCE_CALENDAR) {
-            if (!empty($this->calendar)) {
-                foreach ($this->calendar as $month => $days) {
-                    foreach ($days as $day => $prayers) {
-                        foreach ($prayers as $prayerIndex => $prayer) {
-                            if (empty($prayer)) {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
     function getAzanBip() {
         return $this->azanBip;
     }
@@ -851,6 +810,10 @@ class Configuration {
 
     function setIqamaBip($iqamaBip) {
         $this->iqamaBip = $iqamaBip;
+    }
+
+    function isCalendar() {
+        return $this->sourceCalcul === self::SOURCE_CALENDAR;
     }
 
     /**

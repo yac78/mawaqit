@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\User;
-use AppBundle\Entity\Message;
 use AppBundle\Entity\Configuration;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -127,6 +126,11 @@ class Mosque {
      * @var ArrayCollection[Message]
      */
     private $messages;
+
+    /**
+     * @var boolean|null
+     */
+    private $isCalendarCompleted = null;
 
     public function __construct() {
         $this->messages = new ArrayCollection();
@@ -601,4 +605,48 @@ class Mosque {
         $this->messages = $messages;
     }
 
+    /**
+     * True if configuration is completed
+     * @return boolean 
+     */
+    public function isConfCompleted() {
+        if ($this->configuration instanceof Configuration) {
+            if ($this->configuration->getSourceCalcul() === Configuration::SOURCE_API) {
+                if (!empty($this->configuration->getLongitude()) && !empty($this->configuration->getLatitude())) {
+                    return true;
+                }
+                return false;
+            }
+            
+            return $this->isCalendarCompleted();
+        }
+        return false;
+    }
+
+    /**
+     * True if calendar is completed
+     * @return boolean 
+     */
+    function isCalendarCompleted() {
+        if ($this->isCalendarCompleted === null) {
+            $this->isCalendarCompleted = true;
+            if ($this->configuration instanceof Configuration) {
+                $configuration = $this->configuration;
+                if ($configuration->isCalendar()) {
+                    if (!empty($configuration->getCalendar())) {
+                        foreach ($configuration->getCalendar() as $month => $days) {
+                            foreach ($days as $day => $prayers) {
+                                foreach ($prayers as $prayerIndex => $prayer) {
+                                    if (empty($prayer)) {
+                                        $this->isCalendarCompleted = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $this->isCalendarCompleted;
+    }
 }
