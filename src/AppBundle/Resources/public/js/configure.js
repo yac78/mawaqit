@@ -8,23 +8,19 @@ $(document).ready(function () {
     });
     $("#appbundle_configuration_prayerMethod").trigger("change");
 });
-
 $("#appbundle_configuration_sourceCalcul").bind("change keyup", function (event) {
     $(".api, .calendar").addClass("hidden");
     $("." + $(this).val()).removeClass("hidden");
 });
-
 $("#appbundle_configuration_prayerMethod").bind("change keyup", function (event) {
     $(".degree").addClass("hidden");
     if ($(this).val() === 'CUSTOM') {
         $(".degree").removeClass("hidden");
     }
 });
-
 $(".calendar-prayer input").bind("change keyup", function (event) {
     $(this).css("background-color", $(this).val().match(/\d{2}:\d{2}/g) ? "#ffffff" : "#f8d4d4");
 });
-
 /**
  * On change file input (fill calendar) process fill prayer times from csv file
  */
@@ -49,8 +45,6 @@ $(".fill-calendar").change(function (e) {
         alert("This fonctionality is not fully supported in your browser.");
     }
 });
-
-
 /**
  * Read CSV and fill prayerTimes in input elements 
  * @param {string} csv
@@ -79,3 +73,37 @@ function processFillMonthPrayerTimes(csv, inputFile) {
     }
 }
 
+$("#predefined-calendar").change(function () {
+    var calendarName = $(this).val();
+    if (calendarName) {
+        waitingDialog.show("Chargement en cours...");
+        var url = $(this).data("ajax-url");
+        var elem = null;
+        $.ajax({
+            url: url,
+            method: "GET",
+            dataType: "json",
+            data: {
+                calendarName: calendarName
+            },
+            success: function (calendar) {
+                for (var month = 0; month < calendar.length; month++) {
+                    for (var day = 1; day < calendar[month].length; day++) {
+                        for (var prayer = 1; prayer < calendar[month][day].length; prayer++) {
+                            elem = $("[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
+                            elem.val(calendar[month][day][prayer]);
+                            elem.trigger("keyup");
+                        }
+                    }
+                }
+                waitingDialog.hide();
+            },
+            error: function () {
+                alert("Une erreur est survenue");
+            },
+            complete: function () {
+                waitingDialog.hide();
+            }
+        });
+    }
+});

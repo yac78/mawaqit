@@ -832,8 +832,9 @@ class Configuration {
                     }
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     function getAzanBip() {

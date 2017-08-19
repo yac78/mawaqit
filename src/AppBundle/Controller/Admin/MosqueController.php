@@ -179,8 +179,12 @@ class MosqueController extends Controller {
                         "%address%" => $mosque->getLocalisation()
             ]));
         }
+        
+        $calendarDir = $this->getParameter("kernel.root_dir")."/Resources/calendar";
+        $predefinedCalendars = array_map('basename', glob($calendarDir . "/*",  GLOB_ONLYDIR));
         return $this->render('mosque/configure.html.twig', [
                     'months' => Calendar::MONTHS,
+                    'predefinedCalendars' => $predefinedCalendars,
                     'mosque' => $mosque,
                     'form' => $form->createView()
         ]);

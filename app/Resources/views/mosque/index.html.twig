@@ -75,7 +75,12 @@
                     {% set calendarCompleted = mosque.configuration is not null and mosque.configuration.calendarCompleted %}
                     <tr class="{{ confCompleted == false or calendarCompleted == false ? 'danger' : '' }}">
                         <th scope="row">{{mosque.id}}</th>
-                        <td>{{mosque.name}}</td>
+                        <td>
+                            {{mosque.name}}<br>
+                            {% if is_granted('ROLE_ADMIN') and  calendarCompleted %}
+                                <a href="{{path('mosque_csv_files', {id: mosque.id})}}">{{'configuration.list.download_csv_files'|trans}}</a>
+                            {% endif %}
+                        </td>
                         <td>{{mosque.associationName}}</td>
                         <td>
                             {{mosque.address}}<br>
