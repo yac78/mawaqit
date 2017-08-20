@@ -13,6 +13,8 @@ AppBundle\Entity\Configuration:
             type: string
             length: 255
             nullable: true
+        jumuaAsDuhr:
+            type: boolean             
         aidTime:
             type: string
             length: 255
@@ -62,8 +64,11 @@ AppBundle\Entity\Configuration:
             type: float
             nullable: true            
         timezone:
-            type: integer
-            nullable: true            
+            type: string
+            length: 50
+        dst:
+            type: string
+            length: 50
         fajrDegree:
             type: smallint
             nullable: true

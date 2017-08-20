@@ -70,7 +70,7 @@ configuration:
         calendar_not_completed: |
             Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 
-        load_predefined_calendar: Chargez un calendrier pré-défini
+        load_predefined_calendar: Chargez un calendrier pré-défini parmis la liste suivante
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis.
@@ -86,11 +86,13 @@ configuration:
         jumuaTime:
             label: Heure du jumu`a
             title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 12:15 en hiver et 13h:15 en été
+        jumuaAsDuhr:
+            label: L'heure du jumu'a pareil que duhr
         aidTime:
             label: Heure du aïd
             title: Si cette valeur est renseignée elle remplacera l'heure du shuruk, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
         adjustedTimes: 
-            label: Ajustement des horaires
+            label: Ajustement manuel des horaires
         maximumIshaTimeForNoWaiting: 
             label: Heure du `isha (Iqama tout de suite après adhan) 
             title: Si cette valeur est renseignée le temps d'attente entre adhan et iqama sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhan
@@ -108,8 +110,11 @@ configuration:
         hijriAdjustment: 
             label: Ajustement de la date hégire
         timezone: 
-            label: Modifier le timezone (décalage horaire)
+            label: Fuseau horaire
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
+        dst: 
+            label: Heure d'été
+            title: Laissez à 'auto' si vous souhaitez que le changement d'heure été/hiver s'éffectue automatiquement
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqama (en secondes)
         azanDuaDisplayTime: 
@@ -182,7 +187,9 @@ search: Recherche
 ar: عربي
 fr: Français
 en: English   
+auto: Auto (Géré par le raspberry)
 enabled: Activé
+disabled: Désactivé
 send: Envoyer
 required: Champ obligatoire
 close: Fermer

@@ -7,20 +7,28 @@ $(document).ready(function () {
         }
     });
     $("#appbundle_configuration_prayerMethod").trigger("change");
+
+    $(document).ready(function () {
+        $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
+    });
 });
+
 $("#appbundle_configuration_sourceCalcul").bind("change keyup", function (event) {
     $(".api, .calendar").addClass("hidden");
     $("." + $(this).val()).removeClass("hidden");
 });
+
 $("#appbundle_configuration_prayerMethod").bind("change keyup", function (event) {
     $(".degree").addClass("hidden");
     if ($(this).val() === 'CUSTOM') {
         $(".degree").removeClass("hidden");
     }
 });
+
 $(".calendar-prayer input").bind("change keyup", function (event) {
     $(this).css("background-color", $(this).val().match(/\d{2}:\d{2}/g) ? "#ffffff" : "#f8d4d4");
 });
+
 /**
  * On change file input (fill calendar) process fill prayer times from csv file
  */
@@ -105,5 +113,13 @@ $("#predefined-calendar").change(function () {
                 waitingDialog.hide();
             }
         });
+    }
+});
+
+$("#appbundle_configuration_jumuaAsDuhr").bind("change", function (event) {
+    if ($(this).is(":checked")) {
+        $(".jumua-bloc").hide();
+    } else {
+        $(".jumua-bloc").show();
     }
 });

@@ -48,6 +48,15 @@
             </div>
 
             <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.timezone) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.dst) }}
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-12">
                     {{ form_label(form.adjustedTimes) }}
                 </div> 
@@ -171,11 +180,16 @@
 
         <div class="row">
             <div class="col-md-2">
+                {{ form_row(form.jumuaAsDuhr) }}
+            </div>
+            <div class="col-md-2 jumua-bloc">
                 {{ form_row(form.jumuaTime) }}
             </div>
             <div class="col-md-2">
                 {{ form_row(form.aidTime) }}
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.maximumIshaTimeForNoWaiting) }}
             </div>
@@ -252,9 +266,6 @@
                 {{ form_row(form.hijriAdjustment) }}
             </div>
             <div class="col-md-3">
-                {{ form_row(form.timezone) }}
-            </div>
-            <div class="col-md-4">
                 {{ form_row(form.iqamaDisplayTime) }}
             </div>
             <div class="col-md-4">

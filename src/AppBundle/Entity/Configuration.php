@@ -43,6 +43,11 @@ class Configuration {
     private $jumuaTime = "13:30";
 
     /**
+     * @var boolean
+     */
+    private $jumuaAsDuhr = false;
+
+    /**
      * @var string
      */
     private $aidTime;
@@ -133,9 +138,14 @@ class Configuration {
     private $longitude;
 
     /**
-     * @var int
+     * @var string
      */
-    private $timezone;
+    private $timezone = 'auto';
+
+    /**
+     * @var string
+     */
+    private $dst = 'auto';
 
     /**
      * @var int
@@ -226,6 +236,14 @@ class Configuration {
      */
     public function getJumuaTime() {
         return $this->jumuaTime;
+    }
+
+    function isJumuaAsDuhr() {
+        return $this->jumuaAsDuhr;
+    }
+
+    function setJumuaAsDuhr($jumuaAsDuhr) {
+        $this->jumuaAsDuhr = $jumuaAsDuhr;
     }
 
     /**
@@ -581,6 +599,14 @@ class Configuration {
         $this->timezone = $timezone;
     }
 
+    function getDst() {
+        return $this->dst;
+    }
+
+    function setDst($dst) {
+        $this->dst = $dst;
+    }
+
     /**
      * Get prayerMethod
      *
@@ -823,6 +849,7 @@ class Configuration {
     public function getFormatedConfig() {
         return [
             "joumouaaTime" => $this->getJumuaTime(),
+            "jumuaAsDuhr" => $this->isJumuaAsDuhr(),
             "aidTime" => $this->getAidTime(),
             "imsakNbMinBeforeSobh" => $this->getImsakNbMinBeforeFajr(),
             "maximumIchaTimeForNoWaiting" => $this->getMaximumIshaTimeForNoWaiting(),
@@ -841,6 +868,7 @@ class Configuration {
             "latitude" => $this->getLatitude(),
             "longitude" => $this->getLongitude(),
             "timezone" => $this->getTimezone(),
+            "dst" => $this->getDst(),
             "fajrDegree" => $this->getFajrDegree(),
             "ichaaDegree" => $this->getIshaDegree(),
             "iqamaDisplayTime" => $this->getIqamaDisplayTime(),

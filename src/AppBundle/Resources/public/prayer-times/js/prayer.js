@@ -154,12 +154,9 @@ var prayer = {
             date = dateTime.tomorrow();
         }
 
-//        var dst = dateTime.isDst(prayer.confData.timezone) ? '1' : '0';
-        var dst = '1';
-        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], 1, dst);
-        if (prayer.confData.timezone !== null) {
-            pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, dst);
-        }
+        var timezone = prayer.confData.timezone == parseInt(prayer.confData.timezone) ? parseInt(prayer.confData.timezone) : 'auto';
+        var dst = prayer.confData.dst == parseInt(prayer.confData.dst) ? parseInt(prayer.confData.dst) : 'auto';
+        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], timezone, dst);
 
         this.times = {
             1: pt.fajr,
@@ -569,6 +566,10 @@ var prayer = {
      * @returns {String}
      */
     getJoumouaaTime: function () {
+        if (this.confData.jumuaAsDuhr === true) {
+            // return duhr
+            return this.getTimeByIndex(1);
+        }
         if (this.confData.joumouaaTime) {
             return this.confData.joumouaaTime;
         }

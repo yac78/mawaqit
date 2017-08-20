@@ -23,16 +23,63 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ConfigurationType extends AbstractType {
 
     /**
-     *
      * @var GoogleService 
      */
     private $googleService;
 
     /**
-     *
      * @var Translator 
      */
     private $translator;
+
+    /**
+     * @var Array 
+     */
+    private static $timezones = [
+        "auto" => "auto",
+        "-12" => "(GMT-12:00) International Date Line West",
+        "-11" => "(GMT-11:00) Midway Island, Samoa",
+        "-10" => "(GMT-10:00) Hawaii",
+        "-9" => "(GMT-09:00) Alaska",
+        "-8" => "(GMT-08:00) Pacific Time (US & Canada), Tijuana, Baja California",
+        "-7" => "(GMT-07:00) Arizona, Chihuahua, La Paz, Mazatlan, Mountain Time (US & Canada)",
+        "-6" => "(GMT-06:00) Central Time (US & Canada), Guadalajara, Mexico City, Monterrey, Saskatchewan, ",
+        "-5" => "(GMT-05:00) Bogota, Lima, Quito, Rio Branco, Eastern Time (US & Canada), Indiana (East)",
+        "-4" => "(GMT-04:00) Atlantic Time (Canada), Caracas, La Paz, Manaus, Santiago",
+        "-3.5" => "(GMT-03:30) Newfoundland",
+        "-3" => "(GMT-03:00) Brasilia, Buenos Aires, Georgetown, Greenland, Montevideo",
+        "-2" => "(GMT-02:00) Mid-Atlantic",
+        "-1" => "(GMT-01:00) Cape Verde Is, Azores",
+        "0" => "(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London, Casablanca, Monrovia, Reykjavik",
+        "1" => "(GMT+01:00) Brussels, Copenhagen, Madrid, Paris, Amsterdam, Berlin, Bern, Rome, West Central Africa",
+        "2" => "(GMT+02:00) Amman, Athens, Bucharest, Istanbul, Beirut, Cairo",
+        "3" => "(GMT+03:00) Kuwait, Riyadh, Baghdad, Moscow, Nairobi",
+        "3.5" => "(GMT+03:30) Tehran",
+        "4" => "(GMT+04:00) Abu Dhabi, Muscat",
+        "4.5" => "(GMT+04:30) Kabul",
+        "5" => "(GMT+05:00) Islamabad, Karachi, Tashkent",
+        "5.5" => "(GMT+05:30) Sri Jayawardenapura, Chennai, Kolkata, Mumbai, New Delh",
+        "5.75" => "(GMT+05:45) Kathmandu",
+        "6" => "(GMT+06:00) Almaty, Novosibirsk",
+        "6.5" => "(GMT+06:30) Yangon (Rangoon)",
+        "7" => "(GMT+07:00) Bangkok, Hanoi, Jakarta",
+        "8" => "(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi, Kuala Lumpur, Singapore",
+        "9" => "(GMT+09:00) Osaka, Sapporo, Tokyo, Seoul",
+        "9.5" => "(GMT+09:30) Adelaide, Darwin",
+        "10" => "(GMT+10:00) Canberra, Melbourne, Sydney",
+        "11" => "(GMT+11:00) Magadan, Solomon Is., New Caledonia",
+        "12" => "(GMT+12:00) Fiji, Kamchatka, Marshall Is.",
+        "13" => "(GMT+13:00) Nuku'alofa"
+    ];
+
+    /**
+     * @var Array 
+     */
+    private static $dstChoices = [
+        "auto" => "auto",
+        "disabled" => "0",
+        "enabled" => "1"
+    ];
 
     public function __construct(GoogleService $googleService, TranslatorInterface $translator) {
         $this->googleService = $googleService;
@@ -54,6 +101,13 @@ class ConfigurationType extends AbstractType {
                         'maxlength' => 5,
                         'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
                         'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    ]
+                ])
+                ->add('jumuaAsDuhr', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.jumuaAsDuhr.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.jumuaAsDuhr.title')
                     ]
                 ])
                 ->add('aidTime', null, [
@@ -138,11 +192,21 @@ class ConfigurationType extends AbstractType {
                 ->add('hijriAdjustment', IntegerType::class, [
                     'label' => 'configuration.form.hijriAdjustment.label'
                 ])
-                ->add('timezone', IntegerType::class, [
-                    'required' => false,
+                ->add('timezone', ChoiceType::class, [
+                    'required' => true,
                     'label' => 'configuration.form.timezone.label',
+                    'choices' => array_flip(self::$timezones),
                     'attr' => [
                         'title' => $this->translator->trans('configuration.form.timezone.title'),
+                    ],
+                ])
+                ->add('dst', ChoiceType::class, [
+                    'required' => true,
+                    'label' => 'configuration.form.dst.label',
+                    'choices' => self::$dstChoices,
+                    'choice_translation_domain' => true,
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.dst.title'),
                     ],
                 ])
                 ->add('hijriDateEnabled', CheckboxType::class, [
@@ -249,7 +313,7 @@ class ConfigurationType extends AbstractType {
             $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
             $configuration->setLongitude($position->lng);
             $configuration->setLatitude($position->lat);
-            if(is_null($configuration->getTimezone())) {
+            if (is_null($configuration->getTimezone())) {
                 $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
                 $configuration->setTimezone($timezone);
             }
