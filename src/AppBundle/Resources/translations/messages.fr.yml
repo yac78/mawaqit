@@ -26,6 +26,8 @@ mosque:
     form:
         name: 
             placeholder : Ex. Mosquée Essunna
+        slug: 
+            label : Changez l'url du site
         city: 
             placeholder: La ville de la mosquée (Sert à calculer la position géographique)
         zipcode: 

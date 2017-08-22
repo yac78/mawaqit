@@ -46,6 +46,11 @@ class MosqueType extends AbstractType {
                         'placeholder' => 'mosque.form.name.placeholder',
                     ]
                 ])
+                ->add('slug', null, [
+                    'label' => 'mosque.slug',
+                    'required' => true,
+                    'label' => 'mosque.form.slug.label'
+                ])
                 ->add('associationName', null, [
                     'label' => 'association_name',
                 ])
