@@ -341,8 +341,11 @@ var prayer = {
      * @param {Number} currentPrayerIndex
      */
     flashAdhan: function (currentPrayerIndex) {
-        if (prayer.confData.azanBip === true) {
-            this.playBip();
+        if (prayer.confData.azanVoiceEnabled === true) {
+            this.playSound("adhan-maquah.mp3");
+        }
+        else if (prayer.confData.azanBip === true) {
+            this.playSound();
         }
         // iqama countdown
         prayer.iqamaCountdown(currentPrayerIndex);
@@ -366,7 +369,7 @@ var prayer = {
      */
     flashIqama: function (currentPrayerIndex) {
         if (prayer.confData.iqamaBip === true) {
-            this.playBip();
+            this.playSound();
         }
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
@@ -405,8 +408,13 @@ var prayer = {
     /**
      * Play a bip
      */
-    playBip: function () {
-        var audio = new Audio('/static/bip.mp3');
+    playSound: function (file) {
+        if (typeof file === "undefined")
+        {
+            file = "bip.mp3";
+        }
+
+        var audio = new Audio('/static/mp3/' + file);
         audio.play();
     },
     /**

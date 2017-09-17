@@ -225,6 +225,10 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.azanBip.label',
                 ])
+                ->add('azanVoiceEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.azanVoiceEnabled.label',
+                ])
                 ->add('iqamaBip', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.iqamaBip.label',

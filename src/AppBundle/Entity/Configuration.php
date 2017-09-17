@@ -110,6 +110,11 @@ class Configuration {
     /**
      * @var bool
      */
+    private $azanVoiceEnabled = false;
+
+    /**
+     * @var bool
+     */
     private $iqamaBip = true;
 
     /**
@@ -838,6 +843,14 @@ class Configuration {
         $this->iqamaBip = $iqamaBip;
     }
 
+    function isAzanVoiceEnabled() {
+        return $this->azanVoiceEnabled;
+    }
+
+    function setAzanVoiceEnabled($azanVoiceEnabled) {
+        $this->azanVoiceEnabled = $azanVoiceEnabled;
+    }
+
     function isCalendar() {
         return $this->sourceCalcul === self::SOURCE_CALENDAR;
     }
@@ -860,6 +873,7 @@ class Configuration {
             "hijriAdjustment" => $this->getHijriAdjustment(),
             "hijriDateEnabled" => $this->getHijriDateEnabled(),
             "azanBip" => $this->getAzanBip(),
+            "azanVoiceEnabled" => $this->isAzanVoiceEnabled(),
             "iqamaBip" => $this->getIqamaBip(),
             "douaaAfterAdhanEnabled" => $this->getDuaAfterAzanEnabled(),
             "douaaAfterPrayerEnabled" => $this->getDuaAfterPrayerEnabled(),

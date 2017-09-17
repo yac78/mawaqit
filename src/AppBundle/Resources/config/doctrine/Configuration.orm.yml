@@ -48,6 +48,8 @@ AppBundle\Entity\Configuration:
             type: boolean
         azanBip:
             type: boolean
+        azanVoiceEnabled:
+            type: boolean
         iqamaBip:
             type: boolean
         sourceCalcul:
