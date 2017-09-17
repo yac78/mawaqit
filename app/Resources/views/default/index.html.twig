@@ -246,9 +246,15 @@
                         <li>
                             Télécharger l'image système pré configurée ici <i class="fa fa-hand-o-right"></i> 
                             <strong>
-                                <a target="_blank" href="/static/prayer-times-raspbian-stable.img.zip">
-                                    prayer-times-raspbian-stable.img.zip
-                                </a>
+                                {% if app.user %}
+                                    <a target="_blank" href="/static/prayer-times-raspbian-stable.img.zip">
+                                        prayer-times-raspbian-stable.img.zip
+                                    </a>
+                                {% else%}
+                                    <a href="{{path("fos_user_security_login")}}">
+                                        Vous devez être connecté pour télécharger l'image système
+                                    </a>
+                                {% endif%}
                             </strong> puis extrayez le contenu du zip
                         </li>
                         <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB</li>
@@ -278,7 +284,7 @@
                         <strong>2. Vous avez une connexion internet (WIFI ou Ethernet) dans la mosquée ? 
                         </strong> Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> qui bénéficie des avantages suivants  <br>
                     </p>
-                    
+
                     <ul class="text-muted text-left">
                         <li>Pilotage à distance depuis votre smartphone ou n'importe qu'elle ordinateur et tablette</li>
                         <li>Une version synchronisée sur tous les terminaux, mobile, tablette et écran de la mosquée</li>
