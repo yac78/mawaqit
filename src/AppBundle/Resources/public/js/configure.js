@@ -11,7 +11,27 @@ $(document).ready(function () {
     $(document).ready(function () {
         $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
     });
+
+    checkAndHilightIncompletedMonths();
 });
+
+/**
+ * check and hilight imcompleted months
+ */
+
+function checkAndHilightIncompletedMonths() {
+    $(".month-panel").each(function (i, elm) {
+        var panel = elm;
+        $(panel).find(".calendar-prayer-time").each(function (i, input) {
+            if ($(input).val() === "") {
+                $(panel).find(".panel-heading").css("background-color", "#f2dede");
+                var title = $(panel).find("h4>strong");
+                title.text(title.text() + " (Mois incomplet)");
+                return false;
+            }
+        });
+    });
+}
 
 $("#appbundle_configuration_sourceCalcul").bind("change keyup", function (event) {
     $(".api, .calendar").addClass("hidden");
