@@ -57,24 +57,32 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12">
-                    {{ form_label(form.adjustedTimes) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.adjustedTimes.fajr) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.adjustedTimes.zuhr) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.adjustedTimes.asr) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.adjustedTimes.maghrib) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.adjustedTimes.isha) }}
-                </div> 
+                <div class="panel-group col-md-10" id="accordion1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#adjustedTimesPanel">
+                            {{ form_label(form.adjustedTimes) }}
+                        </div>
+                        <div id="adjustedTimesPanel" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.fajr) }}
+                                </div> 
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.zuhr) }}
+                                </div> 
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.asr) }}
+                                </div> 
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.maghrib) }}
+                                </div> 
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.isha) }}
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -179,133 +187,158 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2">
-                {{ form_row(form.jumuaAsDuhr) }}
-            </div>
-            <div class="col-md-2 jumua-bloc">
-                {{ form_row(form.jumuaTime) }}
-            </div>
-            <div class="col-md-2">
-                {{ form_row(form.aidTime) }}
+            <div class="panel-group col-md-10">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading pointer" data-toggle="collapse" href="#waitingTimes">
+                        {{ form_label(form.waitingTimes) }}
+                    </div>
+                    <div id="waitingTimes" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-md-2">
+                                {{ form_row(form.waitingTimes.fajr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.waitingTimes.zuhr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.waitingTimes.asr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.waitingTimes.maghrib) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.waitingTimes.isha) }}
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#fixedTimes">
+                        {{ form_label(form.fixedTimes) }}
+                    </div>
+                    <div id="fixedTimes" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.fajr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.zuhr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.asr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.maghrib) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.isha) }}
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#duaAfterPrayerShowTimes">
+                        {{ form_label(form.duaAfterPrayerShowTimes) }}
+                    </div>
+                    <div id="duaAfterPrayerShowTimes" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-md-2">
+                                {{ form_row(form.duaAfterPrayerShowTimes.fajr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.duaAfterPrayerShowTimes.zuhr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.duaAfterPrayerShowTimes.asr) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.duaAfterPrayerShowTimes.maghrib) }}
+                            </div> 
+                            <div class="col-md-2">
+                                {{ form_row(form.duaAfterPrayerShowTimes.isha) }}
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#otherSettings">
+                        <span style="font-weight: 700;">{{"other_settings"|trans}}</span>
+                    </div>
+                    <div id="otherSettings" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form_row(form.jumuaAsDuhr) }}
+                                </div>
+                                <div class="col-md-3 jumua-bloc">
+                                    {{ form_row(form.jumuaTime) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.aidTime) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form_row(form.maximumIshaTimeForNoWaiting) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.imsakNbMinBeforeFajr) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form_row(form.hijriAdjustment) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.iqamaDisplayTime) }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form_row(form.azanDuaDisplayTime) }}  
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form_widget(form.hijriDateEnabled) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_widget(form.duaAfterAzanEnabled) }}
+                                </div>
+
+                                <div class="col-md-3">
+                                    {{ form_widget(form.duaAfterPrayerEnabled) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_widget(form.urlQrCodeEnabled) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_widget(form.azanBip) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_widget(form.iqamaBip) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_widget(form.smallScreen) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form_label(form.backgroundColor) }}
+                                    <input class="form-control" type="color" name="appbundle_configuration[backgroundColor]" value="{{mosque.configuration.backgroundColor}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                {{ form_row(form.maximumIshaTimeForNoWaiting) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_row(form.imsakNbMinBeforeFajr) }}
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                {{ form_label(form.waitingTimes) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.waitingTimes.fajr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.waitingTimes.zuhr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.waitingTimes.asr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.waitingTimes.maghrib) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.waitingTimes.isha) }}
-            </div> 
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                {{ form_label(form.fixedTimes) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.fixedTimes.fajr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.fixedTimes.zuhr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.fixedTimes.asr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.fixedTimes.maghrib) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.fixedTimes.isha) }}
-            </div> 
-        </div> 
-
-        <div class="row">
-            <div class="col-md-12">
-                {{ form_label(form.duaAfterPrayerShowTimes) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.duaAfterPrayerShowTimes.fajr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.duaAfterPrayerShowTimes.zuhr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.duaAfterPrayerShowTimes.asr) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.duaAfterPrayerShowTimes.maghrib) }}
-            </div> 
-            <div class="col-md-2">
-                {{ form_row(form.duaAfterPrayerShowTimes.isha) }}
-            </div> 
-        </div> 
-
-        <div class="row">
-            <div class="col-md-3">
-                {{ form_row(form.hijriAdjustment) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_row(form.iqamaDisplayTime) }}
-            </div>
-            <div class="col-md-4">
-                {{ form_row(form.azanDuaDisplayTime) }}  
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                {{ form_widget(form.hijriDateEnabled) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_widget(form.duaAfterAzanEnabled) }}
-            </div>
-
-            <div class="col-md-3">
-                {{ form_widget(form.duaAfterPrayerEnabled) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_widget(form.urlQrCodeEnabled) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_widget(form.azanBip) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_widget(form.iqamaBip) }}
-            </div>
-            <div class="col-md-3">
-                {{ form_widget(form.smallScreen) }}
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-2">
-                {{ form_label(form.backgroundColor) }}
-                <input class="form-control" type="color" name="appbundle_configuration[backgroundColor]" value="{{mosque.configuration.backgroundColor}}">
-
-            </div>
-        </div>
-        <br>
         {{ form_widget(form.save) }}
         <a href="{{path("mosque_index")}}" class="btn btn-danger">{{'cancel'|trans}}</a>
     </form>
