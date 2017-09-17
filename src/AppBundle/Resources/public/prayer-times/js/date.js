@@ -80,7 +80,7 @@ var dateTime = {
         if (lang === 'ar') {
             return this.getCurrentDay() + "/" + this.getCurrentMonthText() + "/" + date.getFullYear();
         }
-        var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}
+        var options = {weekday: "long", year: "numeric", month: "short", day: "numeric"}
         try {
             return date.toLocaleString(lang, options).firstCapitalize();
         } catch (e) {
