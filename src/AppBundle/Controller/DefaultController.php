@@ -14,7 +14,7 @@ class DefaultController extends Controller {
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request) {
-        
+
         $mosqueNb = $request->query->get("mosque_nb", 6);
 
         $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,16 @@ class DefaultController extends Controller {
 
         $this->get('mailer')->send($message);
         return new Response();
+    }
+
+    /**
+     * @Route("/get-hadith-of-the-day")
+     */
+    public function getHadithOfTheDayAjaxAction() {
+        $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ryiad-essalihine.xml";
+        $xmldata = simplexml_load_file($file);
+        $hadiths = $xmldata->xpath('hadith');
+        return new Response($hadiths[array_rand($hadiths)], 200);
     }
 
 }

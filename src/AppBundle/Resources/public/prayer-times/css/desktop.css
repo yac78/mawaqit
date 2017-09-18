@@ -44,6 +44,7 @@ body {
 
 .top-content{
     height:40%;
+    overflow: hidden;
 }
 
 .top-content .adhan-flash{
@@ -229,5 +230,9 @@ body {
 .message-image img {
     width: 98%;
     height: 99vh;
+}
+
+.hadith-of-the-day{
+    font-family: 'Amiri';
 }
 

@@ -57,6 +57,7 @@ var prayer = {
         this.initUpdateConfData();
         this.translateToArabic();
         this.hideSpinner();
+//        this.getHadithOfTheDay();
         douaaSlider.init();
         messageInfoSlider.initCronMessageInfo();
     },
@@ -343,8 +344,7 @@ var prayer = {
     flashAdhan: function (currentPrayerIndex) {
         if (prayer.confData.azanVoiceEnabled === true) {
             this.playSound("adhan-maquah.mp3");
-        }
-        else if (prayer.confData.azanBip === true) {
+        } else if (prayer.confData.azanBip === true) {
             this.playSound();
         }
         // iqama countdown
@@ -474,7 +474,7 @@ var prayer = {
 
         $(".prayer-text ._" + prayerIndex).addClass("text-hilighted");
         $(".prayer-wait ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer:contains(" + time + ")").addClass("prayer-hilighted");
+        $(".prayer-time .prayer:contains(" + time + ")").addClass("prayer-hilighted");
     },
     /**
      * 10 minute after current iqama we hilight the next prayer time
@@ -706,6 +706,23 @@ var prayer = {
             $(".mobile .header").css("font-size", "250%");
             $(".site").css("font-size", "200%");
         }
+    },
+    /**
+     * get and display a random hadith from server
+     */
+    getHadithOfTheDay: function () {
+        $.ajax({
+            url: "../get-hadith-of-the-day",
+            success: function (resp) {
+                if (resp !== "") {
+                    $(".hadith-of-the-day").text(resp);
+//                    $(".hadith-of-the-day").css("font-size", ((resp.length % 100) +  ) + "%");
+                    $(".top-content .content").fadeOut(1000, function () {
+                        $(".hadith-of-the-day").fadeIn(1000);
+                    });
+                }
+            }
+        });
     },
     /**
      * Test main app features 
