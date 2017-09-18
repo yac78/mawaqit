@@ -474,7 +474,7 @@ var prayer = {
 
         $(".prayer-text ._" + prayerIndex).addClass("text-hilighted");
         $(".prayer-wait ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer-time .prayer:contains(" + time + ")").addClass("prayer-hilighted");
+        $(".prayer-content .prayer:contains(" + time + ")").addClass("prayer-hilighted");
     },
     /**
      * 10 minute after current iqama we hilight the next prayer time
