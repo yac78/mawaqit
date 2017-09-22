@@ -186,16 +186,17 @@ body {
 
 .jumua-dhikr-reminder .title {
     font-size: 150%;
+    margin-bottom: 20px;
 }
 .jumua-dhikr-reminder .ar {
-    line-height: 180%;
+    line-height: 160%;
     font-size: 700%;
     font-family: 'Amiri';
 }
 
 .jumua-dhikr-reminder .fr {
     margin-top: 50px;
-    font-size: 450%;
+    font-size: 500%;
 }
 
 .title {

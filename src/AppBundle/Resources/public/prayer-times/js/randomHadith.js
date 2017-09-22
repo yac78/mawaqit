@@ -72,7 +72,7 @@ randomHadith = {
             size = 80;
         }
         if (text.length >= 350) {
-            size = 70;
+            size = 65;
         }
 
         $(".hadith-of-the-day").css("font-size", size + "px");
