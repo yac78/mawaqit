@@ -7,10 +7,8 @@ $(document).ready(function () {
         }
     });
     $("#appbundle_configuration_prayerMethod").trigger("change");
-
-    $(document).ready(function () {
-        $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
-    });
+    $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
+    $("#appbundle_configuration_noJumua").trigger("change");
 
     checkAndHilightIncompletedMonths();
 });
