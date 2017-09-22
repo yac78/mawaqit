@@ -59,7 +59,7 @@ var prayer = {
         this.initEvents();
         this.translateToArabic();
         this.hideSpinner();
-//        this.getRandomHadith();
+        randomHadith.init();
         douaaSlider.init();
         messageInfoSlider.initCronMessageInfo();
     },
@@ -730,29 +730,12 @@ var prayer = {
             $(".ar").css({"font-family": "Amiri", 'font-size': '130%'});
             $(".mobile .ar").css({'font-size': '180%'});
             $(".adhan .title, .douaa-between-adhan-iqama .title").css("margin-bottom", "80px");
-            $(".adhan .ar, .douaa-between-adhan-iqama .ar").css("font-size", "900%");
+            $(".adhan .ar, .douaa-between-adhan-iqama .ar, .jumua-dhikr-reminder .ar").css("font-size", "850%");
             $(".slider .title").css("font-size", "1000%");
             $(".header").css("font-size", "700%");
             $(".mobile .header").css("font-size", "250%");
             $(".site").css("font-size", "200%");
         }
-    },
-    /**
-     * get and display a random hadith from server
-     */
-    getRandomHadith: function () {
-        $.ajax({
-            url: "../get-hadith-of-the-day",
-            success: function (resp) {
-                if (resp !== "") {
-                    $(".hadith-of-the-day").text(resp);
-//                    $(".hadith-of-the-day").css("font-size", ((resp.length % 100) +  ) + "%");
-                    $(".top-content .content").fadeOut(1000, function () {
-                        $(".hadith-of-the-day").fadeIn(1000);
-                    });
-                }
-            }
-        });
     },
     /**
      * Init events
@@ -761,6 +744,25 @@ var prayer = {
         $(".time").click(function () {
             prayer.test();
         });
+    },
+    /**
+     * Check if we are in praying moment (10 min before afhan and and 20 min after iqamah)
+     */
+    isPrayingMoment: function () {
+        var isPrayingMoment = false;
+        var date = new Date();
+        var beginDateTime, endDateTime, prayerDateTime;
+        $(prayer.getTimes()).each(function (i, time) {
+            prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+            beginDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
+            endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 20);
+            if(date > beginDateTime && date < endDateTime ){
+                isPrayingMoment = true;
+                return false;
+            }
+        });
+        
+        return isPrayingMoment;
     },
     /**
      * Test main app features 

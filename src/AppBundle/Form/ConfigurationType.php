@@ -291,6 +291,10 @@ class ConfigurationType extends AbstractType {
                         'title' => $this->translator->trans('configuration.form.smallScreen.title'),
                     ]
                 ])
+                ->add('randomHadithEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.randomHadithEnabled.label',
+                ])
                 ->add('backgroundColor', null, [
                     'label' => 'configuration.form.backgroundColor.label',
                 ])

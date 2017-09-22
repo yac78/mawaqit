@@ -221,6 +221,11 @@ class Configuration {
      * @var bool
      */
     private $smallScreen = false;
+    
+    /**
+     * @var bool
+     */
+    private $randomHadithEnabled = true;
 
     /**
      * @var string
@@ -909,6 +914,7 @@ class Configuration {
             "noJumua" => $this->isNoJumua(),
             "jumuaDhikrReminderEnabled" => $this->isJumuaDhikrReminderEnabled(),
             "jumuaDhikrReminderTimeout" => $this->getJumuaDhikrReminderTimeout(),
+            "randomHadithEnabled" => $this->isRandomHadithEnabled(),
         ];
     }
 
@@ -957,4 +963,13 @@ class Configuration {
     function setJumuaDhikrReminderTimeout($jumuaDhikrReminderTimeout) {
         $this->jumuaDhikrReminderTimeout = $jumuaDhikrReminderTimeout;
     }
+    
+    function isRandomHadithEnabled() {
+        return $this->randomHadithEnabled;
+    }
+
+    function setRandomHadithEnabled($randomHadithEnabled) {
+        $this->randomHadithEnabled = $randomHadithEnabled;
+    }
+
 }

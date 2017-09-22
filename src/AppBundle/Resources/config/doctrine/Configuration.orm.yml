@@ -58,6 +58,8 @@ AppBundle\Entity\Configuration:
             type: boolean
         iqamaBip:
             type: boolean
+        randomHadithEnabled:
+            type: boolean
         sourceCalcul:
             type: string
             length: 255

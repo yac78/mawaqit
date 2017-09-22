@@ -4,6 +4,13 @@ echo "The version is mandatory";
 exit 1
 fi
 
+if [ -z "$2" ]; then
+echo "The message is mandatory";
+exit 1
+fi
+
+git tag $1 -m "$2"
+
 rm -rf /tmp/prayer-times-v3
 mkdir -p /tmp/prayer-times-v3
 

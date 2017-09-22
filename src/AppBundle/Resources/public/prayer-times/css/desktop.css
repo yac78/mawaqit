@@ -64,7 +64,7 @@ body {
 }
 
 .prayer-content{
-    height:38%;
+    height:33%;
 }
 
 .header{
@@ -250,7 +250,24 @@ body {
     height: 99vh;
 }
 
+.footer{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+}
+
 .hadith-of-the-day{
     font-family: 'Amiri';
+    height: 100%;
+    width: 100%;
+}
+
+.to-bottom-times
+{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
 }
 
