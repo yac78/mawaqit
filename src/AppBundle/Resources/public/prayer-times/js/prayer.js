@@ -318,12 +318,15 @@ var prayer = {
         init: function () {
             if (prayer.confData.jumuaDhikrReminderEnabled === true) {
                 setInterval(function () {
-                    var currentTime = dateTime.getCurrentTime(false);
-                    if (currentTime === prayer.getJoumouaaTime() && prayer.confData.jumuaDhikrReminderEnabled === true) {
-                        prayer.jumuaDhikrReminder.show();
-                        setTimeout(function () {
-                            prayer.jumuaDhikrReminder.hide();
-                        }, prayer.confData.jumuaDhikrReminderTimeout * prayer.oneMinute);
+                    var date = new Date();
+                    if (date.getDay() === 5) {
+                        var currentTime = dateTime.getCurrentTime(false);
+                        if (currentTime === prayer.getJoumouaaTime() && prayer.confData.jumuaDhikrReminderEnabled === true) {
+                            prayer.jumuaDhikrReminder.show();
+                            setTimeout(function () {
+                                prayer.jumuaDhikrReminder.hide();
+                            }, prayer.confData.jumuaDhikrReminderTimeout * prayer.oneMinute);
+                        }
                     }
                 }, prayer.oneMinute);
             }
@@ -756,12 +759,12 @@ var prayer = {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             beginDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
             endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 20);
-            if(date > beginDateTime && date < endDateTime ){
+            if (date > beginDateTime && date < endDateTime) {
                 isPrayingMoment = true;
                 return false;
             }
         });
-        
+
         return isPrayingMoment;
     },
     /**
