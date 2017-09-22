@@ -55,6 +55,7 @@ var prayer = {
         this.initCronHandlingTimes();
         this.setCustomTime();
         this.initUpdateConfData();
+        this.initEvents();
         this.translateToArabic();
         this.hideSpinner();
 //        this.getHadithOfTheDay();
@@ -722,6 +723,14 @@ var prayer = {
                     });
                 }
             }
+        });
+    },
+    /**
+     * Init events
+     */
+    initEvents: function () {
+        $(".time").click(function () {
+           prayer.test();
         });
     },
     /**
