@@ -15,6 +15,8 @@ exit 1
 fi
 
 git tag $2 -m "$3"
+git push
+git push --tags
 
 rm -rf /tmp/prayer-times-v3
 mkdir -p /tmp/prayer-times-v3
