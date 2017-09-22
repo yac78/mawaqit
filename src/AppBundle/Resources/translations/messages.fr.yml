@@ -87,9 +87,16 @@ configuration:
             placeholder: Veuillez choisir une méthode de calcul
         jumuaTime:
             label: Heure du jumu`a
-            title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 12:15 en hiver et 13h:15 en été
+            title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 12:15 en hiver et 13:15 en été
         jumuaAsDuhr:
             label: L'heure du jumu'a pareil que duhr
+        noJumua:
+            label: Pas de jumu`a dans cette mosquée
+        jumuaDhikrReminderEnabled:
+            label: Afficher le rappel pendant jumu`a 
+        jumuaDhikrReminderTimeout:
+            label: Temps d'affichange du rappel en minute
+            title: Si l'option "Afficher le rappel pendant jumu`a" est activée, un hadith est affiché pendant le temps défini ici, ce hadith rappelle le bon comportement à avoir le jour du jumu`a
         aidTime:
             label: Heure du aïd
             title: Si cette valeur est renseignée elle remplacera l'heure du shuruk, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement

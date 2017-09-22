@@ -46,6 +46,21 @@ class Configuration {
      * @var boolean
      */
     private $jumuaAsDuhr = false;
+    
+    /**
+     * @var boolean
+     */
+    private $noJumua = false;
+    
+    /**
+     * @var boolean
+     */
+    private $jumuaDhikrReminderEnabled = false;
+    
+    /**
+     * @var integer
+     */
+    private $jumuaDhikrReminderTimeout = 20;
 
     /**
      * @var string
@@ -891,6 +906,9 @@ class Configuration {
             "lastUpdatedDate" => $this->mosque->getUpdated(),
             "backgroundColor" => $this->getBackgroundColor(),
             "calendar" => $this->getCalendar(),
+            "noJumua" => $this->isNoJumua(),
+            "jumuaDhikrReminderEnabled" => $this->isJumuaDhikrReminderEnabled(),
+            "jumuaDhikrReminderTimeout" => $this->getJumuaDhikrReminderTimeout(),
         ];
     }
 
@@ -916,4 +934,27 @@ class Configuration {
         $this->backgroundColor = $backgroundColor;
     }
 
+    function isNoJumua() {
+        return $this->noJumua;
+    }
+
+    function setNoJumua($noJumua) {
+        $this->noJumua = $noJumua;
+    }
+    
+    function isJumuaDhikrReminderEnabled() {
+        return $this->jumuaDhikrReminderEnabled;
+    }
+
+    function getJumuaDhikrReminderTimeout() {
+        return $this->jumuaDhikrReminderTimeout;
+    }
+
+    function setJumuaDhikrReminderEnabled($jumuaDhikrReminderEnabled) {
+        $this->jumuaDhikrReminderEnabled = $jumuaDhikrReminderEnabled;
+    }
+
+    function setJumuaDhikrReminderTimeout($jumuaDhikrReminderTimeout) {
+        $this->jumuaDhikrReminderTimeout = $jumuaDhikrReminderTimeout;
+    }
 }

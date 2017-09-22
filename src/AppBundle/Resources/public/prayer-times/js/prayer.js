@@ -53,11 +53,12 @@ var prayer = {
         this.initAdhanFlash();
         this.initIqamaFlash();
         this.initCronHandlingTimes();
+        this.jumuaDhikrReminder.init();
         this.setCustomTime();
         this.initUpdateConfData();
         this.translateToArabic();
         this.hideSpinner();
-//        this.getHadithOfTheDay();
+//        this.getRandomHadith();
         douaaSlider.init();
         messageInfoSlider.initCronMessageInfo();
     },
@@ -308,6 +309,34 @@ var prayer = {
                 });
             }
         }, prayer.oneSecond);
+    },
+    jumuaDhikrReminder: {
+        /**
+         * init cron
+         */
+        init: function () {
+            if (prayer.confData.jumuaDhikrReminderEnabled === true) {
+                setInterval(function () {
+                    var currentTime = dateTime.getCurrentTime(false);
+                    if (currentTime === prayer.getJoumouaaTime() && prayer.confData.jumuaDhikrReminderEnabled === true) {
+                        prayer.jumuaDhikrReminder.show();
+                        setTimeout(function () {
+                            prayer.jumuaDhikrReminder.hide();
+                        }, prayer.confData.jumuaDhikrReminderTimeout * prayer.oneMinute);
+                    }
+                }, prayer.oneMinute);
+            }
+        },
+        show: function () {
+            $(".desktop .main").fadeOut(1000, function () {
+                $(".desktop .jumua-dhikr-reminder").fadeIn(1000);
+            });
+        },
+        hide: function () {
+            $(".desktop .main").fadeIn(1000, function () {
+                $(".desktop .jumua-dhikr-reminder").fadeOut(1000);
+            });
+        }
     },
     /**
      * Check every second if iqama time is ok
@@ -710,7 +739,7 @@ var prayer = {
     /**
      * get and display a random hadith from server
      */
-    getHadithOfTheDay: function () {
+    getRandomHadith: function () {
         $.ajax({
             url: "../get-hadith-of-the-day",
             success: function (resp) {
@@ -722,6 +751,14 @@ var prayer = {
                     });
                 }
             }
+        });
+    },
+    /**
+     * Init events
+     */
+    initEvents: function () {
+        $(".time").click(function () {
+            prayer.test();
         });
     },
     /**

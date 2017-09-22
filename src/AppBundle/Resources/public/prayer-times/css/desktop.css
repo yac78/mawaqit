@@ -32,7 +32,11 @@ body {
     }
 }
 
-.main, .iqama, .adhan, .douaa-between-adhan-iqama{
+.main, 
+.iqama, 
+.adhan, 
+.douaa-between-adhan-iqama, 
+.jumua-dhikr-reminder {
     height:100vh;
     margin: auto;
 }
@@ -178,6 +182,20 @@ body {
 .douaa-between-adhan-iqama .fr {
     margin-top: 50px;
     font-size: 500%;
+}
+
+.jumua-dhikr-reminder .title {
+    font-size: 150%;
+}
+.jumua-dhikr-reminder .ar {
+    line-height: 180%;
+    font-size: 700%;
+    font-family: 'Amiri';
+}
+
+.jumua-dhikr-reminder .fr {
+    margin-top: 50px;
+    font-size: 450%;
 }
 
 .title {
