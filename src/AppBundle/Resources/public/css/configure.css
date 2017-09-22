@@ -12,3 +12,7 @@
 .calendar-prayer-time {
     padding: 0;
 }
+
+.checkbox label, .radio label {
+    font-weight: 700; 
+}

@@ -17,6 +17,10 @@ AppBundle\Entity\Configuration:
             type: boolean             
         noJumua:
             type: boolean             
+        jumuaDhikrReminderEnabled:
+            type: boolean             
+        jumuaDhikrReminderTimeout:
+            type: integer             
         aidTime:
             type: string
             length: 255

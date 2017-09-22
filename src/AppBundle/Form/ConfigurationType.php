@@ -111,6 +111,17 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.noJumua.label',
                 ])
+                ->add('jumuaDhikrReminderEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.jumuaDhikrReminderEnabled.label',
+                ])
+                ->add('jumuaDhikrReminderTimeout', IntegerType::class, [
+                    'label' => 'configuration.form.jumuaDhikrReminderTimeout.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.jumuaDhikrReminderTimeout.title'),
+                        'min' => 0
+                    ]
+                ])
                 ->add('aidTime', null, [
                     'label' => 'configuration.form.aidTime.label',
                     'attr' => [
