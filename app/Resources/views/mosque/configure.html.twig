@@ -48,15 +48,6 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
-                    {{ form_row(form.timezone) }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(form.dst) }}
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="panel-group col-md-10" id="accordion1">
                     <div class="panel panel-default">
                         <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#adjustedTimesPanel">
@@ -272,10 +263,24 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    {{ form_row(form.jumuaAsDuhr) }}
+                                    {{ form_row(form.timezone) }}
                                 </div>
-                                <div class="col-md-3 jumua-bloc">
-                                    {{ form_row(form.jumuaTime) }}
+                                <div class="col-md-3">
+                                    {{ form_row(form.dst) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form_row(form.noJumua) }}
+                                </div>
+                                <div class="jumua-bloc">
+                                    <div class="col-md-3">
+                                        {{ form_row(form.jumuaAsDuhr) }}
+                                    </div>
+                                    <div class="col-md-3 jumua-bloc-time">
+                                        {{ form_row(form.jumuaTime) }}
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     {{ form_row(form.aidTime) }}

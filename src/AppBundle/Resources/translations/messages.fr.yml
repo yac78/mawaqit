@@ -90,6 +90,8 @@ configuration:
             title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 12:15 en hiver et 13h:15 en été
         jumuaAsDuhr:
             label: L'heure du jumu'a pareil que duhr
+        noJumua:
+            label: Pas de jumu`a dans cette mosquée
         aidTime:
             label: Heure du aïd
             title: Si cette valeur est renseignée elle remplacera l'heure du shuruk, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement

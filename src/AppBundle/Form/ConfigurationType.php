@@ -106,9 +106,10 @@ class ConfigurationType extends AbstractType {
                 ->add('jumuaAsDuhr', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.jumuaAsDuhr.label',
-                    'attr' => [
-                        'title' => $this->translator->trans('configuration.form.jumuaAsDuhr.title')
-                    ]
+                ])
+                ->add('noJumua', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.noJumua.label',
                 ])
                 ->add('aidTime', null, [
                     'label' => 'configuration.form.aidTime.label',

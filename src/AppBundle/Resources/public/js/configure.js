@@ -136,7 +136,21 @@ $("#predefined-calendar").change(function () {
     }
 });
 
+/**
+ * Jumua as duh handling checkbox
+ */
 $("#appbundle_configuration_jumuaAsDuhr").bind("change", function (event) {
+    if ($(this).is(":checked")) {
+        $(".jumua-bloc-time").hide();
+    } else {
+        $(".jumua-bloc-time").show();
+    }
+});
+
+/**
+ * No jumua checkbox handling
+ */
+$("#appbundle_configuration_noJumua").bind("change", function (event) {
     if ($(this).is(":checked")) {
         $(".jumua-bloc").hide();
     } else {

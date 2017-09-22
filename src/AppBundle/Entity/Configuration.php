@@ -46,6 +46,11 @@ class Configuration {
      * @var boolean
      */
     private $jumuaAsDuhr = false;
+    
+    /**
+     * @var boolean
+     */
+    private $noJumua = false;
 
     /**
      * @var string
@@ -891,6 +896,7 @@ class Configuration {
             "lastUpdatedDate" => $this->mosque->getUpdated(),
             "backgroundColor" => $this->getBackgroundColor(),
             "calendar" => $this->getCalendar(),
+            "noJumua" => $this->isNoJumua(),
         ];
     }
 
@@ -914,6 +920,14 @@ class Configuration {
 
     function setBackgroundColor($backgroundColor) {
         $this->backgroundColor = $backgroundColor;
+    }
+
+    function isNoJumua() {
+        return $this->noJumua;
+    }
+
+    function setNoJumua($noJumua) {
+        $this->noJumua = $noJumua;
     }
 
 }
