@@ -1,15 +1,20 @@
 #!/bin/bash
 if [ -z "$1" ]; then
-echo "The version is mandatory";
+echo "The branch to deploy is mandatory";
 exit 1
 fi
 
 if [ -z "$2" ]; then
+echo "The tag to create is mandatory";
+exit 1
+fi
+
+if [ -z "$3" ]; then
 echo "The message is mandatory";
 exit 1
 fi
 
-git tag $1 -m "$2"
+git tag $2 -m "$3"
 
 rm -rf /tmp/prayer-times-v3
 mkdir -p /tmp/prayer-times-v3
