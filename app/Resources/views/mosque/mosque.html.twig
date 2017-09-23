@@ -54,9 +54,9 @@
                 <div class="header ar">{{mosque.name ~ (mosque.city not in mosque.name ?  ' - ' ~ mosque.city : '') }}</div> 
 
                 <div class="top-content">
-                    
+
                     <div class="hadith-of-the-day display-none"></div>
-                    
+
                     <div class="adhan-flash hidden">
                         <div class="col-lg-2">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
@@ -120,26 +120,28 @@
                 </div>
 
                 <div class="footer">
-                    <div class="col-lg-12">
-                        <div class="site ar">{{site|raw}}</div>
-                        <div class="assosciation">
-                            {{ mosque.associationName }}
-                            {% if mosque.phone %}
-                                &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
-                            {% endif %}
-                            &nbsp;&nbsp;{{ mosque.rib }}
-                        </div>
-                        <div class="support">
-                            <span>{{'developed_by'|trans}}</span> 
-                            &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}">{{supportTel}}</a>
-                            &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>
+                    <div class="footer-text">
+                        <div class="col-lg-12">
+                            <div class="site ar">{{site|raw}}</div>
+                            <div class="assosciation">
+                                {{ mosque.associationName }}
+                                {% if mosque.phone %}
+                                    &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                                {% endif %}
+                                &nbsp;&nbsp;{{ mosque.rib }}
+                            </div>
+                            <div class="support">
+                                <span>{{'developed_by'|trans}}</span> 
+                                &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}">{{supportTel}}</a>
+                                &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>
+                            </div>
                         </div>
                     </div>
+                    <div class="version">v{{version}}</div>
+                    {% if mosque.configuration.urlQrCodeEnabled %}
+                        <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=100x100" alt=""/></div>
+                        {% endif %}
                 </div>
-                <div class="version">v{{version}}</div>
-                {% if mosque.configuration.urlQrCodeEnabled %}
-                    <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=100x100" alt=""/></div>
-                    {% endif %}
             </div>
         </div>
 
