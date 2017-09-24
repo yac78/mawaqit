@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller {
 
@@ -64,13 +65,24 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/get-hadith-of-the-day")
+     * @Route("/get-random-hadith/{_locale}")
      */
-    public function getHadithOfTheDayAjaxAction() {
+    public function getHadithOfTheDayAjaxAction(Request $request) {
         $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ryiad-essalihine.xml";
         $xmldata = simplexml_load_file($file);
+
         $hadiths = $xmldata->xpath('hadith');
-        return new Response($hadiths[array_rand($hadiths)], 200);
+
+        if ($request->getLocale() === "ar") {
+            $hadiths = $xmldata->xpath('hadith[@lang="ar"]');
+        }
+
+        $hadith = $hadiths[array_rand($hadiths)];
+        $reponse = [
+            "text" => (string) $hadith,
+            "lang" => !empty($hadith["lang"]) ? (string) $hadith["lang"] : ""
+        ];
+        return new JsonResponse($reponse, 200);
     }
 
 }

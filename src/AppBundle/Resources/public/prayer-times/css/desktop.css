@@ -185,18 +185,18 @@ body {
 }
 
 .jumua-dhikr-reminder .title {
-    font-size: 150%;
+    font-size: 130%;
     margin-bottom: 20px;
 }
 .jumua-dhikr-reminder .ar {
     line-height: 160%;
-    font-size: 700%;
+    font-size: 650%;
     font-family: 'Amiri';
 }
 
 .jumua-dhikr-reminder .fr {
     margin-top: 50px;
-    font-size: 500%;
+    font-size: 450%;
 }
 
 .title {
@@ -258,10 +258,14 @@ body {
     right: 0;
 }
 
-.hadith-of-the-day{
+.random-hadith {
     font-family: 'Amiri';
     height: 100%;
     width: 100%;
+}
+
+.random-hadith-fr {
+    font-family: Arial,sans-serif;
 }
 
 .to-bottom-times

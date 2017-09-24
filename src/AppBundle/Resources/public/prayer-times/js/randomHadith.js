@@ -18,11 +18,16 @@ randomHadith = {
     },
     get: function () {
         $.ajax({
-            url: "../get-hadith-of-the-day",
+            type: "JSON",
+            url: "../get-random-hadith/" + lang,
             success: function (resp) {
-                if (resp !== "") {
-                    $(".hadith-of-the-day").text(resp);
-                    randomHadith.setFontSize(resp);
+                if (resp.text !== "") {
+                    $(".random-hadith").removeClass("random-hadith-fr");
+                    $(".random-hadith").text(resp.text);
+                    randomHadith.setFontSize(resp.text, resp.lang);
+                    if (resp.lang === "fr") {
+                        $(".random-hadith").addClass("random-hadith-fr");
+                    }
                     randomHadith.show();
                 }
             },
@@ -38,12 +43,12 @@ randomHadith = {
         $(".desktop .footer").hide();
         $(".desktop .header").hide();
         $(".desktop .top-content .content").fadeOut(1000, function () {
-            $(".hadith-of-the-day").fadeIn(1000);
+            $(".random-hadith").fadeIn(1000);
         });
     },
     hide: function () {
         randomHadith.isRunning = false;
-        $(".hadith-of-the-day").fadeOut(1000, function () {
+        $(".random-hadith").fadeOut(1000, function () {
             $(".desktop .prayer-content").removeClass("to-bottom-times");
             $(".desktop .top-content").css("height", "40%");
             $(".desktop .footer").show();
@@ -51,7 +56,7 @@ randomHadith = {
             $(".desktop .top-content .content").fadeIn(1000);
         });
     },
-    setFontSize: function (text) {
+    setFontSize: function (text, lang) {
         var size;
         if (text.length < 100) {
             size = 130;
@@ -74,7 +79,11 @@ randomHadith = {
         if (text.length >= 350) {
             size = 65;
         }
+        if (lang === "fr")
+        {
+            size -= 15;
+        }
 
-        $(".hadith-of-the-day").css("font-size", size + "px");
+        $(".random-hadith").css("font-size", size + "px");
     }
 };
