@@ -225,6 +225,13 @@ var prayer = {
                 });
                 return false;
             }
+
+            // if no prayer selected we countwon the next day fajr
+            var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
+            tomorrowFajrDate.setDate(tomorrowFajrDate.getDate() + 1);
+            $(".next-prayer .countdown").countdown(tomorrowFajrDate, function (event) {
+                $(this).text(event.strftime('%H:%M'));
+            });
         });
     },
     /**
