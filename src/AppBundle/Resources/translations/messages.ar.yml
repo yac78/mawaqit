@@ -124,6 +124,8 @@ CUSTOM: "Choisir le degré du Fajr et `Isha"
 api: Automatique (Calcul des horaires par le logiciel)
 calendar: Manuel (Horaires renseignées pour toute l'année)
 
+next_prayer: الصلاة القادمة
+
 day: اليوم
 fajr: الفجر
 shuruk: الشروق

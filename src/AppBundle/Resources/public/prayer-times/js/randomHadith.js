@@ -61,29 +61,38 @@ var randomHadith = {
     setFontSize: function (text, lang) {
         var size;
         if (text.length < 100) {
-            size = 130;
+            size = 110;
         }
         if (text.length >= 100 && text.length < 150) {
-            size = 120;
+            size = 105;
         }
         if (text.length >= 150 && text.length < 200) {
             size = 100;
         }
         if (text.length >= 200 && text.length < 250) {
-            size = 95;
+            size = 90;
         }
         if (text.length >= 250 && text.length < 300) {
             size = 85
         }
         if (text.length >= 300 && text.length < 350) {
+            size = 80;
+        }
+        if (text.length >= 350 && text.length < 400) {
             size = 75;
         }
-        if (text.length >= 350) {
+        if (text.length >= 400 && text.length < 450) {
+            size = 70;
+        }
+        if (text.length >= 450 && text.length < 500) {
+            size = 65;
+        }
+        if (text.length >= 500) {
             size = 60;
         }
         if (lang === "fr")
         {
-            size -= 15;
+            size -= 10;
         }
 
         $(".random-hadith").css("font-size", size + "px");

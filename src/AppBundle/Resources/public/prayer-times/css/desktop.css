@@ -270,7 +270,7 @@ body {
 .time-bottom{
     font-size: 40px;
     position: absolute;
-    bottom: -5px;
+    bottom: -10px;
     left: 5px;
     font-family: Arial,sans-serif;
 }
@@ -290,7 +290,7 @@ body {
 .next-prayer {
     font-size: 40px;
     position: absolute;
-    bottom: -5px;
+    bottom: -10px;
     right: 5px;
     font-family: Arial,sans-serif;
 }
