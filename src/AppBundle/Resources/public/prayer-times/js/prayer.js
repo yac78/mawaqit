@@ -221,7 +221,7 @@ var prayer = {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             if (prayerDateTime.getHours() !== 0 && date < prayerDateTime) {
                 $(".next-prayer .countdown").countdown(prayerDateTime, function (event) {
-                    $(this).text(event.strftime('%H:%M:%S'));
+                    $(this).text(event.strftime('%H:%M'));
                 });
                 return false;
             }
