@@ -267,14 +267,6 @@ body {
     padding-top: 15px;
 }
 
-.time-bottom{
-    font-size: 40px;
-    position: absolute;
-    bottom: -10px;
-    left: 5px;
-    font-family: Arial,sans-serif;
-}
-
 .random-hadith-fr {
     font-family: Arial,sans-serif;
 }
@@ -287,13 +279,22 @@ body {
     right: 0;
 }
 
-.next-prayer {
-    font-size: 40px;
+.time-bottom{
+    font-size: 50px;
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     right: 5px;
     font-family: Arial,sans-serif;
 }
+
+.next-prayer {
+    font-size: 50px;
+    position: absolute;
+    bottom: -15px;
+    left: 5px;
+    font-family: Arial,sans-serif;
+}
+
 .next-prayer .countdown {
     display: inline;
 }

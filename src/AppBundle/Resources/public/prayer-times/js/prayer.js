@@ -599,7 +599,8 @@ var prayer = {
     setTime: function () {
         $(".time").text(dateTime.getCurrentTime(true));
         setInterval(function () {
-            $(".time, .time-bottom").text(dateTime.getCurrentTime(true));
+            $(".time").text(dateTime.getCurrentTime(true));
+            $(".time-bottom").text(dateTime.getCurrentTime());
         }, prayer.oneSecond);
     },
     /**
