@@ -213,6 +213,21 @@ var prayer = {
         return waitings;
     },
     /**
+     * handle next prayer countdown
+     */
+    nextPrayerCountdown: function () {
+        var date = new Date();
+        $.each(prayer.getTimes(), function (index, time) {
+            prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+            if (prayerDateTime.getHours() !== 0 && date < prayerDateTime) {
+                $(".next-prayer .countdown").countdown(prayerDateTime, function (event) {
+                    $(this).text(event.strftime('%H:%M:%S'));
+                });
+                return false;
+            }
+        });
+    },
+    /**
      * +1|-1 hour for time depending DST
      * @param {String} time
      * @returns {Array}
@@ -584,7 +599,7 @@ var prayer = {
     setTime: function () {
         $(".time").text(dateTime.getCurrentTime(true));
         setInterval(function () {
-            $(".time").text(dateTime.getCurrentTime(true));
+            $(".time, .time-bottom").text(dateTime.getCurrentTime(true));
         }, prayer.oneSecond);
     },
     /**
@@ -744,7 +759,7 @@ var prayer = {
      * Init events
      */
     initEvents: function () {
-        $(".time").click(function () {
+        $(".version").click(function () {
             prayer.test();
         });
     },

@@ -41,15 +41,12 @@ AppBundle\Entity\Mosque:
         city:
             type: string
             length: 255
-            nullable: true
         country:
             type: string
             length: 255
-            nullable: true
         zipcode:
             type: string
             length: 255
-            nullable: true
         rib:
             type: string
             length: 1024

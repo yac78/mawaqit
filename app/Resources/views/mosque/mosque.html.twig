@@ -55,7 +55,13 @@
 
                 <div class="top-content">
 
-                    <div class="random-hadith display-none"></div>
+                    <div class="random-hadith display-none">
+                        <div class="text"></div>
+                        <div class="time-bottom">20:00:22</div>
+                        <div class="next-prayer"> 
+                            {{'next_prayer'|trans}} : -<div class="countdown"></div>
+                        </div>
+                    </div>
 
                     <div class="adhan-flash hidden">
                         <div class="col-lg-2">
@@ -83,8 +89,10 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="time"></div>
-                            <div class="hijriDate"></div>
-                            <div class="gregorianDate"></div>
+                            <div class="date">
+                                <div class="hijriDate"></div>
+                                <div class="gregorianDate"></div>
+                            </div>
                         </div>
                         <div class=" col-lg-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
                             <div class="ar">{{'jumua'|trans}}</div>

@@ -2,7 +2,7 @@
  * get and display a random hadith from server
  * It will be shwon every 5 min, except in prayer moment
  */
-randomHadith = {
+var randomHadith = {
     isRunning: false,
     init: function () {
         if (prayer.confData.randomHadithEnabled) {
@@ -23,7 +23,7 @@ randomHadith = {
             success: function (resp) {
                 if (resp.text !== "") {
                     $(".random-hadith").removeClass("random-hadith-fr");
-                    $(".random-hadith").text(resp.text);
+                    $(".random-hadith .text").text(resp.text);
                     randomHadith.setFontSize(resp.text, resp.lang);
                     if (resp.lang === "fr") {
                         $(".random-hadith").addClass("random-hadith-fr");
@@ -38,11 +38,13 @@ randomHadith = {
     },
     show: function () {
         randomHadith.isRunning = true;
+        prayer.nextPrayerCountdown();
         $(".desktop .prayer-content").addClass("to-bottom-times");
         $(".desktop .top-content").css("height", "67%");
         $(".desktop .footer").hide();
         $(".desktop .header").hide();
         $(".desktop .top-content .content").fadeOut(1000, function () {
+            $(".time-top").fadeIn(1000);
             $(".random-hadith").fadeIn(1000);
         });
     },
@@ -65,19 +67,19 @@ randomHadith = {
             size = 120;
         }
         if (text.length >= 150 && text.length < 200) {
-            size = 110;
-        }
-        if (text.length >= 200 && text.length < 250) {
             size = 100;
         }
+        if (text.length >= 200 && text.length < 250) {
+            size = 95;
+        }
         if (text.length >= 250 && text.length < 300) {
-            size = 90
+            size = 85
         }
         if (text.length >= 300 && text.length < 350) {
-            size = 80;
+            size = 75;
         }
         if (text.length >= 350) {
-            size = 65;
+            size = 60;
         }
         if (lang === "fr")
         {
