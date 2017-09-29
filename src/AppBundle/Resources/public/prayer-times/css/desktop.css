@@ -294,6 +294,9 @@ body {
     left: 5px;
     font-family: Arial,sans-serif;
 }
+.time-bottom, .next-prayer{
+    color: #ec7047;    
+}
 
 .next-prayer .countdown {
     display: inline;

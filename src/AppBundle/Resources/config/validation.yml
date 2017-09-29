@@ -1,7 +1,7 @@
 AppBundle\Entity\User:
     properties:
         plainPassword:
-          - Length:
-              min: 8
-              minMessage: "form.registration.short_password_message"
-              groups: [appChangePassword]
+            - Regex: 
+                pattern: '/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/'
+                message: "form.registration.wrong_password_message"              
+                groups: [appChangePassword]
