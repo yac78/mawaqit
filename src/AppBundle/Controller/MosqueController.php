@@ -52,7 +52,7 @@ class MosqueController extends Controller {
         ];
         return new JsonResponse($response, 200);
     }
-    
+
     /**
      * @Route("/{slug}/get-messages")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
@@ -60,9 +60,19 @@ class MosqueController extends Controller {
     public function getMessagesAjaxAction(Request $request, Mosque $mosque) {
         $em = $this->getDoctrine()->getManager();
         $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque);
-        return new Response($this->get("serializer")->serialize($messages, "json"), 200,
-            [
-                'content-type' => 'application/json'
-            ]);
+        return new Response($this->get("serializer")->serialize($messages, "json"), 200, [
+            'content-type' => 'application/json'
+        ]);
     }
+
+    /**
+     * get temperature of the mosque city
+     * @Route("/{slug}/temperature")
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     */
+    public function getTemperatureAjaxAction(Request $request, Mosque $mosque) {
+        $temperatur = $this->get("app.weather_service")->getTemperature($mosque);
+        return new Response($temperatur);
+    }
+
 }

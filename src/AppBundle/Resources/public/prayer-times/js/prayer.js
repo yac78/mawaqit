@@ -60,6 +60,7 @@ var prayer = {
         this.translateToArabic();
         this.hideSpinner();
         randomHadith.init();
+        weather.initUpdateTemperature();
         douaaSlider.init();
         messageInfoSlider.initCronMessageInfo();
     },

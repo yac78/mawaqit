@@ -65,7 +65,7 @@ body {
 }
 
 .prayer-content{
-    height:31%;
+    height:32%;
 }
 
 .header{
@@ -75,7 +75,7 @@ body {
 }
 
 .joumouaa, .custom-time{
-    padding-top: 40px;
+    padding-top: 100px;
     font-size: 500%;
 }
 
@@ -101,7 +101,7 @@ body {
 }
 
 .prayer-text {
-    font-size: 550%;
+    font-size: 600%;
     border-top: 1px #fff solid;
 } 
 
@@ -113,17 +113,16 @@ body {
 }
 
 .prayer-time {
-    height: 150px;
-    line-height: 150px;
+    line-height: 130px;
 }
 
 .prayer-time .prayer{
     color: yellowgreen;
-    font-size: 780%;
+    font-size: 900%;
 }
 
 .prayer-wait .wait{
-    font-size: 500%;
+    font-size: 600%;
     border-bottom: 1px #fff solid;
 }
 
@@ -300,4 +299,25 @@ body {
 
 .next-prayer .countdown {
     display: inline;
+}
+
+.temperature
+{
+    top: 5px;
+    right: 5px;
+    font-size: 600%;
+    color: yellowgreen;
+    position: absolute;
+}
+
+.red{
+    color: #AA3333 !important;
+}
+
+.orange{
+    color: #d58512 !important;
+}
+
+.blue{
+    color: #3498db ;
 }

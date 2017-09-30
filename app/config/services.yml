@@ -23,11 +23,22 @@ services:
           - '%google_api_endpoint%'
           - '%google_api_key%'
           
+    app.weather_api:
+        abstract: true
+        class: AppBundle\Service\Api\WeatherApi
+        arguments: 
+          - '%weather_api_endpoint%'
+          - '%weather_api_key%'
+          
     app.google_service:
         parent: app.google_api
         class: AppBundle\Service\GoogleService
         calls:
           - [setLogger, ['@logger']]
+          
+    app.weather_service:
+        parent: app.weather_api
+        class: AppBundle\Service\WeatherService
           
     app.prayer_times_service:
         class: AppBundle\Service\PrayerTimeService

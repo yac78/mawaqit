@@ -617,7 +617,7 @@ class Mosque {
                 }
                 return false;
             }
-            
+
             return $this->isCalendarCompleted();
         }
         return false;
@@ -649,4 +649,16 @@ class Mosque {
         }
         return $this->isCalendarCompleted;
     }
+
+    /**
+     * get GPS coordinates
+     * @return array
+     */
+    function getGpsCoordinates() {
+        return [
+            "lat" => $this->getConfiguration()->getLatitude(),
+            "lon" => $this->getConfiguration()->getLongitude()
+        ];
+    }
+
 }

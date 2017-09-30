@@ -51,6 +51,11 @@
 
             <!-- main screen -->
             <div class="main display-none">
+                
+                <div class="temperature blue">
+                    <span></span><sup>°C</sup>
+                </div>
+                
                 <div class="header ar">{{mosque.name ~ (mosque.city not in mosque.name ?  ' - ' ~ mosque.city : '') }}</div> 
 
                 <div class="top-content">
@@ -74,6 +79,7 @@
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
                         </div>
                     </div>
+                        
                     <div class="content">
                         <div class="col-lg-3 aid custom-time">
                             <div class="ar">{{'aid'|trans}}</div>
@@ -310,6 +316,7 @@
                 '@AppBundle/Resources/public/prayer-times/js/prayer.js'
                 '@AppBundle/Resources/public/prayer-times/js/sliders.js'
                 '@AppBundle/Resources/public/prayer-times/js/randomHadith.js'
+                '@AppBundle/Resources/public/prayer-times/js/weather.js'
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}    

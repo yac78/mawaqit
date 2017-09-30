@@ -39,12 +39,12 @@ var randomHadith = {
     show: function () {
         randomHadith.isRunning = true;
         prayer.nextPrayerCountdown();
-        $(".desktop .prayer-content").addClass("to-bottom-times");
-        $(".desktop .top-content").css("height", "67%");
-        $(".desktop .footer").hide();
-        $(".desktop .header").hide();
         $(".desktop .top-content .content").fadeOut(1000, function () {
-            $(".time-top").fadeIn(1000);
+            $(".desktop .header").hide();
+            $(".desktop .temperature").hide();
+            $(".desktop .footer").hide();
+            $(".desktop .prayer-content").addClass("to-bottom-times");
+            $(".desktop .top-content").css("height", "67%");
             $(".random-hadith").fadeIn(1000);
         });
     },
@@ -55,6 +55,7 @@ var randomHadith = {
             $(".desktop .top-content").css("height", "40%");
             $(".desktop .footer").show();
             $(".desktop .header").show();
+            $(".desktop .temperature").show();
             $(".desktop .top-content .content").fadeIn(1000);
         });
     },
