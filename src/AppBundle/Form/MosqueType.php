@@ -31,7 +31,9 @@ class MosqueType extends AbstractType {
             $builder
                     ->add('user', EntityType::class, [
                         'label' => 'user',
-                        'choice_label' => 'username',
+                        'choice_label' => function ($user, $key, $index) {
+                            return $user->getEmail() ." - ". $user->getUsername();
+                        },
                         'required' => true,
                         'empty_data' => null,
                         'class' => User::class,

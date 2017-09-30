@@ -605,10 +605,13 @@ var prayer = {
      * set time every second
      */
     setTime: function () {
-        $(".time").text(dateTime.getCurrentTime(true));
+        var time;
+        var timeEl = $(".time");
+        var timeBottomEl = $(".time-bottom");
         setInterval(function () {
-            $(".time").text(dateTime.getCurrentTime(true));
-            $(".time-bottom").text(dateTime.getCurrentTime());
+            time = dateTime.getCurrentTime(true);
+            timeBottomEl.text(time);
+            timeEl.text(time);
         }, prayer.oneSecond);
     },
     /**
