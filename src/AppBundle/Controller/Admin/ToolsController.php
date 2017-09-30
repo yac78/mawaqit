@@ -23,7 +23,7 @@ class ToolsController extends Controller {
         $mosques = $em->getRepository("AppBundle:Mosque")->findAll();
         foreach ($mosques as $mosque) {
             $configuration = $mosque->getConfiguration();
-            if ($configuration instanceof Configuration) {
+            if ($configuration instanceof Configuration && (empty($configuration->getLatitude()) || empty($configuration->getLongitude()))) {
                 try {
                     $position = $this->get("app.google_service")->getPosition($mosque->getLocalisation());
                     $configuration->setLongitude($position->lng);
