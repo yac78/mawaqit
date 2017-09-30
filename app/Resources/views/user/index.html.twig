@@ -21,6 +21,8 @@
                     <th>{{'name'|trans}}</th>
                     <th>{{'email'|trans}}</th>
                     <th class="text-center">{{'active'|trans}}</th>
+                    <th>{{'creation_date'|trans}}</th>
+                    <th>{{'last_login'|trans}}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,6 +35,8 @@
                         <td class="text-center">
                             <span class="fa fa-{{user.enabled ? 'check' : 'close'}}"></span>
                         </td>
+                        <td>{{user.created|date('d/m/Y h:i')}}</td>
+                        <td>{{user.lastLogin|date('d/m/Y h:i')}}</td>
                         <td>
                             {% if user.id != app.user.id %}
                                 {% include 'partial/delete_button.html.twig' with {entity: user} %}
@@ -51,6 +55,8 @@
                     <a href="{{path('user_show', {id: user.id})}}"><strong>{{user.username}}</strong></a> <br>
                     {{user.email}}<br>
                     {{'enabled'|trans}} ? <span class="fa fa-{{user.enabled ? 'check' : 'close'}}"></span>
+                    <div>{{'creation_date'|trans}}: {{user.created|date('d/m/Y h:i')}}</div>
+                    <div>{{'last_login'|trans}}: {{user.lastLogin|date('d/m/Y h:i')}}</div>
                 </div>     
 
                 <div class="col-xs-2">

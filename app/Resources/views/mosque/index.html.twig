@@ -75,7 +75,7 @@
                         <th scope="row">{{mosque.id}}</th>
                         <td>
                             {{mosque.name}}<br>
-                            {% if is_granted('ROLE_ADMIN') and mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}
+                            {% if mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}
                                 <a href="{{path('mosque_csv_files', {id: mosque.id})}}">{{'configuration.list.download_csv_files'|trans}}</a>
                             {% endif %}
                         </td>
@@ -96,7 +96,7 @@
                             {% if mosque.isConfCompleted %}
                                 {% for lang in languages %}
                                     <div><strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a></div>
-                               {% endfor %}
+                                    {% endfor %}
 
                                 {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
                             {% else %}
@@ -107,10 +107,10 @@
                             <td>
                                 <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a>
                             </td>
-                            <td>
-                                {{mosque.created|date('d/m/Y h:i')}}
-                            </td>
                         {% endif %}
+                        <td>
+                            {{mosque.created|date('d/m/Y h:i')}}
+                        </td>
                         <td>
                             <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
                             <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a><br>
@@ -158,7 +158,10 @@
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>{{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}}</a></div>
-                        {{'creation_date'|trans}}: {{mosque.user.created|date('d/m/Y h:i')}}
+                        {% endif %}
+                        {{'creation_date'|trans}}: {{mosque.created|date('d/m/Y h:i')}}
+                    {% if mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}
+                        <div><a href="{{path('mosque_csv_files', {id: mosque.id})}}">{{'configuration.list.download_csv_files'|trans}}</a></div>
                     {% endif %}
                 </div>
                 <div class="col-xs-2">
