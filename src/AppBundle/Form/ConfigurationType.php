@@ -333,19 +333,22 @@ class ConfigurationType extends AbstractType {
         $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
         $configuration->setLongitude($position->lng);
         $configuration->setLatitude($position->lat);
-        // update time zone
-        $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
-        $configuration->setTimezone($timezone);
+        if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
+            if (is_null($configuration->getTimezone())) {
+                $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
+                $configuration->setTimezone($timezone);
+            }
+        }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
-            'data_class' => Configuration::class,
-            'allow_extra_fields' => true
-        ));
+/**
+ * {@inheritdoc}
+ */
+public function configureOptions(OptionsResolver $resolver) {
+    $resolver->setDefaults(array(
+        'data_class' => Configuration::class,
+        'allow_extra_fields' => true
+    ));
     }
 
     /**
