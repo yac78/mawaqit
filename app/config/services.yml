@@ -29,6 +29,7 @@ services:
         arguments: 
           - '%weather_api_endpoint%'
           - '%weather_api_key%'
+          - '@logger'
           
     app.google_service:
         parent: app.google_api

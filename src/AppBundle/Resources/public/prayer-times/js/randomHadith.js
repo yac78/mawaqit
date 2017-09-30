@@ -3,11 +3,11 @@
  * It will be shwon every 5 min, except in prayer moment
  */
 var randomHadith = {
-    isRunning: false,
+    topContentHeight: null,
     init: function () {
         if (prayer.confData.randomHadithEnabled) {
             setInterval(function () {
-                if (!randomHadith.isRunning && !prayer.isPrayingMoment()) {
+                if (!prayer.isPrayingMoment()) {
                     randomHadith.get();
                     setTimeout(function () {
                         randomHadith.hide();
@@ -39,6 +39,7 @@ var randomHadith = {
     show: function () {
         randomHadith.isRunning = true;
         prayer.nextPrayerCountdown();
+        randomHadith.topContentHeight = $(".desktop .top-content").css("height");
         $(".desktop .top-content .content").fadeOut(1000, function () {
             $(".desktop .header").hide();
             $(".desktop .temperature").hide();
@@ -52,10 +53,10 @@ var randomHadith = {
         randomHadith.isRunning = false;
         $(".random-hadith").fadeOut(1000, function () {
             $(".desktop .prayer-content").removeClass("to-bottom-times");
-            $(".desktop .top-content").css("height", "40%");
             $(".desktop .footer").show();
             $(".desktop .header").show();
             $(".desktop .temperature").show();
+            $(".desktop .top-content").css("height", randomHadith.topContentHeight);
             $(".desktop .top-content .content").fadeIn(1000);
         });
     },

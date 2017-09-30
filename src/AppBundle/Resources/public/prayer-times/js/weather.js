@@ -6,10 +6,10 @@ var weather = {
      * get and display temperature
      */
     getTemperature: function () {
+        $(".temperature").hide();
         $.ajax({
             url: "temperature",
             success: function (resp) {
-                $(".temperature").hide();
                 if (resp != "") {
                     if (parseInt(resp) > 15 && parseInt(resp) < 25) {
                         $(".temperature").addClass("orange");
@@ -19,6 +19,9 @@ var weather = {
                     $(".temperature span").text(resp);
                     $(".temperature").show();
                 }
+            },
+            error: function (resp) {
+                $(".temperature").hide();
             }
         });
     },

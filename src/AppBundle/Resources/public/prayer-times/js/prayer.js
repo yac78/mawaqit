@@ -809,16 +809,24 @@ var prayer = {
                 prayer.douaa.showHadith();
                 setTimeout(function () {
                     prayer.douaa.hideHadith();
-                    // flash adhan
-                    prayer.adhanFlashingTime = 10000;
-                    prayer.flashAdhan(4);
+                    prayer.jumuaDhikrReminder.show();
                     setTimeout(function () {
-                        // flash iqama
-                        prayer.flashIqama(4);
+                        prayer.jumuaDhikrReminder.hide();
+                        randomHadith.get();
                         setTimeout(function () {
-                            location.reload();
-                        }, 10000);
-                    }, prayer.adhanFlashingTime);
+                            randomHadith.hide();
+                            // flash adhan
+                            prayer.adhanFlashingTime = 10000;
+                            prayer.flashAdhan(4);
+                            setTimeout(function () {
+                                // flash iqama
+                                prayer.flashIqama(4);
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 5000);
+                            }, prayer.adhanFlashingTime);
+                        }, 5000);
+                    }, 5000);
                 }, 5000);
             }, 5000);
         }, douaaSlider.getTimeForShow() + 3000);

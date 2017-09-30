@@ -30,6 +30,10 @@ class WeatherService extends WeatherApi {
                     }
                 }
             }
+        } else {
+            $this->logger->error("Weather API Error", [
+                'response' => $res
+            ]);
         }
 
         return "";

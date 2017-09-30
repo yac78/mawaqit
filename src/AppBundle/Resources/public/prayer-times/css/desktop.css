@@ -47,7 +47,7 @@ body {
 }
 
 .top-content{
-    height:40%;
+    height: 43%;
     position: relative;
     overflow: hidden;
 }
@@ -177,6 +177,10 @@ body {
 .douaa-between-adhan-iqama .ar {
     font-size: 700%;
     font-family: 'Amiri';
+}
+
+.douaa-between-adhan-iqama .ar .title {
+    margin-bottom: 20px;
 }
 
 .douaa-between-adhan-iqama .fr {
