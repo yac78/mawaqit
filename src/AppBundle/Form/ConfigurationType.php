@@ -329,15 +329,13 @@ class ConfigurationType extends AbstractType {
             $configuration->setIshaDegree(null);
         }
 
-        if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
-            $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
-            $configuration->setLongitude($position->lng);
-            $configuration->setLatitude($position->lat);
-            if (is_null($configuration->getTimezone())) {
-                $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
-                $configuration->setTimezone($timezone);
-            }
-        }
+        // update gps coordinates
+        $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
+        $configuration->setLongitude($position->lng);
+        $configuration->setLatitude($position->lat);
+        // update time zone
+        $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
+        $configuration->setTimezone($timezone);
     }
 
     /**

@@ -52,18 +52,6 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/force-update-all", name="mosque_force_update_all")
-     */
-    public function forceUpdateAllAction() {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $em->getRepository("AppBundle:Mosque")->forceUpdateAll();
-        $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
-        return $this->redirectToRoute('mosque_index');
-    }
-
-    /**
      * @Route("/create", name="mosque_create")
      */
     public function createAction(Request $request) {
@@ -204,4 +192,20 @@ class MosqueController extends Controller {
         return new Response("Cette mosquée n'as pas de calendier renseignée");
     }
 
+    
+    /**
+     * @Route("/load-calendar", name="ajax_load_calendar")
+     */
+    public function loadCalendarAction(Request $request) {
+        $calendarName = $request->query->get("calendarName");
+        $calendarDir = $this->getParameter("kernel.root_dir")."/Resources/calendar/$calendarName";
+        $csvFiles = glob($calendarDir . "/*.csv");
+        $calendar = [];
+        
+        foreach ($csvFiles as $file){
+            $calendar[] = array_map('str_getcsv', file($file));
+        }
+        
+        return new JsonResponse($calendar);
+    }
 }
