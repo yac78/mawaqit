@@ -442,7 +442,7 @@ class Mosque {
      * @return string
      */
     public function getLocalisation() {
-        return $this->city . "+" . $this->zipcode . "+" . $this->country;
+        return $this->zipcode . "+" . $this->country;
     }
 
     function getUser() {
