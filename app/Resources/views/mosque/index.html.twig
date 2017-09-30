@@ -110,7 +110,7 @@
                             </td>
                         {% endif %}
                         <td>
-                            {{mosque.created|date('d/m/Y h:i')}}
+                            {{mosque.created|date('d/m/Y H:i')}}
                         </td>
                         <td>
                             <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
@@ -160,7 +160,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>{{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}} - {{mosque.user.email}}</a></div>
                     {% endif %}
-                        {{'creation_date'|trans}}: {{mosque.created|date('d/m/Y h:i')}}
+                        {{'creation_date'|trans}}: {{mosque.created|date('d/m/Y H:i')}}
                     {% if mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}
                         <div><a href="{{path('mosque_csv_files', {id: mosque.id})}}">{{'configuration.list.download_csv_files'|trans}}</a></div>
                     {% endif %}
