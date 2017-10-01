@@ -131,6 +131,10 @@ class Configuration {
      * @var bool
      */
     private $iqamaBip = true;
+    /**
+     * @var bool
+     */
+    private $blackScreenWhenPraying = false;
 
     /**
      * @var bool
@@ -915,6 +919,7 @@ class Configuration {
             "jumuaDhikrReminderEnabled" => $this->isJumuaDhikrReminderEnabled(),
             "jumuaDhikrReminderTimeout" => $this->getJumuaDhikrReminderTimeout(),
             "randomHadithEnabled" => $this->isRandomHadithEnabled(),
+            "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
         ];
     }
 
@@ -972,4 +977,11 @@ class Configuration {
         $this->randomHadithEnabled = $randomHadithEnabled;
     }
 
+    function isBlackScreenWhenPraying() {
+        return $this->blackScreenWhenPraying;
+    }
+
+    function setBlackScreenWhenPraying($blackScreenWhenPraying) {
+        $this->blackScreenWhenPraying = $blackScreenWhenPraying;
+    }
 }

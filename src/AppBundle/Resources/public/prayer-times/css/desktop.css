@@ -143,6 +143,7 @@ body {
 
 .iqama{
     color: #fff;
+    position: relative;
 }
 
 .iqama .top{
@@ -151,9 +152,12 @@ body {
 }
 
 .iqama .bottom{
-    height: 15%;
     padding-top: 50px;
     font-size: 700%;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
 }
 
 .iqama .image{
@@ -161,7 +165,7 @@ body {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: contain;
-    height: 45%;
+    height: 50%;
 }
 
 .adhan .ar {
@@ -262,12 +266,16 @@ body {
     right: 0;
 }
 
+.random-hadith .text {
+    height: 92%;
+    overflow: hidden;
+}
+
 .random-hadith {
     font-family: 'Amiri';
     height: 100%;
     width: 100%;
     position: relative;
-    padding-top: 15px;
 }
 
 .random-hadith-fr {

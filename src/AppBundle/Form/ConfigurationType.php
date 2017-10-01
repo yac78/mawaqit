@@ -245,6 +245,10 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.iqamaBip.label',
                 ])
+                ->add('blackScreenWhenPraying', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.blackScreenWhenPraying.label',
+                ])
                 ->add('sourceCalcul', ChoiceType::class, [
                     'required' => true,
                     'label' => 'configuration.form.sourceCalcul.label',
