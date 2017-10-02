@@ -807,7 +807,7 @@ var prayer = {
     test: function () {
         // show douaa after prayer
         douaaSlider.oneDouaaShowingTime = 2000;
-        douaaSlider.show();
+        douaaSlider.show(0);
         setTimeout(function () {
             // show douaa after adhan
             prayer.douaa.showAdhanDouaa();

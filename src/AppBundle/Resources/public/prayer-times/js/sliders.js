@@ -37,8 +37,8 @@ var douaaSlider = {
      * @param {Number} currentTimeIndex
      */
     show: function (currentTimeIndex) {
-        if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
-            setTimeout(function () {
+        setTimeout(function () {
+            if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
                 $(".desktop .main").fadeOut(1000, function () {
                     $(".douaa-after-prayer").fadeIn(1000);
                 });
@@ -54,16 +54,19 @@ var douaaSlider = {
                         $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
                     });
 
-                    // show messages if exist after 5 sec
-                    if (typeof currentTimeIndex !== 'undefined') {
-                        setTimeout(function () {
-                            messageInfoSlider.get();
-                        }, 5 * prayer.oneSecond);
-                    }
+                    // show messages if exist after 5 sec after duaa
+                    setTimeout(function () {
+                        messageInfoSlider.get();
+                    }, 5 * prayer.oneSecond);
 
                 }, douaaSlider.getTimeForShow());
-            }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
-        }
+            } else {
+                // show messages if exist after prayer
+                setTimeout(function () {
+                    messageInfoSlider.get();
+                }, 5 * prayer.oneSecond);
+            }
+        }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
     },
     /**
      * Number of seconds to show all douaa
