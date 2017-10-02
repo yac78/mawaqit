@@ -187,11 +187,6 @@ class Configuration {
     private $iqamaDisplayTime = 45;
 
     /**
-     * @var int
-     */
-    private $azanDuaDisplayTime = 30;
-
-    /**
      * @var string
      */
     private $site;
@@ -712,28 +707,6 @@ class Configuration {
     }
 
     /**
-     * Set azanDuaDisplayTime
-     *
-     * @param integer $azanDuaDisplayTime
-     *
-     * @return Configuration
-     */
-    public function setAzanDuaDisplayTime($azanDuaDisplayTime) {
-        $this->azanDuaDisplayTime = $azanDuaDisplayTime;
-
-        return $this;
-    }
-
-    /**
-     * Get adhanDouaaDisplayTime
-     *
-     * @return int
-     */
-    public function getAzanDuaDisplayTime() {
-        return $this->azanDuaDisplayTime;
-    }
-
-    /**
      * Set site
      *
      * @param string $site
@@ -910,7 +883,6 @@ class Configuration {
             "fajrDegree" => $this->getFajrDegree(),
             "ichaaDegree" => $this->getIshaDegree(),
             "iqamaDisplayTime" => $this->getIqamaDisplayTime(),
-            "adhanDouaaDisplayTime" => $this->getAzanDuaDisplayTime(),
             "slug" => $this->mosque->getSlug(),
             "lastUpdatedDate" => $this->mosque->getUpdated(),
             "backgroundColor" => $this->getBackgroundColor(),

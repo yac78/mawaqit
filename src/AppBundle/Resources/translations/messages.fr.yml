@@ -126,8 +126,6 @@ configuration:
             title: Laissez à 'auto' si vous souhaitez que le changement d'heure été/hiver s'éffectue automatiquement
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqama (en secondes)
-        azanDuaDisplayTime: 
-            label: Temps d'affichage du du`aa entre adhan et iqama (en secondes)
         hijriDateEnabled: 
             label: Activer la date hégire
         duaAfterAzanEnabled: 

@@ -278,9 +278,6 @@ class ConfigurationType extends AbstractType {
                 ->add('iqamaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.iqamaDisplayTime.label',
                 ])
-                ->add('azanDuaDisplayTime', IntegerType::class, [
-                    'label' => 'configuration.form.azanDuaDisplayTime.label',
-                ])
                 ->add('urlQrCodeEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.urlQrCodeEnabled.label',

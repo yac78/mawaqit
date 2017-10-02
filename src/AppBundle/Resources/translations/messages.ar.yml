@@ -67,8 +67,6 @@ configuration:
             label: Ajustement de la date hégire
         iqamaDisplayTime: 
             label: Tems d'affichage du signal iqama (en secondes)
-        azanDuaDisplayTime: 
-            label: Tems d'affichage du du`aa entre adhan et iqama (en secondes)
         hijriDateEnabled: 
             label: Activer la date hégire
         duaAfterAzanEnabled: 

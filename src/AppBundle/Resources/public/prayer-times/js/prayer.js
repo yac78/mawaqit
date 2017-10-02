@@ -1,6 +1,12 @@
 /* global dateTime */
 /* global douaaSlider */
 /* global messageInfoSlider */
+/* global lang */
+/* global confData */
+/* global randomHadith */
+/* global weather */
+/* global confData */
+/* global confData */
 
 /**
  * Class handling prayers 
@@ -38,7 +44,7 @@ var prayer = {
      * in milliseconds
      * @type Number 
      */
-    adhanFlashingTime: 90000,
+    adhanFlashingTime: 120000,
     /**
      * init the app
      */
@@ -418,6 +424,9 @@ var prayer = {
             $(".mobile .prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
         }, prayer.oneSecond);
         // timeout for stopping time flashing
+        if (prayer.confData.azanVoiceEnabled === true) {
+            prayer.adhanFlashingTime = prayer.oneSecond * 200;
+        }
         setTimeout(function () {
             prayer.stopAdhanFlashing(adhanFlashInterval, currentPrayerIndex);
         }, prayer.adhanFlashingTime);
@@ -581,13 +590,18 @@ var prayer = {
             });
         },
         /**
-         * show douaa 2.5 minutes after adhan flash
+         * show douaa after adhan flash finish
          * show douaa for configured time
-         * show hadith to remeber importance of douaa between adhan and iqama, 3 minutes after adhan flash
+         * show hadith to remeber importance of douaa between adhan and iqama
          * @param {Number} currentPrayerIndex
          */
         setTimeout: function (currentPrayerIndex) {
             if (prayer.confData.douaaAfterAdhanEnabled === true) {
+                var duaTimeout = 150 * prayer.oneSecond;
+                if (prayer.confData.azanVoiceEnabled === true) {
+                    duaTimeout = 200 * prayer.oneSecond;
+                }
+                
                 setTimeout(function () {
                     prayer.douaa.showAdhanDouaa();
                     setTimeout(function () {
@@ -600,11 +614,11 @@ var prayer = {
                                 setTimeout(function () {
                                     prayer.douaa.hideHadith();
                                 }, 30 * prayer.oneSecond);
-                            }, 30 * prayer.oneSecond);
+                            }, 10 * prayer.oneSecond);
                         }
 
-                    }, prayer.confData.adhanDouaaDisplayTime * prayer.oneSecond);
-                }, 150 * prayer.oneSecond);
+                    }, 30 * prayer.oneSecond);
+                }, duaTimeout);
             }
         }
     },
