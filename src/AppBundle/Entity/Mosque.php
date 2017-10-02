@@ -428,10 +428,10 @@ class Mosque {
      * @return \DateTime
      */
     public function getUpdated() {
-        $thisUpdated = $this->updated;
+        $mosqueUpdated = $this->updated;
         $configurationUpdated = $this->configuration->getUpdated();
-        if ($thisUpdated > $configurationUpdated) {
-            return $thisUpdated->format("Y-m-d H:i:s");
+        if ($mosqueUpdated > $configurationUpdated) {
+            return $mosqueUpdated->format("Y-m-d H:i:s");
         }
         return $configurationUpdated->format("Y-m-d H:i:s");
     }
