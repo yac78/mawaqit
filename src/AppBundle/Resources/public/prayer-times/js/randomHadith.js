@@ -27,15 +27,19 @@ var randomHadith = {
                     if (resp.lang === "fr") {
                         $(".random-hadith").addClass("random-hadith-fr");
                     }
-                    randomHadith.show(randomHadith.setFontSize);
+                    randomHadith.show(randomHadith.setFontSize, resp.lang);
                 }
             },
             error: function () {
                 randomHadith.hide();
+                var hadith = $(".random-hadith .text div").text();
+                if (hadith != "") {
+                    randomHadith.show();
+                }
             }
         });
     },
-    show: function (callback) {
+    show: function (callback, lang) {
         randomHadith.isRunning = true;
         prayer.nextPrayerCountdown();
         randomHadith.topContentHeight = $(".desktop .top-content").css("height");
@@ -46,7 +50,9 @@ var randomHadith = {
             $(".desktop .prayer-content").addClass("to-bottom-times");
             $(".desktop .top-content").css("height", "68%");
             $(".random-hadith").fadeIn(1000);
-            callback();
+            if (typeof callback !== 'undefined' && typeof lang !== 'undefined'){
+                callback(lang);
+            }
         });
     },
     hide: function () {
@@ -60,14 +66,19 @@ var randomHadith = {
             $(".desktop .top-content .content").fadeIn(1000);
         });
     },
-    setFontSize: function () {
+    setFontSize: function (lang) {
         var $textContainer = $('.random-hadith .text');
         var $textContainerDiv = $('.random-hadith .text div');
         $textContainerDiv.css('font-size', '150px');
         $textContainerDiv.css('line-height', '300px');
+        if (lang === "fr") {
+            $textContainerDiv.css('line-height', '140%');
+        }
         while ($textContainerDiv.height() > $textContainer.height()) {
             $textContainerDiv.css('font-size', (parseInt($textContainerDiv.css('font-size')) - 1) + "px");
-            $textContainerDiv.css('line-height', (parseInt($textContainerDiv.css('line-height')) - 2) + "px");
+            if (lang === "ar") {
+                $textContainerDiv.css('line-height', (parseInt($textContainerDiv.css('line-height')) - 2) + "px");
+            }
         }
     }
 };

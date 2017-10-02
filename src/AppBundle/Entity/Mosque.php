@@ -660,5 +660,17 @@ class Mosque {
             "lon" => $this->getConfiguration()->getLongitude()
         ];
     }
-
+    
+    /**
+     * Get the title to display on top of screen
+     * @return string
+     */
+    function getTitle() {
+        
+        $title = $this->getName();
+        if(!empty($this->getCity()) && strpos(strtolower($title), strtolower($this->getCity())) === false){
+            $title .= " - " . $this->getCity();
+        }
+        return $title;
+    }
 }
