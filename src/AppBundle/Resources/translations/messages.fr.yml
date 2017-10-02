@@ -107,7 +107,7 @@ configuration:
             title: Si cette valeur est renseignée le temps d'attente entre adhan et iqama sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhan
         imsakNbMinBeforeFajr: 
             label: Afficher l'imsak (nombre de minute avant fajr)
-            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souaité, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
+            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
         waitingTimes: 
             label: Temps d'attente entre adhan et iqama
         fixedTimes: 
@@ -146,7 +146,7 @@ configuration:
         blackScreenWhenPraying: 
             label:  Éteindre l'écran pendant la prière
         randomHadithEnabled: 
-            label:  Afficher un hadith aléatoire toute les 5 min
+            label:  Afficher aléatoirement un hadith toute les 5 min
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
         backgroundColor: 
