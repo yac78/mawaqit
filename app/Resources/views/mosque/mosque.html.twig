@@ -56,7 +56,7 @@
                     <span></span><sup>°C</sup>
                 </div>
                 
-                <div class="header ar">{{mosque.name ~ (mosque.city not in mosque.name ?  ' - ' ~ mosque.city : '') }}</div> 
+                <div class="header ar">{{mosque.name ~ (mosque.city is not empty and (mosque.city not in mosque.name) ?  ' - ' ~ mosque.city : '') }}</div> 
 
                 <div class="top-content">
 
@@ -169,7 +169,7 @@
             </div>
 
             <div class="main display-none">
-                <div class="header ar">{{mosque.name ~ (mosque.city not in mosque.name ?  ' - ' ~ mosque.city : '') }}</div> 
+                <div class="header ar">{{mosque.name ~ (mosque.city is not empty and (mosque.city not in mosque.name) ?  ' - ' ~ mosque.city : '') }}</div> 
                 <div class="top-content">
                     <div class="time"></div>
                     <div class="hijriDate ar"></div>

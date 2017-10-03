@@ -41,6 +41,7 @@ AppBundle\Entity\Mosque:
         city:
             type: string
             length: 255
+            nullable: true
         country:
             type: string
             length: 255

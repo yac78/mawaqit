@@ -92,7 +92,6 @@ var randomHadith = {
         if (text.length >= 500) {
             size = 60;
         }
-        size -= 3;
         if (lang === "fr")
         {
             size -= 15;

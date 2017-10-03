@@ -266,19 +266,21 @@ body {
     right: 0;
 }
 
-.random-hadith .text {
-    height: 92%;
-    overflow: hidden;
-}
-
 .random-hadith {
-    font-family: 'Amiri';
     height: 100%;
     width: 100%;
     position: relative;
 }
 
-.random-hadith-fr {
+.random-hadith .text {
+    font-family: 'Amiri';
+    padding-top: 10px;
+    height: 92%;
+    line-height: 145%;
+    overflow: hidden;
+}
+
+.random-hadith-fr .text {
     font-family: Arial,sans-serif;
 }
 
