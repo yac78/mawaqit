@@ -47,7 +47,7 @@ body {
 }
 
 .top-content{
-    height: 43%;
+    height: 41%;
     position: relative;
     overflow: hidden;
 }
@@ -113,16 +113,16 @@ body {
 }
 
 .prayer-time {
-    line-height: 130px;
+    line-height: 120px;
 }
 
 .prayer-time .prayer{
     color: yellowgreen;
-    font-size: 800%;
+    font-size: 780%;
 }
 
 .prayer-wait .wait{
-    font-size: 600%;
+    font-size: 580%;
     border-bottom: 1px #fff solid;
 }
 
