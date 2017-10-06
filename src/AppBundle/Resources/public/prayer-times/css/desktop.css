@@ -270,18 +270,22 @@ body {
     height: 100%;
     width: 100%;
     position: relative;
+    font-family: 'Amiri';
+}
+
+.random-hadith-fr {
+    font-family: Arial,sans-serif;
 }
 
 .random-hadith .text {
-    font-family: 'Amiri';
     padding-top: 10px;
     height: 92%;
-    line-height: 140%;
     overflow: hidden;
 }
 
-.random-hadith-fr .text {
-    font-family: Arial,sans-serif;
+.random-hadith .text div{
+    font-size: 150px;
+    line-height: 300px;
 }
 
 .to-bottom-times

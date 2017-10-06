@@ -23,12 +23,11 @@ var randomHadith = {
             success: function (resp) {
                 if (resp.text !== "") {
                     $(".random-hadith").removeClass("random-hadith-fr");
-                    $(".random-hadith .text").text(resp.text);
-                    randomHadith.setFontSize(resp.text, resp.lang);
+                    $(".random-hadith .text div").text(resp.text);
                     if (resp.lang === "fr") {
                         $(".random-hadith").addClass("random-hadith-fr");
                     }
-                    randomHadith.show();
+                    randomHadith.show(randomHadith.setFontSize);
                 }
             },
             error: function () {
@@ -36,7 +35,7 @@ var randomHadith = {
             }
         });
     },
-    show: function () {
+    show: function (callback) {
         randomHadith.isRunning = true;
         prayer.nextPrayerCountdown();
         randomHadith.topContentHeight = $(".desktop .top-content").css("height");
@@ -45,8 +44,9 @@ var randomHadith = {
             $(".desktop .temperature").hide();
             $(".desktop .footer").hide();
             $(".desktop .prayer-content").addClass("to-bottom-times");
-            $(".desktop .top-content").css("height", "67%");
+            $(".desktop .top-content").css("height", "68%");
             $(".random-hadith").fadeIn(1000);
+            callback();
         });
     },
     hide: function () {
@@ -60,43 +60,14 @@ var randomHadith = {
             $(".desktop .top-content .content").fadeIn(1000);
         });
     },
-    setFontSize: function (text, lang) {
-        var size;
-        if (text.length < 100) {
-            size = 110;
+    setFontSize: function () {
+        var $textContainer = $('.random-hadith .text');
+        var $textContainerDiv = $('.random-hadith .text div');
+        $textContainerDiv.css('font-size', '150px');
+        $textContainerDiv.css('line-height', '300px');
+        while ($textContainerDiv.height() > $textContainer.height()) {
+            $textContainerDiv.css('font-size', (parseInt($textContainerDiv.css('font-size')) - 1) + "px");
+            $textContainerDiv.css('line-height', (parseInt($textContainerDiv.css('line-height')) - 2) + "px");
         }
-        if (text.length >= 100 && text.length < 150) {
-            size = 105;
-        }
-        if (text.length >= 150 && text.length < 200) {
-            size = 100;
-        }
-        if (text.length >= 200 && text.length < 250) {
-            size = 90;
-        }
-        if (text.length >= 250 && text.length < 300) {
-            size = 85
-        }
-        if (text.length >= 300 && text.length < 350) {
-            size = 80;
-        }
-        if (text.length >= 350 && text.length < 400) {
-            size = 75;
-        }
-        if (text.length >= 400 && text.length < 450) {
-            size = 70;
-        }
-        if (text.length >= 450 && text.length < 500) {
-            size = 65;
-        }
-        if (text.length >= 500) {
-            size = 60;
-        }
-        if (lang === "fr")
-        {
-            size -= 15;
-        }
-
-        $(".random-hadith .text").css("font-size", size + "px");
     }
 };
