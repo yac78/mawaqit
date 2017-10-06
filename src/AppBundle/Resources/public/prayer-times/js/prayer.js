@@ -779,6 +779,7 @@ var prayer = {
                 $(".prayer-wait").append(waits[i]);
             }
             $(".ar").css({"font-family": "Amiri", 'font-size': '120%'});
+            $(".next-prayer").css({"font-family": "Amiri"});
             $(".mobile .ar").css({'font-size': '180%'});
             $(".adhan .title, .douaa-between-adhan-iqama .title").css("margin-bottom", "80px");
             $(".adhan .ar, .douaa-between-adhan-iqama .ar, .jumua-dhikr-reminder .ar").css("font-size", "850%");

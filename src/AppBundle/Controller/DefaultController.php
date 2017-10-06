@@ -67,7 +67,7 @@ class DefaultController extends Controller {
     /**
      * @Route("/get-random-hadith/{_locale}")
      */
-    public function getHadithOfTheDayAjaxAction(Request $request) {
+    public function getRandomHadithAjaxAction(Request $request) {
         $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ryiad-essalihine.xml";
         $xmldata = simplexml_load_file($file);
 
@@ -77,7 +77,7 @@ class DefaultController extends Controller {
             $hadiths = $xmldata->xpath('hadith[@lang="ar"]');
         }
 
-        $hadith = $hadiths[array_rand($hadiths)];
+        $hadith = $this->getRandomHadith($hadiths);
         $reponse = [
             "text" => (string) $hadith,
             "lang" => !empty($hadith["lang"]) ? (string) $hadith["lang"] : ""
@@ -85,4 +85,11 @@ class DefaultController extends Controller {
         return new JsonResponse($reponse, 200);
     }
 
+    private function getRandomHadith(array $hadiths) {
+        $hadith = $hadiths[array_rand($hadiths)];
+        if(strlen($hadith) > 800){
+          $this->getRandomHadith($hadiths);
+        }
+        return $hadith;
+    }
 }

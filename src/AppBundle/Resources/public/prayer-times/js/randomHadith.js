@@ -97,6 +97,6 @@ var randomHadith = {
             size -= 15;
         }
 
-        $(".random-hadith").css("font-size", size + "px");
+        $(".random-hadith .text").css("font-size", size + "px");
     }
 };

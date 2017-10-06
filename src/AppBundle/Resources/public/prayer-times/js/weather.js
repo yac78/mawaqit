@@ -11,7 +11,10 @@ var weather = {
             url: "temperature",
             success: function (resp) {
                 if (resp != "") {
-                    if (parseInt(resp) > 15 && parseInt(resp) < 25) {
+                    $(".temperature").removeClass("blue orange red");
+                    if (parseInt(resp) <= 15) {
+                        $(".temperature").addClass("blue");
+                    } else if (parseInt(resp) > 15 && parseInt(resp) < 25) {
                         $(".temperature").addClass("orange");
                     } else if (parseInt(resp) >= 25) {
                         $(".temperature").addClass("red");
