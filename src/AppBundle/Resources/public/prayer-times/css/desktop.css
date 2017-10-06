@@ -276,10 +276,8 @@ body {
     font-family: 'Amiri';
     padding-top: 10px;
     height: 92%;
-    line-height: 160%;
+    line-height: 140%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
 }
 
 .random-hadith-fr .text {
