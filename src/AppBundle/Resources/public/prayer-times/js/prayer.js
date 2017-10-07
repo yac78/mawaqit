@@ -62,6 +62,7 @@ var prayer = {
         this.jumuaDhikrReminder.init();
         this.setCustomTime();
         this.initUpdateConfData();
+        this.initWakupFajr();
         this.initEvents();
         this.translateToArabic();
         this.hideSpinner();
@@ -324,21 +325,53 @@ var prayer = {
     initAdhanFlash: function () {
         setInterval(function () {
             if (!prayer.adhanIsFlashing) {
-                var currentTime = dateTime.getCurrentTime(false);
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                     if (time === dateTime.getCurrentTime()) {
-                        var prayerElm = $(".prayer:contains(" + currentTime + ")");
-                        if (prayerElm.length) {
-                            // if joumouaa time we don't flash adhan
-                            if (!prayer.isJoumouaa(currentPrayerIndex)) {
-                                prayer.adhanIsFlashing = true;
-                                prayer.flashAdhan(currentPrayerIndex);
-                            }
+                        // if joumouaa time we don't flash adhan
+                        if (!prayer.isJoumouaa(currentPrayerIndex)) {
+                            prayer.adhanIsFlashing = true;
+                            prayer.flashAdhan(currentPrayerIndex);
                         }
                     }
                 });
             }
         }, prayer.oneSecond);
+    },
+    /**
+     * cron for fajr waking up
+     * @returns {undefined}
+     */
+    fajrWakeAdhanIsPlaying: false,
+    initWakupFajr: function () {
+        setInterval(function () {
+            if (prayer.fajrWakeAdhanIsPlaying === false && parseInt(prayer.confData.wakeForFajrTime) > 0) {
+                var date = new Date();
+                var fajrTime = prayer.getTimeByIndex(0);
+                var diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(fajrTime)) / prayer.oneMinute);
+                if (diffTimeInMiniute === -parseInt(prayer.confData.wakeForFajrTime)) {
+                    var $contentEl = $(".desktop .top-content .content");
+                    var $alarmFlashEl = $(".desktop .top-content .alarm-flash");
+                    
+                    prayer.fajrWakeAdhanIsPlaying = true;
+                    // play adhan sound
+                    prayer.playSound("adhan-maquah.mp3");
+                    $contentEl.addClass("hidden");
+                    
+                    // flash every one seconde
+                    var interval = setInterval(function () {
+                        $alarmFlashEl.toggleClass("hidden");
+                    }, prayer.oneSecond);
+                    
+                    // timeout to stop flashing
+                    setTimeout(function () {
+                        prayer.fajrWakeAdhanIsPlaying = false;
+                        $contentEl.removeClass("hidden");
+                        $alarmFlashEl.addClass("hidden");
+                        clearInterval(interval);
+                    }, 200 * prayer.oneSecond);
+                }
+            }
+        }, prayer.oneMinute);
     },
     jumuaDhikrReminder: {
         /**

@@ -52,14 +52,17 @@
             <!-- main screen -->
             <div class="main display-none">
 
+                <!-- temperature container -->
                 <div class="temperature">
                     <span></span><sup>°C</sup>
                 </div>
 
                 <div class="header ar">{{mosque.title}}</div> 
 
+                <!-- top container -->
                 <div class="top-content">
 
+                    <!-- Random hadith container -->
                     <div class="random-hadith display-none">
                         <div class="text">
                             <div></div>
@@ -70,12 +73,26 @@
                         </div>
                     </div>
 
+                    <!-- Adhan flash -->
                     <div class="adhan-flash hidden">
                         <div class="col-lg-2">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
                         </div>
                         <div class="col-lg-8 ar">
-                            <span>{{'azan'|trans}}</span>
+                            {{'azan'|trans}}
+                        </div>
+                        <div class="col-lg-2">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
+                        </div>
+                    </div>
+
+                    <!-- Alarm flash -->
+                    <div class="alarm-flash text-center hidden">
+                        <div class="col-lg-2">
+                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
+                        </div>
+                        <div class="col-lg-8 ar">
+                            {{'alarm'|trans}}
                         </div>
                         <div class="col-lg-2">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
@@ -109,6 +126,7 @@
                     </div>
                 </div>
 
+                <!-- prayer times container -->
                 <div class="prayer-content">
                     <div class="prayer-text">
                         <div class="text _0 ar">{{'fajr'|trans}}</div>
@@ -135,6 +153,7 @@
                     </div>
                 </div>
 
+                <!-- footer container -->
                 <div class="footer">
                     <div class="footer-text">
                         <div class="col-lg-12">

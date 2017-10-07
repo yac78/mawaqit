@@ -278,6 +278,13 @@ class ConfigurationType extends AbstractType {
                 ->add('iqamaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.iqamaDisplayTime.label',
                 ])
+                ->add('wakeForFajrTime', IntegerType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.wakeForFajrTime.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.wakeForFajrTime.title'),
+                    ]
+                ])
                 ->add('urlQrCodeEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.urlQrCodeEnabled.label',
@@ -342,14 +349,14 @@ class ConfigurationType extends AbstractType {
         }
     }
 
-/**
- * {@inheritdoc}
- */
-public function configureOptions(OptionsResolver $resolver) {
-    $resolver->setDefaults(array(
-        'data_class' => Configuration::class,
-        'allow_extra_fields' => true
-    ));
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults(array(
+            'data_class' => Configuration::class,
+            'allow_extra_fields' => true
+        ));
     }
 
     /**

@@ -133,14 +133,17 @@ configuration:
         duaAfterPrayerEnabled: 
             label: Activer les invocations après salat
         smallScreen: 
-            label: Petit écran ?
+            label: Petit écran ? (votre écran mesure moins de 32 pouces ?)
             title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
         azanBip: 
             label: Bip quand c'est l'heure du adhân
         azanVoiceEnabled: 
-            label: Activer l'adhân audio (Adhân du Haram mecqui)
+            label: Activer l'adhân audio (Adhân du Haram)
         iqamaBip: 
             label:  Bip quand c'est l'heure de Iqâma
+        wakeForFajrTime: 
+            label:  Réveil avant fajr (minute)
+            title: Si vous souhaitez être réveillé avant fajr avec un premier adhan, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
         blackScreenWhenPraying: 
             label:  Éteindre l'écran pendant la prière
         randomHadithEnabled: 
@@ -269,6 +272,7 @@ content: Contenu
 developed_by: Développé par Binary Consulting SAS
 next_prayer: Prochaine prière
 last_login: dernière connexion
+alarm: Réveil
 
 january: Janvier
 february: Février

@@ -52,7 +52,7 @@ body {
     overflow: hidden;
 }
 
-.top-content .adhan-flash{
+.top-content .adhan-flash, .top-content .alarm-flash{
     font-size: 1700%;
     line-height: 160%;
 }

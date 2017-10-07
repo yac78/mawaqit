@@ -230,6 +230,11 @@ class Configuration {
      * @var string
      */
     private $backgroundColor = "#000000";
+    
+    /**
+     * @var integer
+     */
+    private $wakeForFajrTime;
 
     /**
      * Get id
@@ -892,6 +897,7 @@ class Configuration {
             "jumuaDhikrReminderTimeout" => $this->getJumuaDhikrReminderTimeout(),
             "randomHadithEnabled" => $this->isRandomHadithEnabled(),
             "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
+            "wakeForFajrTime" => $this->getWakeForFajrTime(),
         ];
     }
 
@@ -956,4 +962,13 @@ class Configuration {
     function setBlackScreenWhenPraying($blackScreenWhenPraying) {
         $this->blackScreenWhenPraying = $blackScreenWhenPraying;
     }
+    
+    function getWakeForFajrTime() {
+        return $this->wakeForFajrTime;
+    }
+
+    function setWakeForFajrTime($wakeForFajrTime) {
+        $this->wakeForFajrTime = $wakeForFajrTime;
+    }
+
 }

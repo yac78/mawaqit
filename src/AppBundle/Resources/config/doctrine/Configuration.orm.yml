@@ -87,6 +87,9 @@ AppBundle\Entity\Configuration:
         ishaDegree:
             type: smallint
             nullable: true
+        wakeForFajrTime:
+            type: smallint
+            nullable: true
         iqamaDisplayTime:
             type: smallint
         smallScreen:
