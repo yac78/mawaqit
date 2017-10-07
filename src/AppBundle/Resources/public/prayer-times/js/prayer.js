@@ -403,12 +403,16 @@ var prayer = {
         }, prayer.oneSecond);
     },
     /**
-     * Flash adhan for 1 minute
+     * Flash adhan, play sound if enabled
      * @param {Number} currentPrayerIndex
      */
     flashAdhan: function (currentPrayerIndex) {
         if (prayer.confData.azanVoiceEnabled === true) {
-            this.playSound("adhan-maquah.mp3");
+            var file = "adhan-maquah.mp3";
+            if (currentPrayerIndex === 0) {
+                var file = "adhan-maquah-fajr.mp3";
+            }
+            this.playSound(file);
         } else if (prayer.confData.azanBip === true) {
             this.playSound();
         }
@@ -601,7 +605,7 @@ var prayer = {
                 if (prayer.confData.azanVoiceEnabled === true) {
                     duaTimeout = 200 * prayer.oneSecond;
                 }
-                
+
                 setTimeout(function () {
                     prayer.douaa.showAdhanDouaa();
                     setTimeout(function () {
