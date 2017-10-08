@@ -189,6 +189,8 @@ var messageInfoSlider = {
                     });
                     $(".message-info-slider .slider ul").html(items.join(""));
                     messageInfoSlider.run();
+                } else {
+                    $(".desktop .main").fadeIn(1000);
                 }
             },
             /**
@@ -197,6 +199,8 @@ var messageInfoSlider = {
             error: function (data) {
                 if ($(".message-info-slider .slider ul li").length > 0) {
                     messageInfoSlider.run();
+                } else {
+                    $(".desktop .main").fadeIn(1000);
                 }
             },
         });
