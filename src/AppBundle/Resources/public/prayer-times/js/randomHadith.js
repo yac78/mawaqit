@@ -1,3 +1,5 @@
+/* global prayer */
+
 /**
  * get and display a random hadith from server
  * It will be shwon every 5 min, except in prayer moment
@@ -17,27 +19,29 @@ var randomHadith = {
         }
     },
     get: function () {
-        $.ajax({
-            type: "JSON",
-            url: "../get-random-hadith/" + lang,
-            success: function (resp) {
-                if (resp.text !== "") {
-                    $(".random-hadith").removeClass("random-hadith-fr");
-                    $(".random-hadith .text div").text(resp.text);
-                    if (resp.lang === "fr") {
-                        $(".random-hadith").addClass("random-hadith-fr");
+        if ($(".desktop .main").is(":visible")) { // condition to bypass a display bug
+            $.ajax({
+                type: "JSON",
+                url: "../get-random-hadith/" + lang,
+                success: function (resp) {
+                    if (resp.text !== "") {
+                        $(".random-hadith").removeClass("random-hadith-fr");
+                        $(".random-hadith .text div").text(resp.text);
+                        if (resp.lang === "fr") {
+                            $(".random-hadith").addClass("random-hadith-fr");
+                        }
+                        randomHadith.show(randomHadith.setFontSize, resp.lang);
                     }
-                    randomHadith.show(randomHadith.setFontSize, resp.lang);
+                },
+                error: function () {
+                    randomHadith.hide();
+                    var hadith = $(".random-hadith .text div").text();
+                    if (hadith != "") {
+                        randomHadith.show();
+                    }
                 }
-            },
-            error: function () {
-                randomHadith.hide();
-                var hadith = $(".random-hadith .text div").text();
-                if (hadith != "") {
-                    randomHadith.show();
-                }
-            }
-        });
+            });
+        }
     },
     show: function (callback, lang) {
         randomHadith.isRunning = true;
@@ -50,7 +54,7 @@ var randomHadith = {
             $(".desktop .prayer-content").addClass("to-bottom-times");
             $(".desktop .top-content").css("height", "68%");
             $(".random-hadith").fadeIn(1000);
-            if (typeof callback !== 'undefined' && typeof lang !== 'undefined'){
+            if (typeof callback !== 'undefined' && typeof lang !== 'undefined') {
                 callback(lang);
             }
         });
