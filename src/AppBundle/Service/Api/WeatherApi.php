@@ -21,7 +21,7 @@ abstract class WeatherApi {
     }
 
     function call($method, $params) {
-        $url = $this->endpoint . "?_auth=" . $this->key . "&" . $params;
+        $url = $this->endpoint . "?appid=" . $this->key . "&" . $params;
 
         // Call
         $curl = curl_init($url);
