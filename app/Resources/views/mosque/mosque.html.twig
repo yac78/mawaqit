@@ -19,6 +19,7 @@
         <link media="screen and (min-width: 1200px)" href="/bundles/app/prayer-times/css/slider.css" rel="stylesheet">
     </head>
     <body class="text-center">
+        <div id="mosque" data-remote="{{path('mosque_has_been_updated', {slug: mosque.slug})}}"></div>
         <div class="desktop hidden-xs hidden-sm hidden-md">
             <div class="spinner"></div>
 
@@ -39,7 +40,7 @@
             </div>
 
             <!-- message info slider -->
-            <div class="message-info-slider display-none">
+            <div class="message-info-slider display-none" data-remote="{{path('get_messages', {slug: mosque.slug})}}">
                 <div class="slider" style="font-size: 12px">
                     <ul></ul>
                 </div>
@@ -53,7 +54,7 @@
             <div class="main display-none">
 
                 <!-- temperature container -->
-                <div class="temperature">
+                <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
                     <span></span><sup>°C</sup>
                 </div>
 
@@ -63,7 +64,7 @@
                 <div class="top-content">
 
                     <!-- Random hadith container -->
-                    <div class="random-hadith display-none">
+                    <div class="random-hadith display-none" data-remote="{{path('random_hadith', {_locale: lang})}}">
                         <div class="text">
                             <div></div>
                         </div>

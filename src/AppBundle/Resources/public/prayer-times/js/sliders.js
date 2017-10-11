@@ -160,7 +160,7 @@ var messageInfoSlider = {
                 messageInfoSlider.messageInfoIsShowing = false;
             }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
         }
-
+        
         $(".message-info-slider .slider").css({width: screenWidth, height: screenHeight});
     },
     /**
@@ -169,7 +169,7 @@ var messageInfoSlider = {
     get: function () {
         $.ajax({
             dataType: "json",
-            url: "get-messages",
+            url: $(".message-info-slider").data("remote"),
             success: function (data) {
                 if (data.length > 0) {
                     var items = [];

@@ -65,7 +65,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/get-random-hadith/{_locale}")
+     * @Route("/get-random-hadith/{_locale}", name="random_hadith")
      */
     public function getRandomHadithAjaxAction(Request $request) {
         $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ryiad-essalihine.xml";

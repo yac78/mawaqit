@@ -41,10 +41,11 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/{slug}/has-been-updated/{lastUpdatedDate}")
+     * @Route("/{slug}/has-been-updated", name="mosque_has_been_updated")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function hasUpdatedAjaxAction(Request $request, Mosque $mosque, $lastUpdatedDate) {
+    public function hasUpdatedAjaxAction(Request $request, Mosque $mosque) {
+        $lastUpdatedDate = $request->query->get("lastUpdatedDate");
         $hasBeenUpdated = $this->get("app.prayer_times_service")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);
         $response = [
             "hasBeenUpdated" => $hasBeenUpdated,
@@ -54,7 +55,7 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/{slug}/get-messages")
+     * @Route("/{slug}/get-messages", name="get_messages")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function getMessagesAjaxAction(Request $request, Mosque $mosque) {
@@ -67,7 +68,7 @@ class MosqueController extends Controller {
 
     /**
      * get temperature of the mosque city
-     * @Route("/{slug}/temperature")
+     * @Route("/{slug}/temperature", name="temperature")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function getTemperatureAjaxAction(Request $request, Mosque $mosque) {
