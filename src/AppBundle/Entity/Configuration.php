@@ -898,6 +898,7 @@ class Configuration {
             "randomHadithEnabled" => $this->isRandomHadithEnabled(),
             "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
             "wakeForFajrTime" => $this->getWakeForFajrTime(),
+            "urlQrCodeEnabled" => $this->getUrlQrCodeEnabled(),
         ];
     }
 

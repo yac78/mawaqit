@@ -20,6 +20,7 @@ prayer.initUpdateConfData();
 prayer.initWakupFajr();
 prayer.initEvents();
 prayer.translateToArabic();
+prayer.setQRCode();
 prayer.hideSpinner();
 randomHadith.init();
 weather.initUpdateTemperature();

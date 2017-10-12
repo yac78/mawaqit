@@ -326,17 +326,17 @@ var prayer = {
                 if (diffTimeInMiniute === -parseInt(prayer.confData.wakeForFajrTime)) {
                     var $contentEl = $(".desktop .top-content .content");
                     var $alarmFlashEl = $(".desktop .top-content .alarm-flash");
-                    
+
                     prayer.fajrWakeAdhanIsPlaying = true;
                     // play adhan sound
                     prayer.playSound("adhan-maquah.mp3");
                     $contentEl.addClass("hidden");
-                    
+
                     // flash every one seconde
                     var interval = setInterval(function () {
                         $alarmFlashEl.toggleClass("hidden");
                     }, prayer.oneSecond);
-                    
+
                     // timeout to stop flashing
                     setTimeout(function () {
                         prayer.fajrWakeAdhanIsPlaying = false;
@@ -828,6 +828,19 @@ var prayer = {
 
         return isPrayingMoment;
     },
+    /**
+     * Set QR code
+     */
+    setQRCode: function () {
+        if (prayer.confData.urlQrCodeEnabled === true) {
+            new QRCode("qr-code", {
+                text: $(".qr-code").data("url"),
+                width: 100,
+                height: 100
+            });
+        }
+    },
+
     /**
      * Test main app features 
      */

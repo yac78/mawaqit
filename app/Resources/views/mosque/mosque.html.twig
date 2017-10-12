@@ -172,15 +172,18 @@
                     </div>
                     <div class="version">v{{version}}</div>
                     {% if mosque.configuration.urlQrCodeEnabled %}
-                        <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?data={{url('mosque', {slug: mosque.slug, _locale: lang})}}&amp;size=100x100" alt=""/></div>
-                        {% endif %}
+                        <div class="qr-code"  data-url="{{url('mosque', {slug: mosque.slug, _locale: app.request.locale})}}">
+                            <div id="qr-code"></div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
 
         <script>
-            var confData = {{config|raw}};
-            var lang = "{{ app.request.locale }}";
+            var confData
+            = {{config|raw}};
+                    var lang = "{{ app.request.locale }}";
         </script>
 
         {% javascripts
@@ -189,6 +192,7 @@
                 '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
                 '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
                 '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
+                '@AppBundle/Resources/public/prayer-times/js/vendor/qrcode.js'
                 '@AppBundle/Resources/public/prayer-times/js/tools.js'
                 '@AppBundle/Resources/public/prayer-times/js/date.js'
                 '@AppBundle/Resources/public/prayer-times/js/prayer.js'
