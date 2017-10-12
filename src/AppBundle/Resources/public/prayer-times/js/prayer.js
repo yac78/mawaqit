@@ -45,32 +45,7 @@ var prayer = {
      * @type Number 
      */
     adhanFlashingTime: 120000,
-    /**
-     * init the app
-     */
-    init: function () {
-        this.loadData();
-        this.setBackgroundColor();
-        this.setTime();
-        this.setDate();
-        this.setTimes();
-        this.setWaitings();
-        this.initNextTimeHilight();
-        this.initAdhanFlash();
-        this.initIqamaFlash();
-        this.initCronHandlingTimes();
-        this.jumuaDhikrReminder.init();
-        this.setCustomTime();
-        this.initUpdateConfData();
-        this.initWakupFajr();
-        this.initEvents();
-        this.translateToArabic();
-        this.hideSpinner();
-        randomHadith.init();
-        weather.initUpdateTemperature();
-        douaaSlider.init();
-        messageInfoSlider.initCronMessageInfo();
-    },
+
     /**
      * load all data
      */
@@ -894,7 +869,3 @@ var prayer = {
         }, douaaSlider.getTimeForShow() + 3000);
     }
 };
-
-$(document).ready(function () {
-    prayer.init();
-});

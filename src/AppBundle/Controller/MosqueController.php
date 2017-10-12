@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,13 +26,15 @@ class MosqueController extends Controller {
      */
     public function mosqueAction(Request $request, Mosque $mosque) {
 
-        return $this->render('mosque/mosque.html.twig', [
-                    'lang' => $request->getLocale(),
+        $mobileDetect = $this->get('mobile_detect.mobile_detector');
+        $template = 'mosque';
+        if ($mobileDetect->isMobile() && !$mobileDetect->isTablet()) {
+            $template .= '_mobile';
+        }
+
+        return $this->render("mosque/$template.html.twig", [
                     'mosque' => $mosque,
                     'version' => $this->getParameter('version'),
-                    "site" => $this->get("translator")->trans("prayer_mobile_site", [
-                        "%site%" => $this->generateUrl("mosque", ["slug" => $mosque->getSlug()], UrlGenerator::ABSOLUTE_URL)
-                    ]),
                     "supportTel" => $this->getParameter("supportTel"),
                     "supportEmail" => $this->getParameter("supportEmail"),
                     'config' => json_encode($mosque->getConfiguration()->getFormatedConfig())
