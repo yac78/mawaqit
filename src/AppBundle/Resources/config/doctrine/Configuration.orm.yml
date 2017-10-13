@@ -19,7 +19,9 @@ AppBundle\Entity\Configuration:
             type: boolean             
         jumuaDhikrReminderEnabled:
             type: boolean             
-        jumuaDhikrReminderTimeout:
+        jumuaBlackScreenEnabled:
+            type: boolean             
+        jumuaTimeout:
             type: integer             
         aidTime:
             type: string

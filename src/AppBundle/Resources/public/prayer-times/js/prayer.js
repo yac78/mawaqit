@@ -59,7 +59,7 @@ var prayer = {
         this.initAdhanFlash();
         this.initIqamaFlash();
         this.initCronHandlingTimes();
-        this.jumuaDhikrReminder.init();
+        this.jumuaHandler.init();
         this.setCustomTime();
         this.initUpdateConfData();
         this.initWakupFajr();
@@ -351,17 +351,17 @@ var prayer = {
                 if (diffTimeInMiniute === -parseInt(prayer.confData.wakeForFajrTime)) {
                     var $contentEl = $(".desktop .top-content .content");
                     var $alarmFlashEl = $(".desktop .top-content .alarm-flash");
-                    
+
                     prayer.fajrWakeAdhanIsPlaying = true;
                     // play adhan sound
                     prayer.playSound("adhan-maquah.mp3");
                     $contentEl.addClass("hidden");
-                    
+
                     // flash every one seconde
                     var interval = setInterval(function () {
                         $alarmFlashEl.toggleClass("hidden");
                     }, prayer.oneSecond);
-                    
+
                     // timeout to stop flashing
                     setTimeout(function () {
                         prayer.fajrWakeAdhanIsPlaying = false;
@@ -373,35 +373,49 @@ var prayer = {
             }
         }, prayer.oneMinute);
     },
-    jumuaDhikrReminder: {
+    jumuaHandler: {
         /**
          * init cron
          */
         init: function () {
-            if (prayer.confData.jumuaDhikrReminderEnabled === true) {
-                setInterval(function () {
-                    var date = new Date();
-                    if (date.getDay() === 5) {
-                        var currentTime = dateTime.getCurrentTime(false);
-                        if (currentTime === prayer.getJoumouaaTime() && prayer.confData.jumuaDhikrReminderEnabled === true) {
-                            prayer.jumuaDhikrReminder.show();
+            setInterval(function () {
+                var date = new Date();
+                if (date.getDay() === 5) {
+                    var currentTime = dateTime.getCurrentTime(false);
+                    // show reminder
+                    if (currentTime === prayer.getJoumouaaTime()) {
+                        if (prayer.confData.jumuaDhikrReminderEnabled === true) {
+                            prayer.jumuaHandler.showReminder();
                             setTimeout(function () {
-                                prayer.jumuaDhikrReminder.hide();
-                            }, prayer.confData.jumuaDhikrReminderTimeout * prayer.oneMinute);
+                                prayer.jumuaHandler.hideReminder();
+                            }, prayer.confData.jumuaTimeout * prayer.oneMinute);
+                        }
+                        else if (prayer.confData.jumuaBlackScreenEnabled === true) {
+                            prayer.jumuaHandler.showBlackScreen();
+                            setTimeout(function () {
+                                prayer.jumuaHandler.hideBlackScreen();
+                            }, prayer.confData.jumuaTimeout * prayer.oneMinute);
                         }
                     }
-                }, prayer.oneMinute);
-            }
+                    // show black screen - TODO
+                }
+            }, prayer.oneMinute);
         },
-        show: function () {
+        showReminder: function () {
             $(".desktop .main").fadeOut(1000, function () {
                 $(".desktop .jumua-dhikr-reminder").fadeIn(1000);
             });
         },
-        hide: function () {
+        hideReminder: function () {
             $(".desktop .main").fadeIn(1000, function () {
                 $(".desktop .jumua-dhikr-reminder").fadeOut(1000);
             });
+        },
+        showBlackScreen: function () {
+            $(".desktop .main").fadeOut(1000);
+        },
+        hideBlackScreen: function () {
+            $(".desktop .main").fadeIn(1000);
         }
     },
     /**
@@ -871,9 +885,9 @@ var prayer = {
                 prayer.douaa.showHadith();
                 setTimeout(function () {
                     prayer.douaa.hideHadith();
-                    prayer.jumuaDhikrReminder.show();
+                    prayer.jumuaHandler.showReminder();
                     setTimeout(function () {
-                        prayer.jumuaDhikrReminder.hide();
+                        prayer.jumuaHandler.hideReminder();
                         randomHadith.get();
                         setTimeout(function () {
                             randomHadith.hide();
