@@ -93,10 +93,11 @@ configuration:
         noJumua:
             label: Pas de jumu`a dans cette mosquée
         jumuaDhikrReminderEnabled:
-            label: Afficher le rappel pendant jumu`a 
-        jumuaDhikrReminderTimeout:
-            label: Temps d'affichange du rappel en minute
-            title: Si l'option "Afficher le rappel pendant jumu`a" est activée, un hadith est affiché pendant le temps défini ici, ce hadith rappelle le bon comportement à avoir le jour du jumu`a
+            label: Afficher un rappel pendant jumu`a 
+        jumuaBlackScreenEnabled:
+            label: Afficher un écran noir pendant jumu`a 
+        jumuaTimeout:
+            label: Temps approximatif du jumu`a (prêche + prière)
         aidTime:
             label: Heure du aïd
             title: Si cette valeur est renseignée elle remplacera l'heure du shuruk, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
@@ -133,7 +134,7 @@ configuration:
         duaAfterPrayerEnabled: 
             label: Activer les invocations après salat
         smallScreen: 
-            label: Petit écran ? (votre écran mesure moins de 32 pouces ?)
+            label: Petit écran ? (votre écran mesure moins de 32 pouces )
             title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
         azanBip: 
             label: Bip quand c'est l'heure du adhân
@@ -148,6 +149,8 @@ configuration:
             label:  Éteindre l'écran pendant la prière
         randomHadithEnabled: 
             label:  Afficher aléatoirement un hadith toute les 5 min
+        temperatureEnabled: 
+            label:  Afficher la température
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
         backgroundColor: 

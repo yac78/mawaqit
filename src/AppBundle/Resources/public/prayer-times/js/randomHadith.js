@@ -20,15 +20,16 @@ var randomHadith = {
     },
     get: function () {
         if ($(".desktop .main").is(":visible")) { // condition to bypass a display bug
+            $randomHadithEl = $(".random-hadith");
             $.ajax({
                 type: "JSON",
-                url: "../get-random-hadith/" + lang,
+                url: $randomHadithEl.data("remote"),
                 success: function (resp) {
                     if (resp.text !== "") {
-                        $(".random-hadith").removeClass("random-hadith-fr");
+                        $randomHadithEl.removeClass("random-hadith-fr");
                         $(".random-hadith .text div").text(resp.text);
                         if (resp.lang === "fr") {
-                            $(".random-hadith").addClass("random-hadith-fr");
+                            $randomHadithEl.addClass("random-hadith-fr");
                         }
                         randomHadith.show(randomHadith.setFontSize, resp.lang);
                     }

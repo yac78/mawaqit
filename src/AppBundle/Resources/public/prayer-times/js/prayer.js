@@ -348,35 +348,51 @@ var prayer = {
             }
         }, prayer.oneMinute);
     },
-    jumuaDhikrReminder: {
+    jumuaHandler: {
         /**
          * init cron
          */
         init: function () {
-            if (prayer.confData.jumuaDhikrReminderEnabled === true) {
-                setInterval(function () {
-                    var date = new Date();
-                    if (date.getDay() === 5) {
-                        var currentTime = dateTime.getCurrentTime(false);
-                        if (currentTime === prayer.getJoumouaaTime() && prayer.confData.jumuaDhikrReminderEnabled === true) {
-                            prayer.jumuaDhikrReminder.show();
+            setInterval(function () {
+                var date = new Date();
+                if (date.getDay() === 5) {
+                    var currentTime = dateTime.getCurrentTime(false);
+                    // show reminder
+                    if (currentTime === prayer.getJoumouaaTime()) {
+
+                        // hilight asr
+                        prayer.setNextTimeHilight(1);
+
+                        if (prayer.confData.jumuaDhikrReminderEnabled === true) {
+                            prayer.jumuaHandler.showReminder();
                             setTimeout(function () {
-                                prayer.jumuaDhikrReminder.hide();
-                            }, prayer.confData.jumuaDhikrReminderTimeout * prayer.oneMinute);
+                                prayer.jumuaHandler.hideReminder();
+                            }, prayer.confData.jumuaTimeout * prayer.oneMinute);
+                        } else if (prayer.confData.jumuaBlackScreenEnabled === true) {
+                            prayer.jumuaHandler.showBlackScreen();
+                            setTimeout(function () {
+                                prayer.jumuaHandler.hideBlackScreen();
+                            }, prayer.confData.jumuaTimeout * prayer.oneMinute);
                         }
                     }
-                }, prayer.oneMinute);
-            }
+                }
+            }, prayer.oneMinute);
         },
-        show: function () {
+        showReminder: function () {
             $(".desktop .main").fadeOut(1000, function () {
                 $(".desktop .jumua-dhikr-reminder").fadeIn(1000);
             });
         },
-        hide: function () {
+        hideReminder: function () {
             $(".desktop .main").fadeIn(1000, function () {
                 $(".desktop .jumua-dhikr-reminder").fadeOut(1000);
             });
+        },
+        showBlackScreen: function () {
+            $(".desktop .main").fadeOut(1000);
+        },
+        hideBlackScreen: function () {
+            $(".desktop .main").fadeIn(1000);
         }
     },
     /**
@@ -462,7 +478,7 @@ var prayer = {
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
-        douaaSlider.show(currentPrayerIndex);
+        douaaSlider.timeout(currentPrayerIndex);
 
         // stop iqama flashing after defined time
         setTimeout(function () {
@@ -482,12 +498,12 @@ var prayer = {
         $(".mobile .prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
-        clearInterval(iqamaFlashInterval);
         $(".mobile .main").fadeIn();
         if (!prayer.confData.blackScreenWhenPraying) {
             $(".desktop .main").fadeIn();
         }
         $(".iqama").addClass("hidden");
+        clearInterval(iqamaFlashInterval);
     },
     /**
      * Play a bip
@@ -859,22 +875,24 @@ var prayer = {
                 prayer.douaa.showHadith();
                 setTimeout(function () {
                     prayer.douaa.hideHadith();
-                    prayer.jumuaDhikrReminder.show();
+                    prayer.jumuaHandler.showReminder();
                     setTimeout(function () {
-                        prayer.jumuaDhikrReminder.hide();
+                        prayer.jumuaHandler.hideReminder();
                         randomHadith.get();
                         setTimeout(function () {
                             randomHadith.hide();
-                            // flash adhan
-                            prayer.adhanFlashingTime = 10000;
-                            prayer.flashAdhan(4);
+                            // flash iqama
+                            prayer.confData.iqamaDisplayTime = 5000;
+                            prayer.flashIqama(4);
+
                             setTimeout(function () {
-                                // flash iqama
-                                prayer.flashIqama(4);
+                                prayer.stopIqamaFlashing();
+                                // flash adhan
+                                prayer.flashAdhan(2);
                                 setTimeout(function () {
                                     location.reload();
-                                }, 5000);
-                            }, prayer.adhanFlashingTime);
+                                }, 10000);
+                            }, 5000);
                         }, 5000);
                     }, 5000);
                 }, 5000);

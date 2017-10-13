@@ -58,9 +58,14 @@ class Configuration {
     private $jumuaDhikrReminderEnabled = false;
     
     /**
+     * @var boolean
+     */
+    private $jumuaBlackScreenEnabled = false;
+    
+    /**
      * @var integer
      */
-    private $jumuaDhikrReminderTimeout = 20;
+    private $jumuaTimeout = 20;
 
     /**
      * @var string
@@ -225,6 +230,10 @@ class Configuration {
      * @var bool
      */
     private $randomHadithEnabled = true;
+    /**
+     * @var bool
+     */
+    private $temperatureEnabled = true;
 
     /**
      * @var string
@@ -894,11 +903,13 @@ class Configuration {
             "calendar" => $this->getCalendar(),
             "noJumua" => $this->isNoJumua(),
             "jumuaDhikrReminderEnabled" => $this->isJumuaDhikrReminderEnabled(),
-            "jumuaDhikrReminderTimeout" => $this->getJumuaDhikrReminderTimeout(),
+            "jumuaBlackScreenEnabled" => $this->isJumuaBlackScreenEnabled(),
+            "jumuaTimeout" => $this->getJumuaTimeout(),
             "randomHadithEnabled" => $this->isRandomHadithEnabled(),
             "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
             "wakeForFajrTime" => $this->getWakeForFajrTime(),
             "urlQrCodeEnabled" => $this->getUrlQrCodeEnabled(),
+            "temperatureEnabled" => $this->isTemperatureEnabled(),
         ];
     }
 
@@ -936,16 +947,16 @@ class Configuration {
         return $this->jumuaDhikrReminderEnabled;
     }
 
-    function getJumuaDhikrReminderTimeout() {
-        return $this->jumuaDhikrReminderTimeout;
+    function getJumuaTimeout() {
+        return $this->jumuaTimeout;
     }
 
     function setJumuaDhikrReminderEnabled($jumuaDhikrReminderEnabled) {
         $this->jumuaDhikrReminderEnabled = $jumuaDhikrReminderEnabled;
     }
 
-    function setJumuaDhikrReminderTimeout($jumuaDhikrReminderTimeout) {
-        $this->jumuaDhikrReminderTimeout = $jumuaDhikrReminderTimeout;
+    function setJumuaTimeout($jumuaTimeout) {
+        $this->jumuaTimeout = $jumuaTimeout;
     }
     
     function isRandomHadithEnabled() {
@@ -971,5 +982,23 @@ class Configuration {
     function setWakeForFajrTime($wakeForFajrTime) {
         $this->wakeForFajrTime = $wakeForFajrTime;
     }
+    
+    function isJumuaBlackScreenEnabled() {
+        return $this->jumuaBlackScreenEnabled;
+    }
+
+    function setJumuaBlackScreenEnabled($jumuaBalckScreenEnabled) {
+        $this->jumuaBlackScreenEnabled = $jumuaBalckScreenEnabled;
+    }
+
+    function isTemperatureEnabled() {
+        return $this->temperatureEnabled;
+    }
+
+    function setTemperatureEnabled($temperatureEnabled) {
+        $this->temperatureEnabled = $temperatureEnabled;
+    }
+
+
 
 }

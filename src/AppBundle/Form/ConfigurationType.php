@@ -115,10 +115,13 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.jumuaDhikrReminderEnabled.label',
                 ])
-                ->add('jumuaDhikrReminderTimeout', IntegerType::class, [
-                    'label' => 'configuration.form.jumuaDhikrReminderTimeout.label',
+                ->add('jumuaBlackScreenEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.jumuaBlackScreenEnabled.label',
+                ])
+                ->add('jumuaTimeout', IntegerType::class, [
+                    'label' => 'configuration.form.jumuaTimeout.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.jumuaDhikrReminderTimeout.title'),
                         'min' => 0
                     ]
                 ])
@@ -302,6 +305,10 @@ class ConfigurationType extends AbstractType {
                 ->add('randomHadithEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.randomHadithEnabled.label',
+                ])
+                ->add('temperatureEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.temperatureEnabled.label',
                 ])
                 ->add('backgroundColor', null, [
                     'label' => 'configuration.form.backgroundColor.label',

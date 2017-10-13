@@ -6,32 +6,35 @@ var weather = {
      * get and display temperature
      */
     getTemperature: function () {
-        $(".temperature").hide();
+        $temperatureEl = $(".temperature");
+        $temperatureEl.hide();
         $.ajax({
-            url: "temperature",
+            url: $temperatureEl.data("remote"),
             success: function (resp) {
                 if (resp != "") {
-                    $(".temperature").removeClass("blue orange red");
+                    $temperatureEl.removeClass("blue orange red");
                     if (parseInt(resp) <= 15) {
-                        $(".temperature").addClass("blue");
+                        $temperatureEl.addClass("blue");
                     } else if (parseInt(resp) > 15 && parseInt(resp) < 25) {
-                        $(".temperature").addClass("orange");
+                        $temperatureEl.addClass("orange");
                     } else if (parseInt(resp) >= 25) {
-                        $(".temperature").addClass("red");
+                        $temperatureEl.addClass("red");
                     }
                     $(".temperature span").text(resp);
-                    $(".temperature").show();
+                    $temperatureEl.show();
                 }
             },
-            error: function (resp) {
-                $(".temperature").hide();
+            error: function () {
+                $temperatureEl.hide();
             }
         });
     },
     initUpdateTemperature: function () {
-        weather.getTemperature();
-        setInterval(function () {
+        if (prayer.confData.temperatureEnabled === true) {
             weather.getTemperature();
-        }, prayer.oneMinute * 60);
+            setInterval(function () {
+                weather.getTemperature();
+            }, prayer.oneMinute * 60);
+        }
     }
 };

@@ -3,6 +3,7 @@ if [ -z "$1" ]; then
 echo "The branch to deploy is mandatory";
 exit 1
 fi
+   
 
 if [ $# -eq 3 ]; then
     git tag $2 -m "$3"
@@ -10,18 +11,17 @@ if [ $# -eq 3 ]; then
     git push $2
 fi
 
-
 rm -rf /tmp/prayer-times-v3
 mkdir -p /tmp/prayer-times-v3
 
 git archive $1 | (cd /tmp/prayer-times-v3 && tar xf -)
-
 
 mkdir -p ~/www/prayer-times-v3/current
 rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/deploy/files-to-exclude /tmp/prayer-times-v3 ~/www/prayer-times-v3/current
 cd ~/www/prayer-times-v3/current/docker
 cp ~/perso/projects/prayer-times-v3/docker/docker-compose.deploy.yml docker-compose.yml 
 cp ~/perso/projects/prayer-times-v3/app/config/parameters.prod.yml ~/www/prayer-times-v3/current/app/config/parameters.prod.yml
+cp ~/perso/projects/prayer-times-v3/app/config/parameters.yml ~/www/prayer-times-v3/current/app/config/parameters.yml
 
 if [ ! -z "$2" ]; then
     sed -i "s/version.*/version: $2/g" ~/www/prayer-times-v3/current/app/config/parameters.prod.yml

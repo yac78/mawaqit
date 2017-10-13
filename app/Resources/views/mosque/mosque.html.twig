@@ -37,7 +37,7 @@
             </div>
 
             <!-- message info slider -->
-            <div class="message-info-slider display-none">
+            <div class="message-info-slider display-none" data-remote="{{path('get_messages', {slug: mosque.slug})}}">
                 <div class="slider" style="font-size: 12px">
                     <ul></ul>
                 </div>
@@ -51,17 +51,18 @@
             <div class="main display-none">
 
                 <!-- temperature container -->
-                <div class="temperature">
-                    <span></span><sup>°C</sup>
-                </div>
-
+                {% if mosque.configuration.temperatureEnabled %}
+                    <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
+                        <span></span><sup>°C</sup>
+                    </div>
+                {% endif %}
                 <div class="header ar">{{mosque.title}}</div> 
 
                 <!-- top container -->
                 <div class="top-content">
 
                     <!-- Random hadith container -->
-                    <div class="random-hadith display-none">
+                    <div class="random-hadith display-none" data-remote="{{path('random_hadith', {_locale: lang})}}">
                         <div class="text">
                             <div></div>
                         </div>
