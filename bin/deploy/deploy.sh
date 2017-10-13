@@ -3,19 +3,18 @@ if [ -z "$1" ]; then
 echo "The branch to deploy is mandatory";
 exit 1
 fi
+   
+git push
 
 if [ $# -eq 3 ]; then
     git tag $2 -m "$3"
-    git push
     git push $2
 fi
-
 
 rm -rf /tmp/prayer-times-v3
 mkdir -p /tmp/prayer-times-v3
 
 git archive $1 | (cd /tmp/prayer-times-v3 && tar xf -)
-
 
 mkdir -p ~/www/prayer-times-v3/current
 rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/deploy/files-to-exclude /tmp/prayer-times-v3 ~/www/prayer-times-v3/current
