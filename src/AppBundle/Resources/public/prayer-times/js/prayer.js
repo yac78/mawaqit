@@ -384,20 +384,22 @@ var prayer = {
                     var currentTime = dateTime.getCurrentTime(false);
                     // show reminder
                     if (currentTime === prayer.getJoumouaaTime()) {
+
+                        // hilight asr
+                        prayer.setNextTimeHilight(1);
+
                         if (prayer.confData.jumuaDhikrReminderEnabled === true) {
                             prayer.jumuaHandler.showReminder();
                             setTimeout(function () {
                                 prayer.jumuaHandler.hideReminder();
                             }, prayer.confData.jumuaTimeout * prayer.oneMinute);
-                        }
-                        else if (prayer.confData.jumuaBlackScreenEnabled === true) {
+                        } else if (prayer.confData.jumuaBlackScreenEnabled === true) {
                             prayer.jumuaHandler.showBlackScreen();
                             setTimeout(function () {
                                 prayer.jumuaHandler.hideBlackScreen();
                             }, prayer.confData.jumuaTimeout * prayer.oneMinute);
                         }
                     }
-                    // show black screen - TODO
                 }
             }, prayer.oneMinute);
         },
