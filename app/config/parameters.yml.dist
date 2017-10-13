@@ -1,26 +1,24 @@
 parameters:
-    database_host: mysql
-    database_port: null
-    database_name: prayer_times
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
     database_user: root
-    database_password: prayer_times
+    database_password: ~
     mailer_transport: smtp
     mailer_host: SSL0.OVH.NET
     mailer_port: 587
     mailer_user: %supportEmail%
-    mailer_password: 045816356Express.
-    secret: 8a5631fe3c9b0aaae66d44e53147360f1b62a6f3
+    mailer_password: ~
+    secret: ThisTokenIsNotSoSecretChangeIt
+    languages: [fr, ar, en]
     version: 3.0.0
     supportTel: '+33629111641'
     supportEmail: contact@horaires-de-priere.fr
-    no_replay_address: '%supportEmail%'
-    no_replay_name: 'Horaires de prière'
-    google_api_key: AIzaSyC0n3EKMQBPimJseyl_dD-JgemvYaX7_K8
+
+    no_replay_address : %supportEmail%
+    no_replay_name : Horaires de prière
+
+    # Google API
+    google_api_key: ''
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
-    weather_api_endpoint: 'api.openweathermap.org/data/2.5/weather'
-    weather_api_key: "c9560e670b050ad1db74f37b086afd44"
-    languages:
-        - fr
-        - ar
-        - en
 

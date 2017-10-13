@@ -21,6 +21,7 @@ rsync -r --force --files-from=bin/deploy/files-to-package --exclude-from=bin/dep
 cd ~/www/prayer-times-v3/current/docker
 cp ~/perso/projects/prayer-times-v3/docker/docker-compose.deploy.yml docker-compose.yml 
 cp ~/perso/projects/prayer-times-v3/app/config/parameters.prod.yml ~/www/prayer-times-v3/current/app/config/parameters.prod.yml
+cp ~/perso/projects/prayer-times-v3/app/config/parameters.yml ~/www/prayer-times-v3/current/app/config/parameters.yml
 
 if [ ! -z "$2" ]; then
     sed -i "s/version.*/version: $2/g" ~/www/prayer-times-v3/current/app/config/parameters.prod.yml
