@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20171008085754 extends AbstractMigration
+class Version20171013182122 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,7 @@ class Version20171008085754 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE configuration ADD wake_for_fajr_time SMALLINT DEFAULT NULL, DROP azan_dua_display_time');
+        $this->addSql('ALTER TABLE configuration ADD jumua_black_screen_enabled TINYINT(1) NOT NULL, ADD temperature_enabled TINYINT(1) NOT NULL, CHANGE jumua_dhikr_reminder_timeout jumua_timeout INT NOT NULL');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20171008085754 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE configuration ADD azan_dua_display_time SMALLINT NOT NULL, DROP wake_for_fajr_time');
+        $this->addSql('ALTER TABLE configuration DROP jumua_black_screen_enabled, DROP temperature_enabled, CHANGE jumua_timeout jumua_dhikr_reminder_timeout INT NOT NULL');
     }
 }
