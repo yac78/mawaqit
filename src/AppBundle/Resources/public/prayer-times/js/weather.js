@@ -30,9 +30,11 @@ var weather = {
         });
     },
     initUpdateTemperature: function () {
-        weather.getTemperature();
-        setInterval(function () {
+        if (prayer.confData.temperatureEnabled === true) {
             weather.getTemperature();
-        }, prayer.oneMinute * 60);
+            setInterval(function () {
+                weather.getTemperature();
+            }, prayer.oneMinute * 60);
+        }
     }
 };

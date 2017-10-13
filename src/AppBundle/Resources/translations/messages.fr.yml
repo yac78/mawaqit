@@ -134,7 +134,7 @@ configuration:
         duaAfterPrayerEnabled: 
             label: Activer les invocations après salat
         smallScreen: 
-            label: Petit écran ? (votre écran mesure moins de 32 pouces ?)
+            label: Petit écran ? (votre écran mesure moins de 32 pouces )
             title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
         azanBip: 
             label: Bip quand c'est l'heure du adhân
@@ -149,6 +149,8 @@ configuration:
             label:  Éteindre l'écran pendant la prière
         randomHadithEnabled: 
             label:  Afficher aléatoirement un hadith toute les 5 min
+        temperatureEnabled: 
+            label:  Afficher la température
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
         backgroundColor: 

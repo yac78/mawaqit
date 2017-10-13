@@ -230,6 +230,10 @@ class Configuration {
      * @var bool
      */
     private $randomHadithEnabled = true;
+    /**
+     * @var bool
+     */
+    private $temperatureEnabled = true;
 
     /**
      * @var string
@@ -904,6 +908,7 @@ class Configuration {
             "randomHadithEnabled" => $this->isRandomHadithEnabled(),
             "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
             "wakeForFajrTime" => $this->getWakeForFajrTime(),
+            "temperatureEnabled" => $this->isTemperatureEnabled(),
         ];
     }
 
@@ -983,6 +988,14 @@ class Configuration {
 
     function setJumuaBlackScreenEnabled($jumuaBalckScreenEnabled) {
         $this->jumuaBlackScreenEnabled = $jumuaBalckScreenEnabled;
+    }
+
+    function isTemperatureEnabled() {
+        return $this->temperatureEnabled;
+    }
+
+    function setTemperatureEnabled($temperatureEnabled) {
+        $this->temperatureEnabled = $temperatureEnabled;
     }
 
 

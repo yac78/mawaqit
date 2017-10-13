@@ -64,6 +64,8 @@ AppBundle\Entity\Configuration:
             type: boolean
         randomHadithEnabled:
             type: boolean
+        temperatureEnabled:
+            type: boolean
         sourceCalcul:
             type: string
             length: 255

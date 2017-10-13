@@ -53,10 +53,11 @@
             <div class="main display-none">
 
                 <!-- temperature container -->
-                <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
-                    <span></span><sup>°C</sup>
-                </div>
-
+                {% if mosque.configuration.temperatureEnabled %}
+                    <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
+                        <span></span><sup>°C</sup>
+                    </div>
+                {% endif %}
                 <div class="header ar">{{mosque.title}}</div> 
 
                 <!-- top container -->

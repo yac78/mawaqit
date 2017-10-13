@@ -306,6 +306,10 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.randomHadithEnabled.label',
                 ])
+                ->add('temperatureEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.temperatureEnabled.label',
+                ])
                 ->add('backgroundColor', null, [
                     'label' => 'configuration.form.backgroundColor.label',
                 ])
