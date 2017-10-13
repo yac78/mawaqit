@@ -37,35 +37,38 @@ var douaaSlider = {
      * @param {Number} currentTimeIndex
      */
     show: function (currentTimeIndex) {
-        setTimeout(function () {
-            if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
-                $(".desktop .main").fadeOut(1000, function () {
-                    $(".douaa-after-prayer").fadeIn(1000);
+        if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
+            $(".desktop .main").fadeOut(1000, function () {
+                $(".douaa-after-prayer").fadeIn(1000);
+            });
+
+            var douaaInterval = setInterval(function () {
+                douaaSlider.moveRight();
+            }, douaaSlider.oneDouaaShowingTime);
+
+            setTimeout(function () {
+                clearInterval(douaaInterval);
+                $(".douaa-after-prayer").fadeOut(1000, function () {
+                    $(".desktop .main").fadeIn(1000);
+                    $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
                 });
 
-                var douaaInterval = setInterval(function () {
-                    douaaSlider.moveRight();
-                }, douaaSlider.oneDouaaShowingTime);
-
-                setTimeout(function () {
-                    clearInterval(douaaInterval);
-                    $(".douaa-after-prayer").fadeOut(1000, function () {
-                        $(".desktop .main").fadeIn(1000);
-                        $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
-                    });
-
-                    // show messages if exist after 5 sec after duaa
-                    setTimeout(function () {
-                        messageInfoSlider.get();
-                    }, 5 * prayer.oneSecond);
-
-                }, douaaSlider.getTimeForShow());
-            } else {
-                // show messages if exist after prayer
+                // show messages if exist after 5 sec after duaa
                 setTimeout(function () {
                     messageInfoSlider.get();
                 }, 5 * prayer.oneSecond);
-            }
+
+            }, douaaSlider.getTimeForShow());
+        } else {
+            // show messages if exist after prayer
+            setTimeout(function () {
+                messageInfoSlider.get();
+            }, 5 * prayer.oneSecond);
+        }
+    },
+    timeout: function (currentTimeIndex) {
+        setTimeout(function () {
+            douaaSlider.show(currentTimeIndex);
         }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
     },
     /**
@@ -160,7 +163,7 @@ var messageInfoSlider = {
                 messageInfoSlider.messageInfoIsShowing = false;
             }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
         }
-        
+
         $(".message-info-slider .slider").css({width: screenWidth, height: screenHeight});
     },
     /**

@@ -503,7 +503,7 @@ var prayer = {
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
-        douaaSlider.show(currentPrayerIndex);
+        douaaSlider.timeout(currentPrayerIndex);
 
         // stop iqama flashing after defined time
         setTimeout(function () {
@@ -523,12 +523,12 @@ var prayer = {
         $(".mobile .prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
-        clearInterval(iqamaFlashInterval);
         $(".mobile .main").fadeIn();
         if (!prayer.confData.blackScreenWhenPraying) {
             $(".desktop .main").fadeIn();
         }
         $(".iqama").addClass("hidden");
+        clearInterval(iqamaFlashInterval);
     },
     /**
      * Play a bip
@@ -893,16 +893,18 @@ var prayer = {
                         randomHadith.get();
                         setTimeout(function () {
                             randomHadith.hide();
-                            // flash adhan
-                            prayer.adhanFlashingTime = 10000;
-                            prayer.flashAdhan(4);
+                            // flash iqama
+                            prayer.confData.iqamaDisplayTime = 5000;
+                            prayer.flashIqama(4);
+
                             setTimeout(function () {
-                                // flash iqama
-                                prayer.flashIqama(4);
+                                prayer.stopIqamaFlashing();
+                                // flash adhan
+                                prayer.flashAdhan(2);
                                 setTimeout(function () {
                                     location.reload();
-                                }, 5000);
-                            }, prayer.adhanFlashingTime);
+                                }, 10000);
+                            }, 5000);
                         }, 5000);
                     }, 5000);
                 }, 5000);
