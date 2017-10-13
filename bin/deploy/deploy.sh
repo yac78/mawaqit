@@ -4,10 +4,10 @@ echo "The branch to deploy is mandatory";
 exit 1
 fi
    
-git push
 
 if [ $# -eq 3 ]; then
     git tag $2 -m "$3"
+    git push
     git push $2
 fi
 
