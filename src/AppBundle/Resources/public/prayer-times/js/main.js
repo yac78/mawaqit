@@ -14,7 +14,7 @@ prayer.initNextTimeHilight();
 prayer.initAdhanFlash();
 prayer.initIqamaFlash();
 prayer.initCronHandlingTimes();
-prayer.jumuaDhikrReminder.init();
+prayer.jumuaHandler.init();
 prayer.setCustomTime();
 prayer.initUpdateConfData();
 prayer.initWakupFajr();
