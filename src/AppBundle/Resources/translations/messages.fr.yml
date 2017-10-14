@@ -62,7 +62,7 @@ message:
             label : Image (Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage)
     
 configuration:
-    title: Configuration des horaires de la mosquée "%mosque%"
+    title: Configuration des horaires de "%mosque%"
     list:
         download_csv_files: Télécharger le calendrier
         conf_not_completed: |
@@ -72,6 +72,7 @@ configuration:
         calendar_not_completed: |
             Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 
+        prayerCalcul: Calcul des horaires de prière
         load_predefined_calendar: Chargez un calendrier pré-défini parmis la liste suivante
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
