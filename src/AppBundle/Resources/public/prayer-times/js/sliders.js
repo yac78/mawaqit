@@ -38,7 +38,7 @@ var douaaSlider = {
      */
     show: function (currentTimeIndex) {
         if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
-            $(".desktop .main").fadeOut(1000, function () {
+            $(".main").fadeOut(1000, function () {
                 $(".douaa-after-prayer").fadeIn(1000);
             });
 
@@ -49,7 +49,7 @@ var douaaSlider = {
             setTimeout(function () {
                 clearInterval(douaaInterval);
                 $(".douaa-after-prayer").fadeOut(1000, function () {
-                    $(".desktop .main").fadeIn(1000);
+                    $(".main").fadeIn(1000);
                     $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
                 });
 
@@ -111,14 +111,14 @@ var messageInfoSlider = {
 
         $('.message-info-slider .slider ul li').width(screenWidth);
 
-        $(".desktop .main").fadeOut(1000, function () {
+        $(".main").fadeOut(1000, function () {
             $(".message-info-slider").fadeIn(1000);
         });
 
         if (nbSlides === 1) {
             setTimeout(function () {
                 $(".message-info-slider").fadeOut(1000, function () {
-                    $(".desktop .main").fadeIn(1000);
+                    $(".main").fadeIn(1000);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
             }, messageInfoSlider.oneMessageShowingTime);
@@ -136,7 +136,7 @@ var messageInfoSlider = {
 
             setTimeout(function () {
                 $(".message-info-slider").fadeOut(1000, function () {
-                    $(".desktop .main").fadeIn(1000);
+                    $(".main").fadeIn(1000);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
             }, messageInfoSlider.oneMessageShowingTime * 2);
@@ -157,7 +157,7 @@ var messageInfoSlider = {
             setTimeout(function () {
                 clearInterval(interval);
                 $(".message-info-slider").fadeOut(1000, function () {
-                    $(".desktop .main").fadeIn(1000);
+                    $(".main").fadeIn(1000);
                     $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
@@ -193,7 +193,7 @@ var messageInfoSlider = {
                     $(".message-info-slider .slider ul").html(items.join(""));
                     messageInfoSlider.run();
                 } else {
-                    $(".desktop .main").fadeIn(1000);
+                    $(".main").fadeIn(1000);
                 }
             },
             /**
@@ -203,7 +203,7 @@ var messageInfoSlider = {
                 if ($(".message-info-slider .slider ul li").length > 0) {
                     messageInfoSlider.run();
                 } else {
-                    $(".desktop .main").fadeIn(1000);
+                    $(".main").fadeIn(1000);
                 }
             },
         });

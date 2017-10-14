@@ -20,10 +20,12 @@ $(document).ready(function () {
 function checkAndHilightIncompletedMonths() {
     $(".month-panel").each(function (i, elm) {
         var panel = elm;
+        $(panel).find(".panel-heading").css("background-color", " #f5f5f5");
+        var title = $(panel).find("h4>strong");
+        title.text(title.text().replace(" (Mois incomplet)", ""));
         $(panel).find(".calendar-prayer-time").each(function (i, input) {
             if ($(input).val() === "") {
                 $(panel).find(".panel-heading").css("background-color", "#f2dede");
-                var title = $(panel).find("h4>strong");
                 title.text(title.text() + " (Mois incomplet)");
                 return false;
             }
@@ -93,6 +95,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
                 }
             }
         }
+        checkAndHilightIncompletedMonths();
         $(panel).find(".alert-success").removeClass("hidden");
     } catch (e) {
         $(panel).find(".alert-danger").removeClass("hidden");
@@ -122,6 +125,7 @@ $("#predefined-calendar").change(function () {
                         }
                     }
                 }
+                checkAndHilightIncompletedMonths();
                 waitingDialog.hide();
             },
             error: function () {
