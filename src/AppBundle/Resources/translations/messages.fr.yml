@@ -95,6 +95,7 @@ configuration:
             label: Pas de jumu`a dans cette mosquée
         jumuaDhikrReminderEnabled:
             label: Afficher un rappel pendant jumu`a 
+            title: Si cette case est coché un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
         jumuaBlackScreenEnabled:
             label: Afficher un écran noir pendant jumu`a 
         jumuaTimeout:
@@ -135,12 +136,13 @@ configuration:
         duaAfterPrayerEnabled: 
             label: Activer les invocations après salat
         smallScreen: 
-            label: Petit écran ? (votre écran mesure moins de 32 pouces )
-            title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
+            label: Petit écran ?
+            title: Cochez cette case si votre écran mesure moins de 32 pouces, cela permettra d'adapter quelques textes
         azanBip: 
             label: Bip quand c'est l'heure du adhân
         azanVoiceEnabled: 
             label: Activer l'adhân audio (Adhân du Haram)
+            title: Cette option est destinée aux utilisateurs du logiciel à domicile, à l'heure de la prière l'adhân du haram est lancé.
         iqamaBip: 
             label:  Bip quand c'est l'heure de l'iqâmah
         wakeForFajrTime: 
@@ -148,12 +150,15 @@ configuration:
             title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
         blackScreenWhenPraying: 
             label:  Éteindre l'écran pendant la prière
+            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Temps avant affichage des invocations post prière (en minute)"
         randomHadithEnabled: 
-            label:  Afficher aléatoirement un hadith toute les 5 min
+            label: Afficher aléatoirement un hadith toute les 5 min
+            title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
         temperatureEnabled: 
             label:  Afficher la température
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
+            title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien des horaires de prière
         backgroundColor: 
             label: Couleur de fond
         fajrDegree: 
