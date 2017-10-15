@@ -1,11 +1,6 @@
 /* global dateTime */
 /* global douaaSlider */
-/* global messageInfoSlider */
 /* global lang */
-/* global confData */
-/* global randomHadith */
-/* global weather */
-/* global confData */
 /* global confData */
 
 /**
@@ -478,7 +473,9 @@ var prayer = {
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
-        douaaSlider.timeout(currentPrayerIndex);
+        if (typeof douaaSlider !== 'undefined'){
+            douaaSlider.timeout(currentPrayerIndex);
+        }
 
         // stop iqama flashing after defined time
         setTimeout(function () {
