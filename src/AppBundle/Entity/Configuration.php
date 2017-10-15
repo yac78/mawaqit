@@ -65,7 +65,7 @@ class Configuration {
     /**
      * @var integer
      */
-    private $jumuaTimeout = 20;
+    private $jumuaTimeout = 30;
 
     /**
      * @var string

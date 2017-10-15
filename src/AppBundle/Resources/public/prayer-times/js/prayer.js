@@ -324,8 +324,8 @@ var prayer = {
                 var fajrTime = prayer.getTimeByIndex(0);
                 var diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(fajrTime)) / prayer.oneMinute);
                 if (diffTimeInMiniute === -parseInt(prayer.confData.wakeForFajrTime)) {
-                    var $contentEl = $(".desktop .top-content .content");
-                    var $alarmFlashEl = $(".desktop .top-content .alarm-flash");
+                    var $contentEl = $(".top-content .content");
+                    var $alarmFlashEl = $(".alarm-flash");
 
                     prayer.fajrWakeAdhanIsPlaying = true;
                     // play adhan sound
@@ -379,20 +379,20 @@ var prayer = {
             }, prayer.oneMinute);
         },
         showReminder: function () {
-            $(".desktop .main").fadeOut(1000, function () {
-                $(".desktop .jumua-dhikr-reminder").fadeIn(1000);
+            $(".main").fadeOut(1000, function () {
+                $(".jumua-dhikr-reminder").fadeIn(1000);
             });
         },
         hideReminder: function () {
-            $(".desktop .main").fadeIn(1000, function () {
-                $(".desktop .jumua-dhikr-reminder").fadeOut(1000);
+            $(".jumua-dhikr-reminder").fadeOut(1000, function () {
+                $(".main").fadeIn(1000);
             });
         },
         showBlackScreen: function () {
-            $(".desktop .main").fadeOut(1000);
+            $(".main").fadeOut(1000);
         },
         hideBlackScreen: function () {
-            $(".desktop .main").fadeIn(1000);
+            $(".main").fadeIn(1000);
         }
     },
     /**
@@ -598,23 +598,23 @@ var prayer = {
     },
     douaa: {
         showAdhanDouaa: function () {
-            $(".desktop .main").fadeOut(1000, function () {
-                $(".desktop .adhan").fadeIn(1000);
+            $(".main").fadeOut(1000, function () {
+                $(".adhan").fadeIn(1000);
             });
         },
         hideAdhanDouaa: function () {
-            $(".desktop .adhan").fadeOut(1000, function () {
-                $(".desktop .main").fadeIn(1000);
+            $(".adhan").fadeOut(1000, function () {
+                $(".main").fadeIn(1000);
             });
         },
         showHadith: function () {
-            $(".desktop .main").fadeOut(1000, function () {
-                $(".desktop .douaa-between-adhan-iqama").fadeIn(1000);
+            $(".main").fadeOut(1000, function () {
+                $(".douaa-between-adhan-iqama").fadeIn(1000);
             });
         },
         hideHadith: function () {
-            $(".desktop .douaa-between-adhan-iqama").fadeOut(1000, function () {
-                $(".desktop .main").fadeIn(1000);
+            $(".douaa-between-adhan-iqama").fadeOut(1000, function () {
+                $(".main").fadeIn(1000);
             });
         },
         /**
@@ -882,7 +882,7 @@ var prayer = {
                         setTimeout(function () {
                             randomHadith.hide();
                             // flash iqama
-                            prayer.confData.iqamaDisplayTime = 5000;
+                            prayer.confData.iqamaDisplayTime = 5;
                             prayer.flashIqama(4);
 
                             setTimeout(function () {
