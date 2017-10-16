@@ -87,8 +87,8 @@ class DefaultController extends Controller {
 
     private function getRandomHadith(array $hadiths) {
         $hadith = $hadiths[array_rand($hadiths)];
-        if(strlen($hadith) > 800){
-          $this->getRandomHadith($hadiths);
+        if(strlen($hadith) > 700){
+          return $this->getRandomHadith($hadiths);
         }
         return $hadith;
     }
