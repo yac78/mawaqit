@@ -284,7 +284,7 @@ var prayer = {
             }
 
             prayer.setCustomTime();
-        }, prayer.oneMinute);
+        }, prayer.oneSecond);
     },
     /**
      * Check every minute if athan time is ok
@@ -473,7 +473,7 @@ var prayer = {
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
-        if (typeof douaaSlider !== 'undefined'){
+        if (typeof douaaSlider !== 'undefined') {
             douaaSlider.timeout(currentPrayerIndex);
         }
 
@@ -722,7 +722,7 @@ var prayer = {
         $(".custom-time").hide();
 
         // if aid time enabled we set/show it
-        if (this.confData.aidTime) {
+        if (this.confData.aidTime && this.aidIsCommingSoon()) {
             $(".aid-id").text(this.confData.aidTime);
             $(".aid").show();
             return;
@@ -853,7 +853,16 @@ var prayer = {
             });
         }
     },
+    /**
+     * Return true if aid is comming soon, 3 days before aid
+     * @returns {boolean}
+     */
+    aidIsCommingSoon: function () {
+        var hijriDateInfo = kuwaiticalendar(prayer.confData.hijriAdjustment);
+        console.dir(hijriDateInfo);
 
+        return ((hijriDateInfo[6] === 8 && hijriDateInfo[5] >= 27 && hijriDateInfo[5] <= 30) || (hijriDateInfo[6] === 9 && hijriDateInfo[5] === 1)) || (hijriDateInfo[6] === 11 && hijriDateInfo[5] >= 7 && hijriDateInfo[5] <= 10)
+    },
     /**
      * Test main app features 
      */
