@@ -3,12 +3,11 @@ if [ -z "$1" ]; then
 echo "The branch to deploy is mandatory";
 exit 1
 fi
-   
-
-if [ $# -eq 3 ]; then
-    git tag $2 -m "$3"
+  
+if [ $# -eq 2 ]; then
+    git tag $2 -m "new release $2"
     git push
-    git push $2
+    git push origin $2
 fi
 
 rm -rf /tmp/prayer-times-v3
