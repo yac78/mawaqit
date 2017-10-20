@@ -114,6 +114,9 @@ class ConfigurationType extends AbstractType {
                 ->add('jumuaDhikrReminderEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.jumuaDhikrReminderEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.jumuaDhikrReminderEnabled.title'),
+                    ]
                 ])
                 ->add('jumuaBlackScreenEnabled', CheckboxType::class, [
                     'required' => false,
@@ -243,6 +246,9 @@ class ConfigurationType extends AbstractType {
                 ->add('azanVoiceEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.azanVoiceEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.azanVoiceEnabled.title'),
+                    ],
                 ])
                 ->add('iqamaBip', CheckboxType::class, [
                     'required' => false,
@@ -251,6 +257,9 @@ class ConfigurationType extends AbstractType {
                 ->add('blackScreenWhenPraying', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.blackScreenWhenPraying.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.blackScreenWhenPraying.title'),
+                    ],
                 ])
                 ->add('sourceCalcul', ChoiceType::class, [
                     'required' => true,
@@ -305,6 +314,9 @@ class ConfigurationType extends AbstractType {
                 ->add('randomHadithEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.randomHadithEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.randomHadithEnabled.title'),
+                    ]
                 ])
                 ->add('temperatureEnabled', CheckboxType::class, [
                     'required' => false,

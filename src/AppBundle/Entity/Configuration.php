@@ -65,7 +65,7 @@ class Configuration {
     /**
      * @var integer
      */
-    private $jumuaTimeout = 20;
+    private $jumuaTimeout = 30;
 
     /**
      * @var string
@@ -908,6 +908,7 @@ class Configuration {
             "randomHadithEnabled" => $this->isRandomHadithEnabled(),
             "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
             "wakeForFajrTime" => $this->getWakeForFajrTime(),
+            "urlQrCodeEnabled" => $this->getUrlQrCodeEnabled(),
             "temperatureEnabled" => $this->isTemperatureEnabled(),
         ];
     }

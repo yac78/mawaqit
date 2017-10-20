@@ -28,7 +28,7 @@ body {
 /* Tablette mode paysage */
 @media (max-width:1300px){
     body {
-        font-size: 9px;
+        font-size: 8px;
     }
 }
 
@@ -161,7 +161,6 @@ body {
 }
 
 .iqama .image{
-    background-image: url(/bundles/app/prayer-times/img/phone.png);
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: contain;
@@ -240,6 +239,8 @@ body {
     position: absolute;
     bottom: 10px;
     left: 5px;
+    background-color: #fff;
+    border: solid 1px #fff;
 }
 
 .tooltip-arrow,

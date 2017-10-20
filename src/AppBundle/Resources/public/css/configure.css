@@ -1,8 +1,3 @@
-.calendar
-{
-    margin-top: 20px;
-}
-
 .calendar-prayer {
     padding: 1px;
     float: left;
@@ -15,4 +10,11 @@
 
 .checkbox label, .radio label {
     font-weight: 700; 
+}
+
+label {
+    display: inline;
+}
+.checkbox {
+    display: inline-block;
 }

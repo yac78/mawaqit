@@ -8,6 +8,18 @@
     {% endif %}
 
     {% if attr.title is defined and  attr.title is not empty %}
-        <span class="fa fa-question-circle" title="{{attr.title}}"></span>
+        <span class="fa fa-question-circle hidden-xs" title="{{attr.title}}"></span>
     {% endif %}
 {% endblock %}
+
+{% block checkbox_widget -%}
+    {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
+    {% if 'checkbox-inline' in parent_label_class %}
+        {{- form_label(form, null, { widget: parent() }) -}}
+    {% else -%}
+        {{ parent()}}
+        {% if attr.title is defined and  attr.title is not empty %}
+            <span class="fa fa-question-circle hidden-xs" title="{{attr.title}}"></span>
+        {% endif %}
+    {%- endif %}
+{%- endblock checkbox_widget %}

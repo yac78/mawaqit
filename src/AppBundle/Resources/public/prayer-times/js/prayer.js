@@ -1,11 +1,6 @@
 /* global dateTime */
 /* global douaaSlider */
-/* global messageInfoSlider */
 /* global lang */
-/* global confData */
-/* global randomHadith */
-/* global weather */
-/* global confData */
 /* global confData */
 
 /**
@@ -45,32 +40,7 @@ var prayer = {
      * @type Number 
      */
     adhanFlashingTime: 120000,
-    /**
-     * init the app
-     */
-    init: function () {
-        this.loadData();
-        this.setBackgroundColor();
-        this.setTime();
-        this.setDate();
-        this.setTimes();
-        this.setWaitings();
-        this.initNextTimeHilight();
-        this.initAdhanFlash();
-        this.initIqamaFlash();
-        this.initCronHandlingTimes();
-        this.jumuaHandler.init();
-        this.setCustomTime();
-        this.initUpdateConfData();
-        this.initWakupFajr();
-        this.initEvents();
-        this.translateToArabic();
-        this.hideSpinner();
-        randomHadith.init();
-        weather.initUpdateTemperature();
-        douaaSlider.init();
-        messageInfoSlider.initCronMessageInfo();
-    },
+
     /**
      * load all data
      */
@@ -349,8 +319,8 @@ var prayer = {
                 var fajrTime = prayer.getTimeByIndex(0);
                 var diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(fajrTime)) / prayer.oneMinute);
                 if (diffTimeInMiniute === -parseInt(prayer.confData.wakeForFajrTime)) {
-                    var $contentEl = $(".desktop .top-content .content");
-                    var $alarmFlashEl = $(".desktop .top-content .alarm-flash");
+                    var $contentEl = $(".top-content .content");
+                    var $alarmFlashEl = $(".alarm-flash");
 
                     prayer.fajrWakeAdhanIsPlaying = true;
                     // play adhan sound
@@ -404,20 +374,20 @@ var prayer = {
             }, prayer.oneMinute);
         },
         showReminder: function () {
-            $(".desktop .main").fadeOut(1000, function () {
-                $(".desktop .jumua-dhikr-reminder").fadeIn(1000);
+            $(".main").fadeOut(1000, function () {
+                $(".jumua-dhikr-reminder").fadeIn(1000);
             });
         },
         hideReminder: function () {
-            $(".desktop .main").fadeIn(1000, function () {
-                $(".desktop .jumua-dhikr-reminder").fadeOut(1000);
+            $(".jumua-dhikr-reminder").fadeOut(1000, function () {
+                $(".main").fadeIn(1000);
             });
         },
         showBlackScreen: function () {
-            $(".desktop .main").fadeOut(1000);
+            $(".main").fadeOut(1000);
         },
         hideBlackScreen: function () {
-            $(".desktop .main").fadeIn(1000);
+            $(".main").fadeIn(1000);
         }
     },
     /**
@@ -503,7 +473,9 @@ var prayer = {
         // init next hilight timeout
         prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
-        douaaSlider.timeout(currentPrayerIndex);
+        if (typeof douaaSlider !== 'undefined') {
+            douaaSlider.timeout(currentPrayerIndex);
+        }
 
         // stop iqama flashing after defined time
         setTimeout(function () {
@@ -623,23 +595,23 @@ var prayer = {
     },
     douaa: {
         showAdhanDouaa: function () {
-            $(".desktop .main").fadeOut(1000, function () {
-                $(".desktop .adhan").fadeIn(1000);
+            $(".main").fadeOut(1000, function () {
+                $(".adhan").fadeIn(1000);
             });
         },
         hideAdhanDouaa: function () {
-            $(".desktop .adhan").fadeOut(1000, function () {
-                $(".desktop .main").fadeIn(1000);
+            $(".adhan").fadeOut(1000, function () {
+                $(".main").fadeIn(1000);
             });
         },
         showHadith: function () {
-            $(".desktop .main").fadeOut(1000, function () {
-                $(".desktop .douaa-between-adhan-iqama").fadeIn(1000);
+            $(".main").fadeOut(1000, function () {
+                $(".douaa-between-adhan-iqama").fadeIn(1000);
             });
         },
         hideHadith: function () {
-            $(".desktop .douaa-between-adhan-iqama").fadeOut(1000, function () {
-                $(".desktop .main").fadeIn(1000);
+            $(".douaa-between-adhan-iqama").fadeOut(1000, function () {
+                $(".main").fadeIn(1000);
             });
         },
         /**
@@ -750,7 +722,7 @@ var prayer = {
         $(".custom-time").hide();
 
         // if aid time enabled we set/show it
-        if (this.confData.aidTime) {
+        if (this.confData.aidTime && this.aidIsCommingSoon()) {
             $(".aid-id").text(this.confData.aidTime);
             $(".aid").show();
             return;
@@ -870,6 +842,38 @@ var prayer = {
         return isPrayingMoment;
     },
     /**
+     * Set QR code
+     */
+    setQRCode: function () {
+        if (prayer.confData.urlQrCodeEnabled === true) {
+            new QRCode("qr-code", {
+                text: $(".qr-code").data("url"),
+                width: 100,
+                height: 100
+            });
+        }
+    },
+    /**
+     * Return true if aid is comming soon, 3 days before aid
+     * @returns {boolean}
+     */
+    aidIsCommingSoon: function () {
+        var hijriDateInfo = kuwaiticalendar(prayer.confData.hijriAdjustment);
+        // if aid al-fitr
+        if(hijriDateInfo[6] === 8 && hijriDateInfo[5] >= 27 && hijriDateInfo[5] <= 30){
+            return true;
+        }
+        if(hijriDateInfo[6] === 9 && hijriDateInfo[5] === 1){
+            return true;
+        }
+        
+        // if aid al-adha
+        if(hijriDateInfo[6] === 11 && hijriDateInfo[5] >= 7 && hijriDateInfo[5] <= 10){
+            return true;
+        }
+        return false;
+    },
+    /**
      * Test main app features 
      */
     test: function () {
@@ -894,7 +898,7 @@ var prayer = {
                         setTimeout(function () {
                             randomHadith.hide();
                             // flash iqama
-                            prayer.confData.iqamaDisplayTime = 5000;
+                            prayer.confData.iqamaDisplayTime = 5;
                             prayer.flashIqama(4);
 
                             setTimeout(function () {
@@ -912,7 +916,3 @@ var prayer = {
         }, douaaSlider.getTimeForShow() + 3000);
     }
 };
-
-$(document).ready(function () {
-    prayer.init();
-});

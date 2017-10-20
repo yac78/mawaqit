@@ -62,7 +62,7 @@ message:
             label : Image (Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage)
     
 configuration:
-    title: Configuration des horaires de la mosquée "%mosque%"
+    title: Configuration des horaires de "%mosque%"
     list:
         download_csv_files: Télécharger le calendrier
         conf_not_completed: |
@@ -72,6 +72,7 @@ configuration:
         calendar_not_completed: |
             Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 
+        prayerCalcul: Calcul des horaires de prière
         load_predefined_calendar: Chargez un calendrier pré-défini parmis la liste suivante
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
@@ -89,28 +90,29 @@ configuration:
             label: Heure du jumu`a
             title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 12:15 en hiver et 13:15 en été
         jumuaAsDuhr:
-            label: L'heure du jumu'a pareil que duhr
+            label: L'heure du jumu'a pareil que Dhuhr
         noJumua:
             label: Pas de jumu`a dans cette mosquée
         jumuaDhikrReminderEnabled:
             label: Afficher un rappel pendant jumu`a 
+            title: Si cette case est coché un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
         jumuaBlackScreenEnabled:
             label: Afficher un écran noir pendant jumu`a 
         jumuaTimeout:
-            label: Temps approximatif du jumu`a (prêche + prière)
+            label: Durée approximative du jumu`a (prêche + prière)
         aidTime:
             label: Heure du aïd
-            title: Si cette valeur est renseignée elle remplacera l'heure du shuruk, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
+            title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
         adjustedTimes: 
             label: Ajustement manuel des horaires
         maximumIshaTimeForNoWaiting: 
-            label: Heure du `isha (Iqama tout de suite après adhan) 
-            title: Si cette valeur est renseignée le temps d'attente entre adhan et iqama sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhan
+            label: Heure du `isha (iqâmah tout de suite après adhân) 
+            title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhân
         imsakNbMinBeforeFajr: 
             label: Afficher l'imsak (nombre de minute avant fajr)
             title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
         waitingTimes: 
-            label: Temps d'attente entre adhan et iqama
+            label: Temps d'attente entre adhân et iqâmah
         fixedTimes: 
             label: Fixation des horaires
             title: "Exemple: fixer `isha en hiver à 19:00, tant que l'horaire est en dessous de la valeur saisie c'est cette dernière qui sera prise en compte"
@@ -126,33 +128,37 @@ configuration:
             label: Heure d'été
             title: Laissez à 'auto' si vous souhaitez que le changement d'heure été/hiver s'éffectue automatiquement
         iqamaDisplayTime: 
-            label: Temps d'affichage du signal iqama (en secondes)
+            label: Temps d'affichage du signal iqâmah (en secondes)
         hijriDateEnabled: 
             label: Activer la date hégire
         duaAfterAzanEnabled: 
-            label: Activer du`aa après adhan
+            label: Activer du`aa après adhân
         duaAfterPrayerEnabled: 
             label: Activer les invocations après salat
         smallScreen: 
-            label: Petit écran ? (votre écran mesure moins de 32 pouces )
-            title: Cochez cette case si vous souhaitez afficher les horaires sur un petit écran (moins de 32 pouces)
+            label: Petit écran ?
+            title: Cochez cette case si votre écran mesure moins de 32 pouces, cela permettra d'adapter quelques textes
         azanBip: 
             label: Bip quand c'est l'heure du adhân
         azanVoiceEnabled: 
             label: Activer l'adhân audio (Adhân du Haram)
+            title: Cette option est destinée aux utilisateurs du logiciel à domicile, à l'heure de la prière l'adhân du haram est lancé.
         iqamaBip: 
-            label:  Bip quand c'est l'heure de Iqâma
+            label:  Bip quand c'est l'heure de l'iqâmah
         wakeForFajrTime: 
             label:  Réveil avant fajr (minute)
-            title: Si vous souhaitez être réveillé avant fajr avec un premier adhan, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
+            title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
         blackScreenWhenPraying: 
             label:  Éteindre l'écran pendant la prière
+            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Temps avant affichage des invocations post prière (en minute)"
         randomHadithEnabled: 
-            label:  Afficher aléatoirement un hadith toute les 5 min
+            label: Afficher aléatoirement un hadith toute les 5 min
+            title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
         temperatureEnabled: 
             label:  Afficher la température
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
+            title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien des horaires de prière
         backgroundColor: 
             label: Couleur de fond
         fajrDegree: 
@@ -249,16 +255,16 @@ calendar_times: Calendrier des horaires
 
 day: Jour
 fajr: Fajr
-shuruk: Shuruk
-zuhr: Duhr
+shuruk: Shurûq
+zuhr: Dhuhr
 asr: '`Asr'
 maghrib: Maghrib
 isha: '`Isha'
 jumua: 'Jumu`a'
-aid: 'Salât el `Aïd'
+aid: 'Salât al-Aïd'
 imsak: Imsak
-iqama: El Iqâma
-azan: El Adhân
+iqama: Al-Iqâmah
+azan: Al-Adhân
 
 power-off-phones: Éteignez vos portables SVP !
 hi: Bonjour %name%
