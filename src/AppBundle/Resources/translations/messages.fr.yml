@@ -118,7 +118,7 @@ configuration:
             label: Fixation des horaires
             title: "Exemple: fixer `isha en hiver à 19:00, tant que l'horaire est en dessous de la valeur saisie c'est cette dernière qui sera prise en compte"
         duaAfterPrayerShowTimes: 
-            label: Durées estimées de chaque prière (en minute)
+            label: Durée estimée de chaque prière (en minute)
             title: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour terminer une prière
         hijriAdjustment: 
             label: Ajustement de la date hégire
@@ -151,7 +151,7 @@ configuration:
             title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
         blackScreenWhenPraying: 
             label:  Éteindre l'écran pendant la prière
-            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Durées estimées de chaque prière (en minute)"
+            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Durée estimée de chaque prière (en minute)"
         randomHadithEnabled: 
             label: Afficher aléatoirement un hadith toute les 5 min
             title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
