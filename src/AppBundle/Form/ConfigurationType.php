@@ -321,6 +321,9 @@ class ConfigurationType extends AbstractType {
                 ->add('temperatureEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.temperatureEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.temperatureEnabled.title'),
+                    ]
                 ])
                 ->add('backgroundColor', null, [
                     'label' => 'configuration.form.backgroundColor.label',

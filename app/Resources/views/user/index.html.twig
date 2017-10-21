@@ -30,7 +30,7 @@
                 {% for user in users %}
                     <tr>
                         <th scope="row">{{user.id}}</th>
-                        <td>{{user.username}}</td>
+                        <td><a href="{{path('user_show', {id: user.id})}}">{{user.username}}</a></td>
                         <td>{{user.email}}</td>
                         <td class="text-center">
                             <span class="fa fa-{{user.enabled ? 'check' : 'close'}}"></span>

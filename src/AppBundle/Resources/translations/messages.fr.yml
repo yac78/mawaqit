@@ -74,7 +74,11 @@ configuration:
             Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 
         prayerCalcul: Calcul des horaires de prière
-        load_predefined_calendar: Chargez un calendrier pré-défini parmis la liste suivante
+        load_predefined_calendar: 
+            1: "Vous avez le choix entre les 2 options suivantes :"
+            2: Charger un calendrier pré-défini parmis la liste ci-dessous puis l'éditer par rapport à votre calendrier papier
+            3: Charger les horaires depuis un fichier texte type CSV pour chaque mois de l'année
+             
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis.
@@ -143,7 +147,7 @@ configuration:
             label: Bip quand c'est l'heure du adhân
         azanVoiceEnabled: 
             label: Activer l'adhân audio (Adhân du Haram)
-            title: Cette option est destinée aux utilisateurs du logiciel à domicile, à l'heure de la prière l'adhân du haram est lancé.
+            title: A l'heure de la prière l'adhân du haram sera lancé.
         iqamaBip: 
             label:  Bip quand c'est l'heure de l'iqâmah
         wakeForFajrTime: 
@@ -157,6 +161,7 @@ configuration:
             title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
         temperatureEnabled: 
             label:  Afficher la température
+            title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
         urlQrCodeEnabled: 
             label: Activer le QR code pour le lien du site
             title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien des horaires de prière
@@ -312,5 +317,10 @@ month_11: Décembre
 
 prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
-info_dst_change: Ne pas tenir compte du changement d'heure d'été/hiver, le logiciel s'en chargera en fonction du dernier dimanche du mois de "%month%" de chaque année.
+info_dst_change: |
+    Ne pas tenir compte du changement d'heure été/hiver, 
+    le logiciel s'en occupera en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
+    Saisissez les horaires comme s'il y avait pas de changement d'heure
 other_settings: Autres réglages
+home_settings: Réglages pour utilisation à domicile
+regional_settings: Paramètres régionaux
