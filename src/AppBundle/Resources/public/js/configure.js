@@ -21,7 +21,7 @@ $(document).ready(function () {
 function checkAndHilightIncompletedMonths() {
     $(".month-panel").each(function (i, elm) {
         var panel = elm;
-        $(panel).find(".panel-heading").css("background-color", " #f5f5f5");
+        $(panel).find(".panel-heading").css("background-color", " #e2e2e2");
         var title = $(panel).find("h4>strong");
         title.text(title.text().replace(" (Mois incomplet)", ""));
         $(panel).find(".calendar-prayer-time").each(function (i, input) {
