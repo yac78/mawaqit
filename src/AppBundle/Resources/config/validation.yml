@@ -10,3 +10,8 @@ AppBundle\Entity\Mosque:
     properties:
         city:
             - NotBlank: ~
+            
+AppBundle\Entity\Configuration:
+    properties:
+        hadithLang:
+            - Choice: {callback : "getHadithLangs"}

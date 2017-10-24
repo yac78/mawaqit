@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Entity\Mosque;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DefaultController extends Controller {
 
@@ -65,22 +67,25 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/get-random-hadith/{_locale}", name="random_hadith")
+     * @Route("/get-random-hadith/mosque/{slug}", name="random_hadith")
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function getRandomHadithAjaxAction(Request $request) {
+    public function getRandomHadithAjaxAction(Request $request, Mosque $mosque) {
         $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ryiad-essalihine.xml";
         $xmldata = simplexml_load_file($file);
 
-        $hadiths = $xmldata->xpath('hadith');
-
-        if ($request->getLocale() === "ar") {
-            $hadiths = $xmldata->xpath('hadith[@lang="ar"]');
+        $lang = $mosque->getConfiguration()->getHadithLang();
+        
+        if($lang === "both"){
+            $hadiths = $xmldata->xpath('hadith');
+        }else{
+            $hadiths = $xmldata->xpath("hadith[@lang=\"$lang\"]");
         }
 
         $hadith = $this->getRandomHadith($hadiths);
         $reponse = [
             "text" => (string) $hadith,
-            "lang" => !empty($hadith["lang"]) ? (string) $hadith["lang"] : ""
+            "lang" => (string) $hadith["lang"]
         ];
         return new JsonResponse($reponse, 200);
     }

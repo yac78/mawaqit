@@ -85,6 +85,9 @@ AppBundle\Entity\Configuration:
         dst:
             type: string
             length: 50
+        hadithLang:
+            type: string
+            length: 50
         fajrDegree:
             type: smallint
             nullable: true

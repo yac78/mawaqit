@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("#appbundle_configuration_prayerMethod").trigger("change");
     $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
     $("#appbundle_configuration_noJumua").trigger("change");
+    $("#appbundle_configuration_randomHadithEnabled").trigger("change");
     $("#appbundle_configuration_jumuaDhikrReminderEnabled, #appbundle_configuration_jumuaBlackScreenEnabled").trigger("change");
 
     checkAndHilightIncompletedMonths();
@@ -169,5 +170,13 @@ $("#appbundle_configuration_jumuaDhikrReminderEnabled, #appbundle_configuration_
         $("#appbundle_configuration_jumuaTimeout").parent().show();
     } else {
         $("#appbundle_configuration_jumuaTimeout").parent().hide();
+    }
+});
+
+$("#appbundle_configuration_randomHadithEnabled").bind("change", function (event) {
+    if ($(this).is(":checked")) {
+        $("#appbundle_configuration_hadithLang").parent().show();
+    } else {
+        $("#appbundle_configuration_hadithLang").parent().hide();
     }
 });

@@ -173,6 +173,8 @@ configuration:
         ishaDegree: 
             label: Degré du `isha
             placeholder: Ex. 15
+        hadithLang: 
+            label: Langue des hadiths
         calendar_explication: |
             Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
             Le fichier CSV doit respécter le format suivant : <br><br>
@@ -215,9 +217,10 @@ contact: Contact
 association: Association
 creation_date: Date de création
 search: Recherche
-ar: عربي
+ar: Arabe
 fr: Français
-en: English   
+en: English  
+both: Arabe et Français
 auto: Auto (Géré par le raspberry)
 enabled: Activé
 disabled: Désactivé
@@ -322,5 +325,6 @@ info_dst_change: |
     le logiciel s'en occupera en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
     Saisissez les horaires comme s'il y avait pas de changement d'heure
 other_settings: Autres réglages
-home_settings: Réglages pour utilisation à domicile
+home_settings: Utilisation à domicile
 regional_settings: Paramètres régionaux
+invocations_hadiths: Invocations et hadiths

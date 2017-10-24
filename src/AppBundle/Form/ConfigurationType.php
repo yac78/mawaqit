@@ -227,6 +227,12 @@ class ConfigurationType extends AbstractType {
                         'title' => $this->translator->trans('configuration.form.dst.title'),
                     ],
                 ])
+                ->add('hadithLang', ChoiceType::class, [
+                    'required' => true,
+                    'label' => 'configuration.form.hadithLang.label',
+                    'choices' => array_combine(Configuration::HADITH_LANG, Configuration::HADITH_LANG),
+                    'choice_translation_domain' => true
+                ])
                 ->add('hijriDateEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.hijriDateEnabled.label',

@@ -316,6 +316,32 @@
             </div>
 
             <div class="panel panel-default">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#duas">
+                    <span style="font-weight: 700;">{{"invocations_hadiths"|trans}}</span>
+                </div>
+                <div id="duas" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.duaAfterAzanEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.duaAfterPrayerEnabled) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.randomHadithEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.hadithLang) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#otherSettings">
                     <span style="font-weight: 700;">{{"other_settings"|trans}}</span>
                 </div>
@@ -345,20 +371,12 @@
                                 {{ form_widget(form.hijriDateEnabled) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_widget(form.duaAfterAzanEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.duaAfterPrayerEnabled) }}
-                            </div>
-                            <div class="col-md-3">
                                 {{ form_widget(form.azanBip) }}
                             </div>
                             <div class="col-md-3">
                                 {{ form_widget(form.iqamaBip) }}
                             </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.randomHadithEnabled) }}
-                            </div>
+
                             <div class="col-md-3">
                                 {{ form_widget(form.blackScreenWhenPraying) }}
                             </div>
