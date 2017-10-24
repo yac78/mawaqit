@@ -19,21 +19,24 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
      * @param string $search
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    function getMosquesByUser(User $user, $search) {
-        $qb = $this->createQueryBuilder("m");
+    function search(User $user, $search) {
+        $qb = $this->createQueryBuilder("m")
+                ->leftJoin("m.user", "u", "m.user_id = u.id");
 
         if (!empty($search)) {
             $qb->andWhere("m.name LIKE :search "
                             . "OR m.associationName LIKE :search "
                             . "OR m.email LIKE :search "
                             . "OR m.address LIKE :search "
-                            . "OR m.city LIKE :search"
+                            . "OR m.city LIKE :search "
+                            . "OR u.username LIKE :search "
+                            . "OR u.email LIKE :search"
                     )
                     ->setParameter(":search", "%$search%");
         }
         if (!$user->isAdmin()) {
-            $qb->andWhere("m.user = :user_id")
-                    ->setParameter(":user_id", $user->getId());
+            $qb->andWhere("u.id = :userId")
+                    ->setParameter(":userId", $user->getId());
         }
 
         $qb->orderBy("m.id", "DESC");
@@ -103,11 +106,5 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
                 ->set("m.updated", ":date")
                 ->setParameter(":date", (new \DateTime())->format("Y-m-d h:i:s"));
         $qb->getQuery()->execute();
-        $qb = $this->getEntityManager()->createQueryBuilder()
-                ->update("AppBundle:Configuration", "c")
-                ->set("c.updated", ":date")
-                ->setParameter(":date", (new \DateTime())->format("Y-m-d h:i:s"));
-        $qb->getQuery()->execute();
     }
-
 }

@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,7 +31,7 @@ class MosqueController extends Controller {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
-        $qb = $mosqueRepository->getMosquesByUser($user, $search);
+        $qb = $mosqueRepository->search($user, $search);
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 5);
