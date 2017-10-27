@@ -289,10 +289,11 @@ var prayer = {
     initAdhanFlash: function () {
         setInterval(function () {
             if (!prayer.adhanIsFlashing) {
+                var currentTime  = dateTime.getCurrentTime()
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-                    if (time === dateTime.getCurrentTime()) {
-                        // if joumouaa time we don't flash adhan
-                        if (!prayer.isJoumouaa(currentPrayerIndex)) {
+                    if (time === currentTime) {
+                        // if jumua time we don't flash adhan
+                        if (!prayer.isJumua(currentPrayerIndex)) {
                             prayer.adhanIsFlashing = true;
                             prayer.flashAdhan(currentPrayerIndex);
                         }
@@ -395,7 +396,7 @@ var prayer = {
                 var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
 
-                    if (!prayer.isJoumouaa(currentPrayerIndex)) {
+                    if (!prayer.isJumua(currentPrayerIndex)) {
                         date = new Date();
                         currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
 
@@ -569,7 +570,7 @@ var prayer = {
         $(".prayer-wait .wait").removeClass("text-hilighted");
 
         // if joumouaa we hilight joumouaa time
-        if (prayer.isJoumouaa(prayerIndex)) {
+        if (prayer.isJumua(prayerIndex)) {
             $(".joumouaa-id").addClass("prayer-hilighted");
             return;
         }
@@ -691,7 +692,7 @@ var prayer = {
      * @param {int} currentPrayerIndex 
      * @returns {boolean}
      */
-    isJoumouaa: function (currentPrayerIndex) {
+    isJumua: function (currentPrayerIndex) {
         var date = new Date();
         return date.getDay() === 5 && currentPrayerIndex === 1;
     },

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("." + $("#appbundle_configuration_sourceCalcul").val()).removeClass("hidden");
     $(".calendar-prayer input").each(function (index) {
-        if ($(this).val() == "")
+        if ($(this).val() === "")
         {
             $(this).css("background-color", "#f8d4d4");
         }
@@ -13,6 +13,7 @@ $(document).ready(function () {
     $("#appbundle_configuration_jumuaDhikrReminderEnabled, #appbundle_configuration_jumuaBlackScreenEnabled").trigger("change");
 
     checkAndHilightIncompletedMonths();
+    handleErrorsDisplay();
 });
 
 /**
@@ -139,6 +140,10 @@ $("#predefined-calendar").change(function () {
         });
     }
 });
+
+function handleErrorsDisplay() {
+    $(".has-error").parents(".panel-collapse").collapse("show");
+}
 
 /**
  * Jumua as duh handling checkbox
