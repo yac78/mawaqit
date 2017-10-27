@@ -37,7 +37,7 @@ var douaaSlider = {
      * @param {Number} currentTimeIndex
      */
     show: function (currentTimeIndex) {
-        if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJoumouaa(currentTimeIndex)) {
+        if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJumua(currentTimeIndex)) {
             $(".main").fadeOut(1000, function () {
                 $(".douaa-after-prayer").fadeIn(1000);
             });

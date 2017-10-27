@@ -37,3 +37,15 @@ function addZero(value) {
     }
     return value;
 }
+
+/**
+ * Reload page if internet connection is available
+ */
+function reloadIfConnected() {
+    $.ajax({
+        url: window.location.href,
+        success: function () {
+            location.reload();
+        }
+    });
+}

@@ -22,6 +22,7 @@ prayer.initEvents();
 prayer.translateToArabic();
 prayer.setQRCode();
 prayer.hideSpinner();
+prayer.initCronReloadPage();
 randomHadith.init();
 weather.initUpdateTemperature();
 douaaSlider.init();

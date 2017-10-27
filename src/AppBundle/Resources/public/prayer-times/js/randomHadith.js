@@ -28,7 +28,7 @@ var randomHadith = {
                     if (resp.text !== "") {
                         $randomHadithEl.removeClass("random-hadith-fr");
                         $(".random-hadith .text div").text(resp.text);
-                        if (resp.lang === "fr") {
+                        if (resp.lang !== "ar") {
                             $randomHadithEl.addClass("random-hadith-fr");
                         }
                         randomHadith.show(randomHadith.setFontSize, resp.lang);
@@ -48,12 +48,8 @@ var randomHadith = {
         randomHadith.isRunning = true;
         prayer.nextPrayerCountdown();
         randomHadith.topContentHeight = $(".top-content").css("height");
-        $(".top-content .content").fadeOut(1000, function () {
-            $(".header").hide();
-            $(".temperature").hide();
+        $(".top-content").fadeOut(1000, function () {
             $(".footer").hide();
-            $(".prayer-content").addClass("to-bottom-times");
-            $(".top-content").css("height", "68%");
             $(".random-hadith").fadeIn(1000);
             if (typeof callback !== 'undefined' && typeof lang !== 'undefined') {
                 callback(lang);
@@ -63,12 +59,8 @@ var randomHadith = {
     hide: function () {
         randomHadith.isRunning = false;
         $(".random-hadith").fadeOut(1000, function () {
-            $(".prayer-content").removeClass("to-bottom-times");
             $(".footer").show();
-            $(".header").show();
-            $(".temperature").show();
-            $(".top-content").css("height", randomHadith.topContentHeight);
-            $(".top-content .content").fadeIn(1000);
+            $(".top-content").fadeIn(1000);
         });
     },
     setFontSize: function (lang) {
@@ -76,7 +68,7 @@ var randomHadith = {
         var $textContainerDiv = $('.random-hadith .text div');
         $textContainerDiv.css('font-size', '150px');
         $textContainerDiv.css('line-height', '300px');
-        if (lang === "fr") {
+        if (lang !== "ar") {
             $textContainerDiv.css('line-height', '140%');
         }
         while ($textContainerDiv.height() > $textContainer.height()) {

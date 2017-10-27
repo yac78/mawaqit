@@ -275,10 +275,22 @@ var prayer = {
                 prayer.loadTimes();
                 prayer.setTimes();
                 prayer.initNextTimeHilight();
+                prayer.setCustomTime();
             }
 
-            prayer.setCustomTime();
         }, prayer.oneMinute);
+    },
+    /**
+     * Reload page every day at 2 o'clock to prevent any graphical bug
+     * Reload only if internet connection available
+     */
+    initCronReloadPage: function () {
+        setInterval(function () {
+            var date = new Date();
+            if (date.getHours() === 2) {
+                reloadIfConnected();
+            }
+        }, 60 * prayer.oneMinute);
     },
     /**
      * Check every minute if athan time is ok
@@ -785,7 +797,7 @@ var prayer = {
     },
     hideSpinner: function () {
         $(".main").fadeIn(1000, function () {
-            $(".spinner").hide();
+            $("#spinner").hide();
         });
     },
     /**
