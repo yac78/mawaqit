@@ -170,14 +170,16 @@ class Configuration {
     private $longitude;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $timezone = 'auto';
+    private $timezone = 1;
 
     /**
-     * @var string
+     * @var integer
+     * default to 2 = auto
+     * possible values 0,1,2
      */
-    private $dst = 'auto';
+    private $dst = 2;
 
     /**
      * @var int
@@ -646,7 +648,7 @@ class Configuration {
     }
 
     function getDst() {
-        return $this->dst;
+        return $this->dst === 2 ? "auto" : $this->dst;
     }
 
     function setDst($dst) {

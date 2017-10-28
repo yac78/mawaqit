@@ -101,7 +101,9 @@ var dateTime = {
      * @returns {Boolean}
      */
     isDst: function () {
-        return (new Date()).dst();
+        var date  = new Date();
+        date.setHours(4);
+        return date.dst();
     },
     /**
      * true if date is last sunday of march or october

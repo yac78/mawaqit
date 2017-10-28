@@ -134,7 +134,10 @@ configuration:
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
         dst: 
             label: Heure d'été
-            title: Laissez à 'auto' si vous souhaitez que le changement d'heure été/hiver s'éffectue automatiquement
+            title: |
+                Si votre pays applique le changement d'heure d'été, activez cette option. 
+                Si vous souhaitez que les horaires suivent automatiquement le changement d'heure mettez auto.
+                Pour information l'image système fournie sur notre site est réglée sur la France (changement d'heure auto)                
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqâmah (en secondes)
         hijriDateEnabled: 
@@ -224,7 +227,7 @@ ar: Arabe
 fr: Français
 en: Anglais  
 both: Arabe et Français
-auto: Auto (Géré par le raspberry)
+auto: Auto (Dépend du réglage système du raspberry)
 enabled: Activé
 disabled: Désactivé
 send: Envoyer

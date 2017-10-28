@@ -129,9 +129,7 @@ var prayer = {
             date = dateTime.tomorrow();
         }
 
-        var timezone = prayer.confData.timezone == parseInt(prayer.confData.timezone) ? parseInt(prayer.confData.timezone) : 'auto';
-        var dst = prayer.confData.dst == parseInt(prayer.confData.dst) ? parseInt(prayer.confData.dst) : 'auto';
-        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], timezone, dst);
+        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, prayer.confData.dst);
 
         this.times = {
             1: pt.fajr,
@@ -210,12 +208,19 @@ var prayer = {
         });
     },
     /**
-     * +1|-1 hour for time depending DST
+     * +1|-1 hour on time for calendar times
+     * Condition 1 : on calendar prayers
+     * Condition 2 : if dst enabled or auto and system is dst zone
+     * Condition 3 : if we are in last synday of march or october
      * @param {String} time
      * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
-        if (prayer.confData.calculChoice === "calendar" && dateTime.isLastSundayDst()) {
+        var applyConvertion = prayer.confData.calculChoice === "calendar" && 
+                (prayer.confData.dst === 1 || (prayer.confData.dst === "auto" && dateTime.isDst())) 
+                && dateTime.isLastSundayDst() ;
+        
+        if (applyConvertion) {
             time = time.split(":");
             var hourPrayerTime = Number(time[0]) + (dateTime.getCurrentMonth() === 2 ? 1 : -1);
             var minutePrayerTime = time[1];

@@ -36,7 +36,6 @@ class ConfigurationType extends AbstractType {
      * @var Array 
      */
     private static $timezones = [
-        "auto" => "auto",
         "-12" => "(GMT-12:00) International Date Line West",
         "-11" => "(GMT-11:00) Midway Island, Samoa",
         "-10" => "(GMT-10:00) Hawaii",
@@ -76,9 +75,9 @@ class ConfigurationType extends AbstractType {
      * @var Array 
      */
     private static $dstChoices = [
-        "auto" => "auto",
-        "disabled" => "0",
-        "enabled" => "1"
+        "auto" => 2,
+        "disabled" => 0,
+        "enabled" => 1
     ];
 
     public function __construct(GoogleService $googleService, TranslatorInterface $translator) {
@@ -356,25 +355,13 @@ class ConfigurationType extends AbstractType {
     }
 
     public function onPostSetData(FormEvent $event) {
-        /**
-         * @var Configuration
-         */
+        /** @var Configuration $configuration */
         $configuration = $event->getData();
-        if ($configuration->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
-            $configuration->setFajrDegree(null);
-            $configuration->setIshaDegree(null);
-        }
-
+        
         // update gps coordinates
         $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
         $configuration->setLongitude($position->lng);
         $configuration->setLatitude($position->lat);
-        if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
-            if (is_null($configuration->getTimezone())) {
-                $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
-                $configuration->setTimezone($timezone);
-            }
-        }
     }
 
     /**

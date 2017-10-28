@@ -31,20 +31,6 @@ class GoogleService extends GoogleApi {
         $this->logger->error("Impossible de localiser l'adresse $address");
         throw new GooglePositionException();
     }
-    
-    /**
-     * @return integer
-     */
-    function getTimezoneOffset($longitude, $latitude) {
-        $url = self::PATH_TEMEZONE . "?location=$latitude,$longitude&timestamp=".time();
-        $res = $this->get($url);
-
-        if ($res instanceof \stdClass && isset($res->rawOffset)) {
-            return $res->rawOffset/3600;
-        }
-        
-        $this->logger->error("Impossible de récupérer le timezone de longitude = $longitude et latitude = $latitude");
-    }
 
     function setLogger(Logger $logger) {
         $this->logger = $logger;
