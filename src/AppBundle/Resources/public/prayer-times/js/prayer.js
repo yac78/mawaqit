@@ -200,7 +200,7 @@ var prayer = {
     dstConvertTimeForCalendarMode: function (time) {
         if (prayer.confData.calculChoice === "calendar" && dateTime.isLastSundayDst()) {
             time = time.split(":");
-            var hourPrayerTime = Number(time[0]) + (dateTime.getCurrentMonth() === 3 ? 1 : -1);
+            var hourPrayerTime = Number(time[0]) + (dateTime.getCurrentMonth() === 2 ? 1 : -1);
             var minutePrayerTime = time[1];
             time = addZero(hourPrayerTime) + ':' + minutePrayerTime;
         }

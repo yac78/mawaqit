@@ -71,27 +71,6 @@
                     {{ form_row(form.adjustedTimes.isha) }}
                 </div> 
             </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    {{ form_label(form.fixedTimes) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.fixedTimes.fajr) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.fixedTimes.zuhr) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.fixedTimes.asr) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.fixedTimes.maghrib) }}
-                </div> 
-                <div class="col-md-2">
-                    {{ form_row(form.fixedTimes.isha) }}
-                </div> 
-            </div> 
         </div>
 
         <div class="calendar hidden">
@@ -216,6 +195,26 @@
         </div>
 
         <div class="row">
+            <div class="col-md-12">
+                {{ form_label(form.fixedTimes) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_row(form.fixedTimes.fajr) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_row(form.fixedTimes.zuhr) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_row(form.fixedTimes.asr) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_row(form.fixedTimes.maghrib) }}
+            </div> 
+            <div class="col-md-2">
+                {{ form_row(form.fixedTimes.isha) }}
+            </div> 
+        </div> 
+        <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.hijriAdjustment) }}
                 {{ form_widget(form.hijriAdjustment) }}
@@ -249,7 +248,7 @@
             <div class="col-md-2">
                 {{ form_label(form.backgroundColor) }}
                 <input class="form-control" type="color" name="appbundle_configuration[backgroundColor]" value="{{mosque.configuration.backgroundColor}}">
-                
+
             </div>
         </div>
         <br>
