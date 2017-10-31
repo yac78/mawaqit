@@ -143,7 +143,7 @@
                                     <i class="fa fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
+                            <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
                         </a>
                         <div class="portfolio-caption">
                             <h4>{{mosque.name}} - {{mosque.city}} {{mosque.country}} </h4>
@@ -154,7 +154,7 @@
             </div>
             {% if app.request.get('mosque_nb') != 'all' %}
                 <div class="row text-center">
-                    <a href="{{path("homepage", {'mosque_nb':'all'})}}#mosquees" type="button" class="page-scroll btn btn-xl">Voir plus</a>
+                    <a href="{{path("homepage", {'mosque_nb':'all'})}}#mosquees" class="page-scroll btn btn-xl">Voir plus</a>
                 </div>
             {% endif %}
     </section>
@@ -178,14 +178,12 @@
                                 <div class="modal-body">
                                     <h2>{{mosque.name}} - {{mosque.city}}</h2>
                                     <p class="item-intro text-muted">{{mosque.associationName}}</p>
-                                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
-                                    {#<p>{{mosque.comment}}</p>#}
-
+                                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
                                     <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file2') }}">
                                     <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file3') }}">
 
                                     <ul class="list-inline">
-                                        <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li> <br>
+                                        <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li>
                                         <li>Consultez les horaires: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
                                     </ul>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
@@ -334,11 +332,16 @@
                             <p>vous pouvez après configurer les horaires de votre mosquée.<br></p>
                             <p>
                                 <strong>Important :</strong>
-                                Le Raspberry acheté nu ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet de garder l'heure correctement réglée 
-                                quand le raspberry est éteint.<br>
-                                Il est donc conseillé d'équiper le raspberry <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">d'horloge RTC</a>
-                                si vous ne comptez pas le connecter à internet, cela évitera en cas de copure de courant de garder l'heure système. 
-                                Il suffit de la brancher comme illustré ci-dessous et taper la commande <code>sudo hwclock -w</code> dans LXTerminal<br><br>
+                                Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet de garder l'heure correctement réglée 
+                                quand il est éteint.<br>
+                                Il est donc conseillé d'équiper le raspberry 
+                                <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+                                    d'une horloge RTC
+                                </a>
+                                si vous ne comptez pas le connecter à internet, cela évitera en cas de copure de courant de perdre l'heure système. 
+                                Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans LXTerminal<br>
+                                <code>sudo date -s "yyyy-mm-dd hh:mm:ss"</code>  exemple: <code>sudo date -s "{{"now"|date("Y-m-d H:m:s")}}"</code> <br>
+                                <code>sudo hwclock -w</code> <br><br>
                                 <img class="img-responsive img-centered" style="width: auto" src="{{ asset('bundles/app/agency/img/raspberry-rtc.jpg') }}" alt=""><br>
                             </p>
                         </div>

@@ -276,14 +276,6 @@ body {
     line-height: 300px;
 }
 
-.to-bottom-times
-{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 .time-bottom{
     font-size: 450%;
     position: absolute;

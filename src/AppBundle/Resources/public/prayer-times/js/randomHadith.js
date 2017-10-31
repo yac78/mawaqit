@@ -5,7 +5,6 @@
  * It will be shwon every 5 min, except in prayer moment
  */
 var randomHadith = {
-    topContentHeight: null,
     init: function () {
         if (prayer.confData.randomHadithEnabled) {
             setInterval(function () {
@@ -45,9 +44,7 @@ var randomHadith = {
         }
     },
     show: function (callback, lang) {
-        randomHadith.isRunning = true;
         prayer.nextPrayerCountdown();
-        randomHadith.topContentHeight = $(".top-content").css("height");
         $(".top-content").fadeOut(1000, function () {
             $(".footer").hide();
             $(".random-hadith").fadeIn(1000);
@@ -57,7 +54,6 @@ var randomHadith = {
         });
     },
     hide: function () {
-        randomHadith.isRunning = false;
         $(".random-hadith").fadeOut(1000, function () {
             $(".footer").show();
             $(".top-content").fadeIn(1000);

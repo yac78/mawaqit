@@ -56,8 +56,10 @@
                             <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span>
                         </td>
                         <td>
-                            <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-                                {% include 'partial/delete_button.html.twig' with {entity: message} %}
+                            <div class="btn-action">
+                                <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-primary" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
+                            </div>
+                            {% include 'partial/delete_button.html.twig' with {entity: message} %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -76,8 +78,10 @@
                 </div>     
 
                 <div class="col-xs-2">
-                    <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-                        {% include 'partial/delete_button.html.twig' with {entity: message} %}
+                    <div class="btn-action">
+                        <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-primary btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
+                    </div>
+                    {% include 'partial/delete_button.html.twig' with {entity: message} %}
                 </div>     
             </div>     
         {% endfor %}

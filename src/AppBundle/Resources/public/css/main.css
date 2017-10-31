@@ -23,6 +23,36 @@ body {
     color: white;
 }
 
-.btn-action{
-    margin-bottom: 3px
+.modal-header {
+    padding:15px;
+    color: #FFF;
+    background-color: #449d3c;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.btn-action {
+    float: left;
+    margin: 3px 5px 0 0;
+    width: 40px;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+.mt-2 {
+    margin-top: 2rem;
+}
+.mt-3 {
+    margin-top: 3rem;
+}
+.mt-4 {
+    margin-top: 4rem;
+}
+.mt-5 {
+    margin-top: 2rem;
 }

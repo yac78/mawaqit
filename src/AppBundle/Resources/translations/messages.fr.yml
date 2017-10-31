@@ -10,7 +10,7 @@ form:
         action: Supprimer
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
-        action: "Configurer le horaires de la mosquée"
+        action: "Configurer les horaires de la mosquée"
         geocode_error: Impossible de géolocaliser votre mosquée. Veuillez vérifier l'orthographe de votre ville et code postal ("%address%") 
             
 registration:
@@ -21,6 +21,9 @@ mosque:
     add_new: Ajouter une mosquée
     add: Ajout d'une nouvelle mosquée
     name: Nom de la mosquée
+    refresh: | 
+                Recharger la page de l'écran à distance. 
+                En cas de soucis particulier (écran figé ou bug graphique) vous pouvez forcer le rechargement de l'écran.
     force_update_all:
         action: Forcer la MAJ
         success: Toutes les mosquées ont bien été forcées de se mettre à jour
@@ -43,12 +46,12 @@ mosque:
             label: Image 3
 
 message:
-    mosque: Annonces de la moquée "%mosque%"
+    mosque: Annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%
-    manage: Gérer vos annonces et évènements
-    info: Les annonces défileront  sur l'écran, avant et après chaque prière.
-    maj_alert: Attention ! Les annonces écrites entièrement en majuscule peuvent déborder sur l'écran.
+    manage: Gérer les annonces
+    info: Les annonces défileront sur l'écran, avant et après chaque prière. Vous avez la possibilité d'ajouter jusqu'à 8 annonces activées à la fois.
+    maj_alert: Attention ! Les annonces écrites entièrement en majuscule peuvent s'afficher tronquées.
     add_max_reached: |
         Vous avez atteint le nombre maximum autorisé d'annonces activées (8 Max), 
         pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes. 
@@ -280,7 +283,7 @@ hi: Bonjour %name%
 salam: 'Essalamu `alaykom %name%'
 user: Utilisateur
 active: Activé ?
-delete_element_question: Êtes-vous sûr de vouloir supprimer cette élément ?
+delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
 forgot_password: Mot de passe oublié ?
 resetting_password: Réinitialiser votre mot de passe
 changing_password: Modifier votre mot de passe

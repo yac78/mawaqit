@@ -1,8 +1,11 @@
 $("#user_enabled").change(function (event) {
     $.ajax({
-        url: "../enable/" + $(this).data('id') + '/' + $(this).is(':checked'),
-        success: function (resp) {
-             console.log($(this).is(':checked'));
+        url: $(this).data('url').replace('#status#', $(this).is(':checked')),
+        success: function () {
+             showModal("Utilisateur maj avec succès");
+        },
+        error: function () {
+            showModal("Une erreur est survenue");
         }
     });
 });
