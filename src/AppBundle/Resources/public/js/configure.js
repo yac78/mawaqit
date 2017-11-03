@@ -87,7 +87,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         var panelId = panel.attr("id");
         var month = panelId.split('_');
         month = month[1];
-        var lines = csv.split(/\r|\n/);
+        var lines = csv.split(/(?:\r?\n)/g);
         for (var day = 1; day < lines.length; day++) {
             var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
