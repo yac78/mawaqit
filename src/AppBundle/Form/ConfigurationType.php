@@ -337,7 +337,7 @@ class ConfigurationType extends AbstractType {
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
                     'attr' => [
-                        'class' => 'btn btn-primary',
+                        'class' => 'btn btn-lg btn-primary',
                     ]
                 ])
                 ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'))

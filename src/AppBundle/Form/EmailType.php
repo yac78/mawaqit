@@ -29,7 +29,7 @@ class EmailType extends AbstractType {
                 ->add('send', SubmitType::class, [
                     'label' => 'send',
                     'attr' => [
-                        'class' => 'btn btn-primary',
+                        'class' => 'btn  btn-lg btn-primary',
                     ]
                 ])
         ;

@@ -24,9 +24,9 @@
         </div>
         <div class="col-md-3 col-xs-12 text-right">
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{path('mosque_force_update_all')}}" class="btn btn-danger">{{'mosque.force_update_all.action'|trans}}</a>
+                <a href="{{path('mosque_force_update_all')}}" class="btn btn-danger" title="Recharger l'écran de toutes les mosquées"><i class="fa fa-refresh"></i> {{'mosque.force_update_all.action'|trans}}</a>
             {% endif %}
-            <a href="{{path('mosque_create')}}" class="btn btn-primary">{{'mosque.add_new'|trans}}</a>
+            <a href="{{path('mosque_create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> {{'mosque.add_new'|trans}}</a>
         </div>
     </div>
 
