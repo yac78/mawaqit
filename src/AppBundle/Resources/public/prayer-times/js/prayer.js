@@ -108,11 +108,14 @@ var prayer = {
      */
     loadTimesFromApi: function (tomorrow) {
         var prayTimes = new PrayTimes(prayer.confData.prayerMethod);
-        if (prayer.confData.fajrDegree) {
-            prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
-        }
-        if (prayer.confData.ichaaDegree) {
-            prayTimes.adjust({"isha": parseFloat(prayer.confData.ichaaDegree)});
+
+        if (prayer.confData.prayerMethod === "CUSTOM") {
+            if (prayer.confData.fajrDegree) {
+                prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
+            }
+            if (prayer.confData.ichaaDegree) {
+                prayTimes.adjust({"isha": parseFloat(prayer.confData.ichaaDegree)});
+            }
         }
 
         // times adjustment
@@ -190,36 +193,36 @@ var prayer = {
      */
     nextPrayerCountdown: function () {
         var date = new Date();
+        // by default we countdwon the next day fajr
+        var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
+        tomorrowFajrDate.setDate(tomorrowFajrDate.getDate() + 1);
+        var countDownDate = tomorrowFajrDate;
+
         $.each(prayer.getTimes(), function (index, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             if (prayerDateTime.getHours() !== 0 && date < prayerDateTime) {
-                $(".next-prayer .countdown").countdown(prayerDateTime, function (event) {
-                    $(this).text(event.strftime('%H:%M'));
-                });
+                countDownDate = prayerDateTime;
                 return false;
             }
+        });
 
-            // if no prayer selected we countwon the next day fajr
-            var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
-            tomorrowFajrDate.setDate(tomorrowFajrDate.getDate() + 1);
-            $(".next-prayer .countdown").countdown(tomorrowFajrDate, function (event) {
-                $(this).text(event.strftime('%H:%M'));
-            });
+        $(".next-prayer .countdown").countdown(countDownDate, function (event) {
+            $(this).text(event.strftime('%H:%M'));
         });
     },
     /**
      * +1|-1 hour on time for calendar times
      * Condition 1 : on calendar prayers
-     * Condition 2 : if dst enabled or auto and system is dst zone
+     * Condition 2 : if dst enabled or auto 
      * Condition 3 : if we are in last synday of march or october
      * @param {String} time
      * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
-        var applyConvertion = prayer.confData.calculChoice === "calendar" && 
-                (prayer.confData.dst === 1 || (prayer.confData.dst === "auto" && dateTime.isDst())) 
-                && dateTime.isLastSundayDst() ;
-        
+        var applyConvertion = prayer.confData.calculChoice === "calendar" &&
+                prayer.confData.dst !== 0 &&
+                dateTime.isLastSundayDst();
+
         if (applyConvertion) {
             time = time.split(":");
             var hourPrayerTime = Number(time[0]) + (dateTime.getCurrentMonth() === 2 ? 1 : -1);
