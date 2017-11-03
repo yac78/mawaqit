@@ -12,6 +12,8 @@ AppBundle\Entity\Mosque:
             - NotBlank: ~
             
 AppBundle\Entity\Configuration:
+    constraints:
+        - AppBundle\Validator\Constraints\Configuration: ~
     properties:
         hadithLang:
             - Choice: {callback : "getHadithLangs"}
