@@ -10,7 +10,7 @@ $(document).ready(function () {
     $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
     $("#appbundle_configuration_noJumua").trigger("change");
     $("#appbundle_configuration_randomHadithEnabled").trigger("change");
-    $("#appbundle_configuration_jumuaDhikrReminderEnabled, #appbundle_configuration_jumuaBlackScreenEnabled").trigger("change");
+    $(".jumuaTimeoutHandler input").trigger("change");
 
     checkAndHilightIncompletedMonths();
     handleErrorsDisplay();
@@ -170,12 +170,17 @@ $("#appbundle_configuration_noJumua").bind("change", function (event) {
 /**
  * jumu`a Reminder an blackScreen checkbox handling
  */
-$("#appbundle_configuration_jumuaDhikrReminderEnabled, #appbundle_configuration_jumuaBlackScreenEnabled").bind("change", function (event) {
-    if ($(this).is(":checked")) {
-        $("#appbundle_configuration_jumuaTimeout").parent().show();
-    } else {
-        $("#appbundle_configuration_jumuaTimeout").parent().hide();
-    }
+$(".jumuaTimeoutHandler input").bind("change", function () {
+    var $jumuaTimeoutParent = $("#appbundle_configuration_jumuaTimeout").parent();
+    $jumuaTimeoutParent.hide();
+
+    $(".jumuaTimeoutHandler input").each(function (i, e) {
+        if ($(e).is(":checked")) {
+            $jumuaTimeoutParent.show();
+            return false;
+        }
+    })
+
 });
 
 $("#appbundle_configuration_randomHadithEnabled").bind("change", function (event) {
