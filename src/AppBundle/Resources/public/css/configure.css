@@ -10,6 +10,7 @@
 
 .checkbox label, .radio label {
     font-weight: 700; 
+    padding-left: 12px;
 }
 
 label {

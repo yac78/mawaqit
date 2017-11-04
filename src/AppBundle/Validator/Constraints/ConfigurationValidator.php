@@ -14,7 +14,7 @@ class ConfigurationValidator extends ConstraintValidator {
                 $value->getSourceCalcul() === Configuration::SOURCE_API &&
                 $value->getPrayerMethod() === Configuration::METHOD_CUSTOM
         ) {
-            if (empty($value->getFajrDegree()) || empty($value->getIshDegree())) {
+            if (empty($value->getFajrDegree()) || empty($value->getIshaDegree())) {
                 $this->context->buildViolation($constraint->message)->addViolation();
             }
         }
