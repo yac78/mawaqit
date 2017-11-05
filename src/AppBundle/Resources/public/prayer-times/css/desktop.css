@@ -218,15 +218,15 @@ body {
     font-family: Arial;
     font-size: 20px;
     color: #adadad;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 5px;
 }
 
 .qr-code{
-    position: absolute;
+    position: fixed;
     bottom: 10px;
-    left: 5px;
+    left: 10px;
     background-color: #fff;
     border: solid 1px #fff;
 }
@@ -249,7 +249,7 @@ body {
 }
 
 .footer-text{
-    position: absolute;
+    position: fixed;
     bottom: 5px;
     left: 0;
     right: 0;
@@ -305,7 +305,7 @@ body {
     right: 5px;
     font-size: 600%;
     color: yellowgreen;
-    position: absolute;
+    position: fixed;
 }
 
 .red{
@@ -318,4 +318,15 @@ body {
 
 .blue{
     color: #3498db ;
+}
+
+.btn-settings{
+    position: fixed;
+    top: 5px;
+    left: 10px;
+    font-size: 300%;
+}
+
+.btn-settings a {
+    color: #fff;
 }
