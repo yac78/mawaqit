@@ -92,7 +92,7 @@ var dateTime = {
     getLastSundayOfMonth: function (month) {
         var date = new Date();
         date.setMonth(month);
-        date.setDate(30);
+        date.setDate(31);
         date.setDate(date.getDate() - date.getDay());
         return date.getDate();
     },
@@ -101,7 +101,9 @@ var dateTime = {
      * @returns {Boolean}
      */
     isDst: function () {
-        return (new Date()).dst();
+        var date  = new Date();
+        date.setHours(4);
+        return date.dst();
     },
     /**
      * true if date is last sunday of march or october
@@ -124,6 +126,7 @@ var dateTime = {
     tomorrow: function () {
         var date = new Date();
         date.setDate(date.getDate() + 1);
+        date.setHours(3);
         return date;
     }
 };

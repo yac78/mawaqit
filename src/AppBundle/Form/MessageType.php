@@ -49,7 +49,7 @@ class MessageType extends AbstractType {
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
                     'attr' => [
-                        'class' => 'btn btn-primary',
+                        'class' => 'btn btn-lg btn-primary',
                     ]
                 ])
         ;

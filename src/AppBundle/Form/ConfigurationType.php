@@ -36,7 +36,6 @@ class ConfigurationType extends AbstractType {
      * @var Array 
      */
     private static $timezones = [
-        "auto" => "auto",
         "-12" => "(GMT-12:00) International Date Line West",
         "-11" => "(GMT-11:00) Midway Island, Samoa",
         "-10" => "(GMT-10:00) Hawaii",
@@ -76,9 +75,9 @@ class ConfigurationType extends AbstractType {
      * @var Array 
      */
     private static $dstChoices = [
-        "auto" => "auto",
-        "disabled" => "0",
-        "enabled" => "1"
+        "auto" => 2,
+        "disabled" => 0,
+        "enabled" => 1
     ];
 
     public function __construct(GoogleService $googleService, TranslatorInterface $translator) {
@@ -227,6 +226,12 @@ class ConfigurationType extends AbstractType {
                         'title' => $this->translator->trans('configuration.form.dst.title'),
                     ],
                 ])
+                ->add('hadithLang', ChoiceType::class, [
+                    'required' => true,
+                    'label' => 'configuration.form.hadithLang.label',
+                    'choices' => array_combine(Configuration::HADITH_LANG, Configuration::HADITH_LANG),
+                    'choice_translation_domain' => true
+                ])
                 ->add('hijriDateEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.hijriDateEnabled.label',
@@ -321,6 +326,9 @@ class ConfigurationType extends AbstractType {
                 ->add('temperatureEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.temperatureEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.temperatureEnabled.title'),
+                    ]
                 ])
                 ->add('backgroundColor', null, [
                     'label' => 'configuration.form.backgroundColor.label',
@@ -329,7 +337,7 @@ class ConfigurationType extends AbstractType {
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
                     'attr' => [
-                        'class' => 'btn btn-primary',
+                        'class' => 'btn btn-lg btn-primary',
                     ]
                 ])
                 ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'))
@@ -347,25 +355,13 @@ class ConfigurationType extends AbstractType {
     }
 
     public function onPostSetData(FormEvent $event) {
-        /**
-         * @var Configuration
-         */
+        /** @var Configuration $configuration */
         $configuration = $event->getData();
-        if ($configuration->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
-            $configuration->setFajrDegree(null);
-            $configuration->setIshaDegree(null);
-        }
-
+        
         // update gps coordinates
         $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
         $configuration->setLongitude($position->lng);
         $configuration->setLatitude($position->lat);
-        if ($configuration->getSourceCalcul() === Configuration::SOURCE_API) {
-            if (is_null($configuration->getTimezone())) {
-                $timezone = $this->googleService->getTimezoneOffset($position->lng, $position->lat);
-                $configuration->setTimezone($timezone);
-            }
-        }
     }
 
     /**

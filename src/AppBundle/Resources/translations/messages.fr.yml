@@ -10,16 +10,20 @@ form:
         action: Supprimer
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
-        action: "Configurer le horaires de la mosquée"
+        action: "Configurer les horaires de la mosquée"
         geocode_error: Impossible de géolocaliser votre mosquée. Veuillez vérifier l'orthographe de votre ville et code postal ("%address%") 
             
 registration:
     registration: Inscription
+    password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 
 mosque:
     add_new: Ajouter une mosquée
     add: Ajout d'une nouvelle mosquée
     name: Nom de la mosquée
+    refresh: | 
+                Recharger la page de l'écran à distance. 
+                En cas de soucis particulier (écran figé ou bug graphique) vous pouvez forcer le rechargement de l'écran.
     force_update_all:
         action: Forcer la MAJ
         success: Toutes les mosquées ont bien été forcées de se mettre à jour
@@ -42,12 +46,12 @@ mosque:
             label: Image 3
 
 message:
-    mosque: Annonces de la moquée "%mosque%"
+    mosque: Annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%
-    manage: Gérer vos annonces et évènements
-    info: Les annonces défileront  sur l'écran, avant et après chaque prière.
-    maj_alert: Attention ! Les annonces écrites entièrement en majuscule peuvent déborder sur l'écran.
+    manage: Gérer les annonces
+    info: Les annonces défileront sur l'écran, avant et après chaque prière. Vous avez la possibilité d'ajouter jusqu'à 8 annonces activées à la fois.
+    maj_alert: Attention ! Les annonces écrites entièrement en majuscule peuvent s'afficher tronquées.
     add_max_reached: |
         Vous avez atteint le nombre maximum autorisé d'annonces activées (8 Max), 
         pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes. 
@@ -73,7 +77,11 @@ configuration:
             Attention le calendrier de votre mosquée n'est pas encore complété.
     form: 
         prayerCalcul: Calcul des horaires de prière
-        load_predefined_calendar: Chargez un calendrier pré-défini parmis la liste suivante
+        load_predefined_calendar: 
+            1: "Vous avez le choix entre les 2 options suivantes :"
+            2: Charger un calendrier pré-défini parmis la liste ci-dessous puis l'éditer par rapport à votre calendrier papier
+            3: Charger les horaires depuis un fichier texte type CSV pour chaque mois de l'année
+             
         fill_calendar:
             success: Les horaires du mois on été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis.
@@ -117,8 +125,8 @@ configuration:
             label: Fixation des horaires
             title: "Exemple: fixer `isha en hiver à 19:00, tant que l'horaire est en dessous de la valeur saisie c'est cette dernière qui sera prise en compte"
         duaAfterPrayerShowTimes: 
-            label: Temps avant affichage des invocations post prière (en minute)
-            title: Ces valeurs sont à titre estimatif, ça permet d'afficher les invocations après que l'imam termine la prière
+            label: Durée estimée de chaque prière (en minute)
+            title: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour terminer une prière
         hijriAdjustment: 
             label: Ajustement de la date hégire
         timezone: 
@@ -126,23 +134,26 @@ configuration:
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
         dst: 
             label: Heure d'été
-            title: Laissez à 'auto' si vous souhaitez que le changement d'heure été/hiver s'éffectue automatiquement
+            title: |
+                Si votre pays applique le changement d'heure d'été, activez cette option. 
+                Si vous souhaitez que les horaires suivent automatiquement le changement d'heure mettez auto.
+                Pour information l'image système fournie sur notre site est réglée sur la France (changement d'heure auto)                
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqâmah (en secondes)
         hijriDateEnabled: 
-            label: Activer la date hégire
+            label: Date hégire
         duaAfterAzanEnabled: 
-            label: Activer du`aa après adhân
+            label: Du`aa après adhân
         duaAfterPrayerEnabled: 
-            label: Activer les invocations après salat
+            label: Invocations après salat
         smallScreen: 
             label: Petit écran ?
             title: Cochez cette case si votre écran mesure moins de 32 pouces, cela permettra d'adapter quelques textes
         azanBip: 
             label: Bip quand c'est l'heure du adhân
         azanVoiceEnabled: 
-            label: Activer l'adhân audio (Adhân du Haram)
-            title: Cette option est destinée aux utilisateurs du logiciel à domicile, à l'heure de la prière l'adhân du haram est lancé.
+            label: Adhân audio (Adhân du Haram)
+            title: A l'heure de la prière l'adhân du haram sera lancé.
         iqamaBip: 
             label:  Bip quand c'est l'heure de l'iqâmah
         wakeForFajrTime: 
@@ -150,14 +161,15 @@ configuration:
             title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
         blackScreenWhenPraying: 
             label:  Éteindre l'écran pendant la prière
-            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Temps avant affichage des invocations post prière (en minute)"
+            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Durée estimée de chaque prière (en minute)"
         randomHadithEnabled: 
             label: Afficher aléatoirement un hadith toute les 5 min
             title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
         temperatureEnabled: 
-            label:  Afficher la température
+            label:  Température
+            title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
         urlQrCodeEnabled: 
-            label: Activer le QR code pour le lien du site
+            label: QR code pour le lien du site
             title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien des horaires de prière
         backgroundColor: 
             label: Couleur de fond
@@ -167,6 +179,8 @@ configuration:
         ishaDegree: 
             label: Degré du `isha
             placeholder: Ex. 15
+        hadithLang: 
+            label: Langue des hadiths
         calendar_explication: |
             Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
             Le fichier CSV doit respécter le format suivant : <br><br>
@@ -209,10 +223,11 @@ contact: Contact
 association: Association
 creation_date: Date de création
 search: Recherche
-ar: عربي
+ar: Arabe
 fr: Français
-en: English   
-auto: Auto (Géré par le raspberry)
+en: Anglais  
+both: Arabe et Français
+auto: Auto (Dépend du réglage système du raspberry)
 enabled: Activé
 disabled: Désactivé
 send: Envoyer
@@ -271,7 +286,7 @@ hi: Bonjour %name%
 salam: 'Essalamu `alaykom %name%'
 user: Utilisateur
 active: Activé ?
-delete_element_question: Êtes-vous sûr de vouloir supprimer cette élément ?
+delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
 forgot_password: Mot de passe oublié ?
 resetting_password: Réinitialiser votre mot de passe
 changing_password: Modifier votre mot de passe
@@ -311,5 +326,11 @@ month_11: Décembre
 
 prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
-info_dst_change: Ne pas tenir compte du changement d'heure d'été/hiver, le logiciel s'en chargera en fonction du dernier dimanche du mois de "%month%" de chaque année.
+info_dst_change: |
+    Ne pas tenir compte du changement d'heure été/hiver, 
+    le logiciel s'en occupera en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
+    Saisissez les horaires comme s'il y avait pas de changement d'heure
 other_settings: Autres réglages
+home_settings: Utilisation à domicile
+regional_settings: Paramètres régionaux
+invocations_hadiths: Invocations et hadiths

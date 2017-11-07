@@ -15,6 +15,9 @@ class Configuration {
         self::SOURCE_API,
         self::SOURCE_CALENDAR
     ];
+    const HADITH_LANG = [
+        "ar", "fr", "both"
+    ];
     const METHOD_ISNA = 'ISNA';
     const METHOD_UOIF = 'UOIF';
     const METHOD_Karachi = 'Karachi';
@@ -46,22 +49,22 @@ class Configuration {
      * @var boolean
      */
     private $jumuaAsDuhr = false;
-    
+
     /**
      * @var boolean
      */
     private $noJumua = false;
-    
+
     /**
      * @var boolean
      */
     private $jumuaDhikrReminderEnabled = false;
-    
+
     /**
      * @var boolean
      */
     private $jumuaBlackScreenEnabled = false;
-    
+
     /**
      * @var integer
      */
@@ -167,14 +170,16 @@ class Configuration {
     private $longitude;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $timezone = 'auto';
+    private $timezone = 1;
 
     /**
-     * @var string
+     * @var integer
+     * default to 2 = auto
+     * possible values 0,1,2
      */
-    private $dst = 'auto';
+    private $dst = 2;
 
     /**
      * @var int
@@ -225,11 +230,12 @@ class Configuration {
      * @var bool
      */
     private $smallScreen = false;
-    
+
     /**
      * @var bool
      */
     private $randomHadithEnabled = true;
+
     /**
      * @var bool
      */
@@ -239,7 +245,11 @@ class Configuration {
      * @var string
      */
     private $backgroundColor = "#000000";
-    
+    /**
+     * @var string
+     */
+    private $hadithLang = "both";
+
     /**
      * @var integer
      */
@@ -638,7 +648,7 @@ class Configuration {
     }
 
     function getDst() {
-        return $this->dst;
+        return $this->dst === 2 ? "auto" : $this->dst;
     }
 
     function setDst($dst) {
@@ -866,6 +876,104 @@ class Configuration {
         return $this->sourceCalcul === self::SOURCE_CALENDAR;
     }
 
+
+    /**
+     * @return boolean
+     */
+    function getSmallScreen() {
+        return $this->smallScreen;
+    }
+
+    function setSmallScreen($smallScreen) {
+        $this->smallScreen = $smallScreen;
+    }
+
+    /**
+     * @return string
+     */
+    function getBackgroundColor() {
+        return $this->backgroundColor;
+    }
+
+    function setBackgroundColor($backgroundColor) {
+        $this->backgroundColor = $backgroundColor;
+    }
+
+    function isNoJumua() {
+        return $this->noJumua;
+    }
+
+    function setNoJumua($noJumua) {
+        $this->noJumua = $noJumua;
+    }
+
+    function isJumuaDhikrReminderEnabled() {
+        return $this->jumuaDhikrReminderEnabled;
+    }
+
+    function getJumuaTimeout() {
+        return $this->jumuaTimeout;
+    }
+
+    function setJumuaDhikrReminderEnabled($jumuaDhikrReminderEnabled) {
+        $this->jumuaDhikrReminderEnabled = $jumuaDhikrReminderEnabled;
+    }
+
+    function setJumuaTimeout($jumuaTimeout) {
+        $this->jumuaTimeout = $jumuaTimeout;
+    }
+
+    function isRandomHadithEnabled() {
+        return $this->randomHadithEnabled;
+    }
+
+    function setRandomHadithEnabled($randomHadithEnabled) {
+        $this->randomHadithEnabled = $randomHadithEnabled;
+    }
+
+    function isBlackScreenWhenPraying() {
+        return $this->blackScreenWhenPraying;
+    }
+
+    function setBlackScreenWhenPraying($blackScreenWhenPraying) {
+        $this->blackScreenWhenPraying = $blackScreenWhenPraying;
+    }
+
+    function getWakeForFajrTime() {
+        return $this->wakeForFajrTime;
+    }
+
+    function setWakeForFajrTime($wakeForFajrTime) {
+        $this->wakeForFajrTime = $wakeForFajrTime;
+    }
+
+    function isJumuaBlackScreenEnabled() {
+        return $this->jumuaBlackScreenEnabled;
+    }
+
+    function setJumuaBlackScreenEnabled($jumuaBalckScreenEnabled) {
+        $this->jumuaBlackScreenEnabled = $jumuaBalckScreenEnabled;
+    }
+
+    function isTemperatureEnabled() {
+        return $this->temperatureEnabled;
+    }
+
+    function setTemperatureEnabled($temperatureEnabled) {
+        $this->temperatureEnabled = $temperatureEnabled;
+    }
+
+    function getHadithLang() {
+        return $this->hadithLang;
+    }
+
+    function setHadithLang($hadithLang) {
+        $this->hadithLang = $hadithLang;
+    }
+    
+    function getHadithLangs() {
+        return self::HADITH_LANG;
+    }
     /**
      * Get formated array config for js use
      * @return array
@@ -909,96 +1017,7 @@ class Configuration {
             "blackScreenWhenPraying" => $this->isBlackScreenWhenPraying(),
             "wakeForFajrTime" => $this->getWakeForFajrTime(),
             "urlQrCodeEnabled" => $this->getUrlQrCodeEnabled(),
-            "temperatureEnabled" => $this->isTemperatureEnabled(),
+            "temperatureEnabled" => $this->isTemperatureEnabled()
         ];
     }
-
-    /**
-     * @return boolean
-     */
-    function getSmallScreen() {
-        return $this->smallScreen;
-    }
-
-    function setSmallScreen($smallScreen) {
-        $this->smallScreen = $smallScreen;
-    }
-
-    /**
-     * @return string
-     */
-    function getBackgroundColor() {
-        return $this->backgroundColor;
-    }
-
-    function setBackgroundColor($backgroundColor) {
-        $this->backgroundColor = $backgroundColor;
-    }
-
-    function isNoJumua() {
-        return $this->noJumua;
-    }
-
-    function setNoJumua($noJumua) {
-        $this->noJumua = $noJumua;
-    }
-    
-    function isJumuaDhikrReminderEnabled() {
-        return $this->jumuaDhikrReminderEnabled;
-    }
-
-    function getJumuaTimeout() {
-        return $this->jumuaTimeout;
-    }
-
-    function setJumuaDhikrReminderEnabled($jumuaDhikrReminderEnabled) {
-        $this->jumuaDhikrReminderEnabled = $jumuaDhikrReminderEnabled;
-    }
-
-    function setJumuaTimeout($jumuaTimeout) {
-        $this->jumuaTimeout = $jumuaTimeout;
-    }
-    
-    function isRandomHadithEnabled() {
-        return $this->randomHadithEnabled;
-    }
-
-    function setRandomHadithEnabled($randomHadithEnabled) {
-        $this->randomHadithEnabled = $randomHadithEnabled;
-    }
-
-    function isBlackScreenWhenPraying() {
-        return $this->blackScreenWhenPraying;
-    }
-
-    function setBlackScreenWhenPraying($blackScreenWhenPraying) {
-        $this->blackScreenWhenPraying = $blackScreenWhenPraying;
-    }
-    
-    function getWakeForFajrTime() {
-        return $this->wakeForFajrTime;
-    }
-
-    function setWakeForFajrTime($wakeForFajrTime) {
-        $this->wakeForFajrTime = $wakeForFajrTime;
-    }
-    
-    function isJumuaBlackScreenEnabled() {
-        return $this->jumuaBlackScreenEnabled;
-    }
-
-    function setJumuaBlackScreenEnabled($jumuaBalckScreenEnabled) {
-        $this->jumuaBlackScreenEnabled = $jumuaBalckScreenEnabled;
-    }
-
-    function isTemperatureEnabled() {
-        return $this->temperatureEnabled;
-    }
-
-    function setTemperatureEnabled($temperatureEnabled) {
-        $this->temperatureEnabled = $temperatureEnabled;
-    }
-
-
-
 }

@@ -80,9 +80,10 @@ AppBundle\Entity\Configuration:
             type: float
             nullable: true            
         timezone:
-            type: string
-            length: 50
+            type: smallint
         dst:
+            type: smallint
+        hadithLang:
             type: string
             length: 50
         fajrDegree:

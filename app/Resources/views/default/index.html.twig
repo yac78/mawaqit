@@ -27,14 +27,14 @@
                         <br><br>
                         Notre logiciel est entièrement gratuit et open source, il est accessible sur github à l'adresse suivante 
                         <a target="_blank" href="https://github.com/binary010100/prayer-times">https://github.com/binary010100/prayer-times</a><br>
-                        <i style="font-weight: bold" class="fa fa-warning"> TOUTE UTILISATION A BUT LUCRATIF EST STRICTEMENT INTERDITE</i>
+                        <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST STRICTEMENT INTERDITE
                     </p>
                     <br>
                     <h3 class="section-heading">Comment ça fonctionne ?</h3>
                     <p class="text-muted">
-                        Notre logiciel est développé en JavaScript, un langage web très connu, exécuté par un mini ordinateur, le Raspberry Pi 3 ou par n'importe qu'elle autre ordinateur, 
-                        TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet (Firefox ou chrome). En effet le logiciel est une simple page internet est toute l'intelligence est 
-                        concentrée dans du code javascript.
+                        Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini ordinateur, le Raspberry Pi 3 ou par n'importe qu'elle autre ordinateur, 
+                        TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet (Firefox ou chrome). 
+                        En effet le logiciel est une simple page internet est toute l'intelligence est concentrée dans du code javascript.
                     </p>
                     <img src="{{ asset('bundles/app/agency/img/raspberry.jpg') }}" class="img-responsive" style="display: inline" alt="">
                 </div>
@@ -76,7 +76,7 @@
                 <div class="col-md-12">
                     <h4 class="service-heading">Affichage de hadith en dehors des horaires de prière (version connectée uniquement)</h4>
                     <p class="text-muted">
-                        Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du prophète "que la parière d'Allah et son salut soient sur lui", toute les 5 minutes<br>
+                        Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du prophète "que la prière d'Allah et son salut soient sur lui", toute les 5 minutes<br>
                     </p>
                 </div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/hadith-ar.png') }}" class="img-responsive" alt=""><br></div>
@@ -143,7 +143,7 @@
                                     <i class="fa fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
+                            <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive mosque-image" alt="{{mosque.name}}"/>
                         </a>
                         <div class="portfolio-caption">
                             <h4>{{mosque.name}} - {{mosque.city}} {{mosque.country}} </h4>
@@ -154,7 +154,7 @@
             </div>
             {% if app.request.get('mosque_nb') != 'all' %}
                 <div class="row text-center">
-                    <a href="{{path("homepage", {'mosque_nb':'all'})}}#mosquees" type="button" class="page-scroll btn btn-xl">Voir plus</a>
+                    <a href="{{path("homepage", {'mosque_nb':'all'})}}#mosquees" class="page-scroll btn btn-xl">Voir plus</a>
                 </div>
             {% endif %}
     </section>
@@ -178,14 +178,12 @@
                                 <div class="modal-body">
                                     <h2>{{mosque.name}} - {{mosque.city}}</h2>
                                     <p class="item-intro text-muted">{{mosque.associationName}}</p>
-                                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.image1 }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
-                                    {#<p>{{mosque.comment}}</p>#}
-
+                                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
                                     <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file2') }}">
                                     <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file3') }}">
 
                                     <ul class="list-inline">
-                                        <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li> <br>
+                                        <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li>
                                         <li>Consultez les horaires: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
                                     </ul>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
@@ -281,50 +279,75 @@
 
                     <br>
                     <h3>Dernière étape</h3>
-                    <p class="text-muted text-left">Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
-                        <strong>1. Lancer le logiciel embarqué (version non connectée) : </strong>                             
-                        Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br> 
-                        Afin de profiter de la toute dernière version du logiciel, il est recommandé d'exécuter les étapes suivantes : <br>
-                    </p>
-                    <ol class="text-muted text-left">
-                        <li>Quittez le mode plein écran avec F11, puis fermez le logiciel</li>
-                        <li>Sur le bureau double-cliquez sur le fichier <code> upgrade.sh</code> et appuyez sur executer</li>
-                        <li>Redémarrez le raspberry</li>
-                    </ol>
-                    <p class="text-muted text-left">
-                        vous pouvez après configurer les horaires de votre mosquée.<br><br>
-                        <strong>2. Vous avez une connexion internet (WIFI ou Ethernet) dans la mosquée ? 
-                        </strong> Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> qui bénéficie des avantages suivants  <br>
-                    </p>
+                    <div class="text-muted text-left">
+                        <p>Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
+                        </p>
 
-                    <ul class="text-muted text-left">
-                        <li>Pilotage à distance depuis votre smartphone ou n'importe qu'elle ordinateur et tablette</li>
-                        <li>Une version synchronisée sur tous les terminaux, mobile, tablette et écran de la mosquée</li>
-                        <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
-                        <li>Affichage de hadith du prophète "que la parière d'Allah et son salut soient sur lui"</li>
-                        <li>Vous bénificiez des dernières mise à jour automatiquement sans aucune manipulation de votre part</li>
-                    </ul>
-                    <br>
-                    <h4 class="text-muted text-left">
-                        Suivez les étapes ci-dessous : 
-                    </h4>
-                    <ol class="text-muted text-left">
-                        <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('fos_user_registration_register')}}">{{url('fos_user_registration_register')}}</a></li>
-                        <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la fin de cette étape</li>
-                        <li>Démmarez le raspberry et branchez un clavier et une souris usb</li>
-                        <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
-                        <li>
-                            Ouvrez le fichier <code>site.txt</code> présent sur le bureau et remplacez <code>http://localhost</code> 
-                            par le lien généré dans votre compte, 
-                            exemple: <br>
-                            <code>
-                                {{url('mosque', {slug: 'mosquee-essunna-houilles'})}}<br>
-                            </code>
-                        </li>
+                        <p>
+                            <strong>1. Vous avez une connexion internet (WIFI ou Ethernet) ? </strong> 
+                            Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> qui bénéficie des avantages suivants  <br>
+                        </p>
+                        <div style="padding-left: 30px">
+                            <ul>
+                                <li>Pilotage à distance depuis votre smartphone ou n'importe qu'elle ordinateur et tablette</li>
+                                <li>Une version synchronisée sur tous les terminaux, mobile, tablette et écran de la mosquée</li>
+                                <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
+                                <li>Affichage de hadith du prophète "que la prière d'Allah et son salut soient sur lui"</li>
+                                <li>Vous bénificiez des dernières mise à jour automatiquement sans aucune manipulation de votre part</li>
+                            </ul>
+                            <br>
+                            <p>
+                                <strong>Suivez les étapes ci-dessous : </strong>
+                            </p>
 
-                        <li>Sauvegardez et redémarrez le raspberry</li>
-                    </ol>
-                    <p class="text-muted text-left">Vous pouvez nous envoyer un message <a href="#contact">ici</a> si vous rencontrez des diffucltées.</p>
+                            <ol>
+                                <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="{{path('fos_user_registration_register')}}">{{url('fos_user_registration_register')}}</a></li>
+                                <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la fin de cette étape</li>
+                                <li>Démmarez le raspberry et branchez un clavier et une souris usb</li>
+                                <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
+                                <li>
+                                    Ouvrez le fichier <code>site.txt</code> présent sur le bureau et remplacez <code>http://localhost</code> 
+                                    par le lien généré dans votre compte, 
+                                    exemple: <br>
+                                    <code>
+                                        {{url('mosque', {slug: 'mosquee-essunna-houilles'})}}<br>
+                                    </code>
+                                </li>
+
+                                <li>Sauvegardez et redémarrez le raspberry</li>
+                            </ol>
+                        </div>
+
+                        <p><strong>2. Vous n'avez pas de connexion internet, lancer le logiciel embarqué : </strong>                             
+                            Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br> 
+                        </p>
+                        <div style="padding-left: 30px">
+                            Afin de profiter de la toute dernière version du logiciel, il est recommandé d'exécuter les étapes suivantes : <br>
+
+                            <ol>
+                                <li>Quittez le mode plein écran avec F11, puis fermez le logiciel</li>
+                                <li>Connetez le raspberry à internet et double-cliquez sur le fichier <code> upgrade.sh</code> présent sur le bureau puis appuyez sur executer</li>
+                                <li>Redémarrez le raspberry</li>
+                            </ol>
+                            <p>vous pouvez après configurer les horaires de votre mosquée.<br></p>
+                            <p>
+                                <strong>Important :</strong>
+                                Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet de garder l'heure correctement réglée 
+                                quand il est éteint.<br>
+                                Il est donc conseillé d'équiper le raspberry 
+                                <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+                                    d'une horloge RTC
+                                </a>
+                                si vous ne comptez pas le connecter à internet, cela évitera en cas de copure de courant de perdre l'heure système. 
+                                Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans LXTerminal<br>
+                                <code>sudo date -s "yyyy-mm-dd hh:mm:ss"</code>  exemple: <code>sudo date -s "{{"now"|date("Y-m-d H:m:s")}}"</code> <br>
+                                <code>sudo hwclock -w</code> <br><br>
+                                <img class="img-responsive img-centered" style="width: auto" src="{{ asset('bundles/app/agency/img/raspberry-rtc.jpg') }}" alt=""><br>
+                            </p>
+                        </div>
+
+                        <p>Vous pouvez nous envoyer un message <a href="#contact">ici</a> si vous rencontrez des diffucltées.</p>
+                    </div>
                 </div>
             </div>
         </div>

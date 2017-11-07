@@ -5,20 +5,20 @@
         <meta charset="UTF-8">
         <meta name="google" content="notranslate">
         <link rel="icon" href="{{asset('favicon.png')}}" />
-
         {% stylesheets 
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+            "bundles/app/font-awesome/css/font-awesome.min.css"
+            "bundles/app/prayer-times/css/main.css"
+            "bundles/app/prayer-times/css/desktop.css"
+            "bundles/app/prayer-times/css/slider.css"
             filter="cssrewrite"
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
-
-        <link href="/bundles/app/prayer-times/css/desktop.css" rel="stylesheet">
-        <link href="/bundles/app/prayer-times/css/slider.css" rel="stylesheet">
     </head>
     <body class="text-center">
         <div class="desktop hidden-xs">
-            <div class="spinner"></div>
+            <div id="spinner"></div>
 
             <!-- Iqama screen -->
             <div class="iqama ar hidden">
@@ -50,27 +50,34 @@
             <!-- main screen -->
             <div class="main display-none">
 
-                <!-- temperature container -->
-                {% if mosque.configuration.temperatureEnabled %}
-                    <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
-                        <span></span><sup>°C</sup>
+                <!-- Random hadith container -->
+                <div class="random-hadith display-none" data-remote="{{path('random_hadith', {slug: mosque.slug})}}">
+                    <div class="text">
+                        <div></div>
                     </div>
-                {% endif %}
-                <div class="header ar">{{mosque.title}}</div> 
+                    <div class="time-bottom"></div>
+                    <div class="next-prayer"> 
+                        {{'next_prayer'|trans}} -<div class="countdown"></div>
+                    </div>
+                </div>
 
                 <!-- top container -->
                 <div class="top-content">
 
-                    <!-- Random hadith container -->
-                    <div class="random-hadith display-none" data-remote="{{path('random_hadith', {_locale: app.request.locale})}}">
-                        <div class="text">
-                            <div></div>
+                    <!-- configure icon -->
+                    {% if app.request.getHost() == 'localhost' %}
+                        <div class="btn-settings">
+                            <a href="{{path('mosque_configure', {id: mosque.id})}}"> <i class="fa fa-cog"></i></a>
                         </div>
-                        <div class="time-bottom"></div>
-                        <div class="next-prayer"> 
-                            {{'next_prayer'|trans}} -<div class="countdown"></div>
+                    {% endif %}
+
+                    <!-- temperature container -->
+                    {% if mosque.configuration.temperatureEnabled %}
+                        <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
+                            <span></span><sup>°C</sup>
                         </div>
-                    </div>
+                    {% endif %}
+                    <div class="header ar">{{mosque.title}}</div> 
 
                     <!-- Adhan flash -->
                     <div class="adhan-flash hidden">

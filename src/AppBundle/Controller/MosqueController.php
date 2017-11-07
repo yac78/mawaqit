@@ -27,8 +27,10 @@ class MosqueController extends Controller {
     public function mosqueAction(Request $request, Mosque $mosque) {
 
         $mobileDetect = $this->get('mobile_detect.mobile_detector');
+        $view = $request->query->get("view");
         $template = 'mosque';
-        if ($mobileDetect->isMobile() && !$mobileDetect->isTablet()) {
+        
+        if (($view !== "desktop" && $mobileDetect->isMobile() && !$mobileDetect->isTablet()) || $view === "mobile") {
             $template .= '_mobile';
         }
 

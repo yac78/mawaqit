@@ -14,7 +14,7 @@ var prayer = {
      * time to wait before hilight next prayer time  (in minutes)
      * @type Number
      */
-    nextPrayerHilightWait: 5,
+    nextPrayerHilightWait: 10,
     /**
      * prayer times
      * @type Array
@@ -35,12 +35,6 @@ var prayer = {
      * @type Json
      */
     confData: confData,
-    /**
-     * in milliseconds
-     * @type Number 
-     */
-    adhanFlashingTime: 120000,
-
     /**
      * load all data
      */
@@ -114,11 +108,14 @@ var prayer = {
      */
     loadTimesFromApi: function (tomorrow) {
         var prayTimes = new PrayTimes(prayer.confData.prayerMethod);
-        if (prayer.confData.fajrDegree) {
-            prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
-        }
-        if (prayer.confData.ichaaDegree) {
-            prayTimes.adjust({"isha": parseFloat(prayer.confData.ichaaDegree)});
+
+        if (prayer.confData.prayerMethod === "CUSTOM") {
+            if (prayer.confData.fajrDegree) {
+                prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
+            }
+            if (prayer.confData.ichaaDegree) {
+                prayTimes.adjust({"isha": parseFloat(prayer.confData.ichaaDegree)});
+            }
         }
 
         // times adjustment
@@ -135,9 +132,7 @@ var prayer = {
             date = dateTime.tomorrow();
         }
 
-        var timezone = prayer.confData.timezone == parseInt(prayer.confData.timezone) ? parseInt(prayer.confData.timezone) : 'auto';
-        var dst = prayer.confData.dst == parseInt(prayer.confData.dst) ? parseInt(prayer.confData.dst) : 'auto';
-        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], timezone, dst);
+        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, prayer.confData.dst);
 
         this.times = {
             1: pt.fajr,
@@ -150,13 +145,16 @@ var prayer = {
     },
     /**
      * get today prayer times, array of only five prayer times
+     * @param {boolean} afterIsha
      * @returns {Array}
      */
-    getTimes: function () {
+    getTimes: function (afterIsha) {
         var times = this.times;
         times = [times[1], times[3], times[4], times[5], times[6]];
         $.each(times, function (i, time) {
-            times[i] = prayer.dstConvertTimeForCalendarMode(time);
+            if (typeof afterIsha === 'undefined') {
+                times[i] = prayer.dstConvertTimeForCalendarMode(time);
+            }
             if (prayer.confData.prayerTimesFixing[i] && prayer.confData.prayerTimesFixing[i] > times[i]) {
                 times[i] = prayer.confData.prayerTimesFixing[i];
             }
@@ -195,30 +193,37 @@ var prayer = {
      */
     nextPrayerCountdown: function () {
         var date = new Date();
+        // by default we countdwon the next day fajr
+        var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
+        tomorrowFajrDate.setDate(tomorrowFajrDate.getDate() + 1);
+        var countDownDate = tomorrowFajrDate;
+
         $.each(prayer.getTimes(), function (index, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             if (prayerDateTime.getHours() !== 0 && date < prayerDateTime) {
-                $(".next-prayer .countdown").countdown(prayerDateTime, function (event) {
-                    $(this).text(event.strftime('%H:%M'));
-                });
+                countDownDate = prayerDateTime;
                 return false;
             }
+        });
 
-            // if no prayer selected we countwon the next day fajr
-            var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
-            tomorrowFajrDate.setDate(tomorrowFajrDate.getDate() + 1);
-            $(".next-prayer .countdown").countdown(tomorrowFajrDate, function (event) {
-                $(this).text(event.strftime('%H:%M'));
-            });
+        $(".next-prayer .countdown").countdown(countDownDate, function (event) {
+            $(this).text(event.strftime('%H:%M'));
         });
     },
     /**
-     * +1|-1 hour for time depending DST
+     * +1|-1 hour on time for calendar times
+     * Condition 1 : on calendar prayers
+     * Condition 2 : if dst enabled or auto 
+     * Condition 3 : if we are in last synday of march or october
      * @param {String} time
-     * @returns {Array}
+     * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
-        if (prayer.confData.calculChoice === "calendar" && dateTime.isLastSundayDst()) {
+        var applyConvertion = prayer.confData.calculChoice === "calendar" &&
+                prayer.confData.dst !== 0 &&
+                dateTime.isLastSundayDst();
+
+        if (applyConvertion) {
             time = time.split(":");
             var hourPrayerTime = Number(time[0]) + (dateTime.getCurrentMonth() === 2 ? 1 : -1);
             var minutePrayerTime = time[1];
@@ -281,10 +286,22 @@ var prayer = {
                 prayer.loadTimes();
                 prayer.setTimes();
                 prayer.initNextTimeHilight();
+                prayer.setSpecialTimes();
             }
 
-            prayer.setCustomTime();
         }, prayer.oneMinute);
+    },
+    /**
+     * Reload page every day at 2 o'clock to prevent any graphical bug
+     * Reload only if internet connection available
+     */
+    initCronReloadPage: function () {
+        setInterval(function () {
+            var date = new Date();
+            if (date.getHours() === 2) {
+                reloadIfConnected();
+            }
+        }, 60 * prayer.oneMinute);
     },
     /**
      * Check every minute if athan time is ok
@@ -295,10 +312,11 @@ var prayer = {
     initAdhanFlash: function () {
         setInterval(function () {
             if (!prayer.adhanIsFlashing) {
+                var currentTime = dateTime.getCurrentTime()
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-                    if (time === dateTime.getCurrentTime()) {
-                        // if joumouaa time we don't flash adhan
-                        if (!prayer.isJoumouaa(currentPrayerIndex)) {
+                    if (time === currentTime) {
+                        // if jumua time we don't flash adhan
+                        if (!prayer.isJumua(currentPrayerIndex)) {
                             prayer.adhanIsFlashing = true;
                             prayer.flashAdhan(currentPrayerIndex);
                         }
@@ -353,7 +371,7 @@ var prayer = {
                 if (date.getDay() === 5) {
                     var currentTime = dateTime.getCurrentTime(false);
                     // show reminder
-                    if (currentTime === prayer.getJoumouaaTime()) {
+                    if (currentTime === prayer.getJumuaTime()) {
 
                         // hilight asr
                         prayer.setNextTimeHilight(1);
@@ -401,7 +419,7 @@ var prayer = {
                 var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
 
-                    if (!prayer.isJoumouaa(currentPrayerIndex)) {
+                    if (!prayer.isJumua(currentPrayerIndex)) {
                         date = new Date();
                         currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
 
@@ -437,8 +455,6 @@ var prayer = {
         }
         // iqama countdown
         prayer.iqamaCountdown(currentPrayerIndex);
-        // timeout for douaa show
-        prayer.douaa.setTimeout(currentPrayerIndex);
         $(".top-content .content").addClass("hidden");
 
         var adhanFlashInterval = setInterval(function () {
@@ -446,13 +462,24 @@ var prayer = {
             $(".mobile .prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
             $(".mobile .prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
         }, prayer.oneSecond);
-        // timeout for stopping time flashing
-        if (prayer.confData.azanVoiceEnabled === true) {
-            prayer.adhanFlashingTime = prayer.oneSecond * 200;
-        }
+
         setTimeout(function () {
             prayer.stopAdhanFlashing(adhanFlashInterval, currentPrayerIndex);
-        }, prayer.adhanFlashingTime);
+        }, prayer.getAdhanFlashingTime(currentPrayerIndex));
+    },
+    /**
+     *  timeout for stopping time flashing
+     *  @param {integer} currentPrayerIndex 
+     */
+    getAdhanFlashingTime: function (currentPrayerIndex) {
+        if (prayer.confData.azanVoiceEnabled === true) {
+            // if fajr
+            if (currentPrayerIndex === 0) {
+                return  prayer.oneSecond * 250;
+            }
+            return  prayer.oneSecond * 200;
+        }
+        return prayer.oneSecond * 120;
     },
     /**
      * flash iqama for 30 sec
@@ -493,6 +520,7 @@ var prayer = {
         $(".top-content .adhan-flash").addClass("hidden");
         $(".mobile .prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
         $(".mobile .prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
+        prayer.duaAfterAdhan.handle(currentPrayerIndex);
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
         $(".mobile .main").fadeIn();
@@ -564,7 +592,7 @@ var prayer = {
         $(".prayer-wait .wait").removeClass("text-hilighted");
 
         // if joumouaa we hilight joumouaa time
-        if (prayer.isJoumouaa(prayerIndex)) {
+        if (prayer.isJumua(prayerIndex)) {
             $(".joumouaa-id").addClass("prayer-hilighted");
             return;
         }
@@ -589,17 +617,17 @@ var prayer = {
             var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
                 prayer.loadTimes(true);
-                prayer.setTimes();
+                prayer.setTimes(true);
             }
         }, prayer.nextPrayerHilightWait * prayer.oneMinute);
     },
-    douaa: {
-        showAdhanDouaa: function () {
+    duaAfterAdhan: {
+        showAdhanDua: function () {
             $(".main").fadeOut(1000, function () {
                 $(".adhan").fadeIn(1000);
             });
         },
-        hideAdhanDouaa: function () {
+        hideAdhanDua: function () {
             $(".adhan").fadeOut(1000, function () {
                 $(".main").fadeIn(1000);
             });
@@ -620,30 +648,22 @@ var prayer = {
          * show hadith to remeber importance of douaa between adhan and iqama
          * @param {Number} currentPrayerIndex
          */
-        setTimeout: function (currentPrayerIndex) {
+        handle: function (currentPrayerIndex) {
             if (prayer.confData.douaaAfterAdhanEnabled === true) {
-                var duaTimeout = 150 * prayer.oneSecond;
-                if (prayer.confData.azanVoiceEnabled === true) {
-                    duaTimeout = 200 * prayer.oneSecond;
-                }
-
+                prayer.duaAfterAdhan.showAdhanDua();
                 setTimeout(function () {
-                    prayer.douaa.showAdhanDouaa();
-                    setTimeout(function () {
-                        prayer.douaa.hideAdhanDouaa();
+                    prayer.duaAfterAdhan.hideAdhanDua();
 
-                        // show hadith between adhan and iqama
-                        if (prayer.getWaitingTimes()[currentPrayerIndex] !== 0) {
+                    // show hadith between adhan and iqama
+                    if (prayer.getWaitingTimes()[currentPrayerIndex] !== 0) {
+                        setTimeout(function () {
+                            prayer.duaAfterAdhan.showHadith();
                             setTimeout(function () {
-                                prayer.douaa.showHadith();
-                                setTimeout(function () {
-                                    prayer.douaa.hideHadith();
-                                }, 30 * prayer.oneSecond);
-                            }, 10 * prayer.oneSecond);
-                        }
-
-                    }, 30 * prayer.oneSecond);
-                }, duaTimeout);
+                                prayer.duaAfterAdhan.hideHadith();
+                            }, 30 * prayer.oneSecond);
+                        }, 10 * prayer.oneSecond);
+                    }
+                }, 30 * prayer.oneSecond);
             }
         }
     },
@@ -676,10 +696,10 @@ var prayer = {
         }
     },
     /**
-     * get joumouaa time depending dst
+     * get jumu`a time depending dst
      * @returns {String}
      */
-    getJoumouaaTime: function () {
+    getJumuaTime: function () {
         if (this.confData.jumuaAsDuhr === true) {
             // return duhr
             return this.getTimeByIndex(1);
@@ -694,7 +714,7 @@ var prayer = {
      * @param {int} currentPrayerIndex 
      * @returns {boolean}
      */
-    isJoumouaa: function (currentPrayerIndex) {
+    isJumua: function (currentPrayerIndex) {
         var date = new Date();
         return date.getDay() === 5 && currentPrayerIndex === 1;
     },
@@ -717,7 +737,9 @@ var prayer = {
      * aid time if enabled
      * imsak time if enabled
      */
-    setCustomTime: function () {
+    setSpecialTimes: function () {
+        $(".joumouaa-id").text(this.getJumuaTime());
+
         // hide all custom times
         $(".custom-time").hide();
 
@@ -769,13 +791,12 @@ var prayer = {
     /**
      * set all prayer times 
      */
-    setTimes: function () {
-        $(".sobh").text(this.getTimes()[0]);
-        $(".dohr").text(this.getTimes()[1]);
-        $(".asr").text(this.getTimes()[2]);
-        $(".maghrib").text(this.getTimes()[3]);
-        $(".ichaa").text(this.getIchaTime());
-        $(".joumouaa-id").text(this.getJoumouaaTime());
+    setTimes: function (afterIsha) {
+        $(".sobh").text(this.getTimes(afterIsha)[0]);
+        $(".dohr").text(this.getTimes(afterIsha)[1]);
+        $(".asr").text(this.getTimes(afterIsha)[2]);
+        $(".maghrib").text(this.getTimes(afterIsha)[3]);
+        $(".ichaa").text(this.getTimes(afterIsha)[4]);
     },
     /**
      * set wating times
@@ -787,7 +808,7 @@ var prayer = {
     },
     hideSpinner: function () {
         $(".main").fadeIn(1000, function () {
-            $(".spinner").hide();
+            $("#spinner").hide();
         });
     },
     /**
@@ -860,15 +881,15 @@ var prayer = {
     aidIsCommingSoon: function () {
         var hijriDateInfo = kuwaiticalendar(prayer.confData.hijriAdjustment);
         // if aid al-fitr
-        if(hijriDateInfo[6] === 8 && hijriDateInfo[5] >= 27 && hijriDateInfo[5] <= 30){
+        if (hijriDateInfo[6] === 8 && hijriDateInfo[5] >= 27 && hijriDateInfo[5] <= 30) {
             return true;
         }
-        if(hijriDateInfo[6] === 9 && hijriDateInfo[5] === 1){
+        if (hijriDateInfo[6] === 9 && hijriDateInfo[5] === 1) {
             return true;
         }
-        
+
         // if aid al-adha
-        if(hijriDateInfo[6] === 11 && hijriDateInfo[5] >= 7 && hijriDateInfo[5] <= 10){
+        if (hijriDateInfo[6] === 11 && hijriDateInfo[5] >= 7 && hijriDateInfo[5] <= 10) {
             return true;
         }
         return false;
@@ -882,32 +903,31 @@ var prayer = {
         douaaSlider.show(0);
         setTimeout(function () {
             // show douaa after adhan
-            prayer.douaa.showAdhanDouaa();
+            prayer.duaAfterAdhan.showAdhanDua();
             setTimeout(function () {
-                prayer.douaa.hideAdhanDouaa();
+                prayer.duaAfterAdhan.hideAdhanDua();
             }, 3000);
             setTimeout(function () {
                 //show hadith between adhan and iqama
-                prayer.douaa.showHadith();
+                prayer.duaAfterAdhan.showHadith();
                 setTimeout(function () {
-                    prayer.douaa.hideHadith();
+                    prayer.duaAfterAdhan.hideHadith();
                     prayer.jumuaHandler.showReminder();
                     setTimeout(function () {
                         prayer.jumuaHandler.hideReminder();
                         randomHadith.get();
                         setTimeout(function () {
                             randomHadith.hide();
-                            // flash iqama
-                            prayer.confData.iqamaDisplayTime = 5;
-                            prayer.flashIqama(4);
-
+                            prayer.flashAdhan(2);
                             setTimeout(function () {
-                                prayer.stopIqamaFlashing();
+                                prayer.stopAdhanFlashing();
+                                // flash iqama
+                                prayer.confData.iqamaDisplayTime = 5;
+                                prayer.flashIqama(4);
                                 // flash adhan
-                                prayer.flashAdhan(2);
                                 setTimeout(function () {
                                     location.reload();
-                                }, 10000);
+                                }, 5000);
                             }, 5000);
                         }, 5000);
                     }, 5000);

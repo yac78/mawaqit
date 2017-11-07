@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,22 +31,15 @@ class MosqueController extends Controller {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
-        $qb = $mosqueRepository->getMosquesByUser($user, $search);
+        $qb = $mosqueRepository->search($user, $search);
 
         $paginator = $this->get('knp_paginator');
-        $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 5);
+        $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
 
         $renderArray = [
             "mosques" => $mosques,
             "languages" => $this->getParameter('languages')
         ];
-
-        if ($user->isAdmin()) {
-            $renderArray["stats"] = [
-                'configured' => $mosqueRepository->getConfiguredMosquesCount(),
-                'autoCalcul' => $mosqueRepository->getApiCalculConfiguredMosquesCount(),
-            ];
-        }
 
         return $this->render('mosque/index.html.twig', $renderArray);
     }
@@ -127,6 +119,17 @@ class MosqueController extends Controller {
                     "%object%" => "de la mosquée", "%name%" => $mosque->getName()
         ]));
         return $this->redirectToRoute('mosque_index');
+    }
+
+    /**
+     * Force refresh page by updating updated_at
+     * @Route("/refresh/{id}", name="message_refresh")
+     */
+    public function refreshAction(Request $request, Mosque $mosque) {
+        $em = $this->getDoctrine()->getManager();
+        $mosque->setUpdated(new \Datetime());
+        $em->flush();
+        return new Response();
     }
 
     /**

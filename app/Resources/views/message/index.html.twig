@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-md-8 col-xs-12" style="margin-top: 10px"><h3>{{'message.mosque'|trans({'%mosque%': mosque.name})}}</h3></div>
         <div class="col-md-4 col-xs-12 text-right">
-            <a href="{{path('mosque_index')}}" class="btn btn-danger">{{'return'|trans}}</a>
-            <a href="{{path('message_create', {'mosque': mosque.id})}}" class="btn btn-primary {{disable_add_message ? 'disabled' : ''}} ">{{'add'|trans}}</a>
+            <a href="{{path('message_create', {'mosque': mosque.id})}}" class="btn btn-primary {{disable_add_message ? 'disabled' : ''}} "><i class="fa fa-plus"></i> {{'add'|trans}}</a>
+            <a href="{{path('mosque_index')}}" class="btn btn-default"><i class="fa fa-arrow-left"></i> {{'return'|trans}}</a>
         </div>
     </div>
     <div class="row" style="margin-top:10px">
@@ -56,8 +56,10 @@
                             <span class="fa fa-{{message.enabled ? 'check' : 'close'}}"></span>
                         </td>
                         <td>
-                            <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-                                {% include 'partial/delete_button.html.twig' with {entity: message} %}
+                            <div class="btn-action">
+                                <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-primary" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
+                            </div>
+                            {% include 'partial/delete_button.html.twig' with {entity: message} %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -76,8 +78,10 @@
                 </div>     
 
                 <div class="col-xs-2">
-                    <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-                        {% include 'partial/delete_button.html.twig' with {entity: message} %}
+                    <div class="btn-action">
+                        <a href="{{path('message_edit', {mosque: mosque.id, message: message.id})}}" class="btn btn-primary btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
+                    </div>
+                    {% include 'partial/delete_button.html.twig' with {entity: message} %}
                 </div>     
             </div>     
         {% endfor %}

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("." + $("#appbundle_configuration_sourceCalcul").val()).removeClass("hidden");
     $(".calendar-prayer input").each(function (index) {
-        if ($(this).val() == "")
+        if ($(this).val() === "")
         {
             $(this).css("background-color", "#f8d4d4");
         }
@@ -9,8 +9,11 @@ $(document).ready(function () {
     $("#appbundle_configuration_prayerMethod").trigger("change");
     $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
     $("#appbundle_configuration_noJumua").trigger("change");
+    $("#appbundle_configuration_randomHadithEnabled").trigger("change");
+    $(".jumuaTimeoutHandler input").trigger("change");
 
     checkAndHilightIncompletedMonths();
+    handleErrorsDisplay();
 });
 
 /**
@@ -20,7 +23,7 @@ $(document).ready(function () {
 function checkAndHilightIncompletedMonths() {
     $(".month-panel").each(function (i, elm) {
         var panel = elm;
-        $(panel).find(".panel-heading").css("background-color", " #f5f5f5");
+        $(panel).find(".panel-heading").css("background-color", " #e2e2e2");
         var title = $(panel).find("h4>strong");
         title.text(title.text().replace(" (Mois incomplet)", ""));
         $(panel).find(".calendar-prayer-time").each(function (i, input) {
@@ -84,7 +87,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         var panelId = panel.attr("id");
         var month = panelId.split('_');
         month = month[1];
-        var lines = csv.split(/\r|\n/);
+        var lines = csv.split(/(?:\r?\n)/g);
         for (var day = 1; day < lines.length; day++) {
             var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
@@ -138,6 +141,10 @@ $("#predefined-calendar").change(function () {
     }
 });
 
+function handleErrorsDisplay() {
+    $(".has-error").parents(".panel-collapse").collapse("show");
+}
+
 /**
  * Jumua as duh handling checkbox
  */
@@ -158,4 +165,35 @@ $("#appbundle_configuration_noJumua").bind("change", function (event) {
     } else {
         $(".jumua-bloc").show();
     }
+});
+
+/**
+ * jumu`a Reminder an blackScreen checkbox handling
+ */
+$(".jumuaTimeoutHandler input").bind("change", function () {
+    var $jumuaTimeoutParent = $("#appbundle_configuration_jumuaTimeout").parent();
+    $jumuaTimeoutParent.hide();
+
+    $(".jumuaTimeoutHandler input").each(function (i, e) {
+        if ($(e).is(":checked")) {
+            $jumuaTimeoutParent.show();
+            return false;
+        }
+    })
+
+});
+
+$("#appbundle_configuration_randomHadithEnabled").bind("change", function (event) {
+    if ($(this).is(":checked")) {
+        $("#appbundle_configuration_hadithLang").parent().show();
+    } else {
+        $("#appbundle_configuration_hadithLang").parent().hide();
+    }
+});
+
+$("[type='checkbox']").attr({
+    "data-toggle": "toggle",
+    "data-onstyle": "success",
+    "data-offstyle": "danger",
+    "data-size": "small"
 });

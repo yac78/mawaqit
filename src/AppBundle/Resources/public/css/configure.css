@@ -18,3 +18,16 @@ label {
 .checkbox {
     display: inline-block;
 }
+
+.panel-default .panel-heading {
+    background-color: #e2e2e2;
+    padding: 15px;
+}
+
+.panel-default {
+    border-color: #486e3b;
+}
+
+.toggle-on {
+    left: -7px;
+}

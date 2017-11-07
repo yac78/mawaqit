@@ -9,7 +9,7 @@ parameters:
     mailer_port: 587
     mailer_user: %supportEmail%
     mailer_password: ~
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 90e0df2327d24849cf4c45a512e66254779f1b59
     languages: [fr, ar, en]
     version: 3.0.0
     supportTel: '+33629111641'
@@ -22,3 +22,6 @@ parameters:
     google_api_key: ''
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
 
+    # Weather API
+    weather_api_endpoint: 'http://api.openweathermap.org/data/2.5/weather'
+    weather_api_key: ''

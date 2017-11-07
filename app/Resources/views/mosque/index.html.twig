@@ -13,7 +13,7 @@
     {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
-        <div class="col-md-6"><h3>{{'my_mosques'|trans}}</h3></div>
+        <div class="col-md-6"><h3>{{'my_mosques'|trans}} ({{mosques.totalItemCount}})</h3></div>
         <div class="col-md-3 col-xs-12">
             <form action="{{path('mosque_index')}}" class="search-form">
                 <div class="form-group has-feedback">
@@ -24,36 +24,17 @@
         </div>
         <div class="col-md-3 col-xs-12 text-right">
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{path('mosque_force_update_all')}}" class="btn btn-danger">{{'mosque.force_update_all.action'|trans}}</a>
+                <a href="{{path('mosque_force_update_all')}}" class="btn btn-danger" title="Recharger l'écran de toutes les mosquées"><i class="fa fa-refresh"></i> {{'mosque.force_update_all.action'|trans}}</a>
             {% endif %}
-            <a href="{{path('mosque_create')}}" class="btn btn-primary">{{'mosque.add_new'|trans}}</a>
+            <a href="{{path('mosque_create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> {{'mosque.add_new'|trans}}</a>
         </div>
     </div>
-
-    {% if is_granted('ROLE_ADMIN') %}
-        <br>
-        <div class="row alert alert-warning">
-            <ul>
-                <div class="col-md-4">
-                    <li>{{'stats.total'|trans}}:  {{mosques.totalItemCount}}</li>
-                </div>
-                <div class="col-md-4">
-                    <li>{{'stats.total_configured'|trans}}:  {{stats.configured}}</li>
-                    <li>{{'stats.total_not_configured'|trans}}:  {{mosques.totalItemCount - stats.configured}}</li>
-                </div>
-                <div class="col-md-4">
-                    <li>{{'stats.total_auto_calcul'|trans}}:  {{stats.autoCalcul}}</li>
-                    <li>{{'stats.total_auto_calendar'|trans}}:  {{stats.configured - stats.autoCalcul}}</li>
-                </div>
-            </ul>
-        </div>
-    {% endif %}
 
     <div class="navigation text-center">
         {{ knp_pagination_render(mosques) }}
     </div>
 
-    <div class="row">
+    <div class="row mt-2">
         <table class="table table-inverse hidden-xs hidden-sm">
             <thead>
                 <tr class="warning">
@@ -66,7 +47,7 @@
                         <th>{{'user'|trans}}</th>
                         <th>{{'creation_date'|trans}}</th>
                         {% endif %}
-                    <th></th>
+                    <th style="width: 8%">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -95,10 +76,9 @@
                         <td>
                             {% if mosque.isConfCompleted %}
                                 {% for lang in languages %}
-                                    <div><strong>{{lang}}</strong> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a></div>
+                                    <div><div style="width: 70px; font-weight: bold; float: left">{{lang|trans}}</div> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a></div>
                                     {% endfor %}
-
-                                {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
+                                    {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}?view=mobile">{{'show'|trans}}</a>
                             {% else %}
                                 <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
                             {% endif %}
@@ -113,10 +93,7 @@
                             {{mosque.created|date('d/m/Y H:i')}}
                         </td>
                         <td>
-                            <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a><br>
-                            <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a><br>
-                            <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-bullhorn"></span></a><br>
-                                {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
+                            {% include 'partial/mosque_actions.html.twig' %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -148,9 +125,6 @@
                                 <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{lang|trans}}</a>{{loop.last ? '' : ' | '}}
                             {% endfor %}    
                         </div>
-                        <div>
-                            {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}">{{'show'|trans}}</a>
-                        </div>
                     {% else %}
                         <div>
                             <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
@@ -160,16 +134,13 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>{{'user'|trans}}: <a href="{{path('user_show', {id: mosque.user.id})}}">{{mosque.user.username}} - {{mosque.user.email}}</a></div>
                     {% endif %}
-                        {{'creation_date'|trans}}: {{mosque.created|date('d/m/Y H:i')}}
+                    {{'creation_date'|trans}}: {{mosque.created|date('d/m/Y H:i')}}
                     {% if mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}
                         <div><a href="{{path('mosque_csv_files', {id: mosque.id})}}">{{'configuration.list.download_csv_files'|trans}}</a></div>
-                    {% endif %}
+                        {% endif %}
                 </div>
                 <div class="col-xs-2">
-                    <a href="{{path('mosque_edit', {id: mosque.id})}}" class="btn btn-info btn-action" title="{{'form.edit.action'|trans}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="{{path('mosque_configure', {id: mosque.id})}}" class="btn btn-warning btn-action" title="{{'form.configure.action'|trans}}"><span class="glyphicon glyphicon-cog"></span></a>
-                    <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success btn-action" title="{{'message.manage'|trans}}"><span class="fa fa-bullhorn"></span></a><br>
-                        {% include 'partial/delete_button.html.twig' with {entity: mosque} %}
+                    {% include 'partial/mosque_actions.html.twig' %}
                 </div>
             </div>
         {% endfor %}
@@ -181,4 +152,12 @@
     <div class="navigation text-center">
         {{ knp_pagination_render(mosques) }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+       '@AppBundle/Resources/public/js/mosque_index.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}    
 {% endblock %}
