@@ -36,6 +36,8 @@ cd /var/www/web
 
 git clone https://github.com/binary010100/prayer-times-v3.git
 
+cd prayer-times-v3
+
 chmod 777 -r *
 composer install
 
