@@ -7,7 +7,6 @@
         <link rel="icon" href="{{asset('favicon.png')}}" />
         {% stylesheets 
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
-            "bundles/app/font-awesome/css/font-awesome.min.css"
             "bundles/app/prayer-times/css/main.css"
             "bundles/app/prayer-times/css/desktop.css"
             "bundles/app/prayer-times/css/slider.css"
@@ -67,7 +66,7 @@
                     <!-- configure icon -->
                     {% if app.request.getHost() == 'localhost' %}
                         <div class="btn-settings">
-                            <a href="{{path('mosque_configure', {id: mosque.id})}}"> <i class="fa fa-cog"></i></a>
+                            <a href="{{path('mosque_configure', {id: mosque.id})}}"> <i class="glyphicon glyphicon-cog"></i></a>
                         </div>
                     {% endif %}
 
