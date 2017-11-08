@@ -29,6 +29,13 @@ body {
     margin: auto;
 }
 
+.adhan, 
+.douaa-between-adhan-iqama, 
+.jumua-dhikr-reminder {
+    overflow: hidden;
+}
+
+
 .main{
     width: 98%;    
     position: relative;

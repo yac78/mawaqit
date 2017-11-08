@@ -11,8 +11,12 @@ form:
     configure:
         success: La configuration %object% %name% a été réalisée avec succès.
         action: "Configurer les horaires de la mosquée"
-        geocode_error: Impossible de géolocaliser votre mosquée. Veuillez vérifier l'orthographe de votre ville et code postal ("%address%") 
-            
+        geocode_error: |
+                Impossible de géolocaliser votre mosquée. Veuillez vérifier 
+                <ul>
+                    <li>L'orthographe de votre addresse postale ("%address%") </li>
+                    <li>Votre connexion internet</li>
+                </ul>
 registration:
     registration: Inscription
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre

@@ -164,16 +164,19 @@ class MosqueController extends Controller {
                 $this->addFlash('success', $this->get("translator")->trans("form.configure.success", [
                             "%object%" => "de la mosquée", "%name%" => $mosque->getName()
                 ]));
-                return $this->redirectToRoute('mosque_index');
+                return $this->redirectToRoute('mosque', [
+                            'slug' => $mosque->getSlug(),
+                            '_locale' => $request->getLocale(),
+                ]);
             }
         } catch (GooglePositionException $exc) {
             $this->addFlash('danger', $this->get("translator")->trans("form.configure.geocode_error", [
                         "%address%" => $mosque->getLocalisation()
             ]));
         }
-        
-        $calendarDir = $this->getParameter("kernel.root_dir")."/Resources/calendar";
-        $predefinedCalendars = array_map('basename', glob($calendarDir . "/*",  GLOB_ONLYDIR));
+
+        $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar";
+        $predefinedCalendars = array_map('basename', glob($calendarDir . "/*", GLOB_ONLYDIR));
         return $this->render('mosque/configure.html.twig', [
                     'months' => Calendar::MONTHS,
                     'predefinedCalendars' => $predefinedCalendars,
@@ -196,20 +199,20 @@ class MosqueController extends Controller {
         return new Response("Cette mosquée n'as pas de calendier renseignée");
     }
 
-    
     /**
      * @Route("/load-calendar", name="ajax_load_calendar")
      */
     public function loadCalendarAction(Request $request) {
         $calendarName = $request->query->get("calendarName");
-        $calendarDir = $this->getParameter("kernel.root_dir")."/Resources/calendar/$calendarName";
+        $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar/$calendarName";
         $csvFiles = glob($calendarDir . "/*.csv");
         $calendar = [];
-        
-        foreach ($csvFiles as $file){
+
+        foreach ($csvFiles as $file) {
             $calendar[] = array_map('str_getcsv', file($file));
         }
-        
+
         return new JsonResponse($calendar);
     }
+
 }
