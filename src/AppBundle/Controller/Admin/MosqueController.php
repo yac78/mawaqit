@@ -161,9 +161,6 @@ class MosqueController extends Controller {
                 $configuration = $form->getData();
                 $em->persist($configuration);
                 $em->flush();
-                $this->addFlash('success', $this->get("translator")->trans("form.configure.success", [
-                            "%object%" => "de la mosquée", "%name%" => $mosque->getName()
-                ]));
                 return $this->redirectToRoute('mosque', [
                             'slug' => $mosque->getSlug(),
                             '_locale' => $request->getLocale(),

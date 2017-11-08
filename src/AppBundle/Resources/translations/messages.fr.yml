@@ -9,7 +9,6 @@ form:
         success:  La suppression %object% "%name%" a été réalisé avec succès.
         action: Supprimer
     configure:
-        success: La configuration %object% %name% a été réalisée avec succès.
         action: "Configurer les horaires de la mosquée"
         geocode_error: |
                 Impossible de géolocaliser votre mosquée. Veuillez vérifier 
@@ -338,3 +337,4 @@ other_settings: Autres réglages
 home_settings: Utilisation à domicile
 regional_settings: Paramètres régionaux
 invocations_hadiths: Invocations et hadiths
+edit_of: Édition de "%name%"
