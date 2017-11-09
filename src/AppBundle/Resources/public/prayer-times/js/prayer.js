@@ -707,7 +707,7 @@ var prayer = {
         if (this.confData.joumouaaTime) {
             return this.confData.joumouaaTime;
         }
-        return dateTime.isDst() ? "13:15" : "12:15";
+        return dateTime.isDst() ? "14:00" : "13:00";
     },
     /**
      * if current time is joumouaa
