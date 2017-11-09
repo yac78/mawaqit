@@ -43,10 +43,10 @@
                     <th >{{'association'|trans}}</th>
                     <th style="width: 20%">{{'contact'|trans}}</th>
                     <th style="width: 35%">{{'prayer_sites'|trans}}</th>
-                        {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <th>{{'user'|trans}}</th>
-                        <th>{{'creation_date'|trans}}</th>
-                        {% endif %}
+                    {% endif %}
+                    <th>{{'creation_date'|trans}}</th>
                     <th style="width: 8%">Actions</th>
                 </tr>
             </thead>
