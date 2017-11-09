@@ -67,6 +67,10 @@ body {
     font-size: 550%;
     color: yellowgreen;
     padding-top: 10px;
+    width: 86%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: auto;
 }
 
 .joumouaa, .custom-time{
