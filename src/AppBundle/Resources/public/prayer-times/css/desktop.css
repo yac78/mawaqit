@@ -1,11 +1,13 @@
-@import "fonts.css";
-
 body {
     background-color: #000;
     color: #fff;
     font-weight: bold;
     font-size: 12px;
     overflow: hidden;
+    height:100vh;
+    font-family: 'mawaqit';
+    margin: auto;
+    position: relative;
 }
 
 @keyframes spin {
@@ -26,19 +28,6 @@ body {
 .douaa-between-adhan-iqama, 
 .jumua-dhikr-reminder {
     height:100vh;
-    margin: auto;
-}
-
-.adhan, 
-.douaa-between-adhan-iqama, 
-.jumua-dhikr-reminder {
-    overflow: hidden;
-}
-
-
-.main{
-    width: 98%;    
-    position: relative;
 }
 
 .top-content{
@@ -47,16 +36,13 @@ body {
     overflow: hidden;
 }
 
+.main{
+    width: 98%;    
+}
+
 .top-content .adhan-flash, .top-content .alarm-flash{
     font-size: 1700%;
     line-height: 160%;
-}
-
-.settings
-{
-    font-size: 30px;
-    margin-top: 10px; 
-    color: #fff;
 }
 
 .prayer-content{
@@ -67,7 +53,7 @@ body {
     font-size: 550%;
     color: yellowgreen;
     padding-top: 10px;
-    width: 86%;
+    width: 80%;
     overflow: hidden;
     white-space: nowrap;
     margin: auto;
@@ -93,10 +79,6 @@ body {
 
 .gregorianDate, .hijriDate{
     font-size: 500%;
-}
-
-.hijriDate{
-    font-family: 'Amiri';
 }
 
 .prayer-text {
@@ -153,8 +135,8 @@ body {
 .iqama .bottom{
     padding-top: 50px;
     font-size: 700%;
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    bottom: 50px;
     left: 0;
     right: 0;
 }
@@ -168,7 +150,6 @@ body {
 
 .adhan .ar {
     font-size: 700%;
-    font-family: 'Amiri';
 }
 
 .adhan .fr {
@@ -178,7 +159,6 @@ body {
 
 .douaa-between-adhan-iqama .ar {
     font-size: 700%;
-    font-family: 'Amiri';
 }
 
 .douaa-between-adhan-iqama .ar .title {
@@ -197,12 +177,11 @@ body {
 .jumua-dhikr-reminder .ar {
     line-height: 160%;
     font-size: 650%;
-    font-family: 'Amiri';
 }
 
 .jumua-dhikr-reminder .fr {
     margin-top: 50px;
-    font-size: 450%;
+    font-size: 500%;
 }
 
 .title {
@@ -226,7 +205,6 @@ body {
 }
 
 .version{
-    font-family: Arial;
     font-size: 20px;
     color: #adadad;
     position: fixed;
@@ -269,11 +247,6 @@ body {
 .random-hadith {
     height: 68%;
     position: relative;
-    font-family: 'Amiri';
-}
-
-.random-hadith-fr {
-    font-family: Arial,sans-serif;
 }
 
 .random-hadith .text {
@@ -292,7 +265,6 @@ body {
     position: absolute;
     bottom: -10px;
     right: 5px;
-    font-family: Arial,sans-serif;
 }
 
 .next-prayer {
@@ -300,8 +272,8 @@ body {
     position: absolute;
     bottom: -5px;
     left: 5px;
-    font-family: Arial,sans-serif;
 }
+
 .time-bottom, .next-prayer{
     color: #ec7047;    
 }
@@ -315,7 +287,6 @@ body {
     top: 5px;
     right: 5px;
     font-size: 600%;
-    color: yellowgreen;
     position: fixed;
 }
 
@@ -338,6 +309,6 @@ body {
     font-size: 300%;
 }
 
-.btn-settings a {
+.btn-settings a{
     color: #fff;
 }

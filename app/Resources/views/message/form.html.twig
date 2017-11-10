@@ -1,9 +1,5 @@
 {% include 'partial/flash_msg.html.twig' %}
 
-<div class="alert alert-danger">
-    <i class="fa fa-warning"></i> {{'message.maj_alert'|trans}}
-</div>
-
 {{ form_errors(form) }}
 {{ form_row(form._token) }}
 {{ form_row(form.title) }}

@@ -7,7 +7,6 @@ var weather = {
      */
     getTemperature: function () {
         $temperatureEl = $(".temperature");
-        $temperatureEl.hide();
         $.ajax({
             url: $temperatureEl.data("remote"),
             success: function (resp) {
@@ -21,11 +20,11 @@ var weather = {
                         $temperatureEl.addClass("red");
                     }
                     $(".temperature span").text(resp);
-                    $temperatureEl.show();
+                    $temperatureEl.removeClass("hidden");
                 }
             },
             error: function () {
-                $temperatureEl.hide();
+                $temperatureEl.addClass("hidden");
             }
         });
     },

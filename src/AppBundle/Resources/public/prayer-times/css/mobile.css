@@ -1,11 +1,11 @@
-@import "fonts.css";
-
 body {
     background-color: #000;
     color: #fff;
     font-weight: bold;
     font-size: 12px;
     line-height: 1.2;
+    font-family: 'mawaqit';
+    padding: 5px;
 }
 
 @keyframes spin {
@@ -142,5 +142,12 @@ body {
 
 .hijriDate{
     margin-bottom: 5px;
-    font-family: 'Amiri';
+}
+
+.adhan, .douaa-between-adhan-iqama{
+    font-size: 200%;
+}
+
+.adhan .title, .douaa-between-adhan-iqama .title{
+    margin-top: 10px;
 }

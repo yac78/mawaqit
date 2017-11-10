@@ -20,17 +20,17 @@ var douaaSlider = {
         }
 
         var screenWidth = $(window).width();
-        $('.douaa-after-prayer .slider ul li').width(screenWidth);
-        var slideCount = $('.douaa-after-prayer .slider ul li').length;
+        $('.adhkar-after-prayer li').width(screenWidth);
+        var slideCount = $('.adhkar-after-prayer li').length;
         var sliderUlWidth = slideCount * screenWidth;
-        $('.douaa-after-prayer .slider').css({width: screenWidth});
-        $('.douaa-after-prayer .slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-        $('.douaa-after-prayer .slider ul li:last-child').prependTo('.douaa-after-prayer .slider ul');
+        $('.adhkar-after-prayer').css({width: screenWidth});
+        $('.adhkar-after-prayer ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
+        $('.adhkar-after-prayer li:last-child').prependTo('.adhkar-after-prayer ul');
         if (lang === "ar") {
-            $(".douaa-after-prayer .slider .fr").remove();
+            $(".adhkar-after-prayer .fr").remove();
         }
         //save html slider
-        this.sliderHtmlContent = $('.douaa-after-prayer .slider').html();
+        this.sliderHtmlContent = $('.adhkar-after-prayer').html();
     },
     /**
      * If enabled show douaa after prayer for 5 minutes
@@ -39,7 +39,8 @@ var douaaSlider = {
     show: function (currentTimeIndex) {
         if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJumua(currentTimeIndex)) {
             $(".main").fadeOut(1000, function () {
-                $(".douaa-after-prayer").fadeIn(1000);
+                $(".adhkar-after-prayer").fadeIn(1000);
+                douaaSlider.setFontSize();
             });
 
             var douaaInterval = setInterval(function () {
@@ -48,9 +49,9 @@ var douaaSlider = {
 
             setTimeout(function () {
                 clearInterval(douaaInterval);
-                $(".douaa-after-prayer").fadeOut(1000, function () {
+                $(".adhkar-after-prayer").fadeOut(1000, function () {
                     $(".main").fadeIn(1000);
-                    $('.douaa-after-prayer .slider').html(douaaSlider.sliderHtmlContent);
+                    $('.adhkar-after-prayer').html(douaaSlider.sliderHtmlContent);
                 });
 
                 // show messages if exist after 5 sec after duaa
@@ -76,15 +77,25 @@ var douaaSlider = {
      * @returns {Number}
      */
     getTimeForShow: function () {
-        return ($('.douaa-after-prayer .slider ul li').length * douaaSlider.oneDouaaShowingTime) - 1000;
+        return ($('.adhkar-after-prayer li').length * douaaSlider.oneDouaaShowingTime) - 1000;
     },
     moveRight: function () {
         var screenWidth = $(window).width();
-        $('.douaa-after-prayer .slider ul').animate({
+        $('.adhkar-after-prayer ul').animate({
             left: -screenWidth
         }, 1000, function () {
-            $('.douaa-after-prayer .slider ul li:first-child').appendTo('.douaa-after-prayer .slider ul');
-            $('.douaa-after-prayer .slider ul').css('left', '');
+            $('.adhkar-after-prayer li:first-child').appendTo('.adhkar-after-prayer ul');
+            $('.adhkar-after-prayer ul').css('left', '');
+        });
+    },
+    setFontSize: function () {
+        var $body = $('body');
+        $('.slider li').each(function (i, slide) {
+            var $slide = $(slide);
+            $slide.css('font-size', '200px');
+            while ($slide.height() > $body.height() - 50) {
+                $slide.css('font-size', (parseInt($slide.css('font-size')) - 1) + "px");
+            }
         });
     }
 };
@@ -106,14 +117,9 @@ var messageInfoSlider = {
     run: function () {
         messageInfoSlider.messageInfoIsShowing = true;
         var screenWidth = $(window).width();
-        var screenHeight = $(window).height();
-        var nbSlides = $('.message-info-slider .slider ul li').length;
+        var nbSlides = $('.message-info-slider li').length;
 
-        $('.message-info-slider .slider ul li').width(screenWidth);
-
-        $(".main").fadeOut(1000, function () {
-            $(".message-info-slider").fadeIn(1000);
-        });
+        $('.message-info-slider li').width(screenWidth);
 
         if (nbSlides === 1) {
             setTimeout(function () {
@@ -144,11 +150,11 @@ var messageInfoSlider = {
 
         if (nbSlides > 2) {
             var sliderUlWidth = nbSlides * screenWidth;
-            $('.message-info-slider .slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-            $('.message-info-slider .slider ul li:last-child').prependTo('.message-info-slider .slider ul');
+            $('.message-info-slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
+            $('.message-info-slider li:last-child').prependTo('.message-info-slider ul');
 
             //save html slider
-            messageInfoSlider.sliderHtmlContent = $('.message-info-slider .slider').html();
+            messageInfoSlider.sliderHtmlContent = $('.message-info-slider').html();
 
             var interval = setInterval(function () {
                 messageInfoSlider.moveRight();
@@ -158,13 +164,16 @@ var messageInfoSlider = {
                 clearInterval(interval);
                 $(".message-info-slider").fadeOut(1000, function () {
                     $(".main").fadeIn(1000);
-                    $('.message-info-slider .slider').html(messageInfoSlider.sliderHtmlContent);
+                    $('.message-info-slider').html(messageInfoSlider.sliderHtmlContent);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
             }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
         }
 
-        $(".message-info-slider .slider").css({width: screenWidth, height: screenHeight});
+        $(".main").fadeOut(1000, function () {
+            $(".message-info-slider").fadeIn(1000);
+            messageInfoSlider.setFontSize();
+        });
     },
     /**
      * Get message from server
@@ -190,7 +199,7 @@ var messageInfoSlider = {
                                     );
                         }
                     });
-                    $(".message-info-slider .slider ul").html(items.join(""));
+                    $(".message-info-slider").html("<ul>"+items.join("")+"</ul>");
                     messageInfoSlider.run();
                 } else {
                     $(".main").fadeIn(1000);
@@ -199,8 +208,8 @@ var messageInfoSlider = {
             /**
              * If error show offline existing message
              */
-            error: function (data) {
-                if ($(".message-info-slider .slider ul li").length > 0) {
+            error: function () {
+                if ($(".message-info-slider li").length > 0) {
                     messageInfoSlider.run();
                 } else {
                     $(".main").fadeIn(1000);
@@ -210,11 +219,11 @@ var messageInfoSlider = {
     },
     moveRight: function () {
         var screenWidth = $(window).width();
-        $('.message-info-slider .slider ul').animate({
+        $('.message-info-slider ul').animate({
             left: -screenWidth
         }, 1000, function () {
-            $('.message-info-slider .slider ul li:first-child').appendTo('.message-info-slider .slider ul');
-            $('.message-info-slider .slider ul').css('left', '');
+            $('.message-info-slider li:first-child').appendTo('.message-info-slider ul');
+            $('.message-info-slider ul').css('left', '');
         });
     },
     messageInfoIsShowing: false,
@@ -250,4 +259,14 @@ var messageInfoSlider = {
             }
         }, prayer.oneMinute);
     },
+    setFontSize: function () {
+        var $body = $('body');
+        $('.message-info-slider li').each(function (i, slide) {
+            var $slide = $(slide);
+            $slide.css('font-size', '200px');
+            while ($slide.height() > $body.height() - 20) {
+                $slide.css('font-size', (parseInt($slide.css('font-size')) - 1) + "px");
+            }
+        });
+    }
 };

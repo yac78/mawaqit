@@ -459,8 +459,8 @@ var prayer = {
 
         var adhanFlashInterval = setInterval(function () {
             $(".top-content .adhan-flash").toggleClass("hidden");
-            $(".mobile .prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
-            $(".mobile .prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
+            $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
+            $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
         }, prayer.oneSecond);
 
         setTimeout(function () {
@@ -479,7 +479,7 @@ var prayer = {
             }
             return  prayer.oneSecond * 200;
         }
-        return prayer.oneSecond * 120;
+        return prayer.oneSecond * 150;
     },
     /**
      * flash iqama for 30 sec
@@ -518,14 +518,14 @@ var prayer = {
         prayer.adhanIsFlashing = false;
         $(".top-content .content").removeClass("hidden");
         $(".top-content .adhan-flash").addClass("hidden");
-        $(".mobile .prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
-        $(".mobile .prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
+        $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
+        $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
         prayer.duaAfterAdhan.handle(currentPrayerIndex);
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
         $(".mobile .main").fadeIn();
         if (!prayer.confData.blackScreenWhenPraying) {
-            $(".desktop .main").fadeIn();
+            $(".main").fadeIn();
         }
         $(".iqama").addClass("hidden");
         clearInterval(iqamaFlashInterval);
@@ -548,7 +548,7 @@ var prayer = {
      */
     iqamaCountdown: function (currentPrayerIndex) {
         var time = prayer.getTimeByIndex(currentPrayerIndex);
-        var waiting = $(".desktop .wait._" + currentPrayerIndex).text();
+        var waiting = $(".wait._" + currentPrayerIndex).text();
         var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
         var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
         var currentElem = $(".wait._" + currentPrayerIndex);
@@ -824,15 +824,7 @@ var prayer = {
                 $(".prayer-time").append(times[i]);
                 $(".prayer-wait").append(waits[i]);
             }
-            $(".ar").css({"font-family": "Amiri", 'font-size': '120%'});
-            $(".next-prayer").css({"font-family": "Amiri"});
-            $(".mobile .ar").css({'font-size': '180%'});
-            $(".adhan .title, .douaa-between-adhan-iqama .title").css("margin-bottom", "80px");
-            $(".adhan .ar, .douaa-between-adhan-iqama .ar, .jumua-dhikr-reminder .ar").css("font-size", "850%");
-            $(".slider .title").css("font-size", "1000%");
-            $(".header").css("font-size", "700%");
-            $(".mobile .header").css("font-size", "250%");
-            $(".site").css("font-size", "200%");
+            $(".adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder").css("font-size", "140%");
         }
     },
     /**

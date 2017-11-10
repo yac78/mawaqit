@@ -5,180 +5,181 @@
         <meta charset="UTF-8">
         <meta name="google" content="notranslate">
         <link rel="icon" href="{{asset('favicon.png')}}" />
-        <link href="/bundles/app/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/bundles/app/prayer-times/css/main.css" rel="stylesheet">
-        <link href="/bundles/app/prayer-times/css/desktop.css" rel="stylesheet">
-        <link href="/bundles/app/prayer-times/css/slider.css" rel="stylesheet">
+        
+        {% stylesheets 
+            "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+            "bundles/app/prayer-times/css/main.css"
+            "bundles/app/prayer-times/css/fonts.css"
+            "bundles/app/prayer-times/css/desktop.css"
+            "bundles/app/prayer-times/css/slider.css"
+            filter="cssrewrite"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}
     </head>
     <body class="text-center">
-        <div class="desktop hidden-xs">
-            <div id="spinner"></div>
+        <div id="spinner"></div>
 
-            <!-- Iqama screen -->
-            <div class="iqama ar hidden">
-                <div class="top">{{'iqama'|trans}}</div>
-                <div class="image" style="background-image: url({{asset('bundles/app/prayer-times/img/phone.png')}})"></div>
-                <div class="bottom">{{'power-off-phones'|trans}}</div>
+        <!-- Iqama screen -->
+        <div class="iqama hidden">
+            <div class="top">{{'iqama'|trans}}</div>
+            <div class="image" style="background-image: url({{asset('bundles/app/prayer-times/img/phone.png')}})"></div>
+            <div class="bottom">{{'power-off-phones'|trans}}</div>
+        </div>
+
+        <!-- Douaa after prayer slider -->
+        <div class="adhkar-after-prayer display-none">
+            {% if mosque.configuration.smallScreen  %}
+                {% include 'partial/dua-slider.html.twig' %}
+            {% else %}
+                {% include 'partial/dua-slider-one-screen.html.twig' %}
+            {% endif %}
+        </div>
+
+        <!-- message info slider -->
+        <div class="message-info-slider slider display-none" data-remote="{{path('get_messages', {slug: mosque.slug})}}"></div>
+
+        {% include 'partial/dua-after-adhan.html.twig' %}
+        {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
+        {% include 'partial/jumua-dhikr-reminder.html.twig' %}
+
+        <!-- main screen -->
+        <div class="main display-none">
+
+            <!-- Random hadith container -->
+            <div class="random-hadith display-none" data-remote="{{path('random_hadith', {slug: mosque.slug})}}">
+                <div class="text">
+                    <div></div>
+                </div>
+                <div class="time-bottom"></div>
+                <div class="next-prayer"> 
+                    {{'next_prayer'|trans}} -<div class="countdown"></div>
+                </div>
             </div>
 
-            <!-- Douaa after prayer slider -->
-            <div class="douaa-after-prayer display-none">
-                {% if mosque.configuration.smallScreen  %}
-                    {% include 'partial/dua-slider.html.twig' %}
-                {% else %}
-                    {% include 'partial/dua-slider-one-screen.html.twig' %}
+            <!-- top container -->
+            <div class="top-content">
+
+                <!-- configure icon -->
+                {% if app.request.getHost() == 'localhost' %}
+                    <div class="btn-settings">
+                        <a href="{{path('mosque_configure', {id: mosque.id})}}"> <i class="glyphicon glyphicon-cog"></i></a>
+                    </div>
                 {% endif %}
-            </div>
 
-            <!-- message info slider -->
-            <div class="message-info-slider display-none" data-remote="{{path('get_messages', {slug: mosque.slug})}}">
-                <div class="slider" style="font-size: 12px">
-                    <ul></ul>
+                <!-- temperature container -->
+                {% if mosque.configuration.temperatureEnabled %}
+                    <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
+                        <span></span><sup>°C</sup>
+                    </div>
+                {% endif %}
+                <div class="header ar">{{mosque.title}}</div> 
+
+                <!-- Adhan flash -->
+                <div class="adhan-flash hidden">
+                    <div class="col-md-2">
+                        <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
+                    </div>
+                    <div class="col-md-8">
+                        {{'azan'|trans}}
+                    </div>
+                    <div class="col-md-2">
+                        <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
+                    </div>
+                </div>
+
+                <!-- Alarm flash -->
+                <div class="alarm-flash hidden">
+                    <div class="col-md-2">
+                        <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
+                    </div>
+                    <div class="col-md-8">
+                        {{'alarm'|trans}}
+                    </div>
+                    <div class="col-md-2">
+                        <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="col-md-3 aid custom-time">
+                        <div class="ar">{{'aid'|trans}}</div>
+                        <div class="aid-id"></div>
+                    </div>
+                    <div class="col-md-3 chourouk custom-time">
+                        <div class="ar">{{'shuruk'|trans}}</div>
+                        <div class="chourouk-id"></div>
+                    </div>
+                    <div class="col-md-3 imsak custom-time">
+                        <div class="ar">{{'imsak'|trans}}</div>
+                        <div class="imsak-id"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="time"></div>
+                        <div class="date">
+                            <div class="hijriDate"></div>
+                            <div class="gregorianDate"></div>
+                        </div>
+                    </div>
+                    <div class=" col-md-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
+                        <div class="ar">{{'jumua'|trans}}</div>
+                        <div class="prayer joumouaa-id"></div>
+                    </div>
                 </div>
             </div>
 
-            {% include 'partial/dua-after-adhan.html.twig' %}
-            {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
-            {% include 'partial/jumua-dhikr-reminder.html.twig' %}
-
-            <!-- main screen -->
-            <div class="main display-none">
-
-                <!-- Random hadith container -->
-                <div class="random-hadith display-none" data-remote="{{path('random_hadith', {slug: mosque.slug})}}">
-                    <div class="text">
-                        <div></div>
-                    </div>
-                    <div class="time-bottom"></div>
-                    <div class="next-prayer"> 
-                        {{'next_prayer'|trans}} -<div class="countdown"></div>
-                    </div>
+            <!-- prayer times container -->
+            <div class="prayer-content">
+                <div class="prayer-text">
+                    <div class="text _0">{{'fajr'|trans}}</div>
+                    <div class="text _1">{{'zuhr'|trans}}</div>
+                    <div class="text _2">{{'asr'|trans}}</div>
+                    <div class="text _3">{{'maghrib'|trans}}</div>
+                    <div class="text _4">{{'isha'|trans}}</div>
                 </div>
 
-                <!-- top container -->
-                <div class="top-content">
+                <div class="prayer-time">
+                    <div class="sobh prayer"></div>
+                    <div class="dohr prayer"></div>
+                    <div class="asr prayer"></div>
+                    <div class="maghrib prayer"></div>
+                    <div class="ichaa prayer"></div>
+                </div>
 
-                    <!-- configure icon -->
-                    {% if app.request.getHost() == 'localhost' %}
-                        <div class="btn-settings">
-                            <a href="{{path('mosque_configure', {id: mosque.id})}}"> <i class="glyphicon glyphicon-cog"></i></a>
-                        </div>
-                    {% endif %}
+                <div class="prayer-wait">
+                    <div class="wait _0"></div>
+                    <div class="wait _1"></div>
+                    <div class="wait _2"></div>
+                    <div class="wait _3"></div>
+                    <div class="wait _4"></div>
+                </div>
+            </div>
 
-                    <!-- temperature container -->
-                    {% if mosque.configuration.temperatureEnabled %}
-                        <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
-                            <span></span><sup>°C</sup>
+            <!-- footer container -->
+            <div class="footer">
+                <div class="footer-text">
+                    <div class="col-md-12">
+                        <div class="site">{{'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw}}</div>
+                        <div class="assosciation">
+                            {{ mosque.associationName }}
+                            {% if mosque.phone %}
+                                &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                            {% endif %}
+                            &nbsp;&nbsp;{{ mosque.rib }}
                         </div>
-                    {% endif %}
-                    <div class="header ar">{{mosque.title}}</div> 
-
-                    <!-- Adhan flash -->
-                    <div class="adhan-flash hidden">
-                        <div class="col-md-2">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
-                        </div>
-                        <div class="col-md-8 ar">
-                            {{'azan'|trans}}
-                        </div>
-                        <div class="col-md-2">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
-                        </div>
-                    </div>
-
-                    <!-- Alarm flash -->
-                    <div class="alarm-flash hidden">
-                        <div class="col-md-2">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}">
-                        </div>
-                        <div class="col-md-8 ar">
-                            {{'alarm'|trans}}
-                        </div>
-                        <div class="col-md-2">
-                            <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" style="transform: scaleX(-1);">
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="col-md-3 aid custom-time">
-                            <div class="ar">{{'aid'|trans}}</div>
-                            <div class="aid-id"></div>
-                        </div>
-                        <div class="col-md-3 chourouk custom-time">
-                            <div class="ar">{{'shuruk'|trans}}</div>
-                            <div class="chourouk-id"></div>
-                        </div>
-                        <div class="col-md-3 imsak custom-time">
-                            <div class="ar">{{'imsak'|trans}}</div>
-                            <div class="imsak-id"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="time"></div>
-                            <div class="date">
-                                <div class="hijriDate"></div>
-                                <div class="gregorianDate"></div>
-                            </div>
-                        </div>
-                        <div class=" col-md-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
-                            <div class="ar">{{'jumua'|trans}}</div>
-                            <div class="prayer joumouaa-id"></div>
+                        <div class="support">
+                            <span>{{'developed_by'|trans}}</span> 
+                            &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}">{{supportTel}}</a>
+                            &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- prayer times container -->
-                <div class="prayer-content">
-                    <div class="prayer-text">
-                        <div class="text _0 ar">{{'fajr'|trans}}</div>
-                        <div class="text _1 ar">{{'zuhr'|trans}}</div>
-                        <div class="text _2 ar">{{'asr'|trans}}</div>
-                        <div class="text _3 ar">{{'maghrib'|trans}}</div>
-                        <div class="text _4 ar">{{'isha'|trans}}</div>
+                <div class="version">v{{version}}</div>
+                {% if mosque.configuration.urlQrCodeEnabled %}
+                    <div class="qr-code"  data-url="{{url('mosque', {slug: mosque.slug, _locale: app.request.locale})}}">
+                        <div id="qr-code"></div>
                     </div>
-
-                    <div class="prayer-time">
-                        <div class="sobh prayer"></div>
-                        <div class="dohr prayer"></div>
-                        <div class="asr prayer"></div>
-                        <div class="maghrib prayer"></div>
-                        <div class="ichaa prayer"></div>
-                    </div>
-
-                    <div class="prayer-wait">
-                        <div class="wait _0"></div>
-                        <div class="wait _1"></div>
-                        <div class="wait _2"></div>
-                        <div class="wait _3"></div>
-                        <div class="wait _4"></div>
-                    </div>
-                </div>
-
-                <!-- footer container -->
-                <div class="footer">
-                    <div class="footer-text">
-                        <div class="col-md-12">
-                            <div class="site ar">{{'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw}}</div>
-                            <div class="assosciation">
-                                {{ mosque.associationName }}
-                                {% if mosque.phone %}
-                                    &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
-                                {% endif %}
-                                &nbsp;&nbsp;{{ mosque.rib }}
-                            </div>
-                            <div class="support">
-                                <span>{{'developed_by'|trans}}</span> 
-                                &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i> <a href="tel:{{supportTel}}">{{supportTel}}</a>
-                                &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="version">v{{version}}</div>
-                    {% if mosque.configuration.urlQrCodeEnabled %}
-                        <div class="qr-code"  data-url="{{url('mosque', {slug: mosque.slug, _locale: app.request.locale})}}">
-                            <div id="qr-code"></div>
-                        </div>
-                    {% endif %}
-                </div>
+                {% endif %}
             </div>
         </div>
 

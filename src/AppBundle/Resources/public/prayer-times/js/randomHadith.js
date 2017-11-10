@@ -25,11 +25,7 @@ var randomHadith = {
                 url: $randomHadithEl.data("remote"),
                 success: function (resp) {
                     if (resp.text !== "") {
-                        $randomHadithEl.removeClass("random-hadith-fr");
                         $(".random-hadith .text div").text(resp.text);
-                        if (resp.lang !== "ar") {
-                            $randomHadithEl.addClass("random-hadith-fr");
-                        }
                         randomHadith.show(randomHadith.setFontSize, resp.lang);
                     }
                 },
