@@ -1,18 +1,7 @@
-.slider {
-    position: relative;
-    border-radius: 4px;
-}
-
-.slider .ar {
-    font-family: 'Amiri';
-}
-
 .slider .title{ 
-    color: yellowgreen;
-    padding: 5px 0 20px 0;
-    font-size: 900%;
+    margin:  20px 0;
 }
-   
+
 .slider ul {
     position: relative;
     margin: auto;
@@ -21,19 +10,15 @@
 }
 
 .slider ul li {
-    position: relative;
     display: block;
     float: left;
     margin: auto;
 }
 
-.message-info-slider li .title {
-    font-size: 650%;
+.adhkar-after-prayer .title {
+    color: yellowgreen;
+}
+
+.message-info-slider .title {
     color: #f0ad4e;
 }
-
-.message-info-slider li .content {
-    font-size: 750%;
-}
-
-
