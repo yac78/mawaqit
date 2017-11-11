@@ -190,10 +190,3 @@ $("#appbundle_configuration_randomHadithEnabled").bind("change", function (event
         $("#appbundle_configuration_hadithLang").parent().hide();
     }
 });
-
-$("[type='checkbox']").attr({
-    "data-toggle": "toggle",
-    "data-onstyle": "success",
-    "data-offstyle": "danger",
-    "data-size": "small"
-});

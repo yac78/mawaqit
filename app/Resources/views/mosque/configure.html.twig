@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
     {% stylesheets 
-            "bundles/app/bootstrap-toogle/bootstrap-toggle.min.css"
             "bundles/app/css/configure.css"
             filter="cssrewrite"
     %}
@@ -432,7 +431,6 @@
 {% block javascripts %}
     {% javascripts
        '@AppBundle/Resources/public/js/configure.js'
-       '@AppBundle/Resources/public/bootstrap-toogle/bootstrap-toggle.min.js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}    

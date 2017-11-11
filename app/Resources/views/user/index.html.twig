@@ -17,7 +17,6 @@
         <table class="table table-inverse">
             <thead>
                 <tr class="warning">
-                    <th>ID</th>
                     <th>{{'name'|trans}}</th>
                     <th>{{'email'|trans}}</th>
                     <th class="text-center">{{'active'|trans}}</th>
@@ -29,7 +28,6 @@
             <tbody>
                 {% for user in users %}
                     <tr>
-                        <th scope="row">{{user.id}}</th>
                         <td><a href="{{path('user_show', {id: user.id})}}">{{user.username}}</a></td>
                         <td>{{user.email}}</td>
                         <td class="text-center">

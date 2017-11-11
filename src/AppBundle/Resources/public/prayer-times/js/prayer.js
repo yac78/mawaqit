@@ -50,7 +50,7 @@ var prayer = {
         // if current time > ichaa time + 5 minutes we load tomorrow times
         var date = new Date();
         if (date.getHours() !== 0) {
-            var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIchaTime());
+            var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIshaTime());
             if (ichaaDateTime.getHours() !== 0) {
                 ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
                 if (date > ichaaDateTime) {
@@ -65,7 +65,7 @@ var prayer = {
     initUpdateConfData: function () {
         setInterval(function () {
             $.ajax({
-                url: "has-been-updated/" + prayer.confData.lastUpdatedDate,
+                url: "has-been-updated/" + prayer.confData.mosque.updated,
                 success: function (resp) {
                     if (resp.hasBeenUpdated === true) {
                         location.reload();
@@ -76,14 +76,14 @@ var prayer = {
     },
     /**
      * load prayer times
-     * if calculChoice = csv we load from csv file
+     * if sourceCalcul = csv we load from csv file
      * else we load from PrayTimes() function
      * @param {boolean} tomorrow if true we load tomorrow time, otherxise we load today times
      */
     loadTimes: function (tomorrow) {
-        if (this.confData.calculChoice === "calendar") {
+        if (this.confData.sourceCalcul === "calendar") {
             this.loadTimesFromCalendar(tomorrow);
-        } else if (this.confData.calculChoice === "api") {
+        } else if (this.confData.sourceCalcul === "api") {
             this.loadTimesFromApi(tomorrow);
         }
     },
@@ -113,18 +113,18 @@ var prayer = {
             if (prayer.confData.fajrDegree) {
                 prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
             }
-            if (prayer.confData.ichaaDegree) {
-                prayTimes.adjust({"isha": parseFloat(prayer.confData.ichaaDegree)});
+            if (prayer.confData.ishaDegree) {
+                prayTimes.adjust({"isha": parseFloat(prayer.confData.ishaDegree)});
             }
         }
 
         // times adjustment
         prayTimes.tune({
-            fajr: prayer.confData.prayerTimesAdjustment[0],
-            dhuhr: prayer.confData.prayerTimesAdjustment[1],
-            asr: prayer.confData.prayerTimesAdjustment[2],
-            maghrib: prayer.confData.prayerTimesAdjustment[3],
-            isha: prayer.confData.prayerTimesAdjustment[4]
+            fajr: prayer.confData.adjustedTimes[0],
+            dhuhr: prayer.confData.adjustedTimes[1],
+            asr: prayer.confData.adjustedTimes[2],
+            maghrib: prayer.confData.adjustedTimes[3],
+            isha: prayer.confData.adjustedTimes[4]
         });
 
         var date = new Date();
@@ -155,8 +155,8 @@ var prayer = {
             if (typeof afterIsha === 'undefined') {
                 times[i] = prayer.dstConvertTimeForCalendarMode(time);
             }
-            if (prayer.confData.prayerTimesFixing[i] && prayer.confData.prayerTimesFixing[i] > times[i]) {
-                times[i] = prayer.confData.prayerTimesFixing[i];
+            if (prayer.confData.fixedTimes[i] && prayer.confData.fixedTimes[i] > times[i]) {
+                times[i] = prayer.confData.fixedTimes[i];
             }
         });
         return times;
@@ -178,11 +178,11 @@ var prayer = {
      * @returns {Array}
      */
     getWaitingTimes: function () {
-        var waitings = this.confData.prayersWaitingTimes;
-        var ichaDate = this.getCurrentDateForPrayerTime(this.getIchaTime());
-        if (this.confData.maximumIchaTimeForNoWaiting != null && this.confData.maximumIchaTimeForNoWaiting.matchTime()) {
-            var maximumIchaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIchaTimeForNoWaiting);
-            if (ichaDate.getHours() === 0 || ichaDate >= maximumIchaTimeForNoWaitingDate) {
+        var waitings = this.confData.waitingTimes;
+        var ishaDate = this.getCurrentDateForPrayerTime(this.getIshaTime());
+        if (this.confData.maximumIshaTimeForNoWaiting != null && this.confData.maximumIshaTimeForNoWaiting.matchTime()) {
+            var maximumIshaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIshaTimeForNoWaiting);
+            if (ishaDate.getHours() === 0 || ishaDate >= maximumIshaTimeForNoWaitingDate) {
                 waitings[4] = 0;
             }
         }
@@ -219,7 +219,7 @@ var prayer = {
      * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
-        var applyConvertion = prayer.confData.calculChoice === "calendar" &&
+        var applyConvertion = prayer.confData.sourceCalcul === "calendar" &&
                 prayer.confData.dst !== 0 &&
                 dateTime.isLastSundayDst();
 
@@ -248,7 +248,7 @@ var prayer = {
      * get Ichaa time, if ichaa is <= then 19:50 then return 19:50 
      * @returns {String}
      */
-    getIchaTime: function () {
+    getIshaTime: function () {
         return this.getTimes()[4];
     },
     /**
@@ -263,13 +263,13 @@ var prayer = {
         return  chouroukTime;
     },
     /**
-     * Get the imsak time calculated by soustraction of imsakNbMinBeforeSobh from sobh time
+     * Get the imsak time calculated by soustraction of imsakNbMinBeforeFajr from sobh time
      * @returns {String}
      */
     getImsak: function () {
         var sobh = this.getTimeByIndex(0);
         var sobhDateTime = this.getCurrentDateForPrayerTime(sobh);
-        var imsakDateTime = sobhDateTime.setMinutes(sobhDateTime.getMinutes() - this.confData.imsakNbMinBeforeSobh);
+        var imsakDateTime = sobhDateTime.setMinutes(sobhDateTime.getMinutes() - this.confData.imsakNbMinBeforeFajr);
         var imsakDateTime = new Date(imsakDateTime);
         return addZero(imsakDateTime.getHours()) + ':' + addZero(imsakDateTime.getMinutes());
     },
@@ -649,7 +649,7 @@ var prayer = {
          * @param {Number} currentPrayerIndex
          */
         handle: function (currentPrayerIndex) {
-            if (prayer.confData.douaaAfterAdhanEnabled === true) {
+            if (prayer.confData.duaAfterAzanEnabled === true) {
                 prayer.duaAfterAdhan.showAdhanDua();
                 setTimeout(function () {
                     prayer.duaAfterAdhan.hideAdhanDua();
@@ -704,8 +704,8 @@ var prayer = {
             // return duhr
             return this.getTimeByIndex(1);
         }
-        if (this.confData.joumouaaTime) {
-            return this.confData.joumouaaTime;
+        if (this.confData.jumuaTime) {
+            return this.confData.jumuaTime;
         }
         return dateTime.isDst() ? "14:00" : "13:00";
     },
@@ -754,7 +754,7 @@ var prayer = {
         $(".chourouk-id").text(this.getChouroukTime());
 
         // if imsak enabled
-        if (parseInt(this.confData.imsakNbMinBeforeSobh) === 0) {
+        if (parseInt(this.confData.imsakNbMinBeforeFajr) === 0) {
             $(".chourouk").show();
             return;
         }
@@ -763,7 +763,7 @@ var prayer = {
         var imsak = this.getImsak();
         $(".imsak-id").text(imsak);
 
-        if (parseInt(this.confData.imsakNbMinBeforeSobh) !== 0) {
+        if (parseInt(this.confData.imsakNbMinBeforeFajr) !== 0) {
             var date = new Date();
             var midnight = new Date();
             midnight.setHours(0);

@@ -1,3 +1,6 @@
 prayer_mobile_site: "Prayer times on mobile and tablette <a href='%site%'>%site%</a>"
 association_info: "Association %name% - Phone %phone%"
 rib_info: "| RIB %rib%"
+
+yes: Yes
+no: No

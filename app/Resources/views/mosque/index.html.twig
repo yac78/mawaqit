@@ -38,7 +38,6 @@
         <table class="table table-inverse hidden-xs hidden-sm">
             <thead>
                 <tr class="warning">
-                    <th>ID</th>
                     <th>{{'name'|trans}}</th>
                     <th >{{'association'|trans}}</th>
                     <th style="width: 20%">{{'contact'|trans}}</th>
@@ -53,7 +52,6 @@
             <tbody>
                 {% for mosque in mosques %}
                     <tr class="{{ not mosque.isConfCompleted ? 'danger' : '' }}">
-                        <th scope="row">{{mosque.id}}</th>
                         <td>
                             {{mosque.name}}<br>
                             {% if mosque.isConfCompleted and mosque.configuration.isCalendar and  mosque.isCalendarCompleted   %}

@@ -37,7 +37,7 @@ var douaaSlider = {
      * @param {Number} currentTimeIndex
      */
     show: function (currentTimeIndex) {
-        if (prayer.confData.douaaAfterPrayerEnabled === true && !prayer.isJumua(currentTimeIndex)) {
+        if (prayer.confData.duaAfterPrayerEnabled === true && !prayer.isJumua(currentTimeIndex)) {
             $(".main").fadeOut(1000, function () {
                 $(".adhkar-after-prayer").fadeIn(1000);
                 douaaSlider.setFontSize();

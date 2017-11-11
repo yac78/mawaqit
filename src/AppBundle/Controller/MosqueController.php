@@ -3,12 +3,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class MosqueController extends Controller {
 
@@ -29,17 +32,24 @@ class MosqueController extends Controller {
         $mobileDetect = $this->get('mobile_detect.mobile_detector');
         $view = $request->query->get("view");
         $template = 'mosque';
-        
+
         if (($view !== "desktop" && $mobileDetect->isMobile() && !$mobileDetect->isTablet()) || $view === "mobile") {
             $template .= '_mobile';
         }
 
+        $config = $mosque->getConfiguration();
+        $encoder = new JsonEncoder();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceHandler(function ($config) {
+            return $config->getId();
+        });
+        $serializer = new Serializer(array($normalizer), array($encoder));
         return $this->render("mosque/$template.html.twig", [
                     'mosque' => $mosque,
                     'version' => $this->getParameter('version'),
                     "supportTel" => $this->getParameter("supportTel"),
                     "supportEmail" => $this->getParameter("supportEmail"),
-                    'config' => json_encode($mosque->getConfiguration()->getFormatedConfig())
+                    'config' => $serializer->serialize($config, 'json')
         ]);
     }
 

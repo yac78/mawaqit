@@ -35,7 +35,6 @@
         <table class="table table-inverse">
             <thead>
                 <tr class="warning">
-                    <th>ID</th>
                     <th style="width: 20%">{{'title'|trans}}</th>
                     <th>{{'content'|trans}}</th>
                     <th style="width: 5%">Photo ?</th>
@@ -46,7 +45,6 @@
             <tbody>
                 {% for message in mosque.messages %}
                     <tr>
-                        <th scope="row">{{message.id}}</th>
                         <td>{{message.title}}</td>
                         <td>{{message.content|raw}}</td>
                         <td class="text-center">
