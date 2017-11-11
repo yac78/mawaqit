@@ -39,6 +39,7 @@ cd /home/pi
 git clone https://github.com/binary010100/prayer-times-v3.git
 
 cd prayer-times-v3
+git pull origin master
 
 chmod 777 -R *
 
