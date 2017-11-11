@@ -8,18 +8,18 @@ set -e
 echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" > /etc/apt/sources.list.d/php7-1.list
 
 # install packages
-apt-get update && apt-get upgrade && apt-get install -y \
+apt-get update && apt-get install -y \
   nginx \
   git \
-  mysql-server \
   php7.1 \
   php7.1-fpm \
   php7.1-mysql \
   php7.1-curl \
   php7.1-intl \
-  php7.1-json \
   php7.1-xml \
   php7.1-zip 
+
+apt-get autoremove
 
 # update php conf
 sed -i "s/;date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
@@ -32,17 +32,18 @@ sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # install project
-mkdir /var/www/web
-cd /var/www/web
+cd /home/pi
 
 git clone https://github.com/binary010100/prayer-times-v3.git
 
 cd prayer-times-v3
 
-chmod 777 -r *
-composer install
+chmod 777 -R *
+composer install --no-dev --optimize-autoloader --no-interaction
+bin/console assets:install --env=prod --no-debug
+bin/console assetic:dump --env=prod --no-debug
 
-cp docker/vhost /etc/nginx/sites-enabled/default
+cp docker/vhost_raspberry /etc/nginx/sites-enabled/default
 service nginx restart
 
 
