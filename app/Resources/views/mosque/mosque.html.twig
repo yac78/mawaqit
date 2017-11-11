@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="google" content="notranslate">
         <link rel="icon" href="{{asset('favicon.png')}}" />
-        
+
         {% stylesheets 
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
             "bundles/app/prayer-times/css/main.css"
@@ -69,7 +69,7 @@
 
                 <!-- temperature container -->
                 {% if mosque.configuration.temperatureEnabled %}
-                    <div class="temperature" data-remote="{{path('temperature', {slug: mosque.slug})}}">
+                    <div class="temperature hidden" data-remote="{{path('temperature', {slug: mosque.slug})}}">
                         <span></span><sup>°C</sup>
                     </div>
                 {% endif %}
@@ -159,7 +159,9 @@
             <div class="footer">
                 <div class="footer-text">
                     <div class="col-md-12">
-                        <div class="site">{{'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw}}</div>
+                        {% if app.request.getHost() != 'localhost' %}
+                            <div class="site">{{'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw}}</div>
+                        {% endif %}
                         <div class="assosciation">
                             {{ mosque.associationName }}
                             {% if mosque.phone %}

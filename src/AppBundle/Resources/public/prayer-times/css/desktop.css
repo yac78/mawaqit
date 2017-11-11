@@ -28,6 +28,7 @@ body {
 .douaa-between-adhan-iqama, 
 .jumua-dhikr-reminder {
     height:100vh;
+    margin: auto;
 }
 
 .top-content{

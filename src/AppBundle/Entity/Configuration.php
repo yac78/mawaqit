@@ -58,7 +58,7 @@ class Configuration {
     /**
      * @var boolean
      */
-    private $jumuaDhikrReminderEnabled = false;
+    private $jumuaDhikrReminderEnabled = true;
 
     /**
      * @var boolean
@@ -142,7 +142,7 @@ class Configuration {
     /**
      * @var bool
      */
-    private $blackScreenWhenPraying = false;
+    private $blackScreenWhenPraying = true;
 
     /**
      * @var bool

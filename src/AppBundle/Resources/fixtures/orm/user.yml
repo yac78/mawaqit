@@ -1,17 +1,7 @@
 AppBundle\Entity\User:
-    ADMIN:
-        username: admin
-        plainPassword: 'pass'
-        email: admin\@horaires-de-priere.fr
+    LOCAL:
+        username: local
+        plainPassword: local
+        email: local\@local.com
         enabled: true
         roles: [ROLE_ADMIN]
-    IBRA:
-        username: Ibrahim Zehhaf
-        plainPassword: 'pass'
-        email: ibrahim.zehhaf\@gmail.com
-        enabled: true
-    USER:
-        username: user
-        plainPassword: 'pass'
-        email: user\@horaires-de-priere.fr
-        enabled: true

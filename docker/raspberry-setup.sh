@@ -9,6 +9,8 @@ echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-f
 
 # install packages
 apt-get update && apt-get install -y \
+  mariadb-server \
+  mariadb-client \
   nginx \
   git \
   php7.1 \
@@ -19,7 +21,7 @@ apt-get update && apt-get install -y \
   php7.1-xml \
   php7.1-zip 
 
-apt-get autoremove
+apt autoremove
 
 # update php conf
 sed -i "s/;date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
@@ -42,6 +44,9 @@ chmod 777 -R *
 composer install --no-dev --optimize-autoloader --no-interaction
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
+bin/console d:c:d
+bin/console d:s:u --force
+bin/console h:f:l -n
 
 cp docker/vhost_raspberry /etc/nginx/sites-enabled/default
 service nginx restart
