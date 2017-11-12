@@ -5,7 +5,7 @@ body {
     font-size: 12px;
     overflow: hidden;
     height:100vh;
-    font-family: 'mawaqit';
+    font-family: 'mawaqit', Arial, sans-serif;
     margin: auto;
     position: relative;
 }
