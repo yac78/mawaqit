@@ -1,0 +1,26 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    overflow: hidden;
+    height:100vh;
+    font-family: 'mawaqit';
+}
+
+
+ul {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    display: block;
+    float: left;
+    text-align: center;
+}
+
+.title {
+    color: #f0ad4e;
+}

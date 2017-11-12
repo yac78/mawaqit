@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Horaires de prière</title>
+        <title>{{'site_title'|trans}}</title>
         <meta charset="UTF-8">
         <meta name="google" content="notranslate">
         <link rel="icon" href="{{asset('favicon.png')}}" />
 
         {% stylesheets 
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+            "bundles/app/css/fonts.css"
             "bundles/app/prayer-times/css/main.css"
-            "bundles/app/prayer-times/css/fonts.css"
             "bundles/app/prayer-times/css/desktop.css"
             "bundles/app/prayer-times/css/slider.css"
             filter="cssrewrite"
@@ -37,7 +37,7 @@
         </div>
 
         <!-- message info slider -->
-        <div class="message-info-slider slider display-none" data-remote="{{path('get_messages', {slug: mosque.slug})}}"></div>
+        <div class="message-info-slider slider display-none" data-remote="{{path('ajax_get_messages', {id: mosque.id})}}"></div>
 
         {% include 'partial/dua-after-adhan.html.twig' %}
         {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
@@ -193,11 +193,11 @@
         {% javascripts
                 '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
                 '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
+                '@AppBundle/Resources/public/js/tools.js'
                 '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
                 '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
                 '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
                 '@AppBundle/Resources/public/prayer-times/js/vendor/qrcode.js'
-                '@AppBundle/Resources/public/prayer-times/js/tools.js'
                 '@AppBundle/Resources/public/prayer-times/js/date.js'
                 '@AppBundle/Resources/public/prayer-times/js/prayer.js'
                 '@AppBundle/Resources/public/prayer-times/js/sliders.js'

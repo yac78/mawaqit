@@ -12,6 +12,7 @@
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
             "bundles/app/bootstrap-toogle/bootstrap-toggle.min.css"
             "bundles/app/font-awesome/css/font-awesome.min.css"
+            "bundles/app/css/fonts.css"
             "bundles/app/css/main.css"
             filter="cssrewrite"
         %}
@@ -23,11 +24,12 @@
     </head>
 
     <body>
-        {% include ("partial/navbar.html.twig") %}
-        {% include ("partial/global_modal.html.twig") %}
 
         {% block body %}
         {% endblock %}
+        
+        {% include "partial/navbar.html.twig" %}
+        {% include "partial/global_modal.html.twig" %}
 
         <script>
             var yes = "{{'yes'|trans}}";
@@ -41,9 +43,9 @@
             '@AppBundle/Resources/public/js/waiting_dialog.js'
             '@AppBundle/Resources/public/js/main.js'
         %}
-        <script src="{{ asset_url }}"></script>
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %}    
-
+        
         {% block javascripts %}
         {% endblock %}
     </body>

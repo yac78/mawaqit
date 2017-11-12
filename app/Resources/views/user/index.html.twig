@@ -72,3 +72,11 @@
         {{ knp_pagination_render(users) }}
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+       '@AppBundle/Resources/public/js/delete_modal.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}    
+{% endblock %}   

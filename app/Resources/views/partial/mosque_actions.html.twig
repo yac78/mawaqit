@@ -8,6 +8,6 @@
     <a href="{{path('message_index', {mosque: mosque.id})}}" class="btn btn-success" title="{{'message.manage'|trans}}"><span class="fa fa-comment"></span></a>
 </div>
 <div class="btn-action">
-    <a data-url="{{path('message_refresh', {id: mosque.id})}}" class="btn btn-info btn-refresh" title="{{'mosque.refresh'|trans}}"><span class="fa fa-refresh"></span></a>
+    <a data-url="{{path('mosque_refresh', {id: mosque.id})}}" class="btn btn-info btn-refresh" title="{{'mosque.refresh'|trans}}"><span class="fa fa-refresh"></span></a>
 </div>
 {% include 'partial/delete_button.html.twig' with {entity: mosque} %}

@@ -205,6 +205,7 @@ security:
         authenticate_you: Identifiez-vous
 
 admin_title: Horaires de prière - administration        
+site_title: Horaires de prière
 
 validate: Valider
 cancel: Annuler

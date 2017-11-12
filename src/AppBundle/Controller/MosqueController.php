@@ -67,18 +67,6 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/{slug}/get-messages", name="get_messages")
-     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     */
-    public function getMessagesAjaxAction(Request $request, Mosque $mosque) {
-        $em = $this->getDoctrine()->getManager();
-        $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque);
-        return new Response($this->get("serializer")->serialize($messages, "json"), 200, [
-            'content-type' => 'application/json'
-        ]);
-    }
-
-    /**
      * get temperature of the mosque city
      * @Route("/{slug}/temperature", name="temperature")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})

@@ -123,7 +123,7 @@ class MosqueController extends Controller {
 
     /**
      * Force refresh page by updating updated_at
-     * @Route("/refresh/{id}", name="message_refresh")
+     * @Route("/refresh/{id}", name="mosque_refresh")
      */
     public function refreshAction(Request $request, Mosque $mosque) {
         $em = $this->getDoctrine()->getManager();

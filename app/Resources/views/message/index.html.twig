@@ -88,3 +88,11 @@
     {% include 'partial/delete_modal.html.twig' with {path: 'message_delete'} %}
 
 {% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+       '@AppBundle/Resources/public/js/delete_modal.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}    
+{% endblock %}   
