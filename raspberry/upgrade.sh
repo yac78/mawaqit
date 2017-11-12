@@ -16,6 +16,6 @@ sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
 bin/console c:c -e prod
 
-bin/console doctrine:migrations:migrate -n
+bin/console doctrine:migrations:migrate -n --allow-no-migration
     
 echo "Upgrade  has been successfully done ;)"
