@@ -21,12 +21,30 @@ apt-get update && apt-get install -y \
   php7.1-xml \
   php7.1-zip 
 
-apt autoremove
+apt-get autoremove
+
+# add autostart
+echo "@sh /home/pi/prayer-times-v3/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+
+# update config.txtx
+echo "hdmi_force_hotplug=1" >> /boot/config.txt
+echo "disable_overscan=1" >> /boot/config.txt
+echo "hdmi_group=1" >> /boot/config.txt
+echo "hdmi_mode=16" >> /boot/config.txt
+echo "overscan_left=20" >> /boot/config.txt
+echo "overscan_right=20" >> /boot/config.txt
+echo "overscan_top=20" >> /boot/config.txt
+echo "overscan_bottom=20" >> /boot/config.txt
+echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
+echo "program_usb_boot_mode=1" >> /boot/config.txt
+
+# disable screensaver
+sed -i "s/\[SeatDefaults\]\n/\[SeatDefaults\]\nxserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
 
 # update php conf
-sed -i "s/;date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
-sed -i "s/;memory_limit =.*/memory_limit = 128/" /etc/php/7.1/fpm/php.ini
-sed -i "s/;\s*max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini
+sed -i "s/;?date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
+sed -i "s/;?memory_limit =.*/memory_limit = 128/" /etc/php/7.1/fpm/php.ini
+sed -i "s/;?\s*max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini
 sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini
 sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 
@@ -47,14 +65,14 @@ HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]gi
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 
-composer install --no-dev --optimize-autoloader --no-interaction
+composer install --optimize-autoloader --no-interaction
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 bin/console d:c:d
 bin/console d:s:u --force
 bin/console h:f:l -n
 
-cp docker/vhost_raspberry /etc/nginx/sites-enabled/default
+cp raspberry/vhost /etc/nginx/sites-enabled/default
 service nginx restart
 
 
