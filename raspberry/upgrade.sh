@@ -8,7 +8,7 @@ latesttag=$(git describe --tags)
 echo checking out ${latesttag}
 git checkout ${latesttag}
 
-composer install
+composer install --optimize-autoloader --no-interaction
 
 version=`echo $latesttag | sed 's/-.*//'`
 
