@@ -1,12 +1,6 @@
 body {
-    background-color: #000;
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
     overflow: hidden;
     height:100vh;
-    font-family: 'mawaqit', Arial, sans-serif;
-    margin: auto;
     position: relative;
 }
 
