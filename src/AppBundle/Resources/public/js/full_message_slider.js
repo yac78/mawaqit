@@ -54,7 +54,7 @@ var messageInfoSlider = {
                                     );
                         }
                     });
-                    messageInfoSlider.slider.append("<ul>" + items.join("") + "</ul>");
+                    messageInfoSlider.slider.html("<ul>" + items.join("") + "</ul>");
                     messageInfoSlider.run();
                 }
             },
@@ -77,13 +77,6 @@ var messageInfoSlider = {
             $('#slider ul').css('left', '');
         });
     },
-    /**
-     * Number of seconds to show all slides
-     * @returns {Number}
-     */
-    getTimeForShow: function () {
-        return $('.slider li').length != 0 ? $('.slider li').length * messageInfoSlider.oneMessageShowingTime : 1 * 60 * 1000;
-    },
     setFontSize: function () {
         var $body = $('body');
         $('#slider li').each(function (i, slide) {
@@ -98,6 +91,10 @@ var messageInfoSlider = {
 
 messageInfoSlider.get();
 
+/**
+ * Check for new slides every 5 min
+ */
 setInterval(function () {
     messageInfoSlider.get();
-}, messageInfoSlider.getTimeForShow());
+}, 5000);
+//}, 5 * 60 * 1000);
