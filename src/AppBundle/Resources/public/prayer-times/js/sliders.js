@@ -92,9 +92,9 @@ var douaaSlider = {
         var $body = $('body');
         $('.slider li').each(function (i, slide) {
             var $slide = $(slide);
-            $slide.css('font-size', '200px');
-            while ($slide.height() > $body.height() - 50) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 1) + "px");
+            $slide.css('font-size', '120px');
+            while ($slide.height() > $body.height()) {
+                $slide.css('font-size', (parseInt($slide.css('font-size')) - 5) + "px");
             }
         });
     }
@@ -187,7 +187,7 @@ var messageInfoSlider = {
                     var items = [];
                     $.each(data, function (i, message) {
                         if (message.image) {
-                            items.push('<li class="message-image">'
+                            items.push('<li>'
                                     + '<img src="/upload/images/' + message.image + '"/>'
                                     + "</li>"
                                     );
@@ -263,9 +263,12 @@ var messageInfoSlider = {
         var $body = $('body');
         $('.message-info-slider li').each(function (i, slide) {
             var $slide = $(slide);
-            $slide.css('font-size', '200px');
+            if($slide.find("img").length > 0){
+                return true;
+            }
+            $slide.css('font-size', '130px');
             while ($slide.height() > $body.height() - 20) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 1) + "px");
+                $slide.css('font-size', (parseInt($slide.css('font-size')) - 5) + "px");
             }
         });
     }
