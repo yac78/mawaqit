@@ -32,15 +32,15 @@ mosque:
         success: All mosques have been reloaded
     form:
         name: 
-            placeholder : Ex. Mosquée Essunna
+            placeholder : Ex. Essunna mosque
         slug: 
-            label : Changez l'url du site
+            label : Change the website url
         city: 
-            placeholder: La ville de la mosquée (Sert à calculer la position géographique)
+            placeholder: The city of the mosque (used to calculate the geographical position)
         zipcode: 
-            placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
+            placeholder: The postal code of the mosque (used to calculate the geographical position)
         rib: 
-            placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+            placeholder: If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
         image1: 
             label: Image 1
         image2: 
@@ -49,25 +49,22 @@ mosque:
             label: Image 3
 
 message:
-    display_messages_in_screen: Vous pouvez afficher ces messages dans un écran dédié, il suffit de remplacer l'url des horaires par celle-ci
-    mosque: Annonces de "%mosque%"
-    add: Ajout d'une annonce
-    edit: Édition de l'annonce %title%
-    manage: Gérer les annonces
-    info: Les annonces défileront sur l'écran, avant et après chaque prière. Vous avez la possibilité d'ajouter jusqu'à 8 annonces activées à la fois.
-    maj_alert: Attention ! Les annonces écrites entièrement en majuscule peuvent s'afficher tronquées.
-    add_max_reached: |
-        Vous avez atteint le nombre maximum autorisé d'annonces activées (8 Max), 
-        pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes. 
-    form:
-        title: 
-            placeholder : Ex. Cours de coran
-        content: 
-            placeholder : 200 caractères maximum
-        delay: 
-            label : Délai d'affichage (minutes)
-        image: 
-            label : Image (Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage)
+    display_messages_in_screen: You can display these messages in a dedicated screen, just replace the schedule url with this one
+    mosque: Messages of "%mosque%"
+    add: Add a message
+    edit: Editing the message "%title%
+    manage: Manage messages
+    info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
+    add_max_reached: |
+        You have reached the maximum allowed number of activated messages (8 Max),
+        to be able to add more messages please remove or disable old ones.
+    form:
+        title:
+            placeholder: Ex. Quran course
+        happy:
+            placeholder: 200 characters maximum
+        picture:
+            label: Image (It will be displayed instead of text. For better viewing comfort, load only landscape images)
     
 configuration:
     title: Configuration des horaires de "%mosque%"
