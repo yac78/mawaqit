@@ -30,7 +30,7 @@ docker-compose up -d
 
 cd ..
 ./dock-deploy bash -c 'export SYMFONY_ENV=prod'
-./dock-deploy composer install --no-dev --optimize-autoloader
+./dock-deploy composer install --no-dev --optimize-autoloader --no-interaction
 ./dock-deploy php bin/console assets:install --env=prod --no-debug
 ./dock-deploy php bin/console assetic:dump --env=prod --no-debug
 
