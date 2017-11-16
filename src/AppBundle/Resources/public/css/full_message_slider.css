@@ -5,6 +5,7 @@ body {
     overflow: hidden;
     height:100vh;
     font-family: 'mawaqit', Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 
@@ -18,9 +19,14 @@ ul {
 li {
     display: block;
     float: left;
-    text-align: center;
+    margin: auto;
 }
 
 .title {
     color: #f0ad4e;
+}
+
+li img {
+    width: 99%;
+    height: 100vh;
 }

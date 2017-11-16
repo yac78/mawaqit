@@ -19,9 +19,11 @@ var messageInfoSlider = {
         $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
         $('#slider li:last-child').prependTo('#slider ul');
 
+        messageInfoSlider.slider.hide();
         setTimeout(function () {
             messageInfoSlider.setFontSize();
-        }, 1000);
+            messageInfoSlider.slider.show();
+        }, 500);
 
         clearInterval(messageInfoSlider.interval);
         messageInfoSlider.interval = setInterval(function () {
@@ -38,21 +40,19 @@ var messageInfoSlider = {
             success: function (data) {
                 var dataHashCode = JSON.stringify(data).hashCode();
                 if (data.length > 0 && dataHashCode !== messageInfoSlider.ajaxJsonHashCode) {
+                    var slide;
                     messageInfoSlider.ajaxJsonHashCode = dataHashCode;
                     var items = [];
                     $.each(data, function (i, message) {
+                        slide = '<li>';
                         if (message.image) {
-                            items.push('<li class="message-image">'
-                                    + '<img src="/upload/images/' + message.image + '"/>'
-                                    + "</li>"
-                                    );
+                            slide += '<img src="/upload/images/' + message.image + '"/>';
                         } else {
-                            items.push('<li>'
-                                    + '<div class="title">' + message.title + '</div>'
-                                    + '<div class="content">' + message.content + '</div>'
-                                    + "</li>"
-                                    );
+                            slide += '<div class="title">' + message.title + '</div>' + '<div class="content">' + message.content + '</div>';
                         }
+                        slide += '</li>';
+                        items.push(slide);
+
                     });
                     messageInfoSlider.slider.html("<ul>" + items.join("") + "</ul>");
                     messageInfoSlider.run();
@@ -81,7 +81,10 @@ var messageInfoSlider = {
         var $body = $('body');
         $('#slider li').each(function (i, slide) {
             var $slide = $(slide);
-            $slide.css('font-size', '200px');
+            if ($slide.find("img").length > 0) {
+                return true;
+            }
+            $slide.css('font-size', '130px');
             while ($slide.height() > $body.height() - 20) {
                 $slide.css('font-size', (parseInt($slide.css('font-size')) - 1) + "px");
             }

@@ -184,22 +184,19 @@ var messageInfoSlider = {
             url: $(".message-info-slider").data("remote"),
             success: function (data) {
                 if (data.length > 0) {
+                    var slide;
                     var items = [];
                     $.each(data, function (i, message) {
+                        slide = '<li>';
                         if (message.image) {
-                            items.push('<li>'
-                                    + '<img src="/upload/images/' + message.image + '"/>'
-                                    + "</li>"
-                                    );
+                            slide += '<img src="/upload/images/' + message.image + '"/>';
                         } else {
-                            items.push('<li>'
-                                    + '<div class="title">' + message.title + '</div>'
-                                    + '<div class="content">' + message.content + '</div>'
-                                    + "</li>"
-                                    );
+                            slide += '<div class="title">' + message.title + '</div>' + '<div class="content">' + message.content + '</div>';
                         }
+                        slide += '</li>';
+                        items.push(slide);
                     });
-                    $(".message-info-slider").html("<ul>"+items.join("")+"</ul>");
+                    $(".message-info-slider").html("<ul>" + items.join("") + "</ul>");
                     messageInfoSlider.run();
                 } else {
                     $(".main").fadeIn(1000);
@@ -263,7 +260,7 @@ var messageInfoSlider = {
         var $body = $('body');
         $('.message-info-slider li').each(function (i, slide) {
             var $slide = $(slide);
-            if($slide.find("img").length > 0){
+            if ($slide.find("img").length > 0) {
                 return true;
             }
             $slide.css('font-size', '130px');
