@@ -173,7 +173,7 @@ configuration:
             title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
         urlQrCodeEnabled: 
             label: QR code pour le lien du site
-            title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien des horaires de prière
+            title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien mawaqit
         backgroundColor: 
             label: Couleur de fond
         fajrDegree: 
@@ -201,14 +201,14 @@ configuration:
 security:
     login:
         info:
-            title: 3 étapes pour créer votre écran d'horaires de prière
+            title: 3 étapes pour créer votre écran Mawaqit
             step1: Inscrivez-vous
             step2: Ajoutez et configurez votre mosquée
             step3: Mettez le lien généré dans un navigarteur (Raspberry, Ordinateur, Smart TV, Box android...) 
         authenticate_you: Identifiez-vous
 
-admin_title: Horaires de prière - administration        
-site_title: Horaires de prière
+admin_title: Mawaqit - administration        
+site_title: Mawaqit
 
 validate: Valider
 cancel: Annuler
@@ -331,7 +331,7 @@ month_9: Octobre
 month_10: Novembre
 month_11: Décembre
 
-prayer_mobile_site: "Horaires de prière sur mobile et tablette <a href='%site%'>%site%</a>"
+prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     Ne pas tenir compte du changement d'heure été/hiver, 
