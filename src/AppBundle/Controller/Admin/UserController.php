@@ -42,9 +42,7 @@ class UserController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();
-        $this->addFlash('success', $this->get("translator")->trans("form.delete.success", [
-                    "%object%" => "du user", "%name%" => $user->getUsername()
-        ]));
+        $this->addFlash('success', "form.delete.success");
         return $this->redirectToRoute('user_index');
     }
 
@@ -80,7 +78,7 @@ class UserController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->get("app.user_service")->sendEmailToAllUsers($form->getData());
-            $this->addFlash('success', $this->get("translator")->trans("email.send.success"));
+            $this->addFlash('success', "email.send.success");
 
             return $this->redirectToRoute('user_index');
         }

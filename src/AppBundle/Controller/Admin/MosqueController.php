@@ -62,9 +62,7 @@ class MosqueController extends Controller {
             $em->flush();
             $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, ['mosque' => $mosque]);
             $this->get("app.mail_service")->mosqueCreated($mosque, $mailBody);
-            $this->addFlash('success', $this->get("translator")->trans("form.create.success", [
-                        "%object%" => "de la mosquée", "%name%" => $mosque->getName()
-            ]));
+            $this->addFlash('success', "form.create.success");
 
             return $this->redirectToRoute('mosque_index');
         }
@@ -91,9 +89,7 @@ class MosqueController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($mosque);
             $em->flush();
-            $this->addFlash('success', $this->get("translator")->trans("form.edit.success", [
-                        "%object%" => "de la mosquée", "%name%" => $mosque->getName()
-            ]));
+            $this->addFlash('success', "form.edit.success");
 
             return $this->redirectToRoute('mosque_index');
         }
@@ -115,9 +111,7 @@ class MosqueController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $em->remove($mosque);
         $em->flush();
-        $this->addFlash('success', $this->get("translator")->trans("form.delete.success", [
-                    "%object%" => "de la mosquée", "%name%" => $mosque->getName()
-        ]));
+        $this->addFlash('success', "form.delete.success");
         return $this->redirectToRoute('mosque_index');
     }
 

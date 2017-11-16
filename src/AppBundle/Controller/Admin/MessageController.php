@@ -56,9 +56,7 @@ class MessageController extends Controller {
             $message->setMosque($mosque);
             $em->persist($message);
             $em->flush();
-            $this->addFlash('success', $this->get("translator")->trans("form.create.success", [
-                        "%object%" => "du message", "%name%" => $message->getTitle()
-            ]));
+            $this->addFlash('success', "form.create.success");
 
             return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
         }
@@ -88,9 +86,7 @@ class MessageController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
-            $this->addFlash('success', $this->get("translator")->trans("form.edit.success", [
-                        "%object%" => "du message", "%name%" => $message->getTitle()
-            ]));
+            $this->addFlash('success', "form.edit.success");
 
             return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
         }
@@ -114,9 +110,7 @@ class MessageController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $em->remove($message);
         $em->flush();
-        $this->addFlash('success', $this->get("translator")->trans("form.delete.success", [
-                    "%object%" => "du message", "%name%" => $message->getTitle()
-        ]));
+        $this->addFlash('success', "form.delete.success");
         return $this->redirectToRoute('message_index', ['mosque' => $message->getMosque()->getId()]);
     }
 
