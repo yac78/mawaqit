@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# stop chromium
+killall chromium-browser
+
 cd /home/pi/prayer-times-v3
 
 git fetch
@@ -9,6 +12,8 @@ echo checking out ${latesttag}
 git checkout ${latesttag}
 
 composer install --optimize-autoloader --no-interaction
+bin/console assets:install --env=prod --no-debug
+bin/console assetic:dump --env=prod --no-debug
 
 version=`echo $latesttag | sed 's/-.*//'`
 
@@ -19,3 +24,6 @@ bin/console c:c -e prod
 bin/console doctrine:migrations:migrate -n --allow-no-migration
     
 echo "Upgrade  has been successfully done ;)"
+
+# run app
+raspberry/run.sh
