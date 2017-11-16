@@ -14,14 +14,15 @@ parameters:
     version: 3.0.0
     supportTel: '+33629111641'
     supportEmail: contact@horaires-de-priere.fr
+    toto: titi
 
     no_replay_address : %supportEmail%
-    no_replay_name : Horaires de prière
+    no_replay_name : Mawaqit
 
     # Google API
-    google_api_key: ''
+    google_api_key: 'AIzaSyC0n3EKMQBPimJseyl_dD-JgemvYaX7_K8'
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
 
     # Weather API
     weather_api_endpoint: 'http://api.openweathermap.org/data/2.5/weather'
-    weather_api_key: ''
+    weather_api_key: 'c9560e670b050ad1db74f37b086afd44'
