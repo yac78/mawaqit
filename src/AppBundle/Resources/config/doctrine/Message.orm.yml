@@ -22,6 +22,12 @@ AppBundle\Entity\Message:
             nullable: true
         enabled:
             type: boolean
+        updated:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: update            
     manyToOne:
         mosque:
             targetEntity: AppBundle\Entity\Mosque

@@ -41,6 +41,11 @@ class Message {
     private $image;
 
     /**
+     * @var \DateTime
+     */
+    private $updated;
+
+    /**
      * @var Mosque
      */
     public $mosque;
@@ -115,7 +120,7 @@ class Message {
         $this->file = $image;
 
         if ($image) {
-            $this->updated = new \DateTime();
+            $this->updated = new \DateTimeImmutable();
         }
 
         return $this;
