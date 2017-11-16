@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ 'my_mosques'|trans ~ ' - ' ~parent() }}{% endblock %}
+
 {% block stylesheets %}
     {% stylesheets 
         "bundles/app/css/mosque_index.css"
@@ -42,9 +44,9 @@
                     <th >{{'association'|trans}}</th>
                     <th style="width: 20%">{{'contact'|trans}}</th>
                     <th style="width: 35%">{{'prayer_sites'|trans}}</th>
-                    {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') %}
                         <th>{{'user'|trans}}</th>
-                    {% endif %}
+                        {% endif %}
                     <th>{{'creation_date'|trans}}</th>
                     <th style="width: 8%">Actions</th>
                 </tr>

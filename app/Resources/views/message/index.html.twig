@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} Accueil{% endblock %}
-
 {% block body %}
     {% include 'partial/flash_msg.html.twig' %}
 
@@ -17,6 +15,9 @@
             <div class="alert alert-info" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{'message.info'|trans}}
+            </div>
+            <div class="alert alert-success" role="alert">
+              {{'message.display_messages_in_screen'|trans}} : <a target="_blank" href="{{ path("messages", {slug: mosque.slug})}}">{{ url("messages", {slug: mosque.slug}) }}</a>
             </div>
         </div>
     </div>

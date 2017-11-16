@@ -49,6 +49,7 @@ mosque:
             label: Image 3
 
 message:
+    display_messages_in_screen: Vous pouvez afficher ces messages dans un écran dédié, il suffit de remplacer l'url des horaires par celle-ci
     mosque: Annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%
