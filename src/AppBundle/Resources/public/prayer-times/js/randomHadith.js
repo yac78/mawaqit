@@ -63,7 +63,7 @@ var randomHadith = {
             $textContainerDiv.css('line-height', '140%');
         }
         while ($textContainerDiv.height() > $textContainer.height()) {
-            $textContainerDiv.css('font-size', (parseInt($textContainerDiv.css('font-size')) - 1) + "px");
+            $textContainerDiv.css('font-size', (parseInt($textContainerDiv.css('font-size')) - 5) + "px");
             if (lang === "ar") {
                 $textContainerDiv.css('line-height', (parseInt($textContainerDiv.css('line-height')) - 2) + "px");
             }
