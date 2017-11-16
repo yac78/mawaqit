@@ -139,6 +139,7 @@ class Configuration {
      * @var bool
      */
     private $iqamaBip = true;
+
     /**
      * @var bool
      */
@@ -245,6 +246,7 @@ class Configuration {
      * @var string
      */
     private $backgroundColor = "#000000";
+
     /**
      * @var string
      */
@@ -254,6 +256,12 @@ class Configuration {
      * @var integer
      */
     private $wakeForFajrTime;
+
+    /**
+     * time in second
+     * @var integer
+     */
+    private $timeToDisplayMessage = 30;
 
     /**
      * Get id
@@ -876,7 +884,6 @@ class Configuration {
         return $this->sourceCalcul === self::SOURCE_CALENDAR;
     }
 
-
     /**
      * @return boolean
      */
@@ -970,8 +977,17 @@ class Configuration {
     function setHadithLang($hadithLang) {
         $this->hadithLang = $hadithLang;
     }
-    
+
     function getHadithLangs() {
         return self::HADITH_LANG;
     }
+
+    function getTimeToDisplayMessage() {
+        return $this->timeToDisplayMessage;
+    }
+
+    function setTimeToDisplayMessage($timeToDisplayMessage) {
+        $this->timeToDisplayMessage = $timeToDisplayMessage;
+    }
+
 }

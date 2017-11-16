@@ -194,6 +194,9 @@ configuration:
             04,06:49,08:44,12:57,14:50,17:11,18:50 <br>
             05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
             ...            
+        timeToDisplayMessage: 
+            label: Temps d'affichage d'un message/annonce (en seconde)
+            title: Cela concerne que l'écran dédié aux messages et annonces
 
 security:
     login:

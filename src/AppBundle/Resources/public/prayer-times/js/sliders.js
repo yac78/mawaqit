@@ -183,10 +183,10 @@ var messageInfoSlider = {
             dataType: "json",
             url: $(".message-info-slider").data("remote"),
             success: function (data) {
-                if (data.length > 0) {
+                if (data.messages.length > 0) {
                     var slide;
                     var items = [];
-                    $.each(data, function (i, message) {
+                    $.each(data.messages, function (i, message) {
                         slide = '<li>';
                         if (message.image) {
                             slide += '<img src="/upload/images/' + message.image + '"/>';

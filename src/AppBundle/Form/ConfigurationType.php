@@ -334,6 +334,15 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.backgroundColor.label',
                 ])
                 ->add('calendar')
+                ->add('timeToDisplayMessage', IntegerType::class, [
+                    'required' => false,
+                    'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
+                    'label' => 'configuration.form.timeToDisplayMessage.label',
+                    'attr' => [
+                        'min' => 5,
+                        'title' => $this->translator->trans('configuration.form.timeToDisplayMessage.title'),
+                    ]
+                ])
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
                     'attr' => [
@@ -357,7 +366,7 @@ class ConfigurationType extends AbstractType {
     public function onPostSetData(FormEvent $event) {
         /** @var Configuration $configuration */
         $configuration = $event->getData();
-        
+
         // update gps coordinates
         $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
         $configuration->setLongitude($position->lng);

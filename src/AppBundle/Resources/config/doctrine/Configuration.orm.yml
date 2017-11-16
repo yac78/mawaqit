@@ -104,6 +104,8 @@ AppBundle\Entity\Configuration:
         calendar:
             type: json_array
             nullable: true
+        timeToDisplayMessage:
+            type: smallint
         created:
             type: datetime
             gedmo:

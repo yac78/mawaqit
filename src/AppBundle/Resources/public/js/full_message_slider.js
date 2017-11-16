@@ -4,7 +4,7 @@
  */
 var messageInfoSlider = {
     slider: $("#slider"),
-    oneMessageShowingTime: 3000,
+    timeToDisplayMessage: 30000,
     interval: null,
     ajaxJsonHashCode: '',
     /**
@@ -28,7 +28,7 @@ var messageInfoSlider = {
         clearInterval(messageInfoSlider.interval);
         messageInfoSlider.interval = setInterval(function () {
             messageInfoSlider.moveRight();
-        }, messageInfoSlider.oneMessageShowingTime);
+        }, messageInfoSlider.timeToDisplayMessage * 1000);
     },
     /**
      * Get message from server
@@ -39,11 +39,12 @@ var messageInfoSlider = {
             url: messageInfoSlider.slider.data("remote"),
             success: function (data) {
                 var dataHashCode = JSON.stringify(data).hashCode();
-                if (data.length > 0 && dataHashCode !== messageInfoSlider.ajaxJsonHashCode) {
+                if (data.messages.length > 0 && dataHashCode !== messageInfoSlider.ajaxJsonHashCode) {
+                    messageInfoSlider.timeToDisplayMessage = data.timeToDisplayMessage;
                     var slide;
                     messageInfoSlider.ajaxJsonHashCode = dataHashCode;
                     var items = [];
-                    $.each(data, function (i, message) {
+                    $.each(data.messages, function (i, message) {
                         slide = '<li>';
                         if (message.image) {
                             slide += '<img src="/upload/images/' + message.image + '"/>';
@@ -57,15 +58,7 @@ var messageInfoSlider = {
                     messageInfoSlider.slider.html("<ul>" + items.join("") + "</ul>");
                     messageInfoSlider.run();
                 }
-            },
-            /**
-             * If error show offline existing message
-             */
-            error: function () {
-                if ($("#slider li").length > 0) {
-                    messageInfoSlider.run();
-                }
-            },
+            }
         });
     },
     moveRight: function () {
@@ -99,5 +92,4 @@ messageInfoSlider.get();
  */
 setInterval(function () {
     messageInfoSlider.get();
-}, 5000);
-//}, 5 * 60 * 1000);
+}, 5 * 60 * 1000);
