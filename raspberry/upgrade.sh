@@ -23,7 +23,7 @@ bin/console c:c -e prod
 
 bin/console doctrine:migrations:migrate -n --allow-no-migration
     
-echo "Upgrade  has been successfully done ;)"
+echo "The upgrade to v$version has been successfully done ;)"
 
 # run app
 raspberry/run.sh
