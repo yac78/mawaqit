@@ -13,14 +13,19 @@ security:
     firewalls:
         main:
             pattern: ^/
+            anonymous:    true
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 default_target_path: mosque_index
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
                 use_referer: true
             logout:     
-                target:  /login
-            anonymous:    true
+                path:  fos_user_security_logout
+                target: /
 
     access_control:
+        - { path: ^/[^/]+/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[^/]+/admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[^/]+/admin, role: ROLE_USER }

@@ -18,12 +18,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * @Route("/{_locale}/admin/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_locale"="fr"})
+ * @Route("/admin/mosque")
  */
 class MosqueController extends Controller {
 
     /**
-     * @Route("/", name="mosque_index")
+     * @Route(name="mosque_index")
      */
     public function indexAction(Request $request) {
 
@@ -127,7 +127,7 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/configure/{id}", name="mosque_configure")
+     * @Route("/{id}/configure", name="mosque_configure")
      */
     public function configureAction(Request $request, Mosque $mosque) {
 
@@ -156,8 +156,7 @@ class MosqueController extends Controller {
                 $em->persist($configuration);
                 $em->flush();
                 return $this->redirectToRoute('mosque', [
-                            'slug' => $mosque->getSlug(),
-                            '_locale' => $request->getLocale(),
+                            'slug' => $mosque->getSlug()
                 ]);
             }
         } catch (GooglePositionException $exc) {

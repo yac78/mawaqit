@@ -9,7 +9,6 @@ parameters:
     locale: fr
 
 framework:
-    #esi: ~
     translator: { fallbacks: [fr] }
     secret: '%secret%'
     router:
@@ -119,3 +118,8 @@ knp_paginator:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
         
 mobile_detect: ~
+
+jms_i18n_routing:
+    default_locale: %locale%
+    locales: [en, fr, ar]
+    strategy: prefix

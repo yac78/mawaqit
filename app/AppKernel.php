@@ -21,6 +21,7 @@ class AppKernel extends Kernel {
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new AppBundle\AppBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

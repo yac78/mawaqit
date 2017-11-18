@@ -16,15 +16,23 @@ use Symfony\Component\Serializer\Serializer;
 class MosqueController extends Controller {
 
     /**
-     * @Route("/mosque/{slug}/{_locale}", name="mosque_deprected", requirements={"_locale"= "en|fr|ar"})
+     * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function mosqueDeprectedAction(Request $request, Mosque $mosque) {
-        return $this->redirectToRoute("mosque", ["slug" => $mosque->getSlug()]);
+    public function mosqueDeprected1Action(Request $request, Mosque $mosque) {
+        return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
+    }
+    
+    /**
+     * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar"})
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     */
+    public function mosqueDeprected2Action(Request $request, Mosque $mosque) {
+        return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
     }
 
-    /**
-     * @Route("/{slug}/{_locale}", name="mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
+     /**
+     * @Route("/{slug}", name="mosque")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueAction(Request $request, Mosque $mosque) {

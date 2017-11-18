@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("{_locale}/admin/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_locale"="fr"})
+ * @Route("/admin")
  */
 class MessageController extends Controller {
     const MAX_MESSAGE = 8;
@@ -68,7 +68,7 @@ class MessageController extends Controller {
     }
 
     /**
-     * @Route("/{mosque}/message/edit/{message}", name="message_edit")
+     * @Route("/{mosque}/message/{message}/edit", name="message_edit")
      */
     public function editAction(Request $request, Mosque $mosque, Message $message) {
 
@@ -99,7 +99,7 @@ class MessageController extends Controller {
     }
 
     /**
-     * @Route("/message/delete/{id}", name="message_delete")
+     * @Route("/message/{id}/delete", name="message_delete")
      */
     public function deleteAction(Request $request, Message $message) {
         $user = $this->getUser();

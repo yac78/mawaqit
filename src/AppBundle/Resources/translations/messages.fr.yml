@@ -291,7 +291,7 @@ azan: Al-Adhân
 
 power-off-phones: Éteignez vos portables SVP !
 hi: Bonjour %name%
-salam: 'Essalamu `alaykom %name%'
+salam: 'Essalamu `alaykum %name%'
 user: Utilisateur
 active: Activé ?
 delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
@@ -301,6 +301,7 @@ changing_password: Modifier votre mot de passe
 add: Ajouter
 title: Titre
 content: Contenu
+subject: Sujet
 developed_by: Développé par Binary Consulting SAS
 next_prayer: Prochaine prière
 last_login: dernière connexion

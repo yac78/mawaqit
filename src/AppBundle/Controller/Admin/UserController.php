@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\EmailType;
 
 /**
- * @Route("/{_locale}/admin/user", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
+ * @Route("/admin/user")
  * @Security("has_role('ROLE_ADMIN')")
  */
 class UserController extends Controller {
 
     /**
-     * @Route("/", name="user_index")
+     * @Route(name="user_index")
      */
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();

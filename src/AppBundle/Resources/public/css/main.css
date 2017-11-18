@@ -1,5 +1,6 @@
 body {
     padding: 100px 50px 50px 50px;
+    font-size: 16px;
 }
 
 @media (max-width: 768px) {
@@ -33,6 +34,10 @@ body {
     -moz-border-radius-topright: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
+
+.modal-header.red {
+    background-color: #d9534f;
 }
 
 .btn-action {
