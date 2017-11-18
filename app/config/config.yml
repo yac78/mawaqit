@@ -118,4 +118,4 @@ knp_paginator:
     template:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
         
-mobile_detect: ~     
+mobile_detect: ~

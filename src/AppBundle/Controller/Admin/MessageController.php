@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("/admin/{_locale}/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_local"="fr"})
+ * @Route("{_locale}/admin/mosque", requirements={"_locale"= "en|fr|ar"}, defaults={"_locale"="fr"})
  */
 class MessageController extends Controller {
     const MAX_MESSAGE = 8;

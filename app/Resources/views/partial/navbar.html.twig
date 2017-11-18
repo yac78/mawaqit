@@ -11,7 +11,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll hidden-xs" href="{{path('mosque_index')}}">{{'admin_title'|trans}}</a>
+            <a class="navbar-brand page-scroll hidden-xs" href="{{path('mosque_index')}}">{{'admin_title'|trans}}&nbsp;&nbsp;|</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -43,6 +43,18 @@
                     </li>
                 {% endif %}
             </ul>
+
+{#            <ul class="nav navbar-nav navbar-right languages">
+                <li>
+                    <a href="{{path("mosque_index", {_locale: 'ar'})}}">&nbsp;ar</a>
+                </li>
+                <li>
+                    <a href="{{path("mosque_index", {_locale: 'fr'})}}">&nbsp;fr</a>
+                </li>
+                <li>
+                    <a href="{{path("mosque_index", {_locale: 'en'})}}">&nbsp;en</a>
+                </li>
+            </ul>#}
         </div>
     </div>
 </nav>
