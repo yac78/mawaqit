@@ -67,41 +67,41 @@ message:
             label: Image (It will be displayed instead of text. For better viewing comfort, load only landscape images)
     
 configuration:
-    title: Configuration des horaires de "%mosque%"
+    title: Prayer times configuration of "%mosque%"
     list:
-        download_csv_files: Télécharger le calendrier
+        download_csv_files: Download the calendar
         conf_not_completed: |
-            Votre mosquée est ajoutée, en revanche les horaires de prière ne sont pas encore configurées.<br>
-            Veuillez procéder à la configuration en cliquant sur le bouton orange à droite.<br>
-            Dans le cas du choix de réglage par calendrier, vérifiez si ce dernier est bien complété.
+            Your mosque is added, but prayer times are not yet set. <br>
+            please proceed to the configuration by clicking on the orange button on the right. <br>
+            In the case of the choice of calendar adjustment, check if it is well completed.
         calendar_not_completed: |
-            Attention le calendrier de votre mosquée n'est pas encore complété.
+            Be careful the calendar of your mosque is not completed yet.
     form: 
-        prayerCalcul: Calcul des horaires de prière
+        prayerCalcul: Calculation of prayer times
         load_predefined_calendar: 
-            1: "Vous avez le choix entre les 2 options suivantes :"
-            2: Charger un calendrier pré-défini parmis la liste ci-dessous puis l'éditer par rapport à votre calendrier papier
-            3: Charger les horaires depuis un fichier texte type CSV pour chaque mois de l'année
+            1: "You have the choice between the following 2 options:"
+            2: Load a predefined calendar from the list below and edit it against your paper calendar
+            3: Load prayer times from a CSV text file for each month of the year
              
         fill_calendar:
-            success: Les horaires du mois on été remplis avec succès.
-            error: Les horaires du mois n'ont pas pu être remplis.
-        time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant hh:mm"
-        fill_calendar_from_csv: Pré-remplir depuis un fichier csv
-        calendar: Calendrier des horaires
-        lang: La langue d'affichage de l'écran 
+            success: The prayer times of the month have been filled successfully.
+            error: The prayer times of the month could not be filled.
+        time_invalid: "The entered value is invalid, it must follow the format hh:mm"
+        fill_calendar_from_csv: Pre-populate from a csv file
+        calendar: Timetable
+        lang: The display language of the screen
         sourceCalcul: 
-            label: Source de calcul des horaires
+                label: Time calculation source
         prayerMethod: 
-            label: Méthode de calcul
-            placeholder: Veuillez choisir une méthode de calcul
+            label: Calculation method
+            placeholder: Please choose a calculation method
         jumuaTime:
-            label: Heure du jumu`a
-            title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été
+            label: Jumu'à time
+            title: "If this value is entered, it will be displayed on the screen. Default 13:00 in winter and 14:00 in summer"
         jumuaAsDuhr:
-            label: L'heure du jumu'a pareil que Dhuhr
+            label: The time of jumu'a like Dhuhr
         noJumua:
-            label: Pas de jumu`a dans cette mosquée
+            label: No jumu`a in this mosque
         jumuaDhikrReminderEnabled:
             label: Afficher un rappel pendant jumu`a 
             title: Si cette case est coché un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche

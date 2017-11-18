@@ -87,7 +87,7 @@ configuration:
             3: Charger les horaires depuis un fichier texte type CSV pour chaque mois de l'année
              
         fill_calendar:
-            success: Les horaires du mois on été remplis avec succès.
+            success: Les horaires du mois ont été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis.
         time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant hh:mm"
         fill_calendar_from_csv: Pré-remplir depuis un fichier csv
