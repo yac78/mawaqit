@@ -78,7 +78,7 @@
                                 {% for lang in languages %}
                                     <div><div style="width: 70px; font-weight: bold; float: left">{{lang|trans}}</div> : <a target="_blank" href="{{ path("mosque", {slug: mosque.slug, _locale: lang})}}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a></div>
                                     {% endfor %}
-                                    {{'widget_for_your_site'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}?view=mobile">{{'show'|trans}}</a>
+                                    {{'mosqueList.widgetForYourSite'|trans}} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug})}}?view=mobile">{{'show'|trans}}</a>
                             {% else %}
                                 <span class="glyphicon glyphicon-alert"></span> {{'configuration.list.conf_not_completed'|trans|raw}}
                             {% endif %}

@@ -44,7 +44,7 @@
         {% include 'partial/jumua-dhikr-reminder.html.twig' %}
 
         <!-- main screen -->
-        <div class="main display-none">
+        <div id="main" class="main display-none" data-remote="{{path('mosque_has_been_updated', {slug: mosque.slug})}}">
 
             <!-- Random hadith container -->
             <div class="random-hadith display-none" data-remote="{{path('random_hadith', {slug: mosque.slug})}}">

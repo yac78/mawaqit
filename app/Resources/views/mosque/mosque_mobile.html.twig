@@ -31,7 +31,7 @@
         {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
         {% include 'partial/jumua-dhikr-reminder.html.twig' %}
 
-        <div class="main display-none">
+        <div id="main" class="main display-none" data-remote="{{path('mosque_has_been_updated', {slug: mosque.slug})}}">
             <div class="header ar">{{mosque.title}}</div> 
             <div class="top-content">
                 <div class="time"></div>

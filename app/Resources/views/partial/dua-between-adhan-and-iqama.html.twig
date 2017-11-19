@@ -1,13 +1,12 @@
 <div class="douaa-between-adhan-iqama display-none">
     <div class="ar">
         <div class="title">الدعاء لا يرد بين الأذان والإقامة</div>
-        عَنْ أَنَسِ بْنِ مَالِكٍ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: الدُّعَاءُ لَا يُرَدُّ بَيْنَ الْأَذَانِ وَالْإِقَامَةِ
+        <p>عَنْ أَنَسِ بْنِ مَالِكٍ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: الدُّعَاءُ لَا يُرَدُّ بَيْنَ الْأَذَانِ وَالْإِقَامَةِ</p>
     </div>
 
-    {% if app.request.locale == 'fr' %}
+    {% if app.request.locale != 'ar' %}
         <div class="fr">
-            <div class="title">Les invocations entre le Adhân et l’Iqâmah ne sont pas rejetées</div>
-            Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit : « Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées»
+            <p>{{'duaBetweenAthanAndIqama.text'|trans}}</p>
         </div>
     {% endif %}
 </div>

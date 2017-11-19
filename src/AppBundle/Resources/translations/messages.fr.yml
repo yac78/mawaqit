@@ -107,14 +107,14 @@ configuration:
             label: Pas de jumu`a dans cette mosquée
         jumuaDhikrReminderEnabled:
             label: Afficher un rappel pendant jumu`a 
-            title: Si cette case est coché un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
+            title: Si cette case est cochée un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
         jumuaBlackScreenEnabled:
             label: Afficher un écran noir pendant jumu`a 
         jumuaTimeout:
             label: Durée approximative du jumu`a (prêche + prière)
         aidTime:
             label: Heure du aïd
-            title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
+            title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq 2 ou 3 jours avant l'évènement
         adjustedTimes: 
             label: Ajustement manuel des horaires
         maximumIshaTimeForNoWaiting: 
@@ -122,7 +122,7 @@ configuration:
             title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhân
         imsakNbMinBeforeFajr: 
             label: Afficher l'imsak (nombre de minute avant fajr)
-            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
+            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souhaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
         waitingTimes: 
             label: Temps d'attente entre adhân et iqâmah
         fixedTimes: 
@@ -186,7 +186,7 @@ configuration:
         hadithLang: 
             label: Langue des hadiths
         calendar_explication: |
-            Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
+            Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une virgule ou un point-virgule.<br><br>
             Le fichier CSV doit respécter le format suivant : <br><br>
             Day,Fajr,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
             01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
@@ -205,8 +205,7 @@ security:
             title: 3 étapes pour créer votre écran Mawaqit
             step1: Inscrivez-vous
             step2: Ajoutez et configurez votre mosquée
-            step3: Mettez le lien généré dans un navigarteur (Raspberry, Ordinateur, Smart TV, Box android...) 
-        authenticate_you: Identifiez-vous
+            step3: Mettez le lien généré dans un navigateur internet (Raspberry, Ordinateur, Smart TV, Box android...) 
 
 admin_title: Mawaqit - administration        
 site_title: Mawaqit
@@ -234,29 +233,23 @@ search: Recherche
 ar: Arabe
 fr: Français
 en: Anglais  
-both: Arabe et Français
+both: Arabe & Français
 auto: Auto (Dépend du réglage système du raspberry)
 enabled: Activé
 disabled: Désactivé
 send: Envoyer
 required: Champ obligatoire
 close: Fermer
-iframe_copy_text: Pour afficher le widget ci-dessous dans votre site il suffit de copiez/collez ce code html
-iframe_add_title: Ajouter le widget à votre site
-widget_for_your_site: Widget pour votre site internet
 show: voir
 links: Liens
 site: Site internet
-csv_file_exemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
-    
-stats:
-    title: Statistiques
-    total: Mosquées
-    total_configured: Mosquées configurées
-    total_not_configured: Mosquées non configurées
-    total_auto_calcul: Mosquées utilisant un calcul auto
-    total_auto_calendar: Mosquées utilisant un calcul calendrier
 
+mosqueList:
+    iframeCopyText: Pour afficher le widget ci-dessous dans votre site il suffit de copiez/collez ce code html
+    iframeAddTitle: Ajouter le widget à votre site
+    widgetForYourSite: Widget pour votre site internet
+    csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
+    
 email:
     text: Adresse mail
     send:        
@@ -269,7 +262,7 @@ UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12
 Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
 MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
 Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
-Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
+Egypt: "Autorité générale égyptienne (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)
@@ -296,8 +289,6 @@ user: Utilisateur
 active: Activé ?
 delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
 forgot_password: Mot de passe oublié ?
-resetting_password: Réinitialiser votre mot de passe
-changing_password: Modifier votre mot de passe
 add: Ajouter
 title: Titre
 content: Contenu
@@ -337,7 +328,7 @@ prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     Ne pas tenir compte du changement d'heure été/hiver, 
-    le logiciel s'en occupera en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
+    le logiciel s'en occupe en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
     Saisissez les horaires comme s'il y avait pas de changement d'heure
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
@@ -346,3 +337,16 @@ invocations_hadiths: Invocations et hadiths
 edit_of: Édition de "%name%"
 yes: Oui
 no: Non
+warning: Attention
+
+invocationAfterPrayer:
+    title: Invocations après la prière
+
+duaAfterAthan:
+    title: Invocation après l'adhân
+    text: |
+        Ô Allah, Maître de cet appel parfait et de la prière que l'on va accomplir, donne à Mohammed le pouvoir d'intercéder 
+        (le Jour du Jugement) et la place d'honneur [au Paradis], et ressuscite-le dans la position louable que Tu lui as promise
+        
+duaBetweenAthanAndIqama:
+    text: "Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit : Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées"

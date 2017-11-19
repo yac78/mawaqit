@@ -22,7 +22,7 @@ class MosqueController extends Controller {
     public function mosqueDeprected1Action(Request $request, Mosque $mosque) {
         return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
     }
-    
+
     /**
      * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
@@ -31,7 +31,7 @@ class MosqueController extends Controller {
         return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
     }
 
-     /**
+    /**
      * @Route("/{slug}", name="mosque")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
@@ -62,10 +62,26 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/{slug}/has-been-updated/{lastUpdatedDate}", name="mosque_has_been_updated")
+     * @Route("/{slug}/has-been-updated/{lastUpdatedDate}", name="mosque_has_been_updated_deprecated", options={"i18n"="false"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function hasUpdatedAjaxAction(Request $request, Mosque $mosque, $lastUpdatedDate) {
+    public function hasUpdatedAjaxDeprecatedAction(Request $request, Mosque $mosque, $lastUpdatedDate) {
+        return $this->forward("AppBundle:Mosque:hasUpdatedAjax", [
+                    "slug" => $mosque->getSlug(),
+                    "request" => $request
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}/has-been-updated", name="mosque_has_been_updated", options={"i18n"="false"})
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     */
+    public function hasUpdatedAjaxAction(Request $request, Mosque $mosque) {
+        $lastUpdatedDate = $request->attributes->get("lastUpdatedDate",$request->query->get("lastUpdatedDate"));
+        if (empty($lastUpdatedDate)) {
+            throw new \RuntimeException();
+        }
+
         $hasBeenUpdated = $this->get("app.prayer_times_service")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);
         $response = [
             "hasBeenUpdated" => $hasBeenUpdated,

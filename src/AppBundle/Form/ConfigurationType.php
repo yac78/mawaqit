@@ -294,6 +294,9 @@ class ConfigurationType extends AbstractType {
                 ])
                 ->add('iqamaDisplayTime', IntegerType::class, [
                     'label' => 'configuration.form.iqamaDisplayTime.label',
+                    'attr' => [
+                        'min' => 5
+                    ]
                 ])
                 ->add('wakeForFajrTime', IntegerType::class, [
                     'required' => false,
@@ -349,9 +352,7 @@ class ConfigurationType extends AbstractType {
                         'class' => 'btn btn-lg btn-primary',
                     ]
                 ])
-                ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'))
-        ;
-
+                ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));
 
         $builder->get('waitingTimes')
                 ->addModelTransformer(new PrayerTransformer(IntegerType::class));

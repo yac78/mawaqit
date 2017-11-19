@@ -63,9 +63,10 @@ var prayer = {
      * 
      */
     initUpdateConfData: function () {
+        var remote = $("#main").data("remote");
         setInterval(function () {
             $.ajax({
-                url: "has-been-updated/" + prayer.confData.mosque.updated,
+                url:  remote + "?lastUpdatedDate=" + prayer.confData.mosque.updated,
                 success: function (resp) {
                     if (resp.hasBeenUpdated === true) {
                         location.reload();

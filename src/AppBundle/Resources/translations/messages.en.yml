@@ -1,5 +1,4 @@
 form:
-    mandatory_field:  Required fields
     create:
         success:  Adding has been successfully completed.
     edit:
@@ -23,7 +22,7 @@ registration:
 mosque:
     add_new: Add a mosque
     add: Adding a new mosque
-    name: Nom de la mosquée
+    name: Name of the mosque
     refresh: | 
         Reload the screen page remotely.
         In case of particular problems (frozen screen or graphic bug) you can force the reloading of the screen.
@@ -49,12 +48,12 @@ mosque:
             label: Image 3
 
 message:
-    display_messages_in_screen: You can display these messages in a dedicated screen, just replace the schedule url with this one
-    mosque: Messages of "%mosque%"
+    manage: Manage messages
+    display_messages_in_screen: You can display these messages in a dedicated screen, just replace the schedule url with this one
+    info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
+    mosque: Messages of "%mosque%"
     add: Add a message
     edit: Editing the message "%title%
-    manage: Manage messages
-    info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
     add_max_reached: |
         You have reached the maximum allowed number of activated messages (8 Max),
         to be able to add more messages please remove or disable old ones.
@@ -62,7 +61,7 @@ message:
         title:
             placeholder: Ex. Quran course
         happy:
-            placeholder: 200 characters maximum
+            placeholder: 200 characters maximum
         picture:
             label: Image (It will be displayed instead of text. For better viewing comfort, load only landscape images)
     
@@ -103,88 +102,88 @@ configuration:
         noJumua:
             label: No jumu`a in this mosque
         jumuaDhikrReminderEnabled:
-            label: Afficher un rappel pendant jumu`a 
-            title: Si cette case est coché un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
+            label: Show a reminder during jumu`a
+            title: If this box is checked a hadith of the prophet \"`Alayhi essalam\" will be displayed throughout the duration of the jumu`a, this hadith reminds the faithful the good behavior to adopt during the preaching
         jumuaBlackScreenEnabled:
-            label: Afficher un écran noir pendant jumu`a 
+            label: Display a black screen during jumu`a
         jumuaTimeout:
-            label: Durée approximative du jumu`a (prêche + prière)
+            label: Approximate duration of the jumu`a (preach + prayer)
         aidTime:
-            label: Heure du aïd
-            title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq, vous pouvez la saisir 1 ou 2 jour avant l'aïd pour informer les fidèles, pensez à la supprimer après l'évènement
+            label: Aïd prayer time
+            title: If this value is filled in, it will replace the time of Shurûq 3 or 2 days before the event
         adjustedTimes: 
-            label: Ajustement manuel des horaires
+            label: Manual adjustment of prayer times
         maximumIshaTimeForNoWaiting: 
-            label: Heure du `isha (iqâmah tout de suite après adhân) 
-            title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhân
+            label: "`Isha time (iqâmah right after adhân)"
+            title: If this value is entered the waiting time between adhân and iqâmah will be automatically replaced by a 0, to indicate to the faithful that the prayer of `isha will be done immediately after adhân
         imsakNbMinBeforeFajr: 
-            label: Afficher l'imsak (nombre de minute avant fajr)
-            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
+            label: Show imsak (number of minutes before fajr)
+            title: This field allows to indicate the time of the imsak, put here the number of wished minutes, for example if fajr is at 04:00 and that you put 30 min the hour of imsak displayed will be 03:30. Put 0 if you do not want to display it
         waitingTimes: 
-            label: Temps d'attente entre adhân et iqâmah
+            label: Waiting time between adhân and iqâmah
         fixedTimes: 
-            label: Fixation des horaires
-            title: "Exemple: fixer `isha en hiver à 19:00, tant que l'horaire est en dessous de la valeur saisie c'est cette dernière qui sera prise en compte"
+            label: Fixing prayer times
+            title: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
         duaAfterPrayerShowTimes: 
-            label: Durée estimée de chaque prière (en minute)
-            title: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour terminer une prière
+            label: Estimated duration of each prayer (in minutes)
+            title: These values are as an estimate, it is the duration that the imam puts to finish a prayer
         hijriAdjustment: 
-            label: Ajustement de la date hégire
+            label: Adjustment of the Hegira date
         timezone: 
-            label: Fuseau horaire
-            title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
+            label: Time zone
+            title: If you have a time difference in the calculation of prayer times, adjust it here
         dst: 
-            label: Heure d'été
+            label: Daylight saving time (DST)
             title: |
-                Si votre pays applique le changement d'heure d'été, activez cette option. 
-                Si vous souhaitez que les horaires suivent automatiquement le changement d'heure mettez auto.
-                Pour information l'image système fournie sur notre site est réglée sur la France (changement d'heure auto)                
+                If your country applies daylight saving time, enable this option.
+                If you want the schedules to automatically follow the time change, set auto.
+                For information the system image provided on our website is set to France.
         iqamaDisplayTime: 
-            label: Temps d'affichage du signal iqâmah (en secondes)
+            label: Iqamah signal display time (in seconds)
         hijriDateEnabled: 
-            label: Date hégire
+            label: Hegira date
         duaAfterAzanEnabled: 
-            label: Du`aa après adhân
+            label: Du`aa after adhân
         duaAfterPrayerEnabled: 
-            label: Invocations après salat
+            label: Invocations after salat
         smallScreen: 
-            label: Petit écran ?
-            title: Cochez cette case si votre écran mesure moins de 32 pouces, cela permettra d'adapter quelques textes
+            label: Small screen ?
+            title: Check this box if your screen is less than 32 inches, this will allow us to adapt some texts
         azanBip: 
-            label: Bip quand c'est l'heure du adhân
+            label: Beep when it's time for adhân
         azanVoiceEnabled: 
-            label: Adhân audio (Adhân du Haram)
-            title: A l'heure de la prière l'adhân du haram sera lancé.
+            label: audio adhân (Adhân of the Haram)
+            title: At the time of prayer, the adhân of the haram will be launched.
         iqamaBip: 
-            label:  Bip quand c'est l'heure de l'iqâmah
+            label:  Beep when it's time for iqamah
         wakeForFajrTime: 
-            label:  Réveil avant fajr (minute)
-            title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
+            label:  Wake up before fajr (minute)
+            title: If you want to be woken before fajr with a first adhân, put here the number of minutes before fajr. Leave empty otherwise.
         blackScreenWhenPraying: 
-            label:  Éteindre l'écran pendant la prière
-            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Durée estimée de chaque prière (en minute)"
+            label:  Turn off the screen during prayer
+            title: At the end of the signal iqamâh, a black screen will be observed until the end of the prayer, it depends on the values entered in the fields "estimated time of each prayer (in minutes)"
         randomHadithEnabled: 
-            label: Afficher aléatoirement un hadith toute les 5 min
-            title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
+            label: Randomly display a hadith every 5 min
+            title: The hadiths are from the famous book "Ryiad Essalahine" by Imam Ennawawi rahimahu Allah
         temperatureEnabled: 
-            label:  Température
-            title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
+            label:  Temperature
+            title:  The temperature displayed is that of the city outside and not inside the mosque
         urlQrCodeEnabled: 
-            label: QR code pour le lien du site
-            title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien mawaqit
+            label: QR code for the site link
+            title: This will display a QR code at the bottom left of the screen, the QR code is used to facilitate the copying of the mawaqit link
         backgroundColor: 
-            label: Couleur de fond
+            label: Background color
         fajrDegree: 
-            label: Degré du fajr
+            label: fajr degree
             placeholder: Ex. 18
         ishaDegree: 
-            label: Degré du `isha
+            label: "`Isha degree"
             placeholder: Ex. 15
         hadithLang: 
-            label: Langue des hadiths
+            label: Hadith language
         calendar_explication: |
-            Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
-            Le fichier CSV doit respécter le format suivant : <br><br>
+            A CSV file is a text file in the form of rows and columns. A line is made up of several values separated by a comma or semicolon. <br> <br>
+            The CSV file must respect the following format: <br><br>
             Day,Fajr,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
             01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
             02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
@@ -193,87 +192,80 @@ configuration:
             05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
             ...            
         timeToDisplayMessage: 
-            label: Temps d'affichage d'un message/annonce (en seconde)
-            title: Cela concerne que l'écran dédié aux messages et annonces
+            label: Display time of a message/announcement (in seconds)
+            title: This concerns only the screen dedicated to messages and announcements
 
 security:
     login:
         info:
-            title: 3 étapes pour créer votre écran Mawaqit
-            step1: Inscrivez-vous
-            step2: Ajoutez et configurez votre mosquée
-            step3: Mettez le lien généré dans un navigarteur (Raspberry, Ordinateur, Smart TV, Box android...) 
-        authenticate_you: Identifiez-vous
+            title: 3 steps to create your Mawaqit screen
+            step1: Sign up
+            step2: Add and configure your mosque
+            step3: Put the generated link in a browser (Raspberry, Computer, Smart TV, Box android ...)
 
 admin_title: Mawaqit - administration        
 site_title: Mawaqit
 
-validate: Valider
-cancel: Annuler
-return: Retour
-address: Adresse
-phone: Téléphone
-city: Ville
-zipcode: Code postal
-country: Pays
-rib: RIB
-save: Sauvegarder
-name: Nom
-association_name: Nom de l'association
-prayer_sites: Liens de l'écran des horaires
-users: Utilisateurs
-my_mosques: Mes mosquées
-my_profile: Mon profil
+validate: Validate
+cancel: Cancel
+return: Back
+address: Address
+phone: Phone
+city: City
+zipcode: Zipcode
+country: Country
+rib: Bank details
+save: Save
+name: Name
+association_name: Name of the association
+prayer_sites: Mawaqit links
+users: Users
+my_mosques: My mosques
+my_profile: My profile
 contact: Contact
 association: Association
-creation_date: Date de création
-search: Recherche
-ar: Arabe
-fr: Français
-en: Anglais  
-both: Arabe et Français
-auto: Auto (Dépend du réglage système du raspberry)
-enabled: Activé
-disabled: Désactivé
+creation_date: Creation date
+search: Search
+ar: Arabic
+fr: French
+en: English  
+both: Arabic & French
+auto: Auto (Depends on the raspberry system setting)
+enabled: Enabled
+disabled: Disabled
 send: Envoyer
-required: Champ obligatoire
-close: Fermer
-iframe_copy_text: Pour afficher le widget ci-dessous dans votre site il suffit de copiez/collez ce code html
-iframe_add_title: Ajouter le widget à votre site
-widget_for_your_site: Widget pour votre site internet
-show: voir
-links: Liens
-site: Site internet
-csv_file_exemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
+required: Required
+close: Close
+show: Show
+links: Links
+site: Website
+
+mosqueList:
+    iframeCopyText: To display the widget below on your website just copy / paste this html-code
+    iframeAddTitle: Add the widget to your website
+    widgetForYourSite: Widget for your website
+    csvFileExemple: Here is an example of csv files of all months for Paris UOIF prayer times
     
-stats:
-    title: Statistiques
-    total: Mosquées
-    total_configured: Mosquées configurées
-    total_not_configured: Mosquées non configurées
-    total_auto_calcul: Mosquées utilisant un calcul auto
-    total_auto_calendar: Mosquées utilisant un calcul calendrier
-
 email:
-    text: Adresse mail
+    text: Email address
     send:        
-        action: Envoyer un mail
-        success: Email envoyé avec succès
+        action: Send an email
+        success: Eail sent successfully
         
         
-ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
-UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
-Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
-MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
-Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
+ISNA: "Islamic Society of North America (fajr 15°, ichaa 15°)"
+UOIF: The Union of Islamic Organizations of France (UOIF) (fajr 12°, ichaa 12°)"
+Karachi: "University of Science of Karachi (fajr 18°, ichaa 18°)"
+MWL: "World Islamic League (fajr 18°, ichaa 17°)"
+Makkah: "Umm al-Qura University - Mecca (fajr 18°, ichaa 90 minutes après maghrib)"
 Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
-CUSTOM: "Choisir le degré du Fajr et `Isha"
+CUSTOM: "Choose Fajr and `Isha degree"
 
-api: Automatique (Calcul des horaires par le logiciel)
-calendar: Manuel (Horaires renseignées pour toute l'année) - Recommandé
-calendar_times: Calendrier des horaires
+api: Automatic (Calculation of prayer times by the software)
+calendar: Manual (prayer times filled in for the whole year) - Recommended
+calendar_times: Prayer times calendar
 
-day: Jour
+day: Day
 fajr: Fajr
 shuruk: Shurûq
 zuhr: Dhuhr
@@ -286,67 +278,69 @@ imsak: Imsak
 iqama: Al-Iqâmah
 azan: Al-Adhân
 
-power-off-phones: Éteignez vos portables SVP !
-hi: Bonjour %name%
+power-off-phones: Please turn off your mobile phones !
+hi: Hi %name%
 salam: 'Essalamu `alaykom %name%'
-user: Utilisateur
-active: Activé ?
-delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
-forgot_password: Mot de passe oublié ?
-resetting_password: Réinitialiser votre mot de passe
-changing_password: Modifier votre mot de passe
-add: Ajouter
-title: Titre
-content: Contenu
-developed_by: Développé par Binary Consulting SAS
-next_prayer: Prochaine prière
-last_login: dernière connexion
-alarm: Réveil
+user: User
+active: Enebled ?
+delete_element_question: Are you sure you want to validate the deletion?
+add: Add
+title: Title
+content: Content
+developed_by: Developed by Binary Consulting SAS
+next_prayer: Netx prayer
+last_login: Last log in
+alarm: Alarm
 
-january: Janvier
-february: Février
-march: Mars
-april: Avril
-mai: Mai
-june: Juin
-july: Juillet
-august: Août
-september: Septembre
-october: Octobre
-november: Novembre
-december: Décembre
+january: January
+february: February
+march: March
+april: April
+mai: May
+june: June
+july: July
+august: August
+september: September
+october: October
+november: November
+december: December
 
-month_0 : Janvier
-month_1 : Février
-month_2 : Mars
+month_0 : January
+month_1 : February
+month_2 : April
 month_3 : Avril
-month_4 : Mai
-month_5 : Juin
-month_6 : Juillet
-month_7 : Août
-month_8 : Septembre
-month_9: Octobre
+month_4 : May
+month_5 : June
+month_6 : July
+month_7 : August
+month_8 : September
+month_9: October
 month_10: Novembre
-month_11: Décembre
+month_11: December
 
-prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
-association_info: "%name% - Tél. %phone%"
+prayer_mobile_site: "Mawaqit on mobile and tablet <a href='%site%'>%site%</a>"
+association_info: "%name% - Phone. %phone%"
 info_dst_change: |
-    Ne pas tenir compte du changement d'heure été/hiver, 
-    le logiciel s'en occupera en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
-    Saisissez les horaires comme s'il y avait pas de changement d'heure
-other_settings: Autres réglages
-home_settings: Utilisation à domicile
-regional_settings: Paramètres régionaux
-invocations_hadiths: Invocations et hadiths
-edit_of: Édition de "%name%"
-yes: Oui
-no: Non
-
-
-prayer_mobile_site: "Prayer times on mobile and tablette <a href='%site%'>%site%</a>"
-association_info: "Association %name% - Phone %phone%"
-rib_info: "| RIB %rib%"
-
+    Do not take aware of the saving date highlight change
+    the software handles it according to the last Sunday of the month of "%month%" of each year.<br>,
+    Enter the times as if there was no time change
+other_settings: Other settings
+home_settings: Home use
+regional_settings: Regional settings
+invocations_hadiths: Invocations and hadiths
+edit_of: Edit "%name%"
 yes: Yes
 no: No
+warning: Warning
+
+invocationAfterPrayer:
+    title: Invocations after prayer
+
+duaAfterAthan:
+    title: Invocation after adhân
+    text: |
+        O Allah, Master of this perfect call and the prayer that we are going to perform, gives Muhammad the power to intercede
+        (the Day of Judgment) and the place of honor [in Paradise], and resurrect him in the laudable position that You promised him
+        
+duaBetweenAthanAndIqama:
+    text: "According to Anas Ibn Mâlik, the Prophet (sallallahu 'alayhi wa sallam) said: The invocations between Adhân and Iqâmah are not rejected"
