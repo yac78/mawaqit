@@ -22,6 +22,7 @@ class AppKernel extends Kernel {
             new AppBundle\AppBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -32,8 +33,6 @@ class AppKernel extends Kernel {
             $bundles[] = new Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle();
             $bundles[] = new Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle();
             $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
-            $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
-            
         }
 
         return $bundles;
