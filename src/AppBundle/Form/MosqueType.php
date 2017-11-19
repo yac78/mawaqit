@@ -96,7 +96,7 @@ class MosqueType extends AbstractType {
                 ])
                 ->add('file1', VichImageType::class, [
                     'required' => false,
-                    'download_link' => false,
+                    'download_uri' => false,
                     'label' => 'mosque.form.image1.label',
                     'attr' => [
                         'class' => 'form-control',
@@ -104,7 +104,7 @@ class MosqueType extends AbstractType {
                 ])
                 ->add('file2', VichImageType::class, [
                     'label' => 'mosque.form.image2.label',
-                    'download_link' => false,
+                    'download_uri' => false,
                     'required' => false,
                     'attr' => [
                         'class' => 'form-control',
@@ -112,7 +112,7 @@ class MosqueType extends AbstractType {
                 ])
                 ->add('file3', VichImageType::class, [
                     'required' => false,
-                    'download_link' => false,
+                    'download_uri' => false,
                     'label' => 'mosque.form.image3.label',
                     'attr' => [
                         'class' => 'form-control',

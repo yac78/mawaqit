@@ -40,7 +40,7 @@ class MessageType extends AbstractType {
                 ])
                 ->add('file', VichImageType::class, [
                     'required' => false,
-                    'download_link' => false,
+                    'download_uri' => false,
                     'label' => 'message.form.image.label',
                     'attr' => [
                         'class' => 'form-control',
