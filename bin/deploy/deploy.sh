@@ -34,5 +34,6 @@ cd ..
 ./dock-deploy php bin/console assets:install --env=prod --no-debug
 ./dock-deploy php bin/console assetic:dump --env=prod --no-debug
 
-./dock-deploy chmod -R 777 var/cache var/logs var/sessions
+./dock-deploy php bin/console doctrine:migrations:migrate -n --allow-no-migration
+
 rm -rf bin docker dock-deploy composer.* app/config/routing_dev.yml app/config/config_dev.yml app/config/parameters.yml.dist
