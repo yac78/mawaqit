@@ -13,7 +13,7 @@ parameters:
     languages: [fr, ar, en]
     version: 3.0.0
     supportTel: '+33629111641'
-    supportEmail: contact@horaires-de-priere.fr
+    supportEmail: contact@mawaqit.net
 
     no_replay_address : %supportEmail%
     no_replay_name : Mawaqit
