@@ -49,7 +49,7 @@ header .intro-text .intro-subheading {
     color: #f7ecb5;
 }
 
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
     P{
         text-align: justify;     
     }
@@ -71,6 +71,9 @@ header .intro-text .intro-subheading {
     .btn-xl {
         padding: 15px 30px;
     }
+    .img-responsive{
+        margin-top: 15px;
+    }
 }
 
 @media (min-width: 768px)
@@ -85,4 +88,8 @@ header .intro-text .intro-subheading {
     .container {
         width: 1200px;
     }
+}
+
+.service-heading{
+    margin: 25px 0;
 }

@@ -33,7 +33,7 @@
                     <h3 class="section-heading">Comment ça fonctionne ?</h3>
                     <p class="text-muted">
                         Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini ordinateur, le Raspberry Pi 3 ou par n'importe qu'elle autre ordinateur, 
-                        TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet (Firefox ou chrome). 
+                        TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet. 
                         En effet le logiciel est une simple page internet est toute l'intelligence est concentrée dans du code javascript.
                     </p>
                     <img src="{{ asset('bundles/app/agency/img/raspberry.jpg') }}" class="img-responsive" style="display: inline" alt="">
@@ -51,7 +51,6 @@
                     </p>
                 </div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive" alt=""><br></div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/arabic.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
                     <h4 class="service-heading">Signal sonor et visuel du adhân et Iqâma</h4>
                     <p class="text-muted">Lorsqu’il est l'heure du adhan ou de la  iqama, l'écran se met à clignoter et un signal sonor retentira.</p>
@@ -67,14 +66,14 @@
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-between-adhan-and-iqama.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-prayer.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
-                    <h4 class="service-heading">Affichage d'annonces (version connectée uniquement)</h4>
+                    <h4 class="service-heading">Affichage d'annonces en texte ou images</h4>
                     <p class="text-muted">
                         Avant et après chaque prière, si configurés depuis l'éspace utilisateur les annonces défileront sur l'écran.<br>
                     </p>
                 </div>
                 <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/message.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
-                    <h4 class="service-heading">Affichage de hadith en dehors des horaires de prière (version connectée uniquement)</h4>
+                    <h4 class="service-heading">Affichage de hadiths</h4>
                     <p class="text-muted">
                         Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du prophète "que la prière d'Allah et son salut soient sur lui", toute les 5 minutes<br>
                     </p>
@@ -91,7 +90,7 @@
                         <li>Choix entre calcul des horaires automatique par le logiciel ou lecture depuis des fichiers CSV</li>
                         <li>Choix de la langue</li>
                         <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
-                        <li>Fixation des horaires (exemple: fixer l'heure du ichaa en hiver)</li>
+                        <li>Fixation des horaires (exemple: fixer l'heure du `isha en hiver)</li>
                         <li>Ajustement des temps d'attente entre adhan et iqama</li>
                         <li>Compte à rebours avant iqama</li>
                         <li>Ajustement des horaires</li>
@@ -106,20 +105,27 @@
 
                 </div>
                 <div class="col-md-12">
+                    <h4 class="service-heading">Pilotez l'écran depuis votre smartphone</h4>
+                </div>
+                <div class="col-md-6">
+                    <div><img src="{{ asset('bundles/app/agency/img/software/mobile-admin.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
+                </div>
+                <div class="col-md-6">
+                    <div><img src="{{ asset('bundles/app/agency/img/software/mobile-admin-2.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
+                </div>
+                <div class="col-md-12">
                     <h4 class="service-heading">Une version adaptée au mobile et tablette</h4>
                     <p class="text-muted">
                         Afin de faciliter aux fideles la consultation des horaires de prière de leur mosquées, 
                         nous créons un site internet adatapté au mobile et tablette pour chaque installation.<br>
                     </p>
-                    <div class="text-left">
-                        <div>Exemples: </div>
-                        <div><a target="_blank" href="{{path('mosque', {'slug': 'mosquee-essunna-houilles'})}}">{{url('mosque', {'slug': 'mosquee-essunna-houilles'})}}</a> </div>
-                        <div><a target="_blank" href="{{path('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}">{{url('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}</a> </div>
-                        </br>
-                    </div>
+                    <p class="text-left">
+                        Exemples: <br>
+                        <a target="_blank" href="{{path('mosque', {'slug': 'mosquee-essunna-houilles'})}}">{{url('mosque', {'slug': 'mosquee-essunna-houilles'})}}</a> <br>
+                        <a target="_blank" href="{{path('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}">{{url('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}</a> 
+                    </p>
                 </div>
-                <div class="col-lg-12 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
-
+                <div><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
             </div>
         </div>
     </section>
