@@ -3,7 +3,6 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\User;
-use AppBundle\Entity\Configuration;
 
 /**
  * MosqueRepository
@@ -29,6 +28,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
                             . "OR m.email LIKE :search "
                             . "OR m.address LIKE :search "
                             . "OR m.city LIKE :search "
+                            . "OR m.country LIKE :search "
                             . "OR u.username LIKE :search "
                             . "OR u.email LIKE :search"
                     )
@@ -49,11 +49,8 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
      * @param integer $nbMax
      * @return array
      */
-    private function getConfiguredMosquesQuery($nbMax = null) {
-        $qb = $this->createQueryBuilder("m")
-                ->innerJoin("m.configuration", "c")
-                ->orderBy("m.id", "ASC");
-
+    private function getMosquesQuery($nbMax = null) {
+        $qb = $this->createQueryBuilder("m");
         if (is_numeric($nbMax)) {
             $qb->setMaxResults($nbMax);
         }
@@ -65,36 +62,12 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
      * @param integer $nbMax
      * @return array
      */
-    function getConfiguredMosquesWithImage($nbMax = null) {
-        return $this->getConfiguredMosquesQuery($nbMax)
+    function getMosquesWithImage($nbMax = null) {
+        return $this->getMosquesQuery($nbMax)
                         ->where("m.image1 IS NOT NULL")
+                        ->orderBy("m.id", "DESC")
                         ->getQuery()
                         ->getResult();
-    }
-
-    /**
-     * get configured mosques count
-     * @return integer
-     */
-    function getConfiguredMosquesCount() {
-        return $this->getConfiguredMosquesQuery()
-                        ->select("count(m.id)")
-                        ->getQuery()
-                        ->getSingleScalarResult();
-    }
-
-    /**
-     * get configured mosques with api calcul mode 
-     * @param integer $nbMax
-     * @return integer
-     */
-    function getApiCalculConfiguredMosquesCount() {
-        return $this->getConfiguredMosquesQuery()
-                        ->select("count(m.id)")
-                        ->where("c.sourceCalcul = :calcul")
-                        ->setParameter(":calcul", Configuration::SOURCE_API)
-                        ->getQuery()
-                        ->getSingleScalarResult();
     }
 
     /**
@@ -104,7 +77,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->createQueryBuilder("m")
                 ->update()
                 ->set("m.updated", ":date")
-                ->setParameter(":date", (new \DateTime())->format("Y-m-d h:i:s"));
+                ->setParameter(":date", new \DateTime());
         $qb->getQuery()->execute();
     }
 }
