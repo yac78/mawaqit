@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 
 class UserService {
 
-    const SIGNATURE = "<br><br>Regards<br>Cordialement<br>مع تحياتي";
+    const SIGNATURE = "<br><br>Regards<br>Cordialement<br> تحياتي";
     
     /**
      * @var \Swift_Mailer 
