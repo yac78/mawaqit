@@ -32,7 +32,7 @@ class UserController extends Controller {
     }
 
     /**
-     * @Route("/delete/{id}", name="user_delete")
+     * @Route("/{id}/delete", name="user_delete")
      */
     public function deleteAction(Request $request, User $user) {
         if (!$this->getUser()->isAdmin() || $this->getUser() === $user) {
@@ -47,7 +47,7 @@ class UserController extends Controller {
     }
 
     /**
-     * @Route("/show/{id}", name="user_show")
+     * @Route("/{id}/show", name="user_show")
      */
     public function showAction(Request $request, User $user) {
         return $this->render('user/show.html.twig', [
@@ -56,7 +56,7 @@ class UserController extends Controller {
     }
     
     /**
-     * @Route("/enable/{id}/{status}", name="ajax_user_enable")
+     * @Route("/{id}/enable/{status}", name="ajax_user_enable")
      */
     public function enableAction(Request $request, User $user, $status) {
         $em = $this->getDoctrine()->getManager();
