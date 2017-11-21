@@ -36,12 +36,12 @@ class MosqueController extends Controller {
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
 
-        $renderArray = [
+        $result = [
             "mosques" => $mosques,
             "languages" => $this->getParameter('languages')
         ];
 
-        return $this->render('mosque/index.html.twig', $renderArray);
+        return $this->render('mosque/index.html.twig', $result);
     }
 
     /**

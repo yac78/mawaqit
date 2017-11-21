@@ -21,10 +21,10 @@ class UserController extends Controller {
      * @Route(name="user_index")
      */
     public function indexAction(Request $request) {
+        $search = $request->query->get("search");
         $em = $this->getDoctrine()->getManager();
-        $qb =  $em->getRepository("AppBundle:User")->createQueryBuilder("u")
-                ->orderBy('u.id', 'DESC');
-                 $paginator = $this->get('knp_paginator');
+        $qb = $em->getRepository("AppBundle:User")->search($search);
+        $paginator = $this->get('knp_paginator');
         $users = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
         return $this->render('user/index.html.twig', [
                     "users" => $users
@@ -54,7 +54,7 @@ class UserController extends Controller {
                     "user" => $user
         ]);
     }
-    
+
     /**
      * @Route("/{id}/enable/{status}", name="ajax_user_enable")
      */
@@ -65,7 +65,7 @@ class UserController extends Controller {
         $em->flush();
         return new Response();
     }
-    
+
     /**
      * send email to all users
      * @Route("/send-email", name="users_send_email")
