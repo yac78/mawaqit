@@ -12,6 +12,7 @@ parameters:
     secret: 90e0df2327d24849cf4c45a512e66254779f1b59
     languages: [fr, ar, en]
     version: 3.0.0
+    site: mawaqit.net
     supportTel: '+33629111641'
     supportEmail: contact@mawaqit.net
 

@@ -59,6 +59,7 @@ services:
             - "@mailer"
             - ["%no_replay_address%", "%no_replay_name%"]
             - "@doctrine.orm.entity_manager"
+            - "%site%"
             
     # Forms
     app.form_configuration:
