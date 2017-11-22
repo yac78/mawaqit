@@ -826,6 +826,9 @@ var prayer = {
                 $(".prayer-time").append(times[i]);
                 $(".prayer-wait").append(waits[i]);
             }
+            
+            $(".top-content .header").css("font-size", "650%");
+            $(".prayer-content .text, .content .ar").css("font-size", "130%");
             $(".adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder").css("font-size", "140%");
         }
     },
