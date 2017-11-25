@@ -1,11 +1,20 @@
 {% extends 'default/layout.html.twig' %}
 
+{% block additional_stylesheets %}
+    {% stylesheets 
+            "bundles/app/flexSlider/flexslider.css"
+            filter="cssrewrite"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
 {% block content %}
-    <!-- Services Section -->
-    <section id="projet">
-        <div class="container">
+    <div class="container text-center">
+        <!-- projet Section -->
+        <section id="projet">
             <div class="row">
-                <div class="col-lg-12 text-center">
+                <div class="col-lg-12">
                     <h2 class="section-heading">Le projet</h2>
                     <p class="text-muted">
                         La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau éléctronique. Ces horloges ne répondent 
@@ -15,12 +24,20 @@
                         et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
                         De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
                     </p>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12 text-center"><img src="{{ asset('bundles/app/agency/img/electronic-prayer-board-1.png') }}" class="" style="height: 400px" alt=""></div>
-                        <div class="col-lg-6 col-xs-12 text-center"><img src="{{ asset('bundles/app/agency/img/electronic-prayer-board-2.jpg') }}" class="" style="height: 400px" alt=""></div>
+                </div>
+                <div class="col-lg-offset-4 col-lg-4 col-xs-12">
+                    <div class="flexslider text-center electronic-board">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/electronic-prayer-board-1.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/electronic-prayer-board-2.jpg') }}" />
+                            </li>
+                        </ul>
                     </div>
-                    <br><br>
+                </div>
+                <div class="col-lg-12">
                     <p class="text-muted">
                         Avec l’aide d’Allah le Tout Puissant, nous nous sommes donc lancés dans le développement d’un logiciel pour améliorer et simplifier l’affichage des horaires de prière. <br>
                         Après plusieurs mois de travail et de tests effectués dans différentes mosquées, nous sommes parvenus, grâce à Allah, à sortir une version stable et précise.  
@@ -29,57 +46,148 @@
                         <a target="_blank" href="https://github.com/binary010100/prayer-times">https://github.com/binary010100/prayer-times</a><br>
                         <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST STRICTEMENT INTERDITE
                     </p>
-                    <br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
                     <h3 class="section-heading">Comment ça fonctionne ?</h3>
                     <p class="text-muted">
                         Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini ordinateur, le Raspberry Pi 3 ou par n'importe qu'elle autre ordinateur, 
                         TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet. 
                         En effet le logiciel est une simple page internet est toute l'intelligence est concentrée dans du code javascript.
                     </p>
+
                     <img src="{{ asset('bundles/app/agency/img/raspberry.jpg') }}" class="img-responsive" style="display: inline" alt="">
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <br>
-                    <h4 class="section-heading">Quelles sont les fonctionnalités principales du logiciel ?</h4>
-                    <br>
+
+                    <h3 class="section-heading">Quelles sont les fonctionnalités principales du logiciel ?</h3>
+
                     <h4 class="service-heading">Affichage des horaires de prière en plusieurs langues</h4>
                     <p class="text-muted">
                         Le logiciel permet un affichage en français, arabe et anglais.<br>
                         Aucun réglage à faire, tout est paramétré automatiquement tout comme le changement d'heure été/hiver.
                     </p>
                 </div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive" alt=""><br></div>
+                <div class="col-lg-offset-1 col-lg-10 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive" alt=""><br></div>
                 <div class="col-md-12">
                     <h4 class="service-heading">Signal sonor et visuel du adhân et Iqâma</h4>
                     <p class="text-muted">Lorsqu’il est l'heure du adhan ou de la  iqama, l'écran se met à clignoter et un signal sonor retentira.</p>
                 </div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-1.png') }}" class="img-responsive" alt=""><br></div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/adhan-2.png') }}" class="img-responsive" alt=""><br></div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/iqama.png') }}" class="img-responsive" alt=""><br></div>
+
+                <div class="col-lg-offset-1 col-lg-10 col-xs-12">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/adhan-1.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/adhan-2.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/iqama.png') }}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <h4 class="service-heading">Affichage de rappels et invocations</h4>
                     <p class="text-muted">Entre chaque adhan et iqama, ainsi qu'à la fin de chaque prière, des rappels et invocations sont affichés.</p>
                 </div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-adhan.png') }}" class="img-responsive" alt=""><br></div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-between-adhan-and-iqama.png') }}" class="img-responsive" alt=""><br></div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/douaa-after-prayer.png') }}" class="img-responsive" alt=""><br></div>
+
+                <div class="col-lg-offset-1 col-lg-10 col-xs-12">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/douaa-after-adhan.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/douaa-between-adhan-and-iqama.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/douaa-after-prayer.png') }}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <h4 class="service-heading">Affichage d'annonces en texte ou images</h4>
                     <p class="text-muted">
                         Avant et après chaque prière, si configurés depuis l'éspace utilisateur les annonces défileront sur l'écran.<br>
                     </p>
                 </div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/message.png') }}" class="img-responsive" alt=""><br></div>
+
+                <div class="col-lg-offset-1 col-lg-10 col-xs-12">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/message-1.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/message-2.png') }}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <h4 class="service-heading">Affichage de hadiths</h4>
                     <p class="text-muted">
                         Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du prophète "que la prière d'Allah et son salut soient sur lui", toute les 5 minutes<br>
                     </p>
                 </div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/hadith-ar.png') }}" class="img-responsive" alt=""><br></div>
-                <div class="col-lg-offset-2 col-lg-8 col-xs-12"><img src="{{ asset('bundles/app/agency/img/software/hadith-fr.png') }}" class="img-responsive" alt=""><br></div>
+
+                <div class="col-lg-offset-1 col-lg-10 col-xs-12">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/hadith-ar.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/hadith-fr.png') }}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <h4 class="service-heading">Pilotez l'écran depuis votre smartphone</h4>
+                </div>
+
+                <div class="col-lg-offset-4 col-lg-4 col-xs-12">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/mobile-admin.png') }}" />
+                            </li>
+                            <li>
+                                <img src="{{ asset('bundles/app/agency/img/software/mobile-admin-2.png') }}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-12">
+                    <h4 class="service-heading">Une version adaptée au mobile et tablette</h4>
+                    <p class="text-muted">
+                        Afin de faciliter aux fideles la consultation des horaires de prière de leur mosquées, 
+                        nous créons un site internet adatapté au mobile et tablette pour chaque installation.<br>
+                    </p>
+                    <p class="text-left">
+                        Exemples: <br>
+                        <a target="_blank" href="{{path('mosque', {'slug': 'mosquee-essunna-houilles'})}}">{{url('mosque', {'slug': 'mosquee-essunna-houilles'})}}</a> <br>
+                        <a target="_blank" href="{{path('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}">{{url('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}</a> 
+                    </p>
+                    <div><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
+                </div>
+
+
                 <div class="col-md-12">
                     <h4 class="service-heading">Entièrement configurable</h4>
                     <p class="text-muted">
@@ -102,37 +210,12 @@
                         <li>Affichage de la temprérature</li>
                         <li>Affichage du QR code pour faciliter la copie du lien internet</li>
                     </ul>
-
-                </div>
-                <div class="col-md-12">
-                    <h4 class="service-heading">Pilotez l'écran depuis votre smartphone</h4>
-                </div>
-                <div class="col-md-6">
-                    <div><img src="{{ asset('bundles/app/agency/img/software/mobile-admin.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
-                </div>
-                <div class="col-md-6">
-                    <div><img src="{{ asset('bundles/app/agency/img/software/mobile-admin-2.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
-                </div>
-                <div class="col-md-12">
-                    <h4 class="service-heading">Une version adaptée au mobile et tablette</h4>
-                    <p class="text-muted">
-                        Afin de faciliter aux fideles la consultation des horaires de prière de leur mosquées, 
-                        nous créons un site internet adatapté au mobile et tablette pour chaque installation.<br>
-                    </p>
-                    <p class="text-left">
-                        Exemples: <br>
-                        <a target="_blank" href="{{path('mosque', {'slug': 'mosquee-essunna-houilles'})}}">{{url('mosque', {'slug': 'mosquee-essunna-houilles'})}}</a> <br>
-                        <a target="_blank" href="{{path('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}">{{url('mosque', {'slug': 'mosquee-ennour-gennevilliers'})}}</a> 
-                    </p>
-                    <div><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive" style="display: inline" alt=""><br></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Mosquées équipées Grid Section -->
-    <section id="mosquees" class="bg-light-gray">
-        <div class="container">
+        <!-- Mosquées équipées Grid Section -->
+        <section id="mosquees" class="bg-light-gray">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Quelques mosquées équipées</h2>
@@ -163,48 +246,47 @@
                     <a href="{{path("homepage", {'mosque_nb':'all'})}}#mosquees" class="page-scroll btn btn-xl">Voir plus</a>
                 </div>
             {% endif %}
-    </section>
+        </section>
 
 
-    <!-- Mosques Modals -->
+        <!-- Mosques Modals -->
 
-    {% for mosque in mosques %}
-        <div class="portfolio-modal modal fade" id="{{mosque.slug}}" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl">
+        {% for mosque in mosques %}
+            <div class="portfolio-modal modal fade" id="{{mosque.slug}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="close-modal" data-dismiss="modal">
+                            <div class="lr">
+                                <div class="rl">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="modal-body">
-                                    <h2>{{mosque.name}} - {{mosque.city}}</h2>
-                                    <p class="item-intro text-muted">{{mosque.associationName}}</p>
-                                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
-                                    <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file2') }}">
-                                    <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file3') }}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="modal-body">
+                                        <h2>{{mosque.name}} - {{mosque.city}}</h2>
+                                        <p class="item-intro text-muted">{{mosque.associationName}}</p>
+                                        <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive  img-centered" alt="{{mosque.name}}"/>
+                                        <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file2') }}">
+                                        <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file3') }}">
 
-                                    <ul class="list-inline">
-                                        <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li>
-                                        <li>Consultez les horaires: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
-                                    </ul>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                                        <ul class="list-inline">
+                                            <li>Date d'installation: {{mosque.created|date("d/m/Y")}}</li>
+                                            <li>Consultez les horaires: <a target="_blank" href="{{path('mosque', {'slug': mosque.slug})}}">{{url('mosque', {'slug': mosque.slug})}}</a></li>
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
 
-    <!-- Participez Section -->
-    <section id="participer" style="padding-bottom: 0">
-        <div class="container">
+        <!-- Participez Section -->
+        <section id="participer" style="padding-bottom: 0">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">équipez votre mosquée</h2>
@@ -241,12 +323,10 @@
                     <h4 class="section-heading">Qu'Allah accepte vos œuvres et les notres</h4>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Section Comment istaller l'application -->
-    <section id="install">
-        <div class="container">
+        <!-- Section Comment istaller l'application -->
+        <section id="install">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Installez vous même le logiciel</h2>
@@ -276,10 +356,9 @@
                         </li>
                         <li>
                             Flashez l'image système prayer-times-raspbian-stabe.img sur la carte micro sd avec Etcher<br><br>
-                            <img src="{{ asset('bundles/app/agency/img/software/etcher.gif') }}" class="img-responsive" alt="">
                         </li>
                     </ol>
-
+                    <img src="{{ asset('bundles/app/agency/img/software/etcher.gif') }}" class="img-responsive" alt="">
                     <br>
                     <h3>Dernière étape</h3>
                     <div class="text-muted text-left">
@@ -353,12 +432,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
+        <!-- Contact Section -->
+        <section id="contact">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Contactez nous</h2>
@@ -400,6 +477,16 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+
+{% endblock %}
+
+{% block additional_javascripts %}
+    {% javascripts
+       '@AppBundle/Resources/public/flexSlider/jquery.flexslider-min.js'
+       '@AppBundle/Resources/public/agency/js/index.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

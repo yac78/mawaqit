@@ -31,6 +31,13 @@ section#contact :-ms-input-placeholder {
     height: 220px;
 }
 
+.img-responsive{
+    display: inline;
+}
+section {
+    padding: 100px 0;
+}
+
 #mosquees .portfolio-item .portfolio-caption {
     padding: 15px;
     height: 90px;
@@ -70,9 +77,6 @@ header .intro-text .intro-subheading {
 
     .btn-xl {
         padding: 15px 30px;
-    }
-    .img-responsive{
-        margin-top: 15px;
     }
 }
 

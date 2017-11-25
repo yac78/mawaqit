@@ -79,7 +79,7 @@ var messageInfoSlider = {
             }
             $slide.css('font-size', '130px');
             while ($slide.height() > $body.height() - 20) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 1) + "px");
+                $slide.css('font-size', (parseInt($slide.css('font-size')) - 5) + "px");
             }
         });
     }
