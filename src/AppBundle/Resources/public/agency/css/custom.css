@@ -97,3 +97,7 @@ header .intro-text .intro-subheading {
 .service-heading{
     margin: 25px 0;
 }
+
+a, code {
+    overflow-wrap: break-word;
+}
