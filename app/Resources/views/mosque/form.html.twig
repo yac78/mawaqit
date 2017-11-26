@@ -5,15 +5,19 @@
 {{ form_widget(form._token) }}
 
 <div class="row">
+    <div class="col-md-12"><p><span style="color: red">*</span> {{'required'|trans}}</p></div>
     <div class="col-md-6">
-        <p><span style="color: red">*</span> {{'required'|trans}}</p>
-
         {% if mosque is defined  %}
             {{ form_label(form.slug) }}
-            <div class="row">
-                <div class="col-md-4" style="padding-top: 5px;"><a href="#">http:{{url('homepage', {}, true)}}</a></div> 
-                <div class="col-md-8" >{{ form_widget(form.slug) }}</div>   
-            </div>   
+
+            <div class="input-group">
+                <span class="input-group-addon">https:{{url('homepage', {}, true)}}</span>
+                {{ form_widget(form.slug) }}
+            </div>
+
+            <div class="alert alert-danger mt-1" role="alert">
+                <div>{{'mosque.alert.slugChange'|trans}}</div>
+            </div>
 
             {% if is_granted('ROLE_ADMIN') %}
                 {{ form_row(form.user) }}
@@ -33,31 +37,31 @@
     </div>
 
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="row col-md-6">
-            <div class="col-md-6 block-image">
+        <div class="col-md-3">
+            <div class="block-image">
                 {{ form_row(form.file1) }}
             </div>
-            <div class="col-md-6 block-image">
+            <div class="block-image">
                 {{ form_row(form.file2) }}
             </div>
-            <div class="col-md-6 block-image">
+            <div class="block-image">
                 {{ form_row(form.file3) }}
             </div>
         </div>
     {% elseif mosque is defined %}
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% if  mosque.image1 %}
-                <div class="col-md-6 block-image">
+                <div class="block-image">
                     <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
                 </div>
             {% endif %}
             {% if  mosque.image2 %}
-                <div class="col-md-6 block-image">
+                <div class=" block-image">
                     <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" />
                 </div>
             {% endif %}
             {% if  mosque.image3 %}
-                <div class="col-md-6 block-image">
+                <div class="block-image">
                     <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" />
                 </div>
             {% endif %}

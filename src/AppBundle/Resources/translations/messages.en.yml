@@ -23,29 +23,31 @@ mosque:
     add_new: Add a mosque
     add: Adding a new mosque
     name: Name of the mosque
-    refresh: | 
+    refresh: |
         Reload the screen page remotely.
         In case of particular problems (frozen screen or graphic bug) you can force the reloading of the screen.
     force_update_all:
-        action: Force reloading
-        success: All mosques have been reloaded
+        action: "Force reloading"
+        success: "All mosques have been reloaded"
     form:
         name: 
-            placeholder : Ex. Essunna mosque
+            placeholder :" Ex. Essunna mosque"
         slug: 
-            label : Change the website url
+            label : "Change the website url"
         city: 
-            placeholder: The city of the mosque (used to calculate the geographical position)
+            placeholder: "The city of the mosque (used to calculate the geographical position)"
         zipcode: 
-            placeholder: The postal code of the mosque (used to calculate the geographical position)
+            placeholder: "The postal code of the mosque (used to calculate the geographical position)"
         rib: 
-            placeholder: If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+            placeholder: "If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74"
         image1: 
             label: Image 1
         image2: 
             label: Image 2
         image3: 
             label: Image 3
+    alert:
+        slugChange: "Warning ! the modification of the url of the site will impact the launch of the software in the raspberry and the access of the faithful ones to your prayer times."
 
 message:
     manage: Manage messages
