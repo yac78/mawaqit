@@ -121,34 +121,7 @@ var messageInfoSlider = {
 
         $('.message-info-slider li').width(screenWidth);
 
-        if (nbSlides === 1) {
-            setTimeout(function () {
-                $(".message-info-slider").fadeOut(1000, function () {
-                    $(".main").fadeIn(1000);
-                });
-                messageInfoSlider.messageInfoIsShowing = false;
-            }, messageInfoSlider.oneMessageShowingTime);
-        }
-
-        if (nbSlides === 2) {
-            $(".message-info-slider li").hide();
-            $(".message-info-slider li:eq(0)").show();
-
-            setTimeout(function () {
-                $(".message-info-slider li:eq(0)").hide(1000, function () {
-                    $(".message-info-slider li:eq(1)").show(1000);
-                });
-            }, messageInfoSlider.oneMessageShowingTime);
-
-            setTimeout(function () {
-                $(".message-info-slider").fadeOut(1000, function () {
-                    $(".main").fadeIn(1000);
-                });
-                messageInfoSlider.messageInfoIsShowing = false;
-            }, messageInfoSlider.oneMessageShowingTime * 2);
-        }
-
-        if (nbSlides > 2) {
+        if (nbSlides > 1) {
             var sliderUlWidth = nbSlides * screenWidth;
             $('.message-info-slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
             $('.message-info-slider li:last-child').prependTo('.message-info-slider ul');

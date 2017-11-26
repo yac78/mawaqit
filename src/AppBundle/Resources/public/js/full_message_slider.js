@@ -13,20 +13,21 @@ var messageInfoSlider = {
     run: function () {
         var screenWidth = $(window).width();
         var nbSlides = $('#slider li').length;
-
         $('#slider li').width(screenWidth);
-        var sliderUlWidth = nbSlides * screenWidth;
-        $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-        $('#slider li:last-child').prependTo('#slider ul');
-
+        
         setTimeout(function () {
             messageInfoSlider.setFontSize();
         }, 300);
-
-        clearInterval(messageInfoSlider.interval);
-        messageInfoSlider.interval = setInterval(function () {
-            messageInfoSlider.moveRight();
-        }, messageInfoSlider.timeToDisplayMessage * 1000);
+        
+        if (nbSlides > 1) {
+            var sliderUlWidth = nbSlides * screenWidth;
+            $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
+            $('#slider li:last-child').prependTo('#slider ul');
+            clearInterval(messageInfoSlider.interval);
+            messageInfoSlider.interval = setInterval(function () {
+                messageInfoSlider.moveRight();
+            }, messageInfoSlider.timeToDisplayMessage * 1000);
+        }
     },
     /**
      * Get message from server

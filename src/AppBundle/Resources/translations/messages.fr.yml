@@ -1,4 +1,6 @@
 form:
+    label:
+        delete: Supprimer ?
     mandatory_field:  Champ obligatoir
     create:
         success:  L'ajout a été réalisé avec succès.

@@ -1,4 +1,6 @@
 form:
+    label:
+        delete: Delete ?
     create:
         success:  Adding has been successfully completed.
     edit:

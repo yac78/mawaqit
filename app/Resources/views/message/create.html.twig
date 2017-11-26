@@ -10,12 +10,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-md-8">
-            <h3>{% block form_title %}{{'message.add'|trans}}{% endblock %}</h3>
-            <form action="{{ form_action|default(path('message_create', {'mosque': mosque.id}))}}" method="post" enctype="multipart/form-data">
-                {% include 'message/form.html.twig' %}
-            </form>
-        </div>
-    </div>
+    <h3>{% block form_title %}{{'message.add'|trans}}{% endblock %}</h3>
+    <form action="{{ form_action|default(path('message_create', {'mosque': mosque.id}))}}" method="post" enctype="multipart/form-data">
+        {% include 'message/form.html.twig' %}
+    </form>
 {% endblock %}
