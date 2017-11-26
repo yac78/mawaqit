@@ -19,11 +19,9 @@ var messageInfoSlider = {
         $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
         $('#slider li:last-child').prependTo('#slider ul');
 
-        messageInfoSlider.slider.hide();
         setTimeout(function () {
             messageInfoSlider.setFontSize();
-            messageInfoSlider.slider.show();
-        }, 500);
+        }, 300);
 
         clearInterval(messageInfoSlider.interval);
         messageInfoSlider.interval = setInterval(function () {
