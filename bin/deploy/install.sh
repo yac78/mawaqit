@@ -49,8 +49,8 @@ bin/console doctrine:migrations:migrate -n --allow-no-migration
 rm $envDir/current || true
 ln -s $targetDir $envDir/current
     
-# Deleting old releases, keep 2 latest
+# Deleting old releases, keep 3 latest
 cd $envDir
-rm -r `ls -t  | tail -n +3`
+rm -r `ls -t  | tail -n +5`
 
 echo "The upgrade to v$tag has been successfully done ;)"
