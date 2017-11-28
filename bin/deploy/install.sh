@@ -50,6 +50,7 @@ rm $envDir/current || true
 ln -s $targetDir $envDir/current
     
 # Deleting old releases, keep 2 latest
-rm `ls -t | tail -n +3`
+cd $envDir
+rm -r `ls -t  | tail -n +3`
 
 echo "The upgrade to v$tag has been successfully done ;)"
