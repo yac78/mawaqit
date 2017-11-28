@@ -34,8 +34,9 @@ cd $targetDir
 # set version
 sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
+
+# install vendors and assets
 export SYMFONY_ENV=prod
-# install vendors
 composer install --no-dev --optimize-autoloader --no-interaction
 bin/console cache:warmup --env=prod
 bin/console assets:install --env=prod --no-debug
@@ -44,7 +45,11 @@ bin/console assetic:dump --env=prod --no-debug
 # migrate DB
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
+# creating current symlink
 rm $envDir/current || true
 ln -s $targetDir $envDir/current
     
+# Deleting old releases, keep 2 latest
+rm `ls -t | tail -n +3`
+
 echo "The upgrade to v$tag has been successfully done ;)"
