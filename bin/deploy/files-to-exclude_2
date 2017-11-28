@@ -1,0 +1,3 @@
+var/logs
+var/sessions
+web/app_dev.php

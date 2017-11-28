@@ -2,26 +2,21 @@ FROM debian:jessie
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+
 RUN \
   apt-get update && \
   apt-get install -y \
   apt-transport-https \
-  lsb-release \
-  ca-certificates \
-  supervisor \
   curl \
   wget \
   vim \
   git \
   nginx \
-  zip \
-  unzip \
-  imagemagick
+  zip 
 
 # install PHP7.1
-RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-
 RUN apt-get update && apt-get install -y \
   php7.1 \
   php7.1-fpm \
@@ -30,8 +25,7 @@ RUN apt-get update && apt-get install -y \
   php7.1-intl \
   php7.1-json \
   php7.1-xml \
-  php7.1-zip \
-  php7.1-imagick
+  php7.1-zip
 
 # install composer
 RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
