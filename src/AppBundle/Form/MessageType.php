@@ -10,8 +10,21 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Entity\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Translation\TranslatorInterface;
+
+
 
 class MessageType extends AbstractType {
+
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    public function __construct( TranslatorInterface $translator) {
+        $this->translator = $translator;
+    }
+
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -45,6 +58,7 @@ class MessageType extends AbstractType {
                     'label' => 'message.form.image.label',
                     'attr' => [
                         'class' => 'form-control',
+                        'title' => $this->translator->trans('message.form.image.title'),
                     ]
                 ])
                 ->add('save', SubmitType::class, [

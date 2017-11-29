@@ -68,8 +68,15 @@ services:
             - "@app.google_service"
             - "@translator"
         tags:
-            - { name: form.type }          
-            
+            - { name: form.type }
+
+    app.form_message:
+        class: AppBundle\Form\MessageType
+        arguments:
+            - "@translator"
+        tags:
+            - { name: form.type }
+
     app.form_prayer:
         class: AppBundle\Form\PrayerType
         arguments:

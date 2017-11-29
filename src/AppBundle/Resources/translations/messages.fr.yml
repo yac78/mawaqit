@@ -71,8 +71,9 @@ message:
         delay: 
             label : Délai d'affichage (minutes)
         image: 
-            label : Image (Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage)
-    
+            label : Image
+            title : Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage
+
 configuration:
     title: Configuration des horaires de "%mosque%"
     list:

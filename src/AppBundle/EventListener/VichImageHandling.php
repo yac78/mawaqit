@@ -7,8 +7,8 @@ use AppBundle\Entity\Mosque;
 
 class VichImageHandling {
 
-    const MOSQUE_IMAGE_WIDTH = 1280;
-    const MOSQUE_IMAGE_HEIGHT = 840;
+    const IMAGE_WIDTH = 1280;
+    const IMAGE_HEIGHT = 840;
 
 
     public function resizeImage(Event $event) {
@@ -19,7 +19,7 @@ class VichImageHandling {
             $filePath = $destinationDir . '/' . $fileName;
             if(file_exists($filePath)) {
                 $image = new \Imagick($filePath);
-                $image->scaleimage(self::MOSQUE_IMAGE_WIDTH, self::MOSQUE_IMAGE_HEIGHT);
+                $image->scaleimage(self::IMAGE_WIDTH, self::IMAGE_HEIGHT);
                 $image->writeimage();
             }
         }

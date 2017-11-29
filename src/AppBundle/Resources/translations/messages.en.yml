@@ -32,43 +32,46 @@ mosque:
         action: "Force reloading"
         success: "All mosques have been reloaded"
     form:
-        name: 
+        name:
             placeholder :" Ex. Essunna mosque"
-        slug: 
+        slug:
             label : "Change the website url"
-        city: 
+        city:
             placeholder: "The city of the mosque (used to calculate the geographical position)"
-        zipcode: 
+        zipcode:
             placeholder: "The postal code of the mosque (used to calculate the geographical position)"
-        rib: 
+        rib:
             placeholder: "If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74"
-        image1: 
+        image1:
             label: Image 1
-        image2: 
+        image2:
             label: Image 2
-        image3: 
+        image3:
             label: Image 3
     alert:
         slugChange: "Warning ! the modification of the url of the site will impact the launch of the software in the raspberry and the access of the faithful ones to your prayer times."
 
 message:
-    manage: Manage messages
-    display_messages_in_screen: You can display these messages in a dedicated screen, just replace the schedule url with this one
-    info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
-    mosque: Messages of "%mosque%"
-    add: Add a message
-    edit: Editing the message "%title%
-    add_max_reached: |
-        You have reached the maximum allowed number of activated messages (8 Max),
-        to be able to add more messages please remove or disable old ones.
-    form:
-        title:
-            placeholder: Ex. Quran course
-        happy:
-            placeholder: 200 characters maximum
-        picture:
-            label: Image (It will be displayed instead of text. For better viewing comfort, load only landscape images)
-    
+  manage: Manage messages
+  display_messages_in_screen: You can display these messages in a dedicated screen, just replace the schedule url with this one
+  info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
+  mosque: Messages of "%mosque%"
+  add: Add a message
+  edit: Editing the message "%title%
+  add_max_reached: |
+     You have reached the maximum allowed number of activated messages (8 Max),
+     to be able to add more messages please remove or disable old ones.
+  form:
+    title:
+      placeholder: Ex. Quran course
+    content:
+      placeholder: 200 characters maximum
+    delay:
+      label: Time to display d'affichage (minutes)
+    image:
+      label: Image
+      title: It will be displayed instead of text. For better viewing comfort, load only landscape images
+
 configuration:
     title: Prayer times configuration of "%mosque%"
     list:
@@ -79,7 +82,7 @@ configuration:
             In the case of the choice of calendar adjustment, check if it is well completed.
         calendar_not_completed: |
             Be careful the calendar of your mosque is not completed yet.
-    form: 
+    form:
         prayerCalcul: Calculation of prayer times
         load_predefined_calendar: 
             1: "You have the choice between the following 2 options:"
