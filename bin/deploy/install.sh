@@ -46,11 +46,11 @@ bin/console assetic:dump --env=prod --no-debug
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
 # creating current symlink
-rm $envDir/current || true
-ln -s $targetDir $envDir/current
+cd $envDir
+rm current || true
+ln -s $tag current
     
 # Deleting old releases, keep 3 latest
-cd $envDir
 rm -r `ls -t  | tail -n +5`
 
 echo "The upgrade to v$tag has been successfully done ;)"
