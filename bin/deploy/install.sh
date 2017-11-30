@@ -53,6 +53,7 @@ ln -s $tag current
 rm -r `ls -t  | tail -n +5`
 
 # reset opcache
+echo Reset opcache
 $repoDir/bin/deploy/opcache_reset.sh
 
 echo "The upgrade to v$tag has been successfully done ;)"
