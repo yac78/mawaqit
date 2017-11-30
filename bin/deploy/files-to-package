@@ -1,9 +1,0 @@
-app
-docker
-bin
-src
-var
-web
-dock-deploy
-composer.lock
-composer.json

@@ -22,7 +22,7 @@ git checkout $tag
 
 mkdir -p $targetDir
 
-rsync -r --force --delete --files-from=$deployDir/files-to-include --exclude-from=$deployDir/files-to-exclude $repoDir $targetDir
+rsync -r --force --delete --files-from=$repoDir/bin/deploy/files-to-include --exclude-from=$repoDir/bin/deploy/files-to-exclude $repoDir $targetDir
 
 ln -s $sharedDir/upload/ $targetDir/web/upload || true
 ln -s $sharedDir/logs/ $targetDir/var/logs || true
@@ -33,7 +33,6 @@ cd $targetDir
 
 # set version
 sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
-
 
 # install vendors and assets
 export SYMFONY_ENV=prod
@@ -54,6 +53,6 @@ ln -s $tag current
 rm -r `ls -t  | tail -n +5`
 
 # reset opcache
-/var/www/mawaqit/deploy/opcache_reset.sh
+$repoDir/bin/deploy/opcache_reset.sh
 
 echo "The upgrade to v$tag has been successfully done ;)"
