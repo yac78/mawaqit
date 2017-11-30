@@ -53,4 +53,7 @@ ln -s $tag current
 # Deleting old releases, keep 3 latest
 rm -r `ls -t  | tail -n +5`
 
+# reset opcache
+/var/www/mawaqit/deploy/opcache_reset.sh
+
 echo "The upgrade to v$tag has been successfully done ;)"
