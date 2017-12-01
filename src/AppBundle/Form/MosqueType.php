@@ -94,33 +94,9 @@ class MosqueType extends AbstractType {
                         'placeholder' => 'mosque.form.rib.placeholder',
                     ]
                 ])
-                ->add('file1', VichImageType::class, [
-                    'translation_domain' => 'messages',
-                    'required' => false,
-                    'download_uri' => false,
-                    'label' => 'mosque.form.image1.label',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
-                ])
-                ->add('file2', VichImageType::class, [
-                    'translation_domain' => 'messages',
-                    'label' => 'mosque.form.image2.label',
-                    'download_uri' => false,
-                    'required' => false,
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
-                ])
-                ->add('file3', VichImageType::class, [
-                    'translation_domain' => 'messages',
-                    'required' => false,
-                    'download_uri' => false,
-                    'label' => 'mosque.form.image3.label',
-                    'attr' => [
-                        'class' => 'form-control',
-                    ]
-                ])
+                ->add('file1', ImageType::class)
+                ->add('file2', ImageType::class)
+                ->add('file3', ImageType::class)
                 ->add('save', SubmitType::class, [
                     'label' => 'save',
                     'attr' => [

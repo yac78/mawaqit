@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Entity\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Translation\TranslatorInterface;
 
 
@@ -51,10 +50,7 @@ class MessageType extends AbstractType {
                     'label' => 'enabled',
                     'required' => false
                 ])
-                ->add('file', VichImageType::class, [
-                    'translation_domain' => 'messages',
-                    'required' => false,
-                    'download_uri' => false,
+                ->add('file', ImageType::class, [
                     'label' => 'message.form.image.label',
                     'attr' => [
                         'class' => 'form-control',
