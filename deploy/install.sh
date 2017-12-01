@@ -22,8 +22,10 @@ git checkout $tag
 
 mkdir -p $targetDir
 
-rsync -r --force --delete --files-from=$repoDir/bin/deploy/files-to-include --exclude-from=$repoDir/bin/deploy/files-to-exclude $repoDir $targetDir
+echo "Copying files\n"
+rsync -r --force --delete --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
 
+echo "Creating symlinks\n"
 ln -s $sharedDir/upload/ $targetDir/web/upload || true
 ln -s $sharedDir/logs/ $targetDir/var/logs || true
 ln -s $sharedDir/sessions/ $targetDir/var/sessions || true
@@ -31,7 +33,7 @@ ln -s $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml || tru
 
 cd $targetDir
 
-# set version
+echo "Set version\n"
 sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
 # install vendors and assets
@@ -44,16 +46,19 @@ bin/console assetic:dump --env=prod --no-debug
 # migrate DB
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
-# creating current symlink
+echo "Update SQL"
+mysql -u root mawaqit_${env} < $repoDir/deploy/update.sql
+
+echo "Creating current symlink\n"
 cd $envDir
 rm current || true
 ln -s $tag current
     
-# Deleting old releases, keep 3 latest
+echo "Deleting old releases, keep 3 latest\n"
 rm -r `ls -t  | tail -n +5`
 
-# reset opcache
+echo "Reset opcache\n"
 echo Reset opcache
-$repoDir/bin/deploy/opcache_reset.sh
+$repoDir/deploy/opcache_reset.sh ${env}
 
 echo "The upgrade to v$tag has been successfully done ;)"

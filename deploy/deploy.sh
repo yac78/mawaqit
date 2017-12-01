@@ -18,4 +18,4 @@ git tag $tag -m "new release $2" || true
 git push
 git push origin $tag
 
-ssh -p $port mawaqit@$server 'bash -s' < bin/deploy/install.sh $env $tag
+ssh -p $port mawaqit@$server 'bash -s' < deploy/install.sh $env $tag
