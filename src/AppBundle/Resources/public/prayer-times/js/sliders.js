@@ -105,7 +105,7 @@ var douaaSlider = {
  * @type {Object}
  */
 var messageInfoSlider = {
-    oneMessageShowingTime: 30000,
+    oneMessageShowingTime: 3000,
     /**
      * it saves html (ul,li)
      * @type String
@@ -121,7 +121,7 @@ var messageInfoSlider = {
 
         $('.message-info-slider li').width(screenWidth);
 
-        if (nbSlides > 1) {
+        if (nbSlides > 1 && $(".main").is(":visible")) {
             var sliderUlWidth = nbSlides * screenWidth;
             $('.message-info-slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
             $('.message-info-slider li:last-child').prependTo('.message-info-slider ul');
@@ -137,16 +137,15 @@ var messageInfoSlider = {
                 clearInterval(interval);
                 $(".message-info-slider").fadeOut(1000, function () {
                     $(".main").fadeIn(1000);
-                    $('.message-info-slider').html(messageInfoSlider.sliderHtmlContent);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
             }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
-        }
 
-        $(".main").fadeOut(1000, function () {
-            $(".message-info-slider").fadeIn(1000);
-            messageInfoSlider.setFontSize();
-        });
+            $(".main").fadeOut(1000, function () {
+                $(".message-info-slider").fadeIn(1000);
+                messageInfoSlider.setFontSize();
+            });
+        }
     },
     /**
      * Get message from server
