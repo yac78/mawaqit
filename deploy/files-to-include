@@ -1,5 +1,6 @@
 app
 deploy
+bin
 src
 var
 web
