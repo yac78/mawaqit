@@ -25,6 +25,7 @@ rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/d
 
 echo "Creating symlinks"
 ln -s $sharedDir/upload/ $targetDir/web/upload || true
+ln -s $sharedDir/static/ $targetDir/web/static || true
 ln -s $sharedDir/logs/ $targetDir/var/logs || true
 ln -s $sharedDir/sessions/ $targetDir/var/sessions || true
 ln -s $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml || true
