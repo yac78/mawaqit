@@ -5,13 +5,13 @@ form:
     create:
         success:  L'ajout a été réalisé avec succès.
     edit:
-        success:  L'édition a été réalisé avec succès.
+        success:  L'édition a été réalisée avec succès.
         action: Éditer
     delete:
         success:  La suppression a été réalisée avec succès.
         action: Supprimer
     configure:
-        action: "Configurer les horaires de la mosquée"
+        action: Configurer les horaires de la mosquée
         geocode_error: |
                 Impossible de géolocaliser votre mosquée. Veuillez vérifier 
                 <ul>

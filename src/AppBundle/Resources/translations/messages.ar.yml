@@ -1,115 +1,11 @@
 form:
     mandatory_field:  حقل اجباري
-    create:
-        success:  L'ajout %object% %name% a été réalisé avec succès.
-        error: 
-    edit:
-        success:  L'édition %object% %name% a été réalisé avec succès.
-        error: 
-        action: éditer
-    delete:
-        success:  La suppression %object% %name% a été réalisé avec succès.
-        error: 
-        action: supprimer
-    configure:
-        success: La configuration %object% %name% a été réalisée avec succès.
-        action: configurer le horaires de la mosquée
-        geocode_error: Impossible de géolocaliser votre mosquée "%address%"
+
             
 
 mosque:
-    add: Ajout d'une nouvelle mosquée
     name: إسم المسجد
-    form:
-        name: 
-            placeholder : Ex. Mosquée Essunna
-        city: 
-            placeholder: La ville de la mosquée (Sert à calculer la position géographique)
-        zipcode: 
-            placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
-        rib: 
-            placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
-    
-configuration:
-    title: Configuration des horaires de la mosquée "%mosque%"
-    list:
-        conf_not_completed: |
-            Votre mosquée est crée mais les horaires de prière ne sont pas encore configurées
-            <br>Veuillez procéder à la configuration en cliquant sur le bouton orange à droite
-    form: 
-        fill_calendar:
-            success: Les horaires du mois on été remplis avec succès.
-            error: Les horaires du mois n'ont pas pu être remplis.
-        time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant hh:mm"
-        fill_calendar_from_csv: Pré-remplir depuis un fichier csv
-        calendar: Calendrier des horaires
-        lang: La langue d'affichage de l'écran 
-        sourceCalcul: 
-            label: Source de calcul des horaires
-        prayerMethod: 
-            label: Méthode de calcul
-            placeholder: Veuillez choisir une méthode de calcul
-        jumuaTime:
-            label: Heure du jumu`a
-        aidTime:
-            label: Heure du aid
-        adjustedTimes: 
-            label: Ajustement des horaires
-        maximumIshaTimeForNoWaiting: 
-            label: heure maximale du `isha (attente iqama = 0 min) 
-        imsakNbMinBeforeFajr: 
-            label: Nombre de minute avant sobh pour l'imsak 
-        waitingTimes: 
-            label: Temps d'attente entre adhan et iqama
-        fixedTimes: 
-            label: Fixation des horaires
-        hijriAdjustment: 
-            label: Ajustement de la date hégire
-        iqamaDisplayTime: 
-            label: Temps d'affichage du signal iqama (en secondes)
-        hijriDateEnabled: 
-            label: Activer la date hégire
-        duaAfterAzanEnabled: 
-            label: Activer du`aa après adhan
-        duaAfterPrayerEnabled: 
-            label: Activer les invocations après salat
-        fajrDegree: 
-            label: Degré du fajr
-            placeholder: Ex. 18
-        ishaDegree: 
-            label: Degré du `isha
-            placeholder: Ex. 15
-        calendar_explication: |
-            Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une vigule ou un point-virgule.<br><br>
-            Le fichier CSV doit respécter le format suivant : <br><br>
-            Day,Sobh,Chourouk,Dohr,Asr,Maghrib,Icha <br>
-            01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
-            02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
-            03,06:49,08:44,12:56,14:49,17:10,18:49 <br>
-            04,06:49,08:44,12:57,14:50,17:11,18:50 <br>
-            05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
-            ...            
 
-security:
-    login:
-        authenticate_you: Identifiez-vous
-        
-
-validate: Valider
-cancel: Annuler
-address: Adresse
-phone: Téléphone
-city: Ville
-zipcode: Code postal
-country: Pays
-rib: RIB
-save: Sauvegarder
-email: Adresse mail
-association_name: Nom de l'association
-prayer_site: Url de l'écran des horaires
-users: Utilisateurs
-my_mosques: Mes mosquées
-my_profile: Mon profil
         
 ISNA: "(fajr 15°, ichaa 15°) الإتحاد الإسلامي بأمريكا الشمالية"
 UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
@@ -119,8 +15,6 @@ Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 min après magh
 Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 
-api: Automatique (Calcul des horaires par le logiciel)
-calendar: Manuel (Horaires renseignées pour toute l'année)
 
 next_prayer: الصلاة القادمة
 
@@ -141,31 +35,5 @@ azan: الأذان
 power-off-phones: '! أطفئوا الهاتف المحمول من فضلكم'
 hi: مرحبا
 alarm: المنبه
-
-january: Janvier
-february: Février
-march: Mars
-april: Avril
-mai: Mai
-june: Juin
-july: Juillet
-august: Août
-september: Septembre
-october: Octobre
-november: Novembre
-december: Décembre
-
-month_0 : Janvier
-month_1 : Février
-month_2 : Mars
-month_3 : Avril
-month_4 : Mai
-month_5 : Juin
-month_6 : Juillet
-month_7 : Août
-month_8 : Septembre
-month_9: Octobre
-month_10: Novembre
-month_11: Décembre
 
 prayer_mobile_site: "<a href='%site%'>%site%</a> أوقات الصلاة على الهاتف المحمول"
