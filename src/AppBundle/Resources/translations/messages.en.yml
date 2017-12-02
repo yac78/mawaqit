@@ -49,7 +49,10 @@ mosque:
         image3:
             label: Image 3
     alert:
-        slugChange: "Warning ! the modification of the url of the site will impact the launch of the software in the raspberry and the access of the faithful ones to your prayer times."
+        slugChange: |
+            Warning ! the modification of the url of the site will impact the launch of the software in the raspberry
+            and the access of the faithful ones to your prayer times.
+            Remember to update your raspberry and inform the faithful of the mosque.
 
 message:
   manage: Manage messages

@@ -50,7 +50,10 @@ mosque:
         image3: 
             label: Image 3
     alert:
-        slugChange: Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry et l'accès des fidèles à vos horaires de prière.
+        slugChange: |
+            Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry
+            et l'accès des fidèles à vos horaires de prière.
+            Pensez à mettre à jour votre raspberry et informer les fidèles de la mosquée.
 
 message:
     display_messages_in_screen: Vous pouvez afficher ces messages dans un écran dédié, il suffit de remplacer l'url des horaires par celle-ci
