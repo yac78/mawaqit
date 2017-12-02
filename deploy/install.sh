@@ -46,19 +46,19 @@ bin/console assetic:dump --env=prod --no-debug
 # migrate DB
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
-echo "Update SQL"
-mysql -u root mawaqit_${env} < $repoDir/deploy/update.sql
-
 echo "Creating current symlink"
 cd $envDir
 rm current || true
 ln -s $tag current
-    
+
 echo "Deleting old releases, keep 3 latest"
 rm -r `ls -t  | tail -n +5`
 
 echo "Reset opcache"
 $repoDir/deploy/opcache_reset.sh ${env}
+
+echo "Force reload mosques"
+mysql -u root mawaqit_${env} < $repoDir/deploy/update.sql
 
 echo "####################################################"
 echo "The upgrade to v$tag has been successfully done ;)"
