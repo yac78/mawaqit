@@ -41,6 +41,9 @@ bin/console cache:warmup --env=prod
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 
+echo "Reset opcache => $repoDir/deploy/opcache_reset.sh ${env}"
+$repoDir/deploy/opcache_reset.sh ${env}
+
 # migrate DB
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
@@ -49,9 +52,6 @@ cd $envDir && rm current || true && ln -s $tag current
 
 echo "Deleting old releases, keep 3 latest"
 rm -r `ls -t  | tail -n +5`
-
-echo "Reset opcache => $repoDir/deploy/opcache_reset.sh ${env}"
-$repoDir/deploy/opcache_reset.sh ${env}
 
 echo "Force reload mosques"
 mysql -u root mawaqit_${env} < $repoDir/deploy/update.sql
