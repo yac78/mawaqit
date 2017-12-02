@@ -10,10 +10,10 @@ fi
 
 env=$1
 tag=$2
-repoDir=/var/www/mawaqit/repo
-deployDir=/var/www/mawaqit/deploy
-sharedDir=/var/www/mawaqit/shared
-envDir=/var/www/mawaqit/$env
+baseDir=/var/www/mawaqit
+repoDir=$baseDir/repo
+sharedDir=$baseDir/shared
+envDir=$baseDir/$env
 targetDir=$envDir/$tag
   
 (cd $repoDir && git fetch && git checkout $tag)
