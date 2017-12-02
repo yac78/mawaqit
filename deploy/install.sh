@@ -16,14 +16,12 @@ sharedDir=/var/www/mawaqit/shared
 envDir=/var/www/mawaqit/$env
 targetDir=$envDir/$tag
   
-cd $repoDir
-git fetch
-git checkout $tag
+(cd $repoDir && git fetch && git checkout $tag)
 
 mkdir -p $targetDir
 
 echo "Copying files"
-rsync -r --force --delete --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
+rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
 
 echo "Creating symlinks"
 ln -s $sharedDir/upload/ $targetDir/web/upload || true
@@ -47,9 +45,7 @@ bin/console assetic:dump --env=prod --no-debug
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
 echo "Creating current symlink"
-cd $envDir
-rm current || true
-ln -s $tag current
+cd $envDir && rm current || true && ln -s $tag current
 
 echo "Deleting old releases, keep 3 latest"
 rm -r `ls -t  | tail -n +5`
@@ -60,6 +56,7 @@ $repoDir/deploy/opcache_reset.sh ${env}
 echo "Force reload mosques"
 mysql -u root mawaqit_${env} < $repoDir/deploy/update.sql
 
+echo ""
 echo "####################################################"
 echo "The upgrade to v$tag has been successfully done ;)"
 echo "####################################################"
