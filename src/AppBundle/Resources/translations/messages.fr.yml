@@ -56,7 +56,12 @@ mosque:
             Pensez à mettre à jour votre raspberry et informer les fidèles de la mosquée.
 
 message:
-    display_messages_in_screen: Vous pouvez afficher ces messages dans un écran dédié, il suffit de remplacer l'url des horaires par celle-ci
+    display_messages_in_screen_1: |
+      Vous pouvez afficher ces messages dans un écran dédié,
+      il suffit de remplacer l'url des horaires par celle-ci
+    display_messages_in_screen_2: |
+      Le logiciel vérifie les changements toutes les 5 mins,
+      si vous ajoutez ou supprimez un message, l'écran se mettra à jour automatiquement au bout de 5 mins.
     mosque: Annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%

@@ -56,7 +56,8 @@ mosque:
 
 message:
   manage: Manage messages
-  display_messages_in_screen: You can display these messages in a dedicated screen, just replace the schedule url with this one
+  display_messages_in_screen_1: You can display these messages in a dedicated screen, just replace the schedule url with this one
+  display_messages_in_screen_2: The software checks for changes every 5 mins, if you add or delete a message, the screen will update automatically after 5 mins.
   info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
   mosque: Messages of "%mosque%"
   add: Add a message
