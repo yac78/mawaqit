@@ -399,14 +399,18 @@ var prayer = {
         },
         hideReminder: function () {
             $(".jumua-dhikr-reminder").fadeOut(1000, function () {
-                $(".main").fadeIn(1000);
+                $(".main").fadeIn(1000, function () {
+                    messageInfoSlider.get();
+                });
             });
         },
         showBlackScreen: function () {
             $(".main").fadeOut(1000);
         },
         hideBlackScreen: function () {
-            $(".main").fadeIn(1000);
+            $(".main").fadeIn(1000, function () {
+                messageInfoSlider.get();
+            });
         }
     },
     /**
