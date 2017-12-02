@@ -50,7 +50,7 @@ cd $envDir && rm current || true && ln -s $tag current
 echo "Deleting old releases, keep 3 latest"
 rm -r `ls -t  | tail -n +5`
 
-echo "Reset opcache"
+echo "Reset opcache => $repoDir/deploy/opcache_reset.sh ${env}"
 $repoDir/deploy/opcache_reset.sh ${env}
 
 echo "Force reload mosques"
