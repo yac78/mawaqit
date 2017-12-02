@@ -21,8 +21,7 @@ var messageInfoSlider = {
         
         if (nbSlides > 1) {
             var sliderUlWidth = nbSlides * screenWidth;
-            $('#slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-            $('#slider li:last-child').prependTo('#slider ul');
+            $('#slider ul').css({width: sliderUlWidth});
             clearInterval(messageInfoSlider.interval);
             messageInfoSlider.interval = setInterval(function () {
                 messageInfoSlider.moveRight();

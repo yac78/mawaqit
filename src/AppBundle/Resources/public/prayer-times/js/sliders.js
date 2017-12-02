@@ -19,16 +19,15 @@ var douaaSlider = {
             return;
         }
 
+        if (lang === "ar") {
+            $(".adhkar-after-prayer .fr").remove();
+        }
+
         var screenWidth = $(window).width();
         $('.adhkar-after-prayer li').width(screenWidth);
         var slideCount = $('.adhkar-after-prayer li').length;
         var sliderUlWidth = slideCount * screenWidth;
-        $('.adhkar-after-prayer').css({width: screenWidth});
-        $('.adhkar-after-prayer ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-        $('.adhkar-after-prayer li:last-child').prependTo('.adhkar-after-prayer ul');
-        if (lang === "ar") {
-            $(".adhkar-after-prayer .fr").remove();
-        }
+        $('.adhkar-after-prayer ul').css({width: sliderUlWidth});
         //save html slider
         this.sliderHtmlContent = $('.adhkar-after-prayer').html();
     },
@@ -77,7 +76,7 @@ var douaaSlider = {
      * @returns {Number}
      */
     getTimeForShow: function () {
-        return ($('.adhkar-after-prayer li').length * douaaSlider.oneDouaaShowingTime) - 1000;
+        return (($('.adhkar-after-prayer li').length - (lang === "ar" ? 1 : 0)) * douaaSlider.oneDouaaShowingTime) - 1000;
     },
     moveRight: function () {
         var screenWidth = $(window).width();
@@ -123,8 +122,7 @@ var messageInfoSlider = {
 
         if (nbSlides > 1 && $(".main").is(":visible")) {
             var sliderUlWidth = nbSlides * screenWidth;
-            $('.message-info-slider ul').css({width: sliderUlWidth, marginLeft: -screenWidth});
-            $('.message-info-slider li:last-child').prependTo('.message-info-slider ul');
+            $('.message-info-slider ul').css({width: sliderUlWidth});
 
             //save html slider
             messageInfoSlider.sliderHtmlContent = $('.message-info-slider').html();
