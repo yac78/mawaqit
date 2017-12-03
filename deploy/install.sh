@@ -52,7 +52,7 @@ echo "Creating current symlink"
 cd $envDir && rm current || true && ln -s $tag current
 
 echo "Deleting old releases, keep 3 latest"
-rm -r `ls -t  | tail -n +5`
+rm -rf `ls -t  | tail -n +5`
 
 echo "Force reload mosques"
 mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_${env} < $repoDir/deploy/update.sql
