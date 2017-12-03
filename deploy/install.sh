@@ -55,7 +55,7 @@ echo "Deleting old releases, keep 3 latest"
 rm -r `ls -t  | tail -n +5`
 
 echo "Force reload mosques"
-mysql -u root mawaqit_${env} < $repoDir/deploy/update.sql
+mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_${env} < $repoDir/deploy/update.sql
 
 echo ""
 echo "####################################################"
