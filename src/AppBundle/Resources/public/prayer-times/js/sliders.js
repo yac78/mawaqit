@@ -104,7 +104,7 @@ var douaaSlider = {
  * @type {Object}
  */
 var messageInfoSlider = {
-    oneMessageShowingTime: 3000,
+    oneMessageShowingTime: 30000,
     /**
      * it saves html (ul,li)
      * @type String
