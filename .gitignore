@@ -23,9 +23,4 @@
 /web/upload/images/
 /app/config/parameters.prod.vps.yml
 /bin/deploy/deploy2.sh
-/.idea/modules.xml
-/.idea/vcs.xml
-/.idea/.name
-/.idea/deployment.xml
-/.idea/workspace.xml
-/.idea/ptv3.iml
+/.idea/
