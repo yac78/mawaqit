@@ -9,7 +9,6 @@ use AppBundle\Exception\GooglePositionException;
 class GoogleService extends GoogleApi {
 
     const PATH_GEOCODE = "/geocode/json";
-    const PATH_TEMEZONE = "/timezone/json";
 
     /**
      * @var Logger
@@ -18,10 +17,12 @@ class GoogleService extends GoogleApi {
 
     /**
      * Get longitude and latitude
+     * @param string $address
      * @return array
+     * @throws GooglePositionException
      */
     function getPosition($address) {
-        $url = self::PATH_GEOCODE . "?address=$address";
+        $url = self::PATH_GEOCODE . "?address=".str_replace(" ", "-", $address);
         $res = $this->get($url);
 
         if ($res instanceof \stdClass && isset($res->results[0]->geometry->location)) {
@@ -32,6 +33,9 @@ class GoogleService extends GoogleApi {
         throw new GooglePositionException();
     }
 
+    /**
+     * @param Logger $logger
+     */
     function setLogger(Logger $logger) {
         $this->logger = $logger;
     }
