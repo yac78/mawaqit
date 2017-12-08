@@ -22,7 +22,7 @@ class GoogleService extends GoogleApi {
      * @throws GooglePositionException
      */
     function getPosition($address) {
-        $url = self::PATH_GEOCODE . "?address=".str_replace(" ", "-", $address);
+        $url = self::PATH_GEOCODE . "?address=$address";
         $res = $this->get($url);
 
         if ($res instanceof \stdClass && isset($res->results[0]->geometry->location)) {
