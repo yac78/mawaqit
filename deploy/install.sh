@@ -32,13 +32,11 @@ ln -s $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml || tru
 
 cd $targetDir
 
-echo "Reset opcache => $repoDir/deploy/opcache_reset.sh $env"
-$repoDir/deploy/opcache_reset.sh $env
-
 echo "Set version"
 sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
 # install vendors and assets
+export SYMFONY_ENV=prod
 composer install --no-dev --optimize-autoloader --no-interaction
 bin/console cache:warmup --env=prod
 bin/console assets:install --env=prod --no-debug
@@ -52,6 +50,9 @@ cd $envDir && rm current || true && ln -s $tag current
 
 echo "Force reload mosques"
 mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_$env < $repoDir/deploy/update.sql
+
+echo "Reset opcache => $repoDir/deploy/opcache_reset.sh $env"
+$repoDir/deploy/opcache_reset.sh $env
 
 echo "Deleting old releases, keep 3 latest"
 rm -rf `ls -t  | tail -n +5` || true
