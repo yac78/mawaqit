@@ -58,13 +58,12 @@ message:
   manage: Manage messages
   display_messages_in_screen_1: You can display these messages in a dedicated screen, just replace the schedule url with this one
   display_messages_in_screen_2: The software checks for changes every 5 mins, if you add or delete a message, the screen will update automatically after 5 mins.
-  info: The messages will slide on the screen, before and after each prayer. You can add up to 8 messages enabled at a time.
+  info: |
+    The messages will slide on the screen, before and after each prayer.
+    You can add up to 8 messages enabled at a time, total 20 messages.
   mosque: Messages of "%mosque%"
   add: Add a message
   edit: Editing the message "%title%
-  add_max_reached: |
-     You have reached the maximum allowed number of activated messages (8 Max),
-     to be able to add more messages please remove or disable old ones.
   form:
     title:
       placeholder: Ex. Quran course

@@ -10,6 +10,10 @@ AppBundle\Entity\Mosque:
     properties:
         city:
             - NotBlank: ~
+
+AppBundle\Entity\Message:
+    constraints:
+        - AppBundle\Validator\Constraints\Message: ~
             
 AppBundle\Entity\Configuration:
     constraints:

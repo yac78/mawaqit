@@ -57,20 +57,19 @@ mosque:
 
 message:
     display_messages_in_screen_1: |
-      Vous pouvez afficher ces messages dans un écran dédié,
+      Vous pouvez afficher ces annonces dans un écran dédié,
       il suffit de remplacer l'url des horaires par celle-ci
     display_messages_in_screen_2: |
       Le logiciel vérifie les changements toutes les 5 mins,
-      si vous ajoutez ou supprimez un message, l'écran se mettra à jour automatiquement au bout de 5 mins.
+      si vous ajoutez ou supprimez une annonce, l'écran se mettra à jour automatiquement au bout de 5 mins.
     mosque: Annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%
     manage: Gérer les annonces
-    info: Les annonces défileront sur l'écran, avant et après chaque prière. Vous avez la possibilité d'ajouter jusqu'à 8 annonces activées à la fois.
-    maj_alert: Attention ! Les annonces écrites entièrement en majuscule peuvent s'afficher tronquées.
-    add_max_reached: |
-        Vous avez atteint le nombre maximum autorisé d'annonces activées (8 Max), 
-        pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes. 
+    info: |
+      Les annonces défileront sur l'écran, avant et après chaque prière.
+      Vous avez la possibilité d'ajouter jusqu'à 8 annonces <b>activées</b> à la fois, 20 au total.
+
     form:
         title: 
             placeholder : Ex. Cours de coran

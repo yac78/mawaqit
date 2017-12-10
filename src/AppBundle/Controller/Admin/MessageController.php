@@ -13,47 +13,44 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * @Route("/admin")
  */
-class MessageController extends Controller {
-    const MAX_MESSAGE = 8;
+class MessageController extends Controller
+{
 
     /**
      * @Route("/{mosque}/message/", name="message_index")
      */
-    public function indexAction(Request $request, Mosque $mosque) {
+    public function indexAction(Request $request, Mosque $mosque)
+    {
 
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
         return $this->render('message/index.html.twig', [
-                    "disable_add_message" => $mosque->getNbOfEnabledMessages() >= self::MAX_MESSAGE,
-                    "mosque" => $mosque,
+            "mosque" => $mosque
         ]);
     }
 
     /**
      * @Route("/{mosque}/message/create", name="message_create")
      */
-    public function createAction(Request $request, Mosque $mosque) {
+    public function createAction(Request $request, Mosque $mosque)
+    {
 
-        if($mosque->getNbOfEnabledMessages() >= self::MAX_MESSAGE){
-            throw new AccessDeniedException();
-        }
-        
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
 
         $message = new Message();
+        $message->setMosque($mosque);
+
         $form = $this->createForm(MessageType::class, $message);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $message = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $message->setMosque($mosque);
             $em->persist($message);
             $em->flush();
             $this->addFlash('success', "form.create.success");
@@ -62,15 +59,16 @@ class MessageController extends Controller {
         }
 
         return $this->render('message/create.html.twig', [
-                    "mosque" => $mosque,
-                    'form' => $form->createView(),
+            "mosque" => $mosque,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{mosque}/message/{message}/edit", name="message_edit")
      */
-    public function editAction(Request $request, Mosque $mosque, Message $message) {
+    public function editAction(Request $request, Mosque $mosque, Message $message)
+    {
 
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
@@ -92,16 +90,17 @@ class MessageController extends Controller {
         }
 
         return $this->render('message/edit.html.twig', [
-                    "message" => $message,
-                    "mosque" => $mosque,
-                    'form' => $form->createView(),
+            "message" => $message,
+            "mosque" => $mosque,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/message/{id}/delete", name="message_delete")
      */
-    public function deleteAction(Request $request, Message $message) {
+    public function deleteAction(Request $request, Message $message)
+    {
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $message->getMosque()->getUser()) {
             throw new AccessDeniedException;
