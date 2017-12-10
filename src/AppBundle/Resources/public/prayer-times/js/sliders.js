@@ -120,7 +120,7 @@ var messageInfoSlider = {
 
         $('.message-info-slider li').width(screenWidth);
 
-        if (nbSlides > 1 && $(".main").is(":visible")) {
+        if ($(".main").is(":visible")) {
             var sliderUlWidth = nbSlides * screenWidth;
             $('.message-info-slider ul').css({width: sliderUlWidth});
 

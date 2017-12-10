@@ -4,7 +4,7 @@
  */
 var messageInfoSlider = {
     slider: $("#slider"),
-    timeToDisplayMessage: 30000,
+    timeToDisplayMessage: 30,
     interval: null,
     ajaxJsonHashCode: '',
     /**
@@ -14,19 +14,19 @@ var messageInfoSlider = {
         var screenWidth = $(window).width();
         var nbSlides = $('#slider li').length;
         $('#slider li').width(screenWidth);
-        
+
         setTimeout(function () {
             messageInfoSlider.setFontSize();
         }, 300);
-        
-        if (nbSlides > 1) {
-            var sliderUlWidth = nbSlides * screenWidth;
-            $('#slider ul').css({width: sliderUlWidth});
-            clearInterval(messageInfoSlider.interval);
-            messageInfoSlider.interval = setInterval(function () {
+
+        var sliderUlWidth = nbSlides * screenWidth;
+        $('#slider ul').css({width: sliderUlWidth});
+        clearInterval(messageInfoSlider.interval);
+        messageInfoSlider.interval = setInterval(function () {
+            if (nbSlides > 1) {
                 messageInfoSlider.moveRight();
-            }, messageInfoSlider.timeToDisplayMessage * 1000);
-        }
+            }
+        }, messageInfoSlider.timeToDisplayMessage * 1000);
     },
     /**
      * Get message from server
