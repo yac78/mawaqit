@@ -302,3 +302,45 @@ body {
 .btn-settings a{
     color: #fff;
 }
+
+/* short message css */
+.short-message {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background-color: #000000;
+}
+.short-message:before {
+    content: 'Text à défiler tout le temps et pendant lontemps';
+    font-size: 1000%;
+    color: #FFFFFF;
+    position: absolute;
+    width: 200%;
+    -webkit-animation: slide 20s linear infinite;
+    -moz-animation: slide 20s linear infinite;
+    animation: slide 20s linear infinite;
+}
+@-webkit-keyframes slide {
+    0% {
+        left: 180%;
+    }
+    100% {
+        left: -180%;
+    }
+}
+@-moz-keyframes slide {
+    0% {
+        left: 180%;
+    }
+    100% {
+        left: -180%;
+    }
+}
+@keyframes slide {
+    0% {
+        left: 180%;
+    }
+    100% {
+        left: -180%;
+    }
+}
