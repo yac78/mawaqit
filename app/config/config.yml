@@ -48,7 +48,6 @@ twig:
     globals:
       supportTel1: "%supportTel1%"
       supportTel2: "%supportTel2%"
-      supportTel3: "%supportTel3%"
     form_themes:
         - 'form/fields.html.twig'
         - 'VichUploaderBundle:Form:fields.html.twig'
