@@ -15,7 +15,6 @@ parameters:
     site: mawaqit.net
     supportTel1: '+33629111641'
     supportTel2: '+33666137234'
-    supportTel3: '+33768227786'
     supportEmail: contact@mawaqit.net
 
     no_replay_address : %supportEmail%
