@@ -6,7 +6,9 @@ use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\MessageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -26,8 +28,12 @@ class MessageController extends Controller
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
+        $em = $this->getDoctrine()->getManager();
+        $messages = $em->getRepository("AppBundle:Message")->getBySortableGroupsQuery(array('mosque' => $mosque))->getResult();
+
         return $this->render('message/index.html.twig', [
-            "mosque" => $mosque
+            "mosque" => $mosque,
+            "messages" => $messages
         ]);
     }
 
@@ -113,4 +119,22 @@ class MessageController extends Controller
         return $this->redirectToRoute('message_index', ['mosque' => $message->getMosque()->getId()]);
     }
 
+
+    /**
+     * Resorts an item using it's doctrine sortable property
+     * @param Request $request
+     * @Route("/message/sort", name="message_sort")
+     * @Method("PUT")
+     * @return JsonResponse
+     */
+    public function sortAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $message = $em->getRepository('AppBundle:Message')->find((int)$request->request->get("id"));
+        $message->setPosition((int)$request->request->get("position"));
+        $em->persist($message);
+        $em->flush();
+
+        return new JsonResponse();
+    }
 }

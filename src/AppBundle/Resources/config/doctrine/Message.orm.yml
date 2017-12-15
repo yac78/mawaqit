@@ -22,14 +22,20 @@ AppBundle\Entity\Message:
             nullable: true
         enabled:
             type: boolean
+        position:
+            type: integer
+            gedmo:
+              - sortablePosition
         updated:
             type: datetime
             nullable: true
             gedmo:
                 timestampable:
-                    on: update            
+                    on: update
     manyToOne:
         mosque:
+            gedmo:
+              - sortableGroup
             targetEntity: AppBundle\Entity\Mosque
             inversedBy: messages
             joinColumn:

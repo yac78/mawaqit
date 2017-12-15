@@ -55,7 +55,6 @@ class MosqueController extends Controller {
         return $this->render("mosque/$template.html.twig", [
                     'mosque' => $mosque,
                     'version' => $this->getParameter('version'),
-                    "supportTel" => $this->getParameter("supportTel"),
                     "supportEmail" => $this->getParameter("supportEmail"),
                     'config' => $serializer->serialize($config, 'json')
         ]);

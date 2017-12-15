@@ -342,6 +342,7 @@ edit_of: Edit "%name%"
 yes: Yes
 no: No
 warning: Warning
+order: Order
 
 invocationAfterPrayer:
     title: Invocations after prayer

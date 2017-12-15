@@ -18,6 +18,7 @@
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
         {% block stylesheets %}
         {% endblock %}
@@ -45,8 +46,9 @@
             '@AppBundle/Resources/public/js/main.js'
         %}
             <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}    
-        
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        {% endjavascripts %}
+
         {% block javascripts %}
         {% endblock %}
     </body>

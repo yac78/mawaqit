@@ -17,19 +17,8 @@ DirectoryIndex app.php
     Options -MultiViews
 </IfModule>
 
-# todo : remove it
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
-</IfModule>
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
-
-    # redirect (.*)horaires-de-priere.fr to https://mawaqit.net
-    RewriteCond %{HTTP_HOST} ^horaires-de-priere.fr [NC,OR]
-    RewriteCond %{HTTP_HOST} ^www.horaires-de-priere.fr [NC]
-    RewriteRule ^(.*)$ https://mawaqit.net/$1 [L,R=301,NC]
 
     # redirect www to no www url
     RewriteBase /

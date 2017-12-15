@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\File\File;
 /**
  * Message
  */
-class Message {
+class Message
+{
 
     /**
      * @var int
@@ -29,6 +30,11 @@ class Message {
      * @var boolean
      */
     private $enabled = true;
+
+    /**
+     * @var integer
+     */
+    private $position;
 
     /**
      * @var File
@@ -55,7 +61,8 @@ class Message {
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -66,7 +73,8 @@ class Message {
      *
      * @return Message
      */
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
 
         return $this;
@@ -77,7 +85,8 @@ class Message {
      *
      * @return string
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
@@ -88,7 +97,8 @@ class Message {
      *
      * @return Message
      */
-    public function setContent($content) {
+    public function setContent($content)
+    {
         $this->content = $content;
 
         return $this;
@@ -99,15 +109,18 @@ class Message {
      *
      * @return string
      */
-    public function getContent() {
+    public function getContent()
+    {
         return $this->content;
     }
 
-    function isEnabled() {
+    function isEnabled()
+    {
         return $this->enabled;
     }
 
-    function setEnabled($enabled) {
+    function setEnabled($enabled)
+    {
         $this->enabled = $enabled;
     }
 
@@ -116,7 +129,8 @@ class Message {
      *
      * @return self
      */
-    public function setFile(File $image = null) {
+    public function setFile(File $image = null)
+    {
         $this->file = $image;
 
         if ($image) {
@@ -129,7 +143,8 @@ class Message {
     /**
      * @return File|null
      */
-    public function getFile() {
+    public function getFile()
+    {
         return $this->file;
     }
 
@@ -138,7 +153,8 @@ class Message {
      *
      * @return self
      */
-    public function setImage($imageName) {
+    public function setImage($imageName)
+    {
         $this->image = $imageName;
 
         return $this;
@@ -147,16 +163,37 @@ class Message {
     /**
      * @return string|null
      */
-    public function getImage() {
+    public function getImage()
+    {
         return $this->image;
     }
 
-    function getMosque(): Mosque {
+    function getMosque(): Mosque
+    {
         return $this->mosque;
     }
 
-    function setMosque(Mosque $mosque) {
+    function setMosque(Mosque $mosque)
+    {
         $this->mosque = $mosque;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+        return $this;
     }
 
 }

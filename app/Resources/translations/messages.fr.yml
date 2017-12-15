@@ -350,6 +350,7 @@ edit_of: Édition de "%name%"
 yes: Oui
 no: Non
 warning: Attention
+order: Ordonner
 
 invocationAfterPrayer:
     title: Invocations après la prière
