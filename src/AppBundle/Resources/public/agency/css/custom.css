@@ -105,3 +105,8 @@ header .intro-text .intro-subheading {
 a, code {
     overflow-wrap: break-word;
 }
+
+.gmaps {
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+}

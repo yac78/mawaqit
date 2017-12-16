@@ -230,8 +230,16 @@
         <section id="mosquees" class="bg-light-gray">
             <div class="container">
                 <h2 class="section-heading">Quelques mosquées équipées</h2>
-                <h3 class="section-subheading text-muted">Grace à Allah nous avons pu installé notre logiciel dans
-                    plusieurs mosquée partout en France et autres pays, voici quelques exemples</h3>
+                <p class="section-subheading text-muted">Grace à Allah nous avons pu installé notre logiciel dans
+                    plusieurs mosquée partout en France et autres pays, voici quelques exemples</p>
+
+                <div class="row gmaps">
+                    <div class="col-md-8 col-md-offset-2">
+                        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1vi-4jRubijz7gAhBIIBb0qkb96pRm0Do"
+                                width="100%" height="480"></iframe>
+                    </div>
+                </div>
+
                 {% for mosque in mosques %}
                     <div class="col-md-4 col-sm-6 portfolio-item">
                         <a href="#{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
@@ -472,14 +480,14 @@
         <section id="contact">
             <div class="container">
                 <h2 class="section-heading">Contactez nous</h2>
-                <div  class="text-primary text-left" style="font-weight: bold; font-size: 130%">
+                <div class="text-primary text-left" style="font-weight: bold; font-size: 130%">
                     <p>
                         Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel.
                         Contactez nous :
                     </p>
 
                     <ul>
-                        <li>Par WhatsApp  <i class="fa fa-whatsapp"></i> : {{ supportTel1 }} /  {{ supportTel2 }}</li>
+                        <li>Par WhatsApp <i class="fa fa-whatsapp"></i> : {{ supportTel1 }} / {{ supportTel2 }}</li>
                         <li>Via le formulaire ci-dessous</li>
                     </ul>
                 </div>
