@@ -4,7 +4,7 @@
 /* global confData */
 
 /**
- * Class handling prayers 
+ * Class handling prayers
  * @author ibrahim.zehhaf@gmail.com
  * @type {object}
  */
@@ -60,13 +60,13 @@ var prayer = {
         }
     },
     /**
-     * 
+     *
      */
     initUpdateConfData: function () {
         var remote = $("#main").data("remote");
         setInterval(function () {
             $.ajax({
-                url:  remote + "?lastUpdatedDate=" + prayer.confData.mosque.updated,
+                url: remote + "?lastUpdatedDate=" + prayer.confData.mosque.updated,
                 success: function (resp) {
                     if (resp.hasBeenUpdated === true) {
                         location.reload();
@@ -89,7 +89,7 @@ var prayer = {
         }
     },
     /**
-     * @param {boolean} tomorrow 
+     * @param {boolean} tomorrow
      * @returns {Array}
      */
     loadTimesFromCalendar: function (tomorrow) {
@@ -104,7 +104,7 @@ var prayer = {
 
     },
     /**
-     * @param {boolean} tomorrow 
+     * @param {boolean} tomorrow
      * Load times from PrayTimes API
      */
     loadTimesFromApi: function (tomorrow) {
@@ -167,9 +167,8 @@ var prayer = {
     },
     getWaitingByIndex: function (index) {
         var waiting = this.getWaitingTimes()[index];
-        // if waiting fixed to 0 we adjust wating to 3 min for adhan and douaa
-        if (waiting === 0)
-        {
+        // if waiting fixed to < 3 min we adjust it to 3 min for adhan and dua`a
+        if (waiting < 3) {
             waiting = 3;
         }
         return waiting;
@@ -214,15 +213,15 @@ var prayer = {
     /**
      * +1|-1 hour on time for calendar times
      * Condition 1 : on calendar prayers
-     * Condition 2 : if dst enabled or auto 
+     * Condition 2 : if dst enabled or auto
      * Condition 3 : if we are in last synday of march or october
      * @param {String} time
      * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
         var applyConvertion = prayer.confData.sourceCalcul === "calendar" &&
-                prayer.confData.dst !== 0 &&
-                dateTime.isLastSundayDst();
+            prayer.confData.dst !== 0 &&
+            dateTime.isLastSundayDst();
 
         if (applyConvertion) {
             time = time.split(":");
@@ -233,7 +232,7 @@ var prayer = {
         return time;
     },
     /**
-     * get current date object for given prayer time 
+     * get current date object for given prayer time
      * @param {String} time
      * @returns {Date}
      */
@@ -246,7 +245,7 @@ var prayer = {
         return date;
     },
     /**
-     * get Ichaa time, if ichaa is <= then 19:50 then return 19:50 
+     * get Ichaa time, if ichaa is <= then 19:50 then return 19:50
      * @returns {String}
      */
     getIshaTime: function () {
@@ -261,7 +260,7 @@ var prayer = {
         if (dateTime.isLastSundayDst()) {
             chouroukTime = prayer.dstConvertTimeForCalendarMode(chouroukTime);
         }
-        return  chouroukTime;
+        return chouroukTime;
     },
     /**
      * Get the imsak time calculated by soustraction of imsakNbMinBeforeFajr from sobh time
@@ -474,21 +473,30 @@ var prayer = {
     },
     /**
      *  timeout for stopping time flashing
-     *  @param {integer} currentPrayerIndex 
+     *  @param {integer} currentPrayerIndex
      */
     getAdhanFlashingTime: function (currentPrayerIndex) {
+
+        // if short waiting
+        if (prayer.getWaitingByIndex(currentPrayerIndex) === 3) {
+            return prayer.oneSecond * 100;
+        }
+
+        // if azan enablded
         if (prayer.confData.azanVoiceEnabled === true) {
             // if fajr
             if (currentPrayerIndex === 0) {
-                return  prayer.oneSecond * 250;
+                return prayer.oneSecond * 250;
             }
-            return  prayer.oneSecond * 200;
+            return prayer.oneSecond * 200;
         }
+
+        // otherwise
         return prayer.oneSecond * 150;
     },
     /**
      * flash iqama for 30 sec
-     * @param {Number} currentPrayerIndex 
+     * @param {Number} currentPrayerIndex
      */
     flashIqama: function (currentPrayerIndex) {
         $(".main").fadeOut();
@@ -539,8 +547,7 @@ var prayer = {
      * Play a bip
      */
     playSound: function (file) {
-        if (typeof file === "undefined")
-        {
+        if (typeof file === "undefined") {
             file = "bip.mp3";
         }
 
@@ -608,7 +615,7 @@ var prayer = {
     },
     /**
      * 10 minute after current iqama we hilight the next prayer time
-     * @param {int} currentTimeIndex 
+     * @param {int} currentTimeIndex
      */
     setNextTimeHilight: function (currentTimeIndex) {
         nextTimeIndex = currentTimeIndex + 1;
@@ -717,7 +724,7 @@ var prayer = {
     },
     /**
      * if current time is joumouaa
-     * @param {int} currentPrayerIndex 
+     * @param {int} currentPrayerIndex
      * @returns {boolean}
      */
     isJumua: function (currentPrayerIndex) {
@@ -725,7 +732,7 @@ var prayer = {
         return date.getDay() === 5 && currentPrayerIndex === 1;
     },
     /**
-     * @param {string} time 
+     * @param {string} time
      * @returns {Number}
      */
     getPrayerIndexByTime: function (time) {
@@ -735,7 +742,7 @@ var prayer = {
                 index = i;
             }
         });
-        return  index;
+        return index;
     },
     /**
      * handle custom time
@@ -795,7 +802,7 @@ var prayer = {
         }
     },
     /**
-     * set all prayer times 
+     * set all prayer times
      */
     setTimes: function (afterIsha) {
         $(".sobh").text(this.getTimes(afterIsha)[0]);
@@ -830,7 +837,7 @@ var prayer = {
                 $(".prayer-time").append(times[i]);
                 $(".prayer-wait").append(waits[i]);
             }
-            
+
             $(".top-content .header").css("font-size", "650%");
             $(".prayer-content .text, .content .ar").css("font-size", "130%");
             $(".adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder").css("font-size", "140%");
@@ -896,7 +903,7 @@ var prayer = {
         return false;
     },
     /**
-     * Test main app features 
+     * Test main app features
      */
     test: function () {
         // show douaa after prayer
