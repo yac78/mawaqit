@@ -19,11 +19,13 @@ class DefaultController extends Controller {
     public function indexAction(Request $request) {
 
         $mosqueNb = $request->query->get("mosque_nb", 6);
-
         $em = $this->getDoctrine()->getManager();
-        $mosques = $em->getRepository("AppBundle:Mosque")->getMosquesWithImage($mosqueNb);
+        $mosqueRepo = $em->getRepository("AppBundle:Mosque");
+        $mosquesWithImage = $mosqueRepo->getMosquesWithImage($mosqueNb);
+        $mosqueCount =  $mosqueRepo->getMosqueCount();
         return $this->render('default/index.html.twig', [
-                    "mosques" => $mosques,
+                    "mosquesWithImage" => $mosquesWithImage,
+                    "mosqueCount" => $mosqueCount
         ]);
     }
 

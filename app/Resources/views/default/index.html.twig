@@ -230,8 +230,10 @@
         <section id="mosquees" class="bg-light-gray">
             <div class="container">
                 <h2 class="section-heading">Quelques mosquées équipées</h2>
-                <p class="section-subheading text-muted">Grace à Allah nous avons pu installé notre logiciel dans
-                    plusieurs mosquée partout en France et autres pays, voici quelques exemples</p>
+                <p class="section-subheading text-muted">
+                    Grace à Allah notre logiciel est installé dans plus de <strong>{{ mosqueCount }}</strong> mosquées
+                    partout dans le monde, voici quelques exemples
+                </p>
 
                 <div class="row gmaps">
                     <div class="col-md-8 col-md-offset-2">
@@ -240,7 +242,7 @@
                     </div>
                 </div>
 
-                {% for mosque in mosques %}
+                {% for mosque in mosquesWithImage %}
                     <div class="col-md-4 col-sm-6 portfolio-item">
                         <a href="#{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
                             <div class="portfolio-hover">
@@ -265,9 +267,8 @@
             </div>
         </section>
 
-
         <!-- Mosques Modals -->
-        {% for mosque in mosques %}
+        {% for mosque in mosquesWithImage %}
             <div class="portfolio-modal modal fade" id="{{ mosque.slug }}" tabindex="-1" role="dialog"
                  aria-hidden="true">
                 <div class="modal-dialog">
@@ -290,7 +291,7 @@
                                      src="{{ vich_uploader_asset(mosque, 'file3') }}">
 
                                 <ul class="list-inline">
-                                    <li>Date d'installation: {{ mosque.created|date("d/m/Y") }}</li>
+                                    <li>Date d'ajout: {{ mosque.created|date("d/m/Y") }}</li>
                                     <li>Consultez les horaires: <a target="_blank"
                                                                    href="{{ path('mosque', {'slug': mosque.slug}) }}">{{ url('mosque', {'slug': mosque.slug}) }}</a>
                                     </li>
@@ -470,7 +471,8 @@
                 <h4 class="text-muted">Pour plus d'informations téléchargez nos manuels d'utilisation </h4>
 
                 <div><a target="_blank" href="/static/Mawaqit-mode-d-emploi.pdf">Mawaqit-mode-d-emploi.pdf</a></div>
-                <div><a target="_blank" href="/static/Mawaqit-mode-d-emploi-version-embarquee.pdf">Mawaqit-mode-d-emploi-version-embarquee.pdf</a></div>
+                <div><a target="_blank" href="/static/Mawaqit-mode-d-emploi-version-embarquee.pdf">Mawaqit-mode-d-emploi-version-embarquee.pdf</a>
+                </div>
 
                 <h4 class="text-muted">Vous rencontrez des diffucltées ? envoyez nous un message <a href="#contact">c'est
                         par ici</a></h4>
