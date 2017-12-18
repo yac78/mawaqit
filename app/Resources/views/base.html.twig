@@ -8,17 +8,17 @@
 
         <title>{% block title 'site_title'|trans %}</title>
 
-        {% stylesheets 
+        {% stylesheets
             "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
             "bundles/app/bootstrap-toogle/bootstrap-toggle.min.css"
             "bundles/app/font-awesome/css/font-awesome.min.css"
+            "bundles/app/jquery/css/jquery-ui.min.css"
             "bundles/app/css/fonts.css"
             "bundles/app/css/main.css"
             filter="cssrewrite"
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
         {% block stylesheets %}
         {% endblock %}
@@ -40,13 +40,13 @@
 
         {% javascripts
             '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+            '@AppBundle/Resources/public/jquery/js/jquery-ui.min.js'
             '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
             '@AppBundle/Resources/public/bootstrap-toogle/bootstrap-toggle.min.js'
             '@AppBundle/Resources/public/js/waiting_dialog.js'
             '@AppBundle/Resources/public/js/main.js'
         %}
             <script src="{{ asset_url }}"></script>
-            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         {% endjavascripts %}
 
         {% block javascripts %}
