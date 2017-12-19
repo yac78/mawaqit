@@ -236,12 +236,13 @@
                 </p>
 
                 <div class="row gmaps">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-12">
                         <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1vi-4jRubijz7gAhBIIBb0qkb96pRm0Do"
                                 width="100%" height="480"></iframe>
                     </div>
                 </div>
 
+                <div class="row">
                 {% for mosque in mosquesWithImage %}
                     <div class="col-md-4 col-sm-6 portfolio-item">
                         <a href="#{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
@@ -260,6 +261,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                     </div>
                 {% if app.request.get('mosque_nb') != 'all' %}
                     <a href="{{ path("homepage", {'mosque_nb':'all'}) }}#mosquees" class="page-scroll btn btn-xl">Voir
                         plus</a>
