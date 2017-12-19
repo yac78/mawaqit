@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {% stylesheets 
-            "bundles/app/css/configure.css"
-            filter="cssrewrite"
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% stylesheets
+        "bundles/app/css/configure.css"
+        filter="cssrewrite" %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
 
@@ -14,19 +13,21 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-success"> <strong> {{'configuration.title'|trans({"%mosque%":mosque.name})}}</strong></h3><br>
-            <p><span style="color: red">*</span> {{'required'|trans}}</p>
+            <h3 class="text-success"><strong> {{ 'configuration.title'|trans({"%mosque%":mosque.name}) }}</strong></h3>
+            <br>
+            <p><span style="color: red">*</span> {{ 'required'|trans }}</p>
         </div>
     </div>
 
-    <form action="{{ path('mosque_configure', {id: mosque.id})}}" method="post">
+    <form action="{{ path('mosque_configure', {id: mosque.id}) }}" method="post">
 
         {{ form_errors(form) }}
         {{ form_widget(form._token) }}
 
         <div class="panel-group">
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#prayerCalcul">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#prayerCalcul">
                     <span style="font-weight: 700;">{{ 'configuration.form.prayerCalcul'|trans }}</span>
                 </div>
                 <div id="prayerCalcul" class="panel-collapse collapse">
@@ -52,14 +53,14 @@
                         </div>
 
                         <div class="calendar hidden">
-                            <h3>{{'configuration.form.calendar'|trans}}</h3>
+                            <h3>{{ 'configuration.form.calendar'|trans }}</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="alert alert-info" role="alert">
-                                        <p>{{'configuration.form.load_predefined_calendar.1'|trans}}</p>
+                                        <p>{{ 'configuration.form.load_predefined_calendar.1'|trans }}</p>
                                         <ul>
-                                            <li>{{'configuration.form.load_predefined_calendar.2'|trans}}</li>
-                                            <li>{{'configuration.form.load_predefined_calendar.3'|trans}}</li>                                            
+                                            <li>{{ 'configuration.form.load_predefined_calendar.2'|trans }}</li>
+                                            <li>{{ 'configuration.form.load_predefined_calendar.3'|trans }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -67,10 +68,11 @@
 
                             <div class="row">
                                 <div class="form-group col-md-3">
-                                    <select class="form-control" id="predefined-calendar" data-ajax-url="{{path('ajax_load_calendar')}}">
+                                    <select class="form-control" id="predefined-calendar"
+                                            data-ajax-url="{{ path('ajax_load_calendar') }}">
                                         <option value=""></option>
                                         {% for calendar in predefinedCalendars %}
-                                            <option value="{{calendar}}">{{calendar}}</option>
+                                            <option value="{{ calendar }}">{{ calendar }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -78,25 +80,33 @@
 
                             {% for month,days in months %}
                                 <div class="panel panel-default month-panel">
-                                    <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion" href="{{'#' ~ month}}">
-                                        <h4 class="panel-title"><strong>{{('month_' ~ month)|trans}}</strong></h4>
+                                    <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion"
+                                         href="{{ '#' ~ month }}">
+                                        <h4 class="panel-title"><strong>{{ ('month_' ~ month)|trans }}</strong></h4>
                                     </div>
-                                    <div id="{{month}}" class="panel-collapse collapse">
-                                        <div class="panel-body month-panel" id="{{'month_' ~ month}}">
+                                    <div id="{{ month }}" class="panel-collapse collapse">
+                                        <div class="panel-body month-panel" id="{{ 'month_' ~ month }}">
                                             <div class="row">
                                                 <div class="col-md-2 col-md-offset-1">
                                                     <label class="btn btn-info btn-file">
-                                                        {{'configuration.form.fill_calendar_from_csv'|trans}} <input type="file" accept=".csv" class="hidden fill-calendar">
+                                                        {{ 'configuration.form.fill_calendar_from_csv'|trans }} <input
+                                                                type="file" accept=".csv" class="hidden fill-calendar">
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="alert alert-success hidden alert-dismissible" role="alert">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        {{'configuration.form.fill_calendar.success'|trans}}
+                                                    <div class="alert alert-success hidden alert-dismissible"
+                                                         role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close"><span
+                                                                    aria-hidden="true">&times;</span></button>
+                                                        {{ 'configuration.form.fill_calendar.success'|trans }}
                                                     </div>
-                                                    <div class="alert alert-danger hidden alert-dismissible" role="alert">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        {{'configuration.form.fill_calendar.error'|trans}}
+                                                    <div class="alert alert-danger hidden alert-dismissible"
+                                                         role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close"><span
+                                                                    aria-hidden="true">&times;</span></button>
+                                                        {{ 'configuration.form.fill_calendar.error'|trans }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,7 +115,7 @@
                                                 <div class="col-md-11 col-md-offset-1">
                                                     {% if month == 2 or month == 9 %}
                                                         <div class="alert alert-danger">
-                                                            <i class="fa fa-warning"></i> {{'info_dst_change'|trans({'%month%': ('month_'~month)|trans})|raw}}
+                                                            <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans({'%month%': ('month_'~month)|trans})|raw }}
                                                         </div>
                                                     {% endif %}
                                                 </div>
@@ -114,31 +124,31 @@
                                             <div class="row">
                                                 <div class="col-md-7">
                                                     <div class="row text-center">
-                                                        <div class="calendar-prayer">{{'day'|trans}}</div>
-                                                        <div class="calendar-prayer">{{'fajr'|trans}}</div>
-                                                        <div class="calendar-prayer">{{'shuruk'|trans}}</div>
-                                                        <div class="calendar-prayer">{{'zuhr'|trans}}</div>
-                                                        <div class="calendar-prayer">{{'asr'|trans}}</div>
-                                                        <div class="calendar-prayer">{{'maghrib'|trans}}</div>
-                                                        <div class="calendar-prayer">{{'isha'|trans}}</div>
+                                                        <div class="calendar-prayer">{{ 'day'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'fajr'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'shuruk'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'zuhr'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'asr'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'maghrib'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'isha'|trans }}</div>
                                                     </div>
                                                     {% for day in 1..days %}
                                                         <div class="row">
                                                             <div class="text-center calendar-prayer">
-                                                                {{day}}
+                                                                {{ day }}
                                                             </div>
                                                             {% for prayer in 1..6 %}
                                                                 <div class="calendar-prayer">
-                                                                    <input 
-                                                                        name="appbundle_configuration[calendar][{{month}}][{{day}}][{{prayer}}]" 
-                                                                        value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : ''}}" 
-                                                                        type="text" 
-                                                                        pattern="\d{2}:\d{2}" 
-                                                                        placeholder="hh:mm" 
-                                                                        class="form-control text-center calendar-prayer-time" 
-                                                                        maxlength="5" 
-                                                                        oninvalid="setCustomValidity('{{'configuration.form.time_invalid'|trans}}')" 
-                                                                        onchange="try {
+                                                                    <input
+                                                                            name="appbundle_configuration[calendar][{{ month }}][{{ day }}][{{ prayer }}]"
+                                                                            value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : '' }}"
+                                                                            type="text"
+                                                                            pattern="\d{2}:\d{2}"
+                                                                            placeholder="hh:mm"
+                                                                            class="form-control text-center calendar-prayer-time"
+                                                                            maxlength="5"
+                                                                            oninvalid="setCustomValidity('{{ 'configuration.form.time_invalid'|trans }}')"
+                                                                            onchange="try {
                                                                                     setCustomValidity('')
                                                                                 } catch (e) {
                                                                                 }">
@@ -149,8 +159,12 @@
                                                 </div>
                                                 <div class="col-md-5" style="margin-top: 23px">
                                                     <div class="alert alert-info">
-                                                        <div><strong>Info ! </strong> {{'configuration.form.calendar_explication'|trans|raw}}</div>
-                                                        <div><a href="/static/paris-uoif.zip">{{'mosqueList.csvFileExemple'|trans}}</a></div>
+                                                        <div><strong>Info
+                                                                ! </strong> {{ 'configuration.form.calendar_explication'|trans|raw }}
+                                                        </div>
+                                                        <div>
+                                                            <a href="/static/paris-uoif.zip">{{ 'mosqueList.csvFileExemple'|trans }}</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,8 +178,9 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#regionalSettings">
-                    <span style="font-weight: 700;">{{"regional_settings"|trans}}</span>
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#regionalSettings">
+                    <span style="font-weight: 700;">{{ "regional_settings"|trans }}</span>
                 </div>
                 <div id="regionalSettings" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -183,7 +198,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#jumua">
-                    <span style="font-weight: 700;">{{"jumua"|trans}}</span>
+                    <span style="font-weight: 700;">{{ "jumua"|trans }}</span>
                 </div>
                 <div id="jumua" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -216,51 +231,70 @@
             </div>
 
             <div class="panel panel-default api hidden">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#adjustedTimesPanel">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#adjustedTimesPanel">
                     {{ form_label(form.adjustedTimes) }}
                 </div>
                 <div id="adjustedTimesPanel" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="col-md-2">
                             {{ form_row(form.adjustedTimes.fajr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.adjustedTimes.zuhr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.adjustedTimes.asr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.adjustedTimes.maghrib) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.adjustedTimes.isha) }}
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" href="#waitingTimes">
-                    {{ form_label(form.waitingTimes) }}
+                <div class="panel-heading pointer" data-toggle="collapse" href="#iqama">
+                    <span style="font-weight: 700;">{{ 'iqama'|trans }}</span>
                 </div>
-                <div id="waitingTimes" class="panel-collapse collapse">
+                <div id="iqama" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="col-md-2">
-                            {{ form_row(form.waitingTimes.fajr) }}
-                        </div> 
-                        <div class="col-md-2">
-                            {{ form_row(form.waitingTimes.zuhr) }}
-                        </div> 
-                        <div class="col-md-2">
-                            {{ form_row(form.waitingTimes.asr) }}
-                        </div> 
-                        <div class="col-md-2">
-                            {{ form_row(form.waitingTimes.maghrib) }}
-                        </div> 
-                        <div class="col-md-2">
-                            {{ form_row(form.waitingTimes.isha) }}
-                        </div> 
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.iqamaEnabled) }}
+                            </div>
+                            <div class="col-md-3 iqama-settings">
+                                {{ form_widget(form.iqamaBip) }}
+                            </div>
+                            <div class="col-md-3 iqama-settings">
+                                {{ form_row(form.iqamaDisplayTime) }}
+                            </div>
+                        </div>
+
+                        <div class="iqama-settings">
+                            {{ form_label(form.waitingTimes) }}
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form_row(form.waitingTimes.fajr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.waitingTimes.zuhr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.waitingTimes.asr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.waitingTimes.maghrib) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.waitingTimes.isha) }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -273,51 +307,52 @@
                     <div class="panel-body">
                         <div class="col-md-2">
                             {{ form_row(form.fixedTimes.fajr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.fixedTimes.zuhr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.fixedTimes.asr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.fixedTimes.maghrib) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.fixedTimes.isha) }}
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#duaAfterPrayerShowTimes">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#duaAfterPrayerShowTimes">
                     {{ form_label(form.duaAfterPrayerShowTimes) }}
                 </div>
                 <div id="duaAfterPrayerShowTimes" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="col-md-2">
                             {{ form_row(form.duaAfterPrayerShowTimes.fajr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.duaAfterPrayerShowTimes.zuhr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.duaAfterPrayerShowTimes.asr) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.duaAfterPrayerShowTimes.maghrib) }}
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             {{ form_row(form.duaAfterPrayerShowTimes.isha) }}
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#duas">
-                    <span style="font-weight: 700;">{{"invocations_hadiths"|trans}}</span>
+                    <span style="font-weight: 700;">{{ "invocations_hadiths"|trans }}</span>
                 </div>
                 <div id="duas" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -342,8 +377,9 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#otherSettings">
-                    <span style="font-weight: 700;">{{"other_settings"|trans}}</span>
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#otherSettings">
+                    <span style="font-weight: 700;">{{ "other_settings"|trans }}</span>
                 </div>
                 <div id="otherSettings" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -361,9 +397,6 @@
                                 {{ form_row(form.hijriAdjustment) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_row(form.iqamaDisplayTime) }}
-                            </div>
-                            <div class="col-md-3">
                                 {{ form_row(form.timeToDisplayMessage) }}
                             </div>
                         </div>
@@ -376,10 +409,6 @@
                             <div class="col-md-3">
                                 {{ form_widget(form.azanBip) }}
                             </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.iqamaBip) }}
-                            </div>
-
                             <div class="col-md-3">
                                 {{ form_widget(form.blackScreenWhenPraying) }}
                             </div>
@@ -397,7 +426,8 @@
                         <div class="row">
                             <div class="col-md-2">
                                 {{ form_label(form.backgroundColor) }}
-                                <input class="form-control" type="color" name="appbundle_configuration[backgroundColor]" value="{{mosque.configuration.backgroundColor}}">
+                                <input class="form-control" type="color" name="appbundle_configuration[backgroundColor]"
+                                       value="{{ mosque.configuration.backgroundColor }}">
                             </div>
                         </div>
                     </div>
@@ -405,8 +435,9 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#homeSettings">
-                    <span style="font-weight: 700;">{{"home_settings"|trans}}</span>
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#homeSettings">
+                    <span style="font-weight: 700;">{{ "home_settings"|trans }}</span>
                 </div>
                 <div id="homeSettings" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -426,15 +457,14 @@
         </div>
 
         {{ form_widget(form.save) }}
-        <a href="{{path("mosque_index")}}" class="btn btn-lg btn-warning">{{'cancel'|trans}}</a>
+        <a href="{{ path("mosque_index") }}" class="btn btn-lg btn-warning">{{ 'cancel'|trans }}</a>
     </form>
     <br><br>
 {% endblock %}
 
 {% block javascripts %}
     {% javascripts
-       '@AppBundle/Resources/public/js/configure.js'
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}    
+        '@AppBundle/Resources/public/js/configure.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

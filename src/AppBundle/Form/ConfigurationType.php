@@ -50,7 +50,7 @@ class ConfigurationType extends AbstractType {
         "-2" => "(GMT-02:00) Mid-Atlantic",
         "-1" => "(GMT-01:00) Cape Verde Is, Azores",
         "0" => "(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London, Casablanca, Monrovia, Reykjavik",
-        "1" => "(GMT+01:00) Brussels, Copenhagen, Madrid, Paris, Amsterdam, Berlin, Bern, Rome, West Central Africa",
+        "1" => "(GMT+01:00) Paris, Brussels, Copenhagen, Madrid, Amsterdam, Berlin, Bern, Rome, West Central Africa",
         "2" => "(GMT+02:00) Amman, Athens, Bucharest, Istanbul, Beirut, Cairo",
         "3" => "(GMT+03:00) Kuwait, Riyadh, Baghdad, Moscow, Nairobi",
         "3.5" => "(GMT+03:30) Tehran",
@@ -324,6 +324,13 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.randomHadithEnabled.label',
                     'attr' => [
                         'title' => $this->translator->trans('configuration.form.randomHadithEnabled.title'),
+                    ]
+                ])
+                ->add('iqamaEnabled', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.iqamaEnabled.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.iqamaEnabled.title'),
                     ]
                 ])
                 ->add('temperatureEnabled', CheckboxType::class, [

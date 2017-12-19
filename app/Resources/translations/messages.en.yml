@@ -204,6 +204,12 @@ configuration:
         timeToDisplayMessage: 
             label: Display time of a message/announcement (in seconds)
             title: This concerns only the screen dedicated to messages and announcements
+        iqamaEnabled:
+            label: Enabled
+            title: |
+               Disabling the iqama causes the entire system around it to be off
+               (display of waiting times between adhan and iqama, display of iqama signal,
+               display of post prayer invocations ...)
 
 security:
     login:

@@ -60,6 +60,8 @@ AppBundle\Entity\Configuration:
             type: boolean
         iqamaBip:
             type: boolean
+        iqamaEnabled:
+            type: boolean
         blackScreenWhenPraying:
             type: boolean
         randomHadithEnabled:

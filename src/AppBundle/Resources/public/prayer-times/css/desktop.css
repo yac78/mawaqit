@@ -42,6 +42,8 @@ body {
 
 .prayer-content{
     height:32%;
+    border-top: 1px #fff solid;
+    border-bottom: 1px #fff solid;
 }
 
 .header{
@@ -78,8 +80,7 @@ body {
 
 .prayer-text {
     font-size: 600%;
-    border-top: 1px #fff solid;
-} 
+}
 
 .prayer-text .text, 
 .prayer-time .prayer, 
@@ -99,7 +100,6 @@ body {
 
 .prayer-wait .wait{
     font-size: 580%;
-    border-bottom: 1px #fff solid;
 }
 
 .prayer-hilighted {

@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  prayer_times:
-    container_name : prayer_times
+  mawaqit:
+    container_name : mawaqit
     build: .
     tty: true
     links:
-      - prayer_times_db:mysql
+      - mawaqit_db:mysql
     ports:
       - "1100:80"
     volumes:
@@ -15,13 +15,13 @@ services:
     environment:
       SSH_AUTH_SOCK: /ssh-agent
       
-  prayer_times_db:
-    container_name : prayer_times_db
+  mawaqit_db:
+    container_name : mawaqit_db
     image: mysql:5.6
     expose:
       - "1106"
     ports:
       - "1106:3306"
     environment:
-      MYSQL_DATABASE: prayer_times
-      MYSQL_ROOT_PASSWORD: prayer_times
+      MYSQL_DATABASE: mawaqit
+      MYSQL_ROOT_PASSWORD: mawaqit

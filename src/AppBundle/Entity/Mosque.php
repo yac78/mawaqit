@@ -58,7 +58,7 @@ class Mosque {
     private $zipcode;
 
     /**
-     * @var string$updated
+     * @var string
      */
     private $rib;
 

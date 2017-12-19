@@ -14,7 +14,7 @@ var prayer = {
      * time to wait before hilight next prayer time  (in minutes)
      * @type Number
      */
-    nextPrayerHilightWait: 10,
+    nextPrayerHilightWait: 20,
     /**
      * prayer times
      * @type Array
@@ -418,6 +418,9 @@ var prayer = {
      */
     iqamaIsFlashing: false,
     initIqamaFlash: function () {
+        if (!prayer.iqamaEnabled) {
+            return;
+        }
         setInterval(function () {
             if (!prayer.iqamaIsFlashing) {
                 var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
@@ -457,8 +460,15 @@ var prayer = {
         } else if (prayer.confData.azanBip === true) {
             this.playSound();
         }
+
+        // init next hilight timeout
+        prayer.setNextTimeHilight(currentPrayerIndex);
+
         // iqama countdown
-        prayer.iqamaCountdown(currentPrayerIndex);
+        if (prayer.iqamaEnabled) {
+            prayer.iqamaCountdown(currentPrayerIndex);
+        }
+
         $(".top-content .content").addClass("hidden");
 
         var adhanFlashInterval = setInterval(function () {
@@ -510,8 +520,6 @@ var prayer = {
             $(".iqama .image").toggleClass("hidden");
         }, prayer.oneSecond);
 
-        // init next hilight timeout
-        prayer.setNextTimeHilight(currentPrayerIndex);
         // init douaa after prayer timeout
         if (typeof douaaSlider !== 'undefined') {
             douaaSlider.timeout(currentPrayerIndex);

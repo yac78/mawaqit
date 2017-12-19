@@ -16,6 +16,7 @@ class Version20171219162511 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE configuration ADD iqama_enabled TINYINT(1) NOT NULL');
+        $this->addSql('UPDATE configuration SET iqama_enabled =1 ');
     }
 
     public function down(Schema $schema)

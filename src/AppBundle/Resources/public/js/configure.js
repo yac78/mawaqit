@@ -1,21 +1,3 @@
-$(document).ready(function () {
-    $("." + $("#appbundle_configuration_sourceCalcul").val()).removeClass("hidden");
-    $(".calendar-prayer input").each(function (index) {
-        if ($(this).val() === "")
-        {
-            $(this).css("background-color", "#f8d4d4");
-        }
-    });
-    $("#appbundle_configuration_prayerMethod").trigger("change");
-    $("#appbundle_configuration_jumuaAsDuhr").trigger("change");
-    $("#appbundle_configuration_noJumua").trigger("change");
-    $("#appbundle_configuration_randomHadithEnabled").trigger("change");
-    $(".jumuaTimeoutHandler input").trigger("change");
-
-    checkAndHilightIncompletedMonths();
-    handleErrorsDisplay();
-});
-
 /**
  * check and hilight imcompleted months
  */
@@ -76,8 +58,9 @@ $(".fill-calendar").change(function (e) {
         alert("This fonctionality is not fully supported in your browser.");
     }
 });
+
 /**
- * Read CSV and fill prayerTimes in input elements 
+ * Read CSV and fill prayerTimes in input elements
  * @param {string} csv
  * @param {object} inputFile
  */
@@ -190,3 +173,34 @@ $("#appbundle_configuration_randomHadithEnabled").bind("change", function (event
         $("#appbundle_configuration_hadithLang").parent().hide();
     }
 });
+
+function iqamaSettingsDisplayHandler() {
+    $iqamaCheckbox = $("#appbundle_configuration_iqamaEnabled");
+    if ($iqamaCheckbox.is(":checked")) {
+        $(".iqama-settings").show();
+    } else {
+        $(".iqama-settings").hide();
+    }
+
+}
+
+$("#appbundle_configuration_iqamaEnabled").bind("change", function (event) {
+    iqamaSettingsDisplayHandler();
+});
+
+
+$("." + $("#appbundle_configuration_sourceCalcul").val()).removeClass("hidden");
+$(".calendar-prayer input").each(function (index) {
+    if ($(this).val() === "") {
+        $(this).css("background-color", "#f8d4d4");
+    }
+});
+$("#appbundle_configuration_prayerMethod").trigger("change");
+$("#appbundle_configuration_jumuaAsDuhr").trigger("change");
+$("#appbundle_configuration_noJumua").trigger("change");
+$("#appbundle_configuration_randomHadithEnabled").trigger("change");
+$(".jumuaTimeoutHandler input").trigger("change");
+
+checkAndHilightIncompletedMonths();
+handleErrorsDisplay();
+iqamaSettingsDisplayHandler();
