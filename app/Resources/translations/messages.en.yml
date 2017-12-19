@@ -207,9 +207,9 @@ configuration:
         iqamaEnabled:
             label: Enabled
             title: |
-               Disabling the iqama causes the entire system around it to be off
-               (display of waiting times between adhan and iqama, display of iqama signal,
-               display of post prayer invocations ...)
+              Disabling the iqama causes the entire system around it to be off
+              (display of waiting times between adhan and iqama, display of iqama signal,
+              display of post prayer invocations ...)
 
 security:
     login:
