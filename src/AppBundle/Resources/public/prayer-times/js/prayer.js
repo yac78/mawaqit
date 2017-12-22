@@ -692,7 +692,7 @@ var prayer = {
      */
     setTime: function () {
         var time;
-        var timeEl = $(".time");
+        var timeEl = $(".top-content .time");
         var timeBottomEl = $(".time-bottom");
         timeEl.text(dateTime.getCurrentTime(true));
         setInterval(function () {
