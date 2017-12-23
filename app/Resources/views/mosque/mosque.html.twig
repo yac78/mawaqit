@@ -178,14 +178,14 @@
             &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a
                     href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
         </div>
+        <div class="version">v{{ version }}</div>
+        {% if mosque.configuration.urlQrCodeEnabled %}
+            <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
+                <div id="qr-code"></div>
+            </div>
+        {% endif %}
     </div>
 
-    <div class="version">v{{ version }}</div>
-    {% if mosque.configuration.urlQrCodeEnabled %}
-        <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
-            <div id="qr-code"></div>
-        </div>
-    {% endif %}
 </div>
 
 <script>
