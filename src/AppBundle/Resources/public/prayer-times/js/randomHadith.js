@@ -8,7 +8,7 @@ var randomHadith = {
     init: function () {
         if (prayer.confData.randomHadithEnabled) {
             setInterval(function () {
-                if (!prayer.isPrayingMoment()) {
+                if (randomHadith.isAllowed()) {
                     randomHadith.get();
                     setTimeout(function () {
                         randomHadith.hide();
@@ -16,6 +16,32 @@ var randomHadith = {
                 }
             }, 5 * prayer.oneMinute);
         }
+    },
+    /**
+     * check if hadith displaying is allowed, 2 conditions
+     * 1- not prayer moment
+     * 2- not disabling hadith moment
+     * @returns {boolean}
+     */
+    isAllowed: function () {
+        if (prayer.isPrayingMoment()) {
+            return false;
+        }
+
+        if (/^\d\-\d$/.test(prayer.confData.randomHadithIntervalDisabling)) {
+            var prayers = prayer.confData.randomHadithIntervalDisabling.split("-");
+            var prayer1 = prayer.getTimeByIndex(parseInt(prayers[0]));
+            var prayer2 = prayer.getTimeByIndex(parseInt(prayers[1]));
+
+            var prayer1DateTime = prayer.getCurrentDateForPrayerTime(prayer1);
+            var prayer2DateTime = prayer.getCurrentDateForPrayerTime(prayer2);
+            var date = new Date();
+            if (date > prayer1DateTime && date < prayer2DateTime) {
+                return false;
+            }
+        }
+
+        return true;
     },
     get: function () {
         if ($(".main").is(":visible")) { // condition to bypass a display bug

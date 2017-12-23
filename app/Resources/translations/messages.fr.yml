@@ -181,6 +181,9 @@ configuration:
         randomHadithEnabled: 
             label: Afficher aléatoirement un hadith toute les 5 min
             title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
+        randomHadithIntervalDisabling:
+            label: "Désactiver les hadiths entre :"
+            title: "Vous pouvez désactiver les hadiths entre 2 prières pour les dourous par exemple"
         temperatureEnabled: 
             label:  Température
             title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
@@ -273,7 +276,12 @@ email:
     send:        
         action: Envoyer un mail
         success: Email envoyé avec succès
-        
+
+fajr-zuhr: "Fajr et Dhuhr"
+zuhr-asr: "Dhuhr et `Asr"
+asr-maghrib: "`Asr et Maghrib"
+maghrib-isha: "Maghrib et `Isha"
+
         
 ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
 UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"

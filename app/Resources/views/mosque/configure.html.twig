@@ -368,8 +368,13 @@
                             <div class="col-md-3">
                                 {{ form_widget(form.randomHadithEnabled) }}
                             </div>
-                            <div class="col-md-3">
-                                {{ form_row(form.hadithLang) }}
+                            <div class="hadith-block">
+                                <div class="col-md-3">
+                                    {{ form_row(form.hadithLang) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.randomHadithIntervalDisabling) }}
+                                </div>
                             </div>
                         </div>
                     </div>

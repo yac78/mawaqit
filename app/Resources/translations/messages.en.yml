@@ -175,7 +175,10 @@ configuration:
         randomHadithEnabled: 
             label: Randomly display a hadith every 5 min
             title: The hadiths are from the famous book "Ryiad Essalahine" by Imam Ennawawi rahimahu Allah
-        temperatureEnabled: 
+        randomHadithIntervalDisabling:
+            label: "Disable hadiths between :"
+            title: "You can disable hadith between 2 prayer if there are dourous for exemple"
+        temperatureEnabled:
             label:  Temperature
             title:  The temperature displayed is that of the city outside and not inside the mosque
         urlQrCodeEnabled: 
@@ -267,8 +270,12 @@ email:
     send:        
         action: Send an email
         success: Eail sent successfully
-        
-        
+
+fajr-zuhr: "Fajr and Dhuhr"
+zuhr-asr: "Dhuhr and `Asr"
+asr-maghrib: "`Asr and Maghrib"
+maghrib-isha: "Maghrib and `Isha"
+
 ISNA: "Islamic Society of North America (fajr 15°, ichaa 15°)"
 UOIF: The Union of Islamic Organizations of France (UOIF) (fajr 12°, ichaa 12°)"
 Karachi: "University of Science of Karachi (fajr 18°, ichaa 18°)"

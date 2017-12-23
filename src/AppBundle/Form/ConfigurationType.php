@@ -80,6 +80,17 @@ class ConfigurationType extends AbstractType {
         "enabled" => 1
     ];
 
+    /**
+     * @var Array
+     */
+    private static $randomHadithIntervalDisabling = [
+        "" => "",
+        "fajr-zuhr" => "0-1",
+        "zuhr-asr" => "1-2",
+        "asr-maghrib" => "2-3",
+        "maghrib-isha" => "3-4"
+    ];
+
     public function __construct(GoogleService $googleService, TranslatorInterface $translator) {
         $this->googleService = $googleService;
         $this->translator = $translator;
@@ -324,6 +335,14 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.randomHadithEnabled.label',
                     'attr' => [
                         'title' => $this->translator->trans('configuration.form.randomHadithEnabled.title'),
+                    ]
+                ])
+                ->add('randomHadithIntervalDisabling', ChoiceType::class, [
+                    'required' => false,
+                    'choices' => self::$randomHadithIntervalDisabling,
+                    'label' => 'configuration.form.randomHadithIntervalDisabling.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.randomHadithIntervalDisabling.title'),
                     ]
                 ])
                 ->add('iqamaEnabled', CheckboxType::class, [

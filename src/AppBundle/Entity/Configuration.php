@@ -239,6 +239,12 @@ class Configuration
     private $randomHadithEnabled = true;
 
     /**
+     * Interval (exception) for disabling hadith between 2 prayers
+     * @var string
+     */
+    private $randomHadithIntervalDisabling;
+
+    /**
      * @var bool
      */
     private $temperatureEnabled = true;
@@ -1105,5 +1111,23 @@ class Configuration
         $this->iqamaEnabled = $iqamaEnabled;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getRandomHadithIntervalDisabling()
+    {
+        return $this->randomHadithIntervalDisabling;
+    }
+
+    /**
+     * @param string $randomHadithIntervalDisabling
+     */
+    public function setRandomHadithIntervalDisabling($randomHadithIntervalDisabling)
+    {
+        $this->randomHadithIntervalDisabling = $randomHadithIntervalDisabling;
+    }
+
+
 
 }

@@ -168,9 +168,9 @@ $(".jumuaTimeoutHandler input").bind("change", function () {
 
 $("#appbundle_configuration_randomHadithEnabled").bind("change", function (event) {
     if ($(this).is(":checked")) {
-        $("#appbundle_configuration_hadithLang").parent().show();
+        $(".hadith-block").show();
     } else {
-        $("#appbundle_configuration_hadithLang").parent().hide();
+        $(".hadith-block").hide();
     }
 });
 
