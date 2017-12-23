@@ -160,35 +160,32 @@
 
     <!-- footer container -->
     <div class="footer">
-        <div class="footer-text">
-            <div class="col-md-12">
-                {% if app.request.getHost() != 'localhost' %}
-                    <div class="site">{{ 'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw }}</div>
-                {% endif %}
-                <div class="assosciation">
-                    {{ mosque.associationName }}
-                    {% if mosque.phone %}
-                        &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
-                    {% endif %}
-                    &nbsp;&nbsp;{{ mosque.rib }}
-                </div>
-                <div class="support">
-                    <span>{{ 'developed_by'|trans }}</span>
-                    &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i>
-                    <a href="tel:{{ supportTel1 }}">{{ supportTel1 }}</a> /
-                    <a href="tel:{{ supportTel2 }}">{{ supportTel2 }}</a>
-                    &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a
-                            href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
-                </div>
-            </div>
-        </div>
-        <div class="version">v{{ version }}</div>
-        {% if mosque.configuration.urlQrCodeEnabled %}
-            <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
-                <div id="qr-code"></div>
-            </div>
+        {% if app.request.getHost() != 'localhost' %}
+            <div class="site">{{ 'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw }}</div>
         {% endif %}
+        <div class="assosciation">
+            {{ mosque.associationName }}
+            {% if mosque.phone %}
+                &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+            {% endif %}
+            &nbsp;&nbsp;{{ mosque.rib }}
+        </div>
+        <div class="support">
+            <span>{{ 'developed_by'|trans }}</span>
+            &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i>
+            <a href="tel:{{ supportTel1 }}">{{ supportTel1 }}</a> /
+            <a href="tel:{{ supportTel2 }}">{{ supportTel2 }}</a>
+            &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a
+                    href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
+        </div>
     </div>
+
+    <div class="version">v{{ version }}</div>
+    {% if mosque.configuration.urlQrCodeEnabled %}
+        <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
+            <div id="qr-code"></div>
+        </div>
+    {% endif %}
 </div>
 
 <script>

@@ -418,7 +418,7 @@ var prayer = {
      */
     iqamaIsFlashing: false,
     initIqamaFlash: function () {
-        if (!prayer.iqamaEnabled) {
+        if (!prayer.confData.iqamaEnabled) {
             return;
         }
         setInterval(function () {
@@ -465,7 +465,7 @@ var prayer = {
         prayer.setNextTimeHilight(currentPrayerIndex);
 
         // iqama countdown
-        if (prayer.iqamaEnabled) {
+        if (prayer.confData.iqamaEnabled) {
             prayer.iqamaCountdown(currentPrayerIndex);
         }
 
