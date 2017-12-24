@@ -84,6 +84,7 @@ body {
 
 .prayer-text {
     font-size: 600%;
+    line-height: 130%;
 }
 
 .prayer-text .text, 
@@ -94,7 +95,7 @@ body {
 }
 
 .prayer-time {
-    line-height: 120px;
+    line-height: 110px;
 }
 
 .prayer-time .prayer{
