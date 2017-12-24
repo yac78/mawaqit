@@ -11,6 +11,7 @@ prayer.initAdhanFlash();
 prayer.initIqamaFlash();
 prayer.initCronHandlingTimes();
 prayer.setSpecialTimes();
+prayer.showSpecialTimes();
 prayer.initUpdateConfData();
 prayer.translateToArabic();
 prayer.hideSpinner();
