@@ -289,6 +289,8 @@ var prayer = {
                 prayer.setSpecialTimes();
             }
 
+            prayer.showSpecialTimes();
+
         }, prayer.oneMinute);
     },
     /**
@@ -753,37 +755,24 @@ var prayer = {
         return index;
     },
     /**
-     * handle custom time
-     * chourouk time
-     * aid time if enabled
-     * imsak time if enabled
+     * handle custom time display
      */
-    setSpecialTimes: function () {
-        $(".joumouaa-id").text(this.getJumuaTime());
+    showSpecialTimes: function () {
 
-        // hide all custom times
         $(".custom-time").hide();
-
         // if aid time enabled we set/show it
         if (this.confData.aidTime && this.aidIsCommingSoon()) {
-            $(".aid-id").text(this.confData.aidTime);
             $(".aid").show();
             return;
         }
 
-        // set chourouk time
-        $(".chourouk-id").text(this.getChouroukTime());
-
-        // if imsak enabled
+        // if imsak disabled => show shuruq
         if (parseInt(this.confData.imsakNbMinBeforeFajr) === 0) {
             $(".chourouk").show();
             return;
         }
 
         // if imsak time enabled we show it between chourouk + 1 hour and sobh
-        var imsak = this.getImsak();
-        $(".imsak-id").text(imsak);
-
         if (parseInt(this.confData.imsakNbMinBeforeFajr) !== 0) {
             var date = new Date();
             var midnight = new Date();
@@ -792,7 +781,7 @@ var prayer = {
             midnight.setSeconds(0);
             var sobhDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
             // if time betwwen midnight and sobh => show imsak
-            if (date.getTime() < sobhDate.getTime() && date.getTime() > midnight.getTime()) {
+            if (date < sobhDate && date > midnight) {
                 $(".imsak").show();
                 return;
             }
@@ -804,10 +793,22 @@ var prayer = {
                 $(".imsak").show();
                 return;
             }
-
-            // default show chourouk
-            $(".chourouk").show();
         }
+
+        $(".chourouk").show();
+    },
+    setSpecialTimes: function () {
+        // jumua
+        $(".joumouaa-id").text(this.getJumuaTime());
+
+        // if aid time enabled we set/show it
+        $(".aid-id").text(this.confData.aidTime);
+
+        // set chourouk time
+        $(".chourouk-id").text(this.getChouroukTime());
+
+        // if imsak time enabled we show it between chourouk + 1 hour and sobh
+        $(".imsak-id").text(this.getImsak());
     },
     /**
      * set all prayer times

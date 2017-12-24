@@ -16,6 +16,7 @@ prayer.initIqamaFlash();
 prayer.initCronHandlingTimes();
 prayer.jumuaHandler.init();
 prayer.setSpecialTimes();
+prayer.showSpecialTimes();
 prayer.initUpdateConfData();
 prayer.initWakupFajr();
 prayer.initEvents();
