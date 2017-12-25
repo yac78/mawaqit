@@ -39,6 +39,7 @@ class UserService {
         $usersEmail = $this->em->createQueryBuilder()
                 ->from("AppBundle:User", "u")
                 ->select("u.email")
+                ->where("u.enabled = 1")
                 ->getQuery()
                 ->getResult(Query::HYDRATE_SCALAR);
         
