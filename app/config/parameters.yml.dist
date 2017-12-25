@@ -9,6 +9,7 @@ parameters:
     mailer_port: 587
     mailer_user: %supportEmail%
     mailer_password: ~
+    mailer_spool_dir:  '%kernel.cache_dir%/mail_spool'
     secret: 90e0df2327d24849cf4c45a512e66254779f1b59
     languages: [fr, ar, en]
     version: 3.0.0
