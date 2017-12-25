@@ -379,3 +379,8 @@ duaBetweenAthanAndIqama:
     text: "Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit : Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées"
 
 languages: Langues
+
+error404: Désolé, une erreur est survenue, la page que vous cherchez n'existe pas!
+error500: Désolé, une erreur est survenue!
+goHome: Page d'accueil
+contactUs: Contactez-nous
