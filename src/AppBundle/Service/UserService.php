@@ -31,25 +31,27 @@ class UserService {
     }
 
     /**
-     * Send email when mosque created
+     * @param $data email details
      */
     function sendEmailToAllUsers($data) {
         $subject = $data["subject"];
         $body = $data["content"] . self::SIGNATURE;
-        $usersEmail = $this->em->createQueryBuilder()
+        $recipients = $this->em->createQueryBuilder()
                 ->from("AppBundle:User", "u")
                 ->select("u.email")
                 ->where("u.enabled = 1")
                 ->getQuery()
-                ->getResult(Query::HYDRATE_SCALAR);
+                ->getScalarResult();
         
         $message = $this->mailer->createMessage();
+
         $message->setSubject($subject)
                 ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
-                ->setTo($this->emailFrom[0])
-                ->setBcc(array_map('current',$usersEmail))
                 ->setBody($body, 'text/html');
-        $this->mailer->send($message);
-    }
 
+        foreach ($recipients as $recepient){
+            $message->setTo($recepient["email"]);
+            $this->mailer->send($message);
+        }
+    }
 }
