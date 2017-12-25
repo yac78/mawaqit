@@ -57,17 +57,16 @@ services:
     app.mail_service:
         class: AppBundle\Service\MailService
         arguments:
-            - "@mailer"
-            - ["%no_replay_address%", "%no_replay_name%"]
-            
+            - "@swiftmailer.mailer"
+            - "%supportEmail%"
+
     app.user_service:
         class: AppBundle\Service\UserService
         arguments:
-            - "@mailer"
-            - ["%no_replay_address%", "%no_replay_name%"]
+            - "@swiftmailer.mailer.file"
             - "@doctrine.orm.entity_manager"
-            - "%site%"
-            
+            - ["%supportEmail%", "%name%"]
+
     # Forms
     app.form_configuration:
         class: AppBundle\Form\ConfigurationType

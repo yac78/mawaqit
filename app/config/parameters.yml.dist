@@ -1,4 +1,5 @@
 parameters:
+    name: 'Mawaqit'
     database_host: 127.0.0.1
     database_port: ~
     database_name: symfony
@@ -9,7 +10,8 @@ parameters:
     mailer_port: 587
     mailer_user: %supportEmail%
     mailer_password: ~
-    mailer_spool_dir:  '%kernel.cache_dir%/mail_spool'
+    mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'
+    no_reply_address: 'no-reply@mawaqit.net'
     secret: 90e0df2327d24849cf4c45a512e66254779f1b59
     languages: [fr, ar, en]
     version: 3.0.0
@@ -17,9 +19,6 @@ parameters:
     supportTel1: '+33629111641'
     supportTel2: '+33666137234'
     supportEmail: contact@mawaqit.net
-
-    no_replay_address : %supportEmail%
-    no_replay_name : Mawaqit
 
     # Google API
     google_api_key: 'AIzaSyC0n3EKMQBPimJseyl_dD-JgemvYaX7_K8'

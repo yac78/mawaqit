@@ -61,7 +61,7 @@ class MosqueController extends Controller {
             $em->persist($mosque);
             $em->flush();
             $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, ['mosque' => $mosque]);
-            $this->get("app.mail_service")->mosqueCreated($mosque, $mailBody);
+            $this->get("app.mail_service")->mosqueCreated($mailBody);
             $this->addFlash('success', "form.create.success");
 
             return $this->redirectToRoute('mosque_index');

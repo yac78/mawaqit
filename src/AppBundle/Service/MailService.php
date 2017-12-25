@@ -14,23 +14,24 @@ class MailService {
     private $mailer;
 
     /**
-     * @var array 
+     * @var string
      */
-    private $emailFrom;
+    private $email;
 
-    public function __construct(\Swift_Mailer $mailer, $emailFrom) {
+    public function __construct(\Swift_Mailer $mailer, $email){
         $this->mailer = $mailer;
-        $this->emailFrom = $emailFrom;
+        $this->email = $email;
     }
 
     /**
      * Send email when mosque created
+     * @param $body
      */
-    function mosqueCreated(Mosque $mosque, $body) {
+    function mosqueCreated($body) {
         $message = $this->mailer->createMessage();
         $message->setSubject('Mosquée créée')
-                ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
-                ->setTo([$this->emailFrom[0] => $this->emailFrom[1]])
+                ->setFrom($this->email)
+                ->setTo($this->email)
                 ->setBody($body, 'text/html');
         $this->mailer->send($message);
     }
