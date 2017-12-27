@@ -9,6 +9,8 @@ echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-f
 
 # install packages
 apt-get update && apt-get install -y \
+  xdotool \
+  unclutter \
   mariadb-server \
   mariadb-client \
   nginx \
@@ -26,17 +28,16 @@ apt-get autoremove
 # add autostart
 echo "@sh /home/pi/prayer-times-v3/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 
-# update config.txtx
+# update config.txt
 echo "hdmi_force_hotplug=1" >> /boot/config.txt
 echo "disable_overscan=1" >> /boot/config.txt
 echo "hdmi_group=1" >> /boot/config.txt
 echo "hdmi_mode=16" >> /boot/config.txt
-echo "overscan_left=20" >> /boot/config.txt
-echo "overscan_right=20" >> /boot/config.txt
+echo "overscan_left=30" >> /boot/config.txt
+echo "overscan_right=30" >> /boot/config.txt
 echo "overscan_top=20" >> /boot/config.txt
 echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
-echo "program_usb_boot_mode=1" >> /boot/config.txt
 
 # disable screensaver
 sed -i "s/\[SeatDefaults\]\n/\[SeatDefaults\]\nxserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
@@ -57,9 +58,6 @@ cd /home/pi
 git clone https://github.com/binary010100/prayer-times-v3.git
 
 cd prayer-times-v3
-git pull origin master
-
-chmod 777 -R *
 
 HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
