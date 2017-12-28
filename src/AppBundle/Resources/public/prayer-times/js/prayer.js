@@ -675,16 +675,13 @@ var prayer = {
                 prayer.duaAfterAdhan.showAdhanDua();
                 setTimeout(function () {
                     prayer.duaAfterAdhan.hideAdhanDua();
-
                     // show hadith between adhan and iqama
-                    if (prayer.getWaitingTimes()[currentPrayerIndex] !== 0) {
+                    setTimeout(function () {
+                        prayer.duaAfterAdhan.showHadith();
                         setTimeout(function () {
-                            prayer.duaAfterAdhan.showHadith();
-                            setTimeout(function () {
-                                prayer.duaAfterAdhan.hideHadith();
-                            }, 30 * prayer.oneSecond);
-                        }, 10 * prayer.oneSecond);
-                    }
+                            prayer.duaAfterAdhan.hideHadith();
+                        }, 30 * prayer.oneSecond);
+                    }, 10 * prayer.oneSecond);
                 }, 30 * prayer.oneSecond);
             }
         }

@@ -9,6 +9,8 @@ echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-f
 
 # install packages
 apt-get update && apt-get install -y \
+  acl \
+  vim \
   xdotool \
   unclutter \
   mariadb-server \
@@ -25,6 +27,8 @@ apt-get update && apt-get install -y \
 
 apt-get autoremove
 
+# @todo create mariadb user mawaqit/mawaqit
+
 # add autostart
 echo "@sh /home/pi/prayer-times-v3/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 
@@ -40,7 +44,7 @@ echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
 # disable screensaver
-sed -i "s/\[SeatDefaults\]\n/\[SeatDefaults\]\nxserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
+sed -i "s/#xserver-command/xserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
 
 # update php conf
 sed -i "s/;?date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
