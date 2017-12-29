@@ -243,25 +243,26 @@
                 </div>
 
                 <div class="row">
-                {% for mosque in mosquesWithImage %}
-                    <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a href="#{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content">
-                                    <i class="fa fa-plus fa-3x"></i>
+                    {% for mosque in mosquesWithImage %}
+                        <div class="col-md-4 col-sm-6 portfolio-item">
+                            <a href="#{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content">
+                                        <i class="fa fa-plus fa-3x"></i>
+                                    </div>
                                 </div>
+                                <img src="{{ vich_uploader_asset(mosque, 'file1') }}"
+                                     class="img-responsive mosque-image"
+                                     alt="{{ mosque.name }}"/>
+                            </a>
+                            <div class="portfolio-caption">
+                                <h4>{{ mosque.title }} {{ mosque.country }} </h4>
+                                <a target="_blank" href="{{ path('mosque', {'slug': mosque.slug}) }}">Consultez les
+                                    horaires</a>
                             </div>
-                            <img src="{{ vich_uploader_asset(mosque, 'file1') }}" class="img-responsive mosque-image"
-                                 alt="{{ mosque.name }}"/>
-                        </a>
-                        <div class="portfolio-caption">
-                            <h4>{{ mosque.title }} {{ mosque.country }} </h4>
-                            <a target="_blank" href="{{ path('mosque', {'slug': mosque.slug}) }}">Consultez les
-                                horaires</a>
                         </div>
-                    </div>
-                {% endfor %}
-                     </div>
+                    {% endfor %}
+                </div>
                 {% if app.request.get('mosque_nb') != 'all' %}
                     <a href="{{ path("homepage", {'mosque_nb':'all'}) }}#mosquees" class="page-scroll btn btn-xl">Voir
                         plus</a>
@@ -325,7 +326,7 @@
                         </a>
                     </li>
 
-                    <li>Un kit Raspberry PI 3, prix 55€ environ
+                    <li>Un kit Raspberry PI 3, prix 53€ environ
                         <a target="_blank"
                            href="https://www.amazon.fr/Raspberry-Pi-Official-Desktop-Starter/dp/B01CI5879A/ref=sr_1_2?ie=UTF8&qid=1492881089&sr=8-2&keywords=un%2Braspberry%2Bpi%2B3&th=1">
                             chez amzon par exemple
@@ -338,7 +339,13 @@
                         environ mais livraison sous 15-24 jours
                     </li>
                     <li>Un support mural pour la TV entre 10 et 15€</li>
-                    <li>Un cable HDMI + Une multiprise 4€ environ</li>
+                    <li>Un cable HDMI + Une multiprise</li>
+                    <li>Si vous n'avez pas internet
+                        <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+                            une horloge RTC
+                        </a>
+                    </li>
+
                 </ul>
                 <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br>
                 <h4 class="section-heading">Coût global du matériel : 220€ environ</h4>
