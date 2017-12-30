@@ -89,9 +89,21 @@ function kuwaiticalendar(adjust) {
     return myRes;
 }
 
-function writeIslamicDate(adjustment) {
-    var wdNames = new Array("الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت");
-    var iMonthNames = new Array("محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة");
+function writeIslamicDate(adjustment, lang) {
+    var iMonthNames = new Array("Muharam", "Safar", "Rabī‘ al-awwal", "Rabī‘ ath-thānī", "Jumādá al-ūlá", "Jumādá al-ākhirah", "Rajab", "Sha‘bān", "Ramaḍān", "Shawwāl", "Dhū al-Qa‘dah", "Dhū al-Ḥijjah");
+
+    if (lang === 'ar') {
+        var wdNames = new Array("الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت");
+        iMonthNames = new Array("محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة");
+    }
+
     var iDate = kuwaiticalendar(adjustment);
-    return iDate[7] + " " + wdNames[iDate[4]] + " " + addZero(iDate[5]) + " " + iMonthNames[iDate[6]];
+
+    var date =  addZero(iDate[5]) + " " + iMonthNames[iDate[6]] + " " + iDate[7];
+
+    if(lang === 'ar'){
+        date =  iDate[7] + " " + wdNames[iDate[4]] + " " + addZero(iDate[5]) + " " + iMonthNames[iDate[6]];
+    }
+
+    return date;
 }

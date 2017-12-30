@@ -722,7 +722,7 @@ var prayer = {
      */
     setCurrentHijriDate: function () {
         if (prayer.confData.hijriDateEnabled === true) {
-            $(".hijriDate").text(writeIslamicDate(prayer.confData.hijriAdjustment));
+            $(".hijriDate").text(writeIslamicDate(prayer.confData.hijriAdjustment, lang));
         }
     },
     /**
