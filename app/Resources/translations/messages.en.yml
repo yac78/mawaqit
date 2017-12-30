@@ -43,7 +43,7 @@ mosque:
         rib:
             placeholder: "If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74"
         addOnMap:
-            label: Add on Mawaqit map (cf. <a href="https://mawaqit.net/fr/#mosquees">https://mawaqit.net/fr/#mosquees</a>)
+            label: Add on Mawaqit map (cf. <a target="_blank" href="https://mawaqit.net/fr/#mosquees">https://mawaqit.net/fr/#mosquees</a>)
         image1:
             label: Image 1
         image2:

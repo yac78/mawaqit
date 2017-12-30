@@ -99,6 +99,7 @@ class MosqueType extends AbstractType
             ])
             ->add('addOnMap', CheckboxType::class, [
                 'label' => 'mosque.form.addOnMap.label',
+                'required' => false
             ])
             ->add('file1', ImageType::class)
             ->add('file2', ImageType::class)
