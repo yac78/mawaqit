@@ -275,6 +275,11 @@ class Configuration
      */
     private $iqamaEnabled = true;
 
+    /**
+     * @var bool
+     */
+    private $ninetyMinBetweenMaghibAndIsha = false;
+
 
     /**
      * Get id
@@ -1128,6 +1133,22 @@ class Configuration
         $this->randomHadithIntervalDisabling = $randomHadithIntervalDisabling;
     }
 
+    /**
+     * @return bool
+     */
+    public function isNinetyMinBetweenMaghibAndIsha()
+    {
+        return $this->ninetyMinBetweenMaghibAndIsha;
+    }
 
+    /**
+     * @param bool $ninetyMinBetweenMaghibAndIsha
+     * @return Configuration
+     */
+    public function setNinetyMinBetweenMaghibAndIsha($ninetyMinBetweenMaghibAndIsha)
+    {
+        $this->ninetyMinBetweenMaghibAndIsha = $ninetyMinBetweenMaghibAndIsha;
+        return $this;
+    }
 
 }

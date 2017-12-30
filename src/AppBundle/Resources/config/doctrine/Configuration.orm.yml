@@ -109,6 +109,8 @@ AppBundle\Entity\Configuration:
         calendar:
             type: json_array
             nullable: true
+        ninetyMinBetweenMaghibAndIsha:
+            type: boolean
         timeToDisplayMessage:
             type: smallint
         created:

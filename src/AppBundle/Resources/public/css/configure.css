@@ -15,8 +15,11 @@
 label {
     display: inline;
 }
+
 .checkbox {
     display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 0px;
 }
 
 .panel-default .panel-heading {

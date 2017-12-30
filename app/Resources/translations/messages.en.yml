@@ -144,6 +144,9 @@ configuration:
         timezone: 
             label: Time zone
             title: If you have a time difference in the calculation of prayer times, adjust it here
+        ninetyMinBetweenMaghibAndIsha:
+            label: 90 min between maghrib and isha
+            title: Apply 90 min between maghrib and isha whatever the method of calculation
         dst: 
             label: Daylight saving time (DST)
             title: |

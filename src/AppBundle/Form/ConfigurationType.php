@@ -320,6 +320,13 @@ class ConfigurationType extends AbstractType {
                         'title' => $this->translator->trans('configuration.form.smallScreen.title'),
                     ]
                 ])
+                ->add('ninetyMinBetweenMaghibAndIsha', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'configuration.form.ninetyMinBetweenMaghibAndIsha.label',
+                    'attr' => [
+                        'title' => $this->translator->trans('configuration.form.ninetyMinBetweenMaghibAndIsha.title'),
+                    ]
+                ])
                 ->add('randomHadithEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.randomHadithEnabled.label',

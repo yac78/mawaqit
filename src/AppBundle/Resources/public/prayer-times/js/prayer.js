@@ -156,9 +156,19 @@ var prayer = {
             if (typeof afterIsha === 'undefined') {
                 times[i] = prayer.dstConvertTimeForCalendarMode(time);
             }
+
+            // adjust isha to 90 min after maghrib if option enabled
+            if (i === 4 && prayer.confData.ninetyMinBetweenMaghibAndIsha === true) {
+                var maghribDateTime =  prayer.getCurrentDateForPrayerTime(times[3]);
+                maghribDateTime.setMinutes(maghribDateTime.getMinutes() + 90);
+                times[i] = maghribDateTime.getHours() + ':' + maghribDateTime.getMinutes();
+            }
+
+            // handle fixed times
             if (prayer.confData.fixedTimes[i] && prayer.confData.fixedTimes[i] > times[i]) {
                 times[i] = prayer.confData.fixedTimes[i];
             }
+
         });
         return times;
     },

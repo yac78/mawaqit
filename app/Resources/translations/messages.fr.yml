@@ -150,6 +150,9 @@ configuration:
         timezone: 
             label: Fuseau horaire
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
+        ninetyMinBetweenMaghibAndIsha:
+            label: 90 min entre maghrib et isha
+            title: Appliquer 90 min entre maghrib et isha quelque soit la méthode de calcul
         dst: 
             label: Heure d'été
             title: |
