@@ -245,7 +245,7 @@
                 <div class="row">
                     {% for mosque in mosquesWithImage %}
                         <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a href="#{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
+                            <a href="#mosque-{{ mosque.slug }}" class="portfolio-link" data-toggle="modal">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -272,7 +272,7 @@
 
         <!-- Mosques Modals -->
         {% for mosque in mosquesWithImage %}
-            <div class="portfolio-modal modal fade" id="{{ mosque.slug }}" tabindex="-1" role="dialog"
+            <div class="portfolio-modal modal fade" id="mosque-{{ mosque.slug }}" tabindex="-1" role="dialog"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
