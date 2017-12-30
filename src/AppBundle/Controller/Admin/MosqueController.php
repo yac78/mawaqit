@@ -132,6 +132,34 @@ class MosqueController extends Controller
     }
 
     /**
+     * @Route("/clone/{id}", name="mosque_clone")
+     */
+    public function cloneAction( Mosque $mosque)
+    {
+        $user = $this->getUser();
+        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+            throw new AccessDeniedException;
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $clonedMosque = clone $mosque;
+        $clonedMosque->setId(null);
+        $clonedMosque->setUser($user);
+        $clonedMosque->setSlug(null);
+        $clonedMosque->setImage1(null);
+        $clonedMosque->setImage2(null);
+        $clonedMosque->setImage3(null);
+        $clonedMosque->setMessages(null);
+        $clonedConfiguration = clone $clonedMosque->getConfiguration();
+        $clonedConfiguration->setId(null);
+        $clonedConfiguration->setMosque($clonedMosque);
+        $em->persist($clonedConfiguration);
+        $em->flush();
+        $this->addFlash('success', "form.clone.success");
+        return $this->redirectToRoute('mosque_edit', ['id' => $clonedMosque->getId()]);
+    }
+
+    /**
      * Force refresh page by updating updated_at
      * @Route("/refresh/{id}", name="mosque_refresh")
      */

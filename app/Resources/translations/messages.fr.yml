@@ -10,8 +10,11 @@ form:
     delete:
         success:  La suppression a été réalisée avec succès.
         action: Supprimer
+    clone:
+        success:  Le clonage a été réalisé avec succès.
+        action: Clonner
     configure:
-        action: Configurer les horaires de la mosquée
+        action: Configurer
         geocode_error: |
                 Impossible de géolocaliser votre mosquée. Veuillez vérifier 
                 <ul>

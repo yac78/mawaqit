@@ -9,8 +9,11 @@ form:
     delete:
         success:  Removing has been successfully completed.
         action: Remove
+    clone:
+        success:  Cloning has been successfully completed.
+        action: Clone
     configure:
-        action: Configure mosque prayer times
+        action: Configure
         geocode_error: |
             We are not able to geolocate your mosque. Please check
                  <ul>
