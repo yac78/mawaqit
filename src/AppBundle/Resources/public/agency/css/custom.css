@@ -106,7 +106,8 @@ a, code {
     overflow-wrap: break-word;
 }
 
-.gmaps {
+#map {
     margin-bottom: 4rem;
     margin-top: 4rem;
+    height: 400px;
 }

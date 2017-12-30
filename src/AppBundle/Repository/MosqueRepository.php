@@ -96,4 +96,20 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * get mosques information for google map
+     * @return array
+     */
+    function getAllMosquesForMap()
+    {
+        return $this->createQueryBuilder("m")
+            ->leftJoin("m.configuration", "c", "m.id = c.mosque_id")
+            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.country,  c.longitude as lng, c.latitude as lat")
+            ->where("m.addOnMap = 1")
+            ->andWhere("c.longitude is not null")
+            ->andWhere("c.latitude is not null")
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

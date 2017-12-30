@@ -22,6 +22,7 @@ parameters:
 
     # Google API
     google_api_key: 'AIzaSyC0n3EKMQBPimJseyl_dD-JgemvYaX7_K8'
+    google_maps_api_key: 'AIzaSyBzNPXkdlH11DFZZ0lf8Kj8dao-W7K_MaU'
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
 
     # Weather API

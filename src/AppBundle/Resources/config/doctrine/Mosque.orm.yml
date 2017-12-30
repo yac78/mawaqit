@@ -54,7 +54,9 @@ AppBundle\Entity\Mosque:
         site:
             type: string
             length: 255
-            nullable: true            
+            nullable: true
+        addOnMap:
+            type: boolean
         image1:
             type: string
             length: 255

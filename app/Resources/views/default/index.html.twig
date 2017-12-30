@@ -231,14 +231,14 @@
             <div class="container">
                 <h2 class="section-heading">Quelques mosquées équipées</h2>
                 <p class="section-subheading text-muted">
-                    Grace à Allah notre logiciel est installé dans plus de <strong>{{ mosqueCount }}</strong> mosquées
+                    Grace à Allah notre logiciel est installé dans plus de <strong>{{ mosquesFroMap|length }}</strong>
+                    mosquées
                     partout dans le monde, voici quelques exemples
                 </p>
 
-                <div class="row gmaps">
+                <div class="row">
                     <div class="col-md-12">
-                        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1vi-4jRubijz7gAhBIIBb0qkb96pRm0Do"
-                                width="100%" height="480"></iframe>
+                        <div id="map"></div>
                     </div>
                 </div>
 
@@ -551,4 +551,50 @@
         '@AppBundle/Resources/public/agency/js/index.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 2,
+                center: {lat: 48, lng: 3}
+            });
+
+            var mosquesFroMap = {{ mosquesFroMap|json_encode|raw }};
+            $.each(mosquesFroMap, function (i, mosque) {
+                addMosque(mosque, map);
+            })
+        }
+
+        function addMosque(mosque, map) {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: {lng: mosque.lng, lat: mosque.lat},
+                title: mosque.name + ' (' + mosque.city + ')',
+                icon: {
+                    url: '{{ asset('favicon.png') }}',
+                    scaledSize: new google.maps.Size(30, 30)
+                }
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: '<div>' +
+                '<h4> ' + mosque.name + ' </h4>' +
+                '<p> ' +
+                (mosque.address ? mosque.address : '') + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.country +
+                '</p>' +
+                '<p> ' +
+                '<a target="_blank" href="' + 'https://mawaqit.net/fr/' + mosque.slug + '">' + 'https://mawaqit.net/fr/' + mosque.slug + ' </a>' +
+                '</p>' +
+                '</div>'
+            });
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap">
+    </script>
+
 {% endblock %}

@@ -43,7 +43,9 @@ mosque:
             placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
         rib: 
             placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
-        image1: 
+        addOnMap:
+            label: Ajouter sur la carte Mawaqit (cf. https://mawaqit.net/fr/#mosquees)
+        image1:
             label: Image 1
         image2: 
             label: Image 2

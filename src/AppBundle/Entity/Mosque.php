@@ -73,6 +73,11 @@ class Mosque {
     private $site;
 
     /**
+     * @var boolean
+     */
+    private $addOnMap = true;
+
+    /**
      * @var File
      */
     private $file1;
@@ -673,4 +678,22 @@ class Mosque {
         }
         return $title;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAddOnMap()
+    {
+        return $this->addOnMap;
+    }
+
+    /**
+     * @param bool $addOnMap
+     */
+    public function setAddOnMap($addOnMap)
+    {
+        $this->addOnMap = $addOnMap;
+    }
+
+
 }

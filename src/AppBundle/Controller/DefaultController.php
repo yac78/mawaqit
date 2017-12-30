@@ -22,10 +22,12 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $mosqueRepo = $em->getRepository("AppBundle:Mosque");
         $mosquesWithImage = $mosqueRepo->getMosquesWithImage($mosqueNb);
-        $mosqueCount =  $mosqueRepo->getMosqueCount();
+        $mosquesFroMap =  $mosqueRepo->getAllMosquesForMap();
+
         return $this->render('default/index.html.twig', [
                     "mosquesWithImage" => $mosquesWithImage,
-                    "mosqueCount" => $mosqueCount
+                    "mosquesFroMap" => $mosquesFroMap,
+                    "google_maps_api_key" => $this->getParameter('google_maps_api_key'),
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -97,6 +98,9 @@ class MosqueType extends AbstractType
                 'attr' => [
                     'placeholder' => 'mosque.form.rib.placeholder',
                 ]
+            ])
+            ->add('addOnMap', CheckboxType::class, [
+                'label' => 'mosque.form.addOnMap.label',
             ])
             ->add('file1', ImageType::class)
             ->add('file2', ImageType::class)
