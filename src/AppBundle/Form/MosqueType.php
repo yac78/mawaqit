@@ -9,8 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Mosque;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
@@ -110,16 +108,8 @@ class MosqueType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-lg btn-primary',
                 ]
-            ])->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));;
+            ]);
     }
-
-    public function onPostSetData(FormEvent $event)
-    {
-        /** @var Mosque $mosque */
-        $mosque = $event->getData();
-        $mosque->setCity(str_replace(" ", "-", $mosque->getCity()));
-    }
-
 
     public function configureOptions(OptionsResolver $resolver)
     {

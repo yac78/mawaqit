@@ -71,7 +71,6 @@ services:
     app.form_configuration:
         class: AppBundle\Form\ConfigurationType
         arguments:
-            - "@app.google_service"
             - "@translator"
         tags:
             - { name: form.type }

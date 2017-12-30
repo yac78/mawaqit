@@ -11,6 +11,7 @@ use AppBundle\Service\Calendar;
 use AppBundle\Service\MailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -20,12 +21,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * @Route("/admin/mosque")
  */
-class MosqueController extends Controller {
+class MosqueController extends Controller
+{
 
     /**
      * @Route(name="mosque_index")
      */
-    public function indexAction(Request $request) {
+    public function indexAction(Request $request)
+    {
 
         $search = $request->query->get("search");
         $user = $this->getUser();
@@ -47,35 +50,47 @@ class MosqueController extends Controller {
     /**
      * @Route("/create", name="mosque_create")
      */
-    public function createAction(Request $request) {
-
+    public function createAction(Request $request)
+    {
         $mosque = new Mosque();
         $form = $this->createForm(MosqueType::class, $mosque);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mosque = $form->getData();
-            $mosque->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
-            $em->persist($mosque);
-            $em->flush();
-            $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, ['mosque' => $mosque]);
-            $this->get("app.mail_service")->mosqueCreated($mailBody);
-            $this->addFlash('success', "form.create.success");
+            $mosque->setUser($this->getUser());
+            $mosque->setCity(str_replace(" ", "-", $mosque->getCity()));
 
-            return $this->redirectToRoute('mosque_index');
+            try {
+                $configuration = new Configuration();
+                // update gps coordinates
+                $position = $this->get("app.google_service")->getPosition($mosque->getLocalisation());
+                $configuration->setLongitude($position->lng);
+                $configuration->setLatitude($position->lat);
+                $configuration->setMosque($mosque);
+                $em->persist($configuration);
+                $em->flush();
+                $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, ['mosque' => $mosque]);
+                $this->get("app.mail_service")->mosqueCreated($mailBody);
+                $this->addFlash('success', "form.create.success");
+                return $this->redirectToRoute('mosque_index');
+            } catch (GooglePositionException $exc) {
+                $form->addError(new FormError($this->get("translator")->trans("form.configure.geocode_error", [
+                    "%address%" => $mosque->getLocalisation()
+                ])));
+            }
         }
 
         return $this->render('mosque/create.html.twig', [
-                    'form' => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/edit/{id}", name="mosque_edit")
      */
-    public function editAction(Request $request, Mosque $mosque) {
+    public function editAction(Request $request, Mosque $mosque)
+    {
 
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
@@ -94,15 +109,16 @@ class MosqueController extends Controller {
             return $this->redirectToRoute('mosque_index');
         }
         return $this->render('mosque/edit.html.twig', [
-                    'mosque' => $mosque,
-                    'form' => $form->createView()
+            'mosque' => $mosque,
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/delete/{id}", name="mosque_delete")
      */
-    public function deleteAction(Request $request, Mosque $mosque) {
+    public function deleteAction(Request $request, Mosque $mosque)
+    {
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
@@ -119,7 +135,8 @@ class MosqueController extends Controller {
      * Force refresh page by updating updated_at
      * @Route("/refresh/{id}", name="mosque_refresh")
      */
-    public function refreshAction(Request $request, Mosque $mosque) {
+    public function refreshAction(Request $request, Mosque $mosque)
+    {
         $em = $this->getDoctrine()->getManager();
         $mosque->setUpdated(new \Datetime());
         $em->flush();
@@ -129,7 +146,8 @@ class MosqueController extends Controller {
     /**
      * @Route("/{id}/configure", name="mosque_configure")
      */
-    public function configureAction(Request $request, Mosque $mosque) {
+    public function configureAction(Request $request, Mosque $mosque)
+    {
 
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
@@ -139,46 +157,32 @@ class MosqueController extends Controller {
 
         $configuration = $mosque->getConfiguration();
 
-        if (!$configuration instanceof Configuration) {
-            $configuration = new Configuration();
-            $configuration->setMosque($mosque);
-            $em->persist($configuration);
-            $em->flush();
-            $em->refresh($mosque);
-        }
-
         $form = $this->createForm(ConfigurationType::class, $configuration);
 
-        try {
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $configuration = $form->getData();
-                $em->persist($configuration);
-                $em->flush();
-                return $this->redirectToRoute('mosque', [
-                            'slug' => $mosque->getSlug()
-                ]);
-            }
-        } catch (GooglePositionException $exc) {
-            $this->addFlash('danger', $this->get("translator")->trans("form.configure.geocode_error", [
-                        "%address%" => $mosque->getLocalisation()
-            ]));
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($configuration);
+            $em->flush();
+            return $this->redirectToRoute('mosque', [
+                'slug' => $mosque->getSlug()
+            ]);
         }
 
         $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar";
         $predefinedCalendars = array_map('basename', glob($calendarDir . "/*", GLOB_ONLYDIR));
         return $this->render('mosque/configure.html.twig', [
-                    'months' => Calendar::MONTHS,
-                    'predefinedCalendars' => $predefinedCalendars,
-                    'mosque' => $mosque,
-                    'form' => $form->createView()
+            'months' => Calendar::MONTHS,
+            'predefinedCalendars' => $predefinedCalendars,
+            'mosque' => $mosque,
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/getCsvFiles/{id}", name="mosque_csv_files")
      */
-    public function getCsvFilesAction(Request $request, Mosque $mosque) {
+    public function getCsvFilesAction(Request $request, Mosque $mosque)
+    {
 
         $zipFilePath = $this->get("app.prayer_times_service")->getFilesFromCalendar($mosque);
         if (is_file($zipFilePath)) {
@@ -192,7 +196,8 @@ class MosqueController extends Controller {
     /**
      * @Route("/load-calendar", name="ajax_load_calendar")
      */
-    public function loadCalendarAction(Request $request) {
+    public function loadCalendarAction(Request $request)
+    {
         $calendarName = $request->query->get("calendarName");
         $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar/$calendarName";
         $csvFiles = glob($calendarDir . "/*.csv");

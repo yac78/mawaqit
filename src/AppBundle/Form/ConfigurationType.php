@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Form\PrayerType;
 use AppBundle\Entity\Configuration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -14,18 +13,10 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\DataTransformer\PrayerTransformer;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
-use AppBundle\Service\GoogleService;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ConfigurationType extends AbstractType {
-
-    /**
-     * @var GoogleService 
-     */
-    private $googleService;
 
     /**
      * @var Translator 
@@ -91,8 +82,7 @@ class ConfigurationType extends AbstractType {
         "maghrib-isha" => "3-4"
     ];
 
-    public function __construct(GoogleService $googleService, TranslatorInterface $translator) {
-        $this->googleService = $googleService;
+    public function __construct(TranslatorInterface $translator) {
         $this->translator = $translator;
     }
 
@@ -377,8 +367,7 @@ class ConfigurationType extends AbstractType {
                     'attr' => [
                         'class' => 'btn btn-lg btn-primary',
                     ]
-                ])
-                ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));
+                ]);
 
         $builder->get('waitingTimes')
                 ->addModelTransformer(new PrayerTransformer(IntegerType::class));
@@ -388,16 +377,6 @@ class ConfigurationType extends AbstractType {
                 ->addModelTransformer(new PrayerTransformer(TimeType::class));
         $builder->get('duaAfterPrayerShowTimes')
                 ->addModelTransformer(new PrayerTransformer(IntegerType::class));
-    }
-
-    public function onPostSetData(FormEvent $event) {
-        /** @var Configuration $configuration */
-        $configuration = $event->getData();
-
-        // update gps coordinates
-        $position = $this->googleService->getPosition($configuration->getMosque()->getLocalisation());
-        $configuration->setLongitude($position->lng);
-        $configuration->setLatitude($position->lat);
     }
 
     /**

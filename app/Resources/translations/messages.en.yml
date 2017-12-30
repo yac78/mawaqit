@@ -14,7 +14,7 @@ form:
         geocode_error: |
             We are not able to geolocate your mosque. Please check
                  <ul>
-                     <li>The spelling of your mailing address ("%address%")</li>
+                     <li>The spelling of the address ("%address%")</li>
                      <li>Your internet connection (it is necessary to geolocate the city)</li>
                  </ul>
 registration:
@@ -43,7 +43,7 @@ mosque:
         rib:
             placeholder: "If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74"
         addOnMap:
-            label: Add on Mawaqit map (cf. https://mawaqit.net/fr/#mosquees)
+            label: Add on Mawaqit map (cf. <a href="https://mawaqit.net/fr/#mosquees">https://mawaqit.net/fr/#mosquees</a>)
         image1:
             label: Image 1
         image2:
