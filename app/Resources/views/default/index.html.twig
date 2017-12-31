@@ -56,7 +56,7 @@
                 <p class="text-muted">
                     Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
                     ordinateur, le Raspberry Pi 3 ou par n'importe qu'elle autre ordinateur,
-                    TV connectée, box TV ou toute autre apareil pouvant lancer un navigateur internet.
+                    Smart TV, box TV ou toute autre apareil pouvant lancer un navigateur internet.
                     En effet le logiciel est une simple page internet est toute l'intelligence est concentrée dans du
                     code javascript.
                 </p>
@@ -67,16 +67,19 @@
                 <h3 class="section-heading">Quelles sont les fonctionnalités principales du logiciel ?</h3>
 
                 <h4 class="service-heading">Affichage des horaires de prière en plusieurs langues</h4>
-                <p class="text-muted">
-                    Le logiciel permet un affichage en français, arabe et anglais.<br>
-                    Aucun réglage à faire, tout est paramétré automatiquement tout comme le changement d'heure
-                    été/hiver.
-                </p>
 
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
-                        <img src="{{ asset('bundles/app/agency/img/software/french.png') }}" class="img-responsive"
-                             alt="">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <li>
+                                    <img src="{{ asset('bundles/app/agency/img/software/french.png') }}"/>
+                                </li>
+                                <li>
+                                    <img src="{{ asset('bundles/app/agency/img/software/arabic.png') }}"/>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <h4 class="service-heading">Signal sonor et visuel du adhân et Iqâma</h4>
@@ -147,7 +150,7 @@
                 <h4 class="service-heading">Affichage de hadiths</h4>
                 <p class="text-muted">
                     Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
-                    prophète "que la prière d'Allah et son salut soient sur lui", toute les 5 minutes<br>
+                    prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes<br>
                 </p>
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
@@ -170,12 +173,7 @@
                     nous créons un site internet adatapté au mobile et tablette pour chaque installation.<br>
                 </p>
                 <p class="text-left">
-                    Exemples: <br>
-                    <a target="_blank"
-                       href="{{ path('mosque', {'slug': 'mosquee-essunna-houilles'}) }}">{{ url('mosque', {'slug': 'mosquee-essunna-houilles'}) }}</a>
-                    <br>
-                    <a target="_blank"
-                       href="{{ path('mosque', {'slug': 'mosquee-ennour-gennevilliers'}) }}">{{ url('mosque', {'slug': 'mosquee-ennour-gennevilliers'}) }}</a>
+                    Exemples:  <a target="_blank" href="{{ path('mosque', {'slug': 'mosquee-essunna-houilles'}) }}">{{ url('mosque', {'slug': 'mosquee-essunna-houilles'}) }}</a>
                 </p>
                 <div><img src="{{ asset('bundles/app/agency/img/software/mobile.png') }}" class="img-responsive"
                           style="display: inline" alt=""><br></div>
@@ -326,7 +324,7 @@
                         </a>
                     </li>
 
-                    <li>Un kit Raspberry PI 3, prix 53€ environ
+                    <li>Un kit Raspberry PI 3 (ce kit n'est pas nécessaire si vous optez pour une Smart TV), prix 53€ environ
                         <a target="_blank"
                            href="https://www.amazon.fr/Raspberry-Pi-Official-Desktop-Starter/dp/B01CI5879A/ref=sr_1_2?ie=UTF8&qid=1492881089&sr=8-2&keywords=un%2Braspberry%2Bpi%2B3&th=1">
                             chez amzon par exemple
@@ -336,7 +334,7 @@
                            href="https://fr.aliexpress.com/item/H-Raspberry-Pi-3-Model-B-kit-pi-3-board-pi-3-case-European-power-supply/32785912149.html?spm=2114.13010608.0.0.UlZLi4">
                             Aliexpress 41€
                         </a>
-                        environ mais livraison sous 15-24 jours
+                        environ (Attention ! livraison sous 15-30 jours)
                     </li>
                     <li>Un support mural pour la TV entre 10 et 15€</li>
                     <li>Un cable HDMI + Une multiprise</li>
@@ -367,8 +365,8 @@
                         Télécharger l'image système pré configurée ici <i class="fa fa-hand-o-right"></i>
                         <strong>
                             {% if app.user %}
-                                <a target="_blank" href="/static/prayer-times-raspbian-stable.img.zip">
-                                    prayer-times-raspbian-stable.img.zip
+                                <a target="_blank" href="/static/mawaqit.img.zip">
+                                    mawaqit.img.zip
                                 </a>
                             {% else %}
                                 <a href="{{ path("fos_user_security_login") }}">
@@ -384,7 +382,7 @@
                         ordinateur
                     </li>
                     <li>
-                        Flashez l'image système prayer-times-raspbian-stabe.img.zip sur la carte micro sd avec
+                        Flashez l'image système mawaqit.img.zip sur la carte micro sd avec
                         Etcher<br><br>
                     </li>
                 </ol>
@@ -464,8 +462,8 @@
                         <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
                             d'une horloge RTC
                         </a>
-                        si vous ne comptez pas le connecter à internet, cela évitera en cas de copure de courant de
-                        perdre l'heure système.
+                        si vous ne comptez pas le connecter à internet, cela évitera la
+                        perte de l'heure système en cas de copure de courant.
                         Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans
                         LXTerminal<br>
                         <code>sudo date -s "yyyy-mm-dd hh:mm:ss"</code> exemple: <code>sudo date -s
