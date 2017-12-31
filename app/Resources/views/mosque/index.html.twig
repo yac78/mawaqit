@@ -89,7 +89,7 @@
                                                                       data-url="{{ url('mosque', {slug: mosque.slug}) }}?view=mobile">{{ 'show'|trans }}</a>
                         {% if not mosque.isCalendarCompleted %}
                             <div>
-                                <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.conf_not_completed'|trans|raw }}
+                                <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                             </div>
                         {% endif %}
                     </td>
@@ -162,7 +162,7 @@
 
                     {% if not mosque.isCalendarCompleted %}
                         <div>
-                            <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.conf_not_completed'|trans|raw }}
+                            <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                         </div>
                     {% endif %}
                 </div>

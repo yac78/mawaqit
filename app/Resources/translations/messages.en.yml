@@ -84,10 +84,8 @@ configuration:
     title: Prayer times configuration of "%mosque%"
     list:
         download_csv_files: Download the calendar
-        conf_not_completed: |
-            Your mosque is added, but your calendar is incomplete.
         calendar_not_completed: |
-            Be careful the calendar of your mosque is not completed yet.
+            Be careful the calendar of your mosque is not completed yet
     form:
         prayerCalcul: Calculation of prayer times
         load_predefined_calendar: 

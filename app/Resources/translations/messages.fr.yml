@@ -90,10 +90,8 @@ configuration:
     title: Configuration des horaires de "%mosque%"
     list:
         download_csv_files: Télécharger le calendrier
-        conf_not_completed: |
-            Votre mosquée est ajoutée, mais il votre calendrier est incomplet.
         calendar_not_completed: |
-            Attention le calendrier de votre mosquée n'est pas encore complété.
+            Attention: le calendrier de votre mosquée est incomplet
     form: 
         prayerCalcul: Calcul des horaires de prière
         load_predefined_calendar: 
