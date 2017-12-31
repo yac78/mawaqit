@@ -85,9 +85,7 @@ configuration:
     list:
         download_csv_files: Download the calendar
         conf_not_completed: |
-            Your mosque is added, but prayer times are not yet set. <br>
-            please proceed to the configuration by clicking on the orange button on the right. <br>
-            In the case of the choice of calendar adjustment, check if it is well completed.
+            Your mosque is added, but your calendar is incomplete.
         calendar_not_completed: |
             Be careful the calendar of your mosque is not completed yet.
     form:

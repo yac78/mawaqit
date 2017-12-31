@@ -2,15 +2,14 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\User;
-use AppBundle\Entity\Configuration;
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Mosque
  */
-class Mosque {
+class Mosque
+{
 
     /**
      * @var int
@@ -137,7 +136,8 @@ class Mosque {
      */
     private $isCalendarCompleted = null;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->messages = new ArrayCollection();
     }
 
@@ -146,11 +146,13 @@ class Mosque {
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -161,7 +163,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -172,7 +175,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -183,7 +187,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setSlug($slug) {
+    public function setSlug($slug)
+    {
         $this->slug = $slug;
 
         return $this;
@@ -194,7 +199,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getSlug() {
+    public function getSlug()
+    {
         return $this->slug;
     }
 
@@ -205,7 +211,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setAddress($address) {
+    public function setAddress($address)
+    {
         $this->address = $address;
 
         return $this;
@@ -216,7 +223,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
     }
 
@@ -227,7 +235,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setCity($city) {
+    public function setCity($city)
+    {
         $this->city = $city;
 
         return $this;
@@ -238,7 +247,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getCity() {
+    public function getCity()
+    {
         return $this->city;
     }
 
@@ -249,7 +259,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setCountry($country) {
+    public function setCountry($country)
+    {
         $this->country = $country;
 
         return $this;
@@ -260,7 +271,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getCountry() {
+    public function getCountry()
+    {
         return $this->country;
     }
 
@@ -271,7 +283,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setAssociationName($associationName) {
+    public function setAssociationName($associationName)
+    {
         $this->associationName = $associationName;
 
         return $this;
@@ -282,7 +295,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getAssociationName() {
+    public function getAssociationName()
+    {
         return $this->associationName;
     }
 
@@ -293,7 +307,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setPhone($phone) {
+    public function setPhone($phone)
+    {
         $this->phone = $phone;
 
         return $this;
@@ -304,7 +319,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getPhone() {
+    public function getPhone()
+    {
         return $this->phone;
     }
 
@@ -315,7 +331,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setSite($site) {
+    public function setSite($site)
+    {
         $this->site = $site;
 
         return $this;
@@ -326,7 +343,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getSite() {
+    public function getSite()
+    {
         return $this->site;
     }
 
@@ -337,7 +355,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setZipcode($zipcode) {
+    public function setZipcode($zipcode)
+    {
         $this->zipcode = $zipcode;
 
         return $this;
@@ -348,7 +367,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getZipcode() {
+    public function getZipcode()
+    {
         return $this->zipcode;
     }
 
@@ -359,7 +379,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setRib($rib) {
+    public function setRib($rib)
+    {
         $this->rib = $rib;
 
         return $this;
@@ -370,7 +391,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getRib() {
+    public function getRib()
+    {
         return $this->rib;
     }
 
@@ -381,7 +403,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -392,7 +415,8 @@ class Mosque {
      *
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -403,7 +427,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setCreated($created) {
+    public function setCreated($created)
+    {
         $this->created = $created;
 
         return $this;
@@ -414,7 +439,8 @@ class Mosque {
      *
      * @return \DateTime
      */
-    public function getCreated() {
+    public function getCreated()
+    {
         return $this->created;
     }
 
@@ -425,7 +451,8 @@ class Mosque {
      *
      * @return Mosque
      */
-    public function setUpdated($updated) {
+    public function setUpdated($updated)
+    {
         $this->updated = $updated;
 
         return $this;
@@ -436,7 +463,8 @@ class Mosque {
      *
      * @return \DateTime
      */
-    public function getUpdated() {
+    public function getUpdated()
+    {
         $mosqueUpdated = $this->updated;
         $configurationUpdated = $this->configuration->getUpdated();
         if ($mosqueUpdated > $configurationUpdated) {
@@ -450,23 +478,28 @@ class Mosque {
      *
      * @return string
      */
-    public function getLocalisation() {
+    public function getLocalisation()
+    {
         return $this->city . "+" . $this->zipcode . "+" . $this->country;
     }
 
-    function getUser() {
+    function getUser()
+    {
         return $this->user;
     }
 
-    function setUser(User $user) {
+    function setUser(User $user)
+    {
         $this->user = $user;
     }
 
-    function getConfiguration() {
+    function getConfiguration()
+    {
         return $this->configuration;
     }
 
-    function setConfiguration(Configuration $configuration) {
+    function setConfiguration(Configuration $configuration)
+    {
         $this->configuration = $configuration;
     }
 
@@ -475,7 +508,8 @@ class Mosque {
      *
      * @return self
      */
-    public function setFile1(File $image = null) {
+    public function setFile1(File $image = null)
+    {
         $this->file1 = $image;
 
         if ($image) {
@@ -492,7 +526,8 @@ class Mosque {
      *
      * @return self
      */
-    public function setFile2(File $image = null) {
+    public function setFile2(File $image = null)
+    {
         $this->file2 = $image;
 
         if ($image) {
@@ -509,7 +544,8 @@ class Mosque {
      *
      * @return self
      */
-    public function setFile3(File $image = null) {
+    public function setFile3(File $image = null)
+    {
         $this->file3 = $image;
 
         if ($image) {
@@ -524,21 +560,24 @@ class Mosque {
     /**
      * @return File|null
      */
-    public function getFile1() {
+    public function getFile1()
+    {
         return $this->file1;
     }
 
     /**
      * @return File|null
      */
-    public function getFile2() {
+    public function getFile2()
+    {
         return $this->file2;
     }
 
     /**
      * @return File|null
      */
-    public function getFile3() {
+    public function getFile3()
+    {
         return $this->file3;
     }
 
@@ -547,7 +586,8 @@ class Mosque {
      *
      * @return self
      */
-    public function setImage1($imageName) {
+    public function setImage1($imageName)
+    {
         $this->image1 = $imageName;
 
         return $this;
@@ -558,7 +598,8 @@ class Mosque {
      *
      * @return self
      */
-    public function setImage2($imageName) {
+    public function setImage2($imageName)
+    {
         $this->image2 = $imageName;
 
         return $this;
@@ -569,7 +610,8 @@ class Mosque {
      *
      * @return self
      */
-    public function setImage3($imageName) {
+    public function setImage3($imageName)
+    {
         $this->image3 = $imageName;
 
         return $this;
@@ -578,29 +620,34 @@ class Mosque {
     /**
      * @return string|null
      */
-    public function getImage1() {
+    public function getImage1()
+    {
         return $this->image1;
     }
 
     /**
      * @return string|null
      */
-    public function getImage2() {
+    public function getImage2()
+    {
         return $this->image2;
     }
 
     /**
      * @return string|null
      */
-    public function getImage3() {
+    public function getImage3()
+    {
         return $this->image3;
     }
 
-    public function getMessages() {
+    public function getMessages()
+    {
         return $this->messages;
     }
 
-    public function getNbOfEnabledMessages() {
+    public function getNbOfEnabledMessages()
+    {
         $nb = 0;
         foreach ($this->messages as $message) {
             if ($message->isEnabled()) {
@@ -610,45 +657,28 @@ class Mosque {
         return $nb;
     }
 
-    public function setMessages($messages) {
+    public function setMessages($messages)
+    {
         $this->messages = $messages;
     }
 
-    /**
-     * True if configuration is completed
-     * @return boolean 
-     */
-    public function isConfCompleted() {
-        if ($this->configuration instanceof Configuration) {
-            if ($this->configuration->getSourceCalcul() === Configuration::SOURCE_API) {
-                if (!empty($this->configuration->getLongitude()) && !empty($this->configuration->getLatitude())) {
-                    return true;
-                }
-                return false;
-            }
-
-            return $this->isCalendarCompleted();
-        }
-        return false;
-    }
 
     /**
      * True if calendar is completed
-     * @return boolean 
+     * @return boolean
      */
-    function isCalendarCompleted() {
+    function isCalendarCompleted()
+    {
         if ($this->isCalendarCompleted === null) {
             $this->isCalendarCompleted = true;
-            if ($this->configuration instanceof Configuration) {
-                $configuration = $this->configuration;
-                if ($configuration->isCalendar()) {
-                    if (!empty($configuration->getCalendar())) {
-                        foreach ($configuration->getCalendar() as $month => $days) {
-                            foreach ($days as $day => $prayers) {
-                                foreach ($prayers as $prayerIndex => $prayer) {
-                                    if (empty($prayer)) {
-                                        $this->isCalendarCompleted = false;
-                                    }
+            $configuration = $this->configuration;
+            if ($configuration->isCalendar()) {
+                if (!empty($configuration->getCalendar())) {
+                    foreach ($configuration->getCalendar() as $month => $days) {
+                        foreach ($days as $day => $prayers) {
+                            foreach ($prayers as $prayerIndex => $prayer) {
+                                if (empty($prayer)) {
+                                    $this->isCalendarCompleted = false;
                                 }
                             }
                         }
@@ -663,21 +693,23 @@ class Mosque {
      * get GPS coordinates
      * @return array
      */
-    function getGpsCoordinates() {
+    function getGpsCoordinates()
+    {
         return [
             "lat" => $this->getConfiguration()->getLatitude(),
             "lon" => $this->getConfiguration()->getLongitude()
         ];
     }
-    
+
     /**
      * Get the title to display on top of screen
      * @return string
      */
-    function getTitle() {
-        
+    function getTitle()
+    {
+
         $title = $this->getName();
-        if(!empty($this->getCity()) && strpos(strtolower($title), strtolower($this->getCity())) === false){
+        if (!empty($this->getCity()) && strpos(strtolower($title), strtolower($this->getCity())) === false) {
             $title .= " - " . $this->getCity();
         }
         return $title;
