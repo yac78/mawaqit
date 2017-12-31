@@ -48,11 +48,11 @@ bin/console doctrine:migrations:migrate -n --allow-no-migration
 echo "Creating current symlink"
 cd $envDir && rm current || true && ln -s $tag current
 
-echo "Force reload mosques"
-mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_$env < $repoDir/deploy/update.sql
-
 echo "Reset opcache => $repoDir/deploy/opcache_reset.sh"
 $repoDir/deploy/opcache_reset.sh
+
+echo "Force reload mosques"
+mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_$env < $repoDir/deploy/update.sql
 
 echo "Deleting old releases, keep 3 latest"
 rm -rf `ls -t  | tail -n +5` || true
