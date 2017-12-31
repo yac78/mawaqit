@@ -7,13 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use AppBundle\Entity\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\EmailType;
 
 /**
  * @Route("/admin/user")
- * @Security("has_role('ROLE_ADMIN')")
  */
 class UserController extends Controller {
 
