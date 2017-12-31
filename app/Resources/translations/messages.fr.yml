@@ -239,6 +239,7 @@ security:
 admin_title: Mawaqit - administration        
 site_title: Mawaqit
 
+refresh: Rafraîchir
 validate: Valider
 cancel: Annuler
 return: Retour

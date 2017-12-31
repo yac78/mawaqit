@@ -233,6 +233,7 @@ security:
 admin_title: Mawaqit - administration        
 site_title: Mawaqit
 
+refresh: Refresh
 validate: Validate
 cancel: Cancel
 return: Back
