@@ -50,9 +50,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                {{ form_row(form.ninetyMinBetweenMaghibAndIsha) }}
-                            </div>
                         </div>
 
                         <div class="calendar hidden">
@@ -308,20 +305,27 @@
                 </div>
                 <div id="fixedTimes" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="col-md-2">
-                            {{ form_row(form.fixedTimes.fajr) }}
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.fajr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.zuhr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.asr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.maghrib) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.isha) }}
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.fixedTimes.zuhr) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.fixedTimes.asr) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.fixedTimes.maghrib) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.fixedTimes.isha) }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ form_row(form.ninetyMinBetweenMaghibAndIsha) }}
+                            </div>
                         </div>
                     </div>
                 </div>
