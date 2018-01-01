@@ -11,9 +11,8 @@ namespace AppBundle\Repository;
 class UserRepository extends \Doctrine\ORM\EntityRepository {
 
     /**
-     * 
-     * @param string $search
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @param $search
+     * @return \Doctrine\ORM\QueryBuilder
      */
     function search($search) {
         $qb = $this->createQueryBuilder("u")

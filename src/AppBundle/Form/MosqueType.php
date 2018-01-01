@@ -2,15 +2,18 @@
 
 namespace AppBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Mosque;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 class MosqueType extends AbstractType
@@ -22,26 +25,44 @@ class MosqueType extends AbstractType
      */
     private $securityChecker;
 
-    public function __construct(AuthorizationChecker $securityChecker)
+    /**
+     *
+     * @var EntityManager
+     */
+    private $em;
+
+    public function __construct(AuthorizationChecker $securityChecker, EntityManager $em)
     {
         $this->securityChecker = $securityChecker;
+        $this->em = $em;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        if ($builder->getData()->getUser() instanceof User && $this->securityChecker->isGranted('ROLE_ADMIN')) {
+        $user = $builder->getData()->getUser();
+        if ($user instanceof User && $this->securityChecker->isGranted('ROLE_ADMIN')) {
             $builder
-                ->add('user', EntityType::class, [
-                    'label' => 'user',
-                    'choice_label' => function ($user, $key, $index) {
-                        return $user->getEmail() . " - " . $user->getUsername();
-                    },
+                ->add('user', HiddenType::class, [
                     'required' => true,
-                    'empty_data' => null,
-                    'class' => User::class,
+
+                ])
+                ->add('user_complete', TextType::class, [
+                    'data' => $user->getEmail(),
+                    'label' => 'user',
+                    'mapped' => false
                 ]);
+
+            $builder->get('user')
+                ->addModelTransformer(new CallbackTransformer(
+                    function ($user) {
+                        return $user->getId();
+                    },
+                    function ($id) {
+                        return $this->em->getRepository("AppBundle:User")->find($id);
+                    }
+                ));
         }
+
 
         $builder
             ->add('name', null, [

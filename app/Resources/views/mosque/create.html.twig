@@ -15,3 +15,10 @@
         {% include 'mosque/form.html.twig' %}
     </form>
 {% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        '@AppBundle/Resources/public/js/mosque_edit.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

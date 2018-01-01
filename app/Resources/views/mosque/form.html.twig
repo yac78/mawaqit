@@ -5,22 +5,23 @@
 {{ form_widget(form._token) }}
 
 <div class="row">
-    <div class="col-md-12"><p><span style="color: red">*</span> {{'required'|trans}}</p></div>
+    <div class="col-md-12"><p><span style="color: red">*</span> {{ 'required'|trans }}</p></div>
     <div class="col-md-6">
-        {% if mosque is defined  %}
+        {% if mosque is defined %}
             {{ form_label(form.slug) }}
 
             <div class="input-group">
-                <span class="input-group-addon">https:{{url('homepage', {}, true)}}</span>
+                <span class="input-group-addon">https:{{ url('homepage', {}, true) }}</span>
                 {{ form_widget(form.slug) }}
             </div>
 
             <div class="alert alert-danger mt-1" role="alert">
-                <div>{{'mosque.alert.slugChange'|trans}}</div>
+                <div>{{ 'mosque.alert.slugChange'|trans }}</div>
             </div>
 
             {% if is_granted('ROLE_ADMIN') %}
                 {{ form_row(form.user) }}
+                {{ form_row(form.user_complete, {'attr' :{'data-remote': path('users_search_ajax') }}) }}
             {% endif %}
         {% endif %}
 
@@ -53,25 +54,23 @@
         <div class="col-md-3">
             {% if  mosque.image1 %}
                 <div class="block-image">
-                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" />
+                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}"/>
                 </div>
             {% endif %}
             {% if  mosque.image2 %}
                 <div class=" block-image">
-                    <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" />
+                    <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}"/>
                 </div>
             {% endif %}
             {% if  mosque.image3 %}
                 <div class="block-image">
-                    <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" />
+                    <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}"/>
                 </div>
             {% endif %}
         </div>
     {% endif %}
 </div>
 
-
 <br>
 {{ form_widget(form.save) }}
-<a href="{{path("mosque_index")}}" class="btn  btn-lg btn-warning">{{'cancel'|trans({}, 'messages')}}</a>
-
+<a href="{{ path("mosque_index") }}" class="btn  btn-lg btn-warning">{{ 'cancel'|trans({}, 'messages') }}</a>
