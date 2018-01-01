@@ -148,6 +148,10 @@ body {
     height: 50%;
 }
 
+.loudspeaker{
+    width: 300px;
+}
+
 .adhan .ar {
     font-size: 700%;
 }
