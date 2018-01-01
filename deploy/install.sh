@@ -29,6 +29,7 @@ ln -s $sharedDir/static/ $targetDir/web/static || true
 ln -s $sharedDir/logs/ $targetDir/var/logs || true
 ln -s $sharedDir/sessions/ $targetDir/var/sessions || true
 ln -s $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml || true
+ln -s $sharedDir/robots.txt.$env robots.txt || true
 
 cd $targetDir
 
@@ -48,8 +49,8 @@ bin/console doctrine:migrations:migrate -n --allow-no-migration
 echo "Creating current symlink"
 cd $envDir && rm current || true && ln -s $tag current
 
-echo "Reset opcache => $repoDir/deploy/opcache_reset.sh"
-$repoDir/deploy/opcache_reset.sh
+echo "Reset opcache"
+curl -s localhost:81/reset_opcache.php
 
 echo "Force reload mosques"
 mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_$env < $repoDir/deploy/update.sql
