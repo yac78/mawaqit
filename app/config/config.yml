@@ -9,7 +9,7 @@ parameters:
     locale: fr
 
 framework:
-    translator: { fallbacks: [fr] }
+    translator: { fallbacks: [en, fr] }
     secret: '%secret%'
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
@@ -131,6 +131,6 @@ knp_paginator:
 mobile_detect: ~
 
 jms_i18n_routing:
-    default_locale: %locale%
-    locales: [en, fr, ar]
+    default_locale: "%locale%"
+    locales: "%languages%"
     strategy: prefix

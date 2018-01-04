@@ -16,7 +16,8 @@ use Symfony\Component\Serializer\Serializer;
 class MosqueController extends Controller {
 
     /**
-     * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar"})
+     * @deprecated
+     * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|ph"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueDeprected1Action(Request $request, Mosque $mosque) {
@@ -24,7 +25,8 @@ class MosqueController extends Controller {
     }
 
     /**
-     * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar"})
+     * @deprecated
+     * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|ph"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
     public function mosqueDeprected2Action(Request $request, Mosque $mosque) {

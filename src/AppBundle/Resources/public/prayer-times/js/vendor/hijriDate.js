@@ -90,7 +90,7 @@ function kuwaiticalendar(adjust) {
 }
 
 function writeIslamicDate(adjustment, lang) {
-    var iMonthNames = new Array("Muharam", "Safar", "Rabī‘ al-awwal", "Rabī‘ ath-thānī", "Jumādá al-ūlá", "Jumādá al-ākhirah", "Rajab", "Sha‘bān", "Ramaḍān", "Shawwāl", "Dhū al-Qa‘dah", "Dhū al-Ḥijjah");
+    var iMonthNames = new Array("Muharam", "Safar", "Rabīʿ al-awwal", "Rabīʿ ath-thānī", "Jumādá al-ūlá", "Jumādá al-ākhirah", "Rajab", "Shaʿbān", "Ramaḍān", "Shawwāl", "Dhū al-Qaʿdah", "Dhū al-Ḥijjah");
 
     if (lang === 'ar') {
         var wdNames = new Array("الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت");

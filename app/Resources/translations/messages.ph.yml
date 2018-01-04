@@ -1,0 +1,23 @@
+fajr: "Alfَjْr"
+shuruk: "Alshuruqْ"
+zuhr: "Alzuhْr"
+asr: "Alʿaَsْr"
+maghrib: "Almَghْrِb"
+isha: "Alʿeِshَa'"
+jumua: "Aljumuʿeَh"
+aid: "Aَlَahu alʿeِydْ"
+imsak: "Aleِmْsَak"
+iqama: "Aleِqَamَh"
+azan: "Alaَdَan"
+
+invocationAfterPrayer:
+    title: "Alaَdْkَar bَ'eْdَ alsَlَah"
+
+duaAfterAthan:
+    title: "Aldu'eَa'u bَ'eْdَ alaَdَan"
+    text: |
+        Allhumَ rَbَ hَdِhِ ald'eْwَhِ altamَh wَalslahِ alqَa'eِmَh atِ mhَmَdaan alwَsylhَ wَalْfَdylَh wَabْ'eَthْh mَqamaan mَhmwdaan alَdy wَ'eَdْtَh
+        
+duaBetweenAthanAndIqama:
+    text: |
+        'Eَnْ aَnَsِ bْnِ mَalِken qَalَ: qَalَ rَsuwlu allَhِ sَlَa allَhu 'eَlَyْhِ wَsَlَmَ: aldu'eَa'u lَa yurَdu bَyْnَ alْaَdَanِ wَalْeِqَamَh
