@@ -67,6 +67,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->getMosquesQuery($nbMax)
             ->where("m.image1 IS NOT NULL")
+            ->andWhere("m.type = 'mosque'")
             ->orderBy("m.id", "DESC")
             ->getQuery()
             ->getResult();
@@ -107,7 +108,8 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin("m.configuration", "c", "m.id = c.mosque_id")
             ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.country,  c.longitude as lng, c.latitude as lat")
             ->where("m.addOnMap = 1")
-            ->andWhere("c.longitude is not null")
+            ->andWhere("m.type = 'mosque'")
+            ->andWhere("c.latitude is not null")
             ->andWhere("c.latitude is not null")
             ->getQuery()
             ->getArrayResult();

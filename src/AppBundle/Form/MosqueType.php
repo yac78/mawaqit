@@ -13,8 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class MosqueType extends AbstractType
 {
@@ -71,6 +74,14 @@ class MosqueType extends AbstractType
                 'attr' => [
                     'placeholder' => 'mosque.form.name.placeholder',
                 ]
+            ])
+            ->add('type', ChoiceType::class, [
+                'required' => true,
+                'label' => 'mosque.form.type.label',
+                'choices' => array_combine([
+                    "mosque.types.mosque",
+                    "mosque.types.home",
+                ], Mosque::TYPES)
             ])
             ->add('slug', null, [
                 'label' => 'mosque.slug',
@@ -134,14 +145,29 @@ class MosqueType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-lg btn-primary',
                 ]
-            ]);
+            ])
+            ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));
     }
+
+    public function onPostSetData(FormEvent $event) {
+        /** @var Mosque $mosque */
+        $mosque = $event->getData();
+
+        if ($mosque->getType() === "home"){
+          $mosque->setAddOnMap(false);
+        }
+    }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Mosque::class
         ));
+    }
+
+    public function getBlockPrefix(){
+        return '';
     }
 
 }

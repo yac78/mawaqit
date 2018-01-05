@@ -26,9 +26,12 @@ registration:
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 
 mosque:
+    types:
+        mosque: Mosquée
+        home: Domicile
     add_new: Ajouter une mosquée
     add: Ajout d'une nouvelle mosquée
-    name: Nom de la mosquée
+    name: Nom
     refresh: | 
                 Recharger la page de l'écran à distance. 
                 En cas de soucis particulier (écran figé ou bug graphique) vous pouvez forcer le rechargement de l'écran.
@@ -36,8 +39,10 @@ mosque:
         action: Forcer la MAJ
         success: Toutes les mosquées ont bien été forcées de se mettre à jour
     form:
+        type:
+            label : Type
         name: 
-            placeholder : Ex. Mosquée Essunna
+            placeholder : Ex. Mosquée Essunna, Mon domicile
         slug: 
             label : Changez l'url du site
         city: 
@@ -402,3 +407,4 @@ error404: Désolé, une erreur est survenue, la page que vous cherchez n'existe 
 error500: Désolé, une erreur est survenue!
 goHome: Page d'accueil
 contactUs: Contactez-nous
+type: Type

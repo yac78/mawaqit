@@ -25,9 +25,12 @@ registration:
     password_rule: 8 characters minimum, including 1 capital, 1 lowercase and 1 number
 
 mosque:
+    types:
+        mosque: Mosque
+        home: Home
     add_new: Add a mosque
     add: Adding a new mosque
-    name: Name of the mosque
+    name: Name
     refresh: |
         Reload the screen page remotely.
         In case of particular problems (frozen screen or graphic bug) you can force the reloading of the screen.
@@ -35,8 +38,10 @@ mosque:
         action: "Force reloading"
         success: "All mosques have been reloaded"
     form:
+        type:
+            label : Type
         name:
-            placeholder :" Ex. Essunna mosque"
+            placeholder : "Ex. Essunna mosque, My home"
         slug:
             label : "Change the website url"
         city:
@@ -391,3 +396,4 @@ error404: Sorry, an error has occured, Requested page not found!
 error500: Sorry, an error has occured !
 goHome: Go home
 contactUs: Conact-us
+type: Type

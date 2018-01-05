@@ -9,6 +9,8 @@ AppBundle\Entity\Mosque:
             generator:
                 strategy: AUTO
     fields:
+        type:
+            type: string
         name:
             type: string
             length: 1024

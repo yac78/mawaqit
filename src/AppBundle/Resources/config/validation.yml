@@ -8,7 +8,16 @@ AppBundle\Entity\User:
 
 AppBundle\Entity\Mosque:
     properties:
+        type:
+            - NotBlank: ~
+            - Choice :  {callback : "getTypes"}
+        name:
+            - NotBlank: ~
         city:
+            - NotBlank: ~
+        zipcode:
+            - NotBlank: ~
+        country:
             - NotBlank: ~
 
 AppBundle\Entity\Message:

@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Mosque
 {
+    const TYPES = [
+        "mosque", "home"
+    ];
 
     /**
      * @var int
@@ -20,6 +23,12 @@ class Mosque
      * @var string
      */
     private $name;
+
+    /**
+     * @
+     * @var string
+     */
+    private $type = "mosque";
 
     /**
      * @var string
@@ -729,6 +738,34 @@ class Mosque
     public function setAddOnMap($addOnMap)
     {
         $this->addOnMap = $addOnMap;
+    }
+
+    public function getTypes(){
+        return self::TYPES;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Mosque
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
 

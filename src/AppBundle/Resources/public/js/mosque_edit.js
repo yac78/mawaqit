@@ -1,7 +1,7 @@
-$("#mosque_user_complete").autocomplete({
+$("#user_complete").autocomplete({
     source: function (request, response) {
         $.ajax({
-            url: $("#mosque_user_complete").data("remote"),
+            url: $("#user_complete").data("remote"),
             dataType: "json",
             data: {
                 term: request.term
@@ -13,6 +13,19 @@ $("#mosque_user_complete").autocomplete({
     },
     minLength: 2,
     select: function (event, ui) {
-        $("#mosque_user").val(ui.item.id);
+        $("#user").val(ui.item.id);
     }
 });
+
+
+function typeDisplayHandler() {
+    $type = $("#type");
+    $(".mosque-block").hide();
+    $("."+$type.val()+"-block").show();
+}
+
+$("#type").bind("change", function (event) {
+    typeDisplayHandler();
+});
+
+typeDisplayHandler();
