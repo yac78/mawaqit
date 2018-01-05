@@ -41,6 +41,9 @@ mosque:
             label : "Change the website url"
         city:
             placeholder: "The city of the mosque (used to calculate the geographical position)"
+        address:
+            help: It is strongly recommended to enter the address to facilitate the faithful to find your mosque
+            placeholder: Ex. 5 rue de paris
         zipcode:
             placeholder: "The postal code of the mosque (used to calculate the geographical position)"
         rib:
@@ -317,7 +320,7 @@ add: Add
 title: Title
 content: Content
 developed_by: Developed by Binary Consulting SAS
-next_prayer: Netx prayer
+next_prayer: Next prayer
 last_login: Last log in
 alarm: Alarm
 
@@ -365,6 +368,13 @@ order: Order
 
 invocationAfterPrayer:
     title: Invocations after prayer
+
+jumuaReminder:
+    text: |
+      The Prophet (peace and blessings of Allah be upon him) said
+      "Whoever does the ablutions perfectly then goes to jumuʿa and then listens and is silent,
+      he is forgiven what is between that time and the following Friday and three more days
+      and the one who touches stones has certainly made a futility"
 
 duaAfterAthan:
     title: Invocation after adhân

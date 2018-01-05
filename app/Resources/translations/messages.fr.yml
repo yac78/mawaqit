@@ -1,7 +1,7 @@
 form:
     label:
         delete: Supprimer ?
-    mandatory_field:  Champ obligatoir
+    mandatory_field:  Champ obligatoire
     create:
         success:  L'ajout a été réalisé avec succès.
     edit:
@@ -42,7 +42,10 @@ mosque:
             label : Changez l'url du site
         city: 
             placeholder: La ville de la mosquée (Sert à calculer la position géographique)
-        zipcode: 
+        address:
+            help: Il est fortement recommandé de saisir l'adresse afin de faciliter aux fidèles de trouver votre mosquée
+            placeholder: Ex. 5 rue de paris
+        zipcode:
             placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
         rib: 
             placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
@@ -382,7 +385,16 @@ duaAfterAthan:
         (le Jour du Jugement) et la place d'honneur [au Paradis], et ressuscite-le dans la position louable que Tu lui as promise
         
 duaBetweenAthanAndIqama:
-    text: "Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit : Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées"
+    text: |
+        Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit :
+        Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées
+
+jumuaReminder:
+    text: |
+        Le Prophète (que la prière d'Allah et son salut soient sur lui) a dit
+        "Celui qui fait les ablutions parfaitement puis se rend au jumu'a puis écoute et se tait,
+        il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
+        et celui qui touche des cailloux a certes fait une futilité"
 
 languages: Langues
 

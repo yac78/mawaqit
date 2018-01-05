@@ -115,7 +115,7 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.jumuaDhikrReminderEnabled.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.jumuaDhikrReminderEnabled.title'),
+                        'title' => 'configuration.form.jumuaDhikrReminderEnabled.title',
                     ]
                 ])
                 ->add('jumuaBlackScreenEnabled', CheckboxType::class, [
@@ -215,7 +215,7 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.timezone.label',
                     'choices' => array_flip(self::$timezones),
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.timezone.title'),
+                        'title' => 'configuration.form.timezone.title',
                     ],
                 ])
                 ->add('dst', ChoiceType::class, [
@@ -224,7 +224,7 @@ class ConfigurationType extends AbstractType {
                     'choices' => self::$dstChoices,
                     'choice_translation_domain' => true,
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.dst.title'),
+                        'title' => 'configuration.form.dst.title',
                     ],
                 ])
                 ->add('hadithLang', ChoiceType::class, [
@@ -253,7 +253,7 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.azanVoiceEnabled.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.azanVoiceEnabled.title'),
+                        'title' => 'configuration.form.azanVoiceEnabled.title',
                     ],
                 ])
                 ->add('iqamaBip', CheckboxType::class, [
@@ -264,7 +264,7 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.blackScreenWhenPraying.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.blackScreenWhenPraying.title'),
+                        'title' => 'configuration.form.blackScreenWhenPraying.title',
                     ],
                 ])
                 ->add('sourceCalcul', ChoiceType::class, [
@@ -303,35 +303,35 @@ class ConfigurationType extends AbstractType {
                     'required' => false,
                     'label' => 'configuration.form.wakeForFajrTime.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.wakeForFajrTime.title'),
+                        'title' => 'configuration.form.wakeForFajrTime.title',
                     ]
                 ])
                 ->add('urlQrCodeEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.urlQrCodeEnabled.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.urlQrCodeEnabled.title'),
+                        'title' => 'configuration.form.urlQrCodeEnabled.title',
                     ]
                 ])
                 ->add('smallScreen', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.smallScreen.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.smallScreen.title'),
+                        'title' => 'configuration.form.smallScreen.title',
                     ]
                 ])
                 ->add('ninetyMinBetweenMaghibAndIsha', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.ninetyMinBetweenMaghibAndIsha.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.ninetyMinBetweenMaghibAndIsha.title'),
+                        'title' => 'configuration.form.ninetyMinBetweenMaghibAndIsha.title',
                     ]
                 ])
                 ->add('randomHadithEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.randomHadithEnabled.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.randomHadithEnabled.title'),
+                        'title' => 'configuration.form.randomHadithEnabled.title',
                     ]
                 ])
                 ->add('randomHadithIntervalDisabling', ChoiceType::class, [
@@ -339,21 +339,21 @@ class ConfigurationType extends AbstractType {
                     'choices' => self::$randomHadithIntervalDisabling,
                     'label' => 'configuration.form.randomHadithIntervalDisabling.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.randomHadithIntervalDisabling.title'),
+                        'title' => 'configuration.form.randomHadithIntervalDisabling.title',
                     ]
                 ])
                 ->add('iqamaEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.iqamaEnabled.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.iqamaEnabled.title'),
+                        'title' => 'configuration.form.iqamaEnabled.title',
                     ]
                 ])
                 ->add('temperatureEnabled', CheckboxType::class, [
                     'required' => false,
                     'label' => 'configuration.form.temperatureEnabled.label',
                     'attr' => [
-                        'title' => $this->translator->trans('configuration.form.temperatureEnabled.title'),
+                        'title' => 'configuration.form.temperatureEnabled.title',
                     ]
                 ])
                 ->add('backgroundColor', null, [
@@ -366,7 +366,7 @@ class ConfigurationType extends AbstractType {
                     'label' => 'configuration.form.timeToDisplayMessage.label',
                     'attr' => [
                         'min' => 5,
-                        'title' => $this->translator->trans('configuration.form.timeToDisplayMessage.title'),
+                        'title' => 'configuration.form.timeToDisplayMessage.title',
                     ]
                 ])
                 ->add('save', SubmitType::class, [

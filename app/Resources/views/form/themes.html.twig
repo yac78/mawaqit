@@ -8,7 +8,11 @@
     {% endif %}
 
     {% if attr.title is defined and  attr.title is not empty %}
-        <span class="fa fa-question-circle hidden-xs" title="{{ attr.title }}"></span>
+        <span class="fa fa-question-circle hidden-xs" title="{{ attr.title|trans }}"></span>
+    {% endif %}
+
+    {% if attr.help is defined and  attr.help is not empty %}
+        <div class="text-muted"> {{ attr.help|trans }}</div>
     {% endif %}
 {% endblock %}
 
@@ -19,7 +23,7 @@
     {% else -%}
         {{ parent() }}
         {% if attr.title is defined and  attr.title is not empty %}
-            <span class="fa fa-question-circle hidden-xs" title="{{ attr.title }}"></span>
+            <span class="fa fa-question-circle hidden-xs" title="{{ attr.title|trans }}"></span>
         {% endif %}
     {%- endif %}
 {%- endblock checkbox_widget %}
