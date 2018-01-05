@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $search = $request->query->get("search");
+        $search = $request->query->all();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->getRepository("AppBundle:User")->search($search);
         $paginator = $this->get('knp_paginator');

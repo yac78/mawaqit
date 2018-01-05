@@ -11,18 +11,23 @@ namespace AppBundle\Repository;
 class UserRepository extends \Doctrine\ORM\EntityRepository {
 
     /**
-     * @param $search
+     * @param $filter
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function search($search) {
+    function search(array $filter) {
+
         $qb = $this->createQueryBuilder("u")
                 ->orderBy("u.id", "DESC");
 
-        if (!empty($search)) {
+        if (!empty($filter["search"])) {
             $qb->andWhere("u.username LIKE :search "
                             . "OR u.email LIKE :search"
                     )
-                    ->setParameter(":search", "%$search%");
+                    ->setParameter(":search", "%".$filter["search"]."%");
+        }
+
+        if (isset($filter["disabled"]) && $filter["disabled"] === "on") {
+            $qb->andWhere("u.enabled = 0");
         }
         return $qb;
     }
