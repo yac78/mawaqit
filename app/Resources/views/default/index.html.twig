@@ -229,7 +229,7 @@
             <div class="container">
                 <h2 class="section-heading">Quelques mosquées équipées</h2>
                 <p class="section-subheading text-muted">
-                    Grace à Allah notre logiciel est installé dans plus de <strong>{{ mosquesFroMap|length }}</strong>
+                    Grace à Allah notre logiciel est installé dans plus de <strong>{{ totalMosquesCount }}</strong>
                     mosquées
                     partout dans le monde, voici quelques exemples
                 </p>
@@ -557,8 +557,8 @@
                 center: {lat: 48, lng: 3}
             });
 
-            var mosquesFroMap = {{ mosquesFroMap|json_encode|raw }};
-            $.each(mosquesFroMap, function (i, mosque) {
+            var mosquesForMap = {{ mosquesForMap|json_encode|raw }};
+            $.each(mosquesForMap, function (i, mosque) {
                 addMosque(mosque, map);
             })
         }

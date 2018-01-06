@@ -32,4 +32,31 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
         return $qb;
     }
 
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    function count()
+    {
+        return $this->createQueryBuilder("u")
+            ->select("count(u.id)")
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    function countEnabled()
+    {
+        return $this->createQueryBuilder("u")
+            ->select("count(u.id)")
+            ->where("u.enabled = 1")
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 }

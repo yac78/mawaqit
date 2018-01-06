@@ -90,10 +90,24 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    function getMosqueCount()
+    function count()
     {
         return $this->createQueryBuilder("m")
             ->select("count(m.id)")
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    function countMosques()
+    {
+        return $this->createQueryBuilder("m")
+            ->select("count(m.id)")
+            ->where("m.type = 'mosque'")
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -110,8 +124,23 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->where("m.addOnMap = 1")
             ->andWhere("m.type = 'mosque'")
             ->andWhere("c.latitude is not null")
-            ->andWhere("c.latitude is not null")
+            ->andWhere("c.longitude is not null")
             ->getQuery()
             ->getArrayResult();
+    }
+
+
+    /**
+     * get mosques by country
+     * @return array
+     */
+    function getNumberByCountry()
+    {
+        return $this->createQueryBuilder("m")
+            ->select("count(m.id) as nb, m.country")
+            ->orderBy("nb", "DESC")
+            ->groupBy("m.country")
+            ->getQuery()
+            ->getResult();
     }
 }
