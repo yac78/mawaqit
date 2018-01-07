@@ -13,7 +13,11 @@
 {% block body %}
     {% include 'partial/flash_msg.html.twig' %}
 
-    <h1>{{ 'my_mosques'|trans }} ({{ mosques.totalItemCount }})</h1>
+    {% if app.request.get('search') %}
+        <h1>{{ 'found'|trans }} ({{ mosques.totalItemCount }})</h1>
+    {% else %}
+        <h1>{{ 'my_mosques'|trans }} ({{ mosques.totalItemCount }})</h1>
+    {% endif %}
 
     <div class="row mt-2">
         <div class="col-md-8 col-xs-12 text-left">
