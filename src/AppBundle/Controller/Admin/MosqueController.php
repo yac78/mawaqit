@@ -59,8 +59,6 @@ class MosqueController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $mosque->setUser($this->getUser());
-            $mosque->setCity(str_replace(" ", "-", $mosque->getCity()));
-
             try {
                 $configuration = new Configuration();
                 // update gps coordinates
