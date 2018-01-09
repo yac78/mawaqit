@@ -1,28 +1,20 @@
-fajr: "Alfَjْr"
-shuruk: "Alshuruqْ"
-zuhr: "Alzuhْr"
-asr: "Alʿaَsْr"
-maghrib: "Almَghْrِb"
-isha: "Alʿeِshَa'"
-jumua: "Aljumuʿeَh"
-aid: "Aَlَahu alʿeِydْ"
-imsak: "Aleِmْsَak"
-iqama: "Aleِqَamَh"
-azan: "Alaَdَan"
-
 invocationAfterPrayer:
-    title: "Alaَdْkَar bَ'eْdَ alsَlَah"
+    title: "Al adkar baʿada salat"
 
 jumuaReminder:
     text: |
-        'eَnْ aَbِy hurَyْrَhَ qَalَ qَalَ rَsuwlu allَhِ sَlَa allَhm 'eَlَyْhِ wَsَlَmَ mَnْ tَwَdَaَ fَaَhْsَnَ alْwuduw'َ thumَ aَtَa
-        alْjumu'eَhَ fَasْtَmَ'eَ wَaَnْsَtَ ghufِrَ lَhu mَa bَyْnَhu wَbَyْnَ alْjumu'eَhِ wَzِyَadَhu thَlathَhِ aَyَamen wَmَnْ mَsَ alْhَsَa fَqَdْ lَghَa
+        عَنْ أَبِي هُرَيْرَةَ قَالَ قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهم عَلَيْهِ وَسَلَّمَ مَنْ تَوَضَّأَ فَأَحْسَنَ الْوُضُوءَ ثُمَّ أَتَى
+        الْجُمُعَةَ فَاسْتَمَعَ وَأَنْصَتَ غُفِرَ لَهُ مَا بَيْنَهُ وَبَيْنَ الْجُمُعَةِ وَزِيَادَةُ ثَلاثَةِ أَيَّامٍ وَمَنْ مَسَّ الْحَصَى فَقَدْ لَغَا
+        ʿan abi hurayra radia allahu ʿanh qala: qala rasulu allahi salla allahu ʿalyhi wa sallam, man
+        tawaddaa fa
+
 
 duaAfterAthan:
     title: "Alduʿeَa'u bَ'eْdَ alaَdَan"
     text: |
-        Allhumَ rَbَ hَdِhِ ald'eْwَhِ altamَh wَalslahِ alqَa'eِmَh atِ mhَmَdaan alwَsylhَ wَalْfَdylَh wَabْ'eَthْh mَqamaan mَhmwdaan alَdy wَ'eَdْtَh
+        اللّهُـمَّ رَبَّ هَذِهِ الدّعْـوَةِ التّـامَّة وَالصّلاةِ القَـائِمَة آتِ محَـمَّداً الوَسيـلةَ وَالْفَضـيلَة وَابْعَـثْه مَقـامـاً مَحـموداً الَّذي وَعَـدْتَه
+
 
 duaBetweenAthanAndIqama:
     text: |
-        'Eَnْ aَnَsِ bْnِ mَalِken qَalَ: qَalَ rَsuwlu allَhِ sَlَa allَhu 'eَlَyْhِ wَsَlَmَ: aldu'eَa'u lَa yurَdu bَyْnَ alْaَdَanِ wَalْeِqَamَh
+       عَنْ أَنَسِ بْنِ مَالِكٍ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: الدُّعَاءُ لَا يُرَدُّ بَيْنَ الْأَذَانِ وَالْإِقَامَة
