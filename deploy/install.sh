@@ -43,6 +43,12 @@ bin/console cache:warmup --env=prod
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 
+# backup DB if prod deploy
+if [ "$env" -eq "prod" ]; then
+    echo "Backup prod DB"
+    $baseDir/tools/dbBackup.sh
+fi
+
 # migrate DB
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
