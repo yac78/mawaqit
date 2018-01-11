@@ -60,7 +60,7 @@ var prayer = {
         }
     },
     /**
-     *
+     * check for update every 1 minute
      */
     initUpdateConfData: function () {
         var remote = $("#main").data("remote");
@@ -73,7 +73,7 @@ var prayer = {
                     }
                 }
             });
-        }, prayer.oneSecond * 30);
+        }, prayer.oneSecond * 60);
     },
     /**
      * load prayer times
