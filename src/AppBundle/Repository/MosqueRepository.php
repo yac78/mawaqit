@@ -90,7 +90,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    function count()
+    function getCount()
     {
         return $this->createQueryBuilder("m")
             ->select("count(m.id)")

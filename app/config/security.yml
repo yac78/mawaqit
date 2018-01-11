@@ -23,6 +23,11 @@ security:
             logout:     
                 path:  fos_user_security_logout
                 target: /
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 31536000 # 1 year
+                path:     /
+                secure: true
 
     access_control:
         # IS_AUTHENTICATED_ANONYMOUSLY

@@ -23,7 +23,7 @@ class DefaultController extends Controller {
         $mosqueRepo = $em->getRepository("AppBundle:Mosque");
         $mosquesWithImage = $mosqueRepo->getMosquesWithImage($mosqueNb);
         $mosquesForMap =  $mosqueRepo->getAllMosquesForMap();
-        $totalMosquesCount =  $mosqueRepo->count();
+        $totalMosquesCount =  $mosqueRepo->getCount();
 
         return $this->render('default/index.html.twig', [
                     "totalMosquesCount" => $totalMosquesCount,

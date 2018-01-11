@@ -19,10 +19,10 @@ class StatsController extends Controller
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
         $userRepository = $em->getRepository("AppBundle:User");
 
-        $totalMosquesAndHomes = $mosqueRepository->count();
+        $totalMosquesAndHomes = $mosqueRepository->getCount();
         $totalMosques = $mosqueRepository->countMosques();
 
-        $totalUsers = $userRepository->count();
+        $totalUsers = $userRepository->getCount();
         $totalUsersEnabled = $userRepository->countEnabled();
 
         $stats = [

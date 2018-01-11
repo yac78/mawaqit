@@ -37,7 +37,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    function count()
+    function getCount()
     {
         return $this->createQueryBuilder("u")
             ->select("count(u.id)")
