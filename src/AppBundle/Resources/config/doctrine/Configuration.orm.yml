@@ -88,6 +88,12 @@ AppBundle\Entity\Configuration:
             type: smallint
         dst:
             type: smallint
+        dstSummerDate:
+            type: date
+            nullable: true
+        dstWinterDate:
+            type: date
+            nullable: true
         hadithLang:
             type: string
             length: 50

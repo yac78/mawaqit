@@ -175,13 +175,12 @@ $("#appbundle_configuration_randomHadithEnabled").bind("change", function (event
 });
 
 function iqamaSettingsDisplayHandler() {
-    $iqamaCheckbox = $("#appbundle_configuration_iqamaEnabled");
+    var $iqamaCheckbox = $("#appbundle_configuration_iqamaEnabled");
     if ($iqamaCheckbox.is(":checked")) {
         $(".iqama-settings").show();
     } else {
         $(".iqama-settings").hide();
     }
-
 }
 
 $("#appbundle_configuration_iqamaEnabled").bind("change", function (event) {
@@ -201,6 +200,20 @@ $("#appbundle_configuration_noJumua").trigger("change");
 $("#appbundle_configuration_randomHadithEnabled").trigger("change");
 $(".jumuaTimeoutHandler input").trigger("change");
 
+function dstDisplayHandler() {
+    var $dst = $("#appbundle_configuration_dst");
+    if ($dst.val() == "1") {
+        $(".dst-bloc").show();
+    } else {
+        $(".dst-bloc").hide();
+    }
+}
+
+$("#appbundle_configuration_dst").change(function () {
+    dstDisplayHandler();
+});
+
+dstDisplayHandler();
 checkAndHilightIncompletedMonths();
 handleErrorsDisplay();
 iqamaSettingsDisplayHandler();

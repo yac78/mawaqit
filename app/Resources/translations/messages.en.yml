@@ -160,7 +160,15 @@ configuration:
                 If your country applies daylight saving time, enable this option.
                 If you want the schedules to automatically follow the time change, set auto.
                 For information the system image provided on our website is set to France.
-        iqamaDisplayTime: 
+        dstSummerDate:
+            label: Summer daylight saving time
+            title: |
+                Select the date you want the daylight saving time to change, by default it's the last Sunday of March
+        dstWinterDate:
+            label: Winter daylight saving time
+            title: |
+                Select the date you want the winter daylight saving time to change, by default it's the last Sunday of October
+        iqamaDisplayTime:
             label: Iqamah signal display time (in seconds)
         hijriDateEnabled: 
             label: Hegira date
@@ -263,7 +271,7 @@ fr: French
 en: English
 ph: Phonetic
 both: Arabic & French
-auto: Auto (Depends on the raspberry system setting)
+auto: Auto (Depends on the raspberry system setting, France by default)
 enabled: Enabled
 disabled: Disabled
 send: Envoyer

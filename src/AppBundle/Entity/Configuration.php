@@ -179,9 +179,19 @@ class Configuration
     /**
      * @var integer
      * default to 2 = auto
-     * possible values 0,1,2
+     * possible values 0 (disabled), 1 (enabled), 2 (auto)
      */
     private $dst = 2;
+
+    /**
+     * DateTime
+     */
+    private $dstSummerDate;
+
+    /**
+     * DateTime
+     */
+    private $dstWinterDate;
 
     /**
      * @var int
@@ -859,7 +869,7 @@ class Configuration
     /**
      * Set calendar
      *
-     * @param string $prayerTimeSite
+     * @param string $calendar
      *
      * @return Configuration
      */
@@ -873,7 +883,7 @@ class Configuration
     /**
      * Get calendar
      *
-     * @return string
+     * @return array
      */
     public function getCalendar(): array
     {
@@ -1155,5 +1165,43 @@ class Configuration
         $this->ninetyMinBetweenMaghibAndIsha = $ninetyMinBetweenMaghibAndIsha;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDstSummerDate()
+    {
+        return $this->dstSummerDate;
+    }
+
+    /**
+     * @param mixed $dstSummerDate
+     * @return Configuration
+     */
+    public function setDstSummerDate($dstSummerDate)
+    {
+        $this->dstSummerDate = $dstSummerDate;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDstWinterDate()
+    {
+        return $this->dstWinterDate;
+    }
+
+    /**
+     * @param mixed $dstWinterDate
+     * @return Configuration
+     */
+    public function setDstWinterDate($dstWinterDate)
+    {
+        $this->dstWinterDate = $dstWinterDate;
+        return $this;
+    }
+
+    
 
 }

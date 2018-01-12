@@ -161,11 +161,21 @@ configuration:
             label: 1h30 entre maghrib et isha
             title: Appliquer 1h30 entre maghrib et isha quelque soit la méthode de calcul
         dst: 
-            label: Heure d'été
+            label: Changement d'heure été/hiver
             title: |
                 Si votre pays applique le changement d'heure d'été, activez cette option. 
                 Si vous souhaitez que les horaires suivent automatiquement le changement d'heure mettez auto.
-                Pour information l'image système fournie sur notre site est réglée sur la France (changement d'heure auto)                
+                Pour information l'image système fournie sur notre site est réglée sur la France (changement d'heure auto)
+        dstSummerDate:
+            label: Date de changement été
+            title: |
+                Séléctionnez la date à laquelle vous souhaitez que le changement d'heure d'été s'opère, par défaut c'est le
+                dernier dimanche du mois de mars
+        dstWinterDate:
+            label: Date de changement hiver
+            title: |
+                Séléctionnez la date à laquelle vous souhaitez que le changement d'heure d'hiver s'opère, par défaut c'est le
+                dernier dimanche du mois d'octobre
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqâmah (en secondes)
         hijriDateEnabled: 
@@ -269,7 +279,7 @@ fr: Français
 en: Anglais  
 ph: Phonétique
 both: Arabe & Français
-auto: Auto (Dépend du réglage système du raspberry)
+auto: Auto (Dépend du réglage système du raspberry, France par défaut)
 enabled: Activé
 disabled: Désactivé
 send: Envoyer
