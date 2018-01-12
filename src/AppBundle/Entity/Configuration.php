@@ -2,8 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Mosque;
-
 /**
  * Configuration
  */
@@ -302,7 +300,8 @@ class Configuration
     }
 
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -1202,6 +1201,5 @@ class Configuration
         return $this;
     }
 
-    
 
 }

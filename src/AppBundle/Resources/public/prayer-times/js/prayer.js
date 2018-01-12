@@ -104,6 +104,24 @@ var prayer = {
 
     },
     /**
+     * Get dst for API prayer calcul
+     * @returns {Integer}
+     */
+    getDst: function () {
+        var date = (new Date()).setHours(4);
+        if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
+            var dstSummerDate = new Date(prayer.confData.dstSummerDate.timestamp * 1000);
+            var dstWinterDate = new Date(prayer.confData.dstWinterDate.timestamp * 1000);
+            if (date > dstSummerDate  && date < dstWinterDate){
+                return 1;
+            }
+            return 0;
+        }
+
+        return prayer.confData.dst;
+    },
+
+    /**
      * @param {boolean} tomorrow
      * Load times from PrayTimes API
      */
@@ -133,7 +151,7 @@ var prayer = {
             date = dateTime.tomorrow();
         }
 
-        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, prayer.confData.dst);
+        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, prayer.getDst());
 
         this.times = {
             1: pt.fajr,
@@ -159,7 +177,7 @@ var prayer = {
 
             // adjust isha to 90 min after maghrib if option enabled
             if (i === 4 && prayer.confData.ninetyMinBetweenMaghibAndIsha === true) {
-                var maghribDateTime =  prayer.getCurrentDateForPrayerTime(times[3]);
+                var maghribDateTime = prayer.getCurrentDateForPrayerTime(times[3]);
                 maghribDateTime.setMinutes(maghribDateTime.getMinutes() + 90);
                 times[i] = maghribDateTime.getHours() + ':' + maghribDateTime.getMinutes();
             }
@@ -301,7 +319,7 @@ var prayer = {
 
             prayer.showSpecialTimes();
 
-        }, prayer.oneMinute);
+        }, prayer.oneSecond);
     },
     /**
      * Reload page every day at 2 o'clock to prevent any graphical bug

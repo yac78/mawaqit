@@ -232,6 +232,7 @@ class ConfigurationType extends AbstractType
                 ],
             ])
             ->add('dstSummerDate', DateType::class, [
+                'required' => false,
                 'label' => 'configuration.form.dstSummerDate.label',
                 'widget'=> 'single_text',
                 'placeholder' => 'jj/mm/aaaa',
@@ -240,6 +241,7 @@ class ConfigurationType extends AbstractType
                 ],
             ])
             ->add('dstWinterDate', DateType::class, [
+                'required' => false,
                 'label' => 'configuration.form.dstWinterDate.label',
                 'placeholder' => 'jj/mm/aaaa',
                 'widget'=> 'single_text',
