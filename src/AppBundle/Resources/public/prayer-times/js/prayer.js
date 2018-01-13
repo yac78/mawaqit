@@ -168,8 +168,7 @@ var prayer = {
      * @returns {Array}
      */
     getTimes: function (afterIsha) {
-        var times = this.times;
-        times = [times[1], times[3], times[4], times[5], times[6]];
+        var times = [this.times[1], this.times[3], this.times[4], this.times[5], this.times[6]];
         $.each(times, function (i, time) {
             if (typeof afterIsha === 'undefined') {
                 times[i] = prayer.dstConvertTimeForCalendarMode(time);
@@ -220,6 +219,7 @@ var prayer = {
      * handle next prayer countdown
      */
     nextPrayerCountdown: function () {
+        var prayerDateTime;
         var date = new Date();
         // by default we countdwon the next day fajr
         var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
@@ -316,11 +316,7 @@ var prayer = {
      * @returns {String}
      */
     getChouroukTime: function () {
-        var chouroukTime = this.times[2];
-        if (dateTime.isLastSundayDst()) {
-            chouroukTime = prayer.dstConvertTimeForCalendarMode(chouroukTime);
-        }
-        return chouroukTime;
+        return prayer.dstConvertTimeForCalendarMode(this.times[2]);
     },
     /**
      * Get the imsak time calculated by soustraction of imsakNbMinBeforeFajr from sobh time
