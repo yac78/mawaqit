@@ -47,7 +47,7 @@ var prayer = {
     loadData: function () {
         this.loadTimes();
 
-        // if current time > ichaa time + 5 minutes we load tomorrow times
+        // if current time > ichaa time + this.nextPrayerHilightWait minutes we load tomorrow times
         var date = new Date();
         if (date.getHours() !== 0) {
             var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIshaTime());
@@ -112,7 +112,7 @@ var prayer = {
         if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
             var dstSummerDate = new Date(prayer.confData.dstSummerDate.timestamp * 1000);
             var dstWinterDate = new Date(prayer.confData.dstWinterDate.timestamp * 1000);
-            if (date > dstSummerDate  && date < dstWinterDate){
+            if (date > dstSummerDate && date < dstWinterDate) {
                 return 1;
             }
             return 0;
@@ -239,23 +239,55 @@ var prayer = {
         });
     },
     /**
+     * Check conditions to apply dst for calendar mode
+     * @return {boolean}
+     */
+    applyDstForCalendarMode: function () {
+        if (prayer.confData.sourceCalcul === "calendar") {
+            // dst = 2 => auto
+            if (prayer.confData.dst === 2) {
+                return dateTime.isLastSundayDst();
+            }
+
+            // dst = 1 => enabled
+            if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
+                var dstSummerDate = new Date(prayer.confData.dstSummerDate.timestamp * 1000);
+                var dstWinterDate = new Date(prayer.confData.dstWinterDate.timestamp * 1000);
+                var date = (new Date()).setHours(4);
+                if (date > dstSummerDate && date < dstWinterDate) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    },
+    /**
      * +1|-1 hour on time for calendar times
      * Condition 1 : on calendar prayers
-     * Condition 2 : if dst enabled or auto
-     * Condition 3 : if we are in last synday of march or october
+     * Condition 2 : if dst auto and we are in last synday of march or october
+     * Condition 3 : if dst enablded and we are in choosen dates
      * @param {String} time
      * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
-        var applyConvertion = prayer.confData.sourceCalcul === "calendar" &&
-            prayer.confData.dst !== 0 &&
-            dateTime.isLastSundayDst();
+        if (this.applyDstForCalendarMode()) {
+            var prayerdateTime = prayer.getCurrentDateForPrayerTime(time);
+            var hour;
 
-        if (applyConvertion) {
-            time = time.split(":");
-            var hourPrayerTime = Number(time[0]) + (dateTime.getCurrentMonth() === 2 ? 1 : -1);
-            var minutePrayerTime = time[1];
-            time = addZero(hourPrayerTime) + ':' + minutePrayerTime;
+            // dst auto => legacy
+            if (prayer.confData.dst === 2) {
+                hour = dateTime.getCurrentMonth() === 2 ? 1 : -1;
+            }
+
+            // dst enabled
+            if (prayer.confData.dst === 1) {
+                hour = 1;
+            }
+
+            prayerdateTime.setHours(prayerdateTime.getHours() + hour);
+
+            return addZero(prayerdateTime.getHours()) + ':' + addZero(prayerdateTime.getMinutes());
         }
         return time;
     },

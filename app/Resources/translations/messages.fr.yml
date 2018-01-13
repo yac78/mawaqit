@@ -95,6 +95,7 @@ message:
             title : Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage
 
 configuration:
+    select_calendar: Séléctionner un calendrier
     title: Configuration des horaires de "%mosque%"
     list:
         download_csv_files: Télécharger le calendrier
@@ -103,7 +104,7 @@ configuration:
     form: 
         prayerCalcul: Calcul des horaires de prière
         load_predefined_calendar: 
-            1: "Vous avez le choix entre les 2 options suivantes :"
+            1: "Vous avez deux choix :"
             2: Charger un calendrier pré-défini parmis la liste ci-dessous puis l'éditer par rapport à votre calendrier papier
             3: Charger les horaires depuis un fichier texte type CSV pour chaque mois de l'année
              
@@ -161,21 +162,18 @@ configuration:
             label: 1h30 entre maghrib et isha
             title: Appliquer 1h30 entre maghrib et isha quelque soit la méthode de calcul
         dst: 
-            label: Changement d'heure été/hiver
+            label: Changement d'heure d'été
             title: |
-                Si votre pays applique le changement d'heure d'été, activez cette option. 
-                Si vous souhaitez que les horaires suivent automatiquement le changement d'heure mettez auto.
-                Pour information l'image système fournie sur notre site est réglée sur la France (changement d'heure auto)
+                Si votre pays applique le changement d'heure d'été, activez cette option.
+                Mettez auto si votre mosquée est en France
         dstSummerDate:
-            label: Date de changement été
+            label: Date de changement d'été
             title: |
-                Séléctionnez la date à laquelle vous souhaitez que le changement d'heure d'été s'opère, par défaut c'est le
-                dernier dimanche du mois de mars
+                Séléctionnez la date à laquelle le changement d'heure d'été prendra effet dans l'année en cours, par défaut c'est le dernier dimanche du mois de mars
         dstWinterDate:
-            label: Date de changement hiver
+            label: Date de changement d'hiver
             title: |
-                Séléctionnez la date à laquelle vous souhaitez que le changement d'heure d'hiver s'opère, par défaut c'est le
-                dernier dimanche du mois d'octobre
+                Séléctionnez la date à laquelle le changement d'heure d'hiver prendra effet dans l'année en cours, par défaut c'est le dernier dimanche du mois d'octobre
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqâmah (en secondes)
         hijriDateEnabled: 
@@ -377,9 +375,9 @@ month_11: Décembre
 prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
-    Ne pas tenir compte du changement d'heure été/hiver, 
-    le logiciel s'en occupe en fonction du dernier dimanche du mois de "%month%" de chaque année.<br>
-    Saisissez les horaires comme s'il y avait pas de changement d'heure
+    Si vous avez activé le changement d'heure d'été dans les Paramètres régionaux, alors
+    il ne faut pas tenir compte du changement d'heure dans votre saisi du calendrier,
+    le logiciel s'en occupera en fonction de vos choix de dates.
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
 regional_settings: Paramètres régionaux

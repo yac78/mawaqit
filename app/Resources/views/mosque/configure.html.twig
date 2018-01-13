@@ -27,6 +27,34 @@
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#regionalSettings">
+                    <span style="font-weight: 700;">{{ "regional_settings"|trans }}</span>
+                </div>
+                <div id="regionalSettings" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.timezone) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.dst) }}
+                            </div>
+                            <div class="dst-bloc">
+                                <div class="col-md-3">
+                                    {{ form_row(form.dstSummerDate) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.dstWinterDate) }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
                      href="#prayerCalcul">
                     <span style="font-weight: 700;">{{ 'configuration.form.prayerCalcul'|trans }}</span>
                 </div>
@@ -67,12 +95,20 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert alert-warning">
+                                        <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans|raw }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="form-group col-md-3">
                                     <select class="form-control" id="predefined-calendar"
                                             data-ajax-url="{{ path('ajax_load_calendar') }}">
-                                        <option value=""></option>
+                                        <option value="">{{ 'configuration.select_calendar'|trans }}</option>
                                         {% for calendar in predefinedCalendars %}
-                                            <option value="{{ calendar }}">{{ calendar }}</option>
+                                            <option value="{{ calendar }}">{{ calendar|replace({"-": " "}) }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -108,16 +144,6 @@
                                                                     aria-hidden="true">&times;</span></button>
                                                         {{ 'configuration.form.fill_calendar.error'|trans }}
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-11 col-md-offset-1">
-                                                    {% if month == 2 or month == 9 %}
-                                                        <div class="alert alert-danger">
-                                                            <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans({'%month%': ('month_'~month)|trans})|raw }}
-                                                        </div>
-                                                    {% endif %}
                                                 </div>
                                             </div>
                                             <br>
@@ -172,34 +198,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#regionalSettings">
-                    <span style="font-weight: 700;">{{ "regional_settings"|trans }}</span>
-                </div>
-                <div id="regionalSettings" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.timezone) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_row(form.dst) }}
-                            </div>
-                            <div class="dst-bloc">
-                                <div class="col-md-3">
-                                    {{ form_row(form.dstSummerDate) }}
-                                </div>
-                                <div class="col-md-3">
-                                    {{ form_row(form.dstWinterDate) }}
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

@@ -89,6 +89,7 @@ message:
       title: It will be displayed instead of text. For better viewing comfort, load only landscape images
 
 configuration:
+    select_calendar: Select a calendar
     title: Prayer times configuration of "%mosque%"
     list:
         download_csv_files: Download the calendar
@@ -97,7 +98,7 @@ configuration:
     form:
         prayerCalcul: Calculation of prayer times
         load_predefined_calendar: 
-            1: "You have the choice between the following 2 options:"
+            1: "You have two choices :"
             2: Load a predefined calendar from the list below and edit it against your paper calendar
             3: Load prayer times from a CSV text file for each month of the year
              
@@ -158,16 +159,15 @@ configuration:
             label: Daylight saving time (DST)
             title: |
                 If your country applies daylight saving time, enable this option.
-                If you want the schedules to automatically follow the time change, set auto.
-                For information the system image provided on our website is set to France.
+                Choose auto if your mosque is in France.
         dstSummerDate:
             label: Summer daylight saving time
             title: |
-                Select the date you want the daylight saving time to change, by default it's the last Sunday of March
+              Select the date on which the daylight saving time change will take effect in the current year, by default it is the last Sunday of March
         dstWinterDate:
             label: Winter daylight saving time
             title: |
-                Select the date you want the winter daylight saving time to change, by default it's the last Sunday of October
+              Select the date on which the change of winter time will take effect in the current year, by default it is the last Sunday of October
         iqamaDisplayTime:
             label: Iqamah signal display time (in seconds)
         hijriDateEnabled: 
@@ -366,9 +366,9 @@ month_11: December
 prayer_mobile_site: "Mawaqit on mobile and tablet <a href='%site%'>%site%</a>"
 association_info: "%name% - Phone. %phone%"
 info_dst_change: |
-    Do not take aware of the saving date highlight change
-    the software handles it according to the last Sunday of the month of "%month%" of each year.<br>,
-    Enter the times as if there was no time change
+    If you have turned daylight saving time in Regional Settings, then
+    you should not consider DST in your calendar entry,
+    the software will take care of it according to your choice of dates.
 other_settings: Other settings
 home_settings: Home use
 regional_settings: Regional settings
