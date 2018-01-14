@@ -178,7 +178,7 @@ var prayer = {
             if (i === 4 && prayer.confData.ninetyMinBetweenMaghibAndIsha === true) {
                 var maghribDateTime = prayer.getCurrentDateForPrayerTime(times[3]);
                 maghribDateTime.setMinutes(maghribDateTime.getMinutes() + 90);
-                times[i] = maghribDateTime.getHours() + ':' + maghribDateTime.getMinutes();
+                times[i] = addZero(maghribDateTime.getHours()) + ':' + addZero(maghribDateTime.getMinutes());
             }
 
             // handle fixed times

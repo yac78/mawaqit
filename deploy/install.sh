@@ -44,7 +44,7 @@ bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 
 # backup DB if prod deploy
-if [ "$env" -eq "prod" ]; then
+if [ $env -eq "prod" ]; then
     echo "Backup prod DB"
     $baseDir/tools/dbBackup.sh
 fi
