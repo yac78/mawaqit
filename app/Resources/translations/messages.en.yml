@@ -159,7 +159,7 @@ configuration:
             label: Daylight saving time (DST)
             title: |
                 If your country applies daylight saving time, enable this option.
-                Choose auto if your mosque is in France.
+                Choose auto if your mosque is in France, dst will be applied on last sunday of march and october
         dstSummerDate:
             label: Summer daylight saving time
             title: |
@@ -190,7 +190,7 @@ configuration:
             label:  Wake up before fajr (minute)
             title: If you want to be woken before fajr with a first adhân, put here the number of minutes before fajr. Leave empty otherwise.
         blackScreenWhenPraying: 
-            label:  Turn off the screen during prayer
+            label:  Black screen during prayer
             title: At the end of the signal iqamâh, a black screen will be observed until the end of the prayer, it depends on the values entered in the fields "estimated time of each prayer (in minutes)"
         randomHadithEnabled: 
             label: Randomly display a hadith every 5 min

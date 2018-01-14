@@ -15,16 +15,18 @@
     </div>
 
     <div class="form-group">
-        <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+        <input type="checkbox" id="remember_me" name="_remember_me" class="not-toggle" checked/>
         <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" id="_submit" name="_submit" class="btn btn-primary btn-block text-capitalize">{{ 'security.login.submit'|trans }}</button>
     </div>
 
     <div class="form-group">
         <a href="{{ path('fos_user_resetting_request') }}">{{ 'layout.forgot_password'|trans }}</a>
     </div>
 
-    <button type="submit" id="_submit" name="_submit"
-            class="btn btn-primary btn-block text-capitalize">{{ 'security.login.submit'|trans }}</button>
     {% if error %}
         <div class="text-danger text-capitalize"
              style="padding: 10px">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

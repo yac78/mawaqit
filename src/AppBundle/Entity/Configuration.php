@@ -102,7 +102,7 @@ class Configuration
     /**
      * @var array
      */
-    private $duaAfterPrayerShowTimes = [11, 9, 9, 9, 10];
+    private $duaAfterPrayerShowTimes = [9, 8, 8, 8, 9];
 
     /**
      * @var int

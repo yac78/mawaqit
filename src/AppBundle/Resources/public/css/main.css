@@ -98,3 +98,25 @@
 .navbar-form .form-group{
     display: inline-block;
 }
+
+.help {
+    font-size: 12px;
+    position: relative;
+    cursor: pointer;
+}
+
+.help div {
+    z-index: 1000;
+    position: absolute;
+    top: 3px;
+    background: #025605;
+    color: #fff;
+    padding: 15px;
+    left: 0;
+}
+
+.help div span {
+    position: absolute;
+    top: 3px;
+    right: 4px;
+}

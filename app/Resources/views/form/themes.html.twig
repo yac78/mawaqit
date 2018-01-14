@@ -1,18 +1,28 @@
 {% extends 'bootstrap_3_layout.html.twig' %}
 
+
+{% block help -%}
+    <div class="text-muted help" {% if attr.help|trans|length>50 %} title="{{ attr.help|trans }} {% endif %}">
+        {{ attr.help|trans|truncate(50, true) }}
+    </div>
+{%- endblock help %}
+
+{% block form_row -%}
+    <div class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {% if attr.help is defined and  attr.help is not empty %}
+            {{- block('help') }}
+        {% endif %}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}
+
 {% block form_label %}
     {{ parent() }}
 
     {% if required %}
         <span style="color: red" title="{{ 'required'|trans }}">*</span>
-    {% endif %}
-
-    {% if attr.title is defined and  attr.title is not empty %}
-        <span class="fa fa-question-circle hidden-xs" title="{{ attr.title|trans }}"></span>
-    {% endif %}
-
-    {% if attr.help is defined and  attr.help is not empty %}
-        <div class="text-muted"> {{ attr.help|trans }}</div>
     {% endif %}
 {% endblock %}
 
@@ -22,8 +32,9 @@
         {{- form_label(form, null, { widget: parent() }) -}}
     {% else -%}
         {{ parent() }}
-        {% if attr.title is defined and  attr.title is not empty %}
-            <span class="fa fa-question-circle hidden-xs" title="{{ attr.title|trans }}"></span>
+
+        {% if attr.help is defined and  attr.help is not empty %}
+            {{- block('help') }}
         {% endif %}
     {%- endif %}
 {%- endblock checkbox_widget %}

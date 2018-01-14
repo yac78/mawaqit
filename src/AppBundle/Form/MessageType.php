@@ -54,7 +54,7 @@ class MessageType extends AbstractType {
                     'label' => 'message.form.image.label',
                     'attr' => [
                         'class' => 'form-control',
-                        'title' => $this->translator->trans('message.form.image.title'),
+                        'help' => $this->translator->trans('message.form.image.title'),
                     ]
                 ])
                 ->add('save', SubmitType::class, [

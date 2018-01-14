@@ -309,6 +309,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#fixedTimes">
                     {{ form_label(form.fixedTimes) }}
+                    <div class="text-muted"
+                         style="font-size: 13px">{{ 'configuration.form.fixedTimes.help'|trans }}</div>
                 </div>
                 <div id="fixedTimes" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -342,6 +344,8 @@
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
                      href="#duaAfterPrayerShowTimes">
                     {{ form_label(form.duaAfterPrayerShowTimes) }}
+                    <div class="text-muted"
+                         style="font-size: 13px">{{ 'configuration.form.duaAfterPrayerShowTimes.help'|trans }}</div>
                 </div>
                 <div id="duaAfterPrayerShowTimes" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -415,12 +419,12 @@
                             <div class="col-md-3">
                                 {{ form_row(form.hijriAdjustment) }}
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-3">
                                 {{ form_row(form.timeToDisplayMessage) }}
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col-md-3">
                                 {{ form_widget(form.hijriDateEnabled) }}
