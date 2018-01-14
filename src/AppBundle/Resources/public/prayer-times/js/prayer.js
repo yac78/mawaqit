@@ -245,7 +245,7 @@ var prayer = {
     applyDstForCalendarMode: function () {
         if (prayer.confData.sourceCalcul === "calendar") {
             // dst = 2 => auto
-            if (prayer.confData.dst === 2) {
+            if (prayer.confData.dst === "auto") {
                 return dateTime.isLastSundayDst();
             }
 
@@ -276,7 +276,7 @@ var prayer = {
             var hour;
 
             // dst auto => legacy
-            if (prayer.confData.dst === 2) {
+            if (prayer.confData.dst === "auto") {
                 hour = dateTime.getCurrentMonth() === 2 ? 1 : -1;
             }
 
