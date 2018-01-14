@@ -104,7 +104,7 @@ configuration:
              
         fill_calendar:
             success: The prayer times of the month have been filled successfully.
-            error: The prayer times of the month could not be filled.
+            error: The prayer times of the month are not filled correctly.
         time_invalid: "The entered value is invalid, it must follow the format hh:mm"
         fill_calendar_from_csv: Pre-populate from a csv file
         calendar: Timetable

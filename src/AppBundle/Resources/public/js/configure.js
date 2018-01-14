@@ -31,7 +31,7 @@ $("#appbundle_configuration_prayerMethod").bind("change keyup", function (event)
 });
 
 $(".calendar-prayer input").bind("change keyup", function (event) {
-    $(this).css("background-color", $(this).val().match(/\d{2}:\d{2}/g) ? "#ffffff" : "#f8d4d4");
+    $(this).css("background-color", /^\d{2}:\d{2}$/g.test($(this).val()) ? "#ffffff" : "#f8d4d4");
 });
 
 /**
@@ -69,20 +69,27 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         var panel = $(inputFile).parents(".month-panel");
         var panelId = panel.attr("id");
         var month = panelId.split('_');
-        month = month[1];
+        var error = false;
         var lines = csv.split(/(?:\r?\n)/g);
+        month = month[1];
         for (var day = 1; day < lines.length; day++) {
             var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
                 var inputPrayer = $("input[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
-                if (line[prayer].match(/\d{2}:\d{2}/g)) {
-                    inputPrayer.val(line[prayer]);
-                    inputPrayer.trigger("change");
+                if (/^\d{2}:\d{2}$/.test(line[prayer]) === false) {
+                    error = true;
                 }
+                inputPrayer.val(line[prayer]);
+                inputPrayer.trigger("change");
             }
         }
         checkAndHilightIncompletedMonths();
-        $(panel).find(".alert-success").removeClass("hidden");
+        if (error) {
+            $(panel).find(".alert-danger").removeClass("hidden");
+        }
+        else {
+            $(panel).find(".alert-success").removeClass("hidden");
+        }
     } catch (e) {
         $(panel).find(".alert-danger").removeClass("hidden");
     }
