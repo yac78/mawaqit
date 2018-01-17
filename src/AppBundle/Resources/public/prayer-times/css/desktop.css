@@ -4,9 +4,13 @@ body {
     position: relative;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+#spinner{
+    background-image: url("/bundles/app/prayer-times/img/mawaqit.gif");
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 /* Tablette mode paysage */
@@ -145,7 +149,7 @@ body {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: contain;
-    height: 50%;
+    height: 60%;
 }
 
 .loudspeaker{

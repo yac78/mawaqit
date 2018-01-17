@@ -1,5 +1,11 @@
 /* global prayer */
 
+prayer.hideSpinner =  function () {
+    $("#spinner").fadeOut(500, function () {
+        $(".main").fadeIn(500);
+    });
+}
+
 prayer.loadData();
 prayer.setBackgroundColor();
 prayer.setTime();

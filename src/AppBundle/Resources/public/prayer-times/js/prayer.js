@@ -882,9 +882,11 @@ var prayer = {
         });
     },
     hideSpinner: function () {
-        $(".main").fadeIn(1000, function () {
-            $("#spinner").hide();
-        });
+        setTimeout(function () {
+            $("#spinner").fadeOut(1000, function () {
+                $(".main").fadeIn(100);
+            });
+        }, 6000);
     },
     /**
      * Arabic handler
