@@ -886,7 +886,7 @@ var prayer = {
             $("#spinner").fadeOut(1000, function () {
                 $(".main").fadeIn(100);
             });
-        }, 6000);
+        }, 3000);
     },
     /**
      * Arabic handler
