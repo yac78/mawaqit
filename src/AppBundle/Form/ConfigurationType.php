@@ -6,8 +6,8 @@ use AppBundle\Entity\Configuration;
 use AppBundle\Form\DataTransformer\PrayerTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -95,6 +95,8 @@ class ConfigurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $adjustedTimesValues = range(-30,30);
+
         $builder
             ->add('jumuaTime', null, [
                 'label' => 'configuration.form.jumuaTime.label',
@@ -177,7 +179,9 @@ class ConfigurationType extends AbstractType
                 'label' => 'configuration.form.adjustedTimes.label',
                 'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                 'sub_options' => [
-                    'type' => IntegerType::class
+                    'type' => ChoiceType::class,
+                    'choices' => array_combine($adjustedTimesValues, $adjustedTimesValues)
+
                 ]
             ])
             ->add('fixedTimes', PrayerType::class, [
@@ -211,7 +215,8 @@ class ConfigurationType extends AbstractType
                     'help' => $this->translator->trans('configuration.form.duaAfterPrayerShowTimes.title'),
                 ],
             ])
-            ->add('hijriAdjustment', IntegerType::class, [
+            ->add('hijriAdjustment', ChoiceType::class, [
+                'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
                 'label' => 'configuration.form.hijriAdjustment.label'
             ])
             ->add('timezone', ChoiceType::class, [
@@ -234,7 +239,7 @@ class ConfigurationType extends AbstractType
             ->add('dstSummerDate', DateType::class, [
                 'required' => false,
                 'label' => 'configuration.form.dstSummerDate.label',
-                'widget'=> 'single_text',
+                'widget' => 'single_text',
                 'placeholder' => 'jj/mm/aaaa',
                 'attr' => [
                     'help' => 'configuration.form.dstSummerDate.title',
@@ -244,7 +249,7 @@ class ConfigurationType extends AbstractType
                 'required' => false,
                 'label' => 'configuration.form.dstWinterDate.label',
                 'placeholder' => 'jj/mm/aaaa',
-                'widget'=> 'single_text',
+                'widget' => 'single_text',
                 'attr' => [
                     'help' => 'configuration.form.dstWinterDate.title',
                 ],
