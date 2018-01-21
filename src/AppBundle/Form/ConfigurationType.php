@@ -68,9 +68,9 @@ class ConfigurationType extends AbstractType
      * @var Array
      */
     private static $dstChoices = [
-        "auto" => 2,
-        "disabled" => 0,
-        "enabled" => 1
+        "dst-auto" => 2,
+        "dst-disabled" => 0,
+        "dst-enabled" => 1
     ];
 
     /**

@@ -23,23 +23,25 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin("m.user", "u", "m.user_id = u.id");
 
         if (!empty($search)) {
-            $qb->andWhere("m.name LIKE :search "
+            $qb->where("m.name LIKE :search "
                 . "OR m.associationName LIKE :search "
                 . "OR m.email LIKE :search "
                 . "OR m.address LIKE :search "
                 . "OR m.city LIKE :search "
+                . "OR m.zipcode LIKE :search "
                 . "OR m.country LIKE :search "
                 . "OR u.username LIKE :search "
                 . "OR u.email LIKE :search"
             )
                 ->setParameter(":search", "%$search%");
         }
+
         if (!$user->isAdmin()) {
             $qb->andWhere("u.id = :userId")
                 ->setParameter(":userId", $user->getId());
         }
 
-        $qb->orderBy("m.id", "DESC");
+        $qb->orderBy("m.created", "DESC");
 
         return $qb;
     }

@@ -278,7 +278,9 @@ fr: Français
 en: Anglais  
 ph: Phonétique
 both: Arabe & Français
-auto: Auto (Dépend du réglage système du raspberry, France par défaut)
+dst-auto: Auto (Dépend du réglage système du raspberry, France par défaut)
+dst-enabled: Activé (Pays hors France avec choix de dates)
+dst-disabled: Désactivé (Pays ne pratiquant pas le changement d'heure)
 enabled: Activé
 disabled: Désactivé
 send: Envoyer
@@ -289,7 +291,7 @@ links: Liens
 site: Site internet
 
 mosqueList:
-    iframeCopyText: Pour afficher le widget ci-dessous dans votre site il suffit de copiez/collez ce code html
+    iframeCopyText: Pour afficher le widget ci-dessous dans votre site il suffit de copier/coller ce code html
     iframeAddTitle: Ajouter le widget à votre site
     widgetForYourSite: Widget pour votre site internet
     csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF

@@ -271,9 +271,11 @@ fr: French
 en: English
 ph: Phonetic
 both: Arabic & French
-auto: Auto (Depends on the raspberry system setting, France by default)
 enabled: Enabled
 disabled: Disabled
+dst-auto: Auto (Dépend du réglage système du raspberry, France par défaut)
+dst-enabled: disabled (Country outside France with choice of dates)
+dst-disabled: Désactivé (Countries not practicing dst)
 send: Envoyer
 required: Required
 close: Close
