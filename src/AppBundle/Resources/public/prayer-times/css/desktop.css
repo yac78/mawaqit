@@ -82,8 +82,12 @@ body {
     text-shadow: 6px 6px 10px #632e2e;
 }
 
-.gregorianDate, .hijriDate{
+.gregorianDate{
     font-size: 500%;
+}
+
+.hijriDate{
+    font-size: 430%;
 }
 
 .prayer-text {
