@@ -6,6 +6,10 @@ prayer.hideSpinner =  function () {
     });
 }
 
+if(!prayer.confData.iqamaEnabled){
+    $(".wait").css("visibility","hidden");
+}
+
 prayer.loadData();
 prayer.setBackgroundColor();
 prayer.setTime();
