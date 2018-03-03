@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,7 +18,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class MosqueType extends AbstractType
 {
@@ -66,6 +67,20 @@ class MosqueType extends AbstractType
                 ));
         }
 
+        $typeOptions = [
+            'required' => true,
+            'label' => 'mosque.form.type.label',
+            'constraints' => new Choice(["choices" => Mosque::TYPES]),
+            'placeholder' => 'mosque.form.type.placeholder',
+            'choices' => array_combine([
+                "mosque.types.mosque",
+                "mosque.types.home",
+            ], Mosque::TYPES)
+        ];
+
+        if($builder->getData()->getId() === null){
+            $typeOptions['data'] = "";
+        }
 
         $builder
             ->add('name', null, [
@@ -75,14 +90,7 @@ class MosqueType extends AbstractType
                     'placeholder' => 'mosque.form.name.placeholder',
                 ]
             ])
-            ->add('type', ChoiceType::class, [
-                'required' => true,
-                'label' => 'mosque.form.type.label',
-                'choices' => array_combine([
-                    "mosque.types.mosque",
-                    "mosque.types.home",
-                ], Mosque::TYPES)
-            ])
+            ->add('type', ChoiceType::class, $typeOptions)
             ->add('slug', null, [
                 'label' => 'mosque.slug',
                 'required' => true,
@@ -149,12 +157,13 @@ class MosqueType extends AbstractType
             ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));
     }
 
-    public function onPostSetData(FormEvent $event) {
+    public function onPostSetData(FormEvent $event)
+    {
         /** @var Mosque $mosque */
         $mosque = $event->getData();
 
-        if ($mosque->getType() === "home"){
-          $mosque->setAddOnMap(false);
+        if ($mosque->getType() === "home") {
+            $mosque->setAddOnMap(false);
         }
     }
 
@@ -166,7 +175,8 @@ class MosqueType extends AbstractType
         ));
     }
 
-    public function getBlockPrefix(){
+    public function getBlockPrefix()
+    {
         return '';
     }
 

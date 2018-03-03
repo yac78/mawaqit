@@ -20,8 +20,13 @@ $("#user_complete").autocomplete({
 
 function typeDisplayHandler() {
     $type = $("#type");
-    $(".mosque-block").hide();
-    $("."+$type.val()+"-block").show();
+    $(".form-block").addClass("hidden");
+
+    if($type.val()){
+        $(".form-block").removeClass("hidden");
+        $(".mosque-block").addClass("hidden");
+        $("."+$type.val()+"-block").removeClass("hidden");
+    }
 }
 
 $("#type").bind("change", function (event) {

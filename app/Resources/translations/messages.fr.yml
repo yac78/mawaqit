@@ -41,6 +41,7 @@ mosque:
     form:
         type:
             label : Type
+            placeholder : Choisir un type d'installation
         name: 
             placeholder : Ex. Mosquée Essunna, Mon domicile
         slug: 
