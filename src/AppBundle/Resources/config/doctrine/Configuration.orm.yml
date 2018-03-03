@@ -106,6 +106,8 @@ AppBundle\Entity\Configuration:
         wakeForFajrTime:
             type: smallint
             nullable: true
+        wakeAzanVoice:
+            type: string
         iqamaDisplayTime:
             type: smallint
         smallScreen:

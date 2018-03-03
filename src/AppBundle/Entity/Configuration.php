@@ -135,6 +135,11 @@ class Configuration
     private $azanVoiceEnabled = false;
 
     /**
+     * @var string
+     */
+    private $wakeAzanVoice = "adhan-maquah";
+
+    /**
      * @var bool
      */
     private $iqamaBip = true;
@@ -1198,6 +1203,24 @@ class Configuration
     public function setDstWinterDate($dstWinterDate)
     {
         $this->dstWinterDate = $dstWinterDate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWakeAzanVoice()
+    {
+        return $this->wakeAzanVoice;
+    }
+
+    /**
+     * @param string $wakeAzanVoice
+     * @return Configuration
+     */
+    public function setWakeAzanVoice($wakeAzanVoice)
+    {
+        $this->wakeAzanVoice = $wakeAzanVoice;
         return $this;
     }
 

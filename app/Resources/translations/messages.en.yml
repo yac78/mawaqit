@@ -184,7 +184,13 @@ configuration:
         azanVoiceEnabled: 
             label: audio adhân (Adhân of the Haram)
             title: At the time of prayer, the adhân of the haram will be launched.
-        iqamaBip: 
+        wakeAzanVoice:
+            label: Choose wake azan
+            haram: The haram adhan
+            algeria: Beautiful algerian azan
+            quds: The aqsa azan
+            algeria: The egyptian azan
+        iqamaBip:
             label:  Beep when it's time for iqamah
         wakeForFajrTime: 
             label:  Wake up before fajr (minute)

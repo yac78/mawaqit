@@ -283,6 +283,16 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.azanVoiceEnabled.title',
                 ],
             ])
+            ->add('wakeAzanVoice', ChoiceType::class, [
+                'required' => true,
+                'label' => 'configuration.form.wakeAzanVoice.label',
+                'choices' => [
+                    "configuration.form.wakeAzanVoice.haram" => "adhan-maquah",
+                    "configuration.form.wakeAzanVoice.algeria" => "adhan-algeria",
+                    "configuration.form.wakeAzanVoice.quds" => "adhan-quds",
+                    "configuration.form.wakeAzanVoice.egypt" => "adhan-egypt",
+                ]
+            ])
             ->add('iqamaBip', CheckboxType::class, [
                 'required' => false,
                 'label' => 'configuration.form.iqamaBip.label',
@@ -330,6 +340,7 @@ class ConfigurationType extends AbstractType
                 'required' => false,
                 'label' => 'configuration.form.wakeForFajrTime.label',
                 'attr' => [
+                    'min' => 0,
                     'help' => 'configuration.form.wakeForFajrTime.title',
                 ]
             ])

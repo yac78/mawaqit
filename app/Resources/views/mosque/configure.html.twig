@@ -466,10 +466,18 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
+                                {{ form_widget(form.azanVoiceEnabled) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
                                 {{ form_row(form.wakeForFajrTime) }}
                             </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.azanVoiceEnabled) }}
+                            <div class="col-md-3 wakeAzanVoice">
+                                {{ form_row(form.wakeAzanVoice) }}
+                            </div>
+                            <div class="col-md-1 text-left">
+                                <img class="hidden" id="azabStop" src="{{ asset('bundles/app/prayer-times/img/stop.png') }}" alt="">
                             </div>
                         </div>
                     </div>

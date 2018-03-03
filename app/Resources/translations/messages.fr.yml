@@ -189,10 +189,16 @@ configuration:
             title: Cochez cette case si votre écran mesure moins de 32 pouces, cela permettra d'adapter quelques textes
         azanBip: 
             label: Bip quand c'est l'heure du adhân
-        azanVoiceEnabled: 
+        azanVoiceEnabled:
             label: Adhân audio (Adhân du Haram)
             title: A l'heure de la prière l'adhân du haram sera lancé.
-        iqamaBip: 
+        wakeAzanVoice:
+            label: Choisir l'adhân du réveil
+            haram: Adhan du haram
+            algeria: Adhan algérien
+            quds: Adhan d'al-aqsa
+            egypt: Adhan égyptien
+        iqamaBip:
             label:  Bip quand c'est l'heure de l'iqâmah
         wakeForFajrTime: 
             label:  Réveil avant fajr (minute)

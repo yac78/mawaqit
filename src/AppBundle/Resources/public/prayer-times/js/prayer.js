@@ -400,7 +400,7 @@ var prayer = {
 
                     prayer.fajrWakeAdhanIsPlaying = true;
                     // play adhan sound
-                    prayer.playSound("adhan-maquah.mp3");
+                    prayer.playSound(prayer.confData.wakeAzanVoice + ".mp3");
                     $contentEl.addClass("hidden");
 
                     // flash every one seconde

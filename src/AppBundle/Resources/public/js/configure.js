@@ -220,7 +220,35 @@ $("#appbundle_configuration_dst").change(function () {
     dstDisplayHandler();
 });
 
+
+function wakeUpAzanDisplayHandler() {
+    var $wakeForFajrTime = $("#appbundle_configuration_wakeForFajrTime");
+    if ($wakeForFajrTime.val() > 0) {
+        $(".wakeAzanVoice").show();
+    } else {
+        $(".wakeAzanVoice").hide();
+    }
+}
+
+$("#appbundle_configuration_wakeForFajrTime").change(function () {
+    wakeUpAzanDisplayHandler();
+});
+
+var wakeAzanVoice = new Audio();
+$("#appbundle_configuration_wakeAzanVoice").change(function () {
+    $("#azabStop").removeClass("hidden");
+    wakeAzanVoice.pause();
+    wakeAzanVoice = new Audio('/static/mp3/' + $(this).val() + '.mp3');
+    wakeAzanVoice.play();
+});
+
+$("#azabStop").click(function () {
+    wakeAzanVoice.pause();
+});
+
+
 dstDisplayHandler();
 checkAndHilightIncompletedMonths();
 handleErrorsDisplay();
 iqamaSettingsDisplayHandler();
+wakeUpAzanDisplayHandler();
