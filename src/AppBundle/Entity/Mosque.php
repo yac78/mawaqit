@@ -489,7 +489,7 @@ class Mosque
      */
     public function getLocalisation()
     {
-        return $this->city . "+" . $this->zipcode . "+" . $this->country;
+        return $this->address . " " . $this->city . " " . $this->zipcode . " " . $this->country;
     }
 
     function getUser()
@@ -740,7 +740,8 @@ class Mosque
         $this->addOnMap = $addOnMap;
     }
 
-    public function getTypes(){
+    public function getTypes()
+    {
         return self::TYPES;
     }
 
