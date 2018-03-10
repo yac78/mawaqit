@@ -200,7 +200,12 @@ class MosqueController extends Controller
         }
 
         $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar";
-        $predefinedCalendars = array_map('basename', glob($calendarDir . "/*", GLOB_ONLYDIR));
+        $countries = array_map('basename', glob("$calendarDir/*", GLOB_ONLYDIR));
+        $predefinedCalendars= [];
+        foreach ($countries as $country) {
+            $predefinedCalendars[$country] = array_map('basename', glob("$calendarDir/$country/*", GLOB_ONLYDIR));
+        }
+
         return $this->render('mosque/configure.html.twig', [
             'months' => Calendar::MONTHS,
             'predefinedCalendars' => $predefinedCalendars,
@@ -230,7 +235,8 @@ class MosqueController extends Controller
     public function loadCalendarAction(Request $request)
     {
         $calendarName = $request->query->get("calendarName");
-        $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar/$calendarName";
+        $country = $request->query->get("country");
+        $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar/$country/$calendarName";
         $csvFiles = glob($calendarDir . "/*.csv");
         $calendar = [];
 

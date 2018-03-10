@@ -97,6 +97,8 @@ function processFillMonthPrayerTimes(csv, inputFile) {
 
 $("#predefined-calendar").change(function () {
     var calendarName = $(this).val();
+    var country = $('#predefined-calendar :selected').parent().attr('label');
+    console.log(country);
     if (calendarName) {
         waitingDialog.show("Chargement en cours...");
         var url = $(this).data("ajax-url");
@@ -106,7 +108,8 @@ $("#predefined-calendar").change(function () {
             method: "GET",
             dataType: "json",
             data: {
-                calendarName: calendarName
+                calendarName: calendarName,
+                country: country
             },
             success: function (calendar) {
                 for (var month = 0; month < calendar.length; month++) {

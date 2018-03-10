@@ -104,11 +104,14 @@
 
                             <div class="row">
                                 <div class="form-group col-md-3">
-                                    <select class="form-control" id="predefined-calendar"
-                                            data-ajax-url="{{ path('ajax_load_calendar') }}">
+                                    <select class="form-control" id="predefined-calendar" data-ajax-url="{{ path('ajax_load_calendar') }}">
                                         <option value="">{{ 'configuration.select_calendar'|trans }}</option>
-                                        {% for calendar in predefinedCalendars %}
-                                            <option value="{{ calendar }}">{{ calendar|replace({"-": " "}) }}</option>
+                                        {% for country, calendars in predefinedCalendars %}
+                                            <optgroup label="{{ country }}">
+                                                {% for calendar in calendars %}
+                                                    <option value="{{ calendar }}">{{ calendar|replace({"-": " "}) }}</option>
+                                                {% endfor %}
+                                            </optgroup>
                                         {% endfor %}
                                     </select>
                                 </div>
