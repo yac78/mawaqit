@@ -35,10 +35,6 @@ body {
     overflow: hidden;
 }
 
-.main{
-    width: 98%;    
-}
-
 .top-content .adhan-flash, .top-content .alarm-flash{
     font-size: 1200%;
     line-height: 160%;
@@ -117,6 +113,7 @@ body {
 
 .prayer-hilighted {
     color: #f0ad4e  !important;
+    width: 19%  !important;
     -webkit-box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
     -moz-box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
     box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
@@ -271,19 +268,19 @@ body {
 .time-bottom{
     font-size: 450%;
     position: absolute;
-    bottom: -10px;
-    right: 5px;
+    bottom: 0px;
 }
 
 .next-prayer {
     font-size: 450%;
     position: absolute;
-    bottom: -5px;
-    left: 5px;
+    bottom: 0px;
+    left: 10px;
 }
 
 .time-bottom, .next-prayer{
-    color: #ec7047;    
+    position: absolute;
+    color: #ec7047;
 }
 
 .next-prayer .countdown {

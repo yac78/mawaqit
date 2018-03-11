@@ -52,10 +52,9 @@
         <div class="text">
             <div></div>
         </div>
-        <div class="time-bottom"></div>
-        <div class="next-prayer">
-            {{ 'next_prayer'|trans }} -
-            <div class="countdown"></div>
+        <div class="time-bottom" style="{{ app.request.locale == 'ar' ? 'left :15px; text-align: left' : 'right :15px;' }}"></div>
+        <div class="next-prayer" style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+            {{ 'next_prayer'|trans }} -<div class="countdown"></div>
         </div>
     </div>
 
@@ -127,6 +126,10 @@
                 <div class="ar">{{ 'jumua'|trans }}</div>
                 <div class="prayer joumouaa-id"></div>
             </div>
+        </div>
+
+        <div class="next-prayer" style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+            {{ 'next_prayer'|trans }} -<div class="countdown"></div>
         </div>
     </div>
 

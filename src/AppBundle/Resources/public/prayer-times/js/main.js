@@ -28,3 +28,4 @@ randomHadith.init();
 weather.initUpdateTemperature();
 douaaSlider.init();
 messageInfoSlider.initCronMessageInfo();
+prayer.nextPrayerCountdown();

@@ -235,7 +235,7 @@ var prayer = {
         });
 
         $(".next-prayer .countdown").countdown(countDownDate, function (event) {
-            $(this).text(event.strftime('%H:%M'));
+            $(this).text(event.strftime('%H:%M:%S'));
         });
     },
     /**
@@ -691,6 +691,7 @@ var prayer = {
         }
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
+            prayer.nextPrayerCountdown();
             // if ichaa we load tomorrow times
             var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
