@@ -122,27 +122,27 @@ configuration:
             label: Méthode de calcul
             placeholder: Veuillez choisir une méthode de calcul
         jumuaTime:
-            label: Heure du jumuʿa
+            label: Heure du jumu`a
             title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été
         jumuaAsDuhr:
             label: L'heure du jumu'a pareil que Dhuhr
         noJumua:
-            label: Pas de jumuʿa dans cette mosquée
+            label: Pas de jumu`a dans cette mosquée
         jumuaDhikrReminderEnabled:
-            label: Afficher un rappel pendant jumuʿa
-            title: Si cette case est cochée un hadith du prophête "ʿAlayhi essalam" sera affiché pendant toute la durée du jumuʿa, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
+            label: Afficher un rappel pendant jumu`a
+            title: Si cette case est cochée un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
         jumuaBlackScreenEnabled:
-            label: Afficher un écran noir pendant jumuʿa
+            label: Afficher un écran noir pendant jumu`a
         jumuaTimeout:
-            label: Durée approximative du jumuʿa (prêche + prière)
+            label: Durée approximative du jumu`a (prêche + prière)
         aidTime:
             label: Heure du aïd
             title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq 2 ou 3 jours avant l'évènement
         adjustedTimes: 
             label: Ajustement manuel des horaires
         maximumIshaTimeForNoWaiting:
-            label: Heure du ʿisha (iqâmah tout de suite après adhân)
-            title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du ʿisha se fera tout de suite après adhân
+            label: Heure du `isha (iqâmah tout de suite après adhân)
+            title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhân
         imsakNbMinBeforeFajr: 
             label: Afficher l'imsak (nombre de minute avant fajr)
             title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souhaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
@@ -150,7 +150,7 @@ configuration:
             label: Temps d'attente entre adhân et iqâmah
         fixedTimes: 
             label: Fixation des horaires
-            help: "Exemple: fixer ʿisha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
+            help: "Exemple: fixer `isha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
         duaAfterPrayerShowTimes: 
             label: Durée estimée de chaque prière (en minute)
             help: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour accomplir une prière
@@ -181,7 +181,7 @@ configuration:
         hijriDateEnabled: 
             label: Date hégire
         duaAfterAzanEnabled: 
-            label: Duʿaa après adhân
+            label: Du`aa après adhân
         duaAfterPrayerEnabled: 
             label: Invocations après salat
         smallScreen: 
@@ -224,14 +224,14 @@ configuration:
             label: Degré du fajr
             placeholder: Ex. 18
         ishaDegree: 
-            label: Degré du ʿisha
+            label: Degré du `isha
             placeholder: Ex. 15
         hadithLang: 
             label: Langue des hadiths
         calendar_explication: |
             Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une virgule ou un point-virgule.<br><br>
             Le fichier CSV doit respécter le format suivant : <br><br>
-            Day,Fajr,Shuruk,Duhr,ʿAsr,Maghrib,ʿIsha <br>
+            Day,Fajr,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
             01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
             02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
             03,06:49,08:44,12:56,14:49,17:10,18:49 <br>
@@ -310,9 +310,9 @@ email:
         success: Email envoyé avec succès
 
 fajr-zuhr: "Fajr et Dhuhr"
-zuhr-asr: "Dhuhr et ʿAsr"
-asr-maghrib: "ʿAsr et Maghrib"
-maghrib-isha: "Maghrib et ʿIsha"
+zuhr-asr: "Dhuhr et `Asr"
+asr-maghrib: "`Asr et Maghrib"
+maghrib-isha: "Maghrib et `Isha"
 
         
 ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
@@ -321,7 +321,7 @@ Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
 MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
 Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
 Egypt: "Autorité générale égyptienne (fajr 19.5°, ichaa 17.9°)"
-CUSTOM: "Choisir le degré du Fajr et ʿIsha"
+CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)
 calendar: Manuel (Horaires renseignées pour toute l'année) - Recommandé
@@ -331,10 +331,10 @@ day: Jour
 fajr: Fajr
 shuruk: Shurûq
 zuhr: Dhuhr
-asr: 'ʿAsr'
+asr: '`Asr'
 maghrib: Maghrib
-isha: 'ʿIsha'
-jumua: 'Jumuʿa'
+isha: '`Isha'
+jumua: 'Jumu`a'
 aid: 'Salât al-Aïd'
 imsak: Imsak
 iqama: Al-Iqâmah
@@ -342,7 +342,7 @@ azan: Al-Adhân
 
 power-off-phones: Éteignez vos portables SVP !
 hi: Bonjour %name%
-salam: 'Essalamu ʿalaykum %name%'
+salam: 'Essalamu `alaykum %name%'
 user: Utilisateur
 active: Activé ?
 delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
