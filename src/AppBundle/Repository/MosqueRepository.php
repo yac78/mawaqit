@@ -14,26 +14,37 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
      * @param User $user
-     * @param string $search
+     * @param array $search
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function search(User $user, $search)
+    function search(User $user, array $search)
     {
         $qb = $this->createQueryBuilder("m")
             ->leftJoin("m.user", "u", "m.user_id = u.id");
 
         if (!empty($search)) {
-            $qb->where("m.name LIKE :search "
-                . "OR m.associationName LIKE :search "
-                . "OR m.email LIKE :search "
-                . "OR m.address LIKE :search "
-                . "OR m.city LIKE :search "
-                . "OR m.zipcode LIKE :search "
-                . "OR m.country LIKE :search "
-                . "OR u.username LIKE :search "
-                . "OR u.email LIKE :search"
-            )
-                ->setParameter(":search", "%$search%");
+            if (!empty($search["word"])) {
+                $qb->where("m.name LIKE :word "
+                    . "OR m.associationName LIKE :word "
+                    . "OR m.email LIKE :word "
+                    . "OR m.address LIKE :word "
+                    . "OR m.city LIKE :word "
+                    . "OR m.zipcode LIKE :word "
+                    . "OR m.country LIKE :word "
+                    . "OR u.username LIKE :word "
+                    . "OR u.email LIKE :word"
+                )->setParameter(":word", "%" . $search["word"] . "%");
+            }
+
+            if (!empty($search["type"])) {
+                $qb->andWhere("m.type LIKE :type")
+                    ->setParameter(":type", "%" . $search["type"] . "%");
+            }
+
+            if (!empty($search["department"])) {
+                $qb->andWhere("m.zipcode LIKE :zipcode")
+                    ->setParameter(":zipcode", $search["department"] . "%");
+            }
         }
 
         if (!$user->isAdmin()) {

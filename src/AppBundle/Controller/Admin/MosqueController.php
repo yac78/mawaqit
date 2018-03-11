@@ -30,7 +30,7 @@ class MosqueController extends Controller
     public function indexAction(Request $request)
     {
 
-        $search = $request->query->get("search");
+        $search = $request->query->all();
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
