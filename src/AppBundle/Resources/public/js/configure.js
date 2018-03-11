@@ -1,3 +1,7 @@
+$("#appbundle_configuration_save").click(function () {
+    $("form").submit();
+})
+
 /**
  * check and hilight imcompleted months
  */
