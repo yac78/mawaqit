@@ -219,7 +219,8 @@ var prayer = {
      * handle next prayer countdown
      */
     nextPrayerCountdown: function () {
-        var prayerDateTime;
+        $(".next-prayer").show();
+        var prayerDateTime, pattern = '%H:%M';
         var date = new Date();
         // by default we countdwon the next day fajr
         var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
@@ -235,7 +236,13 @@ var prayer = {
         });
 
         $(".next-prayer .countdown").countdown(countDownDate, function (event) {
-            $(this).text(event.strftime('%H:%M:%S'));
+            if (event.offset.hours === 0 && event.offset.minutes === 0) {
+                pattern = '%H:%M:%S'
+                if (event.offset.seconds === 0) {
+                    $(".next-prayer").hide();
+                }
+            }
+            $(this).text(event.strftime(pattern));
         });
     },
     /**
@@ -747,14 +754,16 @@ var prayer = {
      * set time every second
      */
     setTime: function () {
-        var time;
+        var time, timeWithoutSec;
         var timeEl = $(".top-content .time");
         var timeBottomEl = $(".time-bottom");
         timeEl.text(dateTime.getCurrentTime(true));
+        timeBottomEl.text(dateTime.getCurrentTime());
         setInterval(function () {
             time = dateTime.getCurrentTime(true);
-            timeBottomEl.text(time);
+            timeWithoutSec = dateTime.getCurrentTime();
             timeEl.text(time);
+            timeBottomEl.text(timeWithoutSec);
         }, prayer.oneSecond);
     },
     /**
