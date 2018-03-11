@@ -29,6 +29,7 @@ class DefaultController extends Controller {
                     "totalMosquesCount" => $totalMosquesCount,
                     "mosquesWithImage" => $mosquesWithImage,
                     "mosquesForMap" => $mosquesForMap,
+                    "mosqueNumberByCountry" => $mosqueRepo->getNumberByCountry(),
                     "google_maps_api_key" => $this->getParameter('google_maps_api_key'),
         ]);
     }

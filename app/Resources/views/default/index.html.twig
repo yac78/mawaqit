@@ -236,6 +236,16 @@
 
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="">
+                            {% for item in mosqueNumberByCountry %}
+                                <button class="btn btn-success mt-1">
+                                    {{ item.country|capitalize }} <span class="badge">{{ item.nb }}</span>
+                                </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
                         <div id="map"></div>
                     </div>
                 </div>
