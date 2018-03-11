@@ -1,7 +1,7 @@
 /*
 binary consulting custom css
 */
-body, p{
+.container p{
     font-size: 16px !important;
 }
 
