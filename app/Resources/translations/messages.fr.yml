@@ -254,7 +254,7 @@ security:
             title: 3 étapes pour créer votre écran Mawaqit
             step1: Inscrivez-vous
             step2: Ajoutez et configurez votre mosquée
-            step3: Mettez le lien généré dans un navigateur internet (Raspberry, Ordinateur, Smart TV, Box android...) 
+            step3: Mettez le lien généré dans un navigateur internet (Raspberry, Ordinateur, Box android...)
 
 admin_title: Mawaqit - administration        
 site_title: Mawaqit
