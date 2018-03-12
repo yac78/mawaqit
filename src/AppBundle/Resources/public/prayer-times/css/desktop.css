@@ -33,7 +33,6 @@ body {
     height: 55%;
     position: relative;
     overflow: hidden;
-}
 
 .top-content .adhan-flash, .top-content .alarm-flash{
     font-size: 1600%;
@@ -41,7 +40,7 @@ body {
 }
 
 .top-content .alarm-flash{
-    font-size: 1200%;
+    font-size: 1000%;
 }
 
 .prayer-content{
