@@ -36,8 +36,12 @@ body {
 }
 
 .top-content .adhan-flash, .top-content .alarm-flash{
-    font-size: 1200%;
+    font-size: 1600%;
     line-height: 160%;
+}
+
+.top-content .alarm-flash{
+    font-size: 1200%;
 }
 
 .prayer-content{

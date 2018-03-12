@@ -220,7 +220,7 @@ var prayer = {
      */
     nextPrayerCountdown: function () {
         $(".next-prayer").show();
-        var prayerDateTime, pattern = '%H:%M';
+        var prayerDateTime, pattern;
         var date = new Date();
         // by default we countdwon the next day fajr
         var tomorrowFajrDate = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
@@ -236,10 +236,12 @@ var prayer = {
         });
 
         $(".next-prayer .countdown").countdown(countDownDate, function (event) {
+            pattern = '%H:%M';
             if (event.offset.hours === 0 && event.offset.minutes === 0) {
                 pattern = '%H:%M:%S'
                 if (event.offset.seconds === 0) {
                     $(".next-prayer").hide();
+                    return;
                 }
             }
             $(this).text(event.strftime(pattern));
@@ -342,8 +344,9 @@ var prayer = {
      * we check every minute
      */
     initCronHandlingTimes: function () {
+        var date;
         setInterval(function () {
-            var date = new Date();
+            date = new Date();
             if (date.getHours() === 0 && date.getMinutes() === 0) {
                 prayer.setDate();
                 prayer.loadTimes();
@@ -351,10 +354,8 @@ var prayer = {
                 prayer.initNextTimeHilight();
                 prayer.setSpecialTimes();
             }
-
             prayer.showSpecialTimes();
-
-        }, prayer.oneSecond);
+        }, prayer.oneMinute);
     },
     /**
      * Reload page every day at 2 o'clock to prevent any graphical bug
