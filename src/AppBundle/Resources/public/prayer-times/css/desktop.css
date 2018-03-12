@@ -29,10 +29,11 @@ body {
     margin: auto; 
 }
 
-.top-content{
+.top-content {
     height: 55%;
     position: relative;
     overflow: hidden;
+}
 
 .top-content .adhan-flash, .top-content .alarm-flash{
     font-size: 1600%;
