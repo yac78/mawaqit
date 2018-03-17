@@ -394,6 +394,10 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.temperatureEnabled.title',
                 ]
             ])
+            ->add('hideFooter', CheckboxType::class, [
+                'required' => false,
+                'label' => 'configuration.form.hideFooter.label'
+            ])
             ->add('backgroundColor', null, [
                 'label' => 'configuration.form.backgroundColor.label',
             ])

@@ -241,6 +241,8 @@ configuration:
         timeToDisplayMessage: 
             label: Temps d'affichage d'un message/annonce (en seconde)
             title: Cela concerne que l'écran dédié aux messages et annonces
+        hideFooter:
+            label: Cacher le footer (le bas de l'écran)
         iqamaEnabled:
             label: Activée
             title: |

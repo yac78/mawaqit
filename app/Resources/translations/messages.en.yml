@@ -233,6 +233,8 @@ configuration:
         timeToDisplayMessage: 
             label: Display time of a message/announcement (in seconds)
             title: This concerns only the screen dedicated to messages and announcements
+        hideFooter:
+            label: Hide footer
         iqamaEnabled:
             label: Enabled
             title: |

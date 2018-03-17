@@ -52,9 +52,12 @@
         <div class="text">
             <div></div>
         </div>
-        <div class="time-bottom" style="{{ app.request.locale == 'ar' ? 'left :15px; text-align: left' : 'right :15px;' }}"></div>
-        <div class="next-prayer" style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
-            {{ 'next_prayer'|trans }} -<div class="countdown"></div>
+        <div class="time-bottom"
+             style="{{ app.request.locale == 'ar' ? 'left :15px; text-align: left' : 'right :15px;' }}"></div>
+        <div class="next-prayer"
+             style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+            {{ 'next_prayer'|trans }} -
+            <div class="countdown"></div>
         </div>
     </div>
 
@@ -85,7 +88,8 @@
                 {{ 'azan'|trans }}
             </div>
             <div class="col-md-2">
-                <img class="loudspeaker" src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" style="transform: scaleX(-1);">
+                <img class="loudspeaker" src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}"
+                     style="transform: scaleX(-1);">
             </div>
         </div>
 
@@ -98,7 +102,8 @@
                 {{ 'alarm'|trans }}
             </div>
             <div class="col-md-2">
-                <img class="loudspeaker" src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" style="transform: scaleX(-1);">
+                <img class="loudspeaker" src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}"
+                     style="transform: scaleX(-1);">
             </div>
         </div>
 
@@ -128,8 +133,10 @@
             </div>
         </div>
 
-        <div class="next-prayer" style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
-            {{ 'next_prayer'|trans }} -<div class="countdown"></div>
+        <div class="next-prayer"
+             style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+            {{ 'next_prayer'|trans }} -
+            <div class="countdown"></div>
         </div>
     </div>
 
@@ -164,30 +171,33 @@
 
     <!-- footer container -->
     <div class="footer">
-        {% if app.request.getHost() != 'localhost' %}
-            <div class="site">{{ 'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw }}</div>
-        {% endif %}
-        <div class="assosciation">
-            {{ mosque.associationName }}
-            {% if mosque.phone %}
-                &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+
+        <div class="footer-withour-version {{ mosque.configuration.hideFooter ? 'hidden' : '' }}">
+            {% if app.request.getHost() != 'localhost' %}
+                <div class="site">{{ 'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw }}</div>
             {% endif %}
-            &nbsp;&nbsp;{{ mosque.rib }}
-        </div>
-        <div class="support">
-            <span>{{ 'developed_by'|trans }}</span>
-            &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i>
-            <a href="tel:{{ supportTel1 }}">{{ supportTel1 }}</a> /
-            <a href="tel:{{ supportTel2 }}">{{ supportTel2 }}</a>
-            &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a
-                    href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
+            <div class="assosciation">
+                {{ mosque.associationName }}
+                {% if mosque.phone %}
+                    &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                {% endif %}
+                &nbsp;&nbsp;{{ mosque.rib }}
+            </div>
+            <div class="support">
+                <span>{{ 'developed_by'|trans }}</span>
+                &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i>
+                <a href="tel:{{ supportTel1 }}">{{ supportTel1 }}</a> /
+                <a href="tel:{{ supportTel2 }}">{{ supportTel2 }}</a>
+                &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a
+                        href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
+            </div>
+            {% if mosque.configuration.urlQrCodeEnabled %}
+                <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
+                    <div id="qr-code"></div>
+                </div>
+            {% endif %}
         </div>
         <div class="version">v{{ version }}</div>
-        {% if mosque.configuration.urlQrCodeEnabled %}
-            <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
-                <div id="qr-code"></div>
-            </div>
-        {% endif %}
     </div>
 
 </div>

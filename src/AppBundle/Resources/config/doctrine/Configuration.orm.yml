@@ -119,6 +119,8 @@ AppBundle\Entity\Configuration:
             nullable: true
         ninetyMinBetweenMaghibAndIsha:
             type: boolean
+        hideFooter:
+            type: boolean
         timeToDisplayMessage:
             type: smallint
         created:

@@ -293,6 +293,11 @@ class Configuration
      */
     private $ninetyMinBetweenMaghibAndIsha = false;
 
+    /**
+     * @var bool
+     */
+    private $hideFooter = false;
+
 
     /**
      * Get id
@@ -1221,6 +1226,24 @@ class Configuration
     public function setWakeAzanVoice($wakeAzanVoice)
     {
         $this->wakeAzanVoice = $wakeAzanVoice;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHideFooter()
+    {
+        return $this->hideFooter;
+    }
+
+    /**
+     * @param bool $hideFooter
+     * @return Configuration
+     */
+    public function setHideFooter($hideFooter)
+    {
+        $this->hideFooter = $hideFooter;
         return $this;
     }
 
