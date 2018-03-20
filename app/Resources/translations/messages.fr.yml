@@ -243,6 +243,8 @@ configuration:
             title: Cela concerne que l'écran dédié aux messages et annonces
         hideFooter:
             label: Cacher le footer (le bas de l'écran)
+        timeDisplayFormat:
+            label: Format de l'heure
         iqamaEnabled:
             label: Activée
             title: |
@@ -354,7 +356,7 @@ title: Titre
 content: Contenu
 subject: Sujet
 developed_by: Développé par Binary Consulting SAS
-next_prayer: Prochain adhân
+next_prayer: Prochain adhân dans
 last_login: dernière connexion
 alarm: Essalatu khayrun mina ennawm
 

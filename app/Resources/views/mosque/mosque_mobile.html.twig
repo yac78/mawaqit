@@ -39,11 +39,12 @@
                 <div class="gregorianDate"></div>
             </div>
 
+            {% set ampmClass = mosque.configuration.timeDisplayFormat == "12" ? 'ampm' : '' %}
             <div class="prayer-content">
                 {% if app.request.locale == 'ar' %}
                     <div class="row">
                         <div class="col-xs-4 wait _0 text-left"></div>
-                        <div class="col-xs-4 prayer prayer0 sobh"></div> 
+                        <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan0 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -51,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 wait _1 text-left"></div>
-                        <div class="col-xs-4 prayer prayer1 dohr"></div>
+                        <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan1 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -59,7 +60,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 wait _2 text-left"></div>
-                        <div class="col-xs-4 prayer prayer2 asr"></div>
+                        <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan2 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -67,7 +68,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 wait _3 text-left"></div>
-                        <div class="col-xs-4 prayer prayer3 maghrib"></div>
+                        <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan3 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -75,7 +76,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 wait _4 text-left"></div>
-                        <div class="col-xs-4 prayer prayer4 ichaa"></div>
+                        <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan4 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -84,7 +85,7 @@
                 {% else %}
                     <div class="row">
                         <div class="col-xs-4 text text-left">{{'fajr'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer0 sobh"></div> 
+                        <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan0 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -92,7 +93,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text text-left">{{'zuhr'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer1 dohr"></div>
+                        <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan1 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -100,7 +101,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text text-left">{{'asr'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer2 asr"></div>
+                        <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan2 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -108,7 +109,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text text-left">{{'maghrib'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer3 maghrib"></div>
+                        <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan3 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -116,7 +117,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text text-left">{{'isha'|trans}}</div>
-                        <div class="col-xs-4 prayer prayer4 ichaa"></div>
+                        <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
                         <div class="col-xs-4 adhan4 hidden">
                             <img src="{{asset('bundles/app/prayer-times/img/loudspeaker.png')}}" class="athan-img">
                         </div>
@@ -135,11 +136,11 @@
                     <div class="col-xs-1"></div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-4 col-xs-offset-1 imsak custom-time imsak-id"></div>
-                    <div class="col-xs-4 col-xs-offset-1 chourouk custom-time chourouk-id "></div>
-                    <div class="col-xs-4 col-xs-offset-1 aid custom-time aid-id"></div>
+                    <div class="col-xs-4 col-xs-offset-1 imsak custom-time imsak-id {{ ampmClass }}"></div>
+                    <div class="col-xs-4 col-xs-offset-1 chourouk custom-time chourouk-id  {{ ampmClass }}"></div>
+                    <div class="col-xs-4 col-xs-offset-1 aid custom-time aid-id {{ ampmClass }}"></div>
                     <div class="col-xs-2"></div>
-                    <div class="col-xs-4 prayer joumouaa-id"></div>
+                    <div class="col-xs-4 prayer joumouaa-id {{ ampmClass }}"></div>
                     <div class="col-xs-1"></div>
                 </div>
             </div>

@@ -247,6 +247,12 @@ var prayer = {
             $(this).text(event.strftime(pattern));
         });
     },
+    formatTime: function (time) {
+        if(time){
+           var timeDisplayFormat = prayer.confData.timeDisplayFormat;
+           return dateTime.formatTime(time, timeDisplayFormat);
+        }
+    },
     /**
      * Check conditions to apply dst for calendar mode
      * @return {boolean}
@@ -672,7 +678,6 @@ var prayer = {
      * @param {Number} prayerIndex
      */
     hilightByIndex: function (prayerIndex) {
-        var time = this.getTimeByIndex(prayerIndex);
         $(".prayer").removeClass("prayer-hilighted");
         $(".prayer-text .text").removeClass("text-hilighted");
         $(".prayer-wait .wait").removeClass("text-hilighted");
@@ -685,7 +690,8 @@ var prayer = {
 
         $(".prayer-text ._" + prayerIndex).addClass("text-hilighted");
         $(".prayer-wait ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer-content .prayer:contains(" + time + ")").addClass("prayer-hilighted");
+        $(".prayer-time ._" + prayerIndex).addClass("prayer-hilighted");
+        $(".prayer.prayer" + prayerIndex).addClass("prayer-hilighted");
     },
     /**
      * 10 minute after current iqama we hilight the next prayer time
@@ -758,12 +764,10 @@ var prayer = {
         var time, timeWithoutSec;
         var timeEl = $(".top-content .time");
         var timeBottomEl = $(".time-bottom");
-        timeEl.text(dateTime.getCurrentTime(true));
-        timeBottomEl.text(dateTime.getCurrentTime());
         setInterval(function () {
             time = dateTime.getCurrentTime(true);
-            timeWithoutSec = dateTime.getCurrentTime();
-            timeEl.text(time);
+            timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
+            timeEl.text(prayer.formatTime(time));
             timeBottomEl.text(timeWithoutSec);
         }, prayer.oneSecond);
     },
@@ -863,26 +867,32 @@ var prayer = {
     },
     setSpecialTimes: function () {
         // jumua
-        $(".joumouaa-id").text(this.getJumuaTime());
+        $(".joumouaa-id").text(prayer.formatTime(this.getJumuaTime()));
 
         // if aid time enabled we set/show it
-        $(".aid-id").text(this.confData.aidTime);
+        $(".aid-id").text(prayer.formatTime(this.confData.aidTime));
 
         // set chourouk time
-        $(".chourouk-id").text(this.getChouroukTime());
+        $(".chourouk-id").text(prayer.formatTime(this.getChouroukTime()));
 
         // if imsak time enabled we show it between chourouk + 1 hour and sobh
-        $(".imsak-id").text(this.getImsak());
+        $(".imsak-id").text(prayer.formatTime(this.getImsak()));
     },
     /**
      * set all prayer times
      */
     setTimes: function (afterIsha) {
-        $(".sobh").text(this.getTimes(afterIsha)[0]);
-        $(".dohr").text(this.getTimes(afterIsha)[1]);
-        $(".asr").text(this.getTimes(afterIsha)[2]);
-        $(".maghrib").text(this.getTimes(afterIsha)[3]);
-        $(".ichaa").text(this.getTimes(afterIsha)[4]);
+        var sobh =  prayer.formatTime(this.getTimes(afterIsha)[0]);
+        var dohr =  prayer.formatTime(this.getTimes(afterIsha)[1]);
+        var asr =  prayer.formatTime(this.getTimes(afterIsha)[2]);
+        var maghrib =  prayer.formatTime(this.getTimes(afterIsha)[3]);
+        var ichaa =  prayer.formatTime(this.getTimes(afterIsha)[4]);
+
+        $(".sobh").text(sobh);
+        $(".dohr").text(dohr);
+        $(".asr").text(asr);
+        $(".maghrib").text(maghrib);
+        $(".ichaa").text(ichaa);
     },
     /**
      * set wating times

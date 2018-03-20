@@ -71,8 +71,12 @@ body {
 }
 
 .prayer-content .prayer, .chourouk-id, .joumouaa-id, .imsak-id, .aid-id{
-    font-size: 250% !important;
+    font-size: 250%;
     color: yellowgreen;
+}
+
+.ampm{
+    font-size: 150% !important;
 }
 
 .aid-id {
@@ -84,10 +88,6 @@ body {
     -webkit-box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
     -moz-box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
     box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
-}
-
-.custom-time, .joumouaa{
-    font-size: 150%;
 }
 
 .footer{

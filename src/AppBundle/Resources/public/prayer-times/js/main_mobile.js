@@ -10,9 +10,9 @@ if(!prayer.confData.iqamaEnabled){
     $(".wait").css("visibility","hidden");
 }
 
+prayer.setTime();
 prayer.loadData();
 prayer.setBackgroundColor();
-prayer.setTime();
 prayer.setDate();
 prayer.setTimes();
 prayer.setWaitings();

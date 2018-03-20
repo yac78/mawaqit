@@ -298,6 +298,10 @@ class Configuration
      */
     private $hideFooter = false;
 
+    /**
+     * @var string
+     */
+    private $timeDisplayFormat = "24";
 
     /**
      * Get id
@@ -1245,6 +1249,22 @@ class Configuration
     {
         $this->hideFooter = $hideFooter;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeDisplayFormat()
+    {
+        return $this->timeDisplayFormat;
+    }
+
+    /**
+     * @param string $timeDisplayFormat
+     */
+    public function setTimeDisplayFormat($timeDisplayFormat)
+    {
+        $this->timeDisplayFormat = $timeDisplayFormat;
     }
 
 

@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ConfigurationType extends AbstractType
@@ -95,7 +96,7 @@ class ConfigurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $adjustedTimesValues = range(-30,30);
+        $adjustedTimesValues = range(-30, 30);
 
         $builder
             ->add('jumuaTime', null, [
@@ -397,6 +398,19 @@ class ConfigurationType extends AbstractType
             ->add('hideFooter', CheckboxType::class, [
                 'required' => false,
                 'label' => 'configuration.form.hideFooter.label'
+            ])
+            ->add('timeDisplayFormat', ChoiceType::class, [
+                'required' => true,
+                'label' => 'configuration.form.timeDisplayFormat.label',
+                'choices' => ["24h" => "24", "12h" => "12"],
+                'constraints' => [
+                    new Choice(['choices' => ["24", "12"]]),
+                    new NotBlank(),
+                ],
+                'expanded' => true,
+                'label_attr' => array(
+                    'class' => 'radio-inline'
+                )
             ])
             ->add('backgroundColor', null, [
                 'label' => 'configuration.form.backgroundColor.label',

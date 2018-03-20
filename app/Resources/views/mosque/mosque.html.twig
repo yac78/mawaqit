@@ -135,8 +135,7 @@
 
         <div class="next-prayer"
              style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
-            {{ 'next_prayer'|trans }} -
-            <div class="countdown"></div>
+            {{ 'next_prayer'|trans }} <div class="countdown"></div>
         </div>
     </div>
 
@@ -151,11 +150,12 @@
         </div>
 
         <div class="prayer-time">
-            <div class="sobh prayer"></div>
-            <div class="dohr prayer"></div>
-            <div class="asr prayer"></div>
-            <div class="maghrib prayer"></div>
-            <div class="ichaa prayer"></div>
+            {% set ampmClass = mosque.configuration.timeDisplayFormat == "12" ? 'ampm' : '' %}
+            <div class="sobh prayer _0 {{ ampmClass }}"></div>
+            <div class="dohr prayer _1 {{ ampmClass }}"></div>
+            <div class="asr prayer _2 {{ ampmClass }}"></div>
+            <div class="maghrib prayer _3 {{ ampmClass }}"></div>
+            <div class="ichaa prayer _4 {{ ampmClass }}"></div>
         </div>
 
         {% if mosque.configuration.iqamaEnabled %}

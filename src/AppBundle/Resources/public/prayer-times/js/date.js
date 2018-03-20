@@ -69,7 +69,7 @@ var dateTime = {
         if (withSeconds === true) {
             time += ':' + second;
         }
-        return  time;
+        return time;
     },
     /**
      * get current gregorian date ex: Vendredi 26/05/2017
@@ -101,7 +101,7 @@ var dateTime = {
      * @returns {Boolean}
      */
     isDst: function () {
-        var date  = new Date();
+        var date = new Date();
         date.setHours(4);
         return date.dst();
     },
@@ -128,5 +128,30 @@ var dateTime = {
         date.setDate(date.getDate() + 1);
         date.setHours(3);
         return date;
+    },
+    /**
+     * @param string time
+     * @param string timeDisplayFormat
+     * @returns String
+     */
+    formatTime: function (time, timeDisplayFormat) {
+
+        if(timeDisplayFormat === "24"){
+            return time;
+        }
+
+        time = time.split(":");
+        var hours = time[0];
+        var minutes = time[1];
+        var seconds = time[2] ? time[2] : null;
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        var strTime = addZero(hours) + ':' + minutes;
+        if (seconds) {
+            strTime += ':' + seconds;
+        }
+        strTime += ' ' + ampm;
+        return strTime;
     }
 };

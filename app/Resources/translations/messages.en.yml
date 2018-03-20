@@ -235,6 +235,8 @@ configuration:
             title: This concerns only the screen dedicated to messages and announcements
         hideFooter:
             label: Hide footer
+        timeDisplayFormat:
+            label: Time format
         iqamaEnabled:
             label: Enabled
             title: |
@@ -343,7 +345,7 @@ add: Add
 title: Title
 content: Content
 developed_by: Developed by Binary Consulting SAS
-next_prayer: Next athan
+next_prayer: Next athan in
 last_login: Last log in
 alarm: Alarm
 

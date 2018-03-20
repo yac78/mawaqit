@@ -123,6 +123,8 @@ AppBundle\Entity\Configuration:
             type: boolean
         timeToDisplayMessage:
             type: smallint
+        timeDisplayFormat:
+            type: string
         created:
             type: datetime
             gedmo:

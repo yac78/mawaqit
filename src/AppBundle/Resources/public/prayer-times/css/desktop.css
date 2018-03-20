@@ -113,6 +113,10 @@ body {
     font-size: 780%;
 }
 
+.ampm{
+    font-size: 600% !important;
+}
+
 .prayer-wait .wait{
     font-size: 580%;
 }
