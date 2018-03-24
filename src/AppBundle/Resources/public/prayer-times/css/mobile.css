@@ -38,7 +38,7 @@ body {
     margin-bottom: 10px;
 }
 .time{
-    font-size: 400%;
+    font-size: 350%;
 }
 
 .gregorianDate, .hijriDate{
@@ -55,7 +55,7 @@ body {
 
 .prayer-content>div {
     height: 40px;
-    line-height: 40px;
+    line-height: 34px;
 }
 
 .prayer-content .athan-img {
@@ -76,7 +76,12 @@ body {
 }
 
 .ampm{
-    font-size: 150% !important;
+    font-size: 200% !important;
+}
+
+small{
+    font-size: 70%;
+    padding-left: 5px;
 }
 
 .aid-id {
@@ -164,3 +169,8 @@ body {
 .adhan .title, .douaa-between-adhan-iqama .title{
     margin-top: 10px;
 }
+
+ .col-xs-4 {
+     padding-right: 5px;
+     padding-left: 5px;
+ }

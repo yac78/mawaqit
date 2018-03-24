@@ -67,7 +67,7 @@ body {
 
 .chourouk-id, .joumouaa-id, .aid-id, .imsak-id{
     color: yellowgreen;
-    font-size: 160%;
+    font-size: 140%;
 }
 
 .aid-id {
@@ -75,7 +75,7 @@ body {
 }
 
 .time{
-    font-size: 1250%;
+    font-size: 1100%;
 }
 
 .top-content .time{
@@ -115,6 +115,11 @@ body {
 
 .ampm{
     font-size: 600% !important;
+}
+
+small{
+    font-size: 60%;
+    padding-left: 8px;
 }
 
 .prayer-wait .wait{
