@@ -30,9 +30,10 @@ apt-get autoremove
 # @todo create mariadb user mawaqit/mawaqit
 
 # add autostart
-echo "@sh /home/pi/prayer-times-v3/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 
 # update config.txt
+echo "############### mawaqit conf  ################" >> /boot/config.txt
 echo "hdmi_force_hotplug=1" >> /boot/config.txt
 echo "disable_overscan=1" >> /boot/config.txt
 echo "hdmi_group=1" >> /boot/config.txt
@@ -44,7 +45,7 @@ echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
 # disable screensaver
-sed -i "s/#xserver-command/xserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
+#sed -i "s/#xserver-command/xserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
 
 # update php conf
 sed -i "s/;?date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
@@ -61,7 +62,7 @@ cd /home/pi
 
 git clone https://github.com/binary010100/prayer-times-v3.git
 
-cd prayer-times-v3
+cd mawaqit
 
 HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
