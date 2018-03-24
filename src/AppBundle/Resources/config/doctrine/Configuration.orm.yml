@@ -125,6 +125,8 @@ AppBundle\Entity\Configuration:
             type: smallint
         timeDisplayFormat:
             type: string
+        showNextAdhanCountdown:
+            type: boolean
         created:
             type: datetime
             gedmo:

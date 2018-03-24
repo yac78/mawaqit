@@ -304,6 +304,11 @@ class Configuration
     private $timeDisplayFormat = "24";
 
     /**
+     * @var bool
+     */
+    private $showNextAdhanCountdown = true;
+
+    /**
      * Get id
      *
      * @return int
@@ -1267,5 +1272,22 @@ class Configuration
         $this->timeDisplayFormat = $timeDisplayFormat;
     }
 
+    /**
+     * @return bool
+     */
+    public function isShowNextAdhanCountdown()
+    {
+        return $this->showNextAdhanCountdown;
+    }
+
+    /**
+     * @param bool $showNextAdhanCountdown
+     * @return Configuration
+     */
+    public function setShowNextAdhanCountdown($showNextAdhanCountdown)
+    {
+        $this->showNextAdhanCountdown = $showNextAdhanCountdown;
+        return $this;
+    }
 
 }

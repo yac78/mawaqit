@@ -235,6 +235,8 @@ configuration:
             title: This concerns only the screen dedicated to messages and announcements
         hideFooter:
             label: Hide footer
+        showNextAdhanCountdown:
+            label: Next adhan
         timeDisplayFormat:
             label: Time format
         iqamaEnabled:

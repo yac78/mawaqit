@@ -425,6 +425,10 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.timeToDisplayMessage.title',
                 ]
             ])
+            ->add('showNextAdhanCountdown', CheckboxType::class, [
+                'required' => false,
+                'label' => 'configuration.form.showNextAdhanCountdown.label'
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [

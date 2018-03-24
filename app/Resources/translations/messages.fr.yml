@@ -243,6 +243,8 @@ configuration:
             title: Cela concerne que l'écran dédié aux messages et annonces
         hideFooter:
             label: Cacher le footer (le bas de l'écran)
+        showNextAdhanCountdown:
+            label: Prochain adhân
         timeDisplayFormat:
             label: Format de l'heure
         iqamaEnabled:

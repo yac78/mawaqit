@@ -132,11 +132,12 @@
                 <div class="prayer joumouaa-id"></div>
             </div>
         </div>
-
-        <div class="next-prayer"
-             style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
-            {{ 'next_prayer'|trans }} <div class="countdown"></div>
-        </div>
+        {% if mosque.configuration.showNextAdhanCountdown %}
+            <div class="next-prayer"
+                 style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+                {{ 'next_prayer'|trans }} <div class="countdown"></div>
+            </div>
+        {% endif %}
     </div>
 
     <!-- prayer times container -->
