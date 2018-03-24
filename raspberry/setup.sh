@@ -84,7 +84,7 @@ service nginx restart
 echo "https://mawaqit.net/fr/mosquee-essunna-houilles" >  /home/pi/Desktop/online_site.txt
 echo "http://localhost" >  /home/pi/Desktop/local_site.txt
 cp raspberry/upgrade.sh /home/pi/Desktop/Mawaqit
-
+chmod 777 /home/pi/Desktop/Mawaqit
 
 
 
