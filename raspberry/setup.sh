@@ -13,6 +13,7 @@ apt-get update && apt-get install -y \
   vim \
   xdotool \
   unclutter \
+  xscreensaver \
   mariadb-server \
   mariadb-client \
   nginx \
