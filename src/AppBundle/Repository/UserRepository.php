@@ -14,7 +14,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
      * @param $filter
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function search(array $filter) {
+    function search($filter) {
 
         $qb = $this->createQueryBuilder("u")
                 ->orderBy("u.id", "DESC");
