@@ -107,10 +107,15 @@ var dateTime = {
     },
     /**
      * true if date is last sunday of march or october
+     * @param {Boolean} tomorrow
      * @returns {Boolean}
      */
-    isLastSundayDst: function () {
+    isLastSundayDst: function (tomorrow) {
         var date = new Date();
+        if(tomorrow === true){
+            date = dateTime.tomorrow();
+        }
+
         var currentMonth = date.getMonth();
         var currentDay = date.getDate();
         if ($.inArray(currentMonth, [2, 9]) !== -1) {

@@ -164,15 +164,13 @@ var prayer = {
     },
     /**
      * get today prayer times, array of only five prayer times
-     * @param {boolean} afterIsha
+     * @param {boolean} tomorrow
      * @returns {Array}
      */
-    getTimes: function (afterIsha) {
+    getTimes: function (tomorrow) {
         var times = [this.times[1], this.times[3], this.times[4], this.times[5], this.times[6]];
         $.each(times, function (i, time) {
-            if (typeof afterIsha === 'undefined') {
-                times[i] = prayer.dstConvertTimeForCalendarMode(time);
-            }
+            times[i] = prayer.dstConvertTimeForCalendarMode(time, tomorrow);
 
             // adjust isha to 90 min after maghrib if option enabled
             if (i === 4 && prayer.confData.ninetyMinBetweenMaghibAndIsha === true) {
@@ -255,13 +253,14 @@ var prayer = {
     },
     /**
      * Check conditions to apply dst for calendar mode
+     * @param {Boolean} tomorrow
      * @return {boolean}
      */
-    applyDstForCalendarMode: function () {
+    applyDstForCalendarMode: function (tomorrow) {
         if (prayer.confData.sourceCalcul === "calendar") {
             // dst = 2 => auto
             if (prayer.confData.dst === "auto") {
-                return dateTime.isLastSundayDst();
+                return dateTime.isLastSundayDst(tomorrow);
             }
 
             // dst = 1 => enabled
@@ -280,13 +279,14 @@ var prayer = {
     /**
      * +1|-1 hour on time for calendar times
      * Condition 1 : on calendar prayers
-     * Condition 2 : if dst auto and we are in last synday of march or october
+     * Condition 2 : if dst auto and we are in last sunday of march or october
      * Condition 3 : if dst enablded and we are in choosen dates
+     * @param {Boolean} tomorrow
      * @param {String} time
      * @returns {String}
      */
-    dstConvertTimeForCalendarMode: function (time) {
-        if (this.applyDstForCalendarMode()) {
+    dstConvertTimeForCalendarMode: function (time, tomorrow) {
+        if (this.applyDstForCalendarMode(tomorrow)) {
             var prayerdateTime = prayer.getCurrentDateForPrayerTime(time);
             var hour;
 
@@ -341,7 +341,7 @@ var prayer = {
         var sobh = this.getTimeByIndex(0);
         var sobhDateTime = this.getCurrentDateForPrayerTime(sobh);
         var imsakDateTime = sobhDateTime.setMinutes(sobhDateTime.getMinutes() - this.confData.imsakNbMinBeforeFajr);
-        var imsakDateTime = new Date(imsakDateTime);
+        imsakDateTime = new Date(imsakDateTime);
         return addZero(imsakDateTime.getHours()) + ':' + addZero(imsakDateTime.getMinutes());
     },
     /**
@@ -698,7 +698,7 @@ var prayer = {
      * @param {int} currentTimeIndex
      */
     setNextTimeHilight: function (currentTimeIndex) {
-        nextTimeIndex = currentTimeIndex + 1;
+        var nextTimeIndex = currentTimeIndex + 1;
         // if icha is the current prayer
         if (nextTimeIndex === 5) {
             nextTimeIndex = 0;
@@ -880,13 +880,14 @@ var prayer = {
     },
     /**
      * set all prayer times
+     * @param {Boolean} tomorrow
      */
-    setTimes: function (afterIsha) {
-        var sobh =  prayer.formatTime(this.getTimes(afterIsha)[0]);
-        var dohr =  prayer.formatTime(this.getTimes(afterIsha)[1]);
-        var asr =  prayer.formatTime(this.getTimes(afterIsha)[2]);
-        var maghrib =  prayer.formatTime(this.getTimes(afterIsha)[3]);
-        var ichaa =  prayer.formatTime(this.getTimes(afterIsha)[4]);
+    setTimes: function (tomorrow) {
+        var sobh =  prayer.formatTime(this.getTimes(tomorrow)[0]);
+        var dohr =  prayer.formatTime(this.getTimes(tomorrow)[1]);
+        var asr =  prayer.formatTime(this.getTimes(tomorrow)[2]);
+        var maghrib =  prayer.formatTime(this.getTimes(tomorrow)[3]);
+        var ichaa =  prayer.formatTime(this.getTimes(tomorrow)[4]);
 
         $(".sobh").html(sobh);
         $(".dohr").html(dohr);
