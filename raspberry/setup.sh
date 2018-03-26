@@ -13,6 +13,7 @@ apt-get update && apt-get install -y \
   vim \
   xdotool \
   unclutter \
+  xscreensaver \
   mariadb-server \
   mariadb-client \
   nginx \
@@ -27,7 +28,11 @@ apt-get update && apt-get install -y \
 
 apt-get autoremove
 
-# @todo create mariadb user mawaqit/mawaqit
+# create mariadb user mawaqit/mawaqit
+mariadb
+CREATE USER 'mawaqit'@'localhost';
+GRANT ALL ON *.* TO 'mawaqit'@'localhost';
+exit;
 
 # add autostart
 echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
@@ -58,11 +63,9 @@ sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # install project
-cd /home/pi
-
-git clone https://github.com/binary010100/prayer-times-v3.git
-
-cd mawaqit
+mkdir /home/pi/mawaqit
+cd /home/pi/mawaqit
+git clone https://github.com/binary010100/prayer-times-v3.git .
 
 HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
@@ -78,6 +81,11 @@ bin/console h:f:l -n
 cp raspberry/vhost /etc/nginx/sites-enabled/default
 service nginx restart
 
+# create files on Desktop
+echo "https://mawaqit.net/fr/mosquee-essunna-houilles" >  /home/pi/Desktop/online_site.txt
+echo "http://localhost/fr/mosquee" >  /home/pi/Desktop/local_site.txt
+cp raspberry/upgrade.sh /home/pi/Desktop/Mawaqit
+chmod 777 /home/pi/Desktop/Mawaqit
 
 
 
