@@ -14,14 +14,13 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
      * @param $filter
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function search($filter) {
+    function search(array $filter) {
 
         $qb = $this->createQueryBuilder("u")
                 ->orderBy("u.id", "DESC");
 
         if (!empty($filter["search"])) {
-            $qb->andWhere("u.username LIKE :search "
-                            . "OR u.email LIKE :search"
+            $qb->andWhere("u.email LIKE :search"
                     )
                     ->setParameter(":search", "%".$filter["search"]."%");
         }

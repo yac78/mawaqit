@@ -107,7 +107,7 @@ class UserController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository("AppBundle:User")
-            ->search($term)
+            ->search(['search' => $term])
             ->select("u.id, u.email as label")
             ->getQuery()
             ->getArrayResult();
