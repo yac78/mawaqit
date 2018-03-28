@@ -39,7 +39,14 @@ var prayer = {
      * load all data
      */
     setBackgroundColor: function () {
-        $("body").css("backgroundColor", prayer.confData.backgroundColor);
+        if (prayer.confData.backgroundType === 'color') {
+            $("body").css("backgroundColor", prayer.confData.backgroundColor);
+        }
+
+        if (prayer.confData.backgroundType === 'motif') {
+            $("body").css("backgroundImage", 'url("/bundles/app/prayer-times/img/background-' + prayer.confData.backgroundMotif + '.jpg")');
+        }
+
     },
     /**
      * load all data
@@ -246,9 +253,9 @@ var prayer = {
         });
     },
     formatTime: function (time) {
-        if(time){
-           var timeDisplayFormat = prayer.confData.timeDisplayFormat;
-           return dateTime.formatTime(time, timeDisplayFormat);
+        if (time) {
+            var timeDisplayFormat = prayer.confData.timeDisplayFormat;
+            return dateTime.formatTime(time, timeDisplayFormat);
         }
     },
     /**
@@ -883,11 +890,11 @@ var prayer = {
      * @param {Boolean} tomorrow
      */
     setTimes: function (tomorrow) {
-        var sobh =  prayer.formatTime(this.getTimes(tomorrow)[0]);
-        var dohr =  prayer.formatTime(this.getTimes(tomorrow)[1]);
-        var asr =  prayer.formatTime(this.getTimes(tomorrow)[2]);
-        var maghrib =  prayer.formatTime(this.getTimes(tomorrow)[3]);
-        var ichaa =  prayer.formatTime(this.getTimes(tomorrow)[4]);
+        var sobh = prayer.formatTime(this.getTimes(tomorrow)[0]);
+        var dohr = prayer.formatTime(this.getTimes(tomorrow)[1]);
+        var asr = prayer.formatTime(this.getTimes(tomorrow)[2]);
+        var maghrib = prayer.formatTime(this.getTimes(tomorrow)[3]);
+        var ichaa = prayer.formatTime(this.getTimes(tomorrow)[4]);
 
         $(".sobh").html(sobh);
         $(".dohr").html(dohr);

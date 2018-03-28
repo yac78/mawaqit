@@ -9,7 +9,7 @@
 }
 
 .checkbox label, .radio label {
-    font-weight: 700; 
+    font-weight: 700;
 }
 
 label {
@@ -31,9 +31,14 @@ label {
     border-color: #486e3b;
 }
 
-#azabStop{
+#azabStop {
     cursor: pointer;
     margin-top: 17px;
     margin-left: -5px;
     width: 36px;
+}
+
+.background-choice {
+    width: 300px;
+    height: 200px;
 }

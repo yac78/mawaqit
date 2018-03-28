@@ -237,7 +237,8 @@ class MosqueController extends Controller
         $calendarName = $request->query->get("calendarName");
         $country = $request->query->get("country");
         $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar/$country/$calendarName";
-        $csvFiles = glob($calendarDir . "/*.csv");
+        $csvFiles = glob("$calendarDir/*.csv");
+
         $calendar = [];
 
         foreach ($csvFiles as $file) {

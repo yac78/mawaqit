@@ -412,6 +412,22 @@ class ConfigurationType extends AbstractType
                     'class' => 'radio-inline'
                 )
             ])
+            ->add('backgroundType', ChoiceType::class, [
+                'required' => true,
+                'label' => 'configuration.form.backgroundType.label',
+                'choices' => ["color" => "color", "motif" => "motif"],
+                'constraints' => [
+                    new Choice(['choices' => ["color", "motif"]]),
+                    new NotBlank(),
+                ]
+            ])
+            ->add('backgroundMotif', ChoiceType::class, [
+                'required' => true,
+                'choices' => ["1", "2", "3", "4"],
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ])
             ->add('backgroundColor', null, [
                 'label' => 'configuration.form.backgroundColor.label',
             ])
@@ -462,7 +478,7 @@ class ConfigurationType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_configuration';
+        return 'configuration';
     }
 
 }

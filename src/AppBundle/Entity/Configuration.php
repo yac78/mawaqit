@@ -301,6 +301,16 @@ class Configuration
     /**
      * @var string
      */
+    private $backgroundType = "motif";
+
+    /**
+     * @var string
+     */
+    private $backgroundMotif = "1";
+
+    /**
+     * @var string
+     */
     private $timeDisplayFormat = "24";
 
     /**
@@ -1287,6 +1297,42 @@ class Configuration
     public function setShowNextAdhanCountdown($showNextAdhanCountdown)
     {
         $this->showNextAdhanCountdown = $showNextAdhanCountdown;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundType()
+    {
+        return $this->backgroundType;
+    }
+
+    /**
+     * @param string $backgroundType
+     * @return Configuration
+     */
+    public function setBackgroundType($backgroundType)
+    {
+        $this->backgroundType = $backgroundType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundMotif(): string
+    {
+        return $this->backgroundMotif;
+    }
+
+    /**
+     * @param string $backgroundMotif
+     * @return Configuration
+     */
+    public function setBackgroundMotif(string $backgroundMotif): Configuration
+    {
+        $this->backgroundMotif = $backgroundMotif;
         return $this;
     }
 

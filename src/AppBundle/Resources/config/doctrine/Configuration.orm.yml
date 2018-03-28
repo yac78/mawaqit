@@ -127,6 +127,10 @@ AppBundle\Entity\Configuration:
             type: string
         showNextAdhanCountdown:
             type: boolean
+        backgroundType:
+            type: string
+        backgroundMotif:
+            type: string
         created:
             type: datetime
             gedmo:

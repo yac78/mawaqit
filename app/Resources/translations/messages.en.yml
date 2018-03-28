@@ -239,6 +239,8 @@ configuration:
             label: Next adhan
         timeDisplayFormat:
             label: Time format
+        backgroundType:
+            label: wallpaper
         iqamaEnabled:
             label: Enabled
             title: |
@@ -294,6 +296,8 @@ close: Close
 show: Show
 links: Links
 site: Website
+motif: Motif
+color: Color
 
 mosqueList:
     iframeCopyText: To display the widget below on your website just copy / paste this html-code
@@ -386,6 +390,7 @@ info_dst_change: |
 other_settings: Other settings
 home_settings: Home use
 regional_settings: Regional settings
+theme_settings: Theme
 invocations_hadiths: Invocations and hadiths
 edit_of: Edit "%name%"
 yes: Yes

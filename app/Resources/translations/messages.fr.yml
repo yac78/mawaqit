@@ -247,6 +247,8 @@ configuration:
             label: Prochain adhân
         timeDisplayFormat:
             label: Format de l'heure
+        backgroundType:
+            label: Fon d'écran
         iqamaEnabled:
             label: Activée
             title: |
@@ -302,6 +304,8 @@ close: Fermer
 show: voir
 links: Liens
 site: Site internet
+motif: Motif
+color: Couleur
 
 mosqueList:
     iframeCopyText: Pour afficher le widget ci-dessous dans votre site il suffit de copier/coller ce code html
@@ -396,6 +400,7 @@ info_dst_change: |
     le logiciel s'en occupera en fonction de vos choix de dates.
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
+theme_settings: Thème
 regional_settings: Paramètres régionaux
 invocations_hadiths: Invocations et hadiths
 edit_of: Édition de "%name%"

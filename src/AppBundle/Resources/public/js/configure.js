@@ -1,4 +1,4 @@
-$("#appbundle_configuration_save").click(function () {
+$("#configuration_save").click(function () {
     $("form").submit();
 })
 
@@ -22,12 +22,12 @@ function checkAndHilightIncompletedMonths() {
     });
 }
 
-$("#appbundle_configuration_sourceCalcul").bind("change keyup", function (event) {
+$("#configuration_sourceCalcul").bind("change keyup", function (event) {
     $(".api, .calendar").addClass("hidden");
     $("." + $(this).val()).removeClass("hidden");
 });
 
-$("#appbundle_configuration_prayerMethod").bind("change keyup", function (event) {
+$("#configuration_prayerMethod").bind("change keyup", function (event) {
     $(".degree").addClass("hidden");
     if ($(this).val() === 'CUSTOM') {
         $(".degree").removeClass("hidden");
@@ -79,7 +79,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         for (var day = 1; day < lines.length; day++) {
             var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
-                var inputPrayer = $("input[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
+                var inputPrayer = $("input[name='configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
                 if (/^\d{2}:\d{2}$/.test(line[prayer]) === false) {
                     error = true;
                 }
@@ -102,7 +102,6 @@ function processFillMonthPrayerTimes(csv, inputFile) {
 $("#predefined-calendar").change(function () {
     var calendarName = $(this).val();
     var country = $('#predefined-calendar :selected').parent().attr('label');
-    console.log(country);
     if (calendarName) {
         waitingDialog.show("Chargement en cours...");
         var url = $(this).data("ajax-url");
@@ -119,7 +118,7 @@ $("#predefined-calendar").change(function () {
                 for (var month = 0; month < calendar.length; month++) {
                     for (var day = 1; day < calendar[month].length; day++) {
                         for (var prayer = 1; prayer < calendar[month][day].length; prayer++) {
-                            elem = $("[name='appbundle_configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
+                            elem = $("[name='configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
                             elem.val(calendar[month][day][prayer]);
                             elem.trigger("keyup");
                         }
@@ -145,7 +144,7 @@ function handleErrorsDisplay() {
 /**
  * Jumua as duh handling checkbox
  */
-$("#appbundle_configuration_jumuaAsDuhr").bind("change", function (event) {
+$("#configuration_jumuaAsDuhr").bind("change", function (event) {
     if ($(this).is(":checked")) {
         $(".jumua-bloc-time").hide();
     } else {
@@ -156,7 +155,7 @@ $("#appbundle_configuration_jumuaAsDuhr").bind("change", function (event) {
 /**
  * No jumua checkbox handling
  */
-$("#appbundle_configuration_noJumua").bind("change", function (event) {
+$("#configuration_noJumua").bind("change", function (event) {
     if ($(this).is(":checked")) {
         $(".jumua-bloc").hide();
     } else {
@@ -168,7 +167,7 @@ $("#appbundle_configuration_noJumua").bind("change", function (event) {
  * jumu`a Reminder an blackScreen checkbox handling
  */
 $(".jumuaTimeoutHandler input").bind("change", function () {
-    var $jumuaTimeoutParent = $("#appbundle_configuration_jumuaTimeout").parent();
+    var $jumuaTimeoutParent = $("#configuration_jumuaTimeout").parent();
     $jumuaTimeoutParent.hide();
 
     $(".jumuaTimeoutHandler input").each(function (i, e) {
@@ -180,7 +179,7 @@ $(".jumuaTimeoutHandler input").bind("change", function () {
 
 });
 
-$("#appbundle_configuration_randomHadithEnabled").bind("change", function (event) {
+$("#configuration_randomHadithEnabled").bind("change", function (event) {
     if ($(this).is(":checked")) {
         $(".hadith-block").show();
     } else {
@@ -189,7 +188,7 @@ $("#appbundle_configuration_randomHadithEnabled").bind("change", function (event
 });
 
 function iqamaSettingsDisplayHandler() {
-    var $iqamaCheckbox = $("#appbundle_configuration_iqamaEnabled");
+    var $iqamaCheckbox = $("#configuration_iqamaEnabled");
     if ($iqamaCheckbox.is(":checked")) {
         $(".iqama-settings").show();
     } else {
@@ -197,25 +196,25 @@ function iqamaSettingsDisplayHandler() {
     }
 }
 
-$("#appbundle_configuration_iqamaEnabled").bind("change", function (event) {
+$("#configuration_iqamaEnabled").bind("change", function (event) {
     iqamaSettingsDisplayHandler();
 });
 
 
-$("." + $("#appbundle_configuration_sourceCalcul").val()).removeClass("hidden");
+$("." + $("#configuration_sourceCalcul").val()).removeClass("hidden");
 $(".calendar-prayer input").each(function (index) {
     if ($(this).val() === "") {
         $(this).css("background-color", "#f8d4d4");
     }
 });
-$("#appbundle_configuration_prayerMethod").trigger("change");
-$("#appbundle_configuration_jumuaAsDuhr").trigger("change");
-$("#appbundle_configuration_noJumua").trigger("change");
-$("#appbundle_configuration_randomHadithEnabled").trigger("change");
+$("#configuration_prayerMethod").trigger("change");
+$("#configuration_jumuaAsDuhr").trigger("change");
+$("#configuration_noJumua").trigger("change");
+$("#configuration_randomHadithEnabled").trigger("change");
 $(".jumuaTimeoutHandler input").trigger("change");
 
 function dstDisplayHandler() {
-    var $dst = $("#appbundle_configuration_dst");
+    var $dst = $("#configuration_dst");
     if ($dst.val() == "1") {
         $(".dst-bloc").show();
     } else {
@@ -223,13 +222,13 @@ function dstDisplayHandler() {
     }
 }
 
-$("#appbundle_configuration_dst").change(function () {
+$("#configuration_dst").change(function () {
     dstDisplayHandler();
 });
 
 
 function wakeUpAzanDisplayHandler() {
-    var $wakeForFajrTime = $("#appbundle_configuration_wakeForFajrTime");
+    var $wakeForFajrTime = $("#configuration_wakeForFajrTime");
     if ($wakeForFajrTime.val() > 0) {
         $(".wakeAzanVoice").show();
     } else {
@@ -237,12 +236,12 @@ function wakeUpAzanDisplayHandler() {
     }
 }
 
-$("#appbundle_configuration_wakeForFajrTime").change(function () {
+$("#configuration_wakeForFajrTime").change(function () {
     wakeUpAzanDisplayHandler();
 });
 
 var wakeAzanVoice = new Audio();
-$("#appbundle_configuration_wakeAzanVoice").change(function () {
+$("#configuration_wakeAzanVoice").change(function () {
     $("#azabStop").removeClass("hidden");
     wakeAzanVoice.pause();
     wakeAzanVoice = new Audio('/static/mp3/' + $(this).val() + '.mp3');
@@ -253,9 +252,19 @@ $("#azabStop").click(function () {
     wakeAzanVoice.pause();
 });
 
+function backgroundHandler() {
+    var $backgroundType = $("#configuration_backgroundType");
+    $(".motif, .color").hide();
+    $("." + $backgroundType.val()).show();
+}
+
+$("#configuration_backgroundType").change(function () {
+    backgroundHandler();
+});
 
 dstDisplayHandler();
 checkAndHilightIncompletedMonths();
 handleErrorsDisplay();
 iqamaSettingsDisplayHandler();
 wakeUpAzanDisplayHandler();
+backgroundHandler();
