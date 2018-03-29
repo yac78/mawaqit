@@ -217,7 +217,7 @@ class MosqueController extends Controller
     /**
      * @Route("/getCsvFiles/{id}", name="mosque_csv_files")
      */
-    public function getCsvFilesAction(Request $request, Mosque $mosque)
+    public function getCsvFilesAction(Mosque $mosque)
     {
 
         $zipFilePath = $this->get("app.prayer_times_service")->getFilesFromCalendar($mosque);
