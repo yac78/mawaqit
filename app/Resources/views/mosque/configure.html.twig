@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <form action="{{ path('mosque_configure', {id: mosque.id}) }}" method="post">
+    <form action="{{ path('mosque_configure', {id: mosque.id}) }}" method="post" {{ app.request.getHost() == 'localhost' ? '' : 'target="_blank"' }} >
 
         {{ form_errors(form) }}
         {{ form_widget(form._token) }}

@@ -30,7 +30,7 @@ mosque:
         mosque: Mosquée
         home: Domicile
     add_new: Ajouter une mosquée
-    add: Ajout d'une nouvelle mosquée
+    add: Ajouter une installation
     name: Nom
     refresh: | 
                 Recharger la page de l'écran à distance. 
@@ -282,7 +282,7 @@ name: Nom
 association_name: Nom de l'association
 prayer_sites: Liens de l'écran mawaqit
 users: Utilisateurs
-my_mosques: Mes mosquées
+my_mosques: Mes instllations
 my_profile: Mon profil
 contact: Contact
 association: Association

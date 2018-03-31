@@ -28,7 +28,7 @@ mosque:
     types:
         mosque: Mosque
         home: Home
-    add_new: Add a mosque
+    add_new: Add
     add: Adding a new mosque
     name: Name
     refresh: |
@@ -274,7 +274,7 @@ name: Name
 association_name: Name of the association
 prayer_sites: Mawaqit links
 users: Users
-my_mosques: My mosques
+my_mosques: My installations
 my_profile: My profile
 contact: Contact
 association: Association
