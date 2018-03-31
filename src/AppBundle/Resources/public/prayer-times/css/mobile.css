@@ -50,7 +50,7 @@ body {
 }
 
 .prayer-content{
-    margin: 20px 0;
+    margin: 20px 0 10px 0;
 }
 
 .prayer-content>div {
@@ -82,6 +82,16 @@ body {
 small{
     font-size: 70%;
     padding-left: 5px;
+}
+
+.next-prayer {
+    font-size: 120%;
+    color: #ec7047;
+    margin-bottom: 1rem;
+}
+
+.next-prayer .countdown {
+    display: inline;
 }
 
 .aid-id {

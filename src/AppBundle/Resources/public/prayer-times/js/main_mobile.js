@@ -15,6 +15,7 @@ prayer.loadData();
 prayer.setBackgroundColor();
 prayer.setDate();
 prayer.setTimes();
+prayer.nextPrayerCountdown();
 prayer.setWaitings();
 prayer.initNextTimeHilight();
 prayer.initAdhanFlash();

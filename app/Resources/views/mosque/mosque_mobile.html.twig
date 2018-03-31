@@ -126,9 +126,16 @@
                 {% endif %}
             </div>
 
+            <div class="row">
+                <div class="next-prayer"
+                     style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+                    {{ 'next_prayer'|trans }} <div class="countdown"></div>
+                </div>
+            </div>
+
             <div class="chourouk-joumouaa">
                 <div class="row">
-                    <div class="col-xs-4 col-xs-offset-1 imsak custom-time ar">{{'imsak'|trans}}</div> 
+                    <div class="col-xs-4 col-xs-offset-1 imsak custom-time ar">{{'imsak'|trans}}</div>
                     <div class="col-xs-4 col-xs-offset-1 chourouk custom-time ar">{{'shuruk'|trans}}</div> 
                     <div class="col-xs-4 col-xs-offset-1 aid custom-time ar">{{'aid'|trans}}</div> 
                     <div class="col-xs-2"></div>
