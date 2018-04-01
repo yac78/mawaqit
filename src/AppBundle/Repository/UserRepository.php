@@ -58,4 +58,20 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
             ->getSingleScalarResult();
     }
 
+    /**
+     * Remove disabled users who have created one month ago
+     * @return mixed
+     */
+    function removeOldDisbaledUsers()
+    {
+        return $this->createQueryBuilder("u")
+            ->delete()
+            ->where("u.enabled = 0")
+            ->andWhere("u.created < :oneMonthAgo")
+            ->setParameter(":oneMonthAgo", new \DateTime("-1 month"))
+            ->getQuery()
+            ->execute();
+    }
+
+
 }

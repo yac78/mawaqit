@@ -72,6 +72,19 @@ services:
             - "@doctrine.orm.entity_manager"
             - ["%supportEmail%", "%name%"]
 
+    app.user_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments:
+            - AppBundle\Entity\User
+
+    app.clean_old_users_ceommand:
+        class: AppBundle\Command\CleanOldUsersCommand
+        arguments:
+            - "@app.user_repository"
+        tags:
+            - { name: 'console.command', command: 'app:clean-old-users' }
+
     # Forms
     app.form_configuration:
         class: AppBundle\Form\ConfigurationType
