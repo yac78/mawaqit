@@ -81,11 +81,12 @@ var dateTime = {
             return addZero(this.getCurrentDay()) + "/" + this.getCurrentMonthText() + "/" + date.getFullYear();
         }
         var options = {weekday: "long", year: "numeric", month: "short", day: "numeric"}
+        lang  = lang + '-' + lang.toUpperCase();
         try {
-            return date.toLocaleString(lang, options).firstCapitalize();
+            return date.toLocaleDateString(lang, options).firstCapitalize();
         } catch (e) {
             options.timeZone = "Europe/Paris";
-            return date.toLocaleString(lang, options).firstCapitalize();
+            return date.toLocaleDateString(lang, options).firstCapitalize();
         }
 
     },
