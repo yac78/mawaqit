@@ -169,7 +169,7 @@ small{
 }
 
 .hijriDate{
-    margin-bottom: 5px;
+    margin: 10px 0;
 }
 
 .adhan, .douaa-between-adhan-iqama{
@@ -184,3 +184,13 @@ small{
      padding-right: 5px;
      padding-left: 5px;
  }
+
+.full-moon{
+    width: 30px;
+    height: 30px;
+    margin: -5px 0 0 10px;
+}
+
+.white-days {
+    color: #e74c3c;
+}

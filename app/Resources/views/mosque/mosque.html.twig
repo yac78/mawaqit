@@ -30,9 +30,9 @@
 <!-- Douaa after prayer slider -->
 <div class="adhkar-after-prayer display-none">
     {% if mosque.configuration.smallScreen %}
-    {% include 'partial/dua-slider.html.twig' %}
+        {% include 'partial/dua-slider.html.twig' %}
     {% else %}
-    {% include 'partial/dua-slider-one-screen.html.twig' %}
+        {% include 'partial/dua-slider-one-screen.html.twig' %}
     {% endif %}
 </div>
 
@@ -56,7 +56,8 @@
              style="{{ app.request.locale == 'ar' ? 'left :15px; text-align: left' : 'right :15px;' }}"></div>
         <div class="next-prayer"
              style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
-            {{ 'next_prayer'|trans }} <div class="countdown"></div>
+            {{ 'next_prayer'|trans }}
+            <div class="countdown"></div>
         </div>
     </div>
 
@@ -122,7 +123,7 @@
             <div class="col-md-6">
                 <div class="time"></div>
                 <div class="date">
-                    <div class="hijriDate"></div>
+                    <div class="hijriDate"><span></span> <img  class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}"alt=""></div>
                     <div class="gregorianDate"></div>
                 </div>
             </div>
@@ -134,7 +135,8 @@
         {% if mosque.configuration.showNextAdhanCountdown %}
             <div class="next-prayer"
                  style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
-                {{ 'next_prayer'|trans }} <div class="countdown"></div>
+                {{ 'next_prayer'|trans }}
+                <div class="countdown"></div>
             </div>
         {% endif %}
     </div>
