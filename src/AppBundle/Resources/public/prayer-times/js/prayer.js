@@ -790,7 +790,7 @@ var prayer = {
             var hijriDate = kuwaiticalendar(hijriAdjustment);
             $(".hijriDate span").removeClass("white-days");
             $(".hijriDate img").addClass("hidden");
-            if ([13, 14, 15].includes(hijriDate[5])) {
+            if ($.inArray(hijriDate[5], [13, 14, 15]) !== -1) {
                 $(".hijriDate span").addClass("white-days");
                 $(".hijriDate img").removeClass("hidden");
             }
