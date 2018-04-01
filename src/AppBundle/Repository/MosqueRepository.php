@@ -37,14 +37,20 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             }
 
             if (!empty($search["type"])) {
-                $qb->andWhere("m.type LIKE :type")
-                    ->setParameter(":type", "%" . $search["type"] . "%");
+                $qb->andWhere("m.type = :type")
+                    ->setParameter(":type", $search["type"]);
             }
 
             if (!empty($search["department"])) {
                 $qb->andWhere("m.zipcode LIKE :zipcode")
                     ->setParameter(":zipcode", $search["department"] . "%");
             }
+        }
+
+        // For Farhat
+        if ($user->getEmail() === "fb.hp.mawaqit@gmail.com" && empty($search["type"])) {
+            $qb->andWhere("m.type = :type")
+                ->setParameter(":type", "mosque");
         }
 
         if (!$user->isAdmin()) {
