@@ -124,7 +124,9 @@
             <div class="col-md-6">
                 <div class="time"></div>
                 <div class="date">
-                    <div class="hijriDate"><span></span> <img  class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}"alt=""></div>
+                    {% if mosque.configuration.hijriDateEnabled %}
+                        <div class="hijriDate"><span></span> <img  class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}"alt=""></div>
+                    {% endif %}
                     <div class="gregorianDate"></div>
                 </div>
             </div>

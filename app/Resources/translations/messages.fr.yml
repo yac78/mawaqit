@@ -179,7 +179,7 @@ configuration:
         iqamaDisplayTime: 
             label: Temps d'affichage du signal iqâmah (en secondes)
         hijriDateEnabled: 
-            label: Date hégire
+            label: Date hégirienne
         duaAfterAzanEnabled: 
             label: Du`aa après adhân
         duaAfterPrayerEnabled: 
