@@ -4,9 +4,8 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
+use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MessageType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +20,7 @@ class MessageController extends Controller
     /**
      * @Route("/{mosque}/message/", name="message_index")
      */
-    public function indexAction(Request $request, Mosque $mosque)
+    public function indexAction(Mosque $mosque)
     {
 
         $user = $this->getUser();
@@ -30,11 +29,32 @@ class MessageController extends Controller
         }
         $em = $this->getDoctrine()->getManager();
         $messages = $em->getRepository("AppBundle:Message")->getBySortableGroupsQuery(array('mosque' => $mosque))->getResult();
+        $form = $this->createForm(ConfigurationType::class, $mosque->getConfiguration());
 
         return $this->render('message/index.html.twig', [
+            "form" => $form->createView(),
             "mosque" => $mosque,
             "messages" => $messages
         ]);
+    }
+
+    /**
+     * @Route("/{mosque}/message/update-time", name="ajax_message_update_time")
+     */
+    public function ajaxUpdateTimeAction(Request $request, Mosque $mosque)
+    {
+
+        $user = $this->getUser();
+        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+            throw new AccessDeniedException;
+        }
+        $em = $this->getDoctrine()->getManager();
+        $conf = $mosque->getConfiguration();
+        $conf->setTimeToDisplayMessage($request->request->get('timeToDisplayMessage'));
+        $em->persist($conf);
+        $em->flush();
+
+        return new JsonResponse();
     }
 
     /**

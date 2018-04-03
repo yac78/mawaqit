@@ -29,6 +29,18 @@
         </div>
     </div>
 
+    <div class="row mb-2">
+        <div class="col-md-4">
+            {{ form_label(form.timeToDisplayMessage) }}
+            <form class="form-inline">
+                <div class="form-group">
+                    {{ form_widget(form.timeToDisplayMessage) }}
+                </div>
+                <button id="timeToDisplayMessageButton" class="btn btn-primary" style="display: none" data-remote="{{ path('ajax_message_update_time', {mosque: mosque.id}) }}">{{ 'validate'|trans }}</button>
+            </form>
+        </div>
+    </div>
+
     <div class="hidden-xs hidden-sm">
         <table class="table table-inverse">
             <thead>
@@ -108,6 +120,7 @@
 
     {% block javascripts %}
         {% javascripts
+            '@AppBundle/Resources/public/js/message_index.js'
             '@AppBundle/Resources/public/js/delete_modal.js'
             '@AppBundle/Resources/public/js/sort.js' %}
             <script src="{{ asset_url }}"></script>
