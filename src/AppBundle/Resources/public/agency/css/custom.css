@@ -111,3 +111,7 @@ a, code {
     margin-top: 4rem;
     height: 400px;
 }
+
+.slides li{
+    padding: 0 3px !important;
+}
