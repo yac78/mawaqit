@@ -141,7 +141,7 @@ configuration:
             title: This field allows to indicate the time of the imsak, put here the number of wished minutes, for example if fajr is at 04:00 and that you put 30 min the hour of imsak displayed will be 03:30. Put 0 if you do not want to display it
         waitingTimes: 
             label: Waiting time between adhân and iqâmah
-        fixedTimes: 
+        fixedTimes:
             label: Fixing prayer times
             title: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
         duaAfterPrayerShowTimes: 
@@ -202,7 +202,7 @@ configuration:
             label: Randomly display a hadith every 5 min
             title: The hadiths are from the famous book "Ryiad Essalahine" by Imam Ennawawi rahimahu Allah
         randomHadithIntervalDisabling:
-            label: "Disable hadiths between :"
+            label: "Disable hadiths between"
             title: "You can disable hadith between 2 prayer if there are dourous for exemple"
         temperatureEnabled:
             label:  Temperature
@@ -274,7 +274,7 @@ name: Name
 association_name: Name of the association
 prayer_sites: Mawaqit links
 users: Users
-my_mosques: My installations
+my_mosques: My mawaqits
 my_profile: My profile
 contact: Contact
 association: Association

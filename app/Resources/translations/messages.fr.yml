@@ -282,11 +282,12 @@ name: Nom
 association_name: Nom de l'association
 prayer_sites: Liens de l'écran mawaqit
 users: Utilisateurs
-my_mosques: Mes installations
+my_mosques: Mes mawaqits
 my_profile: Mon profil
 contact: Contact
 association: Association
 creation_date: Date de création
+date: Date
 search: Recherche
 ar: Arabe
 fr: Français

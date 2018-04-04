@@ -434,7 +434,6 @@ class ConfigurationType extends AbstractType
             ->add('calendar')
             ->add('timeToDisplayMessage', IntegerType::class, [
                 'required' => false,
-                'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                 'label' => 'configuration.form.timeToDisplayMessage.label',
                 'attr' => [
                     'min' => 5,
