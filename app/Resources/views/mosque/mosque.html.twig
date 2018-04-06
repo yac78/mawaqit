@@ -177,10 +177,20 @@
     <!-- footer container -->
     <div class="footer">
 
+        {% if app.request.getHost() != 'localhost' %}
+           {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
+        {% endif %}
+
+        {% if app.request.getHost() == 'localhost' and mosque.site is not empty %}
+            {% set url =  mosque.site %}
+        {% endif %}
+
         <div class="footer-withour-version {{ mosque.configuration.hideFooter ? 'hidden' : '' }}">
-            {% if app.request.getHost() != 'localhost' %}
-                <div class="site">{{ 'prayer_mobile_site'|trans({'%site%': url('mosque', {slug: mosque.slug})})|raw }}</div>
-            {% endif %}
+            <div class="site">
+               {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
+            </div>
+        </div>
+
             <div class="assosciation">
                 {{ mosque.associationName }}
                 {% if mosque.phone %}
@@ -197,7 +207,7 @@
                         href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
             </div>
             {% if mosque.configuration.urlQrCodeEnabled %}
-                <div class="qr-code" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}">
+                <div class="qr-code" data-url="{{ url }}">
                     <div id="qr-code"></div>
                 </div>
             {% endif %}

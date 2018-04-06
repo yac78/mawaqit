@@ -320,7 +320,7 @@ changing_password: تغيير كلمة المرور
 add: إضافة
 title: العنوان
 content: المحتوى
-developed_by: ' تم برمجته من طرف : Binary Consulting SAS'
+developed_by: 'Binary Consulting SAS '
 next_prayer: الأذان القادم بعد
 last_login: آخر إتصال
 alarm: الصلاة خير من النوم
@@ -354,7 +354,7 @@ type: التثبيت
 
 languages: اللغة
 
-prayer_mobile_site: المواقيت على اللوحة الكفية والجوال<a href='%site%'>%site%</a>"
+prayer_mobile_site: المواقيت على الجوال <a href='%site%'>%site%</a>
 association_info: "%name% - الهاتف %phone%"
 other_settings: إعدادات أخرى
 home_settings: الإستعمال المنزلي
