@@ -130,8 +130,7 @@
             </div>
 
             <div class="row">
-                <div class="next-prayer"
-                     style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+                <div class="next-prayer text-center">
                     {{ 'next_prayer'|trans }} <div class="countdown"></div>
                 </div>
             </div>
@@ -140,18 +139,22 @@
                 <div class="row">
                     <div class="col-xs-4 col-xs-offset-1 imsak custom-time ar">{{'imsak'|trans}}</div>
                     <div class="col-xs-4 col-xs-offset-1 chourouk custom-time ar">{{'shuruk'|trans}}</div> 
-                    <div class="col-xs-4 col-xs-offset-1 aid custom-time ar">{{'aid'|trans}}</div> 
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-4 joumouaa ar">{{'jumua'|trans}}</div>
-                    <div class="col-xs-1"></div>
+                    <div class="col-xs-4 col-xs-offset-1 aid custom-time ar">{{'aid'|trans}}</div>
+                    {% if not mosque.configuration.noJumua  %}
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-4 joumouaa ar">{{'jumua'|trans}}</div>
+                        <div class="col-xs-1"></div>
+                    {% endif %}
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-xs-offset-1 imsak custom-time imsak-id {{ ampmClass }}"></div>
                     <div class="col-xs-4 col-xs-offset-1 chourouk custom-time chourouk-id  {{ ampmClass }}"></div>
                     <div class="col-xs-4 col-xs-offset-1 aid custom-time aid-id {{ ampmClass }}"></div>
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-4 prayer joumouaa-id {{ ampmClass }}"></div>
-                    <div class="col-xs-1"></div>
+                    {% if not mosque.configuration.noJumua  %}
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-4 prayer joumouaa-id {{ ampmClass }}"></div>
+                        <div class="col-xs-1"></div>
+                    {% endif %}
                 </div>
             </div>
 

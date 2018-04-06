@@ -233,7 +233,13 @@ var prayer = {
         var countDownDate = tomorrowFajrDate;
 
         $.each(prayer.getTimes(), function (index, time) {
+            // handle jumua
+            if(prayer.isJumua(index)){
+                time = prayer.getJumuaTime();
+            }
+
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+
             if (prayerDateTime.getHours() !== 0 && date < prayerDateTime) {
                 countDownDate = prayerDateTime;
                 return false;
