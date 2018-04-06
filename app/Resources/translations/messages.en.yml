@@ -143,10 +143,10 @@ configuration:
             label: Waiting time between adhân and iqâmah
         fixedTimes:
             label: Fixing prayer times
-            title: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
+            help: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
         duaAfterPrayerShowTimes: 
             label: Estimated duration of each prayer (in minutes)
-            title: These values are as an estimate, it is the duration that the imam puts to finish a prayer
+            help: These values are as an estimate, it is the duration that the imam puts to finish a prayer
         hijriAdjustment: 
             label: Adjustment of the Hegira date
         timezone: 
