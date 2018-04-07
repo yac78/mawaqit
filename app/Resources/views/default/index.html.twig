@@ -283,6 +283,14 @@
                     </div>
                 </div>
 
+                <div class="row mt-2 mb-4">
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-6 col-xs-12">
+                            <input class="form-control input-lg" id="find-mosque" placeholder="Chercher une mosquée mawaqit" data-remote="{{ path('public_mosque_search_ajax') }}">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     {% for mosque in mosquesWithImage %}
                         <div class="col-md-4 col-sm-6 portfolio-item">

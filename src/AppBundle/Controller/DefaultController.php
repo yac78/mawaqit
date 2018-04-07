@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class DefaultController extends Controller {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("", name="homepage")
      */
     public function indexAction(Request $request) {
 
@@ -104,4 +104,28 @@ class DefaultController extends Controller {
         }
         return $hadith;
     }
+
+    /**
+     * get users by search term
+     * @param Request $request
+     * @Route("/search-ajax", name="public_mosque_search_ajax")
+     * @return JsonResponse
+     */
+    public function searchAjaxAction(Request $request)
+    {
+        $term = $request->query->get("term");
+        if (empty($term)) {
+            return new JsonResponse();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository("AppBundle:Mosque")
+            ->publicSearch($term)
+            ->select("m.id, CONCAT(m.name, ' - ',  COALESCE(m.address, ''), ' ',  m.city,' ', m.zipcode, ' > Voir') AS label, m.slug")
+            ->getQuery()
+            ->getArrayResult();
+
+        return new JsonResponse($users);
+    }
+
 }
