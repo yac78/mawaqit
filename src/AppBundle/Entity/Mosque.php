@@ -246,7 +246,7 @@ class Mosque
      */
     public function setCity($city)
     {
-        $this->city = preg_replace("/\s+/", "-", trim($city));
+        $this->city = preg_replace("/\s+/", "-", trim(ucfirst($city)));
 
         return $this;
     }
@@ -270,7 +270,7 @@ class Mosque
      */
     public function setCountry($country)
     {
-        $this->country = preg_replace("/\s+/", "-", trim($country));
+        $this->country = preg_replace("/\s+/", "-", trim(strtoupper($country)));
 
         return $this;
     }

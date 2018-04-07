@@ -63,6 +63,30 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+
+    /**
+     * @param string $search
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function publicSearch($search)
+    {
+        $qb = $this->createQueryBuilder("m");
+
+        if (!empty($search)) {
+            $qb->where("m.type = 'mosque'")
+                ->andwhere("m.name LIKE :word "
+                    . "OR m.associationName LIKE :word "
+                    . "OR m.address LIKE :word "
+                    . "OR m.city LIKE :word "
+                    . "OR m.zipcode LIKE :word "
+                    . "OR m.country LIKE :word "
+                )->setParameter(":word", "%$search%");
+        }
+
+        return $qb;
+    }
+
+
     /**
      * get configured mosques
      * @param integer $nbMax

@@ -1,0 +1,15 @@
+.center-placeholder::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.center-placeholder:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+}
+
+.center-placeholder::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;
+}
+
+.center-placeholder:-ms-input-placeholder {
+    text-align: center;
+}
