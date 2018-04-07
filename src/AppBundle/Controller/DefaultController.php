@@ -121,7 +121,7 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository("AppBundle:Mosque")
             ->publicSearch($term)
-            ->select("m.id, CONCAT(m.name, ' - ',  COALESCE(m.address, ''), ' ',  m.city,' ', m.zipcode, ' > Voir') AS label, m.slug")
+            ->select("m.id, CONCAT(m.name, ' - ',  COALESCE(m.address, ''), ' ',  m.city,' ', m.zipcode, ' ', m.country, ' > Voir') AS label, m.slug")
             ->getQuery()
             ->getArrayResult();
 
