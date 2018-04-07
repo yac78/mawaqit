@@ -40,11 +40,11 @@ var prayer = {
      */
     setBackgroundColor: function () {
         if (prayer.confData.backgroundType === 'color') {
-            $("body").css("backgroundColor", prayer.confData.backgroundColor);
+            $(".main").css("backgroundColor", prayer.confData.backgroundColor);
         }
 
         if (prayer.confData.backgroundType === 'motif') {
-            $("body").css("backgroundImage", 'url("/bundles/app/prayer-times/img/background-' + prayer.confData.backgroundMotif + '.jpg")');
+            $(".main").css("backgroundImage", 'url("/bundles/app/prayer-times/img/background-' + prayer.confData.backgroundMotif + '.jpg")');
         }
 
     },
