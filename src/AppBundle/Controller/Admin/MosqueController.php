@@ -137,7 +137,7 @@ class MosqueController extends Controller
     /**
      * @Route("/clone/{id}", name="mosque_clone")
      */
-    public function cloneAction( Mosque $mosque)
+    public function cloneAction(Mosque $mosque)
     {
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
@@ -199,16 +199,9 @@ class MosqueController extends Controller
             ]);
         }
 
-        $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar";
-        $countries = array_map('basename', glob("$calendarDir/*", GLOB_ONLYDIR));
-        $predefinedCalendars= [];
-        foreach ($countries as $country) {
-            $predefinedCalendars[$country] = array_map('basename', glob("$calendarDir/$country/*", GLOB_ONLYDIR));
-        }
-
         return $this->render('mosque/configure.html.twig', [
             'months' => Calendar::MONTHS,
-            'predefinedCalendars' => $predefinedCalendars,
+            'predefinedCalendars' => $this->get("app.tools_service")->getCalendarList(),
             'mosque' => $mosque,
             'form' => $form->createView()
         ]);
@@ -230,22 +223,23 @@ class MosqueController extends Controller
     }
 
     /**
-     * @Route("/load-calendar", name="ajax_load_calendar")
+     * @param Mosque $mosque
+     * @param Configuration $configuration
+     * @Route("/copy-calendar/mosque/{mosque}/from-configure/{configuration}", name="copy_calendar")
+     * @return Response
      */
-    public function loadCalendarAction(Request $request)
+    public function copyCalendarAction(Mosque $mosque, Configuration $configuration)
     {
-        $calendarName = $request->query->get("calendarName");
-        $country = $request->query->get("country");
-        $calendarDir = $this->getParameter("kernel.root_dir") . "/Resources/calendar/$country/$calendarName";
-        $csvFiles = glob("$calendarDir/*.csv");
+        $mosque->getConfiguration()
+            ->setCalendar($configuration->getCalendar())
+            ->setSourceCalcul(Configuration::SOURCE_CALENDAR);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mosque);
+        $em->flush();
 
-        $calendar = [];
-
-        foreach ($csvFiles as $file) {
-            $calendar[] = array_map('str_getcsv', file($file));
-        }
-
-        return new JsonResponse($calendar);
+        return $this->redirectToRoute("mosque_configure", [
+            'id' => $mosque->getId()
+        ]);
     }
 
 }

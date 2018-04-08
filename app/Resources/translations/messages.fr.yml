@@ -396,9 +396,9 @@ month_11: Décembre
 prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
-    Si vous avez activé le changement d'heure d'été dans les Paramètres régionaux, alors
-    il ne faut pas tenir compte du changement d'heure dans votre saisi du calendrier,
-    le logiciel s'en occupera en fonction de vos choix de dates.
+    ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
+    vos horaires en heure d'hiver sur toute l'année. Le logiciel s'occupera du passage à l'heure d'été en fonction de vos choix dans les paramètres
+    régionnaux.
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
 theme_settings: Thème

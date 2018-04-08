@@ -384,9 +384,9 @@ month_11: December
 prayer_mobile_site: "Mawaqit on mobile and tablet <a href='%site%'>%site%</a>"
 association_info: "%name% - Phone. %phone%"
 info_dst_change: |
-    If you have turned daylight saving time in Regional Settings, then
-    you should not consider DST in your calendar entry,
-    the software will take care of it according to your choice of dates.
+  WARNING ! the calendar must be entered without taking into account the change of daylight saving time,
+  you must enter your hours in winter time throughout the year. The software will take care of the daylight saving time according to your choices in the regional settings.
+
 other_settings: Other settings
 home_settings: Home use
 regional_settings: Regional settings

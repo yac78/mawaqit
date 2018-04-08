@@ -97,26 +97,25 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="alert alert-warning">
-                                        <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans|raw }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="form-group col-md-3">
-                                    <select class="form-control" id="predefined-calendar"
-                                            data-ajax-url="{{ path('ajax_load_calendar') }}">
+                                    <select class="form-control" id="predefined-calendar">
                                         <option value="">{{ 'configuration.select_calendar'|trans }}</option>
                                         {% for country, calendars in predefinedCalendars %}
                                             <optgroup label="{{ country }}">
                                                 {% for calendar in calendars %}
-                                                    <option value="{{ calendar }}">{{ calendar|replace({"-": " "}) }}</option>
+                                                    <option value="{{ calendar.id }}" data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
                                                 {% endfor %}
                                             </optgroup>
                                         {% endfor %}
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert alert-warning">
+                                        <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans|raw }}
+                                    </div>
                                 </div>
                             </div>
 
