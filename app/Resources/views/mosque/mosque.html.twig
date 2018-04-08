@@ -185,7 +185,7 @@
         {% endif %}
 
         <div class="{{ mosque.configuration.hideFooter ? 'hidden' : '' }}">
-            {% if mosque.configuration.urlQrCodeEnabled and url is defined%}
+            {% if url is defined%}
                 <div class="site">
                    {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
                 </div>
