@@ -273,7 +273,7 @@ var prayer = {
         if (prayer.confData.sourceCalcul === "calendar") {
             // dst = 2 => auto
             if (prayer.confData.dst === "auto") {
-                return dateTime.isLastSundayDst(tomorrow);
+                return dateTime.isDst(tomorrow);
             }
 
             // dst = 1 => enabled
@@ -292,7 +292,7 @@ var prayer = {
     /**
      * +1|-1 hour on time for calendar times
      * Condition 1 : on calendar prayers
-     * Condition 2 : if dst auto and we are in last sunday of march or october
+     * Condition 2 : if dst auto and we are between last sunday of march oand last sunday of october
      * Condition 3 : if dst enablded and we are in choosen dates
      * @param {Boolean} tomorrow
      * @param {String} time
@@ -301,20 +301,7 @@ var prayer = {
     dstConvertTimeForCalendarMode: function (time, tomorrow) {
         if (this.applyDstForCalendarMode(tomorrow)) {
             var prayerdateTime = prayer.getCurrentDateForPrayerTime(time);
-            var hour;
-
-            // dst auto => legacy
-            if (prayer.confData.dst === "auto") {
-                hour = dateTime.getCurrentMonth() === 2 ? 1 : -1;
-            }
-
-            // dst enabled
-            if (prayer.confData.dst === 1) {
-                hour = 1;
-            }
-
-            prayerdateTime.setHours(prayerdateTime.getHours() + hour);
-
+            prayerdateTime.setHours(prayerdateTime.getHours() + 1);
             return addZero(prayerdateTime.getHours()) + ':' + addZero(prayerdateTime.getMinutes());
         }
         return time;

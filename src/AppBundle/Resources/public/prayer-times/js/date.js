@@ -98,32 +98,17 @@ var dateTime = {
     },
     /**
      * true if date between last sunday of march and last sunday of october
-     * @returns {Boolean}
-     */
-    isDst: function () {
-        var date = new Date();
-        date.setHours(4);
-        return date.dst();
-    },
-    /**
-     * true if date is last sunday of march or october
      * @param {Boolean} tomorrow
      * @returns {Boolean}
      */
-    isLastSundayDst: function (tomorrow) {
+    isDst: function (tomorrow) {
         var date = new Date();
         if(tomorrow === true){
             date = dateTime.tomorrow();
         }
 
-        var currentMonth = date.getMonth();
-        var currentDay = date.getDate();
-        if ($.inArray(currentMonth, [2, 9]) !== -1) {
-            if (currentDay >= this.getLastSundayOfMonth(currentMonth)) {
-                return true;
-            }
-        }
-        return false;
+        date.setHours(4);
+        return date.dst();
     },
     /**
      * @returns {Date}

@@ -100,41 +100,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
 }
 
 $("#predefined-calendar").change(function () {
-    var calendarName = $(this).val();
-    var country = $('#predefined-calendar :selected').parent().attr('label');
-    if (calendarName) {
-        waitingDialog.show("Chargement en cours...");
-        var url = $(this).data("ajax-url");
-        var elem = null;
-        $.ajax({
-            url: url,
-            method: "GET",
-            dataType: "json",
-            data: {
-                calendarName: calendarName,
-                country: country
-            },
-            success: function (calendar) {
-                for (var month = 0; month < calendar.length; month++) {
-                    for (var day = 1; day < calendar[month].length; day++) {
-                        for (var prayer = 1; prayer < calendar[month][day].length; prayer++) {
-                            elem = $("[name='configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
-                            elem.val(calendar[month][day][prayer]);
-                            elem.trigger("keyup");
-                        }
-                    }
-                }
-                checkAndHilightIncompletedMonths();
-                waitingDialog.hide();
-            },
-            error: function () {
-                alert("Une erreur est survenue");
-            },
-            complete: function () {
-                waitingDialog.hide();
-            }
-        });
-    }
+   window.location.href = $('option:selected', this).data('remote');
 });
 
 function handleErrorsDisplay() {
