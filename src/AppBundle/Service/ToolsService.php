@@ -35,9 +35,12 @@ class ToolsService
         /**
          * @var $conf Configuration
          */
+
+        $editedMosques = [];
         foreach ($confs as $conf) {
             $cal = $conf->getCalendar();
             if (!empty($cal) && is_array($cal)) {
+                $editedMosques[] = $conf->getMosque()->getName() . ',' . $conf->getMosque()->getCity() . ',' . $conf->getMosque()->getCountry() . ',' . $conf->getMosque()->getUser()->getEmail();
                 for ($month = 3; $month <= 9; $month++) {
                     for ($day = 1; $day <= count($cal[$month]); $day++) {
                         for ($prayer = 1; $prayer <= count($cal[$month][$day]); $prayer++) {
@@ -54,6 +57,7 @@ class ToolsService
             }
         }
 
+        file_put_contents("/tmp/rapport.csv", implode("\t\n", $editedMosques));
         $this->em->flush();
 
     }
@@ -85,11 +89,11 @@ class ToolsService
             ->getQuery()
             ->execute();
 
-        $calendars= [];
+        $calendars = [];
         foreach ($res as $item) {
             $calendars[strtoupper($item["country"])][] = [
                 'id' => $item["id"],
-                'label' => substr($item["zipcode"],0,2) . ' ' . ucfirst($item["city"]) . ' ' .  $item["zipcode"],
+                'label' => substr($item["zipcode"], 0, 2) . ' ' . ucfirst($item["city"]) . ' ' . $item["zipcode"],
             ];
         }
 
