@@ -36,6 +36,11 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                 )->setParameter(":word", "%" . $search["word"] . "%");
             }
 
+            if (!empty($search["id"])) {
+                $qb->andWhere("m.id = :id")
+                    ->setParameter(":id", $search["id"]);
+            }
+
             if (!empty($search["type"])) {
                 $qb->andWhere("m.type = :type")
                     ->setParameter(":type", $search["type"]);
