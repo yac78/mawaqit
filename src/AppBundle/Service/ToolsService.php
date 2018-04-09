@@ -22,6 +22,7 @@ class ToolsService
 
     public function updateFrCalendar()
     {
+        ini_set('memory_limit', '512M');
         $confs = $this->em
             ->getRepository("AppBundle:Configuration")
             ->createQueryBuilder("c")
