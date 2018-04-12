@@ -2,7 +2,6 @@ body {
     overflow: hidden;
     height: 100vh;
     position: relative;
-    background-color: #000000;
 }
 
 #spinner {
@@ -21,6 +20,7 @@ body {
     }
 }
 
+#black-screen,
 .main,
 .iqama,
 .adhan,
@@ -30,9 +30,8 @@ body {
     margin: auto;
 }
 
-.main {
-    background-repeat: no-repeat;
-    background-size: cover;
+#black-screen{
+    background-color: #080808;
 }
 
 .top-content {

@@ -40,11 +40,11 @@ var prayer = {
      */
     setBackgroundColor: function () {
         if (prayer.confData.backgroundType === 'color') {
-            $(".main").css("backgroundColor", prayer.confData.backgroundColor);
+            $("body").css("backgroundColor", prayer.confData.backgroundColor);
         }
 
         if (prayer.confData.backgroundType === 'motif') {
-            $(".main").css("backgroundImage", 'url("/bundles/app/prayer-times/img/background-' + prayer.confData.backgroundMotif + '.jpg")');
+            $("body").css("backgroundImage", 'url("/bundles/app/prayer-times/img/background-' + prayer.confData.backgroundMotif + '.jpg")');
         }
 
     },
@@ -234,7 +234,7 @@ var prayer = {
 
         $.each(prayer.getTimes(), function (index, time) {
             // handle jumua
-            if(prayer.isJumua(index)){
+            if (prayer.isJumua(index)) {
                 time = prayer.getJumuaTime();
             }
 
@@ -581,21 +581,22 @@ var prayer = {
      * @param {Number} currentPrayerIndex
      */
     flashIqama: function (currentPrayerIndex) {
-        $(".main").fadeOut();
+        $(".main").fadeOut(500, function () {
+            $(".iqama").removeClass("hidden");
+        });
 
         if (prayer.confData.iqamaBip === true) {
             this.playSound();
         }
 
-        $(".iqama").removeClass("hidden");
         var iqamaFlashInterval = setInterval(function () {
             $(".iqama .image").toggleClass("hidden");
         }, prayer.oneSecond);
 
         // init douaa after prayer timeout
-        if (typeof douaaSlider !== 'undefined') {
-            douaaSlider.timeout(currentPrayerIndex);
-        }
+        setTimeout(function () {
+            douaaSlider.show(currentPrayerIndex);
+        }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
 
         // stop iqama flashing after defined time
         setTimeout(function () {
@@ -616,11 +617,12 @@ var prayer = {
         prayer.duaAfterAdhan.handle(currentPrayerIndex);
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
-        $(".mobile .main").fadeIn();
-        if (!prayer.confData.blackScreenWhenPraying) {
-            $(".main").fadeIn();
-        }
         $(".iqama").addClass("hidden");
+        if (prayer.confData.blackScreenWhenPraying) {
+            $("#black-screen").fadeIn(500);
+        } else {
+            $(".main").fadeIn(500);
+        }
         clearInterval(iqamaFlashInterval);
     },
     /**

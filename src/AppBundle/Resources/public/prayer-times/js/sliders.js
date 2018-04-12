@@ -1,4 +1,3 @@
-
 /**
  * Douaa slider class
  * @type {Object}
@@ -37,9 +36,11 @@ var douaaSlider = {
      */
     show: function (currentTimeIndex) {
         if (prayer.confData.duaAfterPrayerEnabled === true && !prayer.isJumua(currentTimeIndex)) {
-            $(".main").fadeOut(1000, function () {
-                $(".adhkar-after-prayer").fadeIn(1000);
-                douaaSlider.setFontSize();
+            $("#black-screen").fadeOut(500, function () {
+                $(".main").fadeOut(500, function () {
+                    $(".adhkar-after-prayer").fadeIn(500);
+                    douaaSlider.setFontSize();
+                });
             });
 
             var douaaInterval = setInterval(function () {
@@ -62,14 +63,11 @@ var douaaSlider = {
         } else {
             // show messages if exist after prayer
             setTimeout(function () {
-                messageInfoSlider.get();
-            }, 5 * prayer.oneSecond);
+                $("#black-screen").fadeOut(500, function () {
+                    messageInfoSlider.get();
+                });
+            }, 10 * prayer.oneSecond);
         }
-    },
-    timeout: function (currentTimeIndex) {
-        setTimeout(function () {
-            douaaSlider.show(currentTimeIndex);
-        }, prayer.confData.duaAfterPrayerShowTimes[currentTimeIndex] * prayer.oneMinute);
     },
     /**
      * Number of seconds to show all douaa
@@ -139,8 +137,8 @@ var messageInfoSlider = {
                 messageInfoSlider.messageInfoIsShowing = false;
             }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
 
-            $(".main").fadeOut(1000, function () {
-                $(".message-info-slider").fadeIn(1000);
+            $(".main").fadeOut(500, function () {
+                $(".message-info-slider").fadeIn(500);
                 messageInfoSlider.setFontSize();
             });
         }
@@ -149,6 +147,7 @@ var messageInfoSlider = {
      * Get message from server
      */
     get: function () {
+        $(".main").fadeIn(500);
         $.ajax({
             dataType: "json",
             url: $(".message-info-slider").data("remote"),
@@ -168,8 +167,6 @@ var messageInfoSlider = {
                     });
                     $(".message-info-slider").html("<ul>" + items.join("") + "</ul>");
                     messageInfoSlider.run();
-                } else {
-                    $(".main").fadeIn(1000);
                 }
             },
             /**
@@ -178,8 +175,6 @@ var messageInfoSlider = {
             error: function () {
                 if ($(".message-info-slider li").length > 0) {
                     messageInfoSlider.run();
-                } else {
-                    $(".main").fadeIn(1000);
                 }
             },
         });
@@ -197,7 +192,7 @@ var messageInfoSlider = {
     /**
      * Cron handling message info showing
      * The messages will be shown
-     *  - 5 before every adhan 
+     *  - 5 before every adhan
      *  - 5 before jumu`a
      *  - At defined time
      */
