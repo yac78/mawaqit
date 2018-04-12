@@ -2,6 +2,7 @@ body {
     overflow: hidden;
     height: 100vh;
     position: relative;
+    background-size: cover;
 }
 
 #spinner {
