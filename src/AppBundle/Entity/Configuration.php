@@ -296,7 +296,7 @@ class Configuration
     /**
      * @var bool
      */
-    private $hideFooter = false;
+    private $footer = false;
 
     /**
      * @var string
@@ -1251,18 +1251,18 @@ class Configuration
     /**
      * @return bool
      */
-    public function isHideFooter()
+    public function isFooter()
     {
-        return $this->hideFooter;
+        return $this->footer;
     }
 
     /**
-     * @param bool $hideFooter
+     * @param bool $footer
      * @return Configuration
      */
-    public function setHideFooter($hideFooter)
+    public function setFooter($footer)
     {
-        $this->hideFooter = $hideFooter;
+        $this->footer = $footer;
         return $this;
     }
 

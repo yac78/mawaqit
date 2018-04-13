@@ -197,8 +197,8 @@ configuration:
             title: "يمكنك تعطيل ظهور الأحاديث بين صلاتين إذا كانت الدروس تقام في مسجدك بين المغرب والعشاء مثلا"
         ninetyMinBetweenMaghibAndIsha:
             label: ساعة و نصف بين المغرب و العشاء
-        hideFooter:
-            label: إخفاء أسفل الصفحة
+        footer:
+            label: أسفل الصفحة
         iqamaEnabled:
             label: مفعّل
         calendar_explication: |

@@ -185,7 +185,7 @@
             {% set url =  mosque.site %}
         {% endif %}
 
-        <div class="{{ mosque.configuration.hideFooter ? 'hidden' : '' }}">
+        <div class="{{ not mosque.configuration.footer ? 'hidden' : '' }}">
             {% if url is defined%}
                 <div class="site">
                    {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}

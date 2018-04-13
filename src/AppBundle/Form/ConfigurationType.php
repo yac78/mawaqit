@@ -395,9 +395,9 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.temperatureEnabled.title',
                 ]
             ])
-            ->add('hideFooter', CheckboxType::class, [
+            ->add('footer', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.hideFooter.label'
+                'label' => 'configuration.form.footer.label'
             ])
             ->add('timeDisplayFormat', ChoiceType::class, [
                 'required' => true,
