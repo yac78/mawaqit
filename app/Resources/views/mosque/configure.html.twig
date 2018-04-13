@@ -103,7 +103,8 @@
                                         {% for country, calendars in predefinedCalendars %}
                                             <optgroup label="{{ country }}">
                                                 {% for calendar in calendars %}
-                                                    <option value="{{ calendar.id }}" data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
+                                                    <option value="{{ calendar.id }}"
+                                                            data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
                                                 {% endfor %}
                                             </optgroup>
                                         {% endfor %}
@@ -406,6 +407,77 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#themeSettings">
+                    <span style="font-weight: 700;">{{ "theme_settings"|trans }}</span>
+                </div>
+                <div id="themeSettings" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.backgroundType) }}
+                            </div>
+                        </div>
+
+                        <div class="row motif">
+                            {% for i in 1..12 %}
+                                <div class="col-md-3">
+                                    <label>
+                                        <input type="radio" name="configuration[backgroundMotif]" value="{{ i }}" {{ form.vars.value.backgroundMotif == i ? 'checked' : '' }} />
+                                        <img src="{{ asset('bundles/app/prayer-times/img/background-'~ i ~'.jpg') }}"
+                                             class="background-choice">
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="row mt-2 color">
+                            <div class="col-md-2">
+                                {{ form_label(form.backgroundColor) }}
+                                <input class="form-control" type="color" name="configuration[backgroundColor]"
+                                       value="{{ mosque.configuration.backgroundColor }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#displaySettings">
+                    <span style="font-weight: 700;">{{ "display_settings"|trans }}</span>
+                </div>
+                <div id="displaySettings" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.hijriDateEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.showNextAdhanCountdown) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.blackScreenWhenPraying) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.temperatureEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.urlQrCodeEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.hideFooter) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.smallScreen) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
                      href="#otherSettings">
                     <span style="font-weight: 700;">{{ "other_settings"|trans }}</span>
                 </div>
@@ -424,31 +496,8 @@
                             <div class="col-md-3">
                                 {{ form_row(form.hijriAdjustment) }}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_widget(form.showNextAdhanCountdown) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.hijriDateEnabled) }}
-                            </div>
                             <div class="col-md-3">
                                 {{ form_widget(form.azanBip) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.blackScreenWhenPraying) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.temperatureEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.urlQrCodeEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.smallScreen) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.hideFooter) }}
                             </div>
                         </div>
                     </div>
@@ -473,51 +522,12 @@
                                 {{ form_row(form.wakeAzanVoice) }}
                             </div>
                             <div class="col-md-1 text-left">
-                                <img class="hidden" id="azabStop"
-                                     src="{{ asset('bundles/app/prayer-times/img/stop.png') }}" alt="">
+                                <img class="hidden" id="azabStop" src="{{ asset('bundles/app/prayer-times/img/stop.png') }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#themeSettings">
-                    <span style="font-weight: 700;">{{ "theme_settings"|trans }}</span>
-                </div>
-                <div id="themeSettings" class="panel-collapse collapse">
-                    <div class="panel-body">
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.backgroundType) }}
-                            </div>
-                        </div>
-
-                        <div class="row motif">
-                            {% for i in 1..12 %}
-                                <div class="col-md-3">
-                                    <label>
-                                        <input type="radio" name="configuration[backgroundMotif]" value="{{ i }}" {{ form.vars.value.backgroundMotif == i ? 'checked' : ''}} />
-                                        <img src="{{ asset('bundles/app/prayer-times/img/background-'~ i ~'.jpg') }}"
-                                             class="background-choice">
-                                    </label>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <div class="row mt-2 color">
-                            <div class="col-md-2">
-                                {{ form_label(form.backgroundColor) }}
-                                <input class="form-control" type="color" name="configuration[backgroundColor]"
-                                       value="{{ mosque.configuration.backgroundColor }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
         {{ form_widget(form.save) }}

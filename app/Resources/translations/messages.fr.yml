@@ -136,7 +136,7 @@ configuration:
         jumuaTimeout:
             label: Durée approximative du jumu`a (prêche + prière)
         aidTime:
-            label: Heure du aïd
+            label: Heure de salât El-Aïd
             title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq 2 ou 3 jours avant l'évènement
         adjustedTimes: 
             label: Ajustement manuel des horaires
@@ -402,6 +402,7 @@ info_dst_change: |
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
 theme_settings: Thème
+display_settings: Affichage
 regional_settings: Paramètres régionaux
 invocations_hadiths: Invocations et hadiths
 edit_of: Édition de "%name%"

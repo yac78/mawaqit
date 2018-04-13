@@ -364,7 +364,8 @@ other_settings: إعدادات أخرى
 home_settings: الإستعمال المنزلي
 regional_settings: الإختيارات الإقليمية
 invocations_hadiths: الأدعية و الأحاديث
-theme_settings: خصائص العرض
+theme_settings: الألوان
+display_settings: خصائص العرض
 edit_of:  '"%name%" تحرير'
 yes: نعم
 no: لا
