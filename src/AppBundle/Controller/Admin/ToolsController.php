@@ -21,16 +21,4 @@ class ToolsController extends Controller
         $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
         return $this->redirectToRoute('mosque_index');
     }
-
-
-    /**
-     * @Route("/update-fr-calendars")
-     */
-    public function updateFrCalendarsAction()
-    {
-        
-        $this->get("app.tools_service")->updateFrCalendar();
-        return new Response();
-    }
-
 }
