@@ -28,7 +28,6 @@ class ToolsService
             ->createQueryBuilder("c")
             ->innerJoin("c.mosque", "m", "c.mosque_id = m.id")
             ->where("c.sourceCalcul = 'calendar'")
-            ->andWhere("m.country LIKE '%france%'")
             ->andWhere("c.dst = 2")
             ->getQuery()
             ->getResult();

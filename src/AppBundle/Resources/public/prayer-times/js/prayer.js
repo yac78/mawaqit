@@ -581,31 +581,34 @@ var prayer = {
      * @param {Number} currentPrayerIndex
      */
     flashIqama: function (currentPrayerIndex) {
-        $(".main").fadeOut(500, function () {
-            $(".iqama").removeClass("hidden");
-        });
 
         if (prayer.confData.iqamaBip === true) {
             this.playSound();
         }
 
+        $(".main").fadeOut(500, function () {
+            $(".iqama").removeClass("hidden");
+        });
+
+        // flash
         var iqamaFlashInterval = setInterval(function () {
             $(".iqama .image").toggleClass("hidden");
         }, prayer.oneSecond);
-
-        // init douaa after prayer timeout
-        setTimeout(function () {
-            douaaSlider.show(currentPrayerIndex);
-        }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
 
         // stop iqama flashing after defined time
         setTimeout(function () {
             prayer.stopIqamaFlashing(iqamaFlashInterval);
         }, prayer.confData.iqamaDisplayTime * prayer.oneSecond);
+
         // reset flag iqamaIsFlashing after one minute
         setTimeout(function () {
             prayer.iqamaIsFlashing = false;
         }, prayer.oneMinute);
+
+        // init douaa after prayer timeout
+        setTimeout(function () {
+            douaaSlider.show(currentPrayerIndex);
+        }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
     },
     stopAdhanFlashing: function (adhanFlashInterval, currentPrayerIndex) {
         clearInterval(adhanFlashInterval);
