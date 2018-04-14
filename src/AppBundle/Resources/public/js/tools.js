@@ -63,6 +63,7 @@ function reloadIfConnected() {
 
 function fullscreen()
 {
+
     if(document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
     }
@@ -75,6 +76,7 @@ function fullscreen()
     else if(document.documentElement.msRequestFullscreen) {
         document.documentElement.msRequestFullscreen();
     }
+    $("body").height($(window).height());
 }
 
 
