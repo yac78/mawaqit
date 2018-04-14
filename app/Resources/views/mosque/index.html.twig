@@ -109,8 +109,7 @@
                         <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
                         <div>{{ mosque.country }}</div>
                         {% if mosque.phone %}
-                            <div><span class="fa fa-phone">&nbsp;</span><a
-                                        href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a></div>
+                            <div><span class="fa fa-phone">&nbsp;</span><a href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a></div>
                         {% endif %}
                         <div>
                             <span class="fa fa-envelope">&nbsp;</span>
@@ -121,8 +120,7 @@
                         {% for lang in languages %}
                             <div>
                                 <div style="width: 80px; font-weight: bold; float: left">{{ lang|trans }}</div>
-                                : <a target="_blank"
-                                     href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
+                                : <a {{ app.request.getHost() == 'localhost' ? '' : 'target="_blank"' }} href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
                             </div>
                         {% endfor %}
                         {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button"
