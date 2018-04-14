@@ -335,12 +335,12 @@ small {
 .btn-settings {
     position: fixed;
     top: 10px;
-    left: 10px;
+    left: 60px;
     font-size: 220%;
 }
 
 .btn-settings a {
-    color: #fff;
+    color: #777777;
 }
 
 /* short message css */

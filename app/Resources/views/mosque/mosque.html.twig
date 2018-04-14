@@ -66,9 +66,13 @@
     <!-- top container -->
     <div class="top-content">
 
+        <div id="full-screen" title="{{ 'full_screen'|trans }}">
+            <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
+        </div>
+
         <!-- configure icon -->
         {% if app.request.getHost() == 'localhost' %}
-            <div class="btn-settings">
+            <div class="btn-settings" title="{{ 'form.configure.action'|trans }}">
                 <a href="{{ path('mosque_configure', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
             </div>
         {% endif %}
@@ -236,7 +240,8 @@
     '@AppBundle/Resources/public/prayer-times/js/sliders.js'
     '@AppBundle/Resources/public/prayer-times/js/randomHadith.js'
     '@AppBundle/Resources/public/prayer-times/js/weather.js'
-    '@AppBundle/Resources/public/prayer-times/js/main.js' %}
+    '@AppBundle/Resources/public/prayer-times/js/main.js'
+    '@AppBundle/Resources/public/prayer-times/js/common.js' %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 </body>
