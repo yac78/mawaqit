@@ -75,6 +75,11 @@ services:
     app.tools_service:
         class: AppBundle\Service\ToolsService
         arguments:
+            - "@service_container"
+
+    app.mosque_service:
+        class: AppBundle\Service\MosqueService
+        arguments:
             - "@doctrine.orm.entity_manager"
 
     app.user_repository:

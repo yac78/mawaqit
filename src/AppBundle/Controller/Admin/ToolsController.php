@@ -4,21 +4,21 @@ namespace AppBundle\Controller\Admin;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/admin/tools")
  */
 class ToolsController extends Controller
 {
+
     /**
-     * @Route("/force-update-all", name="mosque_force_update_all")
+     * @Route("/update-gps/{offset}")
      */
-    public function forceUpdateAllAction()
+    public function updateGpsAction($offset)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->getRepository("AppBundle:Mosque")->forceUpdateAll();
-        $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
-        return $this->redirectToRoute('mosque_index');
+        $this->get("app.tools_service")->updateLocations($offset);
+        return new JsonResponse();
     }
+
 }

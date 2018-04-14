@@ -201,7 +201,7 @@ class MosqueController extends Controller
 
         return $this->render('mosque/configure.html.twig', [
             'months' => Calendar::MONTHS,
-            'predefinedCalendars' => $this->get("app.tools_service")->getCalendarList(),
+            'predefinedCalendars' => $this->get("app.mosque_service")->getCalendarList(),
             'mosque' => $mosque,
             'form' => $form->createView()
         ]);
@@ -240,6 +240,17 @@ class MosqueController extends Controller
         return $this->redirectToRoute("mosque_configure", [
             'id' => $mosque->getId()
         ]);
+    }
+
+    /**
+     * @Route("/force-update-all", name="mosque_force_update_all")
+     */
+    public function forceUpdateAllAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository("AppBundle:Mosque")->forceUpdateAll();
+        $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
+        return $this->redirectToRoute('mosque_index');
     }
 
 }
