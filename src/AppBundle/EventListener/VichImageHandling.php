@@ -2,6 +2,7 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\Message;
 use Vich\UploaderBundle\Event\Event;
 use AppBundle\Entity\Mosque;
 
@@ -13,7 +14,7 @@ class VichImageHandling {
 
     public function resizeImage(Event $event) {
         $object = $event->getObject();
-        if ($object instanceof Mosque) {
+        if ($object instanceof Mosque || $object instanceof Message) {
             $destinationDir = $event->getMapping()->getUploadDestination();
             $fileName = $event->getMapping()->getFileName($object);
             $filePath = $destinationDir . '/' . $fileName;
