@@ -296,7 +296,7 @@ class Configuration
     /**
      * @var bool
      */
-    private $footer = false;
+    private $footer = true;
 
     /**
      * @var string
