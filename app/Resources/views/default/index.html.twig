@@ -295,23 +295,19 @@
                     </div>
                 </div>
 
-                <div class="mt-2 mb-4">
-                    <div class="row">
+                <div class="row mt-2 mb-4">
+                    <div class="col-md-offset-2 col-md-8 col-xs-12">
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-8 col-xs-12">
-                                <input class="form-control input-lg center-placeholder" id="find-mosque"
-                                       placeholder="Cherchez une mosquée mawaqit par ville, code postale, pays..."
-                                       data-remote="{{ path('public_mosque_search_ajax') }}">
-                            </div>
+                            <input class="form-control input-lg center-placeholder" id="find-mosque" placeholder="Cherchez une mosquée mawaqit par ville, code postale, pays..."
+                                   data-remote="{{ path('public_mosque_search_ajax') }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <p class="text-muted">
                             Mawaqit vous propose les horaires de prière exactes, telles qu'elles sont pratiquées par les mosquées, <br>
                             cherchez une mosquée et consultez ses horaires.
                         </p>
                     </div>
                 </div>
+
 
                 <div class="row">
                     {% for mosque in mosquesWithImage %}
@@ -539,8 +535,9 @@
                         perte de l'heure système en cas de copure de courant.
                         Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans
                         LXTerminal<br>
-                        <code>sudo date -s "yyyy-mm-dd hh:mm:ss"</code> exemple: <code>sudo date -s
-                            "{{ "now"|date("Y-m-d H:m:s") }}"</code> <br>
+                        <code>sudo date -s "yyyy-mm-dd hh:mm:ss"</code> <br>
+                        exemple: <br>
+                        <code>sudo date -s "{{ "now"|date("Y-m-d H:m:s") }}"</code> <br>
                         <code>sudo hwclock -w</code> <br><br>
                     </p>
                 </div>
