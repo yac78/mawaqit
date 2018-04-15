@@ -16,13 +16,19 @@ sharedDir=$baseDir/shared
 envDir=$baseDir/$env
 targetDir=$envDir/$tag
 
+cd $repoDir
 
 if [ "$env" == "prod" ]; then
-    (cd $repoDir && git fetch && git checkout $tag)
+    git fetch && git checkout $tag
 fi
 
 if [ "$env" == "pp" ]; then
-    (cd $repoDir && git checkout $tag && git pull origin $tag)
+    git checkout $tag && git pull origin $tag
+fi
+
+version=$tag
+if [ "$env" == "pp" ]; then
+    version=dev@`git rev-parse --short HEAD`
 fi
 
 mkdir -p $targetDir
@@ -31,24 +37,17 @@ echo "Copying files"
 rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
 
 echo "Creating symlinks"
-ln -s $sharedDir/upload/ $targetDir/web/upload || true
-ln -s $sharedDir/static/ $targetDir/web/static || true
-ln -s $sharedDir/logs/ $targetDir/var/logs || true
-ln -s $sharedDir/sessions/ $targetDir/var/sessions || true
-ln -s $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml || true
-ln -s $sharedDir/robots.txt.$env $targetDir/web/robots.txt || true
+ln -sf $sharedDir/upload/ $targetDir/web/upload
+ln -sf $sharedDir/static/ $targetDir/web/static
+ln -sf $sharedDir/logs/ $targetDir/var/logs
+ln -sf $sharedDir/sessions/ $targetDir/var/sessions
+ln -sf $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml
+ln -sf $sharedDir/robots.txt.$env $targetDir/web/robots.txt
 
 cd $targetDir
 
 echo "Set version"
-
-version=$tag
-
-if [ "$env" == "pp" ]; then
-    version=dev@`git rev-parse --short HEAD`
-fi
-
-sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
+sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
 # install vendors and assets
 export SYMFONY_ENV=prod
