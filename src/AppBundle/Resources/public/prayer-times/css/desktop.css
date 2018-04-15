@@ -3,6 +3,7 @@ body {
     height: 100vh;
     position: relative;
     background-size: cover;
+    background-color: #000000;
 }
 
 #spinner {

@@ -7,6 +7,7 @@
 prayer.loadData();
 prayer.setBackgroundColor();
 prayer.setTime();
+prayer.setTimeInterval();
 prayer.setDate();
 prayer.setTimes();
 prayer.nextPrayerCountdown();

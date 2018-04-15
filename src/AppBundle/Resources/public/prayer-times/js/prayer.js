@@ -769,11 +769,14 @@ var prayer = {
         var time, timeWithoutSec;
         var timeEl = $(".top-content .time");
         var timeBottomEl = $(".time-bottom");
+        time = dateTime.getCurrentTime(true);
+        timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
+        timeEl.html(prayer.formatTime(time));
+        timeBottomEl.html(timeWithoutSec);
+    },
+    setTimeInterval: function () {
         setInterval(function () {
-            time = dateTime.getCurrentTime(true);
-            timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
-            timeEl.html(prayer.formatTime(time));
-            timeBottomEl.html(timeWithoutSec);
+            prayer.setTime();
         }, prayer.oneSecond);
     },
     /**

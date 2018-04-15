@@ -12,12 +12,12 @@ String.prototype.matchTime = function () {
     return regex.test(this);
 };
 
-String.prototype.hashCode = function() {
+String.prototype.hashCode = function () {
     var hash = 0;
     if (this.length == 0) return hash;
     for (i = 0; i < this.length; i++) {
         char = this.charCodeAt(i);
-        hash = ((hash<<5)-hash)+char;
+        hash = ((hash << 5) - hash) + char;
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
@@ -61,37 +61,37 @@ function reloadIfConnected() {
     });
 }
 
-function fullscreen()
-{
-
-    if(document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
+function fullscreen() {
+    var el = document.documentElement;
+    if (el.requestFullscreen) {
+        el.requestFullscreen();
     }
-    else if(document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
+    else if (el.mozRequestFullScreen) {
+        el.mozRequestFullScreen();
     }
-    else if(document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
+    else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
     }
-    else if(document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
+    else if (el.msRequestFullscreen) {
+        el.msRequestFullscreen();
     }
-    $("body").height($(window).height());
+    setTimeout(function () {
+        $("body").height($(document).height());
+    }, 500);
 }
 
-
-function exitFullscreen()
-{
-    if(document.exitFullscreen) {
+function exitFullscreen() {
+    if (document.exitFullscreen) {
         document.exitFullscreen();
     }
-    else if(document.mozExitFullscreen) {
-        document.mozExitFullscreen();
+    else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
     }
-    else if(document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
+    else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
     }
-    else if(document.msExitFullscreen) {
-        document.ExitFullscreen();
+    else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
     }
+    $("body").height($(document).height());
 }
