@@ -1,4 +1,8 @@
+app/config/config_dev.yml
+app/config/routing_dev.yml
+app/config/parameters.yml.dist
 var/logs
+var/cache
 var/sessions
 web/app_dev.php
 web/upload
