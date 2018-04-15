@@ -168,8 +168,11 @@
                 {% if mosque.phone %}
                     &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
                 {% endif %}
-                {% if mosque.phone %}
-                    <div><i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}</div>
+                {% if mosque.email %}
+                    &nbsp;<i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}
+                {% endif %}
+                {% if mosque.site %}
+                     &nbsp;<i class="glyphicon glyphicon-link"></i> {{ mosque.site }}
                 {% endif %}
                 <div>{{ mosque.localisation }}</div>
                 <div>{{ mosque.rib }}</div>
