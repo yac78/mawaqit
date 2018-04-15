@@ -41,6 +41,13 @@ ln -s $sharedDir/robots.txt.$env $targetDir/web/robots.txt
 cd $targetDir
 
 echo "Set version"
+
+version=$tag
+
+if [ "$env" == "pp" ]; then
+    version=dev@`git rev-parse --short HEAD`
+fi
+
 sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
 # install vendors and assets
