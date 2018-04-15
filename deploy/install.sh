@@ -15,10 +15,19 @@ repoDir=$baseDir/repo
 sharedDir=$baseDir/shared
 envDir=$baseDir/$env
 targetDir=$envDir/$tag
-  
-(cd $repoDir && git fetch && git checkout $tag)
+
+
+if [ "$env" == "prod" ]; then
+    (cd $repoDir && git fetch && git checkout $tag)
+fi
+
+if [ "$env" == "pp" ]; then
+    (cd $repoDir && git checkout $tag && git pull origin $tag)
+fi
 
 mkdir -p $targetDir
+
+git pull origin master
 
 echo "Copying files"
 rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
