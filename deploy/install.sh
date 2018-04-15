@@ -55,7 +55,6 @@ sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 # install vendors and assets
 export SYMFONY_ENV=prod
 composer install --no-dev --optimize-autoloader --no-interaction
-bin/console cache:warmup --env=prod
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 
