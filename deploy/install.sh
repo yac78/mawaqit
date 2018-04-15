@@ -34,7 +34,7 @@ fi
 mkdir -p $targetDir
 
 echo "Copying files"
-rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
+rsync -r --delete --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
 
 echo "Creating symlinks"
 ln -sf $sharedDir/upload $targetDir/web/upload
