@@ -37,12 +37,15 @@ echo "Copying files"
 rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
 
 echo "Creating symlinks"
-ln -sf $sharedDir/upload/ $targetDir/web/upload
-ln -sf $sharedDir/static/ $targetDir/web/static
-ln -sf $sharedDir/logs/ $targetDir/var/logs
-ln -sf $sharedDir/sessions/ $targetDir/var/sessions
+ln -sf $sharedDir/upload $targetDir/web/upload
+ln -sf $sharedDir/static $targetDir/web/static
 ln -sf $sharedDir/parameters.$env.yml $targetDir/app/config/parameters.yml
 ln -sf $sharedDir/robots.txt.$env $targetDir/web/robots.txt
+
+if [ "$env" == "prod" ]; then
+    ln -sf $sharedDir/logs $targetDir/var/logs
+    ln -sf $sharedDir/sessions $targetDir/var/sessions
+fi
 
 cd $targetDir
 
