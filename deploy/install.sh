@@ -27,8 +27,6 @@ fi
 
 mkdir -p $targetDir
 
-git pull origin master
-
 echo "Copying files"
 rsync -r --files-from=$repoDir/deploy/files-to-include --exclude-from=$repoDir/deploy/files-to-exclude $repoDir $targetDir
 
