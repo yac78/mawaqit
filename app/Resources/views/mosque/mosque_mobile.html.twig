@@ -11,14 +11,29 @@
     {% stylesheets
         "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
         "bundles/app/css/fonts.css"
+        "bundles/app/font-awesome/css/font-awesome.min.css"
         "bundles/app/prayer-times/css/main.css"
         "bundles/app/prayer-times/css/mobile.css"
+        "bundles/app/prayer-times/css/notif.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 
 </head>
 <body class="text-center">
+
+    <div class="toggle"><i class="fa fa-bell"></i></div>
+    <div class="toggle-number">3</div>
+
+    <div class="sidebar">
+        <h2>{{ 'Notifications'|trans }}</h2>
+        <div class="notibox">
+            Wash the Car
+            <div class="cancel">✕</div>
+        </div>
+
+    </div>
+
     <div id="full-screen" title="{{ 'full_screen'|trans }}">
         <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
     </div>
@@ -201,6 +216,7 @@
         '@AppBundle/Resources/public/prayer-times/js/date.js'
         '@AppBundle/Resources/public/prayer-times/js/prayer.js'
         '@AppBundle/Resources/public/prayer-times/js/main_mobile.js'
+        '@AppBundle/Resources/public/prayer-times/js/notif.js'
         '@AppBundle/Resources/public/prayer-times/js/common.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
