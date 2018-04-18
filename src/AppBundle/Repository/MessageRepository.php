@@ -20,7 +20,7 @@ class MessageRepository extends SortableRepository
      */
     function getMessagesByMosque(Mosque $mosque) {
         $qb = $this->createQueryBuilder("mes")
-                ->select("mes.title, mes.content, mes.image")
+                ->select("mes.id, mes.title, mes.content, mes.image")
                 ->innerJoin("mes.mosque", "mos", Join::WITH, "mes.mosque = :mosqueId")
                 ->where("mes.enabled = 1")
                 ->andWhere("mes.content IS NOT NULL OR mes.image is NOT NULL")

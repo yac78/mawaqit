@@ -18,7 +18,7 @@ class MessageController extends Controller {
      * @Route("/{slug}", name="messages")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function indexAction(Request $request, Mosque $mosque) {
+    public function indexAction(Mosque $mosque) {
         return $this->render("message/show_message_slider.html.twig", [
                     'mosque' => $mosque
         ]);
@@ -27,7 +27,7 @@ class MessageController extends Controller {
     /**
      * @Route("/{id}/get-messages", name="ajax_get_messages")
      */
-    public function getMessagesAjaxAction(Request $request, Mosque $mosque) {
+    public function getMessagesAjaxAction(Mosque $mosque) {
         $em = $this->getDoctrine()->getManager();
         $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque);
         

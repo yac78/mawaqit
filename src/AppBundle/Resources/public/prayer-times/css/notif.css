@@ -1,22 +1,23 @@
-@import url(https://fonts.googleapis.com/css?family=Muli);
 *{transition:all 0.5s;-webkit-transition:all 0.5s;}
 
 .toggle{
-    font-size:25px;
+    font-size:20px;
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 5px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
 }
 
 .toggle-number {
-    font-size: 15px;
+    font-size: 12px;
     border-radius: 100%;
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     position: absolute;
     background-color: #b03e3e;
     left: 20px;
-    top: 5px;
+    top: 10px;
     color: #f5ebeb;
 }
 
@@ -30,38 +31,46 @@
     z-index: 10;
     height:100%;
     top:0px;
+    overflow: scroll;
 }
 
-.sidebar h2{
-    color:white;
+.sidebar h3{
+    font-size: 160%;
+    color:#78e65f;
     text-align:center;
-    font-family: 'Muli', sans-serif;
 }
 
 .sidebar.active{
     right:0px;
 }
 
-.notibox{
-    color:white;
-    font-family: 'Muli', sans-serif;
-    background-color:#0d0d0d;
-    width:calc(100% - 30px);
-    padding:15px;
-    margin:15px;
-    border-radius:4px;
-    position:relative;
+.notibox {
+    color: white;
+    background-color: #0d0d0d;
+    width: calc(100% - 20px);
+    padding: 5px 5px 5px 5px;
+    margin: 10px;
+    border-radius: 4px;
+    position: relative;
 }
 
-.cancel{
-    position:absolute;
-    right:7px;
-    top:10px;
-    cursor:pointer;
-    padding:3px;
-    padding-left:8px;
-    padding-right:8px;
-    border-radius:20px;
+.notibox img{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.notibox h4{
+    color: #f0ad4e;
+}
+
+.cancel {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    cursor: pointer;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 20px;
 }
 
 .cancel:hover{

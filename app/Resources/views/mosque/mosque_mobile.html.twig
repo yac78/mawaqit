@@ -23,15 +23,22 @@
 <body class="text-center">
 
     <div class="toggle"><i class="fa fa-bell"></i></div>
-    <div class="toggle-number">3</div>
+    <div class="toggle-number">{{ messages|length }}</div>
 
     <div class="sidebar">
-        <h2>{{ 'Notifications'|trans }}</h2>
-        <div class="notibox">
-            Wash the Car
-            <div class="cancel">✕</div>
-        </div>
-
+        <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
+        {% for message in messages %}
+            <div class="notibox">
+                <h4>{{ message.title }}</h4>
+                <p>{{ message.content|raw }}</p>
+                {% if message.image is not empty %}
+                    <img src="/upload/images/{{ message.image }}" alt="{{ message.title }}"/>
+                {% endif %}
+                {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
+            </div>
+        {% else %}
+            <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
+        {% endfor %}
     </div>
 
     <div id="full-screen" title="{{ 'full_screen'|trans }}">
