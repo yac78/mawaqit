@@ -194,7 +194,7 @@
                     <div><i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}</div>
                 {% endif %}
                 {% if mosque.site %}
-                     <div><i class="glyphicon glyphicon-link"></i> {{ mosque.site }}</div>
+                    <div><i class="glyphicon glyphicon-link"></i> <a href="{{ mosque.site }}">{{ mosque.site }}</a></div>
                 {% endif %}
                 <div>{{ mosque.localisation }}</div>
                 <div>{{ mosque.rib }}</div>
@@ -202,7 +202,7 @@
             <div class="support">
                 <span>{{ 'developed_by'|trans }}</span><br>
                 <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{ supportEmail }}" class="supportEmail">{{ supportEmail }}</a>
-                &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="https://{{site }}">https://{{ site }}</a>
+                &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="https://{{ site }}">https://{{ site }}</a>
             </div>
             <div class="version text-right">v{{ version }}</div>
         </div>
