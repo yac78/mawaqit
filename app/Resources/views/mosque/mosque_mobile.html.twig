@@ -22,24 +22,26 @@
 </head>
 <body class="text-center">
 
-    <div class="toggle"><i class="fa fa-bell"></i></div>
-    <div class="toggle-number">{{ messages|length }}</div>
+    {% if mosque.type == 'mosque'  %}
+        <div class="toggle"><i class="fa fa-bell"></i></div>
+        <div class="toggle-number">{{ messages|length }}</div>
 
-    <div class="sidebar">
-        <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
-        {% for message in messages %}
-            <div class="notibox">
-                <h4>{{ message.title }}</h4>
-                <p>{{ message.content|raw }}</p>
-                {% if message.image is not empty %}
-                    <img src="/upload/images/{{ message.image }}" alt="{{ message.title }}"/>
-                {% endif %}
-                {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
-            </div>
-        {% else %}
-            <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
-        {% endfor %}
-    </div>
+        <div class="sidebar">
+            <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
+            {% for message in messages %}
+                <div class="notibox">
+                    <h4>{{ message.title }}</h4>
+                    <p>{{ message.content|raw }}</p>
+                    {% if message.image is not empty %}
+                        <img src="/upload/images/{{ message.image }}" alt="{{ message.title }}"/>
+                    {% endif %}
+                    {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
+                </div>
+            {% else %}
+                <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div id="full-screen" title="{{ 'full_screen'|trans }}">
         <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
