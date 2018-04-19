@@ -22,6 +22,8 @@ AppBundle\Entity\Message:
             nullable: true
         enabled:
             type: boolean
+        mobile:
+            type: boolean
         position:
             type: integer
             gedmo:

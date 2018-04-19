@@ -51,8 +51,7 @@ class MosqueController extends Controller
         if (($view !== "desktop" && $mobileDetect->isMobile() && !$mobileDetect->isTablet()) || $view === "mobile") {
             $template .= '_mobile';
             $em = $this->getDoctrine()->getManager();
-            $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque);
-
+            $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
         }
 
         $config = $mosque->getConfiguration();

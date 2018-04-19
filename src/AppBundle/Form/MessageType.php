@@ -30,7 +30,6 @@ class MessageType extends AbstractType {
 
         $builder
                 ->add('title', null, [
-                    'label' => 'title',
                     'required' => false,
                     'attr' => [
                         'placeholder' => 'message.form.title.placeholder',
@@ -38,7 +37,6 @@ class MessageType extends AbstractType {
                     ]
                 ])
                 ->add('content', TextareaType::class, [
-                    'label' => 'content',
                     'required' => false,
                     'attr' => [
                         'placeholder' => 'message.form.content.placeholder',
@@ -47,11 +45,15 @@ class MessageType extends AbstractType {
                     ],
                 ])
                 ->add('enabled', CheckboxType::class, [
-                    'label' => 'enabled',
                     'required' => false
                 ])
+                ->add('mobile', CheckboxType::class, [
+                    'required' => false,
+                    'attr' => [
+                        'help' => $this->translator->trans('message.form.mobile.title'),
+                    ]
+                ])
                 ->add('file', ImageType::class, [
-                    'label' => 'message.form.image.label',
                     'attr' => [
                         'class' => 'form-control',
                         'help' => $this->translator->trans('message.form.image.title'),
@@ -68,6 +70,7 @@ class MessageType extends AbstractType {
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
+            'label_format' => 'message.form.%name%.label',
             'data_class' => Message::class
         ));
     }

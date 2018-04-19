@@ -32,6 +32,12 @@ class Message
     private $enabled = true;
 
     /**
+     * Display on mobile
+     * @var boolean
+     */
+    private $mobile = true;
+
+    /**
      * @var integer
      */
     private $position;
@@ -195,5 +201,25 @@ class Message
         $this->position = $position;
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isMobile(): bool
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * @param bool $mobile
+     * @return Message
+     */
+    public function setMobile(bool $mobile): Message
+    {
+        $this->mobile = $mobile;
+        return $this;
+    }
+
+
 
 }

@@ -60,9 +60,15 @@ message:
            إذا أردت إضافة إعلانات اخرى فانه يتوجب عليك حذف أو تعطيل الإعلانات القديمة
     form:
         title:
+            label: العنوان
             placeholder: مثلا دروس تجويد القرآن
         content:
-            placeholder: عدد الأحرف محدد بـ 200
+            label: النص
+            placeholder :  حرفًا كحد أقصى 200
+        mobile:
+            label: إظهار على الهاتف المحمول
+        enabled:
+            label: مفعل
         delay:
             label: مدة الظهور عل الشاشة (دق)
         image:

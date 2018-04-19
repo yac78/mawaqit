@@ -79,14 +79,21 @@ message:
   edit: Editing the message "%title%
   form:
     title:
+      label: Title
       placeholder: Ex. Quran course
+    enabled:
+      label : Enabled
     content:
+      label: Content
       placeholder: 200 characters maximum
     delay:
       label: Time to display d'affichage (minutes)
     image:
       label: Image
       title: It will be displayed instead of text. For better viewing comfort, load only landscape images
+    mobile:
+      label : Display on mobile
+      title : Your message will be displayed on the mobile version of mawaqit as a notification
 
 configuration:
     select_calendar: Select a calendar
