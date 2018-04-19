@@ -97,7 +97,7 @@ message:
             label : Activé
         image: 
             label : Image
-            help : Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage
+            title : Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage
         mobile:
             label : Afficher sur mobile
             title : Votre message sera affiché sur la version mobile de mawaqit sous forme de notification
