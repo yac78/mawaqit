@@ -1,6 +1,6 @@
 server {
 	listen 80 default_server;
-	root /home/pi/prayer-times-v3/web;
+	root /home/pi/mawaqit/web;
 
     location / {
         try_files $uri /app.php$is_args$args;
