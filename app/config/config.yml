@@ -137,11 +137,15 @@ jms_i18n_routing:
     strategy: prefix
 
 stfalcon_tinymce:
+  include_jquery: true
+  tinymce_jquery: true
   theme:
       simple:
+          height: 400
           plugins:
-               - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
-               - "searchreplace wordcount visualblocks visualchars code fullscreen"
-               - "insertdatetime media nonbreaking save table contextmenu directionality"
-               - "emoticons template paste textcolor colorpicker textpattern"
-          toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image  media | forecolor backcolor emoticons | preview print"
+            - "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak"
+            - "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking"
+            - "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
+          toolbar1: "undo redo | formatselect fontselect | forecolor backcolor | removeformat"
+          toolbar2: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
+          toolbar3: "link unlink image media | insertdatetime | table | hr | subscript superscript | charmap emoticons | code preview"

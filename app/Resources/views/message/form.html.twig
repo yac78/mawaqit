@@ -16,4 +16,13 @@
     </div>
 </div>
 {{ form_widget(form.save) }}
-<a href="{{path("message_index", {'mosque': mosque.id})}}" class="btn btn-warning">{{'cancel'|trans}}</a>
+<a href="{{ path("message_index", {'mosque': mosque.id}) }}" class="btn btn-warning">{{ 'cancel'|trans }}</a>
+
+{{ tinymce_init({
+    theme: {
+        'simple':{
+            'height': 300,
+            'menubar': false
+        }
+    }
+}) }}

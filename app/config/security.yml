@@ -22,7 +22,7 @@ security:
                 use_referer: true
             logout:     
                 path:  fos_user_security_logout
-                target: /
+                target: homepage
             remember_me:
                 secret:   '%secret%'
                 lifetime: 31536000 # 1 year
@@ -37,5 +37,6 @@ security:
         # ROLE_ADMIN
         - { path: /admin/user, role: ROLE_ADMIN }
         - { path: /admin/tools, role: ROLE_ADMIN }
+        - { path: /admin/stats, role: ROLE_ADMIN }
         # ROLE_USER for all rest of /admin routes
         - { path: /admin, role: ROLE_USER }
