@@ -79,6 +79,9 @@ HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]gi
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 
+mkdir web/upload
+chmod 777 web/upload
+
 cp app/config/parameters.yml.dist app/config/parameters.yml
 sed -i "s/symfony/mawaqit/" app/config/parameters.yml
 sed -i "s/root/mawaqit/" app/config/parameters.yml
