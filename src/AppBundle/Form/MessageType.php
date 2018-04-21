@@ -41,11 +41,14 @@ class MessageType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'required' => false,
+                'constraints' => [
+                    new Length([
+                        'max' => 1000
+                    ])
+                ],
                 'attr' => [
                     'class' => "tinymce",
-                    'placeholder' => 'message.form.content.placeholder',
-                    'maxlength' => "200",
-                    'rows' => "6"
+                    'placeholder' => 'message.form.content.placeholder'
                 ],
             ])
             ->add('enabled', CheckboxType::class, [

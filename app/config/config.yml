@@ -143,9 +143,9 @@ stfalcon_tinymce:
       simple:
           height: 400
           plugins:
-            - "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak"
-            - "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking"
-            - "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
+            - "advlist autolink autosave link image lists charmap preview hr"
+            - "visualblocks visualchars code insertdatetime media nonbreaking"
+            - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern"
           toolbar1: "undo redo | formatselect fontselect | forecolor backcolor | removeformat"
           toolbar2: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
           toolbar3: "link unlink image media | insertdatetime | table | hr | subscript superscript | charmap emoticons | code preview"
