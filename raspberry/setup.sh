@@ -4,35 +4,43 @@
 
 set -e
 
-# add php7.1 repository
-echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" > /etc/apt/sources.list.d/php7-1.list
-
-# install packages
-apt-get update && apt-get install -y \
-  acl \
+  apt-get update && \
+  apt-get install -y \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  wget \
   vim \
+  git \
+  nginx \
+  zip \
+  acl \
   xdotool \
   unclutter \
   xscreensaver \
   mariadb-server \
   mariadb-client \
   nginx \
-  git \
+  imagemagick
+
+# PHP 7.1
+echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" > /etc/apt/sources.list.d/php7-1.list
+
+apt-get update && apt-get install -y \
   php7.1 \
   php7.1-fpm \
   php7.1-mysql \
   php7.1-curl \
-  php7.1-intl \
   php7.1-xml \
   php7.1-zip 
+  php7.1-json \
+  php7.1-imagick
 
 apt-get autoremove
 
-# create mariadb user mawaqit/mawaqit
-mariadb
-CREATE USER 'mawaqit'@'localhost';
-GRANT ALL ON *.* TO 'mawaqit'@'localhost';
-exit;
+# install composer
+curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+chmod +x /usr/local/bin/composer
 
 # add autostart
 echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
@@ -49,8 +57,10 @@ echo "overscan_top=20" >> /boot/config.txt
 echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
-# disable screensaver
-#sed -i "s/#xserver-command/xserver-command=X -s 0 -dpms/g" /etc/lightdm/lightdm.conf
+# create mariadb user mawaqit/mawaqit
+mariadb
+CREATE USER 'mawaqit'@'localhost';
+GRANT ALL ON *.* TO 'mawaqit'@'localhost';
 
 # update php conf
 sed -i "s/;?date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
@@ -58,9 +68,6 @@ sed -i "s/;?memory_limit =.*/memory_limit = 128/" /etc/php/7.1/fpm/php.ini
 sed -i "s/;?\s*max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini
 sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini
 sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
-
-# install composer
-curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # install project
 mkdir /home/pi/mawaqit
