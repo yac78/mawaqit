@@ -61,6 +61,7 @@ echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 mariadb
 CREATE USER 'mawaqit'@'localhost';
 GRANT ALL ON *.* TO 'mawaqit'@'localhost';
+exit;
 
 # update php conf
 sed -i "s/;?date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
@@ -78,21 +79,23 @@ HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]gi
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 
+cp app/config/parameters.yml.dist app/config/parameters.yml
+sed -i "s/symfony/mawaqit/" app/config/parameters.yml
+sed -i "s/root/mawaqit/" app/config/parameters.yml
+
 composer install --optimize-autoloader --no-interaction
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
-bin/console d:c:d
+bin/console d:d:cre
 bin/console d:s:u --force
 bin/console h:f:l -n
 
 cp raspberry/vhost /etc/nginx/sites-enabled/default
+service php7.1-fpm restart
 service nginx restart
 
 # create files on Desktop
-echo "https://mawaqit.net/fr/mosquee-essunna-houilles" >  /home/pi/Desktop/online_site.txt
-echo "http://localhost/fr/mosquee" >  /home/pi/Desktop/local_site.txt
-cp raspberry/upgrade.sh /home/pi/Desktop/Mawaqit
-chmod 777 /home/pi/Desktop/Mawaqit
+#@todo
 
 
 
