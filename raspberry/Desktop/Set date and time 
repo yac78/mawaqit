@@ -1,0 +1,35 @@
+----------------------
+EN
+----------------------
+
+NB; If the raspberry is connected to the internet no need for this steps, the time will synchronize automatically via internet
+
+The raspberry bought naked is not equipped with an RTC clock (clock battery that keeps the time in case of power failure), in this time setting is done manually
+
+1. Press F11 to exit the full screen mode of the software
+2. Go to the raspberry menu (icon at the top left)
+3. Go to Accessories> LXTerminal
+4. Type the date and time in the console and then "Enter"
+   Exp:
+	sudo date -s "2017-05-10 17:30:00"
+	Enter
+5. Restart the raspberry
+
+
+
+----------------------
+FR
+----------------------
+
+NB; Si le raspberry est connecté à internet pas besoin de cette manip, l'heure se synchronisera automatiquement via internet
+
+Le raspberry acheté nu n'est pas équipé d'une horloge RTC (horloge à pile qui maintient l'heure en cas de coupure éléctrique), dans ce ca le réglage de l'heure se fait manuelement 
+
+1. Appyez sur F11 pour sortir du mode plein écran du logiciel 
+2. Aller dans le menu du raspberry (icone en haut à gauche)
+3. Allez dans Accessoires > LXTerminal
+4. Taper la date et l'heure dans la console puis "Entrer"
+   Exp: 
+	sudo date -s "2017-05-10 17:30:00" 
+	Entrer
+5. Redémarrez le raspberry
