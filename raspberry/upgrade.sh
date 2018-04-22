@@ -3,7 +3,7 @@
 # stop chromium
 killall chromium-browser
 
-cd /home/pi/prayer-times-v3
+cd /home/pi/mawaqit
 
 git fetch
 
@@ -22,7 +22,7 @@ sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 bin/console c:c -e prod
 
 bin/console doctrine:migrations:migrate -n --allow-no-migration
-    
+
 echo "The upgrade to v$version has been successfully done ;)"
 
 # run app

@@ -67,9 +67,10 @@ GRANT ALL ON *.* TO 'mawaqit'@'localhost';
 exit;
 
 # update php conf
-sed -i "s/;?date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
-sed -i "s/;?memory_limit =.*/memory_limit = 128/" /etc/php/7.1/fpm/php.ini
-sed -i "s/;?\s*max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini
+sed -i "s/; date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
+sed -i "s/; memory_limit =.*/memory_limit = 128/" /etc/php/7.1/fpm/php.ini
+sed -i "s/; max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini
+sed -i "s/upload_max_filesize =.*/upload_max_filesize = 20M/" /etc/php/7.1/fpm/php.ini
 sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini
 sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 
@@ -101,7 +102,7 @@ service php7.1-fpm restart
 service nginx restart
 
 # create files on Desktop
-#@todo
+cp raspberry/Desktop/* /home/pi/Desktop
 
 
 

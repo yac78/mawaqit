@@ -4,6 +4,8 @@ AppBundle\Entity\Mosque:
         name: Mosquée NOM
         slug: mosquee
         associationName: Association XXX
+        email: exemple@exemple.com
+        site: https://mawaqit.net/fr/mosquee-essunna-houilles
         city: Paris
         country: France
         phone: 06.00.00.00.00
