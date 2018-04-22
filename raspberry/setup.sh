@@ -57,6 +57,9 @@ echo "overscan_top=20" >> /boot/config.txt
 echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
+# enable RTC 
+cp raspberry/hwclock-set /lib/udev/hwclock-set
+
 # create mariadb user mawaqit/mawaqit
 mariadb
 CREATE USER 'mawaqit'@'localhost';
