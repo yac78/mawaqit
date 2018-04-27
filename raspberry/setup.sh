@@ -76,7 +76,7 @@ sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
 # install project
 mkdir /home/pi/mawaqit
 cd /home/pi/mawaqit
-git clone https://github.com/binary010100/prayer-times-v3.git .
+git clone https://github.com/binary010100/mawaqit.git .
 
 HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
