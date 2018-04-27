@@ -31,7 +31,7 @@ apt-get update && apt-get install -y \
   php7.1-mysql \
   php7.1-curl \
   php7.1-xml \
-  php7.1-zip 
+  php7.1-zip \
   php7.1-json \
   php7.1-imagick
 
@@ -40,6 +40,11 @@ apt-get autoremove
 # install composer
 curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 chmod +x /usr/local/bin/composer
+
+# install teamviewer
+cd /tmp
+wget http://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
+sudo dpkg -i teamviewer-host_armhf.deb
 
 # add autostart
 echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
