@@ -18,6 +18,4 @@ else
     url=$localUrl
 fi
 
-chromium-browser --app=$url --start-maximized &
-sleep 30
-xdotool key F11
+chromium-browser --app=$url --start-fullscreen
