@@ -18,4 +18,4 @@ else
     url=$localUrl
 fi
 
-chromium-browser --app=$url --start-fullscreen
+chromium-browser --app=$url --start-fullscreen --start-maximized
