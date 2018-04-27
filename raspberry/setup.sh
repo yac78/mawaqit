@@ -15,7 +15,6 @@ set -e
   nginx \
   zip \
   acl \
-  xdotool \
   unclutter \
   xscreensaver \
   mariadb-server \
