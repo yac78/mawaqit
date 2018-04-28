@@ -16,9 +16,7 @@ set -e
   zip \
   acl \
   unclutter \
-  xscreensaver \
-  mariadb-server \
-  mariadb-client \
+  mysql-server \
   nginx \
   imagemagick
 
@@ -46,8 +44,13 @@ cd /tmp
 wget http://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
 sudo dpkg -i teamviewer-host_armhf.deb
 
-# add autostart
+# config autostart
 echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+echo "@xset s 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+echo "@xset s noblank" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+echo "@xset s noexpose" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+echo "@xset dpms 0 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+
 
 # update config.txt
 echo "############### mawaqit conf  ################" >> /boot/config.txt
