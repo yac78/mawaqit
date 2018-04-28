@@ -103,6 +103,7 @@ bin/console assetic:dump --env=prod --no-debug
 bin/console d:d:cre
 bin/console d:s:u --force
 bin/console h:f:l -n
+bin/console d:m:ver -n --all -add
 
 cp raspberry/vhost /etc/nginx/sites-enabled/default
 service php7.1-fpm restart
