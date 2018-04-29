@@ -93,7 +93,12 @@ AppBundle\Entity\Mosque:
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
-            mappedBy: mosque
+            cascade:
+                - persist
+            joinColumn:
+                name:  configuration_id
+                referencedColumnName: id
+                onDelete: CASCADE
     oneToMany:
         messages:
             targetEntity: AppBundle\Entity\Message

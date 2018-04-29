@@ -142,16 +142,3 @@ AppBundle\Entity\Configuration:
             gedmo:
                 timestampable:
                     on: update
-                    
-    oneToOne:
-        mosque:
-            targetEntity: AppBundle\Entity\Mosque
-            inversedBy: configuration
-            cascade:
-                - persist
-            joinColumn:
-                name:  mosque_id
-                referencedColumnName: id
-                onDelete: CASCADE
-            
-    lifecycleCallbacks: {  }
