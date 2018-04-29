@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class MosqueService
 {
@@ -12,9 +13,15 @@ class MosqueService
      */
     private $em;
 
-    public function __construct(EntityManagerInterface $em)
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
+
+    public function __construct(EntityManagerInterface $em, SerializerInterface $serializer)
     {
         $this->em = $em;
+        $this->serializer = $serializer;
     }
 
     public function getCalendarList()
@@ -43,4 +50,16 @@ class MosqueService
         return $calendars;
     }
 
+    public function getMosquesForApi($word)
+    {
+        if (strlen($word) > 1) {
+            $mosques = $this->em->getRepository("AppBundle:Mosque")
+                ->publicSearch($word)
+                ->getQuery()
+                ->getResult();
+
+            return $this->serializer->serialize($mosques, 'json', ['groups' => ['api']]);
+        }
+        return [];
+    }
 }

@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Mosque
@@ -15,17 +17,18 @@ class Mosque
     ];
 
     /**
+     * @Groups({"api"})
      * @var int
      */
     private $id;
 
     /**
+     * @Groups({"api"})
      * @var string
      */
     private $name;
 
     /**
-     * @
      * @var string
      */
     private $type = "mosque";
@@ -48,6 +51,11 @@ class Mosque
     /**
      * @var string
      */
+    private $zipcode;
+
+    /**
+     * @var string
+     */
     private $country;
 
     /**
@@ -56,26 +64,23 @@ class Mosque
     private $associationName;
 
     /**
+     * @Groups({"api"})
      * @var string
      */
     private $phone;
-
-    /**
-     * @var string
-     */
-    private $zipcode;
-
     /**
      * @var string
      */
     private $rib;
 
     /**
+     * @Groups({"api"})
      * @var string
      */
     private $email;
 
     /**
+     * @Groups({"api"})
      * @var string
      */
     private $site;
