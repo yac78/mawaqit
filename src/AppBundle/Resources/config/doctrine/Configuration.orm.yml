@@ -131,27 +131,9 @@ AppBundle\Entity\Configuration:
             type: string
         backgroundMotif:
             type: string
-        created:
-            type: datetime
-            gedmo:
-                timestampable:
-                    on: create  
         updated:
             type: datetime
             nullable: true
             gedmo:
                 timestampable:
                     on: update
-                    
-    oneToOne:
-        mosque:
-            targetEntity: AppBundle\Entity\Mosque
-            inversedBy: configuration
-            cascade:
-                - persist
-            joinColumn:
-                name:  mosque_id
-                referencedColumnName: id
-                onDelete: CASCADE
-            
-    lifecycleCallbacks: {  }

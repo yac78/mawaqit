@@ -237,11 +237,6 @@ class Configuration
     private $updated;
 
     /**
-     * @var Mosque
-     */
-    private $mosque;
-
-    /**
      * @var bool
      */
     private $smallScreen = false;
@@ -964,16 +959,6 @@ class Configuration
     public function getUpdated()
     {
         return $this->updated;
-    }
-
-    function getMosque()
-    {
-        return $this->mosque;
-    }
-
-    function setMosque(Mosque $mosque)
-    {
-        $this->mosque = $mosque;
     }
 
     function getAzanBip()

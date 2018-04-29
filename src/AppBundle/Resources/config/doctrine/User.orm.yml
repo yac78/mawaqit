@@ -21,4 +21,3 @@ AppBundle\Entity\User:
             gedmo:
                 timestampable:
                     on: update
-    lifecycleCallbacks: {  }

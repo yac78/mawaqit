@@ -79,24 +79,24 @@ class ToolsService
     public function updateFrCalendar()
     {
         ini_set('memory_limit', '512M');
-        $confs = $this->em
-            ->getRepository("AppBundle:Configuration")
-            ->createQueryBuilder("c")
-            ->innerJoin("c.mosque", "m", "c.mosque_id = m.id")
+        $mosques = $this->em
+            ->getRepository("AppBundle:Mosque")
+            ->createQueryBuilder("m")
+            ->innerJoin("m.configuration", "m")
             ->where("c.sourceCalcul = 'calendar'")
             ->andWhere("c.dst = 2")
             ->getQuery()
             ->getResult();
 
         /**
-         * @var $conf Configuration
+         * @var $mosqque Mosque
          */
 
         $editedMosques = [];
-        foreach ($confs as $conf) {
-            $cal = $conf->getCalendar();
+        foreach ($mosques as $mosqque) {
+            $cal = $mosqque->getConfiguration()->getCalendar();
             if (!empty($cal) && is_array($cal)) {
-                $editedMosques[] = $conf->getMosque()->getName() . ',' . $conf->getMosque()->getCity() . ',' . $conf->getMosque()->getCountry() . ',' . $conf->getMosque()->getUser()->getEmail();
+                $editedMosques[] = $mosqque->getName() . ',' . $mosqque->getCity() . ',' . $mosqque->getCountry() . ',' . $mosqque->getUser()->getEmail();
                 for ($month = 3; $month <= 9; $month++) {
                     for ($day = 1; $day <= count($cal[$month]); $day++) {
                         for ($prayer = 1; $prayer <= count($cal[$month][$day]); $prayer++) {
@@ -108,8 +108,8 @@ class ToolsService
                 }
 
 
-                $conf->setCalendar($cal);
-                $this->em->persist($conf);
+                $mosqque->getConfiguration()->setCalendar($cal);
+                $this->em->persist($mosqque);
             }
         }
 
