@@ -60,7 +60,7 @@ class MessageController extends Controller
     }
 
     /**
-     * @Route("/{mosque}/message/create", name="message_create")
+     * @Route("/mosque/{mosque}/message/create", name="message_create")
      */
     public function createAction(Request $request, Mosque $mosque)
     {
@@ -93,7 +93,7 @@ class MessageController extends Controller
     }
 
     /**
-     * @Route("/{mosque}/message/{message}/edit", name="message_edit")
+     * @Route("/mosque/{mosque}/message/{message}/edit", name="message_edit")
      */
     public function editAction(Request $request, Mosque $mosque, Message $message)
     {
@@ -127,7 +127,7 @@ class MessageController extends Controller
     /**
      * @Route("/message/{id}/delete", name="message_delete")
      */
-    public function deleteAction(Request $request, Message $message)
+    public function deleteAction(Message $message)
     {
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $message->getMosque()->getUser()) {

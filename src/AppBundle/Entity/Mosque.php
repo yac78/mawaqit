@@ -666,9 +666,14 @@ class Mosque
         return $nb;
     }
 
-    public function setMessages($messages)
+    public function addMessage(Message $message)
     {
-        $this->messages = $messages;
+        $this->messages[] = $message;
+    }
+
+    public function clearMessages()
+    {
+        $this->messages = null;
     }
 
 

@@ -20,10 +20,10 @@ class MosqueService
     public function getCalendarList()
     {
         $res = $this->em
-            ->getRepository("AppBundle:Configuration")
-            ->createQueryBuilder("c")
+            ->getRepository("AppBundle:Mosque")
+            ->createQueryBuilder("m")
             ->select("c.id, m.zipcode, m.city, m.country")
-            ->innerJoin("c.mosque", "m", "c.mosque_id = m.id")
+            ->innerJoin("m.configuration", "c")
             ->where("c.sourceCalcul = 'calendar'")
             ->andWhere("c.calendar IS NOT NULL")
             ->andWhere("m.city IS NOT NULL AND m.city != ''")

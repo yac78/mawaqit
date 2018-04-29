@@ -18,6 +18,7 @@ class Version20180429093932 extends AbstractMigration
         $this->addSql('ALTER TABLE mosque ADD configuration_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE mosque ADD CONSTRAINT FK_5DE348CA73F32DD8 FOREIGN KEY (configuration_id) REFERENCES configuration (id) ON DELETE CASCADE');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_5DE348CA73F32DD8 ON mosque (configuration_id)');
+        $this->addSql('UPDATE mosque m INNER JOIN configuration c ON m.id = c.mosque_id SET m.configuration_id = c.id');
         $this->addSql('ALTER TABLE configuration DROP FOREIGN KEY FK_A5E2A5D7FBDAA034');
         $this->addSql('DROP INDEX UNIQ_A5E2A5D7FBDAA034 ON configuration');
         $this->addSql('ALTER TABLE configuration DROP mosque_id');

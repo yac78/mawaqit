@@ -131,11 +131,6 @@ AppBundle\Entity\Configuration:
             type: string
         backgroundMotif:
             type: string
-        created:
-            type: datetime
-            gedmo:
-                timestampable:
-                    on: create  
         updated:
             type: datetime
             nullable: true

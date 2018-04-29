@@ -65,8 +65,8 @@ class MosqueController extends Controller
                 $position = $this->get("app.google_service")->getPosition($mosque->getLocalisation());
                 $configuration->setLongitude($position->lng);
                 $configuration->setLatitude($position->lat);
-                $configuration->setMosque($mosque);
-                $em->persist($configuration);
+                $mosque->setConfiguration($configuration);
+                $em->persist($mosque);
                 $em->flush();
 
                 $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
@@ -152,11 +152,13 @@ class MosqueController extends Controller
         $clonedMosque->setImage1(null);
         $clonedMosque->setImage2(null);
         $clonedMosque->setImage3(null);
-        $clonedMosque->setMessages(null);
+        $clonedMosque->setCreated(null);
+        $clonedMosque->setUpdated(null);
+        $clonedMosque->clearMessages();
         $clonedConfiguration = clone $clonedMosque->getConfiguration();
         $clonedConfiguration->setId(null);
-        $clonedConfiguration->setMosque($clonedMosque);
-        $em->persist($clonedConfiguration);
+        $clonedMosque->setConfiguration($clonedConfiguration);
+        $em->persist($clonedMosque);
         $em->flush();
         $this->addFlash('success', "form.clone.success");
         return $this->redirectToRoute('mosque_edit', ['id' => $clonedMosque->getId()]);
@@ -166,7 +168,7 @@ class MosqueController extends Controller
      * Force refresh page by updating updated_at
      * @Route("/refresh/{id}", name="mosque_refresh")
      */
-    public function refreshAction(Request $request, Mosque $mosque)
+    public function refreshAction(Mosque $mosque)
     {
         $em = $this->getDoctrine()->getManager();
         $mosque->setUpdated(new \Datetime());

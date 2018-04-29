@@ -73,7 +73,6 @@ AppBundle\Entity\Mosque:
             nullable: true            
         created:
             type: datetime
-            nullable: true
             gedmo:
                 timestampable:
                     on: create            
@@ -101,6 +100,8 @@ AppBundle\Entity\Mosque:
                 onDelete: CASCADE
     oneToMany:
         messages:
+            cascade:
+                - persist
             targetEntity: AppBundle\Entity\Message
             mappedBy: mosque
             joinColumn:
