@@ -49,8 +49,10 @@ mosque:
         city: 
             placeholder: La ville de la mosquée (Sert à calculer la position géographique)
         address:
-            help: Il est fortement recommandé de saisir l'adresse afin de faciliter aux fidèles de trouver votre mosquée
-            placeholder: Ex. 5 rue de paris
+            help: |
+              Il est fortement recommandé de saisir l'adresse postale afin de faciliter aux fidèles la localisation de votre mosquée. <br/>
+              L'adresse est obligatoire dans le cas uo vous choisissez de faire apparaitre votre mosquée dans la carte google mawaqit.net
+            placeholder: Ex. 5 rue de Paris
         zipcode:
             placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
         rib: 

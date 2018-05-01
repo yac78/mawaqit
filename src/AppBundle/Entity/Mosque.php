@@ -12,8 +12,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Mosque
 {
+    const TYPE_MOSQUE = "mosque";
+    const TYPE_HOME = "home";
+
     const TYPES = [
-        "mosque", "home"
+        self::TYPE_MOSQUE, self::TYPE_HOME
     ];
 
     /**

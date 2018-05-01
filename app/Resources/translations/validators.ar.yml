@@ -1,4 +1,6 @@
 form:
+    mosque:
+      address_mandatory: لقد اخترت عرض المسجد على خريطة جوجل لذلك يلزم إدخال عنوان بريدي لتوجيه المصلين إلى المسجد بشكل أفضل
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
