@@ -44,7 +44,7 @@ class ToolsService
             ->andWhere("m.country IS NOT NULL")
             ->andWhere("m.type = 'mosque'")
             ->setFirstResult($offset)
-            ->setMaxResults(50)
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult();
 
@@ -60,7 +60,7 @@ class ToolsService
 
             $status = "OK";
             try {
-                $gps = $this->googleService->getPosition($mosque->getLocalisation());
+                $gps = $this->googleService->getPosition($mosque);
                 $mosque->getConfiguration()->setLatitude($gps->lat);
                 $mosque->getConfiguration()->setLongitude($gps->lng);
                 $this->em->persist($mosque);
