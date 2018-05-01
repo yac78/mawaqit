@@ -92,14 +92,14 @@ class DefaultController extends Controller {
         $hadith = $this->getRandomHadith($hadiths);
         $reponse = [
             "text" => (string) $hadith,
-            "lang" => (string) $hadith["lang"]
+            "lang" => (string) (isset($hadith["lang"]) ? $hadith["lang"] : "fr")
         ];
         return new JsonResponse($reponse, 200);
     }
 
     private function getRandomHadith(array $hadiths) {
-        $hadith = $hadiths[array_rand($hadiths)];
-        if(empty(trim($hadith)) || strlen($hadith) > 700){
+        $hadith = trim($hadiths[array_rand($hadiths)]);
+        if(strlen($hadith) < 10 || strlen($hadith) > 700){
           return $this->getRandomHadith($hadiths);
         }
         return $hadith;
