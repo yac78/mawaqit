@@ -14,6 +14,6 @@ $("#timeToDisplayMessageButton").click(function (e) {
     });
 });
 
-$("#configuration_timeToDisplayMessage").keyup(function (e) {
+$("#configuration_timeToDisplayMessage").on("keyup change", function (e) {
     $("#timeToDisplayMessageButton").fadeIn(500);
 })
