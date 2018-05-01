@@ -17,13 +17,13 @@ class Mosque
     ];
 
     /**
-     * @Groups({"api"})
+     * @Groups({"search"})
      * @var int
      */
     private $id;
 
     /**
-     * @Groups({"api"})
+     * @Groups({"search"})
      * @var string
      */
     private $name;
@@ -64,7 +64,7 @@ class Mosque
     private $associationName;
 
     /**
-     * @Groups({"api"})
+     * @Groups({"search"})
      * @var string
      */
     private $phone;
@@ -74,13 +74,13 @@ class Mosque
     private $rib;
 
     /**
-     * @Groups({"api"})
+     * @Groups({"search"})
      * @var string
      */
     private $email;
 
     /**
-     * @Groups({"api"})
+     * @Groups({"search"})
      * @var string
      */
     private $site;
@@ -489,12 +489,12 @@ class Mosque
 
     /**
      * Get city + zipcode
-     *
+     * @Groups({"search"})
      * @return string
      */
     public function getLocalisation()
     {
-        return $this->address . " " . $this->zipcode . " " . $this->city . " " . $this->country;
+        return ($this->address ? $this->address . " " : "") . $this->zipcode . " " . $this->city . " " . $this->country;
     }
 
     function getUser()
@@ -779,5 +779,44 @@ class Mosque
         return $this->type;
     }
 
+    /**
+     * @Groups({"search"})
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->configuration->getLongitude();
+    }
+
+    /**
+     * @Groups({"search"})
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->configuration->getLatitude();
+    }
+
+    /**
+     * @Groups({"search"})
+     * @return string
+     */
+    public function getImage()
+    {
+        if (empty($this->image1)) {
+            return 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg';
+        }
+
+        return "https://mawaqit.net/upload/images/" . $this->image1;
+    }
+
+    /**
+     * @Groups({"search"})
+     * @return string
+     */
+    public function getUrl()
+    {
+        return "https://mawaqit.net/fr/" . $this->slug;
+    }
 
 }

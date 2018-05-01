@@ -26,8 +26,8 @@ class MosqueController extends Controller
     public function searchAction(Request $request)
     {
         $word = $request->query->get('word') ;
-        $result =$this->get('app.mosque_service')->getMosquesForApi($word);
-        return new Response($result);
+        $result =$this->get('app.mosque_service')->searchApi($word);
+        return new JsonResponse($result);
     }
 
 }
