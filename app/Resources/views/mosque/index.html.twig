@@ -107,7 +107,7 @@
                     <td>
                         <div>{{ mosque.address }}</div>
                         <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
-                        <div>{{ mosque.country }}</div>
+                        <div>{{ mosque.country|country }}</div>
                         {% if mosque.phone %}
                             <div><span class="fa fa-phone">&nbsp;</span><a href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a></div>
                         {% endif %}
@@ -169,7 +169,7 @@
                     <div>{{ mosque.associationName }}</div>
                     <div>{{ mosque.address }}</div>
                     <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
-                    <div>{{ mosque.country }} </div>
+                    <div>{{ mosque.country|country }} </div>
                     {% if mosque.phone %}
                         <span class="fa fa-phone">&nbsp;</span><a href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a>
                         <br>

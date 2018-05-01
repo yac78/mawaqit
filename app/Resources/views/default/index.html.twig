@@ -284,7 +284,7 @@
                         <div class="">
                             {% for item in mosqueNumberByCountry %}
                                 <button class="btn btn-success mt-1">
-                                    {{ item.country|capitalize }} <span class="badge">{{ item.nb }}</span>
+                                    {{ item.country|country|upper }} <span class="badge">{{ item.nb }}</span>
                                 </button>
                             {% endfor %}
                         </div>

@@ -46,9 +46,9 @@
         <div class="col-sm-12 col-md-12">
             <div class="">
                 {% for item in mosques.byCountry %}
-                    <button class="btn btn-success mt-1">
-                        {{ item.country }} <span class="badge">{{ item.nb }}</span>
-                    </button>
+                    <span class="btn btn-success mt-1">
+                        {{ item.country|country|upper }} <span class="badge">{{ item.nb }}</span>
+                    </span>
                 {% endfor %}
             </div>
         </div>

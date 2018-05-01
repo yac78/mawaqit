@@ -7,6 +7,7 @@ use AppBundle\Entity\Mosque;
 use AppBundle\Exception\GooglePositionException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Intl\Intl;
 
 class ToolsService
 {
@@ -128,6 +129,15 @@ class ToolsService
 
         }
         return $time;
+    }
+
+    public function getCountryNameByCode($countryCode)
+    {
+        $countries = Intl::getRegionBundle()->getCountryNames("en");
+
+        return array_key_exists($countryCode, $countries)
+            ? $countries[$countryCode]
+            : $countryCode;
     }
 
 }

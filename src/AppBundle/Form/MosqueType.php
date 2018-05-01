@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -131,7 +132,8 @@ class MosqueType extends AbstractType
                     'placeholder' => 'mosque.form.zipcode.placeholder',
                 ]
             ])
-            ->add('country', null, [
+            ->add('country', CountryType::class, [
+                'placeholder' => 'mosque.form.country.placeholder',
                 'label' => 'country',
                 'required' => true,
             ])
@@ -171,6 +173,7 @@ class MosqueType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            'label_format' => 'message.form.%name%.label',
             'data_class' => Mosque::class
         ));
     }

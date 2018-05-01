@@ -49,6 +49,8 @@ mosque:
         address:
             help: It is strongly recommended to enter the address to facilitate the faithful to find your mosque
             placeholder: Ex. 5 rue de paris
+        country:
+            placeholder: Choose a country
         zipcode:
             placeholder: "The postal code of the mosque (used to calculate the geographical position)"
         rib:

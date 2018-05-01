@@ -48,6 +48,8 @@ mosque:
             label : Changez l'url du site
         city: 
             placeholder: La ville de la mosquée (Sert à calculer la position géographique)
+        country:
+            placeholder: Choissiez un pays
         address:
             help: |
               Il est fortement recommandé de saisir l'adresse postale afin de faciliter aux fidèles la localisation de votre mosquée. <br/>

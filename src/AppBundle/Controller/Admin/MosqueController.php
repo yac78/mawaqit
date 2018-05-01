@@ -62,7 +62,7 @@ class MosqueController extends Controller
             try {
                 $configuration = new Configuration();
                 // update gps coordinates
-                $position = $this->get("app.google_service")->getPosition($mosque->getLocalisation());
+                $position = $this->get("app.google_service")->getPosition($mosque);
                 $configuration->setLongitude($position->lng);
                 $configuration->setLatitude($position->lat);
                 $mosque->setConfiguration($configuration);

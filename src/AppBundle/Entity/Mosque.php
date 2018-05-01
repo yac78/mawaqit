@@ -497,7 +497,7 @@ class Mosque
      */
     public function getLocalisation()
     {
-        return ($this->address ? $this->address . " " : "") . $this->zipcode . " " . $this->city . " " . $this->country;
+        return ($this->address ? $this->address . " " : "") . $this->zipcode . " " . $this->city;
     }
 
     function getUser()

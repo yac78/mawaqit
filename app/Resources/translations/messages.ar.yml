@@ -40,6 +40,8 @@ mosque:
             placeholder:  اسم المدينة يصلح لحساب الموقع الجغرافي
         zipcode:
             placeholder: الرقم البريدي للمدينة يصلح لحساب الموقع الجغرافي
+        country:
+            placeholder: إختر البلد
         rib:
             placeholder: إذا تم تحديده مسبقا ،فإنه سيظهر في أسفل الشاشة. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
         image1:

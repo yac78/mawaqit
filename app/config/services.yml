@@ -48,7 +48,8 @@ services:
         class: AppBundle\Service\GoogleService
         calls:
           - [setLogger, ['@logger']]
-          
+          - [setToolsService, ['@app.tools_service']]
+
     app.weather_service:
         parent: app.weather_api
         class: AppBundle\Service\WeatherService
@@ -95,6 +96,13 @@ services:
             - "@app.user_repository"
         tags:
             - { name: 'console.command', command: 'app:clean-old-users' }
+
+    app.twig.country_extension:
+        class: AppBundle\Twig\CountryExtension
+        arguments:
+          - "@app.tools_service"
+        tags:
+            - { name: twig.extension }
 
     # Forms
     app.form_configuration:
