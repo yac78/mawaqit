@@ -478,16 +478,16 @@ class Mosque
     /**
      * Get updated
      *
-     * @return \DateTime
+     * @return integer
      */
     public function getUpdated()
     {
         $mosqueUpdated = $this->updated;
         $configurationUpdated = $this->configuration->getUpdated();
         if ($mosqueUpdated > $configurationUpdated) {
-            return $mosqueUpdated->format("Y-m-d H:i:s");
+            return $mosqueUpdated->getTimestamp();
         }
-        return $configurationUpdated->format("Y-m-d H:i:s");
+        return $configurationUpdated->getTimestamp();
     }
 
     /**

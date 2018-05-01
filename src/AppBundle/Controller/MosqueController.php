@@ -54,20 +54,11 @@ class MosqueController extends Controller
             $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
         }
 
-        $config = $mosque->getConfiguration();
-        $encoder = new JsonEncoder();
-        $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceHandler(function ($config) {
-            return $config->getId();
-        });
-        $serializer = new Serializer(array($normalizer), array($encoder));
-
-
         return $this->render("mosque/$template.html.twig", [
             'mosque' => $mosque,
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
-            'config' => $serializer->serialize($config, 'json'),
+            'config' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
             'messages' => $messages
         ]);
     }
@@ -90,17 +81,13 @@ class MosqueController extends Controller
      */
     public function hasUpdatedAjaxAction(Request $request, Mosque $mosque)
     {
-        $lastUpdatedDate = $request->attributes->get("lastUpdatedDate", $request->query->get("lastUpdatedDate"));
+        $lastUpdatedDate = $request->query->get("lastUpdatedDate");
         if (empty($lastUpdatedDate)) {
             throw new \RuntimeException();
         }
 
         $hasBeenUpdated = $this->get("app.prayer_times_service")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);
-        $response = [
-            "hasBeenUpdated" => $hasBeenUpdated,
-            "lastUpdatedDate" => $mosque->getUpdated(),
-        ];
-        return new JsonResponse($response, 200);
+        return new JsonResponse(["hasBeenUpdated" => $hasBeenUpdated]);
     }
 
     /**

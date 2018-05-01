@@ -211,8 +211,9 @@
     </div>
 
     <script>
+        var lastUpdated = {{ mosque.updated }};
         var confData = {{ config|raw }};
-        var lang = "{{ app.request.locale }}";
+        var lang = '{{ app.request.locale }}';
     </script>
 
     {% javascripts

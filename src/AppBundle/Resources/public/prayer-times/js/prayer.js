@@ -73,7 +73,7 @@ var prayer = {
         var remote = $("#main").data("remote");
         setInterval(function () {
             $.ajax({
-                url: remote + "?lastUpdatedDate=" + prayer.confData.mosque.updated,
+                url: remote + "?lastUpdatedDate=" + lastUpdated,
                 success: function (resp) {
                     if (resp.hasBeenUpdated === true) {
                         location.reload();
@@ -617,7 +617,7 @@ var prayer = {
         $(".top-content .adhan-flash").addClass("hidden");
         $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
         $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
-        prayer.duaAfterAdhan.handle(currentPrayerIndex);
+        prayer.duaAfterAdhan.handle();
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
         $(".iqama").addClass("hidden");
@@ -744,9 +744,8 @@ var prayer = {
          * show douaa after adhan flash finish
          * show douaa for configured time
          * show hadith to remeber importance of douaa between adhan and iqama
-         * @param {Number} currentPrayerIndex
          */
-        handle: function (currentPrayerIndex) {
+        handle: function () {
             if (prayer.confData.duaAfterAzanEnabled === true) {
                 prayer.duaAfterAdhan.showAdhanDua();
                 setTimeout(function () {
