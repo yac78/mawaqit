@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>{% block form_title %}{{'faq.add'|trans}}{% endblock %}</h3>
+    <form action="{{ form_action|default(path('faq_create'))}}" method="post">
+        {% include 'faq/form.html.twig' %}
+    </form>
+{% endblock %}

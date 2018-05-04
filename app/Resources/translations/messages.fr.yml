@@ -106,6 +106,17 @@ message:
             label : Afficher sur mobile
             title : Votre message sera affiché sur la version mobile de mawaqit sous forme de notification
 
+faq:
+    add: Ajout d'une nouvelle Faq
+    edit: Édition de la faq %question%
+    form:
+        question:
+            label: Question
+        answer:
+            label: Réponse
+        enabled:
+            label : Activé
+
 configuration:
     select_calendar: Séléctionner un calendrier
     title: Configuration des horaires de "%mosque%"

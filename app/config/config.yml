@@ -144,8 +144,7 @@ stfalcon_tinymce:
           height: 400
           plugins:
             - "advlist autolink autosave link image lists charmap preview hr"
-            - "visualblocks visualchars code insertdatetime nonbreaking"
-            - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern"
-          toolbar1: "undo redo | formatselect fontselect | forecolor backcolor | removeformat"
-          toolbar2: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
-          toolbar3: "link unlink image | insertdatetime | table | hr | subscript superscript | charmap emoticons | code preview"
+            - "visualblocks visualchars code insertdatetime nonbreaking media"
+            - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern "
+          toolbar1: "undo redo | formatselect fontselect | forecolor backcolor | removeformat | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
+          toolbar2: "link unlink image media | insertdatetime | table | hr | subscript superscript | charmap emoticons | code preview"

@@ -1,0 +1,3 @@
+{% extends 'faq/create.html.twig' %}
+{% set form_action = path('faq_edit', {id: faq.id}) %}
+{% block form_title %} {{ 'faq.edit'|trans({'%question%': faq.question}) }} {% endblock %}

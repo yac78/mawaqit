@@ -1,0 +1,11 @@
+{% include 'partial/flash_msg.html.twig' %}
+
+{{ form_errors(form) }}
+{{ form_row(form._token) }}
+{{ form_row(form.question) }}
+{{ form_row(form.answer) }}
+{{ form_row(form.enabled) }}
+{{ form_widget(form.save) }}
+<a href="{{ path("faq") }}" class="btn btn-warning">{{ 'ca  ncel'|trans }}</a>
+
+{{ tinymce_init() }}

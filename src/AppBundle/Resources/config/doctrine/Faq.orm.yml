@@ -1,0 +1,29 @@
+AppBundle\Entity\Faq:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\FaqRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        question:
+            type: string
+            length: 1024
+        answer:
+            type: text
+        enabled:
+            type: boolean
+        slug:
+            type: string
+            length: 1024
+            gedmo:
+                slug:
+                  fields:
+                    - question
+        position:
+            type: integer
+            gedmo:
+              - sortablePosition
