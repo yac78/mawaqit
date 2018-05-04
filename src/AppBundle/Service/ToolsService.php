@@ -131,12 +131,12 @@ class ToolsService
         return $time;
     }
 
-    public function getCountryNameByCode($countryCode)
+    public static function getCountryNameByCode($countryCode)
     {
         $countries = Intl::getRegionBundle()->getCountryNames("en");
 
         return array_key_exists($countryCode, $countries)
-            ? $countries[$countryCode]
+            ? strtoupper($countries[$countryCode])
             : $countryCode;
     }
 

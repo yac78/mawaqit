@@ -18,11 +18,6 @@ class GoogleService extends GoogleApi
     private $logger;
 
     /**
-     * @var ToolsService
-     */
-    private $toolsService;
-
-    /**
      * Get longitude and latitude
      * @param Mosque $mosque
      * @return array
@@ -30,21 +25,15 @@ class GoogleService extends GoogleApi
      */
     function getPosition(Mosque $mosque)
     {
-        $address = [
-            $mosque->getAddress(),
-            $mosque->getZipcode(),
-            $mosque->getCity(),
-            $this->toolsService->getCountryNameByCode($mosque->getCountry())
-        ];
 
-        $encodedAddr = urlencode(trim(implode(' ', $address)));
-        $res = $this->get(self::PATH_GEOCODE . "?address=$encodedAddr");
+        $addr = urlencode($mosque->getLocalisation());
+        $res = $this->get(self::PATH_GEOCODE . "?address=$addr");
 
         if ($res instanceof \stdClass && isset($res->results[0]->geometry->location)) {
             return $res->results[0]->geometry->location;
         }
 
-        $this->logger->error("Impossible de localiser l'adresse $encodedAddr");
+        $this->logger->error("Impossible de localiser l'adresse $addr");
         throw new GooglePositionException();
     }
 
@@ -54,13 +43,5 @@ class GoogleService extends GoogleApi
     function setLogger(Logger $logger)
     {
         $this->logger = $logger;
-    }
-
-    /**
-     * @param ToolsService $toolsService
-     */
-    function setToolsService(ToolsService $toolsService)
-    {
-        $this->toolsService = $toolsService;
     }
 }

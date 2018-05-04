@@ -47,7 +47,7 @@
             <div class="">
                 {% for item in mosques.byCountry %}
                     <span class="btn btn-success mt-1">
-                        {{ item.country|country|upper }} <span class="badge">{{ item.nb }}</span>
+                        {{ item.fullCountryName }} <span class="badge">{{ item.nb }}</span>
                     </span>
                 {% endfor %}
             </div>

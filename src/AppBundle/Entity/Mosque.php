@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Service\ToolsService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -278,7 +279,7 @@ class Mosque
      */
     public function setCountry($country)
     {
-        $this->country = preg_replace("/\s+/", "-", trim(strtoupper($country)));
+        $this->country = $country;
 
         return $this;
     }
@@ -291,6 +292,11 @@ class Mosque
     public function getCountry()
     {
         return $this->country;
+    }
+
+    public function getFullCountryName()
+    {
+        return ToolsService::getCountryNameByCode($this->country);
     }
 
     /**
@@ -497,7 +503,7 @@ class Mosque
      */
     public function getLocalisation()
     {
-        return ($this->address ? $this->address . " " : "") . $this->zipcode . " " . $this->city;
+        return ($this->address ? $this->address . ' ' : '') . $this->zipcode . ' ' . $this->city . ' ' . $this->getFullCountryName();
     }
 
     function getUser()

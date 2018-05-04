@@ -48,7 +48,6 @@ services:
         class: AppBundle\Service\GoogleService
         calls:
           - [setLogger, ['@logger']]
-          - [setToolsService, ['@app.tools_service']]
 
     app.weather_service:
         parent: app.weather_api
