@@ -69,6 +69,19 @@ mosque:
             and the access of the faithful ones to your prayer times.
             Remember to update your raspberry and inform the faithful of the mosque.
 
+
+faq:
+    add: Add new Faq
+    edit: Édit faq %question%
+    form:
+        question:
+            label: Question
+        answer:
+            label: Answer
+        enabled:
+            label : Published
+
+
 message:
   manage: Manage messages
   display_messages_in_screen_1: You can display these messages in a dedicated screen, just replace the schedule url with this one

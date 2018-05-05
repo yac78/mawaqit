@@ -23,7 +23,7 @@ class FaqController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $faqRepo = $em->getRepository('AppBundle:Faq');
-        $qb = $faqRepo->findAll();
+        $qb = $faqRepo->getBySortableGroupsQuery();
 
         $paginator = $this->get('knp_paginator');
         $faqs = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
@@ -106,11 +106,11 @@ class FaqController extends Controller
      */
     public function sortAction(Request $request)
     {
-//        $em = $this->getDoctrine()->getManager();
-//        $message = $em->getRepository('AppBundle:Message')->find((int)$request->request->get("id"));
-//        $message->setPosition((int)$request->request->get("position"));
-//        $em->persist($message);
-//        $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $faq = $em->getRepository('AppBundle:Faq')->find((int)$request->request->get("id"));
+        $faq->setPosition((int)$request->request->get("position"));
+        $em->persist($faq);
+        $em->flush();
 
         return new JsonResponse();
     }

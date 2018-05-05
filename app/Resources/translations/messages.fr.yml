@@ -115,7 +115,7 @@ faq:
         answer:
             label: Réponse
         enabled:
-            label : Activé
+            label : Publiée
 
 configuration:
     select_calendar: Séléctionner un calendrier
