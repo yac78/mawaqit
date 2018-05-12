@@ -109,28 +109,20 @@ class MosqueType extends AbstractType
             ])
             ->add('site', null, [
                 'label' => 'site',
-                'required' => false,
             ])
             ->add('address', null, [
                 'label' => 'address',
                 'attr' => [
                     'placeholder' => 'mosque.form.address.placeholder',
-                    'help' => 'mosque.form.address.help',
                 ]
             ])
             ->add('city', null, [
                 'label' => 'city',
                 'required' => true,
-                'attr' => [
-                    'placeholder' => 'mosque.form.city.placeholder',
-                ]
             ])
             ->add('zipcode', null, [
                 'label' => 'zipcode',
                 'required' => true,
-                'attr' => [
-                    'placeholder' => 'mosque.form.zipcode.placeholder',
-                ]
             ])
             ->add('country', CountryType::class, [
                 'placeholder' => 'mosque.form.country.placeholder',
@@ -144,8 +136,7 @@ class MosqueType extends AbstractType
                 ]
             ])
             ->add('addOnMap', CheckboxType::class, [
-                'label' => 'mosque.form.addOnMap.label',
-                'required' => false
+                'label' => 'mosque.form.addOnMap.label'
             ])
             ->add('file1', ImageType::class)
             ->add('file2', ImageType::class)

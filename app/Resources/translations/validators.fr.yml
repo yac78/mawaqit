@@ -1,8 +1,6 @@
 form:
     mosque:
-      address_mandatory: |
-         Vous avez choisi de faire apparaitre votre mosquée sur la carte google mawaqit.net.
-         Il est donc obligatoire de saisir une adresse postale pour mieux orienter les fidèles vers la mosquée.
+      address_mandatory: L'adresse postale est obligatoire pour les mosquées.
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés

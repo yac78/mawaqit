@@ -1,8 +1,6 @@
 form:
     mosque:
-      address_mandatory: |
-        You have chosen to display your mosque on the google map mawaqit.net.
-        It is mandatory to enter an address to better guide the faithful to the mosque.
+      address_mandatory: The address is mandatory for mosques.
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
