@@ -25,7 +25,6 @@ class MailService {
 
     /**
      * Send email when mosque created
-     * @param Mosque $mosque
      * @param String $body
      */
     function mosqueCreated($body) {
