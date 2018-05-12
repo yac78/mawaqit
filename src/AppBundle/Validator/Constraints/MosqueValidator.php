@@ -14,7 +14,7 @@ class MosqueValidator extends ConstraintValidator
      */
     public function validate($mosque, Constraint $constraint)
     {
-        if ($mosque->getType() === Mosque::TYPE_MOSQUE) {
+        if ($mosque->getType() === Mosque::TYPE_MOSQUE && empty($mosque->getAddress())) {
             $this->context->buildViolation($constraint->mandatoryAddrMsg)->addViolation();
         }
     }
