@@ -828,4 +828,12 @@ class Mosque
         return "https://mawaqit.net/fr/" . $this->slug;
     }
 
+    public function isHome(){
+        return $this->type === self::TYPE_HOME;
+    }
+
+    public function isMosque(){
+        return $this->type === self::TYPE_MOSQUE;
+    }
+
 }

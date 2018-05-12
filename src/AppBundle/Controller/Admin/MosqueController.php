@@ -69,12 +69,15 @@ class MosqueController extends Controller
                 $em->persist($mosque);
                 $em->flush();
 
-                $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
-                $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, [
-                    'mosque' => $mosque,
-                    'total' => $totalMosqueCount,
-                ]);
-                $this->get("app.mail_service")->mosqueCreated($mailBody);
+                if ($mosque->isMosque()){
+                    $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
+                    $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, [
+                        'mosque' => $mosque,
+                        'total' => $totalMosqueCount,
+                    ]);
+                    $this->get("app.mail_service")->mosqueCreated($mailBody, $mosque);
+                }
+
                 $this->addFlash('success', "form.create.success");
                 return $this->redirectToRoute('mosque_index');
             } catch (GooglePositionException $exc) {
