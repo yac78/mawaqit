@@ -75,7 +75,7 @@ class MosqueController extends Controller
                         'mosque' => $mosque,
                         'total' => $totalMosqueCount,
                     ]);
-                    $this->get("app.mail_service")->mosqueCreated($mailBody, $mosque);
+                    $this->get("app.mail_service")->mosqueCreated($mailBody);
                 }
 
                 $this->addFlash('success', "form.create.success");
