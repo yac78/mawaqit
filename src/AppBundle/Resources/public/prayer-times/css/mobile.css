@@ -102,8 +102,12 @@ small{
     display: inline;
 }
 
+.important {
+    color: #B0413E;
+}
+
 .aid-id {
-    color: red;
+    color: #B0413E;
 }
 
 .prayer-hilighted {

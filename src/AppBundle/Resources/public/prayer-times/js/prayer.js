@@ -874,6 +874,9 @@ var prayer = {
             // if time > chourouk + 1 hour => show imsak
             if (date.getTime() > chouroukDate) {
                 $(".imsak").show();
+                if (this.isRamadan()) {
+                    $(".imsak-id").addClass('important');
+                }
                 return;
             }
         }
@@ -984,6 +987,13 @@ var prayer = {
                 height: 100
             });
         }
+    },
+    isRamadan: function () {
+        var hijriDateInfo = kuwaiticalendar(prayer.confData.hijriAdjustment);
+        if (hijriDateInfo[6] === 8) {
+            return true;
+        }
+        return false;
     },
     /**
      * Return true if aid is comming soon, 3 days before aid

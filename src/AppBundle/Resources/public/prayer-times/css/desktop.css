@@ -32,7 +32,7 @@ body {
     margin: auto;
 }
 
-#black-screen{
+#black-screen {
     background-color: #080808;
 }
 
@@ -77,8 +77,12 @@ body {
     font-size: 140%;
 }
 
+.important {
+    color: #B0413E;
+}
+
 .aid-id {
-    color: red;
+    color: #B0413E;
 }
 
 .time {
