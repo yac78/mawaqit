@@ -8,6 +8,8 @@ form:
     delete:
         success:  تم الحذف بنجاح
         action: إحذف
+    clone:
+        action: استنساخ
     configure:
         action: ضبط
         geocode_error: |
@@ -22,6 +24,9 @@ registration:
 
 
 mosque:
+    wait_for_validation: |
+     تمت إضافة المسجد الخاص بك ، وسيقوم فريق الموقع بالمصادقة بعد التحقق ،
+     قد يستغرق الأمر بضعة أيام ، ستتلقى رسالة بريد إلكتروني تخبرك عن صحة المسجد الخاص بك.
     add_new: زيادة مسجد
     add: زيادة مسجد جديد
     name: إسم المسجد
@@ -234,6 +239,7 @@ admin_title: مواقيت - الإدارة
 site_title: مواقيت
 full_screen: ملئ الشاشة
 
+refresh: تحديث
 validate: موافق
 cancel: إلغاء
 return: رجوع

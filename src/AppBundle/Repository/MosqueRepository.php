@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Mosque;
 use AppBundle\Entity\User;
 
 /**
@@ -39,6 +40,11 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             if (!empty($search["id"])) {
                 $qb->andWhere("m.id = :id")
                     ->setParameter(":id", $search["id"]);
+            }
+
+            if (!empty($search["status"])) {
+                $qb->andWhere("m.status = :status")
+                    ->setParameter(":status", $search["status"]);
             }
 
             if (!empty($search["type"])) {
@@ -79,13 +85,15 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 
         if (!empty($search)) {
             $qb->where("m.type = 'mosque'")
+                ->andWhere("m.status = :status")
                 ->andwhere("m.name LIKE :word "
                     . "OR m.associationName LIKE :word "
                     . "OR m.address LIKE :word "
                     . "OR m.city LIKE :word "
                     . "OR m.zipcode LIKE :word "
                     . "OR m.country LIKE :word "
-                )->setParameter(":word", "%$search%");
+                )->setParameter(":word", "%$search%")
+                 ->setParameter(':status', Mosque::STATUS_VALIDATED);
         }
 
         return $qb;
@@ -135,7 +143,6 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * @return mixed
-     * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     function getCount()
@@ -148,7 +155,6 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * @return mixed
-     * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     function countMosques()
@@ -171,8 +177,10 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.country,  c.longitude as lng, c.latitude as lat")
             ->where("m.addOnMap = 1")
             ->andWhere("m.type = 'mosque'")
+            ->andWhere("m.status = :status")
             ->andWhere("c.latitude is not null")
             ->andWhere("c.longitude is not null")
+            ->setParameter(':status', Mosque::STATUS_VALIDATED)
             ->getQuery()
             ->getArrayResult();
     }
@@ -186,9 +194,11 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder("m")
             ->select("count(m.id) as nb, m.country")
+            ->where("m.status = :status")
             ->orderBy("nb", "DESC")
             ->groupBy("m.country")
             ->getQuery()
+            ->setParameter(':status', Mosque::STATUS_VALIDATED)
             ->getResult();
     }
 }

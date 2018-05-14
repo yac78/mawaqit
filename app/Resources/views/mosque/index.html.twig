@@ -57,6 +57,16 @@
                         </select>
                     </div>
 
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="form-group">
+                            <select name="status" class="form-control">
+                                <option value="">Statut</option>
+                                <option value="NEW" {{ app.request.get('staus') == 'NEW' ? 'selected': '' }}>En attente de validation</option>
+                                <option value="VALIDATED" {{ app.request.get('staus') == 'VALIDATED' ? 'selected': '' }}>Validée</option>
+                            </select>
+                        </div>
+                    {% endif %}
+
                     <div class="form-group">
                         <input type="text" value="{{ app.request.get('department') }}" class="form-control" name="department" placeholder="Département">
                     </div>
@@ -81,6 +91,7 @@
                 <th>{{ 'association'|trans }}</th>
                 <th style="width: 20%">{{ 'contact'|trans }}</th>
                 <th style="width: 35%">{{ 'prayer_sites'|trans }}</th>
+                <th>{{ 'status'|trans }}</th>
                 {% if is_granted('ROLE_ADMIN') %}
                     <th>{{ 'user'|trans }}</th>
                 {% endif %}
@@ -90,7 +101,7 @@
             </thead>
             <tbody>
             {% for mosque in mosques %}
-                <tr class="{{ not mosque.isCalendarCompleted ? 'danger' : '' }}">
+                <tr class="{{ not mosque.isCalendarCompleted ? 'warning' : '' }} {{ not mosque.isValidated ? 'danger' : '' }}">
                     <td>
                         {{ mosque.id }}
                     </td>
@@ -117,19 +128,29 @@
                         </div>
                     </td>
                     <td>
-                        {% for lang in languages %}
-                            <div>
-                                <div style="width: 80px; font-weight: bold; float: left">{{ lang|trans }}</div>
-                                : <a {{ app.request.getHost() == 'localhost' ? '' : 'target="_blank"' }} href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
-                            </div>
-                        {% endfor %}
-                        {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button"
-                                                                      data-url="{{ url('mosque', {slug: mosque.slug}) }}?view=mobile">{{ 'show'|trans }}</a>
-                        {% if not mosque.isCalendarCompleted %}
-                            <div>
-                                <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
-                            </div>
+                        {% if mosque.isValidated %}
+                            {% for lang in languages %}
+                                <div>
+                                    <div style="width: 80px; font-weight: bold; float: left">{{ lang|trans }}</div>
+                                    : <a {{ app.request.getHost() == 'localhost' ? '' : 'target="_blank"' }}
+                                            href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
+                                </div>
+                            {% endfor %}
+                            {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button"
+                                                                          data-url="{{ url('mosque', {slug: mosque.slug}) }}?view=mobile">{{ 'show'|trans }}</a>
+                            {% if not mosque.isCalendarCompleted %}
+                                <div>
+                                    <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <p>
+                                {{ 'mosque.wait_for_validation'|trans }}
+                            </p>
                         {% endif %}
+                    </td>
+                    <td>
+                        {{ mosque.status|trans }}
                     </td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>
@@ -152,7 +173,7 @@
 
     <div class="hidden-lg hidden-md">
         {% for mosque in mosques %}
-            <div class="row {{ not mosque.isCalendarCompleted ? 'alert-danger' : '' }}"
+            <div class="row {{ not mosque.isCalendarCompleted ? 'alert-warning' : '' }}  {{ not mosque.isValidated ? 'alert-danger' : '' }}"
                  style="padding: 10px 0; border-bottom: solid #ccc 1px">
                 <div class="col-xs-12">
                     <div class="row">
@@ -180,21 +201,22 @@
                     </div>
 
                     <div>
-                        <strong>{{ 'links'|trans }}</strong>:
-                        {% for lang in languages %}
-                            <a target="_blank"
-                               href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|trans }}</a>{{ loop.last ? '' : ' | ' }}
-                        {% endfor %}
+                        {% if mosque.isValidated %}
+                            <strong>{{ 'links'|trans }}</strong>:
+                            {% for lang in languages %}
+                                <a target="_blank"
+                                   href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|trans }}</a>{{ loop.last ? '' : ' | ' }}
+                            {% endfor %}
+                        {% else %}
+                            {{ 'mosque.wait_for_validation'|trans }}
+                        {% endif %}
                     </div>
-
+                    <div><strong>{{ 'status'|trans }}:</strong> {{ mosque.status|trans }}</div>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div>{{ 'user'|trans }}: <a
-                                    href="{{ path('user_show', {id: mosque.user.id}) }}">{{ mosque.user.username }}
-                                - {{ mosque.user.email }}</a></div>
+                        <div><strong>{{ 'user'|trans }}:</strong> <a href="{{ path('user_show', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a></div>
                     {% endif %}
-                    {{ 'creation_date'|trans }}: {{ mosque.created|date('d/m/Y H:i') }}
-                    <div>{{ 'type'|trans }} : {{ ('mosque.types.' ~ mosque.type ) | trans }}</div>
-
+                    <div><strong>{{ 'creation_date'|trans }}:</strong> {{ mosque.created|date('d/m/Y H:i') }}</div>
+                    <div><strong>{{ 'type'|trans }} :</strong> {{ ('mosque.types.' ~ mosque.type ) | trans }}</div>
                     {% if mosque.configuration.isCalendar and  mosque.isCalendarCompleted %}
                         <div>
                             <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>

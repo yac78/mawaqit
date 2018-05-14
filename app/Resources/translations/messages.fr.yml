@@ -13,6 +13,8 @@ form:
     clone:
         success:  Le clonage a été réalisé avec succès.
         action: Clonner
+    validate:
+        action: Valider
     configure:
         action: Configurer
         geocode_error: |
@@ -26,6 +28,9 @@ registration:
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 
 mosque:
+    wait_for_validation: |
+      Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
+      cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
     types:
         mosque: Mosquée
         home: Domicile
@@ -468,3 +473,6 @@ stats: Statistiques
 found: Trouvés
 your_mosque_informs_you: Votre mosquée vous informe
 no_notif: Aucune notifications
+NEW: En attente de validation
+VALIDATED: Validée
+status: Statut

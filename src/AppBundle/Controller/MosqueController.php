@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -21,7 +22,7 @@ class MosqueController extends Controller
      * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|ph"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function mosqueDeprected1Action(Request $request, Mosque $mosque)
+    public function mosqueDeprected1Action(Mosque $mosque)
     {
         return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
     }
@@ -31,7 +32,7 @@ class MosqueController extends Controller
      * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|ph"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function mosqueDeprected2Action(Request $request, Mosque $mosque)
+    public function mosqueDeprected2Action(Mosque $mosque)
     {
         return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
     }
@@ -42,6 +43,10 @@ class MosqueController extends Controller
      */
     public function mosqueAction(Request $request, Mosque $mosque)
     {
+
+        if(!$mosque->isValidated()){
+            throw new NotFoundHttpException();
+        }
 
         $mobileDetect = $this->get('mobile_detect.mobile_detector');
         $view = $request->query->get("view");

@@ -69,13 +69,10 @@ class MosqueController extends Controller
                 $em->persist($mosque);
                 $em->flush();
 
+                // send mail if mosque
                 if ($mosque->isMosque()){
                     $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
-                    $mailBody = $this->renderView(MailService::TEMPLATE_MOSQUE_CREATED, [
-                        'mosque' => $mosque,
-                        'total' => $totalMosqueCount,
-                    ]);
-                    $this->get("app.mail_service")->mosqueCreated($mailBody);
+                    $this->get("app.mail_service")->mosqueCreated($mosque, $totalMosqueCount);
                 }
 
                 $this->addFlash('success', "form.create.success");
@@ -256,6 +253,22 @@ class MosqueController extends Controller
         $em->getRepository("AppBundle:Mosque")->forceUpdateAll();
         $this->addFlash('success', $this->get("translator")->trans("mosque.force_update_all.success"));
         return $this->redirectToRoute('mosque_index');
+    }
+
+    /**
+     * @param Mosque $mosque
+     * @Route("/mosque/{id}/validate", name="mosque_validate")
+     * @return Response
+     */
+    public function validateMosqueAction(Mosque $mosque)
+    {
+        $mosque->setStatus(Mosque::STATUS_VALIDATED);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mosque);
+        $em->flush();
+        $this->get("app.mail_service")->mosqueValidated($mosque);
+        $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été validée');
+        return $this->redirectToRoute("mosque_index");
     }
 
 }

@@ -63,6 +63,7 @@ services:
         class: AppBundle\Service\MailService
         arguments:
             - "@swiftmailer.mailer"
+            - "@twig"
             - "%supportEmail%"
 
     app.user_service:

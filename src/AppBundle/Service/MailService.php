@@ -6,7 +6,8 @@ use AppBundle\Entity\Mosque;
 
 class MailService {
 
-    const TEMPLATE_MOSQUE_CREATED = ':mosque:email_mosque_created.html.twig';
+    const TEMPLATE_MOSQUE_CREATED = ':email_templates:mosque_created.html.twig';
+    const TEMPLATE_MOSQUE_VALIDATED = ':email_templates:mosque_validated.html.twig';
 
     /**
      * @var \Swift_Mailer 
@@ -14,25 +15,60 @@ class MailService {
     private $mailer;
 
     /**
+     * @var \Twig_Environment
+     */
+    private $twig;
+
+    /**
      * @var string
      */
     private $email;
 
-    public function __construct(\Swift_Mailer $mailer, $email){
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $email){
         $this->mailer = $mailer;
+        $this->twig = $twig;
         $this->email = $email;
     }
 
     /**
      * Send email when mosque created
-     * @param String $body
+     * @param Mosque $mosque
+     * @param integer $totalMosqueCount
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    function mosqueCreated($body) {
+    function mosqueCreated(Mosque $mosque, $totalMosqueCount) {
+        $body = $this->twig->render(self::TEMPLATE_MOSQUE_CREATED, [
+            'mosque' => $mosque,
+            'total' => $totalMosqueCount,
+        ]);
+
         $message = $this->mailer->createMessage();
         $message->setSubject('Nouvelle mosquée ajoutée')
                 ->setFrom($this->email)
                 ->setTo($this->email)
                 ->setBody($body, 'text/html');
+        $this->mailer->send($message);
+    }
+
+    /**
+     * Send email when mosque has been validated by admin
+     * @param Mosque $mosque
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    function mosqueValidated(Mosque $mosque) {
+        $body = $this->twig->render(self::TEMPLATE_MOSQUE_VALIDATED, [
+            'mosque' => $mosque,
+        ]);
+
+        $message = $this->mailer->createMessage();
+        $message->setSubject('Your Mosque ' . $mosque->getTitle() . ' has been validated')
+            ->setFrom('do-not-reply@mawaqit.net')
+            ->setTo($mosque->getUser()->getEmail())
+            ->setBody($body, 'text/html');
         $this->mailer->send($message);
     }
 

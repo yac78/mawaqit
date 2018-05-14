@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-<div>
+{% extends 'email_templates/layout.html.twig' %}
+{% block content %}
     <strong>Nom: </strong>{{ mosque.name }}<br>
     <strong>Association: </strong>{{ mosque.associationName }}<br>
     <strong>Adresse: </strong>{{ mosque.localisation }}<br>
@@ -13,6 +8,4 @@
     <strong>Email mosquée: </strong>{{ mosque.email }}<br>
     <strong>Email Créateur: </strong>{{ mosque.user.email }}<br><br>
     <strong>Total d'installation: </strong>{{ total }} <br>
-</div>
-</body>
-</html>
+{% endblock %}

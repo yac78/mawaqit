@@ -44,7 +44,12 @@ class MosqueType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user = $builder->getData()->getUser();
+
+        /**
+         * @var Mosque $mosque
+         */
+        $mosque = $builder->getData();
+        $user = $mosque->getUser();
         if ($user instanceof User && $this->securityChecker->isGranted('ROLE_ADMIN')) {
             $builder
                 ->add('user', HiddenType::class, [
@@ -79,9 +84,11 @@ class MosqueType extends AbstractType
             ], Mosque::TYPES)
         ];
 
-        if($builder->getData()->getId() === null){
+        if ($builder->getData()->getId() === null) {
             $typeOptions['data'] = "";
         }
+
+        $readOnly = !$this->securityChecker->isGranted('ROLE_ADMIN') && $mosque->isNotModifiable();
 
         $builder
             ->add('name', null, [
@@ -114,20 +121,30 @@ class MosqueType extends AbstractType
                 'label' => 'address',
                 'attr' => [
                     'placeholder' => 'mosque.form.address.placeholder',
+                    'readonly' => $readOnly
                 ]
             ])
             ->add('city', null, [
                 'label' => 'city',
                 'required' => true,
+                'attr' => [
+                    'readonly' => $readOnly
+                ]
             ])
             ->add('zipcode', null, [
                 'label' => 'zipcode',
                 'required' => true,
+                'attr' => [
+                    'readonly' => $readOnly
+                ]
             ])
             ->add('country', CountryType::class, [
                 'placeholder' => 'mosque.form.country.placeholder',
                 'label' => 'country',
                 'required' => true,
+                'attr' => [
+                    'readonly' => $readOnly
+                ]
             ])
             ->add('rib', null, [
                 'label' => 'rib',
@@ -158,6 +175,7 @@ class MosqueType extends AbstractType
 
         if ($mosque->getType() === "home") {
             $mosque->setAddOnMap(false);
+            $mosque->setStatus(Mosque::STATUS_VALIDATED);
         }
     }
 

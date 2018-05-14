@@ -13,6 +13,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Mosque
 {
+    const STATUS_NEW = "NEW";
+    const STATUS_VALIDATED = "VALIDATED";
+
     const TYPE_MOSQUE = "mosque";
     const TYPE_HOME = "home";
 
@@ -88,6 +91,11 @@ class Mosque
      * @var string
      */
     private $site;
+
+    /**
+     * @var string
+     */
+    private $status = self::STATUS_NEW;
 
     /**
      * @var boolean
@@ -835,5 +843,32 @@ class Mosque
     public function isMosque(){
         return $this->type === self::TYPE_MOSQUE;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     * @return Mosque
+     */
+    public function setStatus(string $status): Mosque
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function isValidated(){
+        return $this->status === self::STATUS_VALIDATED;
+    }
+
+    public function isNotModifiable(){
+        return $this->isMosque() && $this->isValidated();
+    }
+
 
 }
