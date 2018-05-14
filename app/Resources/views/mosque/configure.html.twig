@@ -101,10 +101,9 @@
                                     <select class="form-control" id="predefined-calendar">
                                         <option value="">{{ 'configuration.select_calendar'|trans }}</option>
                                         {% for country, calendars in predefinedCalendars %}
-                                            <optgroup label="{{ country }}">
+                                            <optgroup label="{{ country|country }}">
                                                 {% for calendar in calendars %}
-                                                    <option value="{{ calendar.id }}"
-                                                            data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
+                                                    <option value="{{ calendar.id }}" data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
                                                 {% endfor %}
                                             </optgroup>
                                         {% endfor %}
