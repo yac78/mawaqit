@@ -11,7 +11,7 @@
             <li><a href="{{ path('mosque_clone', {id: mosque.id}) }}"><span class="fa fa-copy"></span> {{ 'form.clone.action'|trans }}</a></li>
             <li><a href="#" data-url="{{ path('mosque_refresh', {id: mosque.id}) }}" class="btn-refresh" title="{{ 'mosque.refresh'|trans }}"><span class="fa fa-refresh"></span> {{ 'refresh'|trans }}
                 </a></li>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_ADMIN') and not mosque.isValidated %}
                 <li><a href="{{ path('mosque_validate', {id: mosque.id}) }}"><span class="fa fa-check"></span> {{ 'form.validate.action'|trans }}</a></li>
             {% endif %}
             <li role="separator" class="divider"></li>
