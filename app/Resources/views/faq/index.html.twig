@@ -4,12 +4,17 @@
 
     {% include 'partial/flash_msg.html.twig' %}
 
+    <div class="text-right">
+        <a href="{{ path('faq_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'add'|trans }}</a>
+    </div>
     <div class="row">
-        <div class="col-md-8 text-left">
+        <div class="col-md-6 text-left">
             <h1>Faqs</h1>
         </div>
-        <div class="col-md-4 text-right">
-            <a href="{{ path('faq_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'add'|trans }}</a>
+        <div class="col-md-6 text-right">
+            <div class="navigation">
+                {{ knp_pagination_render(faqs) }}
+            </div>
         </div>
     </div>
 
@@ -63,6 +68,9 @@
     </div>
 
     {% include 'partial/delete_modal.html.twig' with {path: 'faq_delete'} %}
+    <div class="navigation text-center">
+        {{ knp_pagination_render(faqs) }}
+    </div>
 
 {% endblock %}
 
