@@ -64,7 +64,8 @@ services:
         arguments:
             - "@swiftmailer.mailer"
             - "@twig"
-            - "%supportEmail%"
+            - {"%supportEmail%" : "%name%"}
+            - {"%no_reply_address%" : "%name%"}
 
     app.user_service:
         class: AppBundle\Service\UserService

@@ -22,12 +22,19 @@ class MailService {
     /**
      * @var string
      */
+
     private $email;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $email){
+    /**
+     * @var array
+     */
+    private $doNotReplyEmail;
+
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $email, $doNotReplyEmail){
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->email = $email;
+        $this->doNotReplyEmail = $doNotReplyEmail;
     }
 
     /**
@@ -66,7 +73,7 @@ class MailService {
 
         $message = $this->mailer->createMessage();
         $message->setSubject('Your mosque ' . $mosque->getTitle() . ' has been validated')
-            ->setFrom('do-not-reply@mawaqit.net')
+            ->setFrom($this->doNotReplyEmail)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
