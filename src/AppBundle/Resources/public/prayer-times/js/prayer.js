@@ -115,10 +115,10 @@ var prayer = {
      * @returns {Integer}
      */
     getDst: function () {
-        var date = (new Date()).setHours(4);
         if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
-            var dstSummerDate = new Date(prayer.confData.dstSummerDate.timestamp * 1000);
-            var dstWinterDate = new Date(prayer.confData.dstWinterDate.timestamp * 1000);
+            var dstSummerDate = (new Date(prayer.confData.dstSummerDate)).getTime();
+            var dstWinterDate = (new Date(prayer.confData.dstWinterDate)).getTime();
+            var date = (new Date()).setHours(4);
             if (date > dstSummerDate && date < dstWinterDate) {
                 return 1;
             }
@@ -278,8 +278,8 @@ var prayer = {
 
             // dst = 1 => enabled
             if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
-                var dstSummerDate = new Date(prayer.confData.dstSummerDate.timestamp * 1000);
-                var dstWinterDate = new Date(prayer.confData.dstWinterDate.timestamp * 1000);
+                var dstSummerDate = (new Date(prayer.confData.dstSummerDate)).getTime();
+                var dstWinterDate = (new Date(prayer.confData.dstWinterDate).getTime());
                 var date = (new Date()).setHours(4);
                 if (date > dstSummerDate && date < dstWinterDate) {
                     return true;

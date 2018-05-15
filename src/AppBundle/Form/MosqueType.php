@@ -73,22 +73,23 @@ class MosqueType extends AbstractType
                 ));
         }
 
+        $disabled = !$this->securityChecker->isGranted('ROLE_ADMIN') && $mosque->isNotModifiable();
+
         $typeOptions = [
             'required' => true,
             'label' => 'mosque.form.type.label',
             'constraints' => new Choice(["choices" => Mosque::TYPES]),
             'placeholder' => 'mosque.form.type.placeholder',
+            'disabled' => $disabled,
             'choices' => array_combine([
                 "mosque.types.mosque",
                 "mosque.types.home",
             ], Mosque::TYPES)
         ];
 
-        if ($builder->getData()->getId() === null) {
+        if ($mosque->getId() === null) {
             $typeOptions['data'] = "";
         }
-
-        $readOnly = !$this->securityChecker->isGranted('ROLE_ADMIN') && $mosque->isNotModifiable();
 
         $builder
             ->add('name', null, [
@@ -119,32 +120,26 @@ class MosqueType extends AbstractType
             ])
             ->add('address', null, [
                 'label' => 'address',
+                'disabled' => $disabled,
                 'attr' => [
                     'placeholder' => 'mosque.form.address.placeholder',
-                    'readonly' => $readOnly
                 ]
             ])
             ->add('city', null, [
                 'label' => 'city',
                 'required' => true,
-                'attr' => [
-                    'readonly' => $readOnly
-                ]
+                'disabled' => $disabled
             ])
             ->add('zipcode', null, [
                 'label' => 'zipcode',
                 'required' => true,
-                'attr' => [
-                    'readonly' => $readOnly
-                ]
+                'disabled' => $disabled
             ])
             ->add('country', CountryType::class, [
                 'placeholder' => 'mosque.form.country.placeholder',
                 'label' => 'country',
                 'required' => true,
-                'attr' => [
-                    'readonly' => $readOnly
-                ]
+                'disabled' => $disabled
             ])
             ->add('rib', null, [
                 'label' => 'rib',
