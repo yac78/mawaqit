@@ -140,10 +140,6 @@ class MosqueController extends Controller
     public function cloneAction(Mosque $mosque)
     {
         $user = $this->getUser();
-        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
-            throw new AccessDeniedException;
-        }
-
         $em = $this->getDoctrine()->getManager();
         $clonedMosque = clone $mosque;
         $clonedMosque->setId(null);

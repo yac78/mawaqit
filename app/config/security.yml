@@ -39,5 +39,6 @@ security:
         - { path: /admin/tools, role: ROLE_ADMIN }
         - { path: /admin/stats, role: ROLE_ADMIN }
         - { path: /admin/faq, role: ROLE_ADMIN }
+        - { path: /admin/mosque/clone, role: ROLE_ADMIN }
         # ROLE_USER for all rest of /admin routes
         - { path: /admin, role: ROLE_USER }
