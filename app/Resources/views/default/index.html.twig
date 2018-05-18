@@ -322,7 +322,7 @@
                                      alt="{{ mosque.name }}"/>
                             </a>
                             <div class="portfolio-caption">
-                                <h4>{{ mosque.title }} {{ mosque.country }} </h4>
+                                <h4>{{ mosque.title }} {{ mosque.country|country }} </h4>
                                 <a target="_blank" href="{{ path('mosque', {'slug': mosque.slug}) }}">Consultez les
                                     horaires</a>
                             </div>
@@ -350,7 +350,7 @@
                         </div>
                         <div class="container">
                             <div class="modal-body">
-                                <h2>{{ mosque.title }} {{ mosque.country }}</h2>
+                                <h2>{{ mosque.title }} {{ mosque.country|country }}</h2>
                                 <p class="item-intro text-muted">{{ mosque.associationName }}</p>
                                 <img src="{{ vich_uploader_asset(mosque, 'file1') }}"
                                      class="img-responsive  img-centered" alt="{{ mosque.title }}"/>
