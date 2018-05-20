@@ -534,6 +534,26 @@
             </div>
         </section>
 
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <div class="container">
+                <h2 class="section-heading">FAQ</h2>
+                {% for faq in faqs %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading pointer" data-toggle="collapse" href="#{{ faq.slug }}">
+                            <span style="font-weight: 700;">{{ faq.question }}</span>
+                        </div>
+                        <div id="{{ faq.slug }}" class="panel-collapse collapse">
+                            <div class="panel-body text-left">
+                                {{ faq.answer|raw }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact">
             <div class="container">
@@ -549,7 +569,6 @@
                         <li>Via le formulaire ci-dessous</li>
                     </ul>
                 </div>
-
 
                 <form name="sentMessage" id="contactForm" novalidate>
                     <div class="row">
