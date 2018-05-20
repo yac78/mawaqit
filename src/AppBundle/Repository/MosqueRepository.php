@@ -33,12 +33,12 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     . "OR m.zipcode LIKE :word "
                     . "OR u.username LIKE :word "
                     . "OR u.email LIKE :word"
-                )->setParameter(":word", "%" . $search["word"] . "%");
+                )->setParameter(":word", "%" . trim($search["word"]) . "%");
             }
 
             if (!empty($search["id"])) {
                 $qb->andWhere("m.id = :id")
-                    ->setParameter(":id", $search["id"]);
+                    ->setParameter(":id",  trim($search["id"]));
             }
 
             if (!empty($search["status"])) {
@@ -53,7 +53,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 
             if (!empty($search["department"])) {
                 $qb->andWhere("m.zipcode LIKE :zipcode")
-                    ->setParameter(":zipcode", $search["department"] . "%");
+                    ->setParameter(":zipcode",  trim($search["department"]) . "%");
             }
 
             if (!empty($search["country"])) {
