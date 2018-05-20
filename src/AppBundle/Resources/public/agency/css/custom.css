@@ -46,6 +46,14 @@ section {
 header .intro-text .intro-heading  {
     font-size: 50px;
 }
+
+header .intro-text .text-muted {
+    font-size: 150%;
+    font-weight: 600;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-bottom: 15px;
+}
+
 header .intro-text .intro-subheading {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     text-transform: uppercase;
@@ -93,6 +101,10 @@ header .intro-text .intro-subheading {
 
     .navbar-custom .nav li a {
         font-weight: 600;
+    }
+
+    header .intro-text .text-muted {
+        font-size: 190%;
     }
 }
 

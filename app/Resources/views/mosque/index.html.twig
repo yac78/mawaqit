@@ -31,15 +31,15 @@
     </div>
 
     <form action="{{ path('mosque_index') }}" class="navbar-form navbar-left" style="margin: 20px 0">
-        {{ form_widget(form.word) }}
+        <div class="form-group">{{ form_widget(form.word, {attr: {value: app.request.get('word')}}) }}</div>
         <div id="advanced" class="hidden" style="display: inline">
             {% if is_granted('ROLE_ADMIN') %}
-                {{ form_widget(form.id) }}
-                {{ form_widget(form.status) }}
+                <div class="form-group">{{ form_widget(form.id, {attr: {value: app.request.get('id')}}) }}</div>
+                <div class="form-group">{{ form_widget(form.status) }}</div>
             {% endif %}
-            {{ form_widget(form.type) }}
-            {{ form_widget(form.department) }}
-            {{ form_widget(form.country) }}
+            <div class="form-group">{{ form_widget(form.type) }}</div>
+            <div class="form-group">{{ form_widget(form.department, {attr: {value: app.request.get('department')}}) }}</div>
+            <div class="form-group">{{ form_widget(form.country) }}</div>
         </div>
         <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
         <button class="btn btn-primary" id="advanced-search-btn"><span class="fa fa-plus"></span></button>
