@@ -8,6 +8,7 @@ class MailService {
 
     const TEMPLATE_MOSQUE_CREATED = ':email_templates:mosque_created.html.twig';
     const TEMPLATE_MOSQUE_VALIDATED = ':email_templates:mosque_validated.html.twig';
+    const TEMPLATE_MOSQUE_CHECK= ':email_templates:mosque_check.html.twig';
 
     /**
      * @var \Swift_Mailer 
@@ -73,6 +74,27 @@ class MailService {
 
         $message = $this->mailer->createMessage();
         $message->setSubject('Your mosque ' . $mosque->getTitle() . ' has been validated')
+            ->setFrom($this->doNotReplyEmail)
+            ->setTo($mosque->getUser()->getEmail())
+            ->setBody($body, 'text/html');
+        $this->mailer->send($message);
+    }
+
+
+    /**
+     * Send email to user to check information of the mosque
+     * @param Mosque $mosque
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    function checkMosque(Mosque $mosque) {
+        $body = $this->twig->render(self::TEMPLATE_MOSQUE_CHECK, [
+            'mosque' => $mosque,
+        ]);
+
+        $message = $this->mailer->createMessage();
+        $message->setSubject('Vérification de votre mosquée ' . $mosque->getTitle())
             ->setFrom($this->doNotReplyEmail)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');

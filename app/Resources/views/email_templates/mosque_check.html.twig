@@ -1,0 +1,19 @@
+{% extends 'email_templates/layout.html.twig' %}
+{% block content %}
+    <p>
+        Essalamu alaykum<br/><br/>
+        Vous avez récemment ajouté la mosquée <strong>{{ mosque.name }}</strong> située au {{ mosque.localisation }}<br/>
+        Après vérification, nous constatons que cette mosquée se trouve dans l'un des cas suivants<br/>
+    <ul>
+        <li>La mosquée existe déjà sur mawaqit</li>
+        <li>Les informations que vous avez saisi ne nous permettent pas de valider la mosquée</li>
+    </ul>
+    Pourriez-vous svp nous préciser s'il s'agît d'une installation à domicile ou d'une vrai mosquée,
+    auquel cas nous vous invitons à nous donner plus d'informations sur la mosquée
+    (Le n° de téléphone du président de l'association, une photo de la mosquée, l'apparition au journal officiel... ou toute preuve de son existance)
+    <br/><br/>
+    Sans réponse de votre part dans un délai d'une semaine, l'équipe mawaqit procédera à la suppression de votre mosquée.<br/><br/>
+    Barak Allahu fik et merci pour votre compréhension <br/>
+    L'équipe mawaqit
+    </p>
+{% endblock %}

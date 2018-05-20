@@ -254,9 +254,10 @@ class MosqueController extends Controller
     }
 
     /**
-     * @param Mosque $mosque
      * @Route("/mosque/{id}/validate", name="mosque_validate")
-     * @return Response
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws @see MailService->mosqueValidated
      */
     public function validateMosqueAction(Mosque $mosque)
     {
@@ -266,6 +267,20 @@ class MosqueController extends Controller
         $em->flush();
         $this->get("app.mail_service")->mosqueValidated($mosque);
         $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été validée');
+        return $this->redirectToRoute("mosque_index");
+    }
+
+
+    /**
+     * @Route("/mosque/{id}/check", name="mosque_check")
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws @see  MailService->checkMosque
+     */
+    public function checkMosqueAction(Mosque $mosque)
+    {
+        $this->get("app.mail_service")->checkMosque($mosque);
+        $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
     }
 
