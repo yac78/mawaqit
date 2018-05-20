@@ -14,7 +14,7 @@
     {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
-        <div class="col-md-9 text-left">
+        <div class="col-md-6 text-left">
             {% if app.request.get('search') %}
                 <h1>{{ 'found'|trans }} {{ mosques.totalItemCount }}</h1>
             {% else %}
@@ -22,63 +22,31 @@
             {% endif %}
         </div>
 
-        <div class="col-md-3 text-right mt-2">
+        <div class="col-md-6 text-right mt-2">
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('mosque_force_update_all') }}" class="btn btn-danger"
-                   title="Recharger l'écran de toutes les mosquées"><i
-                            class="fa fa-refresh"></i> {{ 'mosque.force_update_all.action'|trans }}</a>
+                <a href="{{ path('mosque_force_update_all') }}" class="btn btn-danger" title="Recharger l'écran de toutes les mosquées"><i class="fa fa-refresh"></i> {{ 'mosque.force_update_all.action'|trans }}</a>
             {% endif %}
             <a href="{{ path('mosque_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'add'|trans }}</a>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-8">
-            <form action="{{ path('mosque_index') }}" class="navbar-form navbar-left" role="search" style="margin: 20px 0">
-                <div class="form-group">
-                    <input type="text" value="{{ app.request.get('word') }}" class="form-control" name="word" placeholder="{{ 'search'|trans }}">
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                <a class="btn btn-primary" data-toggle="collapse" data-target="#advanced">avancé <span class="caret"></span> </a>
-
-                <div id="advanced" class="collapse mt-2 {{ app.request.get('department') or app.request.get('type')  or app.request.get('id') ? 'in' : '' }}">
-
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <div class="form-group">
-                            <input type="text" value="{{ app.request.get('id') }}" class="form-control" name="id" placeholder="ID">
-                        </div>
-                    {% endif %}
-
-                    <div class="form-group">
-                        <select name="type" class="form-control">
-                            <option value="">Type</option>
-                            <option value="home" {{ app.request.get('type') == 'home' ? 'selected': '' }}>Domicile</option>
-                            <option value="mosque" {{ app.request.get('type') == 'mosque' ? 'selected': '' }}>Mosquée</option>
-                        </select>
-                    </div>
-
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <div class="form-group">
-                            <select name="status" class="form-control">
-                                <option value="">Statut</option>
-                                <option value="NEW" {{ app.request.get('staus') == 'NEW' ? 'selected': '' }}>En attente de validation</option>
-                                <option value="VALIDATED" {{ app.request.get('staus') == 'VALIDATED' ? 'selected': '' }}>Validée</option>
-                            </select>
-                        </div>
-                    {% endif %}
-
-                    <div class="form-group">
-                        <input type="text" value="{{ app.request.get('department') }}" class="form-control" name="department" placeholder="Département">
-                    </div>
-                </div>
-
-            </form>
+    <form action="{{ path('mosque_index') }}" class="navbar-form navbar-left" style="margin: 20px 0">
+        {{ form_widget(form.word) }}
+        <div id="advanced" class="hidden" style="display: inline">
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ form_widget(form.id) }}
+                {{ form_widget(form.status) }}
+            {% endif %}
+            {{ form_widget(form.type) }}
+            {{ form_widget(form.department) }}
+            {{ form_widget(form.country) }}
         </div>
-        <div class="col-md-4">
-            <div class="navigation text-right">
-                {{ knp_pagination_render(mosques) }}
-            </div>
-        </div>
+        <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
+        <button class="btn btn-primary" id="advanced-search-btn"><span class="fa fa-plus"></span></button>
+    </form>
+
+    <div class="navigation text-right">
+        {{ knp_pagination_render(mosques) }}
     </div>
 
     <div class="hidden-xs hidden-sm">

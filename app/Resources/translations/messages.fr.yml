@@ -34,6 +34,9 @@ mosque:
     types:
         mosque: Mosquée
         home: Domicile
+    statuses:
+      NEW: En attente de validation
+      VALIDATED: Validée
     add_new: Ajouter une mosquée
     add: Ajouter une installation
     name: Nom
@@ -77,6 +80,21 @@ mosque:
             Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry
             et l'accès des fidèles à vos horaires de prière.
             Pensez à mettre à jour votre raspberry et informer les fidèles de la mosquée.
+
+mosque_search:
+  form:
+    id:
+      placeholder: ID
+    word:
+      placeholder: Recherche
+    department:
+      placeholder: Département
+    country:
+      placeholder: Pays
+    type:
+      placeholder: Type
+    status:
+      placeholder: Statut
 
 message:
     display_messages_in_screen_1: |

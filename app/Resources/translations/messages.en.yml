@@ -73,6 +73,21 @@ mosque:
             Remember to update your raspberry and inform the faithful of the mosque.
 
 
+mosque_search:
+  form:
+    id:
+      placeholder: ID
+    word:
+      placeholder: Search
+    department:
+      placeholder: Department
+    country:
+      placeholder: Countrye
+    type:
+      placeholder: Type
+    status:
+      placeholder: Status
+
 faq:
     add: Add new Faq
     edit: Édit faq %question%

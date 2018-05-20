@@ -6,9 +6,9 @@ use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Exception\GooglePositionException;
 use AppBundle\Form\ConfigurationType;
+use AppBundle\Form\MosqueSearchType;
 use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
-use AppBundle\Service\MailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/admin/mosque")
@@ -38,8 +37,10 @@ class MosqueController extends Controller
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
+        $form =  $this->createForm(MosqueSearchType::class);
 
         $result = [
+            "form" => $form->createView(),
             "mosques" => $mosques,
             "languages" => $this->getParameter('languages')
         ];

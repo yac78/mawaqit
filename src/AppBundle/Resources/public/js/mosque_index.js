@@ -9,3 +9,8 @@ $(".btn-refresh").click(function () {
         }
     });
 });
+
+$("#advanced-search-btn").click(function (e) {
+    e.preventDefault();
+    $("#advanced").toggleClass("hidden")
+});

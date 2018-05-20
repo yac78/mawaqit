@@ -23,6 +23,10 @@ class Mosque
         self::TYPE_MOSQUE, self::TYPE_HOME
     ];
 
+    const STATUSES = [
+        self::STATUS_NEW, self::STATUS_VALIDATED
+    ];
+
     /**
      * @Groups({"search"})
      * @var int

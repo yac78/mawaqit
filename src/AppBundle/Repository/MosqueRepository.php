@@ -31,7 +31,6 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     . "OR m.address LIKE :word "
                     . "OR m.city LIKE :word "
                     . "OR m.zipcode LIKE :word "
-                    . "OR m.country LIKE :word "
                     . "OR u.username LIKE :word "
                     . "OR u.email LIKE :word"
                 )->setParameter(":word", "%" . $search["word"] . "%");
@@ -55,6 +54,11 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             if (!empty($search["department"])) {
                 $qb->andWhere("m.zipcode LIKE :zipcode")
                     ->setParameter(":zipcode", $search["department"] . "%");
+            }
+
+            if (!empty($search["country"])) {
+                $qb->andWhere("m.country = :country")
+                    ->setParameter(":country", $search["country"]);
             }
         }
 
