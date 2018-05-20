@@ -21,7 +21,7 @@ form:
                 Impossible de géolocaliser votre mosquée. Veuillez vérifier 
                 <ul>
                     <li>L'orthographe de votre adresse postale ("%address%") </li>
-                    <li>Votre connexion internet (elle est nécessaire pour géolocaliser la ville)</li>
+                    <li>Votre connexion internet (elle est nécessaire pour géolocaliser la mosquée)</li>
                 </ul>
 registration:
     registration: Inscription

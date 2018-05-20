@@ -37,7 +37,7 @@ class MosqueController extends Controller
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
-        $form =  $this->createForm(MosqueSearchType::class);
+        $form = $this->createForm(MosqueSearchType::class);
 
         $result = [
             "form" => $form->createView(),
@@ -57,32 +57,27 @@ class MosqueController extends Controller
         $form = $this->createForm(MosqueType::class, $mosque);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $mosque->setUser($this->getUser());
-            try {
-                $configuration = new Configuration();
-                // update gps coordinates
-                $position = $this->get("app.google_service")->getPosition($mosque);
-                $configuration->setLongitude($position->lng);
-                $configuration->setLatitude($position->lat);
-                $mosque->setConfiguration($configuration);
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $mosque->setUser($this->getUser());
                 $em->persist($mosque);
                 $em->flush();
 
                 // send mail if mosque
-                if ($mosque->isMosque()){
+                if ($mosque->isMosque()) {
                     $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
                     $this->get("app.mail_service")->mosqueCreated($mosque, $totalMosqueCount);
                 }
 
                 $this->addFlash('success', "form.create.success");
                 return $this->redirectToRoute('mosque_index');
-            } catch (GooglePositionException $exc) {
-                $form->addError(new FormError($this->get("translator")->trans("form.configure.geocode_error", [
-                    "%address%" => $mosque->getLocalisation()
-                ])));
             }
+
+        } catch (GooglePositionException $exc) {
+            $form->addError(new FormError($this->get("translator")->trans("form.configure.geocode_error", [
+                "%address%" => $mosque->getLocalisation()
+            ])));
         }
 
         return $this->render('mosque/create.html.twig', [
@@ -103,14 +98,20 @@ class MosqueController extends Controller
 
         $form = $this->createForm(MosqueType::class, $mosque);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $mosque = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($mosque);
-            $em->flush();
-            $this->addFlash('success', "form.edit.success");
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $mosque = $form->getData();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($mosque);
+                $em->flush();
+                $this->addFlash('success', "form.edit.success");
 
-            return $this->redirectToRoute('mosque_index');
+                return $this->redirectToRoute('mosque_index');
+            }
+        } catch (GooglePositionException $exc) {
+            $form->addError(new FormError($this->get("translator")->trans("form.configure.geocode_error", [
+                "%address%" => $mosque->getLocalisation()
+            ])));
         }
         return $this->render('mosque/edit.html.twig', [
             'mosque' => $mosque,

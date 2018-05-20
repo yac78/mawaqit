@@ -18,7 +18,7 @@ form:
             We are not able to geolocate your mosque. Please check
                  <ul>
                      <li>The spelling of the address ("%address%")</li>
-                     <li>Your internet connection (it is necessary to geolocate the city)</li>
+                     <li>Your internet connection (it is necessary to geolocate the mosque)</li>
                  </ul>
 registration:
     registration: Registration

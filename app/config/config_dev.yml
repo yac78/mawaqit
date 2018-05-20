@@ -22,4 +22,8 @@ monolog:
             channels: ['!event']
             
 hautelook_alice:
-    fixtures_path: 'Resources/fixtures/orm'            
+    fixtures_path: 'Resources/fixtures/orm'
+
+swiftmailer:
+    disable_delivery: true
+

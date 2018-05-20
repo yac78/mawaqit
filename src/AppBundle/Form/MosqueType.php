@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Entity\User;
+use AppBundle\Service\GoogleService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -36,10 +37,17 @@ class MosqueType extends AbstractType
      */
     private $em;
 
-    public function __construct(AuthorizationChecker $securityChecker, EntityManager $em)
+    /**
+     *
+     * @var GoogleService
+     */
+    private $googleService;
+
+    public function __construct(AuthorizationChecker $securityChecker, EntityManager $em, GoogleService $googleService)
     {
         $this->securityChecker = $securityChecker;
         $this->em = $em;
+        $this->googleService = $googleService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -167,13 +175,15 @@ class MosqueType extends AbstractType
     {
         /** @var Mosque $mosque */
         $mosque = $event->getData();
+        $position = $this->googleService->getPosition($mosque);
+        $mosque->getConfiguration()->setLongitude($position->lng);
+        $mosque->getConfiguration()->setLatitude($position->lat);
 
         if ($mosque->getType() === "home") {
             $mosque->setAddOnMap(false);
             $mosque->setStatus(Mosque::STATUS_VALIDATED);
         }
     }
-
 
     public function configureOptions(OptionsResolver $resolver)
     {

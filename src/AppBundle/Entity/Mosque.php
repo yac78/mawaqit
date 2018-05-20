@@ -169,6 +169,7 @@ class Mosque
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->configuration = new Configuration();
     }
 
     /**

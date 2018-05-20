@@ -132,6 +132,7 @@ services:
         arguments:
             - "@security.authorization_checker"
             - "@doctrine.orm.entity_manager"
+            - "@app.google_service"
         tags:
             - { name: form.type }
 
