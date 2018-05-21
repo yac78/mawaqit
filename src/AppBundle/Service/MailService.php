@@ -73,7 +73,7 @@ class MailService {
         ]);
 
         $message = $this->mailer->createMessage();
-        $message->setSubject('Your mosque ' . $mosque->getTitle() . ' has been validated')
+        $message->setSubject('Votre mosquée "' . $mosque->getName() . '" a été validée / Your mosque "' . $mosque->getName() . '" has been validated')
             ->setFrom($this->doNotReplyEmail)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');

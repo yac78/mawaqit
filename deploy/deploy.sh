@@ -23,8 +23,14 @@ if [ "$env" == "prod" ]; then
     tag=$2
 fi
 
-echo -n "Are you sur you want to deploy $tag to $env (y/n)? "
-read answer
+
+if [ "$env" == "prod" ]; then
+    echo -n "Are you sur you want to deploy $tag to $env (y/n)? "
+    read answer
+else
+    answer=y
+fi
+
 
 if echo "$answer" | grep -iq "^y" ;then
     server="137.74.45.69"
