@@ -21,16 +21,18 @@ class LocalExtension extends \Twig_Extension
     {
         return [
             new \Twig_Function('isNotLocal', array($this, 'isNotLocal')),
+            new \Twig_Function('isLocal', array($this, 'isLocal')),
         ];
+    }
+
+
+    public function isLocal()
+    {
+        return $this->requestService->isLocal();
     }
 
     public function isNotLocal()
     {
         return !$this->requestService->isLocal();
-    }
-
-    public function getName()
-    {
-        return 'isNotLocal';
     }
 }

@@ -71,7 +71,7 @@
         </div>
 
         <!-- configure icon -->
-        {% if app.request.getHost() == 'localhost' %}
+        {% if isLocal() %}
             <div class="btn-settings" title="{{ 'form.configure.action'|trans }}">
                 <a href="{{ path('mosque_configure', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
             </div>
@@ -181,11 +181,11 @@
 
     <!-- footer container -->
     <div class="footer">
-        {% if app.request.getHost() != 'localhost' %}
+        {% if isNotLocal() %}
            {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
         {% endif %}
 
-        {% if app.request.getHost() == 'localhost' and mosque.site is not empty %}
+        {% if isLocal() and mosque.site is not empty %}
             {% set url =  mosque.site %}
         {% endif %}
 
