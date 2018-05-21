@@ -10,6 +10,9 @@ security:
             id: fos_user.user_provider.username_email
 
     firewalls:
+        local:
+            host: ^mawaqit.local$
+            security: false
         main:
             pattern: ^/
             anonymous: true
@@ -40,5 +43,7 @@ security:
         - { path: /admin/stats, role: ROLE_ADMIN }
         - { path: /admin/faq, role: ROLE_ADMIN }
         - { path: /admin/mosque/clone, role: ROLE_ADMIN }
+        - { path: /admin/mosque/check, role: ROLE_ADMIN }
+        - { path: /admin/mosque/validate, role: ROLE_ADMIN }
         # ROLE_USER for all rest of /admin routes
         - { path: /admin, role: ROLE_USER }

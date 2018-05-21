@@ -1,7 +1,13 @@
 AppBundle\Entity\User:
+    ADMIN:
+        username: admin
+        plainPassword: admin.mawaqit
+        email: admin\@local.com
+        enabled: true
+        roles: [ROLE_ADMIN]
     LOCAL:
         username: local
         plainPassword: local
         email: local\@local.com
         enabled: true
-        roles: [ROLE_ADMIN]
+        roles: [ROLE_USER]

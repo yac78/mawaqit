@@ -122,7 +122,7 @@ class MosqueController extends Controller
     /**
      * @Route("/delete/{id}", name="mosque_delete")
      */
-    public function deleteAction(Request $request, Mosque $mosque)
+    public function deleteAction(Mosque $mosque)
     {
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
@@ -254,7 +254,7 @@ class MosqueController extends Controller
     }
 
     /**
-     * @Route("/mosque/{id}/validate", name="mosque_validate")
+     * @Route("/mosque/validate/{id}", name="mosque_validate")
      * @param Mosque $mosque
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws @see MailService->mosqueValidated
@@ -272,7 +272,7 @@ class MosqueController extends Controller
 
 
     /**
-     * @Route("/mosque/{id}/check", name="mosque_check")
+     * @Route("/mosque/check/{id}", name="mosque_check")
      * @param Mosque $mosque
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws @see  MailService->checkMosque

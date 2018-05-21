@@ -1,13 +1,16 @@
 AppBundle\Entity\Mosque:
     LOCAL_MOSQUE:
         user: '@LOCAL'
+        status: VALIDATED
         name: Mosquée NOM
         slug: mosquee
         associationName: Association XXX
         email: exemple@exemple.com
         site: https://mawaqit.net/fr/mosquee-essunna-houilles
+        address: 1 rue de Paris
         city: Paris
-        country: France
+        country: FR
         phone: 06.00.00.00.00
         zipcode: 75000
         rib: "IBAN FRXX XXXX XXXX XXXX XXXX XXXX XXX / BIC XXXXXXXX"
+        configuration: '@LOCAL_MOSQUE_CONF'

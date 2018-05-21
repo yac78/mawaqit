@@ -91,17 +91,31 @@ services:
         arguments:
             - AppBundle\Entity\User
 
-    app.clean_old_users_ceommand:
+    app.clean_old_users_command:
         class: AppBundle\Command\CleanOldUsersCommand
         arguments:
             - "@app.user_repository"
         tags:
             - { name: 'console.command', command: 'app:clean-old-users' }
 
+
+    app.request_service:
+        class: AppBundle\Service\RequestService
+        arguments:
+          - "@request_stack"
+
+    # Twig extension
     app.twig.country_extension:
         class: AppBundle\Twig\CountryExtension
         arguments:
           - "@app.tools_service"
+        tags:
+            - { name: twig.extension }
+
+    app.twig.local:
+        class: AppBundle\Twig\LocalExtension
+        arguments:
+          - "@app.request_service"
         tags:
             - { name: twig.extension }
 
@@ -140,4 +154,10 @@ services:
     app.event.vich_uploader_post_upload:
         class: AppBundle\EventListener\VichImageHandling
         tags:
-            - { name: kernel.event_listener, event: vich_uploader.post_upload , method: resizeImage }            
+            - { name: kernel.event_listener, event: vich_uploader.post_upload , method: resizeImage }
+
+    app.event.request:
+        class: AppBundle\EventListener\Request
+        arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
