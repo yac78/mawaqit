@@ -9,9 +9,11 @@
             <li><a href="{{ path('mosque_configure', {id: mosque.id}) }}"><span class="fa fa-cog"></span> {{ 'form.configure.action'|trans }}</a></li>
             <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><span class="fa fa-comment-o"></span> {{ 'message.manage'|trans }}</a></li>
 
-            {% if is_granted('ROLE_ADMIN') and not mosque.isValidated %}
+            {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path('mosque_check', {id: mosque.id}) }}"><span class="fa fa-exclamation-circle"></span> {{ 'form.check.action'|trans }}</a></li>
-                <li><a href="{{ path('mosque_validate', {id: mosque.id}) }}"><span class="fa fa-check-circle"></span> {{ 'form.validate.action'|trans }}</a></li>
+                {% if not mosque.isValidated %}
+                    <li><a href="{{ path('mosque_validate', {id: mosque.id}) }}"><span class="fa fa-check-circle"></span> {{ 'form.validate.action'|trans }}</a></li>
+                {% endif %}
             {% endif %}
 
             {% if isNotLocal() %}
