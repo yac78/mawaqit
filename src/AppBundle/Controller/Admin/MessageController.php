@@ -29,6 +29,11 @@ class MessageController extends Controller
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
+
+        if ($mosque->isHome()) {
+            throw new AccessDeniedException;
+        }
+
         $em = $this->getDoctrine()->getManager();
         $messages = $em->getRepository("AppBundle:Message")->getBySortableGroupsQuery(array('mosque' => $mosque))->getResult();
         $form = $this->createForm(ConfigurationType::class, $mosque->getConfiguration());
@@ -70,6 +75,10 @@ class MessageController extends Controller
             throw new AccessDeniedException;
         }
 
+        if ($mosque->isHome()) {
+            throw new AccessDeniedException;
+        }
+
         $message = new Message();
         $message->setMosque($mosque);
 
@@ -100,6 +109,10 @@ class MessageController extends Controller
 
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+            throw new AccessDeniedException;
+        }
+
+        if ($mosque->isHome()) {
             throw new AccessDeniedException;
         }
 

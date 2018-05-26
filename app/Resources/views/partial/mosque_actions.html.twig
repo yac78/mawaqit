@@ -7,7 +7,10 @@
         <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="{{ path('mosque_edit', {id: mosque.id}) }}"><span class="fa fa-pencil-square"></span> {{ 'form.edit.action'|trans }}</a></li>
             <li><a href="{{ path('mosque_configure', {id: mosque.id}) }}"><span class="fa fa-cog"></span> {{ 'form.configure.action'|trans }}</a></li>
-            <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><span class="fa fa-comment-o"></span> {{ 'message.manage'|trans }}</a></li>
+
+            {% if mosque.isMosque %}
+                <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><span class="fa fa-comment-o"></span> {{ 'message.manage'|trans }}</a></li>
+            {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path('mosque_check', {id: mosque.id}) }}"><span class="fa fa-exclamation-circle"></span> {{ 'form.check.action'|trans }}</a></li>
