@@ -29,6 +29,7 @@ mosque:
       Your mosque has been added, the mawaqit team will proceed to its validation after some checks,
       it may take a few days, you will receive an email informing you of the validation of your mosque.
     types:
+        all: All
         mosque: Mosque
         home: Home
     add_new: Add

@@ -27,7 +27,8 @@
         <div class="col-md-6 text-right mt-2">
             {% if isNotLocal() %}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('mosque_force_update_all') }}" class="btn btn-danger" title="Recharger l'écran de toutes les mosquées"><i class="fa fa-refresh"></i> {{ 'mosque.force_update_all.action'|trans }}</a>
+                    <a href="{{ path('mosque_force_update_all') }}" class="btn btn-danger" title="Recharger l'écran de toutes les mosquées"><i
+                                class="fa fa-refresh"></i> {{ 'mosque.force_update_all.action'|trans }}</a>
                 {% endif %}
                 <a href="{{ path('mosque_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'add'|trans }}</a>
             {% endif %}
@@ -105,7 +106,9 @@
                         {% if mosque.isValidated %}
                             {% for lang in languages %}
                                 <div>
-                                    <div style="width: 80px; font-weight: bold; float: left">{{ lang|trans }}</div> : <a {{ isLocal() ? '' : 'target="_blank"' }} href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
+                                    <div style="width: 80px; font-weight: bold; float: left">{{ lang|trans }}</div>
+                                    : <a {{ isLocal() ? '' : 'target="_blank"' }}
+                                            href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
                                 </div>
                             {% endfor %}
                             {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button"
@@ -126,9 +129,8 @@
                     </td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>
-                            <div><a href="{{ path('user_show', {id: mosque.user.id}) }}">{{ mosque.user.username }}</a>
-                            </div>
-                            <div>{{ mosque.user.email }}</div>
+                            <a href="{{ path('user_show', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a>
+                            <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}"> ({{ mosque.user.mosques|length }}) </a>
                         </td>
                     {% endif %}
                     <td>
@@ -185,7 +187,11 @@
                     </div>
                     <div><strong>{{ 'status'|trans }}:</strong> {{ mosque.status|trans }}</div>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div><strong>{{ 'user'|trans }}:</strong> <a href="{{ path('user_show', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a></div>
+                        <div>
+                            <strong>{{ 'user'|trans }}:</strong>
+                            <a href="{{ path('user_show', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a>
+                            <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}"> ({{ mosque.user.mosques|length }})</a>
+                        </div>
                     {% endif %}
                     <div><strong>{{ 'creation_date'|trans }}:</strong> {{ mosque.created|date('d/m/Y H:i') }}</div>
                     <div><strong>{{ 'type'|trans }} :</strong> {{ ('mosque.types.' ~ mosque.type ) | trans }}</div>

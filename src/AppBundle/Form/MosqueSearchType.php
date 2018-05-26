@@ -38,10 +38,11 @@ class MosqueSearchType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'constraints' => new Choice(["choices" => Mosque::TYPES]),
                 'placeholder' => 'mosque_search.form.type.placeholder',
-                'choices' => array_combine([
-                    "mosque.types.mosque",
-                    "mosque.types.home",
-                ], Mosque::TYPES)
+                'choices' => [
+                    "mosque.types.all" => "ALL",
+                    "mosque.types.mosque" => Mosque::TYPE_MOSQUE,
+                    "mosque.types.home" => Mosque::TYPE_HOME
+                ]
             ])->add('status', ChoiceType::class, [
                 'constraints' => new Choice(["choices" => Mosque::STATUSES]),
                 'placeholder' => 'mosque_search.form.status.placeholder',

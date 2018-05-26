@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+use Doctrine\ORM\PersistentCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -23,6 +24,10 @@ class User extends BaseUser
      */
     private $updated;
 
+    /**
+     * @var PersistentCollection
+     */
+    private $mosques;
 
     /**
      * Get id
@@ -89,5 +94,14 @@ class User extends BaseUser
     function isAdmin() {
         return $this->hasRole("ROLE_ADMIN");
     }
+
+    /**
+     * @return PersistentCollection
+     */
+    public function getMosques(): PersistentCollection
+    {
+        return $this->mosques;
+    }
+
 }
 

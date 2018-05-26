@@ -34,6 +34,7 @@ mosque:
       Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
       cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
     types:
+        all: Tout
         mosque: Mosquée
         home: Domicile
     statuses:

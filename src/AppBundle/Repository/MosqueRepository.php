@@ -36,9 +36,10 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                 )->setParameter(":word", "%" . trim($search["word"]) . "%");
             }
 
+
             if (!empty($search["id"])) {
                 $qb->andWhere("m.id = :id")
-                    ->setParameter(":id",  trim($search["id"]));
+                    ->setParameter(":id", trim($search["id"]));
             }
 
             if (!empty($search["status"])) {
@@ -46,14 +47,14 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     ->setParameter(":status", $search["status"]);
             }
 
-            if (!empty($search["type"])) {
+            if (!empty($search["type"]) && $search["type"] !== 'ALL') {
                 $qb->andWhere("m.type = :type")
                     ->setParameter(":type", $search["type"]);
             }
 
             if (!empty($search["department"])) {
                 $qb->andWhere("m.zipcode LIKE :zipcode")
-                    ->setParameter(":zipcode",  trim($search["department"]) . "%");
+                    ->setParameter(":zipcode", trim($search["department"]) . "%");
             }
 
             if (!empty($search["country"])) {
@@ -62,8 +63,13 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             }
         }
 
+        if (!empty($search["userId"])) {
+            $qb->andWhere("m.user = :userId")
+                ->setParameter(":userId", $search["userId"]);
+        }
+
         // By default not show homes for admin user
-        if ($user->isAdmin() && empty($search["type"])) {
+        if (empty($search["userId"]) && $user->isAdmin() && empty($search["type"])) {
             $qb->andWhere("m.type = :type")
                 ->setParameter(":type", "mosque");
         }
@@ -97,7 +103,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     . "OR m.zipcode LIKE :word "
                     . "OR m.country LIKE :word "
                 )->setParameter(":word", "%$search%")
-                 ->setParameter(':status', Mosque::STATUS_VALIDATED);
+                ->setParameter(':status', Mosque::STATUS_VALIDATED);
         }
 
         return $qb;

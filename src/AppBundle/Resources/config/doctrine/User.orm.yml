@@ -21,3 +21,7 @@ AppBundle\Entity\User:
             gedmo:
                 timestampable:
                     on: update
+    oneToMany:
+        mosques:
+            targetEntity: AppBundle\Entity\Mosque
+            mappedBy: user
