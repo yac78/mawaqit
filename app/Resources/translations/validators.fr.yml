@@ -1,6 +1,7 @@
 form:
     mosque:
       address_mandatory: L'adresse postale est obligatoire pour les mosquées.
+      max_reached: Vous avez atteint le nombre maximum d'installation autorisé (10 Max).
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
@@ -10,5 +11,4 @@ form:
       max_enabled_reached: |
         Vous avez atteint le nombre maximum autorisé d'annonces activées (8 Max),
         pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes.
-      max_reached: |
-        Vous avez atteint le nombre maximum d'annonces autorisé (20 Max).
+      max_reached: Vous avez atteint le nombre maximum d'annonces autorisé (20 Max).

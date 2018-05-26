@@ -161,3 +161,10 @@ services:
         arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
         tags:
             - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
+
+    # Validators
+    app.validator.mosque:
+        class: AppBundle\Validator\Constraints\MosqueValidator
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: validator.constraint_validator }

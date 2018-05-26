@@ -1,6 +1,7 @@
 form:
     mosque:
       address_mandatory: The address is mandatory for mosques.
+      max_reached: You have reached the maximum allowed number of installation (10 Max).
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
