@@ -95,7 +95,7 @@ class MailService {
 
         $message = $this->mailer->createMessage();
         $message->setSubject('Vérification de votre mosquée ' . $mosque->getTitle())
-            ->setFrom($this->doNotReplyEmail)
+            ->setFrom($this->email)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
