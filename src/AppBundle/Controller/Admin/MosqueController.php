@@ -42,7 +42,7 @@ class MosqueController extends Controller
         $result = [
             "form" => $form->createView(),
             "mosques" => $mosques,
-            "languages" => $this->getParameter('languages')
+            "languages" => $this->getParameter('visibile_languages')
         ];
 
         return $this->render('mosque/index.html.twig', $result);
