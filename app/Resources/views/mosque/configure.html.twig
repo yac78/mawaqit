@@ -268,48 +268,50 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" href="#iqama">
-                    <span style="font-weight: 700;">{{ 'iqama'|trans }}</span>
-                </div>
-                <div id="iqama" class="panel-collapse collapse">
-                    <div class="panel-body">
+            {% if  mosque.isMosque %}
+                <div class="panel panel-default">
+                    <div class="panel-heading pointer" data-toggle="collapse" href="#iqama">
+                        <span style="font-weight: 700;">{{ 'iqama'|trans }}</span>
+                    </div>
+                    <div id="iqama" class="panel-collapse collapse">
+                        <div class="panel-body">
 
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_widget(form.iqamaEnabled) }}
-                            </div>
-                            <div class="col-md-3 iqama-settings">
-                                {{ form_widget(form.iqamaBip) }}
-                            </div>
-                            <div class="col-md-3 iqama-settings">
-                                {{ form_row(form.iqamaDisplayTime) }}
-                            </div>
-                        </div>
-
-                        <div class="iqama-settings">
-                            {{ form_label(form.waitingTimes) }}
                             <div class="row">
-                                <div class="col-md-2">
-                                    {{ form_row(form.waitingTimes.fajr) }}
+                                <div class="col-md-3">
+                                    {{ form_widget(form.iqamaEnabled) }}
                                 </div>
-                                <div class="col-md-2">
-                                    {{ form_row(form.waitingTimes.zuhr) }}
+                                <div class="col-md-3 iqama-settings">
+                                    {{ form_widget(form.iqamaBip) }}
                                 </div>
-                                <div class="col-md-2">
-                                    {{ form_row(form.waitingTimes.asr) }}
+                                <div class="col-md-3 iqama-settings">
+                                    {{ form_row(form.iqamaDisplayTime) }}
                                 </div>
-                                <div class="col-md-2">
-                                    {{ form_row(form.waitingTimes.maghrib) }}
-                                </div>
-                                <div class="col-md-2">
-                                    {{ form_row(form.waitingTimes.isha) }}
+                            </div>
+
+                            <div class="iqama-settings">
+                                {{ form_label(form.waitingTimes) }}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        {{ form_row(form.waitingTimes.fajr) }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{ form_row(form.waitingTimes.zuhr) }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{ form_row(form.waitingTimes.asr) }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{ form_row(form.waitingTimes.maghrib) }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{ form_row(form.waitingTimes.isha) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
 
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#fixedTimes">
@@ -483,12 +485,14 @@
                 <div id="otherSettings" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.aidTime) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_row(form.maximumIshaTimeForNoWaiting) }}
-                            </div>
+                            {% if  mosque.isMosque %}
+                                <div class="col-md-3">
+                                    {{ form_row(form.aidTime) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.maximumIshaTimeForNoWaiting) }}
+                                </div>
+                            {% endif %}
                             <div class="col-md-3">
                                 {{ form_row(form.imsakNbMinBeforeFajr) }}
                             </div>
