@@ -40,6 +40,7 @@ mosque:
     statuses:
       NEW: En attente de validation
       VALIDATED: Validée
+      CHECK: En cours de vérification
     add_new: Ajouter une mosquée
     add: Ajouter une installation
     name: Nom
@@ -494,6 +495,4 @@ stats: Statistiques
 found: Trouvés
 your_mosque_informs_you: Votre mosquée vous informe
 no_notif: Aucune notifications
-NEW: En attente de validation
-VALIDATED: Validée
 status: Statut

@@ -32,6 +32,10 @@ mosque:
         all: All
         mosque: Mosque
         home: Home
+    statuses:
+      NEW: Waiting for validation
+      VALIDATED: Validated
+      CHECK: Checking in progress
     add_new: Add
     add: Adding a new mosque
     name: Name

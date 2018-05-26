@@ -15,6 +15,7 @@ class Mosque
 {
     const STATUS_NEW = "NEW";
     const STATUS_VALIDATED = "VALIDATED";
+    const STATUS_CHECK = "CHECK";
 
     const TYPE_MOSQUE = "mosque";
     const TYPE_HOME = "home";
@@ -875,5 +876,18 @@ class Mosque
         return $this->isMosque() && $this->isValidated();
     }
 
+    public function statusClass(){
+        $color = '';
+        if ($this->status === self::STATUS_NEW){
+            $color = 'new';
+        }
+        elseif ($this->status === self::STATUS_CHECK){
+            $color = 'check';
+        }
+        elseif (!$this->isCalendarCompleted()){
+            $color = 'calendarIncompleted';
+        }
+        return $color;
+    }
 
 }

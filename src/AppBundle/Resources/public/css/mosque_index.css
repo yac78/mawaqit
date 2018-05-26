@@ -52,3 +52,15 @@
 #iframe-text{
     color: #005fb3;
 }
+
+.check{
+    background-color: #c7e5fd;
+}
+
+.new{
+    background-color: #fbd6d9;
+}
+
+.calendarIncompleted{
+    background-color: #fff2cf;
+}

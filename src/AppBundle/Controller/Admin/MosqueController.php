@@ -279,6 +279,10 @@ class MosqueController extends Controller
      */
     public function checkMosqueAction(Mosque $mosque)
     {
+        $mosque->setStatus(Mosque::STATUS_CHECK);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mosque);
+        $em->flush();
         $this->get("app.mail_service")->checkMosque($mosque);
         $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
