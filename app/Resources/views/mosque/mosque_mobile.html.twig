@@ -165,12 +165,12 @@
 
         <div class="chourouk-joumouaa">
             <div class="row">
-                <div class="col-xs-4 col-xs-offset-1 imsak custom-time ar">{{ 'imsak'|trans }}</div>
-                <div class="col-xs-4 col-xs-offset-1 chourouk custom-time ar">{{ 'shuruk'|trans }}</div>
-                <div class="col-xs-4 col-xs-offset-1 aid custom-time ar">{{ 'aid'|trans }}</div>
+                <div class="col-xs-4 col-xs-offset-1 imsak custom-time label ar">{{ 'imsak'|trans }}</div>
+                <div class="col-xs-4 col-xs-offset-1 chourouk custom-time label ar">{{ 'shuruk'|trans }}</div>
+                <div class="col-xs-4 col-xs-offset-1 aid custom-time label ar">{{ 'aid'|trans }}</div>
                 {% if not mosque.configuration.noJumua %}
                     <div class="col-xs-2"></div>
-                    <div class="col-xs-4 joumouaa ar">{{ 'jumua'|trans }}</div>
+                    <div class="col-xs-4 joumouaa label ar">{{ 'jumua'|trans }}</div>
                     <div class="col-xs-1"></div>
                 {% endif %}
             </div>
@@ -198,7 +198,7 @@
                 {% if mosque.site %}
                     <div><i class="glyphicon glyphicon-link"></i> <a href="{{ mosque.site }}">{{ mosque.site }}</a></div>
                 {% endif %}
-                <div>{{ mosque.localisation }}</div>
+                <div>{{ mosque.localisation }} <i id="navigate" class="fa fa-location-arrow"></i></div>
                 <div>{{ mosque.rib }}</div>
             </div>
             <div class="support">
@@ -226,9 +226,11 @@
         '@AppBundle/Resources/public/prayer-times/js/vendor/moment.min.js'
         '@AppBundle/Resources/public/prayer-times/js/date.js'
         '@AppBundle/Resources/public/prayer-times/js/prayer.js'
-        '@AppBundle/Resources/public/prayer-times/js/main_mobile.js'
         '@AppBundle/Resources/public/prayer-times/js/notif.js'
-        '@AppBundle/Resources/public/prayer-times/js/common.js' %}
+        '@AppBundle/Resources/public/prayer-times/js/mobile.js'
+        '@AppBundle/Resources/public/prayer-times/js/common.js'
+        '@AppBundle/Resources/public/prayer-times/js/main_mobile.js'
+    %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 </body>

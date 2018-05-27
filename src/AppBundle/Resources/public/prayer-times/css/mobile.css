@@ -74,6 +74,14 @@ body {
     font-size: 150%;
 }
 
+.custom-time.label, .joumouaa.label {
+    font-size: 170%;
+}
+
+.prayer-content .text.ar {
+    font-size: 170%;
+}
+
 .prayer-content .wait {
     font-size: 150%;
 }
@@ -81,6 +89,12 @@ body {
 .prayer-content .prayer, .chourouk-id, .joumouaa-id, .imsak-id, .aid-id{
     font-size: 250%;
     color: yellowgreen;
+}
+
+#navigate{
+    margin-left: 5px;
+    font-size: 120%;
+    color: #2aabd2;
 }
 
 .ampm{

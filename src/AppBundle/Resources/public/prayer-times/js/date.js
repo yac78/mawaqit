@@ -72,7 +72,7 @@ var dateTime = {
         return time;
     },
     /**
-     * get current gregorian date ex: Vendredi 26/05/2017
+     * get current gregorian date
      * @returns {String}
      */
     getCurrentDate: function (lang) {
