@@ -182,7 +182,6 @@ class MosqueType extends AbstractType
         if ($mosque->getType() === "home") {
             $mosque->setAddOnMap(false);
             $mosque->setStatus(Mosque::STATUS_VALIDATED);
-            $mosque->getConfiguration()->setIqamaEnabled(false);
         }
     }
 
