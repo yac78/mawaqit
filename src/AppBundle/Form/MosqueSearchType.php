@@ -48,6 +48,7 @@ class MosqueSearchType extends AbstractType
                 'placeholder' => 'mosque_search.form.status.placeholder',
                 'choices' => array_combine([
                     "mosque.statuses.NEW",
+                    "mosque.statuses.CHECK",
                     "mosque.statuses.VALIDATED",
                 ], Mosque::STATUSES)
             ]);

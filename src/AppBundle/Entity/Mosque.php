@@ -25,7 +25,7 @@ class Mosque
     ];
 
     const STATUSES = [
-        self::STATUS_NEW, self::STATUS_VALIDATED
+        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED
     ];
 
     /**
