@@ -73,7 +73,7 @@
         <!-- configure icon -->
         {% if isLocal() %}
             <div class="btn-settings" title="{{ 'form.configure.action'|trans }}">
-                <a href="{{ path('mosque_configure', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
+                <a href="{{ path('mosque_index', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
             </div>
         {% endif %}
 
