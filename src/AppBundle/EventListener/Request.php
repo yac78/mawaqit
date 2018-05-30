@@ -28,7 +28,7 @@ class Request
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if($event->getRequest()->getHost() !== 'mawaqit.local'){
+        if (!in_array($event->getRequest()->getHost(), ['mawaqit.local', 'localhost'])) {
             return;
         }
 

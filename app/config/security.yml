@@ -11,7 +11,7 @@ security:
 
     firewalls:
         local:
-            host: ^mawaqit.local$
+            host: ^(mawaqit.local|localhost)$
             security: false
         main:
             pattern: ^/

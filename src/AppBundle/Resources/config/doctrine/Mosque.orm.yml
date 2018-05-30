@@ -87,6 +87,7 @@ AppBundle\Entity\Mosque:
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
+            inversedBy: mosques
             joinColumn:
                 name: user_id
                 referencedColumnName: id
