@@ -621,12 +621,20 @@ var prayer = {
     },
     stopIqamaFlashing: function (iqamaFlashInterval) {
         $(".iqama").addClass("hidden");
-        if (prayer.confData.blackScreenWhenPraying) {
+
+        if (prayer.confData.blackScreenWhenPraying && !prayer.isMobile()) {
             $("#black-screen").fadeIn(500);
         } else {
             $(".main").fadeIn(500);
         }
         clearInterval(iqamaFlashInterval);
+    },
+    /**
+     * @return boolean
+     */
+    isMobile: function () {
+        // The black screen element dos not exist in mobile view
+        return $("#black-screen").length === 0;
     },
     /**
      * Play a bip
