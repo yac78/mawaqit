@@ -27,6 +27,7 @@
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "~2.0",
         "gedmo/doctrine-extensions": "^2.4",
+        "incenteev/composer-parameter-handler": "^2.1",
         "jms/i18n-routing-bundle": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
         "sensio/distribution-bundle": "^5.0",
@@ -52,6 +53,7 @@
     },
     "scripts": {
         "symfony-scripts": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -74,6 +76,9 @@
         "symfony-web-dir": "web",
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
-        "branch-alias": null
+        "branch-alias": null,
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
     }
 }
