@@ -19,6 +19,7 @@ class MosqueSearchType extends AbstractType
         $builder
             ->add('id', null, [
                 'attr' => [
+                    'style' => 'width: 80px',
                     'placeholder' => 'mosque_search.form.id.placeholder'
                 ]
             ])
@@ -29,11 +30,15 @@ class MosqueSearchType extends AbstractType
             ])
             ->add('department', null, [
                 'attr' => [
+                    'style' => 'width: 80px',
                     'placeholder' => 'mosque_search.form.department.placeholder'
                 ]
             ])
             ->add('country', CountryType::class, [
                 'placeholder' => 'mosque_search.form.country.placeholder'
+            ])
+            ->add('city', ChoiceType::class, [
+                'placeholder' => 'mosque_search.form.city.placeholder'
             ])
             ->add('type', ChoiceType::class, [
                 'constraints' => new Choice(["choices" => Mosque::TYPES]),

@@ -29,7 +29,6 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     . "OR m.associationName LIKE :word "
                     . "OR m.email LIKE :word "
                     . "OR m.address LIKE :word "
-                    . "OR m.city LIKE :word "
                     . "OR m.zipcode LIKE :word "
                     . "OR u.username LIKE :word "
                     . "OR u.email LIKE :word"
@@ -60,6 +59,11 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             if (!empty($search["country"])) {
                 $qb->andWhere("m.country = :country")
                     ->setParameter(":country", $search["country"]);
+            }
+
+            if (!empty($search["city"])) {
+                $qb->andWhere("m.city = :city")
+                    ->setParameter(":city", $search["city"]);
             }
         }
 
@@ -219,11 +223,12 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     {
         $cities =  $this->createQueryBuilder("m")
             ->select("m.city")
+            ->distinct("m.city")
             ->where("m.country = :country")
             ->setParameter(':country', $country)
             ->getQuery()
             ->getScalarResult();
 
-        return  $cities;
+        return  array_column($cities, 'city');
     }
 }

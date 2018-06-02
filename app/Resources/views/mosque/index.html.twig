@@ -45,7 +45,8 @@
                 {% endif %}
                 <div class="form-group">{{ form_widget(form.type) }}</div>
                 <div class="form-group">{{ form_widget(form.department, {attr: {value: app.request.get('department')}}) }}</div>
-                <div class="form-group">{{ form_widget(form.country) }}</div>
+                <div class="form-group">{{ form_widget(form.country, {attr: {'data-remote': path('cities_country_ajax', {'country': '-country-'})}}) }}</div>
+                <div class="form-group">{{ form_widget(form.city) }}</div>
             </div>
             <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
             <button class="btn btn-primary" id="advanced-search-btn"><span class="fa fa-plus"></span></button>

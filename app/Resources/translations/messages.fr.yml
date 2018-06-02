@@ -92,9 +92,11 @@ mosque_search:
     word:
       placeholder: Recherche
     department:
-      placeholder: Département
+      placeholder: Dépt
     country:
       placeholder: Pays
+    city:
+      placeholder: Ville
     type:
       placeholder: Type
     status:

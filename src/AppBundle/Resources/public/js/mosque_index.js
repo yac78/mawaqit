@@ -14,3 +14,18 @@ $("#advanced-search-btn").click(function (e) {
     e.preventDefault();
     $("#advanced").toggleClass("hidden")
 });
+
+$("#country").change(function (e) {
+    var self = $(this);
+    $.ajax({
+        url: self.data("remote").replace('-country-', self.val()),
+        dataType: "json",
+        success: function (data) {
+            $("#city option").remove();
+            $("#city").append('<option>Ville</option>');
+            $.each(data, function (i, city) {
+                $("#city").append('<option value="' + city + '">' + city + '</option>');
+            })
+        }
+    });
+});
