@@ -211,4 +211,19 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter(':status', Mosque::STATUS_VALIDATED)
             ->getResult();
     }
+
+    /**
+     * @return array
+     */
+    function getCitiesByCountry($country)
+    {
+        $cities =  $this->createQueryBuilder("m")
+            ->select("m.city")
+            ->where("m.country = :country")
+            ->setParameter(':country', $country)
+            ->getQuery()
+            ->getScalarResult();
+
+        return  $cities;
+    }
 }

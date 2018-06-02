@@ -39,7 +39,7 @@ class MailService {
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->email = $email;
-        $this->checkEmail = $doNotReplyEmail;
+        $this->checkEmail = $checkEmail;
         $this->doNotReplyEmail = $doNotReplyEmail;
     }
 

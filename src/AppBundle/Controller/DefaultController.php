@@ -138,4 +138,17 @@ class DefaultController extends Controller
         return new JsonResponse($mosques);
     }
 
+    /**
+     * get cities by country
+     * @param Request $request
+     * @Route("/cities/{country}", name="cities_country_ajax")
+     * @return JsonResponse
+     */
+    public function ciiesVyCountryAjaxAction($country)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $cities = $em->getRepository("AppBundle:Mosque")->getCitiesByCountry($country);
+        return new JsonResponse($cities);
+    }
+
 }
