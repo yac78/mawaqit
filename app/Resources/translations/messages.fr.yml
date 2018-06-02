@@ -17,6 +17,8 @@ form:
         action: Valider
     check:
         action: Vérifier
+    suspend:
+        action: Suspendre
     configure:
         action: Configurer
         geocode_error: |
@@ -41,6 +43,7 @@ mosque:
       NEW: En attente de validation
       VALIDATED: Validée
       CHECK: En cours de vérification
+      SUSPENDED: Suspendue
     add_new: Ajouter une mosquée
     add: Ajouter une installation
     name: Nom

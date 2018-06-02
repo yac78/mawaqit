@@ -272,6 +272,24 @@ class MosqueController extends Controller
 
 
     /**
+     * @Route("/mosque/suspend/{id}", name="mosque_suspend")
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws @see MailService->mosqueSuspend
+     */
+    public function suspendMosqueAction(Mosque $mosque)
+    {
+        $mosque->setStatus(Mosque::STATUS_SUSPENDED);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mosque);
+        $em->flush();
+        $this->get("app.mail_service")->mosqueSuspended($mosque);
+        $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été suspendue');
+        return $this->redirectToRoute("mosque_index");
+    }
+
+
+    /**
      * @Route("/mosque/check/{id}", name="mosque_check")
      * @param Mosque $mosque
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

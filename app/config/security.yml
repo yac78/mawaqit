@@ -45,5 +45,6 @@ security:
         - { path: /admin/mosque/clone, role: ROLE_ADMIN }
         - { path: /admin/mosque/check, role: ROLE_ADMIN }
         - { path: /admin/mosque/validate, role: ROLE_ADMIN }
+        - { path: /admin/mosque/suspend, role: ROLE_ADMIN }
         # ROLE_USER for all rest of /admin routes
         - { path: /admin, role: ROLE_USER }

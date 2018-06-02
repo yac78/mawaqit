@@ -55,6 +55,7 @@ class MosqueSearchType extends AbstractType
                     "mosque.statuses.NEW",
                     "mosque.statuses.CHECK",
                     "mosque.statuses.VALIDATED",
+                    "mosque.statuses.SUSPENDED",
                 ], Mosque::STATUSES)
             ]);
     }

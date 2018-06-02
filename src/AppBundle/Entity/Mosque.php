@@ -15,6 +15,7 @@ class Mosque
 {
     const STATUS_NEW = "NEW";
     const STATUS_VALIDATED = "VALIDATED";
+    const STATUS_SUSPENDED = "SUSPENDED";
     const STATUS_CHECK = "CHECK";
 
     const TYPE_MOSQUE = "mosque";
@@ -25,7 +26,7 @@ class Mosque
     ];
 
     const STATUSES = [
-        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED
+        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED, self::STATUS_SUSPENDED
     ];
 
     /**
@@ -877,17 +878,20 @@ class Mosque
     }
 
     public function statusClass(){
-        $color = '';
+        $class = '';
         if ($this->status === self::STATUS_NEW){
-            $color = 'new';
+            $class = 'new';
         }
         elseif ($this->status === self::STATUS_CHECK){
-            $color = 'check';
+            $class = 'check';
+        }
+        elseif ($this->status === self::STATUS_SUSPENDED){
+            $class = 'suspended';
         }
         elseif (!$this->isCalendarCompleted()){
-            $color = 'calendarIncompleted';
+            $class = 'calendarIncompleted';
         }
-        return $color;
+        return $class;
     }
 
 }
