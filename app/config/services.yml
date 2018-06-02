@@ -66,6 +66,7 @@ services:
             - "@twig"
             - {"%supportEmail%" : "%name%"}
             - {"%no_reply_address%" : "%name%"}
+            - {"postmaster_address" : "%name%"}
 
     app.user_service:
         class: AppBundle\Service\UserService

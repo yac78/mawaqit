@@ -12,6 +12,7 @@ parameters:
     mailer_password: ~
     mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'
     no_reply_address: 'no-reply@mawaqit.net'
+    postmaster_address: postmaster@mawaqit.net
     secret: theSecret
     languages: [fr, ar, en, tr]
     visible_languages: [fr, ar, en]

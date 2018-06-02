@@ -23,7 +23,6 @@ class MailService {
     /**
      * @var string
      */
-
     private $email;
 
     /**
@@ -31,10 +30,16 @@ class MailService {
      */
     private $doNotReplyEmail;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $email, $doNotReplyEmail){
+    /**
+     * @var array
+     */
+    private $checkEmail;
+
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $email, $doNotReplyEmail, $checkEmail ){
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->email = $email;
+        $this->checkEmail = $doNotReplyEmail;
         $this->doNotReplyEmail = $doNotReplyEmail;
     }
 
@@ -95,7 +100,7 @@ class MailService {
 
         $message = $this->mailer->createMessage();
         $message->setSubject('Vérification de votre mosquée ' . $mosque->getTitle())
-            ->setFrom($this->email)
+            ->setFrom($this->checkEmail)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
