@@ -51,8 +51,10 @@ mosque:
                 Recharger la page de l'écran à distance. 
                 En cas de soucis particulier (écran figé ou bug graphique) vous pouvez forcer le rechargement de l'écran.
     force_update_all:
-        action: Forcer la MAJ
+        action: Lancer le rechargement
         success: Toutes les mosquées ont bien été forcées de se mettre à jour
+    update_hijri_date:
+        success: La date hégirienne a été mise à jour pour toutes les mosquées
     form:
         type:
             label : Type

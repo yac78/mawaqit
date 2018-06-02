@@ -21,7 +21,7 @@
 {% block form_label %}
     {{ parent() }}
 
-    {% if required %}
+    {% if required and parent() != false %}
         <span style="color: red" title="{{ 'required'|trans }}">*</span>
     {% endif %}
 {% endblock %}
