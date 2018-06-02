@@ -19,7 +19,7 @@
                 <li><a href="#" data-url="{{ path('mosque_refresh', {id: mosque.id}) }}" class="btn-refresh" title="{{ 'mosque.refresh'|trans }}"><span class="fa fa-refresh"></span> {{ 'refresh'|trans }} </a></li>
             {% endif %}
 
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if isNotLocal() and is_granted('ROLE_ADMIN') %}
                 <li class="check"><a href="{{ path('mosque_check', {id: mosque.id}) }}"><span class="fa fa-exclamation-circle"></span> {{ 'form.check.action'|trans }}</a></li>
                 <li class="suspended"><a href="{{ path('mosque_suspend', {id: mosque.id}) }}"><span class="fa fa-pause"></span> {{ 'form.suspend.action'|trans }}</a></li>
                 {% if not mosque.isValidated %}
