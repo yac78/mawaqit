@@ -117,7 +117,7 @@
                             {% endif %}
                         {% else %}
                             <p>
-                                {{ 'mosque.wait_for_validation'|trans }}
+                                {{ ('mosque.text.' ~ mosque.status)|trans }}
                             </p>
                         {% endif %}
                     </td>

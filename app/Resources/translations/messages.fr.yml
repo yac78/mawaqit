@@ -32,9 +32,16 @@ registration:
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 
 mosque:
-    wait_for_validation: |
-      Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
-      cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
+    text:
+      NEW: |
+        Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
+        cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
+      CHECK: |
+        Nous avons besoin d'informations complémentaires afin de valider votre mosquée, veuillez nous contacter au plus vite par mail sur
+        l'adresse postmaster@mawaqit.net
+      SUSPENDED: |
+        Nous avons suspendu votre mosquée, veuillez nous contacter au plus vite par mail sur
+        l'adresse postmaster@mawaqit.net
     types:
         all: Tout
         mosque: Mosquée

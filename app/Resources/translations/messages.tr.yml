@@ -12,27 +12,3 @@ azan: Ezan
 
 power-off-phones: Cep telefonlarınızı lütfen kapalı tutunuz
 next_prayer: Bir sonraki Ezan
-
-invocationAfterPrayer:
-    title: Invocations après la prière
-
-duaAfterAthan:
-    title: Invocation après l'adhân
-    text: |
-        Ô Allah, Maître de cet appel parfait et de la prière que l'on va accomplir, donne à Mohammed le pouvoir d'intercéder 
-        (le Jour du Jugement) et la place d'honneur [au Paradis], et ressuscite-le dans la position louable que Tu lui as promise
-        
-duaBetweenAthanAndIqama:
-    text: |
-        Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit :
-        Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées
-
-jumuaReminder:
-    text: |
-        Le Prophète (que la prière d'Allah et son salut soient sur lui) a dit
-        "Celui qui fait les ablutions parfaitement puis se rend au jumu'a puis écoute et se tait,
-        il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
-        et celui qui touche des cailloux a certes fait une futilité"
-
-your_mosque_informs_you: Votre mosquée vous informe
-no_notif: Aucune notifications
