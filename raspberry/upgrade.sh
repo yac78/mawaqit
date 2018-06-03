@@ -1,29 +1,37 @@
 #!/bin/bash
 
-# stop chromium
-killall chromium-browser
-
 cd /home/pi/mawaqit
 
 git fetch
 
+currenttag=$(git describe --tags --abbrev=0)
 latesttag=$(git describe --tags $(git rev-list --tags --max-count=1))
-echo checking out ${latesttag}
-git checkout ${latesttag}
 
-composer install --optimize-autoloader --no-interaction
-bin/console assets:install --env=prod --no-debug
-bin/console assetic:dump --env=prod --no-debug
+if [ "$currenttag" != "$latesttag"]; then
+    # stop chromium
+    killall chromium-browser
 
-version=`echo $latesttag | sed 's/-.*//'`
+    echo checking out ${latesttag}
+    git checkout ${latesttag}
 
-sed -i "s/version: .*/version: $version/" app/config/parameters.yml
+    composer install --optimize-autoloader --no-interaction
+    bin/console assets:install --env=prod --no-debug
+    bin/console assetic:dump --env=prod --no-debug
 
-bin/console c:c -e prod
+    version=`echo $latesttag | sed 's/-.*//'`
 
-bin/console doctrine:migrations:migrate -n --allow-no-migration
+    sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
-echo "The upgrade to v$version has been successfully done ;)"
+    bin/console c:c -e prod
 
-# run app
-raspberry/run.sh
+    bin/console doctrine:migrations:migrate -n --allow-no-migration
+
+    echo "The upgrade to v$version has been successfully done ;)"
+
+    # run app
+    raspberry/run.sh
+
+else
+    echo "You are on the laste version"
+fi
+

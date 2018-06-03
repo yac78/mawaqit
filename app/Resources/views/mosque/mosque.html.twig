@@ -205,13 +205,7 @@
             </div>
             <div class="support">
                 <span>{{ 'developed_by'|trans }}</span>
-                {% if mosque.isMosque %}
-                    &nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i>
-                    <a href="tel:{{ supportTel1 }}">{{ supportTel1 }}</a> /
-                    <a href="tel:{{ supportTel2 }}">{{ supportTel2 }}</a>
-                {% endif %}
-                &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a
-                        href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
+                &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
             </div>
             {% if mosque.configuration.urlQrCodeEnabled %}
                 <div class="qr-code {{ url is defined ? '' : 'hidden' }}" data-url="{{ url|default('')}}">
