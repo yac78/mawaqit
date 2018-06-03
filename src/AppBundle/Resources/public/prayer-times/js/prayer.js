@@ -187,6 +187,11 @@ var prayer = {
             }
 
             // handle fixed times
+            // exception for isha when its at 00 o'clock
+            if(i === 4 && times[i].startsWith('00')){
+                return false;
+            }
+
             if (prayer.confData.fixedTimes[i] && prayer.confData.fixedTimes[i] > times[i]) {
                 times[i] = prayer.confData.fixedTimes[i];
             }
