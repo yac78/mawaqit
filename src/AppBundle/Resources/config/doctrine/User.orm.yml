@@ -9,6 +9,9 @@ AppBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
+        tou:
+          type: boolean
+          groups: [ "Registration" ]
         created:
             type: datetime
             nullable: true

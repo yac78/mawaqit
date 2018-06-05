@@ -28,6 +28,9 @@ form:
                     <li>Votre connexion internet (elle est nécessaire pour géolocaliser la mosquée)</li>
                 </ul>
 registration:
+    form:
+      tou:
+        label: J'accepte <a href="#" id="tou">les conditions générales d'utilisation</a>
     registration: Inscription
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 

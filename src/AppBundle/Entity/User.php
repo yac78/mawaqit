@@ -14,6 +14,13 @@ class User extends BaseUser
      */
     protected $id;
 
+
+    /**
+     * @var boolean
+     */
+    private $tou;
+
+
     /**
      * @var \DateTime
      */
@@ -101,6 +108,24 @@ class User extends BaseUser
     public function getMosques(): PersistentCollection
     {
         return $this->mosques;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTou()
+    {
+        return $this->tou;
+    }
+
+    /**
+     * @param bool $tou
+     * @return User
+     */
+    public function setTou(bool $tou): User
+    {
+        $this->tou = $tou;
+        return $this;
     }
 
 }
