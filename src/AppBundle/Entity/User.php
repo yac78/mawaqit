@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 use Doctrine\ORM\PersistentCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -14,8 +15,8 @@ class User extends BaseUser
      */
     protected $id;
 
-
     /**
+     * @Assert\IsTrue(groups={"Registration"})
      * @var boolean
      */
     private $tou;
