@@ -46,6 +46,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
+      supportEmail: "%supportEmail%"
       supportTel1: "%supportTel1%"
       supportTel2: "%supportTel2%"
       site: "%site%"

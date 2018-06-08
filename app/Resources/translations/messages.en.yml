@@ -23,7 +23,7 @@ form:
 registration:
     form:
       tou:
-        label: I accept <a href="#" id="tou">terms of use</a>
+        label: I accept and agree to respect the <a href="#" id="tou">terms of use</a>
     registration: Registration
     password_rule: 8 characters minimum, including 1 capital, 1 lowercase and 1 number
 
