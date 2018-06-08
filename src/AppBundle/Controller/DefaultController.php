@@ -41,6 +41,15 @@ class DefaultController extends Controller
         ]);
     }
 
+
+    /**
+     * @Route("legal-notice", name="legal_notice")
+     */
+    public function legalNoticeAction()
+    {
+        return $this->render('default/legal_notice.html.twig');
+    }
+
     /**
      * @Route("/contact", name="contact-us")
      * @Method("POST")

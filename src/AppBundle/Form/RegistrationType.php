@@ -13,7 +13,10 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('tou', CheckboxType::class, [
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'not-toggle'
+                ]
             ]);
     }
 

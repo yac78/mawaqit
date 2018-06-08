@@ -225,6 +225,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->select("m.city")
             ->distinct("m.city")
             ->where("m.country = :country")
+            ->orderBy('m.city', 'ASC')
             ->setParameter(':country', $country)
             ->getQuery()
             ->getScalarResult();

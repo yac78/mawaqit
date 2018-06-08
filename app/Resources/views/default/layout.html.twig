@@ -47,6 +47,7 @@
 
 <body id="page-top" class="index">
 
+{% block header %}
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -94,22 +95,23 @@
 </nav>
 
 <!-- Header -->
-<header>
-    <div class="container">
-        <div class="intro-text">
-            <div class="intro-lead-in">"Certes la prière a été prescrite pour les croyants dans des temps déterminés"
-                [sourat An-Niça’/103]
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">"Certes la prière a été prescrite pour les croyants dans des temps déterminés"
+                    [sourat An-Niça’/103]
+                </div>
+                <div class="intro-heading">{{ 'site_title'|trans }}</div>
+                <div class="intro-subheading">équipez votre mosquée ou domicile d'une horloge de prière connectée et
+                    intelligente
+                </div>
+                <div class="intro-subheading">Notre solution est totalement gratuite</div>
+                <div class="text-muted"><small>Le matériel est à votre charge</small></div>
+                <a href="#projet" class="page-scroll btn btn-xl">Découvrir</a>
             </div>
-            <div class="intro-heading">{{ 'site_title'|trans }}</div>
-            <div class="intro-subheading">équipez votre mosquée ou domicile d'une horloge de prière connectée et
-                intelligente
-            </div>
-            <div class="intro-subheading">Notre solution est totalement gratuite</div>
-            <div class="text-muted"><small>Le matériel est à votre charge</small></div>
-            <a href="#projet" class="page-scroll btn btn-xl">Découvrir</a>
         </div>
-    </div>
-</header>
+    </header>
+{% endblock %}
 
 {% block content %}
 {% endblock %}
@@ -127,7 +129,7 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <a href="#" id="terms-of-use">{{ 'terms_of_use.title'|trans }}</a>
+                <a href="{{ path('legal_notice') }}" target="_blank">{{ 'Mentions légales'|trans }}</a>
             </div>
         </div>
     </div>
