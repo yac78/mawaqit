@@ -123,12 +123,17 @@
             <div class="col-md-4">
                 <ul class="list-inline social-buttons">
                     <li><a target="_blank" href="https://www.facebook.com/Mawaqit-878834798944718/"><i class="fa fa-facebook"></i></a></li>
-                    <li><a><i class="fa fa-twitter"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/"><i class="fa fa-youtube"></i></a></li>
                 </ul>
+            </div>
+            <div class="col-md-4">
+                <a href="#" id="terms-of-use">{{ 'terms_of_use.title'|trans }}</a>
             </div>
         </div>
     </div>
 </footer>
+
+{% include 'partial/terms_of_use.html.twig' %}
 
 {% javascripts
     '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
@@ -137,6 +142,7 @@
     '@AppBundle/Resources/public/agency/js/jqBootstrapValidation.js'
     '@AppBundle/Resources/public/agency/js/contact_me.js'
     '@AppBundle/Resources/public/agency/js/agency.min.js'
+    '@AppBundle/Resources/public/js/terms_of_use.js'
     '@AppBundle/Resources/public/agency/js/custom.js' %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}

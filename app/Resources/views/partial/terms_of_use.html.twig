@@ -1,11 +1,11 @@
 <div class="modal fade" id="terms-of-use-modal" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-center">
                 <h4 class="modal-title">{{ 'terms_of_use.title'|trans }}</h4>
             </div>
             <div class="modal-body">
-                {{ 'terms_of_use.text'|trans }}
+                {{ 'terms_of_use.text'|trans|raw }}
             </div>
             <br>
             <div class="modal-footer">
@@ -14,12 +14,3 @@
         </div>
     </div>
 </div>
-
-{% block javascripts %}
-    <script>
-        $("#terms-of-use").click(function (e) {
-            e.preventDefault();
-            $("#terms-of-use-modal").modal();
-        });
-    </script>
-{% endblock %}
