@@ -109,6 +109,8 @@ mosque_search:
       placeholder: Type
     status:
       placeholder: Statut
+    sourceCalcul:
+      placeholder: Source de calcul
 
 message:
     display_messages_in_screen_1: |

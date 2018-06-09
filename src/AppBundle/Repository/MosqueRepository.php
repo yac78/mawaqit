@@ -47,6 +47,12 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     ->setParameter(":status", $search["status"]);
             }
 
+            if (!empty($search["sourceCalcul"])) {
+                $qb->innerJoin("m.configuration", "c")
+                    ->andWhere("c.sourceCalcul = :sourceCalcul")
+                    ->setParameter(":sourceCalcul", $search["sourceCalcul"]);
+            }
+
             if (!empty($search["type"]) && $search["type"] !== 'ALL') {
                 $qb->andWhere("m.type = :type")
                     ->setParameter(":type", $search["type"]);

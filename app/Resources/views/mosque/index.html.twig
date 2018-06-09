@@ -33,23 +33,24 @@
 
     {% if isNotLocal() %}
         <form action="{{ path('mosque_index') }}" class="navbar-form navbar-left" style="margin: 20px 0">
-            <div class="form-group">{{ form_widget(form.word, {attr: {value: app.request.get('word')}}) }}</div>
+            <div class="form-group mt-1">{{ form_widget(form.word, {attr: {value: app.request.get('word')}}) }}</div>
             <div id="advanced" class="hidden" style="display: inline">
                 {% if is_granted('ROLE_ADMIN') %}
-                    <div class="form-group">{{ form_widget(form.id, {attr: {value: app.request.get('id')}}) }}</div>
-                    <div class="form-group">{{ form_widget(form.status) }}</div>
+                    <div class="form-group mt-1">{{ form_widget(form.id, {attr: {value: app.request.get('id')}}) }}</div>
+                    <div class="form-group mt-1">{{ form_widget(form.status) }}</div>
+                    <div class="form-group mt-1">{{ form_widget(form.sourceCalcul) }}</div>
                 {% endif %}
-                <div class="form-group">{{ form_widget(form.type) }}</div>
-                <div class="form-group">{{ form_widget(form.department, {attr: {value: app.request.get('department')}}) }}</div>
-                <div class="form-group">{{ form_widget(form.country, {attr: {'data-remote': path('cities_country_ajax', {'country': '-country-'})}}) }}</div>
-                <div class="form-group">{{ form_widget(form.city) }}</div>
+                <div class="form-group mt-1">{{ form_widget(form.type) }}</div>
+                <div class="form-group mt-1">{{ form_widget(form.department, {attr: {value: app.request.get('department')}}) }}</div>
+                <div class="form-group mt-1">{{ form_widget(form.country, {attr: {'data-remote': path('cities_country_ajax', {'country': '-country-'})}}) }}</div>
+                <div class="form-group mt-1">{{ form_widget(form.city) }}</div>
             </div>
-            <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
-            <button class="btn btn-primary" id="advanced-search-btn"><span class="fa fa-plus"></span></button>
+            <button type="submit" class="btn btn-default mt-1"><span class="fa fa-search"></span></button>
+            <button class="btn btn-primary mt-1" id="advanced-search-btn"><span class="fa fa-plus"></span></button>
         </form>
     {% endif %}
 
-    <div class="navigation text-right">
+    <div class="navigation text-right mt-1">
         {{ knp_pagination_render(mosques) }}
     </div>
 
