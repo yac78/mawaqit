@@ -283,7 +283,7 @@ small {
 
 .random-hadith .text {
     padding-top: 10px;
-    height: 92%;
+    height: 91%;
     overflow: hidden;
 }
 
@@ -293,13 +293,13 @@ small {
 }
 
 .time-bottom {
-    font-size: 450%;
+    font-size: 380%;
     position: absolute;
     bottom: 0px;
 }
 
 .next-prayer {
-    font-size: 450%;
+    font-size: 380%;
     position: absolute;
     bottom: 0px;
     left: 10px;

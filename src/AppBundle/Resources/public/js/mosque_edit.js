@@ -22,10 +22,14 @@ function typeDisplayHandler() {
     $type = $("#type");
     $(".form-block").addClass("hidden");
 
-    if($type.val()){
+    if ($type.val()) {
         $(".form-block").removeClass("hidden");
         $(".mosque-block").addClass("hidden");
-        $("."+$type.val()+"-block").removeClass("hidden");
+        $("." + $type.val() + "-block").removeClass("hidden");
+
+        if ($type.val() === 'home') {
+            $("#address").removeAttr('required');
+        }
     }
 }
 

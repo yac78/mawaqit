@@ -132,7 +132,7 @@ class ConfigurationType extends AbstractType
             ->add('jumuaTimeout', IntegerType::class, [
                 'label' => 'configuration.form.jumuaTimeout.label',
                 'attr' => [
-                    'min' => 0
+                    'min' => 20
                 ]
             ])
             ->add('aidTime', null, [

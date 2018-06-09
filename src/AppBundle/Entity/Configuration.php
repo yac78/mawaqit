@@ -209,17 +209,12 @@ class Configuration
     /**
      * @var int
      */
-    private $iqamaDisplayTime = 45;
+    private $iqamaDisplayTime = 30;
 
     /**
      * @var string
      */
     private $site;
-
-    /**
-     * @var string
-     */
-    private $prayerTimeSite;
 
     /**
      * @var array
@@ -696,7 +691,7 @@ class Configuration
      *
      * @param integer $latitude
      *
-     * @return Mosque
+     * @return Configuration
      */
     public function setLatitude($latitude)
     {
@@ -720,7 +715,7 @@ class Configuration
      *
      * @param integer $longitude
      *
-     * @return Mosque
+     * @return Configuration
      */
     public function setLongitude($longitude)
     {
@@ -863,30 +858,6 @@ class Configuration
     public function getSite()
     {
         return $this->site;
-    }
-
-    /**
-     * Set prayerTimeSite
-     *
-     * @param string $prayerTimeSite
-     *
-     * @return Configuration
-     */
-    public function setPrayerTimeSite($prayerTimeSite)
-    {
-        $this->prayerTimeSite = $prayerTimeSite;
-
-        return $this;
-    }
-
-    /**
-     * Get prayerTimeSite
-     *
-     * @return string
-     */
-    public function getPrayerTimeSite()
-    {
-        return $this->prayerTimeSite;
     }
 
     /**
