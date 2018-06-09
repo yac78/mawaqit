@@ -1083,7 +1083,7 @@ class Configuration
         $this->hadithLang = $hadithLang;
     }
 
-    function getHadithLangs()
+    public static function getHadithLangs()
     {
         return self::HADITH_LANG;
     }

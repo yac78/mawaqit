@@ -38,12 +38,5 @@ AppBundle\Entity\Configuration:
     properties:
         hadithLang:
             - Choice: {callback : "getHadithLangs"}
-        maximumIshaTimeForNoWaiting:
-            - Regex:
-                pattern: '/^\d{2}:\d{2}$/'
-        jumuaTimeout:
-            - Range: {min: 20}
-        iqamaDisplayTime:
-            - Range: {min: 5}
 
 
