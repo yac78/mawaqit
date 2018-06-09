@@ -168,6 +168,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
 
+    app.event.terms_of_use:
+        class: AppBundle\EventListener\TermsOfUse
+        arguments: ['@security.token_storage', '@router']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
+
     # Validators
     app.validator.mosque:
         class: AppBundle\Validator\Constraints\MosqueValidator

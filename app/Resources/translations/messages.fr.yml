@@ -34,6 +34,9 @@ registration:
     registration: Inscription
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 
+tou:
+  label: J'accepte
+
 mosque:
     wait_for_validation: |
       Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
