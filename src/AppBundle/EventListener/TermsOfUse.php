@@ -40,7 +40,8 @@ class TermsOfUse
             && $user->isTou() === false) {
 
             $url = $this->router->generate('terms_of_use_index');
-            return new RedirectResponse($url);
+            $response = new RedirectResponse($url);
+            $event->setResponse($response);
         }
     }
 }
