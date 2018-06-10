@@ -28,24 +28,31 @@ form:
                     <li>Votre connexion internet (elle est nécessaire pour géolocaliser la mosquée)</li>
                 </ul>
 registration:
+    form:
+      tou:
+        label: J'accepte et je m'engage à respecter <a href="#" id="terms-of-use">les conditions générales d'utilisation</a>
     registration: Inscription
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
 
+tou:
+  label: J'accepte
+
 mosque:
-    text:
-      NEW: |
-        Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
-        cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
-      CHECK: |
-        Nous avons besoin d'informations complémentaires afin de valider votre mosquée, veuillez nous contacter au plus vite par mail sur
-        l'adresse postmaster@mawaqit.net
-      SUSPENDED: |
-        Nous avons suspendu votre mosquée, veuillez nous contacter au plus vite par mail sur
-        l'adresse postmaster@mawaqit.net
     types:
         all: Tout
         mosque: Mosquée
         home: Domicile
+    statuses_message:
+      NEW: |
+          Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
+          cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
+      CHECK: |
+           Nous avons besoin d'informations complémentaires afin de valider votre mosquée, veuillez nous contacter au plus vite par mail sur
+           l'adresse postmaster@mawaqit.net
+      SUSPENDED: |
+           Nous avons suspendu votre mosquée, veuillez nous contacter au plus vite par mail sur
+           l'adresse postmaster@mawaqit.net
+
     statuses:
       NEW: En attente de validation
       VALIDATED: Validée
@@ -113,6 +120,8 @@ mosque_search:
       placeholder: Type
     status:
       placeholder: Statut
+    sourceCalcul:
+      placeholder: Source de calcul
 
 message:
     display_messages_in_screen_1: |
@@ -428,7 +437,7 @@ title: Titre
 content: Contenu
 subject: Sujet
 developed_by: Développé par Binary Consulting SAS
-next_prayer: Prochain adhân dans
+next_prayer: Adhân dans
 last_login: dernière connexion
 alarm: Essalatu khayrun mina ennawm
 
@@ -510,3 +519,6 @@ found: Trouvés
 your_mosque_informs_you: Votre mosquée vous informe
 no_notif: Aucune notifications
 status: Statut
+
+terms_of_use:
+  title: Conditions générales d'utilisation

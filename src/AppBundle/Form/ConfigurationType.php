@@ -17,6 +17,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ConfigurationType extends AbstractType
 {
@@ -97,17 +99,15 @@ class ConfigurationType extends AbstractType
     {
 
         $adjustedTimesValues = range(-30, 30);
+        $timePattern =  '/^\d{2}:\d{2}$/';
 
         $builder
             ->add('jumuaTime', null, [
                 'label' => 'configuration.form.jumuaTime.label',
+                'constraints'=> new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.jumuaTime.title'),
-                    'placeholder' => 'hh:mm',
-                    'pattern' => '\d{2}:\d{2}',
-                    'maxlength' => 5,
-                    'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
-                    'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    'placeholder' => 'hh:mm'
                 ]
             ])
             ->add('jumuaAsDuhr', CheckboxType::class, [
@@ -130,20 +130,18 @@ class ConfigurationType extends AbstractType
                 'label' => 'configuration.form.jumuaBlackScreenEnabled.label',
             ])
             ->add('jumuaTimeout', IntegerType::class, [
+                'constraints'=> new Range(['min' => 20]),
                 'label' => 'configuration.form.jumuaTimeout.label',
                 'attr' => [
-                    'min' => 0
+                    'min' => 20
                 ]
             ])
             ->add('aidTime', null, [
                 'label' => 'configuration.form.aidTime.label',
+                'constraints'=> new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.aidTime.title'),
-                    'placeholder' => 'hh:mm',
-                    'pattern' => '\d{2}:\d{2}',
-                    'maxlength' => '5',
-                    'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
-                    'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    'placeholder' => 'hh:mm'
                 ]
             ])
             ->add('imsakNbMinBeforeFajr', IntegerType::class, [
@@ -155,13 +153,10 @@ class ConfigurationType extends AbstractType
             ])
             ->add('maximumIshaTimeForNoWaiting', null, [
                 'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
+                'constraints'=> new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.maximumIshaTimeForNoWaiting.title'),
-                    'placeholder' => 'hh:mm ex: 22:30',
-                    'pattern' => '\d{2}:\d{2}',
-                    'maxlength' => '5',
-                    'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
-                    'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                    'placeholder' => 'hh:mm',
                 ]
             ])
             ->add('waitingTimes', PrayerType::class, [
@@ -193,12 +188,9 @@ class ConfigurationType extends AbstractType
                 ],
                 'sub_options' => [
                     'type' => TextType::class,
+                    'constraints'=> new Regex(['pattern' => $timePattern]),
                     'attr' => [
-                        'placeholder' => "hh:mm",
-                        'pattern' => '\d{2}:\d{2}',
-                        'maxlength' => 5,
-                        'oninvalid' => "setCustomValidity('" . $this->translator->trans('configuration.form.time_invalid') . "')",
-                        'onchange' => 'try {setCustomValidity("")} catch (e) {}'
+                        'placeholder' => "hh:mm"
                     ]
                 ]
             ])
@@ -332,6 +324,7 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('iqamaDisplayTime', IntegerType::class, [
+                'constraints'=> new Range(['min' => 5]),
                 'label' => 'configuration.form.iqamaDisplayTime.label',
                 'attr' => [
                     'min' => 5

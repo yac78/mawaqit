@@ -9,6 +9,8 @@ AppBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
+        tou:
+          type: boolean
         created:
             type: datetime
             nullable: true

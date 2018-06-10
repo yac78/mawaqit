@@ -2,5 +2,18 @@
 {% block body %}
     {% block fos_user_content %}
         {% include "@FOSUser/Registration/register_content.html.twig" %}
+        {% include 'partial/terms_of_use_modal.html.twig' %}
     {% endblock fos_user_content %}
 {% endblock body %}
+
+{% block additional_javascripts %}
+    <script>
+        $("#fos_user_registration_form_tou").change(function (e) {
+            $validButton = $('#validate-btn');
+            $validButton.prop('disabled', true);
+            if ($(this).is(":checked")) {
+                $validButton.prop('disabled', false);
+            }
+        });
+    </script>
+{% endblock %}

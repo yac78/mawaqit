@@ -270,7 +270,7 @@ class Mosque
      */
     public function setCity($city)
     {
-        $this->city = preg_replace("/\s+/", "-", trim(ucfirst($city)));
+        $this->city = preg_replace("/\s+/", "-", ucfirst(strtolower(trim($city))));
 
         return $this;
     }
@@ -871,10 +871,6 @@ class Mosque
 
     public function isValidated(){
         return $this->status === self::STATUS_VALIDATED;
-    }
-
-    public function isNotModifiable(){
-        return $this->isMosque() && $this->isValidated();
     }
 
     public function statusClass(){

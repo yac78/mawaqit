@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -57,6 +58,13 @@ class MosqueSearchType extends AbstractType
                     "mosque.statuses.VALIDATED",
                     "mosque.statuses.SUSPENDED",
                 ], Mosque::STATUSES)
+            ])->add('sourceCalcul', ChoiceType::class, [
+                'constraints' => new Choice(["choices" => Configuration::SOURCE_CHOICES]),
+                'placeholder' => 'mosque_search.form.sourceCalcul.placeholder',
+                'choices' => array_combine([
+                    "Automatique",
+                    "Calendrier",
+                ], Configuration::SOURCE_CHOICES)
             ]);
     }
 

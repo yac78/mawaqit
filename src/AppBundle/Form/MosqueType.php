@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Validator\Constraints\Choice;
@@ -81,7 +82,7 @@ class MosqueType extends AbstractType
                 ));
         }
 
-        $disabled = !$this->securityChecker->isGranted('ROLE_ADMIN') && $mosque->isNotModifiable();
+        $disabled = !$this->securityChecker->isGranted('ROLE_ADMIN') && $mosque->isValidated();
 
         $typeOptions = [
             'required' => true,
@@ -189,7 +190,16 @@ class MosqueType extends AbstractType
     {
         $resolver->setDefaults(array(
             'label_format' => 'message.form.%name%.label',
-            'data_class' => Mosque::class
+            'data_class' => Mosque::class,
+            'validation_groups' => function (FormInterface $form) {
+                $mosque = $form->getData();
+
+                if ($mosque->isMosque()) {
+                    return ['Default', 'Mosque'];
+                }
+
+                return ['Default'];
+            },
         ));
     }
 

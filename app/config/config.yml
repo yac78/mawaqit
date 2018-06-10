@@ -46,6 +46,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
+      supportEmail: "%supportEmail%"
       supportTel1: "%supportTel1%"
       supportTel2: "%supportTel2%"
       site: "%site%"
@@ -102,6 +103,7 @@ fos_user:
         sender_name: '%name%'
     registration:
         form:
+            type: AppBundle\Form\RegistrationType
             validation_groups: [Registration, appChangePassword]
         confirmation:
             enabled: true

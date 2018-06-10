@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
+{% block additional_stylesheets %}
     {% stylesheets
         "bundles/app/css/configure.css"
         filter="cssrewrite" %}
@@ -494,6 +494,9 @@
                             </div>
                             <div class="col-md-3">
                                 {{ form_row(form.hijriAdjustment) }}
+                                <div class="hidden">
+                                    {{ form_row(form.timeToDisplayMessage) }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -505,8 +508,7 @@
                 </div>
             </div>
 
-            {% if mosque.type == 'home' %}
-                <div class="panel panel-default">
+                <div class="panel panel-default {{ mosque.isMosque ? 'hidden' : '' }}">
                     <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
                          href="#homeSettings">
                         <span style="font-weight: 700;">{{ "home_settings"|trans }}</span>
@@ -530,7 +532,6 @@
                         </div>
                     </div>
                 </div>
-            {% endif %}
         </div>
 
         {{ form_widget(form.save) }}
@@ -539,7 +540,7 @@
     <br><br>
 {% endblock %}
 
-{% block javascripts %}
+{% block additional_javascripts %}
     {% javascripts
         '@AppBundle/Resources/public/js/configure.js' %}
         <script src="{{ asset_url }}"></script>

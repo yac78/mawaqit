@@ -21,11 +21,17 @@ form:
                      <li>Your internet connection (it is necessary to geolocate the mosque)</li>
                  </ul>
 registration:
+    form:
+      tou:
+        label: I accept and agree to respect the <a href="#" id="terms-of-use">terms of use</a>
     registration: Registration
     password_rule: 8 characters minimum, including 1 capital, 1 lowercase and 1 number
 
+tou:
+  label: I accept
+
 mosque:
-    text:
+    statuses_message:
       NEW: |
         Your mosque has been added, the mawaqit team will proceed to its validation after some checks,
         it may take a few days, you will receive an email informing you of the validation of your mosque.
@@ -404,7 +410,7 @@ add: Add
 title: Title
 content: Content
 developed_by: Developed by Binary Consulting SAS
-next_prayer: Next athan in
+next_prayer: Athan in
 last_login: Last log in
 alarm: Alarm
 

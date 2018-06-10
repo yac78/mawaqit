@@ -30,6 +30,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
                     . "OR m.email LIKE :word "
                     . "OR m.address LIKE :word "
                     . "OR m.zipcode LIKE :word "
+                    . "OR m.city LIKE :word "
                     . "OR u.username LIKE :word "
                     . "OR u.email LIKE :word"
                 )->setParameter(":word", "%" . trim($search["word"]) . "%");
@@ -44,6 +45,12 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             if (!empty($search["status"])) {
                 $qb->andWhere("m.status = :status")
                     ->setParameter(":status", $search["status"]);
+            }
+
+            if (!empty($search["sourceCalcul"])) {
+                $qb->innerJoin("m.configuration", "c")
+                    ->andWhere("c.sourceCalcul = :sourceCalcul")
+                    ->setParameter(":sourceCalcul", $search["sourceCalcul"]);
             }
 
             if (!empty($search["type"]) && $search["type"] !== 'ALL') {
@@ -225,7 +232,10 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->select("m.city")
             ->distinct("m.city")
             ->where("m.country = :country")
+            ->andWhere("m.type = :type")
+            ->orderBy('m.city', 'ASC')
             ->setParameter(':country', $country)
+            ->setParameter(':type', Mosque::TYPE_MOSQUE)
             ->getQuery()
             ->getScalarResult();
 

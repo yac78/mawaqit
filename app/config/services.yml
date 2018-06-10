@@ -151,6 +151,11 @@ services:
         tags:
             - { name: form.type }
 
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
     # Listeners
     app.event.vich_uploader_post_upload:
         class: AppBundle\EventListener\VichImageHandling
@@ -160,6 +165,12 @@ services:
     app.event.request:
         class: AppBundle\EventListener\Request
         arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
+
+    app.event.terms_of_use:
+        class: AppBundle\EventListener\TermsOfUse
+        arguments: ['@security.token_storage', '@router']
         tags:
             - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
 
