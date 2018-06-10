@@ -92,6 +92,12 @@ services:
         arguments:
             - AppBundle\Entity\User
 
+    app.request_service:
+        class: AppBundle\Service\RequestService
+        arguments:
+          - "@request_stack"
+
+    # Commands
     app.clean_old_users_command:
         class: AppBundle\Command\CleanOldUsersCommand
         arguments:
@@ -99,11 +105,12 @@ services:
         tags:
             - { name: 'console.command', command: 'app:clean-old-users' }
 
-
-    app.request_service:
-        class: AppBundle\Service\RequestService
+    app.clean_mosques_command:
+        class: AppBundle\Command\CleanNotValidatedMosquesCommand
         arguments:
-          - "@request_stack"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: 'console.command', command: 'app:clean-mosques' }
 
     # Twig extension
     app.twig.country_extension:

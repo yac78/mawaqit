@@ -241,4 +241,20 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 
         return  array_column($cities, 'city');
     }
+
+    /**
+     * Remove not validated mosques if no response after 15 days
+     * @return integer
+     */
+    function removeNotValidated()
+    {
+        return $this->createQueryBuilder("m")
+            ->delete()
+            ->where("m.status != :newStatus")
+            ->andWhere("m.created < :date")
+            ->setParameter(":newStatus", Mosque::STATUS_VALIDATED)
+            ->setParameter(":date", new \DateTime("-15 day "))
+            ->getQuery()
+            ->execute();
+    }
 }
