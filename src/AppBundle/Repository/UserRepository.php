@@ -68,7 +68,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
             ->delete()
             ->where("u.enabled = 0")
             ->andWhere("u.created < :oneMonthAgo")
-            ->setParameter(":oneMonthAgo", new \DateTime("-1 month"))
+            ->setParameter(":oneMonthAgo", new \DateTime("-15 day "))
             ->getQuery()
             ->execute();
     }
