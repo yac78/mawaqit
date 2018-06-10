@@ -29,3 +29,15 @@ $("#country").change(function (e) {
         }
     });
 });
+
+
+$('.fa-map-marker').click(function (e) {
+    var $url = "https://maps.google.com/maps?daddr=";
+    var $platform = navigator.platform;
+
+    if (($platform.indexOf("iPhone") != -1) || ($platform.indexOf("iPad") != -1) || ($platform.indexOf("iPod") != -1)) {
+        $url = "maps://maps.google.com/maps?daddr=";
+    }
+
+    window.open($url + $(this).data('gps') + "&amp;ll=");
+});
