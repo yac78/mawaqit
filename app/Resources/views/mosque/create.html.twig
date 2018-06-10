@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
+{% block additional_stylesheets %}
     {% stylesheets 
             "bundles/app/css/mosque.css"
             filter="cssrewrite"
@@ -16,7 +16,7 @@
     </form>
 {% endblock %}
 
-{% block javascripts %}
+{% block additional_javascripts %}
     {% javascripts
         '@AppBundle/Resources/public/js/mosque_edit.js' %}
         <script src="{{ asset_url }}"></script>

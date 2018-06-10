@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class TermsOfUse
 {
@@ -31,12 +32,15 @@ class TermsOfUse
     {
         $uri = $event->getRequest()->getRequestUri();
 
-        $user = $this->tokenStorage->getToken()->getUser();
+        $token = $this->tokenStorage->getToken();
 
-        if(strpos($uri, '/admin/cgu') === false && $user instanceOf User && $user->isTou() === false){
+        if (strpos($uri, '/admin/cgu') === false
+            && $token instanceOf TokenInterface
+            && ($user = $token->getUser()) instanceOf User
+            && $user->isTou() === false) {
+
             $url = $this->router->generate('terms_of_use_index');
-            $response = new RedirectResponse($url);
-            $event->setResponse($response);
+            return new RedirectResponse($url);
         }
     }
 }

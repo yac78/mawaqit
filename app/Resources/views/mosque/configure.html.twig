@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
+{% block additional_stylesheets %}
     {% stylesheets
         "bundles/app/css/configure.css"
         filter="cssrewrite" %}
@@ -540,7 +540,7 @@
     <br><br>
 {% endblock %}
 
-{% block javascripts %}
+{% block additional_javascripts %}
     {% javascripts
         '@AppBundle/Resources/public/js/configure.js' %}
         <script src="{{ asset_url }}"></script>

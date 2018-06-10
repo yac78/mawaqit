@@ -31,9 +31,14 @@ tou:
   label: I accept
 
 mosque:
-    wait_for_validation: |
-      Your mosque has been added, the mawaqit team will proceed to its validation after some checks,
-      it may take a few days, you will receive an email informing you of the validation of your mosque.
+    statuses_message:
+      NEW: |
+        Your mosque has been added, the mawaqit team will proceed to its validation after some checks,
+        it may take a few days, you will receive an email informing you of the validation of your mosque.
+      CHECK: |
+          We need more information to validate your mosque, an email has been sent to you, please
+          contact us as soon as possible.
+      SUSPENDED: We have temporarily suspended your mosque, please contact us as soon as possible.
     types:
         all: All
         mosque: Mosque
@@ -403,7 +408,7 @@ add: Add
 title: Title
 content: Content
 developed_by: Developed by Binary Consulting SAS
-next_prayer: Next athan in
+next_prayer: Athan in
 last_login: Last log in
 alarm: Alarm
 

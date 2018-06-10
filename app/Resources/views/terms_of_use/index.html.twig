@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title 'CGU | ' ~ parent() %}
 {% block body %}
     <div class="container">
 
@@ -9,3 +9,5 @@
         {{ form(form) }}
     </div>
 {% endblock %}
+
+{% block javascripts '' %}

@@ -38,13 +38,19 @@ tou:
   label: J'accepte
 
 mosque:
-    wait_for_validation: |
-      Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
-      cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
     types:
         all: Tout
         mosque: Mosquée
         home: Domicile
+    statuses_message:
+      NEW: |
+          Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
+          cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
+      CHECK: |
+          Nous avons besoin de plus d'information pour valider votre mosquée, un mail vous a été envoyé, veuillez nous
+          contacter au plus vite.
+      SUSPENDED: Nous avons temporairement suspendu votre mosquée, veuillez nous contacter au plus vite.
+
     statuses:
       NEW: En attente de validation
       VALIDATED: Validée
@@ -429,7 +435,7 @@ title: Titre
 content: Contenu
 subject: Sujet
 developed_by: Développé par Binary Consulting SAS
-next_prayer: Prochain adhân dans
+next_prayer: Adhân dans
 last_login: dernière connexion
 alarm: Essalatu khayrun mina ennawm
 
