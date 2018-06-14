@@ -1,11 +1,15 @@
 {% extends 'email_templates/layout.html.twig' %}
 {% block content %}
-    Essalamu alaykum<br/>
-    <p>
-        Votre mosquée {{ mosque.title }} vient d'être suspendue par l'équipe mawaqit, veuillez nous contacter au plus vite.
-    </p>
-    <hr>
-    <p>
-        Your mosque {{ mosque.title }} has been suspended by the mawaqit team, please contact us as soon as possible.
-    </p>
+    <div style="font-size: 14px">
+        <p>
+            Essalamu alaykum
+        </p>
+        <p>
+            Votre mosquée {{ mosque.title }} vient d'être suspendue par l'équipe mawaqit, veuillez nous contacter au plus vite.
+        </p>
+        <hr>
+        <p>
+            Your mosque {{ mosque.title }} has been suspended by the mawaqit team, please contact us as soon as possible.
+        </p>
+    </div>
 {% endblock %}

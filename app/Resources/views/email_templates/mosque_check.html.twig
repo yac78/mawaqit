@@ -1,40 +1,48 @@
 {% extends 'email_templates/layout.html.twig' %}
 {% block content %}
-    <p>
-        Essalamu alaykum wa rahmatu allahi wa barakatuh<br/><br/>
-        Vous avez récemment ajouté la mosquée <strong>{{ mosque.name }}</strong> située au {{ mosque.localisation }}
-        <br/>
-        Après vérification, nous constatons que cette mosquée se trouve dans l'un des cas suivants<br/>
-    </p>
-    <ul>
-        <li>La mosquée existe déjà sur mawaqit</li>
-        <li>Les informations que vous avez saisi ne nous permettent pas de valider la mosquée</li>
-    </ul>
-    <p>
-        Pourriez-vous svp nous préciser s'il s'agît d'une installation à domicile ou d'une vrai mosquée,
-        auquel cas nous vous invitons à nous donner plus d'informations sur la mosquée
-        (Le n° de téléphone du président de l'association, une photo de la mosquée, l'apparition au journal officiel...
-        ou toute preuve de son existance)
-        <br/><br/>
-        Sans réponse de votre part dans un délai d'une semaine, l'équipe mawaqit procédera à la suppression de votre
-        mosquée.
-        <br/><br/>
-        Barak Allahu fik et merci pour votre compréhension <br/>
-    </p>
+    <div style="font-size: 14px">
+        <p>
+            Essalamu alaykum wa rahmatu allahi wa barakatuh<br/><br/>
+            Vous avez récemment ajouté la mosquée <strong>{{ mosque.name }}</strong> située au {{ mosque.localisation }}
+            <br/>
+            Après vérification, nous constatons que cette mosquée se trouve dans l'un des cas suivants<br/>
+        </p>
+        <ul>
+            <li>La mosquée existe déjà sur mawaqit</li>
+            <li>Les informations que vous avez saisi ne nous permettent pas de valider la mosquée</li>
+        </ul>
+        <p>
+            Pourriez-vous svp nous préciser s'il s'agît d'une installation à domicile ou d'une vrai mosquée,
+            auquel cas nous vous invitons à nous donner plus d'informations sur la mosquée
+            (Le n° de téléphone du président de l'association, une photo de la mosquée, l'apparition au journal officiel...
+            ou toute preuve de son existance)
+            <br/><br/>
+            Sans réponse de votre part dans un délai d'une semaine, l'équipe mawaqit procédera à la suppression de votre
+            mosquée.
+            <br/><br/>
+            Barak Allahu fik et merci pour votre compréhension <br/>
+        </p>
+    </div>
     <hr>
-    <p style="text-align: right; font-size: 18px">
-        السلام عليكم ورحمة الله وبركاته
+    <div style="text-align: right; font-size: 18px">
+        <p>
+            السلام عليكم ورحمة الله وبركاته
+        </p>
+        <p>
+            بعد التثبت من عنوان مسجدك ، تبين لنا أنه لا يوجد مسجد في هذا العنوان أو ان مسجدا بنفس
+            البيانات مسجل في موقع مواقيت
+        </p>
+        <p>
+            لذا الرجاء مدنا
+            في هذه الحالة بالمزيد من المعلومات عن المسجد رقم هاتف رئيس الجمعية، صورة المسجد، نسخة مصورة من الجريدة
+            الرسمية... أو أي دليل على وجودها
+        </p>
+        <p>
+            إذا لم يصلنا رد في غضون أسبوع ، سيقوم فريق مواقيت بحذف المسجد الخاص بك.
+        </p>
+        <p>
+            باراك الله فيك وشكرك على تفهمك
+        </p>
         <br/><br/>
-        بعد التثبت من عنوان مسجدك ، تبين لنا أنه لا يوجد مسجد في هذا العنوان أو ان مسجدا بنفس
-        البيانات مسجل في موقع مواقيت
-        <br/><br/>
-        لذا الرجاء مدنا
-        في هذه الحالة بالمزيد من المعلومات عن المسجد (رقم هاتف رئيس الجمعية ، صورة المسجد ، نسخة مصورة من الجريدة
-        الرسمية ... أو أي دليل على وجودها)
-        <br/><br/>
-        إذا لم يصلنا رد في غضون أسبوع ، سيقوم فريق مواقيت بحذف المسجد الخاص بك.
-        <br/><br/>
-        باراك الله فيك وشكرك على تفهمك
-        <br/><br/>
-    </p>
+    </div>
 {% endblock %}
