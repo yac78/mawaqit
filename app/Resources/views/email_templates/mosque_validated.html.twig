@@ -2,18 +2,16 @@
 {% block content %}
     Essalamu alaykum<br/>
     <p>
-        Bonne nouvelle, votre mosquée {{ mosque.title }} vient d'être validée par l'équipe mawaqit, vous pouvez dès maintenant la configurer ici {{ url('mosque_index') }}
+        Bonne nouvelle, votre mosquée {{ mosque.title }} vient d'être validée par l'équipe mawaqit, vous pouvez dès maintenant la configurer ici <a href="{{ url('mosque_index') }}">{{  url('mosque_index') }}</a>
     </p>
-    <p>-----------------</p>
+    <hr>
     <p>
-        Good news, your mosque {{ mosque.title }} has been validated by the mawaqit team , you can now configure it on {{ url('mosque_index') }}
+        Good news, your mosque {{ mosque.title }} has been validated by the mawaqit team , you can now configure it on  <a href="{{ url('mosque_index') }}">{{  url('mosque_index') }}</a>
     </p>
-    <p>-----------------</p>
-    <p>
+    <hr>
+    <p style="text-align: right; font-size: 18px">
         بشرى سارة، تم تفعيل مسجدك من طرف فريق مواقيت، يمكنك ضبط الإعدادات هنا
         <br/>
-        {{ url('mosque_index') }}
+        <a href="{{ url('mosque_index') }}">{{  url('mosque_index') }}</a>
     </p>
-    <br/>
-    The mawaqit team
 {% endblock %}

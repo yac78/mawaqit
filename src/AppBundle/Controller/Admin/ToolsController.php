@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\Mosque;
 use AppBundle\Form\HijriAdjustmentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,6 +23,16 @@ class ToolsController extends Controller
 
         return $this->render('tools/index.html.twig', [
             'hijriForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/email-preview/{template}/{mosque}")
+     */
+    public function emailPreviewAction($template, Mosque $mosque)
+    {
+        return $this->render("email_templates/$template.html.twig", [
+            'mosque' => $mosque
         ]);
     }
 
