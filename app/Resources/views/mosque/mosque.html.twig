@@ -204,8 +204,7 @@
                 &nbsp;&nbsp;{{ mosque.rib }}
             </div>
             <div class="support">
-                <span>{{ 'developed_by'|trans }}</span>
-                &nbsp;&nbsp;<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{ supportEmail }}">{{ supportEmail }}</a>
+                <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
             </div>
             {% if mosque.configuration.urlQrCodeEnabled %}
                 <div class="qr-code {{ url is defined ? '' : 'hidden' }}" data-url="{{ url|default('')}}">

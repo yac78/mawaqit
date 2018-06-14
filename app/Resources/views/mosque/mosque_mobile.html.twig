@@ -188,12 +188,12 @@
 
         <div class="footer">
             <div class="assosciation text-center">
-                {{ mosque.associationName }}
+                <div>{{ mosque.associationName }}</div>
                 {% if mosque.phone %}
                     &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
                 {% endif %}
                 {% if mosque.email %}
-                    <div><i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}</div>
+                    &nbsp;<i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}
                 {% endif %}
                 {% if mosque.site %}
                     <div><i class="glyphicon glyphicon-link"></i> <a href="{{ mosque.site }}">{{ mosque.site }}</a></div>
@@ -201,8 +201,8 @@
                 <div>{{ mosque.localisation }} <i id="navigate" class="fa fa-location-arrow"></i></div>
             </div>
             <div class="support">
-                <span>{{ 'developed_by'|trans }}</span><br>
-                &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
+                <div>{{ 'developed_by'|trans }}</div>
+                <i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
             </div>
             <div class="version text-right">v{{ version }}</div>
         </div>
