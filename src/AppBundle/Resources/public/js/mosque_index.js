@@ -22,7 +22,7 @@ $("#country").change(function (e) {
         dataType: "json",
         success: function (data) {
             $("#city option").remove();
-            $("#city").append('<option>Ville</option>');
+            $("#city").append('<option value="">Ville</option>');
             $.each(data, function (i, city) {
                 $("#city").append('<option value="' + city + '">' + city + '</option>');
             })
