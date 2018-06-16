@@ -144,9 +144,10 @@ stfalcon_tinymce:
   theme:
       simple:
           height: 400
+          fontsize_formats: "100% 120% 140% 160% 180% 200% 250% 300% 400%"
           plugins:
             - "advlist autolink autosave link image lists charmap preview hr"
             - "visualblocks visualchars code insertdatetime nonbreaking media"
-            - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern "
-          toolbar1: "undo redo | formatselect fontselect | forecolor backcolor | removeformat | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
-          toolbar2: "link unlink image media | insertdatetime | table | hr | subscript superscript | charmap emoticons | code preview"
+            - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern"
+          toolbar1: "undo redo | formatselect fontselect fontsizeselect forecolor backcolor | removeformat | bold italic underline strikethrough | charmap emoticons"
+          toolbar2: " | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | link unlink image media | insertdatetime | table | hr | subscript superscript | code preview"

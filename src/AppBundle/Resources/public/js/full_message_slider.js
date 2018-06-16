@@ -47,7 +47,12 @@ var messageInfoSlider = {
                         if (message.image) {
                             slide += '<img src="/upload/images/' + message.image + '"/>';
                         } else {
-                            slide += '<div class="title">' + message.title + '</div>' + '<div class="content">' + message.content + '</div>';
+                            if (message.title) {
+                                slide += '<div class="title">' + message.title + '</div>';
+                            }
+                            if (message.content) {
+                                slide += '<div class="content">' + message.content + '</div>';
+                            }
                         }
                         slide += '</li>';
                         items.push(slide);
