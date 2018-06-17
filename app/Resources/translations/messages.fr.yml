@@ -316,7 +316,7 @@ configuration:
         footer:
             label: Footer (le bas de l'écran)
         showNextAdhanCountdown:
-            label: Prochain adhân
+            label: Compte à rebours du prochain adhân
         timeDisplayFormat:
             label: Format de l'heure
         backgroundType:

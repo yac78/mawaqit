@@ -103,7 +103,8 @@
                                         {% for country, calendars in predefinedCalendars %}
                                             <optgroup label="{{ country|country }}">
                                                 {% for calendar in calendars %}
-                                                    <option value="{{ calendar.id }}" data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
+                                                    <option value="{{ calendar.id }}"
+                                                            data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
                                                 {% endfor %}
                                             </optgroup>
                                         {% endfor %}
@@ -263,6 +264,25 @@
                         </div>
                         <div class="col-md-2">
                             {{ form_row(form.adjustedTimes.isha) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading pointer" data-toggle="collapse" href="#adhan">
+                    <span style="font-weight: 700;">{{ 'azan'|trans }}</span>
+                </div>
+                <div id="adhan" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.showNextAdhanCountdown) }}
+                            </div>
+                            <div class="col-md-3 iqama-settings">
+                                {{ form_widget(form.azanBip) }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -453,9 +473,6 @@
                                 {{ form_widget(form.hijriDateEnabled) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_widget(form.showNextAdhanCountdown) }}
-                            </div>
-                            <div class="col-md-3">
                                 {{ form_widget(form.blackScreenWhenPraying) }}
                             </div>
                             <div class="col-md-3">
@@ -499,39 +516,34 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default {{ mosque.isMosque ? 'hidden' : '' }}">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
+                     href="#homeSettings">
+                    <span style="font-weight: 700;">{{ "home_settings"|trans }}</span>
+                </div>
+                <div id="homeSettings" class="panel-collapse collapse">
+                    <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
-                                {{ form_widget(form.azanBip) }}
+                                {{ form_widget(form.azanVoiceEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.wakeForFajrTime) }}
+                            </div>
+                            <div class="col-md-3 wakeAzanVoice">
+                                {{ form_row(form.wakeAzanVoice) }}
+                            </div>
+                            <div class="col-md-1 text-left">
+                                <img class="hidden" id="azabStop" src="{{ asset('bundles/app/prayer-times/img/stop.png') }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-                <div class="panel panel-default {{ mosque.isMosque ? 'hidden' : '' }}">
-                    <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                         href="#homeSettings">
-                        <span style="font-weight: 700;">{{ "home_settings"|trans }}</span>
-                    </div>
-                    <div id="homeSettings" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    {{ form_widget(form.azanVoiceEnabled) }}
-                                </div>
-                                <div class="col-md-3">
-                                    {{ form_row(form.wakeForFajrTime) }}
-                                </div>
-                                <div class="col-md-3 wakeAzanVoice">
-                                    {{ form_row(form.wakeAzanVoice) }}
-                                </div>
-                                <div class="col-md-1 text-left">
-                                    <img class="hidden" id="azabStop" src="{{ asset('bundles/app/prayer-times/img/stop.png') }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
         </div>
 
         {{ form_widget(form.save) }}

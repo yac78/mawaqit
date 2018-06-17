@@ -205,7 +205,7 @@ configuration:
         hadithLang:
             label: لغة الأحاديث
         showNextAdhanCountdown:
-          label : الآذان القادم
+          label :  العد التنازلي للآذان القادم
         timeDisplayFormat:
             label: صيغة الوقت
         backgroundType:

@@ -294,7 +294,7 @@ configuration:
         footer:
             label: Footer
         showNextAdhanCountdown:
-            label: Next adhan
+            label: Next adhan countdown
         timeDisplayFormat:
             label: Time format
         backgroundType:
