@@ -193,6 +193,15 @@ configuration:
         prayerMethod: 
             label: Méthode de calcul
             placeholder: Veuillez choisir une méthode de calcul
+        asrMethod:
+            label: "Méthode de calcul du `Asr"
+            Standard: Standard (Shafi`i, Maliki, Hanbali)
+            Hanafi: Hanafi
+        highLatsMethod:
+            label: "Calcul pour les hautes latitude"
+            AngleBased: Basé sur l'angle choisi
+            NightMiddle: 1/2 ème de la nuit
+            OneSeventh: 1/7 ème de la nuit
         jumuaTime:
             label: Heure du jumu`a
             title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été

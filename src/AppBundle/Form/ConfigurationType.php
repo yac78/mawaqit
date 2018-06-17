@@ -253,6 +253,23 @@ class ConfigurationType extends AbstractType
                 'choices' => array_combine(Configuration::HADITH_LANG, Configuration::HADITH_LANG),
                 'choice_translation_domain' => true
             ])
+            ->add('asrMethod', ChoiceType::class, [
+                'required' => true,
+                'label' => 'configuration.form.asrMethod.label',
+                'choices' => [
+                    "configuration.form.asrMethod.Standard" => "Standard",
+                    "configuration.form.asrMethod.Hanafi" => "Hanafi",
+                ]
+            ])
+            ->add('highLatsMethod', ChoiceType::class, [
+                'required' => false,
+                'label' => 'configuration.form.highLatsMethod.label',
+                'choices' => [
+                    "configuration.form.highLatsMethod.AngleBased" => "AngleBased",
+                    "configuration.form.highLatsMethod.OneSeventh" => "OneSeventh",
+                    "configuration.form.highLatsMethod.NightMiddle" => "NightMiddle",
+                ]
+            ])
             ->add('hijriDateEnabled', CheckboxType::class, [
                 'required' => false,
                 'label' => 'configuration.form.hijriDateEnabled.label',
@@ -461,7 +478,8 @@ class ConfigurationType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => Configuration::class,
-            'allow_extra_fields' => true
+            'allow_extra_fields' => true,
+            'choice_translation_domain' => true
         ));
     }
 

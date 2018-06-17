@@ -78,6 +78,13 @@ AppBundle\Entity\Configuration:
             type: string
             length: 255
             nullable: true
+        asrMethod:
+            type: string
+            length: 255
+        highLatsMethod:
+            type: string
+            length: 255
+            nullable: true
         latitude:
             type: float
             nullable: true

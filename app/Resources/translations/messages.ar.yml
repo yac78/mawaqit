@@ -112,6 +112,15 @@ configuration:
         prayerMethod:
             label: طريقة الحساب
             placeholder: الرجاء إختيار طريقة الحساب
+        asrMethod:
+            label: حساب العصر
+            Standard: شافعي مالكي حنبلي
+            Hanafi: حنفي
+        highLatsMethod:
+            label: "طريقة ضبط خط العرض المرتفع"
+            AngleBased: الإستناد علة الزاوية
+            NightMiddle: منتصف الليل
+            OneSeventh: سبع الليل
         jumuaTime:
             label: وقت صلاة الجمعة
             title:  إذا تم إدخال القيمة مسبقا ،فإنها ستظهر على الشاشة،وإلا فإنها ستظهر الساعة الواحدة  بعد الزوال في  الشتاء و الثانية بعد الزوال في الصيف

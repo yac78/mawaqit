@@ -144,6 +144,12 @@ var prayer = {
             }
         }
 
+        prayTimes.adjust({"asr": prayer.confData.asrMethod});
+
+        if (prayer.confData.highLatsMethod) {
+            prayTimes.adjust({"highLats": prayer.confData.highLatsMethod});
+        }
+
         // times adjustment
         prayTimes.tune({
             fajr: prayer.confData.adjustedTimes[0],
@@ -188,7 +194,7 @@ var prayer = {
 
             // handle fixed times
             // exception for isha when its at 00 o'clock
-            if(i === 4 && times[i].startsWith('00')){
+            if (i === 4 && times[i].startsWith('00')) {
                 return false;
             }
 

@@ -38,5 +38,9 @@ AppBundle\Entity\Configuration:
     properties:
         hadithLang:
             - Choice: {callback : "getHadithLangs"}
+        asrMethod:
+            - Choice: {callback : "getAsrMethodChoices"}
+        highLatsMethod:
+            - Choice: {callback : "getHighLatsChoices"}
 
 

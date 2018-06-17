@@ -172,6 +172,15 @@ configuration:
         prayerMethod: 
             label: Calculation method
             placeholder: Please choose a calculation method
+        asrMethod:
+            label: "Asr method"
+            Standard: Standard (Shafi`i, Maliki, Hanbali)
+            Hanafi: Hanafi
+        highLatsMethod:
+            label: "Calculation for high latitude"
+            AngleBased: Angle based
+            NightMiddle: Night middle
+            OneSeventh: One seventh
         jumuaTime:
             label: Jumu'à time
             title: "If this value is entered, it will be displayed on the screen. Default 13:00 in winter and 14:00 in summer"

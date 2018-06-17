@@ -17,6 +17,15 @@ class Configuration
     const HADITH_LANG = [
         "ar", "fr", "both"
     ];
+
+    const ASR_METHOD_CHOICES = [
+        "Standard", "Hanafi"
+    ];
+
+    const HIGH_LATS_CHOICES = [
+        "AngleBased", "NightMiddle", "OneSeventh"
+    ];
+
     const METHOD_ISNA = 'ISNA';
     const METHOD_UOIF = 'UOIF';
     const METHOD_Karachi = 'Karachi';
@@ -164,6 +173,15 @@ class Configuration
      */
     private $prayerMethod = 'ISNA';
 
+    /**
+     * @var string
+     */
+    private $asrMethod = 'Standard';
+
+    /**
+     * @var string
+     */
+    private $highLatsMethod = 'AngleBased';
     /**
      * @var float
      */
@@ -1290,6 +1308,52 @@ class Configuration
     {
         $this->backgroundMotif = $backgroundMotif;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAsrMethod(): string
+    {
+        return $this->asrMethod;
+    }
+
+    /**
+     * @param string $asrMethod
+     * @return Configuration
+     */
+    public function setAsrMethod(string $asrMethod): Configuration
+    {
+        $this->asrMethod = $asrMethod;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHighLatsMethod()
+    {
+        return $this->highLatsMethod;
+    }
+
+    /**
+     * @param string $highLatsMethod
+     * @return Configuration
+     */
+    public function setHighLatsMethod($highLatsMethod): Configuration
+    {
+        $this->highLatsMethod = $highLatsMethod;
+        return $this;
+    }
+
+    public static function getHighLatsChoices()
+    {
+        return self::HIGH_LATS_CHOICES;
+    }
+
+    public static function getAsrMethodChoices()
+    {
+        return self::ASR_METHOD_CHOICES;
     }
 
 }
