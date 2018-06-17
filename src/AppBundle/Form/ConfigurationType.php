@@ -266,8 +266,8 @@ class ConfigurationType extends AbstractType
                 'label' => 'configuration.form.highLatsMethod.label',
                 'choices' => [
                     "configuration.form.highLatsMethod.AngleBased" => "AngleBased",
-                    "configuration.form.highLatsMethod.OneSeventh" => "OneSeventh",
                     "configuration.form.highLatsMethod.NightMiddle" => "NightMiddle",
+                    "configuration.form.highLatsMethod.OneSeventh" => "OneSeventh"
                 ]
             ])
             ->add('hijriDateEnabled', CheckboxType::class, [
