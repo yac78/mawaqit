@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -29,13 +30,15 @@ class MosqueService
         $res = $this->em
             ->getRepository("AppBundle:Mosque")
             ->createQueryBuilder("m")
-            ->select("c.id, m.zipcode, m.city, m.country")
+            ->select("c.id, m.name, m.zipcode, m.city, m.country")
             ->innerJoin("m.configuration", "c")
             ->where("c.sourceCalcul = 'calendar'")
             ->andWhere("c.calendar IS NOT NULL")
             ->andWhere("m.city IS NOT NULL AND m.city != ''")
-            ->groupBy("m.country, m.city")
-            ->orderBy("m.country, m.zipcode", "ASC")
+            ->andWhere("m.type = :mosqueType")
+            ->groupBy("m.country, m.city, m.name")
+            ->orderBy("m.country, m.city", "ASC")
+            ->setParameter(':mosqueType', Mosque::TYPE_MOSQUE)
             ->getQuery()
             ->execute();
 
@@ -43,7 +46,7 @@ class MosqueService
         foreach ($res as $item) {
             $calendars[strtoupper($item["country"])][] = [
                 'id' => $item["id"],
-                'label' => substr($item["zipcode"], 0, 2) . ' ' . ucfirst($item["city"]) . ' ' . $item["zipcode"],
+                'label' => ucfirst(strtolower($item["city"])) . ' ' . $item["zipcode"] . ' | ' . ucfirst(strtolower($item["name"])),
             ];
         }
 
