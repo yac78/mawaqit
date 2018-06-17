@@ -12,7 +12,6 @@ set -e
   wget \
   vim \
   git \
-  nginx \
   zip \
   acl \
   unclutter \
@@ -32,8 +31,6 @@ apt-get update && apt-get install -y \
   php7.1-zip \
   php7.1-json \
   php7.1-imagick
-
-apt-get autoremove
 
 # install composer
 curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -64,9 +61,6 @@ echo "overscan_top=20" >> /boot/config.txt
 echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
-# enable RTC 
-cp raspberry/hwclock-set /lib/udev/hwclock-set
-
 # create mariadb user mawaqit/mawaqit
 mariadb
 CREATE USER 'mawaqit'@'localhost';
@@ -86,6 +80,9 @@ mkdir /home/pi/mawaqit
 cd /home/pi/mawaqit
 git clone https://github.com/binary010100/mawaqit.git .
 
+# enable RTC 
+cp raspberry/hwclock-set /lib/udev/hwclock-set
+
 HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
@@ -93,17 +90,22 @@ sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 mkdir web/upload
 chmod 777 web/upload
 
-cp app/config/parameters.yml.dist app/config/parameters.yml
-sed -i "s/symfony/mawaqit/" app/config/parameters.yml
-sed -i "s/root/mawaqit/" app/config/parameters.yml
-
 composer install --optimize-autoloader --no-interaction
 bin/console assets:install --env=prod --no-debug
+
+#cp app/config/parameters.yml.dist app/config/parameters.yml
+sed -i "s/symfony/mawaqit/" app/config/parameters.yml
+sed -i "s/root/mawaqit/" app/config/parameters.yml
+bin/console c:c --env=prod
+
 bin/console assetic:dump --env=prod --no-debug
 bin/console d:d:cre
 bin/console d:s:u --force
 bin/console h:f:l -n
-bin/console d:m:ver -n --all -add
+bin/console d:m:ver -n --all --add
+
+# add hosts
+echo "127.0.0.1     mawaqit.local" >> /etc/hosts
 
 cp raspberry/vhost /etc/nginx/sites-enabled/default
 service php7.1-fpm restart
@@ -111,6 +113,3 @@ service nginx restart
 
 # create files on Desktop
 cp raspberry/Desktop/* /home/pi/Desktop
-
-
-
