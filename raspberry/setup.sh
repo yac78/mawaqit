@@ -4,42 +4,13 @@
 
 set -e
 
-  apt-get update && \
-  apt-get install -y \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  wget \
-  vim \
-  git \
-  zip \
-  acl \
-  unclutter \
-  mysql-server \
-  nginx \
-  imagemagick
+# add hosts
+echo "127.0.0.1       mawaqit.local" >> /etc/hosts
 
-# PHP 7.1
-echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" > /etc/apt/sources.list.d/php7-1.list
-
-apt-get update && apt-get install -y \
-  php7.1 \
-  php7.1-fpm \
-  php7.1-mysql \
-  php7.1-curl \
-  php7.1-xml \
-  php7.1-zip \
-  php7.1-json \
-  php7.1-imagick
-
-# install composer
-curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-chmod +x /usr/local/bin/composer
-
-# install teamviewer
-cd /tmp
-wget http://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
-sudo dpkg -i teamviewer-host_armhf.deb
+# fstab
+echo "tmpfs /tmp tmpfs defaults,noatime,nosuid,size=10m 0 0" >> /etc/fstab
+echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=10m 0 0" >> /etc/fstab
+echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=10m 0 0" >> /etc/fstab
 
 # config autostart
 echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
@@ -47,7 +18,6 @@ echo "@xset s 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 echo "@xset s noblank" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 echo "@xset s noexpose" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 echo "@xset dpms 0 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
-
 
 # update config.txt
 echo "############### mawaqit conf  ################" >> /boot/config.txt
@@ -61,11 +31,33 @@ echo "overscan_top=20" >> /boot/config.txt
 echo "overscan_bottom=20" >> /boot/config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
-# create mariadb user mawaqit/mawaqit
-mariadb
-CREATE USER 'mawaqit'@'localhost';
-GRANT ALL ON *.* TO 'mawaqit'@'localhost';
-exit;
+# install packages
+apt-get update && \
+apt-get install -y \
+apt-transport-https \
+ca-certificates \
+curl \
+wget \
+vim \
+git \
+zip \
+acl \
+unclutter \
+mysql-server \
+nginx \
+imagemagick
+
+# PHP 7.1
+echo "deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" > /etc/apt/sources.list.d/php7-1.list
+apt-get update && apt-get install -y \
+php7.1 \
+php7.1-fpm \
+php7.1-mysql \
+php7.1-curl \
+php7.1-xml \
+php7.1-zip \
+php7.1-json \
+php7.1-imagick
 
 # update php conf
 sed -i "s/; date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini
@@ -74,6 +66,21 @@ sed -i "s/; max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini
 sed -i "s/upload_max_filesize =.*/upload_max_filesize = 20M/" /etc/php/7.1/fpm/php.ini
 sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini
 sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini
+
+# install composer
+curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+chmod +x /usr/local/bin/composer
+
+# install teamviewer
+cd /tmp
+wget http://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
+sudo dpkg -i teamviewer-host_armhf.deb
+
+# create mariadb user mawaqit/mawaqit
+mariadb
+CREATE USER 'mawaqit'@'localhost';
+GRANT ALL ON *.* TO 'mawaqit'@'localhost';
+exit;
 
 # install project
 mkdir /home/pi/mawaqit
@@ -103,9 +110,6 @@ bin/console d:d:cre
 bin/console d:s:u --force
 bin/console h:f:l -n
 bin/console d:m:ver -n --all --add
-
-# add hosts
-echo "127.0.0.1     mawaqit.local" >> /etc/hosts
 
 cp raspberry/vhost /etc/nginx/sites-enabled/default
 service php7.1-fpm restart
