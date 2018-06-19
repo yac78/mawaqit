@@ -129,7 +129,7 @@ class MosqueType extends AbstractType
             ])
             ->add('address', null, [
                 'label' => 'address',
-//                'disabled' => $disabled,
+                'disabled' => $disabled,
                 'attr' => [
                     'placeholder' => 'mosque.form.address.placeholder',
                 ]
