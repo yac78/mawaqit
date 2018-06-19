@@ -8,7 +8,7 @@
             <li><a href="{{ path('mosque_edit', {id: mosque.id}) }}"><span class="fa fa-pencil-square"></span> {{ 'form.edit.action'|trans }}</a></li>
             <li><a href="{{ path('mosque_configure', {id: mosque.id}) }}"><span class="fa fa-cog"></span> {{ 'form.configure.action'|trans }}</a></li>
 
-            {% if mosque.isMosque %}
+            {% if is_granted('ROLE_ADMIN') or mosque.isMosque %}
                 <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><span class="fa fa-comment-o"></span> {{ 'message.manage'|trans }}</a></li>
             {% endif %}
 
