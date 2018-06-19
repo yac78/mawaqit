@@ -6,6 +6,4 @@ if [ -f ~/Desktop/local_site.txt ]; then
     localUrl=`cat ~/Desktop/local_site.txt`
 fi
 
-chromium-browser --app=$localUrl --start-maximized &
-sleep 30
-xdotool key F11
+chromium-browser --app=$url --start-fullscreen
