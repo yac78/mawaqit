@@ -320,8 +320,8 @@ configuration:
             05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
             ...            
         timeToDisplayMessage: 
-            label: Temps d'affichage d'un message/annonce (en seconde)
-            title: Cela concerne que l'écran dédié aux messages et annonces
+            label: Temps d'affichage par annonce (en seconde)
+            title: Cela concerne que l'écran dédié aux annonces, le temps est fixé à 30 secondes sur l'écran des horaires
         footer:
             label: Footer (le bas de l'écran)
         showNextAdhanCountdown:

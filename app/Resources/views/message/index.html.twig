@@ -17,13 +17,12 @@
     <div class="row" style="margin-top:10px">
         <div class="col-md-8 col-xs-12">
             <div class="alert alert-info" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ 'message.info'|trans|raw }}
             </div>
             <div class="alert alert-success" role="alert" style="word-wrap: break-word;">
-                {{ 'message.display_messages_in_screen_1'|trans }} : <a target="_blank"
-                                                                        href="{{ path("messages", {slug: mosque.slug}) }}">{{ url("messages", {slug: mosque.slug}) }}</a><br>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ 'message.display_messages_in_screen_1'|trans }} : <a target="_blank" href="{{ path("messages", {slug: mosque.slug}) }}">{{ url("messages", {slug: mosque.slug}) }}</a><br>
                 {{ 'message.display_messages_in_screen_2'|trans }}
             </div>
         </div>
@@ -31,13 +30,8 @@
 
     <div class="row mb-2">
         <div class="col-md-4">
-            {{ form_label(form.timeToDisplayMessage) }}
-            <form class="form-inline">
-                <div class="form-group">
-                    {{ form_widget(form.timeToDisplayMessage) }}
-                </div>
-                <button id="timeToDisplayMessageButton" class="btn btn-primary" style="display: none" data-remote="{{ path('ajax_message_update_time', {mosque: mosque.id}) }}">{{ 'validate'|trans }}</button>
-            </form>
+            {{ form_row(form.timeToDisplayMessage) }}
+            <button id="timeToDisplayMessageButton" class="btn btn-primary" style="display: none" data-remote="{{ path('ajax_message_update_time', {mosque: mosque.id}) }}">{{ 'validate'|trans }}</button>
         </div>
     </div>
 
