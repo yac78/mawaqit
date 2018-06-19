@@ -24,6 +24,10 @@ registration:
 
 
 mosque:
+    types:
+        all: الكل
+        mosque: مسجد
+        home: منزل
     statuses_message:
       NEW: |
         تمت إضافة المسجد الخاص بك، وسيقوم فريق الموقع بالتفعيل بعد بعض التحري،
@@ -42,6 +46,9 @@ mosque:
         action: قسر عملية التحديث
         success: لقد تم قسر عملية التحديث لكافة المساجد.
     form:
+        type:
+            label: نوع
+            placeholder : إختر النوع
         name:
             placeholder: مثلا مسجد السنة
         slug:
@@ -263,7 +270,7 @@ city: المدينة
 zipcode: الترقيم البريدي للمدينة
 country: الدولة
 rib: RIB الإستعلام البنكي للجمعية
-save: الحفظ
+save: حفظ
 name: الإسم
 association_name: إسم الجمعية
 prayer_sites: رابط شاشة المواقيت
