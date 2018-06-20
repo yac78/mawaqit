@@ -150,7 +150,7 @@ configuration:
     select_calendar: Select a calendar
     title: Prayer times configuration of "%mosque%"
     list:
-        download_csv_files: Download the calendar
+        download_csv_files: Calendar
         calendar_not_completed: |
             Be careful the calendar of your mosque is not completed yet
     form:

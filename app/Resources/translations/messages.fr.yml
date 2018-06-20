@@ -171,7 +171,7 @@ configuration:
     select_calendar: Séléctionner un calendrier
     title: Configuration des horaires de "%mosque%"
     list:
-        download_csv_files: Télécharger le calendrier
+        download_csv_files: Calendrier
         calendar_not_completed: |
             Attention: le calendrier de votre mosquée est incomplet
     form: 

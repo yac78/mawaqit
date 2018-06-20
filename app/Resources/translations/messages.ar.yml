@@ -97,7 +97,7 @@ message:
 configuration:
     title: ضبط مواقيت الصلاة
     list:
-        download_csv_files: تحميل الرزنامة
+        download_csv_files: الرزنامة
         calendar_not_completed: يرجى الحذر ،فرزنامة مسجدك غير مكتملة
     form:
         prayerCalcul: حساب أوقات الصلوات

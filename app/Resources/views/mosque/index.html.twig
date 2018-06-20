@@ -62,8 +62,8 @@
                 <th>{{ 'type'|trans }}</th>
                 <th>{{ 'name'|trans }}</th>
                 <th>{{ 'association'|trans }}</th>
-                <th style="width: 20%">{{ 'contact'|trans }}</th>
-                <th style="width: 35%">{{ 'prayer_sites'|trans }}</th>
+                <th style="width: 15%">{{ 'contact'|trans }}</th>
+                <th style="width: 30%">{{ 'prayer_sites'|trans }}</th>
                 <th>{{ 'status'|trans }}</th>
                 {% if is_granted('ROLE_ADMIN') %}
                     <th>{{ 'user'|trans }}</th>
@@ -84,7 +84,7 @@
                     <td>
                         {{ mosque.name }}<br>
                         {% if mosque.configuration.isCalendar and  mosque.isCalendarCompleted %}
-                            <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>
+                            <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }} <i class="fa fa-download"></i> </a>
                         {% endif %}
                     </td>
                     <td>{{ mosque.associationName }}</td>
