@@ -22,10 +22,15 @@
 <div id="spinner"></div>
 
 <!-- Iqama screen -->
-<div class="iqama hidden">
+<div class="iqama display-none">
     <div class="top">{{ 'iqama'|trans }}</div>
     <div class="image" style="background-image: url({{ asset('bundles/app/prayer-times/img/phone.png') }})"></div>
     <div class="bottom">{{ 'power-off-phones'|trans }}</div>
+</div>
+
+<div class="main-iqama-countdown display-none">
+    <div class="text">{{ 'iqama_in'|trans }}</div>
+    <div class="countdown"></div>
 </div>
 
 <!-- Douaa after prayer slider -->
@@ -38,8 +43,7 @@
 </div>
 
 <!-- message info slider -->
-<div class="message-info-slider slider display-none"
-     data-remote="{{ path('ajax_get_messages', {id: mosque.id}) }}"></div>
+<div class="message-info-slider slider display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id}) }}"></div>
 
 {% include 'partial/dua-after-adhan.html.twig' %}
 {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
@@ -54,10 +58,8 @@
         <div class="text">
             <div></div>
         </div>
-        <div class="time-bottom"
-             style="{{ app.request.locale == 'ar' ? 'left :15px; text-align: left' : 'right :15px;' }}"></div>
-        <div class="next-prayer"
-             style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+        <div class="time-bottom {{ app.request.locale == 'ar' ? 'ar' : '' }}" ></div>
+        <div class="next-prayer {{ app.request.locale == 'ar' ? 'ar' : '' }}">
             {{ 'next_prayer'|trans }}
             <div class="countdown"></div>
         </div>

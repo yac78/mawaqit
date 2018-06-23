@@ -14,7 +14,7 @@ prayer.nextPrayerCountdown();
 prayer.setWaitings();
 prayer.initNextTimeHilight();
 prayer.initAdhanFlash();
-prayer.initIqamaFlash();
+prayer.iqama.initFlash();
 prayer.initCronHandlingTimes();
 prayer.jumuaHandler.init();
 prayer.setSpecialTimes();
