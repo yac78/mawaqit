@@ -103,7 +103,6 @@ class ConfigurationType extends AbstractType
 
         $builder
             ->add('jumuaTime', null, [
-                'label' => 'configuration.form.jumuaTime.label',
                 'constraints'=> new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.jumuaTime.title'),
@@ -112,32 +111,26 @@ class ConfigurationType extends AbstractType
             ])
             ->add('jumuaAsDuhr', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.jumuaAsDuhr.label',
             ])
             ->add('noJumua', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.noJumua.label',
             ])
             ->add('jumuaDhikrReminderEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.jumuaDhikrReminderEnabled.label',
                 'attr' => [
                     'help' => 'configuration.form.jumuaDhikrReminderEnabled.title',
                 ]
             ])
             ->add('jumuaBlackScreenEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.jumuaBlackScreenEnabled.label',
             ])
             ->add('jumuaTimeout', IntegerType::class, [
                 'constraints'=> new Range(['min' => 20]),
-                'label' => 'configuration.form.jumuaTimeout.label',
                 'attr' => [
                     'min' => 20
                 ]
             ])
             ->add('aidTime', null, [
-                'label' => 'configuration.form.aidTime.label',
                 'constraints'=> new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.aidTime.title'),
@@ -145,14 +138,12 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('imsakNbMinBeforeFajr', IntegerType::class, [
-                'label' => 'configuration.form.imsakNbMinBeforeFajr.label',
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.imsakNbMinBeforeFajr.title'),
                     'min' => 0
                 ]
             ])
             ->add('maximumIshaTimeForNoWaiting', null, [
-                'label' => 'configuration.form.maximumIshaTimeForNoWaiting.label',
                 'constraints'=> new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.maximumIshaTimeForNoWaiting.title'),
@@ -160,7 +151,6 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('waitingTimes', PrayerType::class, [
-                'label' => 'configuration.form.waitingTimes.label',
                 'sub_options' => [
                     'required' => true,
                     'type' => IntegerType::class,
@@ -172,7 +162,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('adjustedTimes', PrayerType::class, [
                 'required' => true,
-                'label' => 'configuration.form.adjustedTimes.label',
                 'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                 'sub_options' => [
                     'type' => ChoiceType::class,
@@ -182,7 +171,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('fixedTimes', PrayerType::class, [
                 'required' => false,
-                'label' => 'configuration.form.fixedTimes.label',
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.fixedTimes.title')
                 ],
@@ -195,7 +183,6 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('duaAfterPrayerShowTimes', PrayerType::class, [
-                'label' => 'configuration.form.duaAfterPrayerShowTimes.label',
                 'sub_options' => [
                     'type' => IntegerType::class,
                     'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
@@ -210,11 +197,9 @@ class ConfigurationType extends AbstractType
             ])
             ->add('hijriAdjustment', ChoiceType::class, [
                 'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
-                'label' => 'configuration.form.hijriAdjustment.label'
             ])
             ->add('timezone', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.timezone.label',
                 'choices' => array_flip(self::$timezones),
                 'attr' => [
                     'help' => 'configuration.form.timezone.title',
@@ -222,7 +207,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('dst', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.dst.label',
                 'choices' => self::$dstChoices,
                 'choice_translation_domain' => true,
                 'attr' => [
@@ -231,7 +215,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('dstSummerDate', DateType::class, [
                 'required' => false,
-                'label' => 'configuration.form.dstSummerDate.label',
                 'widget' => 'single_text',
                 'placeholder' => 'jj/mm/aaaa',
                 'attr' => [
@@ -240,7 +223,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('dstWinterDate', DateType::class, [
                 'required' => false,
-                'label' => 'configuration.form.dstWinterDate.label',
                 'placeholder' => 'jj/mm/aaaa',
                 'widget' => 'single_text',
                 'attr' => [
@@ -249,13 +231,11 @@ class ConfigurationType extends AbstractType
             ])
             ->add('hadithLang', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.hadithLang.label',
                 'choices' => array_combine(Configuration::HADITH_LANG, Configuration::HADITH_LANG),
                 'choice_translation_domain' => true
             ])
             ->add('asrMethod', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.asrMethod.label',
                 'choices' => [
                     "configuration.form.asrMethod.Standard" => "Standard",
                     "configuration.form.asrMethod.Hanafi" => "Hanafi",
@@ -263,7 +243,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('highLatsMethod', ChoiceType::class, [
                 'required' => false,
-                'label' => 'configuration.form.highLatsMethod.label',
                 'choices' => [
                     "configuration.form.highLatsMethod.AngleBased" => "AngleBased",
                     "configuration.form.highLatsMethod.NightMiddle" => "NightMiddle",
@@ -272,15 +251,12 @@ class ConfigurationType extends AbstractType
             ])
             ->add('hijriDateEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.hijriDateEnabled.label',
             ])
             ->add('duaAfterAzanEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.duaAfterAzanEnabled.label',
             ])
             ->add('duaAfterPrayerEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.duaAfterPrayerEnabled.label',
             ])
             ->add('azanBip', CheckboxType::class, [
                 'required' => false,
@@ -288,14 +264,12 @@ class ConfigurationType extends AbstractType
             ])
             ->add('azanVoiceEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.azanVoiceEnabled.label',
                 'attr' => [
                     'help' => 'configuration.form.azanVoiceEnabled.title',
                 ],
             ])
             ->add('wakeAzanVoice', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.wakeAzanVoice.label',
                 'choices' => [
                     "configuration.form.wakeAzanVoice.haram" => "adhan-maquah",
                     "configuration.form.wakeAzanVoice.algeria" => "adhan-algeria",
@@ -305,37 +279,34 @@ class ConfigurationType extends AbstractType
             ])
             ->add('iqamaBip', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.iqamaBip.label',
+            ])
+            ->add('iqamaFullScreenCountdown', CheckboxType::class, [
+                'required' => false,
             ])
             ->add('blackScreenWhenPraying', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.blackScreenWhenPraying.label',
                 'attr' => [
                     'help' => 'configuration.form.blackScreenWhenPraying.title',
                 ],
             ])
             ->add('sourceCalcul', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.sourceCalcul.label',
                 'choice_translation_domain' => true,
                 'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
             ])
             ->add('prayerMethod', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.prayerMethod.label',
                 'choice_translation_domain' => true,
                 'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
             ])
             ->add('fajrDegree', IntegerType::class, [
                 'required' => false,
-                'label' => 'configuration.form.fajrDegree.label',
                 'attr' => [
                     'placeholder' => 'configuration.form.fajrDegree.placeholder'
                 ]
             ])
             ->add('ishaDegree', IntegerType::class, [
                 'required' => false,
-                'label' => 'configuration.form.ishaDegree.label',
                 'attr' => [
                     'placeholder' => 'configuration.form.ishaDegree.placeholder'
                 ]
@@ -349,7 +320,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('wakeForFajrTime', IntegerType::class, [
                 'required' => false,
-                'label' => 'configuration.form.wakeForFajrTime.label',
                 'attr' => [
                     'min' => 0,
                     'help' => 'configuration.form.wakeForFajrTime.title',
@@ -357,7 +327,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('urlQrCodeEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.urlQrCodeEnabled.label',
                 'attr' => [
                     'help' => 'configuration.form.urlQrCodeEnabled.title',
                 ]
@@ -371,7 +340,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('ninetyMinBetweenMaghibAndIsha', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.ninetyMinBetweenMaghibAndIsha.label',
                 'attr' => [
                     'help' => 'configuration.form.ninetyMinBetweenMaghibAndIsha.title',
                 ]
@@ -386,7 +354,6 @@ class ConfigurationType extends AbstractType
             ->add('randomHadithIntervalDisabling', ChoiceType::class, [
                 'required' => false,
                 'choices' => self::$randomHadithIntervalDisabling,
-                'label' => 'configuration.form.randomHadithIntervalDisabling.label',
                 'attr' => [
                     'help' => 'configuration.form.randomHadithIntervalDisabling.title',
                 ]
@@ -400,7 +367,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('temperatureEnabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.temperatureEnabled.label',
                 'attr' => [
                     'help' => 'configuration.form.temperatureEnabled.title',
                 ]
@@ -411,7 +377,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('timeDisplayFormat', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.timeDisplayFormat.label',
                 'choices' => ["24h" => "24", "12h" => "12"],
                 'constraints' => [
                     new Choice(['choices' => ["24", "12"]]),
@@ -424,7 +389,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('backgroundType', ChoiceType::class, [
                 'required' => true,
-                'label' => 'configuration.form.backgroundType.label',
                 'choices' => ["color" => "color", "motif" => "motif"],
                 'constraints' => [
                     new Choice(['choices' => ["color", "motif"]]),
@@ -438,13 +402,10 @@ class ConfigurationType extends AbstractType
                     new NotBlank(),
                 ]
             ])
-            ->add('backgroundColor', null, [
-                'label' => 'configuration.form.backgroundColor.label',
-            ])
+            ->add('backgroundColor', null)
             ->add('calendar')
             ->add('timeToDisplayMessage', IntegerType::class, [
                 'required' => false,
-                'label' => 'configuration.form.timeToDisplayMessage.label',
                 'attr' => [
                     'min' => 5,
                     'help' => 'configuration.form.timeToDisplayMessage.title',
@@ -452,7 +413,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('showNextAdhanCountdown', CheckboxType::class, [
                 'required' => false,
-                'label' => 'configuration.form.showNextAdhanCountdown.label'
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
@@ -479,7 +439,8 @@ class ConfigurationType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Configuration::class,
             'allow_extra_fields' => true,
-            'choice_translation_domain' => true
+            'choice_translation_domain' => true,
+            'label_format' => 'configuration.form.%name%.label'
         ));
     }
 

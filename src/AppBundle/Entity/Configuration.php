@@ -156,6 +156,11 @@ class Configuration
     /**
      * @var bool
      */
+    private $iqamaFullScreenCountdown = true;
+
+    /**
+     * @var bool
+     */
     private $blackScreenWhenPraying = true;
 
     /**
@@ -1354,6 +1359,24 @@ class Configuration
     public static function getAsrMethodChoices()
     {
         return self::ASR_METHOD_CHOICES;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIqamaFullScreenCountdown(): bool
+    {
+        return $this->iqamaFullScreenCountdown;
+    }
+
+    /**
+     * @param bool $iqamaFullScreenCountdown
+     * @return Configuration
+     */
+    public function setIqamaFullScreenCountdown(bool $iqamaFullScreenCountdown): Configuration
+    {
+        $this->iqamaFullScreenCountdown = $iqamaFullScreenCountdown;
+        return $this;
     }
 
 }

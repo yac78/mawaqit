@@ -387,27 +387,176 @@ var prayer = {
         }, 60 * prayer.oneMinute);
     },
     /**
+     * Check every second if iqama time is ok
+     * if ok we show iqama flashing for 30 sec
+     */
+    iqama: {
+        isFlashing: false,
+        getClassForFullScreenIqamaCountdown: function () {
+            prayer.confData.iqamaFullScreenCountdown === true ? 'main-iqama-countdown' : 'main';
+        },
+        initFlash: function () {
+            if (!prayer.confData.iqamaEnabled) {
+                return;
+            }
+            setInterval(function () {
+                if (!prayer.iqama.isFlashing) {
+                    var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
+                    $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
+
+                        if (!prayer.isJumua(currentPrayerIndex)) {
+                            date = new Date();
+                            currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
+
+                            if (date.getHours() === 0 && currentDateForPrayerTime.getHours() === 23) {
+                                currentDateForPrayerTime.setDate(currentDateForPrayerTime.getDate() - 1);
+                            }
+
+                            diffTimeInMiniute = Math.floor((date - currentDateForPrayerTime) / prayer.oneMinute);
+                            currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
+                            if (diffTimeInMiniute === currentPrayerWaitingTime) {
+                                prayer.iqama.isFlashing = true;
+                                // iqama flashing
+                                prayer.iqama.flash(currentPrayerIndex);
+                            }
+                        }
+                    });
+                }
+            }, prayer.oneSecond);
+        },
+        /**
+         * flash iqama for 30 sec
+         * @param {Number} currentPrayerIndex
+         */
+        flash: function (currentPrayerIndex) {
+
+            if (prayer.confData.iqamaBip === true) {
+                prayer.playSound();
+            }
+
+            prayer.switchLayer(prayer.iqama.getClassForFullScreenIqamaCountdown(), 'iqama');
+
+            // flash
+            var iqamaFlashInterval = setInterval(function () {
+                $(".iqama .image").toggleClass("hidden");
+            }, prayer.oneSecond);
+
+            // stop iqama flashing after defined time
+            setTimeout(function () {
+                prayer.iqama.stopFlashing(iqamaFlashInterval);
+            }, prayer.confData.iqamaDisplayTime * prayer.oneSecond);
+
+            // reset flag iqamaIsFlashing after one minute
+            setTimeout(function () {
+                prayer.iqama.isFlashing = false;
+            }, prayer.oneMinute);
+
+            // init douaa after prayer timeout
+            setTimeout(function () {
+                douaaSlider.show(currentPrayerIndex);
+            }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
+        },
+        stopFlashing: function (iqamaFlashInterval) {
+            $(".iqama").fadeOut(500, function () {
+                if (prayer.confData.blackScreenWhenPraying && !prayer.isMobile()) {
+                    $("#black-screen").fadeIn(500);
+                } else {
+                    $(".main").fadeIn(500);
+                }
+            });
+            clearInterval(iqamaFlashInterval);
+        },
+        /**
+         * Set iqama countdonwn
+         * @param {Number} currentPrayerIndex
+         */
+        countdown: function (currentPrayerIndex) {
+            var time = prayer.getTimeByIndex(currentPrayerIndex);
+            var waiting = $(".wait._" + currentPrayerIndex).text();
+            var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
+            var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
+            var currentElem = $(".wait._" + currentPrayerIndex);
+            var countdown;
+            $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
+                countdown = event.strftime('%M:%S');
+                $(this).text(countdown);
+                $('.main-iqama-countdown .countdown').text(countdown);
+            }).on('finish.countdown', function () {
+                $(currentElem).each(function (i, el) {
+                    $(el).text(waiting);
+                });
+            });
+        }
+    },
+    /**
      * Check every minute if athan time is ok
      * if adhan time is ok we flash time
      * after one minute we stop flashing and show adhan douaa
      */
-    adhanIsFlashing: false,
-    initAdhanFlash: function () {
-        setInterval(function () {
-            if (!prayer.adhanIsFlashing) {
-                var currentTime = dateTime.getCurrentTime()
-                $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-                    if (time === currentTime) {
-                        // if jumua time we don't flash adhan
-                        if (!prayer.isJumua(currentPrayerIndex)) {
-                            prayer.adhanIsFlashing = true;
-                            prayer.flashAdhan(currentPrayerIndex);
+    adhan: {
+        isFlashing: false,
+        initFlash: function () {
+            setInterval(function () {
+                if (!prayer.adhan.isFlashing) {
+                    var currentTime = dateTime.getCurrentTime()
+                    $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
+                        if (time === currentTime) {
+                            // if jumua time we don't flash adhan
+                            if (!prayer.isJumua(currentPrayerIndex)) {
+                                prayer.adhan.isFlashing = true;
+                                prayer.adhan.flash(currentPrayerIndex);
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            }, prayer.oneSecond);
+        },
+        /**
+         * Flash adhan, play sound if enabled
+         * @param {Number} currentPrayerIndex
+         */
+        flash: function (currentPrayerIndex) {
+            if (prayer.confData.azanVoiceEnabled === true) {
+                var file = "adhan-maquah.mp3";
+                if (currentPrayerIndex === 0) {
+                    var file = "adhan-maquah-fajr.mp3";
+                }
+                prayer.playSound(file);
+            } else if (prayer.confData.azanBip === true) {
+                prayer.playSound();
             }
-        }, prayer.oneSecond);
+
+            // init next hilight timeout
+            prayer.setNextTimeHilight(currentPrayerIndex);
+
+            // iqama countdown
+            if (prayer.confData.iqamaEnabled) {
+                prayer.iqama.countdown(currentPrayerIndex);
+            }
+
+            $(".top-content .content").addClass("hidden");
+
+            var adhanFlashInterval = setInterval(function () {
+                $(".top-content .adhan-flash").toggleClass("hidden");
+                $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
+                $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
+            }, prayer.oneSecond);
+
+            setTimeout(function () {
+                prayer.adhan.stopFlashing(adhanFlashInterval, currentPrayerIndex);
+            }, prayer.getAdhanFlashingTime(currentPrayerIndex));
+        },
+        stopFlashing: function (adhanFlashInterval, currentPrayerIndex) {
+            clearInterval(adhanFlashInterval);
+            prayer.adhan.isFlashing = false;
+            $(".top-content .content").removeClass("hidden");
+            $(".top-content .adhan-flash").addClass("hidden");
+            $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
+            $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
+            prayer.duaAfterAdhan.handle();
+        }
     },
+
     /**
      * cron for fajr waking up
      * @returns {undefined}
@@ -496,140 +645,6 @@ var prayer = {
         }
     },
     /**
-     * Check every second if iqama time is ok
-     * if ok we show iqama flashing for 30 sec
-     */
-    iqamaIsFlashing: false,
-    iqama: {
-        initFlash: function () {
-            if (!prayer.confData.iqamaEnabled) {
-                return;
-            }
-            setInterval(function () {
-                if (!prayer.iqamaIsFlashing) {
-                    var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
-                    $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-
-                        if (!prayer.isJumua(currentPrayerIndex)) {
-                            date = new Date();
-                            currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
-
-                            if (date.getHours() === 0 && currentDateForPrayerTime.getHours() === 23) {
-                                currentDateForPrayerTime.setDate(currentDateForPrayerTime.getDate() - 1);
-                            }
-
-                            diffTimeInMiniute = Math.floor((date - currentDateForPrayerTime) / prayer.oneMinute);
-                            currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
-                            if (diffTimeInMiniute === currentPrayerWaitingTime) {
-                                prayer.iqamaIsFlashing = true;
-                                // iqama flashing
-                                prayer.iqama.flash(currentPrayerIndex);
-                            }
-                        }
-                    });
-                }
-            }, prayer.oneSecond);
-        },
-        /**
-         * flash iqama for 30 sec
-         * @param {Number} currentPrayerIndex
-         */
-        flash: function (currentPrayerIndex) {
-
-            if (prayer.confData.iqamaBip === true) {
-                prayer.playSound();
-            }
-
-            prayer.switchLayer('main-iqama-countdown', 'iqama');
-
-            // flash
-            var iqamaFlashInterval = setInterval(function () {
-                $(".iqama .image").toggleClass("hidden");
-            }, prayer.oneSecond);
-
-            // stop iqama flashing after defined time
-            setTimeout(function () {
-                prayer.iqama.stopFlashing(iqamaFlashInterval);
-            }, prayer.confData.iqamaDisplayTime * prayer.oneSecond);
-
-            // reset flag iqamaIsFlashing after one minute
-            setTimeout(function () {
-                prayer.iqamaIsFlashing = false;
-            }, prayer.oneMinute);
-
-            // init douaa after prayer timeout
-            setTimeout(function () {
-                douaaSlider.show(currentPrayerIndex);
-            }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
-        },
-        stopFlashing: function (iqamaFlashInterval) {
-            $(".iqama").fadeOut(500, function () {
-                if (prayer.confData.blackScreenWhenPraying && !prayer.isMobile()) {
-                    $("#black-screen").fadeIn(500);
-                } else {
-                    $(".main").fadeIn(500);
-                }
-            });
-            clearInterval(iqamaFlashInterval);
-        },
-        /**
-         * Set iqama countdonwn
-         * @param {Number} currentPrayerIndex
-         */
-        countdown: function (currentPrayerIndex) {
-            var time = prayer.getTimeByIndex(currentPrayerIndex);
-            var waiting = $(".wait._" + currentPrayerIndex).text();
-            var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
-            var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
-            var currentElem = $(".wait._" + currentPrayerIndex);
-            var countdown;
-            $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
-                countdown = event.strftime('%M:%S');
-                $(this).text(countdown);
-                $('.main-iqama-countdown .countdown').text(countdown);
-            }).on('finish.countdown', function () {
-                $(currentElem).each(function (i, el) {
-                    $(el).text(waiting);
-                });
-            });
-        }
-    },
-    /**
-     * Flash adhan, play sound if enabled
-     * @param {Number} currentPrayerIndex
-     */
-    flashAdhan: function (currentPrayerIndex) {
-        if (prayer.confData.azanVoiceEnabled === true) {
-            var file = "adhan-maquah.mp3";
-            if (currentPrayerIndex === 0) {
-                var file = "adhan-maquah-fajr.mp3";
-            }
-            this.playSound(file);
-        } else if (prayer.confData.azanBip === true) {
-            this.playSound();
-        }
-
-        // init next hilight timeout
-        prayer.setNextTimeHilight(currentPrayerIndex);
-
-        // iqama countdown
-        if (prayer.confData.iqamaEnabled) {
-            prayer.iqama.countdown(currentPrayerIndex);
-        }
-
-        $(".top-content .content").addClass("hidden");
-
-        var adhanFlashInterval = setInterval(function () {
-            $(".top-content .adhan-flash").toggleClass("hidden");
-            $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
-            $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
-        }, prayer.oneSecond);
-
-        setTimeout(function () {
-            prayer.stopAdhanFlashing(adhanFlashInterval, currentPrayerIndex);
-        }, prayer.getAdhanFlashingTime(currentPrayerIndex));
-    },
-    /**
      *  timeout for stopping time flashing
      *  @param {integer} currentPrayerIndex
      */
@@ -660,15 +675,6 @@ var prayer = {
         $('.' + layerToHide).fadeOut(500, function () {
             $('.' + layerToShow).fadeIn(500);
         });
-    },
-    stopAdhanFlashing: function (adhanFlashInterval, currentPrayerIndex) {
-        clearInterval(adhanFlashInterval);
-        prayer.adhanIsFlashing = false;
-        $(".top-content .content").removeClass("hidden");
-        $(".top-content .adhan-flash").addClass("hidden");
-        $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
-        $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
-        prayer.duaAfterAdhan.handle();
     },
     /**
      * @return boolean
@@ -755,13 +761,13 @@ var prayer = {
             prayer.switchLayer('main', 'adhan');
         },
         hideAdhanDua: function () {
-            prayer.switchLayer('adhan', 'main-iqama-countdown');
+            prayer.switchLayer('adhan', prayer.iqama.getClassForFullScreenIqamaCountdown());
         },
         showHadith: function () {
-            prayer.switchLayer('main-iqama-countdown', 'douaa-between-adhan-iqama');
+            prayer.switchLayer(prayer.iqama.getClassForFullScreenIqamaCountdown(), 'douaa-between-adhan-iqama');
         },
         hideHadith: function () {
-            prayer.switchLayer('douaa-between-adhan-iqama', 'main-iqama-countdown');
+            prayer.switchLayer('douaa-between-adhan-iqama', prayer.iqama.getClassForFullScreenIqamaCountdown());
         },
         /**
          * show douaa after adhan flash finish
@@ -779,12 +785,12 @@ var prayer = {
                         setTimeout(function () {
                             prayer.duaAfterAdhan.hideHadith();
                         }, 30 * prayer.oneSecond);
-                    }, 10 * prayer.oneSecond);
+                    }, 30 * prayer.oneSecond);
                 }, 30 * prayer.oneSecond);
             }
 
             if (prayer.confData.duaAfterAzanEnabled === false) {
-                prayer.switchLayer('main', 'main-iqama-countdown');
+                prayer.switchLayer('main', prayer.iqama.getClassForFullScreenIqamaCountdown());
             }
         }
     },
@@ -1065,9 +1071,9 @@ var prayer = {
                         randomHadith.get();
                         setTimeout(function () {
                             randomHadith.hide();
-                            prayer.flashAdhan(2);
+                            prayer.adhan.flash(2);
                             setTimeout(function () {
-                                prayer.stopAdhanFlashing();
+                                prayer.adhan.stopFlashing();
                                 // flash iqama
                                 prayer.confData.iqamaDisplayTime = 5;
                                 prayer.iqama.flash(4);

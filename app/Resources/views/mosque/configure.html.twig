@@ -303,11 +303,17 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                {{ form_widget(form.iqamaEnabled) }}
+                                {{ form_row(form.iqamaEnabled) }}
                             </div>
                             <div class="col-md-3 iqama-settings">
-                                {{ form_widget(form.iqamaBip) }}
+                                {{ form_row(form.iqamaBip) }}
                             </div>
+                            <div class="col-md-3 iqama-settings">
+                                {{ form_row(form.iqamaFullScreenCountdown) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-3 iqama-settings">
                                 {{ form_row(form.iqamaDisplayTime) }}
                             </div>
@@ -315,7 +321,7 @@
 
                         <div class="iqama-settings">
                             {{ form_label(form.waitingTimes) }}
-                            <div class="row">
+                            <div class="row mt-1">
                                 <div class="col-md-2">
                                     {{ form_row(form.waitingTimes.fajr) }}
                                 </div>

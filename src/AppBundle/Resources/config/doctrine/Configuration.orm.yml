@@ -62,6 +62,10 @@ AppBundle\Entity\Configuration:
             type: boolean
         iqamaEnabled:
             type: boolean
+        iqamaFullScreenCountdown:
+            type: boolean
+        iqamaDisplayTime:
+            type: smallint
         blackScreenWhenPraying:
             type: boolean
         randomHadithEnabled:
@@ -90,7 +94,7 @@ AppBundle\Entity\Configuration:
             nullable: true
         longitude:
             type: float
-            nullable: true            
+            nullable: true
         timezone:
             type: smallint
         dst:
@@ -115,8 +119,6 @@ AppBundle\Entity\Configuration:
             nullable: true
         wakeAzanVoice:
             type: string
-        iqamaDisplayTime:
-            type: smallint
         smallScreen:
             type: boolean            
         backgroundColor:
