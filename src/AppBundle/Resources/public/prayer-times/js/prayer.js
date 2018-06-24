@@ -393,7 +393,7 @@ var prayer = {
     iqama: {
         isFlashing: false,
         getClassForFullScreenIqamaCountdown: function () {
-            prayer.confData.iqamaFullScreenCountdown === true ? 'main-iqama-countdown' : 'main';
+            return prayer.confData.iqamaFullScreenCountdown === true ? 'main-iqama-countdown' : 'main';
         },
         initFlash: function () {
             if (!prayer.confData.iqamaEnabled) {
