@@ -393,7 +393,12 @@ var prayer = {
     iqama: {
         isFlashing: false,
         getClassForFullScreenIqamaCountdown: function () {
-            return prayer.confData.iqamaFullScreenCountdown === true ? 'main-iqama-countdown' : 'main';
+
+            if(prayer.confData.iqamaEnabled === true && prayer.confData.iqamaFullScreenCountdown === true ){
+                return 'main-iqama-countdown';
+            }
+
+            return 'main';
         },
         initFlash: function () {
             if (!prayer.confData.iqamaEnabled) {
@@ -785,7 +790,7 @@ var prayer = {
                         setTimeout(function () {
                             prayer.duaAfterAdhan.hideHadith();
                         }, 30 * prayer.oneSecond);
-                    }, 30 * prayer.oneSecond);
+                    }, 10 * prayer.oneSecond);
                 }, 30 * prayer.oneSecond);
             }
 

@@ -420,7 +420,7 @@ small {
 }
 
 .main-iqama-countdown .text {
-    font-size: 1200%;
+    font-size: 1100%;
     margin-top: 50px;
 }
 
@@ -428,6 +428,12 @@ small {
     position: absolute;
     left: 0;
     right: 0;
-    font-size: 3500%;
+    font-size: 3200%;
     color: #f0ad4e;
+}
+
+.adhan .content, .douaa-between-adhan-iqama .content, .jumua-dhikr-reminder .content {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
