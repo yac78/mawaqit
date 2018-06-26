@@ -220,3 +220,14 @@ small{
 .white-days {
     color: #e74c3c;
 }
+
+.main-iqama-countdown .text {
+    font-size: 300%;
+    margin-top: 50px;
+}
+
+.main-iqama-countdown .countdown {
+    font-size: 800%;
+    margin-top: 50px;
+    color: #f0ad4e;
+}

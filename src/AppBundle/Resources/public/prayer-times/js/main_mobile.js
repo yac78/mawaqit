@@ -19,7 +19,7 @@ prayer.setTimes();
 prayer.nextPrayerCountdown();
 prayer.setWaitings();
 prayer.initNextTimeHilight();
-prayer.adhan.initAdhanFlash();
+prayer.adhan.initFlash();
 prayer.iqama.initFlash();
 prayer.initCronHandlingTimes();
 prayer.setSpecialTimes();
