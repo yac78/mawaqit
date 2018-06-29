@@ -432,7 +432,7 @@ small {
     color: #f0ad4e;
 }
 
-.adhan .content, .douaa-between-adhan-iqama .content, .jumua-dhikr-reminder .content {
+.dua-content {
     display: flex;
     align-items: center;
     height: 100%;

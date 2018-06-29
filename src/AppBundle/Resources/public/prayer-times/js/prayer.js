@@ -981,7 +981,7 @@ var prayer = {
             }
 
             $(".top-content .header").css("font-size", "650%");
-            $(".content .ar").css("font-size", "120%");
+            $(".top-content .content .ar").css("font-size", "120%");
             $(".prayer-text").css("line-height", "160%");
             $(".adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder").css("font-size", "140%");
         }
