@@ -96,7 +96,9 @@ AppBundle\Entity\Configuration:
             type: float
             nullable: true
         timezone:
-            type: smallint
+            type: decimal
+            scale: 2
+            precision: 4
         dst:
             type: smallint
         dstSummerDate:
