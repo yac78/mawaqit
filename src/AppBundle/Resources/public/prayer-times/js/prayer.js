@@ -431,6 +431,9 @@ var prayer = {
                 prayer.playSound();
             }
 
+            $(".main-iqama-countdown").addClass("hidden");
+            $(".top-content .content").removeClass("hidden");
+
             prayer.switchLayer('main', 'iqama');
 
             // flash
@@ -476,12 +479,12 @@ var prayer = {
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
-                $(this).text(countdown);
                 $('.main-iqama-countdown .countdown').text(countdown);
+                if (prayer.confData.iqamaFullScreenCountdown === false) {
+                    $(this).text(countdown);
+                }
             }).on('finish.countdown', function () {
-                $(currentElem).each(function (i, el) {
-                    $(el).text(waiting);
-                });
+                $(currentElem).text(waiting);
             });
         }
     },
@@ -546,8 +549,14 @@ var prayer = {
         stopFlashing: function (adhanFlashInterval, currentPrayerIndex) {
             clearInterval(adhanFlashInterval);
             prayer.adhan.isFlashing = false;
-            $(".top-content .content").removeClass("hidden");
             $(".top-content .adhan-flash").addClass("hidden");
+
+            if (prayer.confData.iqamaEnabled && prayer.confData.iqamaFullScreenCountdown === true) {
+                $(".main-iqama-countdown").removeClass("hidden");
+            } else {
+                $(".top-content .content").removeClass("hidden");
+            }
+
             $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
             $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
             prayer.duaAfterAdhan.handle();
@@ -784,10 +793,6 @@ var prayer = {
                         }, 30 * prayer.oneSecond);
                     }, 10 * prayer.oneSecond);
                 }, 30 * prayer.oneSecond);
-            }
-
-            if (prayer.confData.duaAfterAzanEnabled === false) {
-                prayer.switchLayer('main', 'content');
             }
         }
     },
