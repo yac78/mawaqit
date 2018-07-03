@@ -28,11 +28,6 @@
     <div class="bottom">{{ 'power-off-phones'|trans }}</div>
 </div>
 
-<div class="main-iqama-countdown display-none">
-    <div class="text">{{ 'iqama_in'|trans }}</div>
-    <div class="countdown"></div>
-</div>
-
 <!-- Douaa after prayer slider -->
 <div class="adhkar-after-prayer display-none">
     {% if mosque.configuration.smallScreen %}
@@ -86,6 +81,12 @@
             </div>
         {% endif %}
         <div class="header">{{ mosque.title }}</div>
+
+        <!-- Adhan flash -->
+        <div class="main-iqama-countdown hidden">
+            <div class="text">{{ 'iqama_in'|trans }}</div>
+            <div class="countdown"></div>
+        </div>
 
         <!-- Adhan flash -->
         <div class="adhan-flash hidden">

@@ -483,7 +483,8 @@ association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
     vos horaires en heure d'hiver sur toute l'année. Le logiciel s'occupera du passage à l'heure d'été en fonction de vos choix dans les paramètres
-    régionnaux.
+    régionnaux. <br>
+    Les horaires doivent être au format 24h exemple 22:00 et non pas 10:00 pour 10h du soir.
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
 theme_settings: Thème

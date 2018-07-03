@@ -415,21 +415,14 @@ small {
     color: #e74c3c;
 }
 
-.main-iqama-countdown {
-    position: relative;
-}
-
 .main-iqama-countdown .text {
-    font-size: 1100%;
-    margin-top: 50px;
+    font-size: 800%;
 }
 
 .main-iqama-countdown .countdown {
-    position: absolute;
-    left: 0;
-    right: 0;
-    font-size: 3200%;
+    font-size: 2300%;
     color: #f0ad4e;
+    line-height: 100%;
 }
 
 .dua-content {

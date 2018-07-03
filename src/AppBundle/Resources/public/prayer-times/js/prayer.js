@@ -392,14 +392,6 @@ var prayer = {
      */
     iqama: {
         isFlashing: false,
-        getClassForFullScreenIqamaCountdown: function () {
-
-            if(prayer.confData.iqamaEnabled === true && prayer.confData.iqamaFullScreenCountdown === true ){
-                return 'main-iqama-countdown';
-            }
-
-            return 'main';
-        },
         initFlash: function () {
             if (!prayer.confData.iqamaEnabled) {
                 return;
@@ -439,7 +431,7 @@ var prayer = {
                 prayer.playSound();
             }
 
-            prayer.switchLayer(prayer.iqama.getClassForFullScreenIqamaCountdown(), 'iqama');
+            prayer.switchLayer('main', 'iqama');
 
             // flash
             var iqamaFlashInterval = setInterval(function () {
@@ -766,13 +758,13 @@ var prayer = {
             prayer.switchLayer('main', 'adhan');
         },
         hideAdhanDua: function () {
-            prayer.switchLayer('adhan', prayer.iqama.getClassForFullScreenIqamaCountdown());
+            prayer.switchLayer('adhan', 'main');
         },
         showHadith: function () {
-            prayer.switchLayer(prayer.iqama.getClassForFullScreenIqamaCountdown(), 'douaa-between-adhan-iqama');
+            prayer.switchLayer('main', 'douaa-between-adhan-iqama');
         },
         hideHadith: function () {
-            prayer.switchLayer('douaa-between-adhan-iqama', prayer.iqama.getClassForFullScreenIqamaCountdown());
+            prayer.switchLayer('douaa-between-adhan-iqama', 'main');
         },
         /**
          * show douaa after adhan flash finish
@@ -795,7 +787,7 @@ var prayer = {
             }
 
             if (prayer.confData.duaAfterAzanEnabled === false) {
-                prayer.switchLayer('main', prayer.iqama.getClassForFullScreenIqamaCountdown());
+                prayer.switchLayer('main', 'content');
             }
         }
     },
