@@ -604,30 +604,32 @@ var prayer = {
          * init cron
          */
         init: function () {
-            setInterval(function () {
-                var date = new Date();
-                if (date.getDay() === 5) {
-                    var currentTime = dateTime.getCurrentTime(false);
-                    // show reminder
-                    if (currentTime === prayer.getJumuaTime()) {
+            if (prayer.confData.noJumua === false) {
+                setInterval(function () {
+                    var date = new Date();
+                    if (date.getDay() === 5) {
+                        var currentTime = dateTime.getCurrentTime(false);
+                        // show reminder
+                        if (currentTime === prayer.getJumuaTime()) {
 
-                        // hilight asr
-                        prayer.setNextTimeHilight(1);
+                            // hilight asr
+                            prayer.setNextTimeHilight(1);
 
-                        if (prayer.confData.jumuaDhikrReminderEnabled === true) {
-                            prayer.jumuaHandler.showReminder();
-                            setTimeout(function () {
-                                prayer.jumuaHandler.hideReminder();
-                            }, prayer.confData.jumuaTimeout * prayer.oneMinute);
-                        } else if (prayer.confData.jumuaBlackScreenEnabled === true) {
-                            prayer.jumuaHandler.showBlackScreen();
-                            setTimeout(function () {
-                                prayer.jumuaHandler.hideBlackScreen();
-                            }, prayer.confData.jumuaTimeout * prayer.oneMinute);
+                            if (prayer.confData.jumuaDhikrReminderEnabled === true) {
+                                prayer.jumuaHandler.showReminder();
+                                setTimeout(function () {
+                                    prayer.jumuaHandler.hideReminder();
+                                }, prayer.confData.jumuaTimeout * prayer.oneMinute);
+                            } else if (prayer.confData.jumuaBlackScreenEnabled === true) {
+                                prayer.jumuaHandler.showBlackScreen();
+                                setTimeout(function () {
+                                    prayer.jumuaHandler.hideBlackScreen();
+                                }, prayer.confData.jumuaTimeout * prayer.oneMinute);
+                            }
                         }
                     }
-                }
-            }, prayer.oneMinute);
+                }, prayer.oneMinute);
+            }
         },
         showReminder: function () {
             $(".main").fadeOut(1000, function () {
@@ -857,7 +859,7 @@ var prayer = {
      */
     isJumua: function (currentPrayerIndex) {
         var date = new Date();
-        return date.getDay() === 5 && currentPrayerIndex === 1;
+        return prayer.confData.noJumua === false && date.getDay() === 5 && currentPrayerIndex === 1;
     },
     /**
      * @param {string} time
