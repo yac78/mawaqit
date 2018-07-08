@@ -55,30 +55,31 @@ class MosqueController extends Controller
     {
         $mosque = new Mosque();
         $form = $this->createForm(MosqueType::class, $mosque);
-        $form->handleRequest($request);
 
         try {
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $mosque->setUser($this->getUser());
-                $em->persist($mosque);
-                $em->flush();
-
-                // send mail if mosque
-                if ($mosque->isMosque()) {
-                    $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
-                    $this->get("app.mail_service")->mosqueCreated($mosque, $totalMosqueCount);
-                }
-
-                $this->addFlash('success', "form.create.success");
-                return $this->redirectToRoute('mosque_index');
-            }
-
+            $form->handleRequest($request);
         } catch (GooglePositionException $exc) {
             $form->addError(new FormError($this->get("translator")->trans("form.configure.geocode_error", [
                 "%address%" => $mosque->getLocalisation()
             ])));
         }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $mosque->setUser($this->getUser());
+            $em->persist($mosque);
+            $em->flush();
+
+            // send mail if mosque
+            if ($mosque->isMosque()) {
+                $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
+                $this->get("app.mail_service")->mosqueCreated($mosque, $totalMosqueCount);
+            }
+
+            $this->addFlash('success', "form.create.success");
+            return $this->redirectToRoute('mosque_index');
+        }
+
 
         return $this->render('mosque/create.html.twig', [
             'form' => $form->createView(),
@@ -97,21 +98,23 @@ class MosqueController extends Controller
         }
 
         $form = $this->createForm(MosqueType::class, $mosque);
-        $form->handleRequest($request);
-        try {
-            if ($form->isSubmitted() && $form->isValid()) {
-                $mosque = $form->getData();
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($mosque);
-                $em->flush();
-                $this->addFlash('success', "form.edit.success");
 
-                return $this->redirectToRoute('mosque_index');
-            }
+        try {
+            $form->handleRequest($request);
         } catch (GooglePositionException $exc) {
             $form->addError(new FormError($this->get("translator")->trans("form.configure.geocode_error", [
                 "%address%" => $mosque->getLocalisation()
             ])));
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mosque = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($mosque);
+            $em->flush();
+            $this->addFlash('success', "form.edit.success");
+
+            return $this->redirectToRoute('mosque_index');
         }
         return $this->render('mosque/edit.html.twig', [
             'mosque' => $mosque,

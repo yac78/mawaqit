@@ -172,6 +172,10 @@ class MosqueType extends AbstractType
             ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));
     }
 
+    /**
+     * @param FormEvent $event
+     * @throws \AppBundle\Exception\GooglePositionException
+     */
     public function onPostSetData(FormEvent $event)
     {
         /** @var Mosque $mosque */

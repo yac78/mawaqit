@@ -2,7 +2,6 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Exception\GooglePositionException;
 use Doctrine\ORM\EntityManager;
