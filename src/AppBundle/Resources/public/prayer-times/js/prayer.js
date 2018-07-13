@@ -210,9 +210,9 @@ var prayer = {
     },
     getWaitingByIndex: function (index) {
         var waiting = this.getWaitingTimes()[index];
-        // if waiting fixed to < 3 min we adjust it to 3 min for adhan and dua`a
-        if (waiting < 3) {
-            waiting = 3;
+        // if waiting fixed to < 2 min we adjust it to 2 min for adhan and dua`a
+        if (waiting <= 2) {
+            waiting = 2;
         }
         return waiting;
     },
@@ -559,7 +559,7 @@ var prayer = {
 
             $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
             $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
-            prayer.duaAfterAdhan.handle();
+            prayer.duaAfterAdhan.handle(currentPrayerIndex);
         }
     },
 
@@ -659,8 +659,8 @@ var prayer = {
     getAdhanFlashingTime: function (currentPrayerIndex) {
 
         // if short waiting
-        if (prayer.getWaitingByIndex(currentPrayerIndex) === 3) {
-            return prayer.oneSecond * 100;
+        if (prayer.getWaitingByIndex(currentPrayerIndex) === 2) {
+            return prayer.oneSecond * 90;
         }
 
         // if azan enablded
@@ -778,23 +778,27 @@ var prayer = {
             prayer.switchLayer('douaa-between-adhan-iqama', 'main');
         },
         /**
+         * @param integer currentPrayerIndex
          * show douaa after adhan flash finish
          * show douaa for configured time
          * show hadith to remeber importance of douaa between adhan and iqama
          */
-        handle: function () {
+        handle: function (currentPrayerIndex) {
             if (prayer.confData.duaAfterAzanEnabled === true) {
+                var iqamaWaiting = prayer.getWaitingByIndex(currentPrayerIndex);
                 prayer.duaAfterAdhan.showAdhanDua();
                 setTimeout(function () {
                     prayer.duaAfterAdhan.hideAdhanDua();
-                    // show hadith between adhan and iqama
-                    setTimeout(function () {
-                        prayer.duaAfterAdhan.showHadith();
+                    if(iqamaWaiting > 2){
+                        // show hadith between adhan and iqama
                         setTimeout(function () {
-                            prayer.duaAfterAdhan.hideHadith();
-                        }, 30 * prayer.oneSecond);
-                    }, 10 * prayer.oneSecond);
-                }, 30 * prayer.oneSecond);
+                            prayer.duaAfterAdhan.showHadith();
+                            setTimeout(function () {
+                                prayer.duaAfterAdhan.hideHadith();
+                            }, 30 * prayer.oneSecond);
+                        }, 10 * prayer.oneSecond);
+                    }
+                },( iqamaWaiting > 2 ? 30 : 20) * prayer.oneSecond);
             }
         }
     },
