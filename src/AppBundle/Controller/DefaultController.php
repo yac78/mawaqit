@@ -20,7 +20,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        if($this->get('app.request_service')->isLocal()){
+        if ($this->get('app.request_service')->isLocal()) {
             throw new NotFoundHttpException();
         }
 
@@ -132,17 +132,16 @@ class DefaultController extends Controller
      */
     public function searchAjaxAction(Request $request)
     {
-        $term = $request->query->get("term");
-        if (empty($term)) {
-            return new JsonResponse();
+        $mosques = [];
+        $query = $request->query->get("term");
+        if (!empty($query)) {
+            $em = $this->getDoctrine()->getManager();
+            $mosques = $em->getRepository("AppBundle:Mosque")
+                ->publicSearch($query)
+                ->select("m.id, CONCAT(m.name, ' - ',  COALESCE(m.address, ''), ' ',  m.city,' ', m.zipcode, ' ', m.country, ' > Voir') AS label, m.slug")
+                ->getQuery()
+                ->getArrayResult();
         }
-
-        $em = $this->getDoctrine()->getManager();
-        $mosques = $em->getRepository("AppBundle:Mosque")
-            ->publicSearch($term)
-            ->select("m.id, CONCAT(m.name, ' - ',  COALESCE(m.address, ''), ' ',  m.city,' ', m.zipcode, ' ', m.country, ' > Voir') AS label, m.slug")
-            ->getQuery()
-            ->getArrayResult();
 
         return new JsonResponse($mosques);
     }

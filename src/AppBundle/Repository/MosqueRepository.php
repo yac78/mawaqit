@@ -97,24 +97,29 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 
 
     /**
-     * @param string $search
+     * @param string $query
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function publicSearch($search)
+    function publicSearch($query)
     {
         $qb = $this->createQueryBuilder("m");
+        if (!empty($query)) {
 
-        if (!empty($search)) {
+            $query = preg_split("/\s+/", trim($query));
+
             $qb->where("m.type = 'mosque'")
                 ->andWhere("m.status = :status")
-                ->andwhere("m.name LIKE :word "
-                    . "OR m.associationName LIKE :word "
-                    . "OR m.address LIKE :word "
-                    . "OR m.city LIKE :word "
-                    . "OR m.zipcode LIKE :word "
-                    . "OR m.country LIKE :word "
-                )->setParameter(":word", "%$search%")
                 ->setParameter(':status', Mosque::STATUS_VALIDATED);
+
+            foreach ($query as $key => $keyword) {
+                $qb->andwhere("m.name LIKE :keyword$key "
+                    . "OR m.associationName LIKE :keyword$key "
+                    . "OR m.address LIKE :keyword$key "
+                    . "OR m.city LIKE :keyword$key "
+                    . "OR m.zipcode LIKE :keyword$key "
+                    . "OR m.country LIKE :keyword$key "
+                )->setParameter(":keyword$key", "%$keyword%");
+            }
         }
 
         return $qb;
@@ -228,7 +233,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
      */
     function getCitiesByCountry($country)
     {
-        $cities =  $this->createQueryBuilder("m")
+        $cities = $this->createQueryBuilder("m")
             ->select("m.city")
             ->distinct("m.city")
             ->where("m.country = :country")
@@ -239,7 +244,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getScalarResult();
 
-        return  array_column($cities, 'city');
+        return array_column($cities, 'city');
     }
 
     /**

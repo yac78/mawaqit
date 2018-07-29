@@ -54,19 +54,16 @@ class MosqueService
     }
 
     /**
-     * @param $word
+     * @param $query
      * @return array
      */
-    public function searchApi($word)
+    public function searchApi($query)
     {
-        if (strlen($word) > 1) {
-            $mosques = $this->em->getRepository("AppBundle:Mosque")
-                ->publicSearch($word)
-                ->getQuery()
-                ->getResult();
+        $mosques = $this->em->getRepository("AppBundle:Mosque")
+            ->publicSearch($query)
+            ->getQuery()
+            ->getResult();
 
-            return $this->serializer->normalize($mosques, 'json', ["groups" => ["search"]]);
-        }
-        return [];
+        return $this->serializer->normalize($mosques, 'json', ["groups" => ["search"]]);
     }
 }
