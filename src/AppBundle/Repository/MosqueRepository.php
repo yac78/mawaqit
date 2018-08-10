@@ -80,7 +80,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
         }
 
         // By default not show homes for admin user
-        if (empty($search["userId"]) && $user->isAdmin() && empty($search["type"])) {
+        if (empty($search["userId"]) && $user->getEmail() === "fb.hp.mawaqit@gmail.com" && empty($search["type"])) {
             $qb->andWhere("m.type = :type")
                 ->setParameter(":type", "mosque");
         }

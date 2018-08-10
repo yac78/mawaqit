@@ -48,6 +48,15 @@ class MosqueController extends Controller
             throw new NotFoundHttpException();
         }
 
+//        $savedLocal = $request->cookies->get('saved_local');
+//        if($savedLocal !== $request->getLocale()){
+//            $request->cookies->set('saved_local', $request->getLocale());
+//            return $this->forward("AppBundle:Mosque:mosque", [
+//                "slug" =>  $mosque->getSlug(),
+//                "_local" =>  $request->getLocale(),
+//            ]);
+//        }
+
         $mobileDetect = $this->get('mobile_detect.mobile_detector');
         $view = $request->query->get("view");
         $template = 'mosque';
@@ -59,8 +68,10 @@ class MosqueController extends Controller
             $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
         }
 
+
         return $this->render("mosque/$template.html.twig", [
             'mosque' => $mosque,
+            'languages' => $this->getParameter('languages'),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
             'config' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),

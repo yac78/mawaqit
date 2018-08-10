@@ -8,16 +8,18 @@
     <div class="col-md-12"><p><span style="color: red">*</span> {{ 'required'|trans }}</p></div>
     <div class="col-md-6">
         {% if mosque is defined %}
-            {{ form_label(form.slug) }}
+            {% if isNotLocal() %}
 
-            <div class="input-group">
-                <span class="input-group-addon">https:{{ url('homepage', {}, true) }}</span>
-                {{ form_widget(form.slug) }}
-            </div>
+                {{ form_label(form.slug) }}
+                <div class="input-group">
+                    <span class="input-group-addon">https:{{ url('homepage', {}, true) }}</span>
+                    {{ form_widget(form.slug) }}
+                </div>
 
-            <div class="alert alert-warning mt-1" role="alert">
-                <div>{{ 'mosque.alert.slugChange'|trans }}</div>
-            </div>
+                <div class="alert alert-warning mt-1" role="alert">
+                    <div>{{ 'mosque.alert.slugChange'|trans }}</div>
+                </div>
+            {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
                 {{ form_row(form.user) }}

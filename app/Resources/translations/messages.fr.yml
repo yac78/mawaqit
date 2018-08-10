@@ -376,6 +376,7 @@ search: Recherche
 ar: Arabe
 fr: Français
 en: Anglais  
+tr: Turque
 ph: Phonétique
 both: Arabe & Français
 dst-auto: Auto (Dépend du réglage système du raspberry, France par défaut)

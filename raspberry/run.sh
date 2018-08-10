@@ -1,21 +1,15 @@
 #!/bin/bash
 
-localUrl=http://localhost/mosquee/fr
-
-if [ -f ~/Desktop/local_site.txt ]; then
-    localUrl=`cat ~/Desktop/local_site.txt`
+if [ -f ~/Desktop/online_site.txt ]; then
+    url=`cat ~/Desktop/online_site.txt`
 fi
 
-if [ -f ~/Desktop/online_site.txt ]; then  
-    onlineUrl=`cat ~/Desktop/online_site.txt`
-fi
+sleep 10;
 
-wget -q --spider http://google.com
+wget -q --spider $url
 
-if [ $? -eq 0 ]; then
-    url=$onlineUrl
-else
-    url=$localUrl
+if [ $? -ne 0 ]; then
+    url=http://mawaqit.local/mosquee
 fi
 
 chromium-browser --app=$url --start-fullscreen --start-maximized

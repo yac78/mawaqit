@@ -53,7 +53,7 @@
         <div class="text">
             <div></div>
         </div>
-        <div class="time-bottom {{ app.request.locale == 'ar' ? 'ar' : '' }}" ></div>
+        <div class="time-bottom {{ app.request.locale == 'ar' ? 'ar' : '' }}"></div>
         <div class="next-prayer {{ app.request.locale == 'ar' ? 'ar' : '' }}">
             {{ 'next_prayer'|trans }}
             <div class="countdown"></div>
@@ -71,6 +71,12 @@
         {% if isLocal() %}
             <div class="btn-settings" title="{{ 'form.configure.action'|trans }}">
                 <a href="{{ path('mosque_index', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
+            </div>
+
+            <div class="languages">
+                {% for lang in languages %}
+                    <a class="badge" href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}" title="{{ lang|trans }}">{{ lang }}</a>
+                {% endfor %}
             </div>
         {% endif %}
 
@@ -133,7 +139,7 @@
                 <div class="time"></div>
                 <div class="date">
                     {% if mosque.configuration.hijriDateEnabled %}
-                        <div class="hijriDate"><span></span> <img  class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}"alt=""></div>
+                        <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
                     {% endif %}
                     <div class="gregorianDate"></div>
                 </div>
@@ -185,7 +191,7 @@
     <!-- footer container -->
     <div class="footer">
         {% if isNotLocal() %}
-           {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
+            {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
         {% endif %}
 
         {% if isLocal() and mosque.site is not empty %}
@@ -193,9 +199,9 @@
         {% endif %}
 
         <div class="{{ not mosque.configuration.footer ? 'hidden' : '' }}">
-            {% if url is defined%}
+            {% if url is defined %}
                 <div class="site">
-                   {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
+                    {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
                 </div>
             {% endif %}
 
@@ -210,7 +216,7 @@
                 <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
             </div>
             {% if mosque.configuration.urlQrCodeEnabled %}
-                <div class="qr-code {{ url is defined ? '' : 'hidden' }}" data-url="{{ url|default('')}}">
+                <div class="qr-code {{ url is defined ? '' : 'hidden' }}" data-url="{{ url|default('') }}">
                     <div id="qr-code"></div>
                 </div>
             {% endif %}

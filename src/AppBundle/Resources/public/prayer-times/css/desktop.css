@@ -356,6 +356,17 @@ small {
     font-size: 220%;
 }
 
+.languages {
+    position: fixed;
+    top: 50px;
+    left: 5px;
+}
+
+.languages a{
+    display: block;
+    margin-top: 5px;
+}
+
 .btn-settings a {
     color: #777777;
 }
