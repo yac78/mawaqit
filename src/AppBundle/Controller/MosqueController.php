@@ -86,7 +86,7 @@ class MosqueController extends Controller
             $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
         }
 
-        $cookie = new Cookie('saved_locale', $request->getLocale(), strtotime('now + 100 years'));
+        $cookie = new Cookie('saved_locale', $request->getLocale(), time() + (3600 * 24 * 356 * 100)); // expire in 100 years ;)
         $response = new Response();
         $response->headers->setCookie($cookie);
         return $this->render("mosque/$template.html.twig", [
