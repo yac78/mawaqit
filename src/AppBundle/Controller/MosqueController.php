@@ -6,21 +6,21 @@ use AppBundle\Entity\Mosque;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class MosqueController extends Controller
 {
 
     /**
      * @deprecated
-     * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|ph"})
+     * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|tr"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     * @param Mosque $mosque
+     * @return Response
      */
     public function mosqueDeprected1Action(Mosque $mosque)
     {
@@ -29,8 +29,10 @@ class MosqueController extends Controller
 
     /**
      * @deprecated
-     * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|ph"})
+     * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|tr"})
+     * @param Mosque $mosque
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     * @return Response
      */
     public function mosqueDeprected2Action(Mosque $mosque)
     {
@@ -38,24 +40,40 @@ class MosqueController extends Controller
     }
 
     /**
+     * @Route("/{slug}", options={"i18n"="false"})
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     * @param Request $request
+     * @param Mosque $mosque
+     * @return Response
+     */
+    public function mosqueWithoutLocalAction(Request $request, Mosque $mosque)
+    {
+        $locale = 'fr';
+        $savedLocal = $request->cookies->get('saved_locale');
+        if ($savedLocal) {
+            $locale = $savedLocal;
+        }
+
+        return $this->forward("AppBundle:Mosque:mosque", [
+            "slug" => $mosque->getSlug(),
+            "_locale" => $locale
+        ]);
+    }
+
+
+    /**
      * @Route("/{slug}", name="mosque")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     * @param Request $request
+     * @param Mosque $mosque
+     * @return Response
      */
     public function mosqueAction(Request $request, Mosque $mosque)
     {
 
-        if(!$mosque->isValidated()){
+        if (!$mosque->isValidated()) {
             throw new NotFoundHttpException();
         }
-
-//        $savedLocal = $request->cookies->get('saved_local');
-//        if($savedLocal !== $request->getLocale()){
-//            $request->cookies->set('saved_local', $request->getLocale());
-//            return $this->forward("AppBundle:Mosque:mosque", [
-//                "slug" =>  $mosque->getSlug(),
-//                "_local" =>  $request->getLocale(),
-//            ]);
-//        }
 
         $mobileDetect = $this->get('mobile_detect.mobile_detector');
         $view = $request->query->get("view");
@@ -68,7 +86,9 @@ class MosqueController extends Controller
             $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
         }
 
-
+        $cookie = new Cookie('saved_locale', $request->getLocale(), strtotime('now + 100 years'));
+        $response = new Response();
+        $response->headers->setCookie($cookie);
         return $this->render("mosque/$template.html.twig", [
             'mosque' => $mosque,
             'languages' => $this->getParameter('languages'),
@@ -76,7 +96,7 @@ class MosqueController extends Controller
             "supportEmail" => $this->getParameter("supportEmail"),
             'config' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
             'messages' => $messages
-        ]);
+        ], $response);
     }
 
     /**
