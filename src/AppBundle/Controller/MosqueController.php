@@ -60,7 +60,6 @@ class MosqueController extends Controller
         ]);
     }
 
-
     /**
      * @Route("/{slug}", name="mosque")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
@@ -73,6 +72,15 @@ class MosqueController extends Controller
 
         if (!$mosque->isValidated()) {
             throw new NotFoundHttpException();
+        }
+
+        $savedLocal = $request->cookies->get('saved_local');
+        if($savedLocal !== $request->getLocale()){
+            $request->cookies->set('saved_local', $request->getLocale());
+            return $this->forward("AppBundle:Mosque:mosque", [
+                "slug" =>  $mosque->getSlug(),
+                "_local" =>  $request->getLocale(),
+            ]);
         }
 
         $mobileDetect = $this->get('mobile_detect.mobile_detector');

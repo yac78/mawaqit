@@ -6,11 +6,18 @@ body {
     font-family: 'mawaqit', Arial, Helvetica, sans-serif;
 }
 
-#full-screen {
-    position: fixed;
-    top: 10px;
-    left: 10px;
+.top-buttons{
     font-size: 220%;
     color: #777777;
-    cursor: pointer;
+    position: fixed;
+    top: 10px;
+}
+
+.top-buttons div{
+    display: inline;
+    margin-left: 5px;
+}
+
+.top-buttons a{
+    color: #777777;
 }

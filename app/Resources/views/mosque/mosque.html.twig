@@ -63,22 +63,28 @@
     <!-- top container -->
     <div class="top-content">
 
-        <div id="full-screen" title="{{ 'full_screen'|trans }}">
-            <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
+        <div class="top-buttons">
+            <div id="full-screen" title="{{ 'full_screen'|trans }}">
+                <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
+            </div>
+
+            {% if isLocal() %}
+                <div class="settings" title="{{ 'form.configure.action'|trans }}">
+                    <a href="{{ path('mosque_index', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
+                </div>
+
+                <div class="languages">
+                    <div class="btn-group">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-globe"></i></a>
+                        <ul class="dropdown-menu">
+                            {% for lang in languages %}
+                                <li><a href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|trans }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
         </div>
-
-        <!-- configure icon -->
-        {% if isLocal() %}
-            <div class="btn-settings" title="{{ 'form.configure.action'|trans }}">
-                <a href="{{ path('mosque_index', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
-            </div>
-
-            <div class="languages">
-                {% for lang in languages %}
-                    <a class="badge" href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}" title="{{ lang|trans }}">{{ lang }}</a>
-                {% endfor %}
-            </div>
-        {% endif %}
 
         <!-- temperature container -->
         {% if mosque.configuration.temperatureEnabled %}

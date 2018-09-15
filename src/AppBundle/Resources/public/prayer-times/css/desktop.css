@@ -349,28 +349,6 @@ small {
     color: #3498db;
 }
 
-.btn-settings {
-    position: fixed;
-    top: 10px;
-    left: 60px;
-    font-size: 220%;
-}
-
-.languages {
-    position: fixed;
-    top: 50px;
-    left: 5px;
-}
-
-.languages a{
-    display: block;
-    margin-top: 5px;
-}
-
-.btn-settings a {
-    color: #777777;
-}
-
 /* short message css */
 .short-message {
     position: relative;
