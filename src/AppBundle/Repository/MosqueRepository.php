@@ -256,7 +256,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder("m")
             ->delete()
             ->where("m.status != :newStatus")
-            ->andWhere("m.created < :date")
+            ->andWhere("m.updated < :date")
             ->setParameter(":newStatus", Mosque::STATUS_VALIDATED)
             ->setParameter(":date", new \DateTime("-15 day "))
             ->getQuery()
