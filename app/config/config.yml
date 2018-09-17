@@ -139,7 +139,6 @@ jms_i18n_routing:
     strategy: prefix
 
 stfalcon_tinymce:
-  include_jquery: true
   tinymce_jquery: true
   theme:
       simple:
