@@ -139,6 +139,12 @@ class Mosque
     private $image3;
 
     /**
+     * The choosen locale (language fr, ar, en, ...)
+     * @var string
+     */
+    private $locale = 'fr';
+
+    /**
      * @var \DateTime
      */
     private $created;
@@ -843,11 +849,13 @@ class Mosque
         return "https://mawaqit.net/fr/" . $this->slug;
     }
 
-    public function isHome(){
+    public function isHome()
+    {
         return $this->type === self::TYPE_HOME;
     }
 
-    public function isMosque(){
+    public function isMosque()
+    {
         return $this->type === self::TYPE_MOSQUE;
     }
 
@@ -869,25 +877,41 @@ class Mosque
         return $this;
     }
 
-    public function isValidated(){
+    public function isValidated()
+    {
         return $this->status === self::STATUS_VALIDATED;
     }
 
-    public function statusClass(){
+    public function statusClass()
+    {
         $class = '';
-        if ($this->status === self::STATUS_NEW){
+        if ($this->status === self::STATUS_NEW) {
             $class = 'new';
-        }
-        elseif ($this->status === self::STATUS_CHECK){
+        } elseif ($this->status === self::STATUS_CHECK) {
             $class = 'check';
-        }
-        elseif ($this->status === self::STATUS_SUSPENDED){
+        } elseif ($this->status === self::STATUS_SUSPENDED) {
             $class = 'suspended';
-        }
-        elseif (!$this->isCalendarCompleted()){
+        } elseif (!$this->isCalendarCompleted()) {
             $class = 'calendarIncompleted';
         }
         return $class;
     }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale(string $locale): void
+    {
+        $this->locale = $locale;
+    }
+
 
 }

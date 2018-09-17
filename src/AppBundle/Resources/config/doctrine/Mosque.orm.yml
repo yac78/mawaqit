@@ -64,15 +64,19 @@ AppBundle\Entity\Mosque:
         image1:
             type: string
             length: 255
-            nullable: true            
+            nullable: true
         image2:
             type: string
             length: 255
-            nullable: true            
+            nullable: true
         image3:
             type: string
             length: 255
-            nullable: true            
+            nullable: true
+        locale:
+            type: string
+            length: 10
+            nullable: true
         created:
             type: datetime
             gedmo:

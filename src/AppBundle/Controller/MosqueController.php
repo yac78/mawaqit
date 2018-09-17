@@ -42,16 +42,15 @@ class MosqueController extends Controller
     /**
      * @Route("/{slug}", options={"i18n"="false"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     * @param Request $request
      * @param Mosque $mosque
      * @return Response
      */
-    public function mosqueWithoutLocalAction(Request $request, Mosque $mosque)
+    public function mosqueWithoutLocalAction(Mosque $mosque)
     {
         $locale = 'fr';
-        $savedLocal = $request->cookies->get('saved_locale');
-        if ($savedLocal) {
-            $locale = $savedLocal;
+        $savedLocale = $mosque->getLocale();
+        if ($savedLocale) {
+            $locale = $savedLocale;
         }
 
         return $this->forward("AppBundle:Mosque:mosque", [
@@ -74,13 +73,13 @@ class MosqueController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $savedLocal = $request->cookies->get('saved_local');
-        if($savedLocal !== $request->getLocale()){
-            $request->cookies->set('saved_local', $request->getLocale());
-            return $this->forward("AppBundle:Mosque:mosque", [
-                "slug" =>  $mosque->getSlug(),
-                "_local" =>  $request->getLocale(),
-            ]);
+        // saving locale
+        $em = $this->getDoctrine()->getManager();
+        $savedLocale = $mosque->getLocale();
+        if ($savedLocale !== $request->getLocale()) {
+            $mosque->setLocale($request->getLocale());
+            $em->persist($mosque);
+            $em->flush();
         }
 
         $mobileDetect = $this->get('mobile_detect.mobile_detector');
@@ -94,9 +93,6 @@ class MosqueController extends Controller
             $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
         }
 
-        $cookie = new Cookie('saved_locale', $request->getLocale(), time() + (3600 * 24 * 356 * 100)); // expire in 100 years ;)
-        $response = new Response();
-        $response->headers->setCookie($cookie);
         return $this->render("mosque/$template.html.twig", [
             'mosque' => $mosque,
             'languages' => $this->getParameter('languages'),
@@ -104,7 +100,7 @@ class MosqueController extends Controller
             "supportEmail" => $this->getParameter("supportEmail"),
             'config' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
             'messages' => $messages
-        ], $response);
+        ]);
     }
 
     /**
