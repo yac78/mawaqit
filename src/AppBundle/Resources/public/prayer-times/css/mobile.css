@@ -228,3 +228,9 @@ small{
 .adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder {
     margin-top: 50px;
 }
+
+.top-buttons{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
