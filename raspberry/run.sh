@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# online site
 if [ -f ~/Desktop/online_site.txt ]; then
     url=`cat ~/Desktop/online_site.txt`
 fi
