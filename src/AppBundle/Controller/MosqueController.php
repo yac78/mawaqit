@@ -76,7 +76,7 @@ class MosqueController extends Controller
         // saving locale
         $em = $this->getDoctrine()->getManager();
         $savedLocale = $mosque->getLocale();
-        if ($savedLocale !== $request->getLocale()) {
+        if ($this->get('app.request_service')->isLocal() && $savedLocale !== $request->getLocale()) {
             $mosque->setLocale($request->getLocale());
             $em->persist($mosque);
             $em->flush();
