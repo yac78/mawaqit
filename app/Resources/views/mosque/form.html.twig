@@ -8,14 +8,17 @@
     <div class="col-md-12"><p><span style="color: red">*</span> {{ 'required'|trans }}</p></div>
     <div class="col-md-6">
         {% if mosque is defined %}
+
             {% if isNotLocal() %}
-
                 {{ form_label(form.slug) }}
-                <div class="input-group">
-                    <span class="input-group-addon">https:{{ url('homepage', {}, true) }}</span>
-                    {{ form_widget(form.slug) }}
-                </div>
+            {% endif %}
 
+            <div class="input-group form-group">
+                <span class="input-group-addon">https:{{ url('homepage', {}, true) }}</span>
+                {{ form_widget(form.slug, {attr: isLocal() ? {'disabled' : 'disabled'}: {}}) }}
+            </div>
+
+            {% if isNotLocal() %}
                 <div class="alert alert-warning mt-1" role="alert">
                     <div>{{ 'mosque.alert.slugChange'|trans }}</div>
                 </div>
@@ -23,7 +26,7 @@
 
             {% if is_granted('ROLE_ADMIN') %}
                 {{ form_row(form.user) }}
-                {{ form_row(form.user_complete, {'attr' :{'data-remote': path('users_search_ajax') }}) }}
+                {{ form_row(form.user_complete, {'attr' : isLocal() ? {'disabled': 'disabled'} :  {'data-remote': path('users_search_ajax') } }) }}
             {% endif %}
         {% endif %}
 
