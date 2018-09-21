@@ -37,6 +37,13 @@ class Message
      */
     private $mobile = true;
 
+
+    /**
+     * Display on main mosque screen
+     * @var boolean
+     */
+    private $desktop = true;
+
     /**
      * @var integer
      */
@@ -220,6 +227,21 @@ class Message
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isDesktop(): bool
+    {
+        return $this->desktop;
+    }
+
+    /**
+     * @param bool $desktop
+     */
+    public function setDesktop(bool $desktop): void
+    {
+        $this->desktop = $desktop;
+    }
 
 
 }

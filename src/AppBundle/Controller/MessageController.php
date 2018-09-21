@@ -27,9 +27,14 @@ class MessageController extends Controller {
     /**
      * @Route("/{id}/get-messages", name="ajax_get_messages")
      */
-    public function getMessagesAjaxAction(Mosque $mosque) {
+    public function getMessagesAjaxAction(Request$request, Mosque $mosque) {
         $em = $this->getDoctrine()->getManager();
-        $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque);
+        $desktop = null;
+
+        if($request->query->get('main_screen')){
+            $desktop = true;
+        }
+        $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, $desktop, null);
         
         $res = [
           "messages"  => $messages,

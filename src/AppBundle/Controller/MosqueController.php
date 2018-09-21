@@ -87,10 +87,11 @@ class MosqueController extends Controller
         $template = 'mosque';
         $messages = [];
 
+        // if mobile device request
         if (($view !== "desktop" && $mobileDetect->isMobile() && !$mobileDetect->isTablet()) || $view === "mobile") {
             $template .= '_mobile';
             $em = $this->getDoctrine()->getManager();
-            $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, true);
+            $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true);
         }
 
         return $this->render("mosque/$template.html.twig", [

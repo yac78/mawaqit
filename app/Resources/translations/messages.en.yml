@@ -145,6 +145,9 @@ message:
     mobile:
       label : Display on mobile
       title : Your message will be displayed on the mobile version of mawaqit as a notification
+    desktop:
+        label : Display on main screen
+        title : Your message will be displayed on the main mawaqit screen at mosque
 
 configuration:
     select_calendar: Select a calendar

@@ -59,6 +59,11 @@ class MessageType extends AbstractType
                 'attr' => [
                     'help' => $this->translator->trans('message.form.mobile.title'),
                 ]
+            ])->add('desktop', CheckboxType::class, [
+                'required' => false,
+                'attr' => [
+                    'help' => $this->translator->trans('message.form.showOnMainMosqueScreen.title'),
+                ]
             ])
             ->add('file', ImageType::class, [
                 'attr' => [

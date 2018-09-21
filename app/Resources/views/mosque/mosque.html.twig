@@ -38,7 +38,7 @@
 </div>
 
 <!-- message info slider -->
-<div class="message-info-slider slider display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id}) }}"></div>
+<div class="message-info-slider slider display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id, main_screen: true}) }}"></div>
 
 {% include 'partial/dua-after-adhan.html.twig' %}
 {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}

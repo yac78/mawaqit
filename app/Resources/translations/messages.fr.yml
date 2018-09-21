@@ -155,6 +155,9 @@ message:
         mobile:
             label : Afficher sur mobile
             title : Votre message sera affiché sur la version mobile de mawaqit sous forme de notification
+        desktop:
+            label : Afficher sur l'écran principal
+            title : Votre message sera affiché sur l'écran mawaqit principal de la mosquée
 
 faq:
     add: Ajout d'une nouvelle Faq

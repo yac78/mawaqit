@@ -24,6 +24,8 @@ AppBundle\Entity\Message:
             type: boolean
         mobile:
             type: boolean
+        desktop:
+            type: boolean
         position:
             type: integer
             gedmo:
