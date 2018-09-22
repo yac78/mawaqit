@@ -136,7 +136,7 @@ class Configuration
     /**
      * @var bool
      */
-    private $azanBip = true;
+    private $azanBip = false;
 
     /**
      * @var bool
@@ -151,7 +151,7 @@ class Configuration
     /**
      * @var bool
      */
-    private $iqamaBip = true;
+    private $iqamaBip = false;
 
     /**
      * @var bool
