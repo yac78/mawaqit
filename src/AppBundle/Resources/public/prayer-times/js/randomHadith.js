@@ -12,9 +12,9 @@ var randomHadith = {
                     randomHadith.get();
                     setTimeout(function () {
                         randomHadith.hide();
-                    }, 2 * prayer.oneMinute);
+                    }, prayer.oneMinute);
                 }
-            }, 5 * prayer.oneMinute);
+            }, 3 * prayer.oneMinute);
         }
     },
     /**
