@@ -299,22 +299,11 @@ small {
     right :15px;
 }
 
-.time-bottom.ar {
-    left :15px;
-    right: auto;
-}
-
-
 .next-prayer {
     font-size: 380%;
     position: absolute;
     bottom: 0px;
     left: 10px;
-}
-
-.next-prayer.ar {
-    text-align: right;
-    right :15px;
 }
 
 .top-content .next-prayer {

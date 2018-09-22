@@ -53,8 +53,8 @@
         <div class="text">
             <div></div>
         </div>
-        <div class="time-bottom {{ app.request.locale == 'ar' ? 'ar' : '' }}"></div>
-        <div class="next-prayer {{ app.request.locale == 'ar' ? 'ar' : '' }}">
+        <div class="time-bottom"></div>
+        <div class="next-prayer">
             {{ 'next_prayer'|trans }}
             <div class="countdown"></div>
         </div>
@@ -156,8 +156,7 @@
             </div>
         </div>
         {% if mosque.configuration.showNextAdhanCountdown %}
-            <div class="next-prayer"
-                 style="{{ app.request.locale == 'ar' ? 'text-align: right; right :15px' : 'left :15px' }}">
+            <div class="next-prayer">
                 {{ 'next_prayer'|trans }}
                 <div class="countdown"></div>
             </div>
