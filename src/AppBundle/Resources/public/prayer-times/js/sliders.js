@@ -126,7 +126,7 @@ var messageInfoSlider = {
 
             var interval = setInterval(function () {
                 messageInfoSlider.moveRight();
-            }, prayer.confData.timeToDisplayMessage);
+            }, prayer.confData.timeToDisplayMessage * 1000);
 
             setTimeout(function () {
                 clearInterval(interval);
@@ -134,7 +134,7 @@ var messageInfoSlider = {
                     $(".main").fadeIn(1000);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
-            }, (nbSlides * prayer.confData.timeToDisplayMessage) - 1000);
+            }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
 
             $(".main").fadeOut(500, function () {
                 $(".message-info-slider").fadeIn(500);
