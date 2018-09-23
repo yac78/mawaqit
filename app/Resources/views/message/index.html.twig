@@ -31,6 +31,7 @@
     <div class="row mb-2">
         <div class="col-md-4">
             {{ form_row(form.timeToDisplayMessage) }}
+            <div class="timeToDisplayMessageError hidden  mb-2 alert alert-danger">Cette valeur n'est pas valide.</div>
             <button id="timeToDisplayMessageButton" class="btn btn-primary" style="display: none" data-remote="{{ path('ajax_message_update_time', {mosque: mosque.id}) }}">{{ 'validate'|trans }}</button>
         </div>
     </div>

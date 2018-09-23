@@ -14,7 +14,7 @@ var randomHadith = {
                         randomHadith.hide();
                     }, prayer.oneMinute);
                 }
-            }, 3 * prayer.oneMinute);
+            }, 4 * prayer.oneMinute);
         }
     },
     /**

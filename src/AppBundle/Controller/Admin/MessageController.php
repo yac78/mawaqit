@@ -9,6 +9,7 @@ use AppBundle\Form\MessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -60,10 +61,22 @@ class MessageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $conf = $mosque->getConfiguration();
         $conf->setTimeToDisplayMessage($request->request->get('timeToDisplayMessage'));
+
+        $validator = $this->get('validator');
+        $violations = $validator->validate($conf);
+
+        if (count($violations) > 0) {
+            $messageViolation = '';
+            foreach ($violations as $violation) {
+                $messageViolation .= $violation->getMessage().'<br>';
+            }
+            return new Response($messageViolation, Response::HTTP_BAD_REQUEST);
+        }
+
         $em->persist($conf);
         $em->flush();
 
-        return new JsonResponse();
+        return new Response();
     }
 
     /**

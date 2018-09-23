@@ -42,5 +42,8 @@ AppBundle\Entity\Configuration:
             - Choice: {callback : "getAsrMethodChoices"}
         highLatsMethod:
             - Choice: {callback : "getHighLatsChoices"}
+        timeToDisplayMessage:
+            - LessThanOrEqual: 60
+            - GreaterThanOrEqual: 5
 
 

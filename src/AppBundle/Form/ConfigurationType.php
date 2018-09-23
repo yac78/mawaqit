@@ -401,6 +401,7 @@ class ConfigurationType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'min' => 5,
+                    'max' => 60,
                     'help' => 'configuration.form.timeToDisplayMessage.title',
                 ]
             ])

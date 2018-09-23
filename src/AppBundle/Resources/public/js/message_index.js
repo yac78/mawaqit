@@ -4,12 +4,13 @@ $("#timeToDisplayMessageButton").click(function (e) {
     $.post({
         type: "POST",
         url: $(self).data("remote"),
-        data: {'timeToDisplayMessage': $("#configuration_timeToDisplayMessage").val() },
+        data: {'timeToDisplayMessage': $("#configuration_timeToDisplayMessage").val()},
         success: function (data) {
-           $(self).fadeOut(500);
+            $(self).fadeOut(500);
+            $('.timeToDisplayMessageError').addClass('hidden');
         },
         error: function (data) {
-
+            $('.timeToDisplayMessageError').removeClass('hidden').html(data.responseText);
         },
     });
 });

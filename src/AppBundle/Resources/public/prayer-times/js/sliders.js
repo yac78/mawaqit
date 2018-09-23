@@ -103,7 +103,6 @@ var douaaSlider = {
  * @type {Object}
  */
 var messageInfoSlider = {
-        oneMessageShowingTime: 30000,
         /**
          * it saves html (ul,li)
          * @type String
@@ -127,7 +126,7 @@ var messageInfoSlider = {
 
             var interval = setInterval(function () {
                 messageInfoSlider.moveRight();
-            }, messageInfoSlider.oneMessageShowingTime);
+            }, prayer.confData.timeToDisplayMessage);
 
             setTimeout(function () {
                 clearInterval(interval);
@@ -135,7 +134,7 @@ var messageInfoSlider = {
                     $(".main").fadeIn(1000);
                 });
                 messageInfoSlider.messageInfoIsShowing = false;
-            }, (nbSlides * messageInfoSlider.oneMessageShowingTime) - 1000);
+            }, (nbSlides * prayer.confData.timeToDisplayMessage) - 1000);
 
             $(".main").fadeOut(500, function () {
                 $(".message-info-slider").fadeIn(500);
@@ -210,7 +209,7 @@ var messageInfoSlider = {
                 if (messageInfoSlider.messageInfoIsShowing === false) {
                     messageInfoSlider.get();
                 }
-            }, prayer.oneMinute * 5);
+            }, prayer.oneMinute * 7);
         },
         setFontSize: function () {
             var $body = $('body');
