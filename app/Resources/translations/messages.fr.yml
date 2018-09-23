@@ -285,7 +285,7 @@ configuration:
         iqamaBip:
             label:  Bip quand c'est l'heure de l'iqâmah
         iqamaFullScreenCountdown:
-            label:  Compte à rebours en plein écran
+            label:  Compte à rebours
         wakeForFajrTime:
             label:  Réveil avant fajr (minute)
             title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.

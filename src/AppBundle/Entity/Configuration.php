@@ -136,22 +136,12 @@ class Configuration
     /**
      * @var bool
      */
-    private $azanBip = false;
-
-    /**
-     * @var bool
-     */
     private $azanVoiceEnabled = false;
 
     /**
      * @var string
      */
     private $wakeAzanVoice = "adhan-maquah";
-
-    /**
-     * @var bool
-     */
-    private $iqamaBip = false;
 
     /**
      * @var bool
@@ -953,26 +943,6 @@ class Configuration
     public function getUpdated()
     {
         return $this->updated;
-    }
-
-    function getAzanBip()
-    {
-        return $this->azanBip;
-    }
-
-    function getIqamaBip()
-    {
-        return $this->iqamaBip;
-    }
-
-    function setAzanBip($azanBip)
-    {
-        $this->azanBip = $azanBip;
-    }
-
-    function setIqamaBip($iqamaBip)
-    {
-        $this->iqamaBip = $iqamaBip;
     }
 
     function isAzanVoiceEnabled()
