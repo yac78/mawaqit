@@ -16,7 +16,7 @@ final class Version20180923165441 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('UPDATE configuration set time_to_display_message = 60 where time_to_display_message > 60');
-        $this->addSql('UPDATE configuration set time_to_display_message = 20 where time_to_display_message < 5');
+        $this->addSql('UPDATE configuration set time_to_display_message = 5 where time_to_display_message < 5');
     }
 
     public function down(Schema $schema) : void
