@@ -209,7 +209,7 @@ var messageInfoSlider = {
                 if (messageInfoSlider.messageInfoIsShowing === false) {
                     messageInfoSlider.get();
                 }
-            }, prayer.oneMinute * 7);
+            }, prayer.oneMinute * 9);
         },
         setFontSize: function () {
             var $body = $('body');
