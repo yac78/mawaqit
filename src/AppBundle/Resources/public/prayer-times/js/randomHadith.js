@@ -12,7 +12,7 @@ var randomHadith = {
                     randomHadith.get();
                     setTimeout(function () {
                         randomHadith.hide();
-                    }, prayer.oneMinute);
+                    }, prayer.oneSecond * 90);
                 }
             }, 4 * prayer.oneMinute);
         }
@@ -44,7 +44,7 @@ var randomHadith = {
         return true;
     },
     get: function () {
-        if ($(".main").is(":visible")) { // condition to bypass a display bug
+        if ($(".main").is(":visible") && !messageInfoSlider.messageInfoIsShowing) { // condition to bypass a display bug
             $randomHadithEl = $(".random-hadith");
             $.ajax({
                 url: $randomHadithEl.data("remote"),
