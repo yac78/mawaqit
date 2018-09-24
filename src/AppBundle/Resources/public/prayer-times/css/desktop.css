@@ -60,7 +60,8 @@ body {
 .header {
     font-size: 550%;
     color: yellowgreen;
-    padding: 15px 0;
+    padding-top: 10px;
+    padding-bottom: 15px;
     width: 80%;
     overflow: hidden;
     white-space: nowrap;
