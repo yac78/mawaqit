@@ -1,17 +1,15 @@
-$("[type='checkbox']:not('.not-toggle')").attr({
-    "data-toggle": "toggle",
-    "data-onstyle": "success",
-    "data-offstyle": "danger",
-    "data-size": "small",
-    "data-on": yes,
-    "data-off": no
+$("[type='checkbox']:not('.not-toggle')").each(function () {
+    $(this).attr({
+        "data-toggle": "toggle",
+        "data-onstyle": "success",
+        "data-offstyle": "danger",
+        "data-size": $(this).data("size") ? $(this).data("size") : 'small',
+        "data-on": yes,
+        "data-off": no
+    })
 });
 
-$(".help").click(function () {
-    var $title = $(this).find("div");
-    if (!$title.length) {
-        $(this).append('<div>' + $(this).attr("title") + '<span>X</span></div>');
-    } else {
-        $title.remove();
-    }
+$('#select-all').click(function() {
+    var isChecked = $(this).prop("checked");
+    $(this).parents().find('table').find('input[type="checkbox"]').prop('checked', isChecked);
 });

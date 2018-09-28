@@ -191,4 +191,28 @@ class MessageController extends Controller
 
         return new JsonResponse();
     }
+
+
+    /**
+     * @param Request $request
+     * @Route("/message/bulk-change-status", name="message_bulk_change_status")
+     * @Method("POST")
+     * @return Response
+     */
+    public function bulkChangeStatusAction(Request $request)
+    {
+        $messages = $request->request->get('status');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('AppBundle:Message');
+
+        foreach ($messages as $id => $status){
+            $message = $repo->find($id);
+            $message->setEnabled((bool)$status);
+            $em->persist($message);
+        }
+
+        $em->flush();
+
+        return $this->redirectToRoute('message_index', ['mosque'=> $message->getMosque()->getId()]);
+    }
 }
