@@ -103,16 +103,34 @@ var douaaSlider = {
  * @type {Object}
  */
 var messageInfoSlider = {
+        messageInfoIsShowing: false,
         /**
          * it saves html (ul,li)
          * @type String
          */
         sliderHtmlContent: '',
         /**
+         * Cron handling message info showing
+         * The messages will be shown
+         *  - 5 before every adhan
+         *  - 5 before jumu`a
+         *  - At defined time
+         */
+        initCronMessageInfo: function () {
+            setInterval(function () {
+                if (prayer.isPrayingMoment()) {
+                    return false;
+                }
+
+                if (messageInfoSlider.messageInfoIsShowing === false) {
+                    messageInfoSlider.get();
+                }
+            }, prayer.oneMinute * 9);
+        },
+        /**
          *  run message slider
          */
         run: function () {
-            messageInfoSlider.messageInfoIsShowing = true;
             var screenWidth = $(window).width();
             var nbSlides = $('.message-info-slider li').length;
 
@@ -146,6 +164,7 @@ var messageInfoSlider = {
          */
         get: function () {
             if ($(".main").is(":visible")) {
+                messageInfoSlider.messageInfoIsShowing = true;
                 $.ajax({
                     dataType: "json",
                     url: $(".message-info-slider").data("remote"),
@@ -191,25 +210,6 @@ var messageInfoSlider = {
                 $('.message-info-slider li:first-child').appendTo('.message-info-slider ul');
                 $('.message-info-slider ul').css('left', '');
             });
-        },
-        messageInfoIsShowing: false,
-        /**
-         * Cron handling message info showing
-         * The messages will be shown
-         *  - 5 before every adhan
-         *  - 5 before jumu`a
-         *  - At defined time
-         */
-        initCronMessageInfo: function () {
-            setInterval(function () {
-                if (prayer.isPrayingMoment()) {
-                    return false;
-                }
-
-                if (messageInfoSlider.messageInfoIsShowing === false) {
-                    messageInfoSlider.get();
-                }
-            }, prayer.oneMinute * 9);
         },
         setFontSize: function () {
             var $body = $('body');
