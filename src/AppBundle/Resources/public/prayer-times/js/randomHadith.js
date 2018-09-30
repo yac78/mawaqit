@@ -44,25 +44,28 @@ var randomHadith = {
         return true;
     },
     get: function () {
-        if ($(".main").is(":visible") && !messageInfoSlider.messageInfoIsShowing) { // condition to bypass a display bug
-            $randomHadithEl = $(".random-hadith");
-            $.ajax({
-                url: $randomHadithEl.data("remote"),
-                success: function (resp) {
-                    if (resp.text !== "") {
-                        $(".random-hadith .text div").text(resp.text);
-                        randomHadith.show(randomHadith.setFontSize, resp.lang);
+        // start hadith after 5 seconds to bypass a display bug
+        setTimeout(function () {
+            if ($(".main").is(":visible") && !messageInfoSlider.messageInfoIsShowing) {
+                var $randomHadithEl = $(".random-hadith");
+                $.ajax({
+                    url: $randomHadithEl.data("remote"),
+                    success: function (resp) {
+                        if (resp.text !== "") {
+                            $(".random-hadith .text div").text(resp.text);
+                            randomHadith.show(randomHadith.setFontSize, resp.lang);
+                        }
+                    },
+                    error: function () {
+                        randomHadith.hide();
+                        var hadith = $(".random-hadith .text div").text();
+                        if (hadith != "") {
+                            randomHadith.show();
+                        }
                     }
-                },
-                error: function () {
-                    randomHadith.hide();
-                    var hadith = $(".random-hadith .text div").text();
-                    if (hadith != "") {
-                        randomHadith.show();
-                    }
-                }
-            });
-        }
+                });
+            }
+        }, 5000);
     },
     show: function (callback, lang) {
         prayer.nextPrayerCountdown();
@@ -88,7 +91,7 @@ var randomHadith = {
         if (lang !== "ar") {
             $textContainerDiv.css('line-height', '140%');
         }
-        while ($textContainerDiv.height() > $textContainer.height()-30) {
+        while ($textContainerDiv.height() > $textContainer.height() - 30) {
             $textContainerDiv.css('font-size', (parseInt($textContainerDiv.css('font-size')) - 1) + "px");
             if (lang === "ar") {
                 $textContainerDiv.css('line-height', (parseInt($textContainerDiv.css('line-height')) - 2) + "px");
