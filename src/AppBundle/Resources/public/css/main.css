@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 .main {
     padding: 60px 10px;
 }
@@ -90,12 +94,12 @@
     left: -10px;
 }
 
-.navbar-form{
+.navbar-form {
     margin: 0;
     padding: 0;
 }
 
-.navbar-form .form-group{
+.navbar-form .form-group {
     display: inline-block;
 }
 
@@ -121,7 +125,7 @@
     right: 4px;
 }
 
-.version{
+.version {
     position: absolute;
     bottom: 5px;
     right: 5px;
