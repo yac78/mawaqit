@@ -120,3 +120,10 @@
     top: 3px;
     right: 4px;
 }
+
+.version{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #3c3c3c;
+}

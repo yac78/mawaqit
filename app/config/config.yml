@@ -50,6 +50,7 @@ twig:
       supportTel1: "%supportTel1%"
       supportTel2: "%supportTel2%"
       site: "%site%"
+      version: "%version%"
     form_themes:
         - 'form/themes.html.twig'
         - 'VichUploaderBundle:Form:fields.html.twig'
