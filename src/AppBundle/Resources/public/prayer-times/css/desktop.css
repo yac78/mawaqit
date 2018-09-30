@@ -293,31 +293,24 @@ small {
     line-height: 300px;
 }
 
-.time-bottom {
-    font-size: 380%;
-    position: absolute;
-    bottom: 0px;
-    right :15px;
-}
-
-.next-prayer {
-    font-size: 380%;
-    position: absolute;
-    bottom: 0px;
-    left: 10px;
-}
-
-.top-content .next-prayer {
-    font-size: 380%;
+.next-prayer-bloc {
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
 }
 
 .time-bottom, .next-prayer {
-    position: absolute;
     color: #ec7047;
+    font-size: 380%;
 }
 
 .next-prayer .countdown {
     display: inline;
+}
+
+.top-content .next-prayer-bloc {
+    position: absolute;
+    bottom: 10px;
 }
 
 .temperature {

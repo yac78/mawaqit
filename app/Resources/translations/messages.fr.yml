@@ -129,13 +129,12 @@ message:
       il suffit de remplacer l'url des horaires par celle-ci
     display_messages_in_screen_2: |
       Le logiciel vérifie les changements toutes les 5 mins,
-      si vous ajoutez ou supprimez une annonce, l'écran se mettra à jour automatiquement au bout de 5 mins.
+      si vous ajoutez ou supprimez une annonce, l'écran se mettra à jour automatiquement.
     mosque: Annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%
     manage: Gérer les annonces
     info: |
-      Les annonces défileront sur l'écran, avant et après chaque prière.
       Vous avez la possibilité d'ajouter jusqu'à 8 annonces <b>activées</b> à la fois, 20 au total.
 
     form:

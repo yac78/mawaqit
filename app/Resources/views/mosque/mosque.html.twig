@@ -53,16 +53,17 @@
         <div class="text">
             <div></div>
         </div>
-        <div class="time-bottom"></div>
-        <div class="next-prayer">
-            {{ 'next_prayer'|trans }}
-            <div class="countdown"></div>
+        <div class="next-prayer-bloc" style="{{ app.request.locale == 'ar' ?  'flex-direction: row-reverse;' :  '' }}">
+            <div class="next-prayer">
+                {{ 'next_prayer'|trans }}
+                <div class="countdown"></div>
+            </div>
+            <div class="time-bottom"></div>
         </div>
     </div>
 
     <!-- top container -->
     <div class="top-content">
-
         <div class="top-buttons">
             <div id="full-screen" title="{{ 'full_screen'|trans }}">
                 <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
@@ -150,17 +151,20 @@
                     <div class="gregorianDate"></div>
                 </div>
             </div>
-            <div class=" col-md-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
+            <div class="col-md-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
                 <div class="ar">{{ 'jumua'|trans }}</div>
                 <div class="prayer joumouaa-id"></div>
             </div>
+
+            {% if mosque.configuration.showNextAdhanCountdown %}
+                <div class="col-md-12 next-prayer-bloc" style="{{ app.request.locale == 'ar' ?  'flex-direction: row-reverse;' :  '' }}">
+                    <div class="next-prayer">
+                        {{ 'next_prayer'|trans }}
+                        <div class="countdown"></div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
-        {% if mosque.configuration.showNextAdhanCountdown %}
-            <div class="next-prayer">
-                {{ 'next_prayer'|trans }}
-                <div class="countdown"></div>
-            </div>
-        {% endif %}
     </div>
 
     <!-- prayer times container -->
