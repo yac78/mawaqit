@@ -310,7 +310,7 @@ small {
 
 .top-content .next-prayer-bloc {
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
 }
 
 .temperature {
