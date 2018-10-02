@@ -249,6 +249,14 @@ small {
     right: 10px;
 }
 
+#mosque-id {
+    font-size: 20px;
+    color: #adadad;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
 .qr-code {
     position: fixed;
     bottom: 10px;
