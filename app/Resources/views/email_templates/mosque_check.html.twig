@@ -3,8 +3,7 @@
     <div style="font-size: 14px">
         <p>
             Essalamu alaykum wa rahmatu allahi wa barakatuh<br/><br/>
-            Vous avez récemment ajouté la mosquée <strong>{{ mosque.name }}</strong> située au {{ mosque.localisation }}
-            <br/>
+            Vous avez récemment ajouté la mosquée <strong>{{ mosque.name }}</strong> située au {{ mosque.localisation }} <br/>
             Après vérification, nous constatons que cette mosquée se trouve dans l'un des cas suivants<br/>
         </p>
         <ul>
@@ -14,13 +13,26 @@
         <p>
             Pourriez-vous svp nous préciser s'il s'agît d'une installation à domicile ou d'une vrai mosquée,
             auquel cas nous vous invitons à nous donner plus d'informations sur la mosquée
-            (Le n° de téléphone du président de l'association, une photo de la mosquée, l'apparition au journal officiel...
-            ou toute preuve de son existance)
-            <br/><br/>
-            Sans réponse de votre part dans un délai d'une semaine, l'équipe mawaqit procédera à la suppression de votre
-            mosquée.
-            <br/><br/>
+            (Le n° de téléphone du président de l'association, une facture d'électricité, une photo de la mosquée, l'apparition au journal officiel...
+            ou toute autre preuve de son existance)<br/><br/>
+            Sans réponse de votre part dans un délai de semaines, la mosquée sera automatiquement supprimé.<br/><br/>
             Barak Allahu fik et merci pour votre compréhension <br/>
+        </p>
+        <hr>
+        <p>
+             Essalamu alaykum wa rahmatu allahi wa barakatuh <br/> <br/>
+             You recently added the <strong> {{ mosque.name }} </strong> mosque located at {{ mosque.localisation }}<br/>
+             After checking, we find that this mosque is in one of the following cases
+         </p>
+        <ul>
+            <li>The mosque already exists on mawaqit</li>
+            <li>The information you entered does not allow us to validate the mosque</li>
+        </ul>
+        <p>Could you please tell us if it is a home installation or a real mosque, in which case we invite you to give us more information about the mosque
+            (The telephone number of the president of the association, an electricity bill, a photo of the mosque, the appearance in the official journal ...
+            or any other proof of its existence)<br/><br/>
+            If you do not answer within one 2 weeks, the mosque will be automatically deleted.<br/><br/>
+            Barak Allahu fik and thank you for your understanding <br/>
         </p>
     </div>
     <hr>
@@ -34,11 +46,11 @@
         </p>
         <p>
             لذا الرجاء مدنا
-            في هذه الحالة بالمزيد من المعلومات عن المسجد رقم هاتف رئيس الجمعية، صورة المسجد، نسخة مصورة من الجريدة
-            الرسمية... أو أي دليل على وجودها
+            في هذه الحالة بالمزيد من المعلومات عن المسجد رقم هاتف رئيس الجمعية، فاطورة الكهرباء، صورة المسجد، نسخة مصورة من الجريدة
+            الرسمية... أو أي دليل آخر على وجودها
         </p>
         <p>
-            إذا لم يصلنا رد في غضون أسبوع ، سيقوم فريق مواقيت بحذف المسجد الخاص بك.
+            إذا لم يصلنا رد في غضون أسبوعين، يتم حذف المسجد تلقائيا.
         </p>
         <p>
             باراك الله فيك ونشكرك على تفهمك
