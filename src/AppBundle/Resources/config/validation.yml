@@ -21,10 +21,6 @@ AppBundle\Entity\Mosque:
             - Url: ~
         address:
             - NotBlank:  {groups: [Mosque]}
-        image1:
-            - NotBlank:  {groups: [Mosque]}
-        justificatory:
-            - NotBlank:  {groups: [Mosque]}
         city:
             - NotBlank: ~
         zipcode:

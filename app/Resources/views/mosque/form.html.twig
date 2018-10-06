@@ -56,9 +56,11 @@
 
     <div class="mosque-block hidden">
         <div class="col-md-3 ">
-            <div class="block-image">
-                {{ form_row(form.file1) }}
-            </div>
+            {% if mosque is not defined or not mosque.validated %}
+                <div class="block-image">
+                    {{ form_row(form.file1) }}
+                </div>
+            {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="block-image">
                     {{ form_row(form.file2) }}
@@ -67,9 +69,11 @@
                     {{ form_row(form.file3) }}
                 </div>
             {% endif %}
-            <div class="block-image">
-                {{ form_row(form.justificatoryFile) }}
-            </div>
+            {% if mosque is not defined or not mosque.validated %}
+                <div class="block-image">
+                    {{ form_row(form.justificatoryFile) }}
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

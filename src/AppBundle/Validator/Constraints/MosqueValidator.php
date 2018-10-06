@@ -22,6 +22,7 @@ class MosqueValidator extends ConstraintValidator
     }
 
     const LIMIT_INSTALL = 10;
+
     /**
      * @param Mosque $mosque
      * @param Constraint $constraint
@@ -32,8 +33,20 @@ class MosqueValidator extends ConstraintValidator
          * @var User $user
          */
         $user = $this->tokenStorage->getToken()->getUser();
+
+        // validate max authorized mosques
         if (!$user->isAdmin() && $user->getMosques()->count() >= self::LIMIT_INSTALL) {
             $this->context->buildViolation($constraint->maxReachedMsg)->addViolation();
+        }
+
+        // validate justificatory
+        if (!$mosque->isValidated() && !$mosque->getJustificatoryfile()) {
+            $this->context->buildViolation($constraint->justificatoryMandatory)->addViolation();
+        }
+
+        // validate main photo
+        if (!$mosque->isValidated() && !$mosque->getFile1()) {
+            $this->context->buildViolation($constraint->mainImageMandatory)->addViolation();
         }
     }
 }

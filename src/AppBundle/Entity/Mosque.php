@@ -648,7 +648,7 @@ class Mosque
      * @param string $justificatory
      * @return $this
      */
-    public function setJustificatory(string $justificatory)
+    public function setJustificatory($justificatory)
     {
         $this->justificatory = $justificatory;
         return $this;

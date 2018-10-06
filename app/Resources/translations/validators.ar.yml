@@ -1,6 +1,8 @@
 form:
     mosque:
       address_mandatory: العنوان إلزامي للمساجد
+      justificatoryMandatory: The supporting document is mandatory
+      mainImageMandatory: The mosque photo is mandatory
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés

@@ -84,7 +84,7 @@
                     <td>
                         {{ mosque.name }}<br>
                         {% if mosque.configuration.isCalendar and  mosque.isCalendarCompleted %}
-                            <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }} <i class="fa fa-download"></i> </a>
+                            <i class="fa fa-download"></i> <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>
                         {% endif %}
                     </td>
                     <td>{{ mosque.associationName }}</td>
@@ -116,9 +116,8 @@
                                 </div>
                             {% endif %}
                         {% else %}
-                            <p>
-                                {{ ('mosque.statuses_message.' ~  mosque.status)|trans }}
-                            </p>
+                            <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
+                            <i class="fa fa-download"></i> <a href="{{  vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
                         {% endif %}
                     </td>
                     <td>
@@ -180,7 +179,8 @@
                                    href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|trans }}</a>{{ loop.last ? '' : ' | ' }}
                             {% endfor %}
                         {% else %}
-                            {{ ('mosque.statuses_message.' ~  mosque.status)|trans }}
+                            <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
+                            <i class="fa fa-download"></i> <a href="{{  vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
                         {% endif %}
                     </div>
                     <div><strong>{{ 'status'|trans }}:</strong> {{('mosque.statuses.' ~  mosque.status)|trans }}</div>
@@ -195,7 +195,7 @@
                     <div><strong>{{ 'type'|trans }} :</strong> {{ ('mosque.types.' ~ mosque.type ) | trans }}</div>
                     {% if mosque.configuration.isCalendar and  mosque.isCalendarCompleted %}
                         <div>
-                            <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>
+                            <i class="fa fa-download"></i> <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>
                         </div>
                     {% endif %}
 

@@ -22,6 +22,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class MosqueType extends AbstractType
 {
@@ -160,16 +162,28 @@ class MosqueType extends AbstractType
                 'label' => 'mosque.form.addOnMap.label',
                 'required' => false,
             ])
-            ->add('justificatoryFile', ImageType::class, [
-                'required' => true,
+            ->add('justificatoryFile', VichFileType::class, [
+                'required' => !$mosque->isValidated(),
+                'translation_domain' => 'messages',
                 'label' => 'mosque.form.justificatoryFile.label',
+                'download_uri' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'help' => 'mosque.form.justificatoryFile.help',
-                ]
+                ],
+                'constraints' => new File([
+                    'maxSize' => '10M',
+                    'mimeTypes' => [
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.ms-powerpoint',
+                        'image/png',
+                        'image/jpeg',
+                    ]
+                ])
             ])
             ->add('file1', ImageType::class, [
-                'required' => true,
+                'required' => !$mosque->isValidated(),
                 'label' => 'mosque.form.file1.label',
                 'attr' => [
                     'class' => 'form-control',

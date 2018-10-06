@@ -2,6 +2,8 @@ form:
     mosque:
       address_mandatory: L'adresse postale est obligatoire pour les mosquées.
       max_reached: Vous avez atteint le nombre maximum d'installation autorisé (10 Max).
+      justificatoryMandatory: Le justificatif est obligatoire
+      mainImageMandatory: La photo de la mosquée est obligatoire
     configuration:
         mandatory: Ce champ est obligatoire
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
