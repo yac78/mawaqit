@@ -61,6 +61,9 @@ AppBundle\Entity\Mosque:
             type: string
         addOnMap:
             type: boolean
+        justificatory:
+            type: string
+            length: 255
         image1:
             type: string
             length: 255

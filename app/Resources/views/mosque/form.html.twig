@@ -54,37 +54,24 @@
         </div>
     </div>
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <div class="col-md-3">
+    <div class="mosque-block hidden">
+        <div class="col-md-3 ">
             <div class="block-image">
                 {{ form_row(form.file1) }}
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="block-image">
+                    {{ form_row(form.file2) }}
+                </div>
+                <div class="block-image">
+                    {{ form_row(form.file3) }}
+                </div>
+            {% endif %}
             <div class="block-image">
-                {{ form_row(form.file2) }}
-            </div>
-            <div class="block-image">
-                {{ form_row(form.file3) }}
+                {{ form_row(form.justificatoryFile) }}
             </div>
         </div>
-    {% elseif mosque is defined %}
-        <div class="col-md-3">
-            {% if  mosque.image1 %}
-                <div class="block-image">
-                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}"/>
-                </div>
-            {% endif %}
-            {% if  mosque.image2 %}
-                <div class=" block-image">
-                    <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}"/>
-                </div>
-            {% endif %}
-            {% if  mosque.image3 %}
-                <div class="block-image">
-                    <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}"/>
-                </div>
-            {% endif %}
-        </div>
-    {% endif %}
+    </div>
 </div>
 
 <br>

@@ -111,6 +111,11 @@ class Mosque
     /**
      * @var File
      */
+    private $justificatoryFile;
+
+    /**
+     * @var File
+     */
     private $file1;
 
     /**
@@ -123,6 +128,10 @@ class Mosque
      */
     private $file3;
 
+    /**
+     * @var string
+     */
+    private $justificatory;
     /**
      * @var string
      */
@@ -548,6 +557,24 @@ class Mosque
     }
 
     /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return self
+     */
+    public function setJustificatoryFile(File $file = null)
+    {
+        $this->justificatoryFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updated = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
      * @return self
@@ -598,6 +625,32 @@ class Mosque
             $this->updated = new \DateTime();
         }
 
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getJustificatoryFile()
+    {
+        return $this->justificatoryFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJustificatory()
+    {
+        return $this->justificatory;
+    }
+
+    /**
+     * @param string $justificatory
+     * @return $this
+     */
+    public function setJustificatory(string $justificatory)
+    {
+        $this->justificatory = $justificatory;
         return $this;
     }
 

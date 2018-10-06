@@ -1,10 +1,13 @@
 AppBundle\Entity\Mosque:
+    justificatoryFile:
+        mapping:           file
+        filename_property: justificatory
     file1:
-        mapping:           image
+        mapping:           file
         filename_property: image1
     file2:
-        mapping:           image
+        mapping:           file
         filename_property: image2
     file3:
-        mapping:           image
+        mapping:           file
         filename_property: image3

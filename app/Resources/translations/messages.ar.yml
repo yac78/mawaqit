@@ -61,12 +61,18 @@ mosque:
             placeholder: إختر البلد
         rib:
             placeholder: إذا تم تحديده مسبقا ،فإنه سيظهر في أسفل الشاشة. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
-        image1:
-            label: صورة 1
-        image2:
-            label: صورة 2
-        image3:
-            label: صورة 3
+        justificatoryFile:
+            label: A supporting document (.pdf .jpg .png .doc .ppt)
+            help: |
+              Add a document justifying the existence of the mosque (an electricity/water/telephone bill,
+              the appearance in the official journal, or other)
+        file1:
+            label: A picture of the mosque
+            help: Add a photo of the mosque of good quality in landscape format
+        file2:
+            label: An interior photo of the mosque
+        file3:
+            label: A photo of the mawaqit screen
 message:
     mosque: إعلانات "%mosque%"
     add: زيادة إعلان

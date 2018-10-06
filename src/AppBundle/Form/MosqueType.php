@@ -160,9 +160,28 @@ class MosqueType extends AbstractType
                 'label' => 'mosque.form.addOnMap.label',
                 'required' => false,
             ])
-            ->add('file1', ImageType::class)
-            ->add('file2', ImageType::class)
-            ->add('file3', ImageType::class)
+            ->add('justificatoryFile', ImageType::class, [
+                'required' => true,
+                'label' => 'mosque.form.justificatoryFile.label',
+                'attr' => [
+                    'class' => 'form-control',
+                    'help' => 'mosque.form.justificatoryFile.help',
+                ]
+            ])
+            ->add('file1', ImageType::class, [
+                'required' => true,
+                'label' => 'mosque.form.file1.label',
+                'attr' => [
+                    'class' => 'form-control',
+                    'help' => 'mosque.form.file1.help',
+                ]
+            ])
+            ->add('file2', ImageType::class, [
+                'label' => 'mosque.form.file2.label'
+            ])
+            ->add('file3', ImageType::class, [
+                'label' => 'mosque.form.file3.label'
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [
