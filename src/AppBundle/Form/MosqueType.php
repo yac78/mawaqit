@@ -84,7 +84,9 @@ class MosqueType extends AbstractType
                 ));
         }
 
-        $disabled = !$this->securityChecker->isGranted('ROLE_ADMIN') && $mosque->isValidated();
+        $isAdmin = $this->securityChecker->isGranted('ROLE_ADMIN');
+        $disabled = !$isAdmin && $mosque->isValidated();
+        $uploadRequired = !$isAdmin && $mosque->isMosque() && !$mosque->isValidated();
 
         $typeOptions = [
             'required' => true,
@@ -163,7 +165,7 @@ class MosqueType extends AbstractType
                 'required' => false,
             ])
             ->add('justificatoryFile', VichFileType::class, [
-                'required' => !$mosque->isValidated(),
+                'required' => $uploadRequired,
                 'translation_domain' => 'messages',
                 'label' => 'mosque.form.justificatoryFile.label',
                 'download_uri' => false,
@@ -175,15 +177,18 @@ class MosqueType extends AbstractType
                     'maxSize' => '10M',
                     'mimeTypes' => [
                         'application/pdf',
+                        'application/x-pdf',
                         'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                         'application/vnd.ms-powerpoint',
+                        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
                         'image/png',
                         'image/jpeg',
                     ]
                 ])
             ])
             ->add('file1', ImageType::class, [
-                'required' => !$mosque->isValidated(),
+                'required' => $uploadRequired,
                 'label' => 'mosque.form.file1.label',
                 'attr' => [
                     'class' => 'form-control',

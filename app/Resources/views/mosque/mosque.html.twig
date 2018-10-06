@@ -231,7 +231,9 @@
             {% endif %}
         </div>
         <div class="version">v{{ version }}</div>
-        <div id="mosque-id" style="{{ mosque.configuration.urlQrCodeEnabled ? 'left:150px;' : '' }}">#{{ mosque.id }}</div>
+        {% if mosque.isMosque %}
+            <div id="mosque-id" style="{{ mosque.configuration.urlQrCodeEnabled ? 'left:150px;' : '' }}">#{{ mosque.id }}</div>
+        {% endif %}
     </div>
 
 </div>

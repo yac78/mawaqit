@@ -93,7 +93,7 @@ class MosqueController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+        if (!$user->isAdmin() && ($user !== $mosque->getUser() || !$mosque->isValidated())) {
             throw new AccessDeniedException();
         }
 
@@ -249,15 +249,10 @@ class MosqueController extends Controller
      * @Route("/mosque/validate/{id}", name="mosque_validate")
      * @param Mosque $mosque
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws @see MailService->mosqueValidated
      */
     public function validateMosqueAction(Mosque $mosque)
     {
-        $mosque->setStatus(Mosque::STATUS_VALIDATED);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($mosque);
-        $em->flush();
-        $this->get("app.mail_service")->mosqueValidated($mosque);
+        $this->get('app.mosque_service')->validate($mosque);
         $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été validée');
         return $this->redirectToRoute("mosque_index");
     }
@@ -271,11 +266,7 @@ class MosqueController extends Controller
      */
     public function suspendMosqueAction(Mosque $mosque)
     {
-        $mosque->setStatus(Mosque::STATUS_SUSPENDED);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($mosque);
-        $em->flush();
-        $this->get("app.mail_service")->mosqueSuspended($mosque);
+        $this->get('app.mosque_service')->suspend($mosque);
         $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été suspendue');
         return $this->redirectToRoute("mosque_index");
     }
@@ -289,11 +280,7 @@ class MosqueController extends Controller
      */
     public function checkMosqueAction(Mosque $mosque)
     {
-        $mosque->setStatus(Mosque::STATUS_CHECK);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($mosque);
-        $em->flush();
-        $this->get("app.mail_service")->checkMosque($mosque);
+        $this->get('app.mosque_service')->check($mosque);
         $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
     }

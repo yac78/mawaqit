@@ -1,4 +1,4 @@
 AppBundle\Entity\Message:
     file:
-        mapping:           image
+        mapping:           file
         filename_property: image

@@ -5,6 +5,7 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Vich\UploaderBundle\Handler\AbstractHandler;
 
 class MosqueService
 {
@@ -19,10 +20,22 @@ class MosqueService
      */
     private $serializer;
 
-    public function __construct(EntityManagerInterface $em, SerializerInterface $serializer)
+    /**
+     * @var AbstractHandler
+     */
+    private $vichUploadHandler;
+
+    /**
+     * @var MailService
+     */
+    private $mailService;
+
+    public function __construct(EntityManagerInterface $em, SerializerInterface $serializer, AbstractHandler $vichUploadHandler, MailService $mailService)
     {
         $this->em = $em;
         $this->serializer = $serializer;
+        $this->vichUploadHandler = $vichUploadHandler;
+        $this->mailService = $mailService;
     }
 
     public function getCalendarList()
@@ -66,4 +79,44 @@ class MosqueService
 
         return $this->serializer->normalize($mosques, 'json', ["groups" => ["search"]]);
     }
+
+    /**
+     * @param Mosque $mosque
+     * @throws @see MailService
+     */
+    public function validate(Mosque $mosque)
+    {
+        $mosque->setStatus(Mosque::STATUS_VALIDATED);
+        $this->vichUploadHandler->remove($mosque, 'justificatoryFile');
+        $mosque->setJustificatoryFile(null);
+        $mosque->setJustificatory(null);
+        $this->em->persist($mosque);
+        $this->em->flush();
+        $this->mailService->mosqueValidated($mosque);
+    }
+
+    /**
+     * @param Mosque $mosque
+     * @throws @see MailService
+     */
+    public function suspend(Mosque $mosque)
+    {
+        $mosque->setStatus(Mosque::STATUS_SUSPENDED);
+        $this->em->persist($mosque);
+        $this->em->flush();
+        $this->mailService->mosqueSuspended($mosque);
+    }
+
+    /**
+     * @param Mosque $mosque
+     * @throws @see MailService
+     */
+    public function check(Mosque $mosque)
+    {
+        $mosque->setStatus(Mosque::STATUS_CHECK);
+        $this->em->persist($mosque);
+        $this->em->flush();
+        $this->mailService->checkMosque($mosque);
+    }
+
 }

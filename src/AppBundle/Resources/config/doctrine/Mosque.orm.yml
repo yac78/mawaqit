@@ -64,6 +64,7 @@ AppBundle\Entity\Mosque:
         justificatory:
             type: string
             length: 255
+            nullable: true
         image1:
             type: string
             length: 255

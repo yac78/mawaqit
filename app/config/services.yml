@@ -85,6 +85,8 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@serializer"
+            - "@vich_uploader.upload_handler"
+            - "@app.mail_service"
 
     app.user_repository:
         class: Doctrine\ORM\EntityRepository

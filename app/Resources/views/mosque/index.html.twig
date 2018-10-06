@@ -74,7 +74,7 @@
             </thead>
             <tbody>
             {% for mosque in mosques %}
-                <tr class="{{ mosque.statusClass}}">
+                <tr class="{{ mosque.statusClass }}">
                     <td>
                         {{ mosque.id }}
                     </td>
@@ -106,7 +106,8 @@
                             {% for lang in languages %}
                                 <div>
                                     <div style="width: 80px; font-weight: bold; float: left">{{ lang|trans }}</div>
-                                    : <a {{ isLocal() ? '' : 'target="_blank"' }} href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
+                                    : <a {{ isLocal() ? '' : 'target="_blank"' }}
+                                            href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
                                 </div>
                             {% endfor %}
                             {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug}) }}?view=mobile">{{ 'show'|trans }}</a>
@@ -117,7 +118,9 @@
                             {% endif %}
                         {% else %}
                             <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
-                            <i class="fa fa-download"></i> <a href="{{  vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
+                            {% if mosque.justificatory %}
+                                <i class="fa fa-download"></i> <a href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
+                            {% endif %}
                         {% endif %}
                     </td>
                     <td>
@@ -143,7 +146,7 @@
 
     <div class="hidden-lg hidden-md">
         {% for mosque in mosques %}
-            <div class="row {{ mosque.statusClass}}" style="padding: 10px 0; border-bottom: solid #ccc 1px">
+            <div class="row {{ mosque.statusClass }}" style="padding: 10px 0; border-bottom: solid #ccc 1px">
                 <div class="col-xs-12" style="position: relative">
                     <i class="fa fa-map-marker mobile" data-gps="{{ mosque.configuration.latitude ~ "," ~ mosque.configuration.longitude }}"></i>
 
@@ -180,10 +183,12 @@
                             {% endfor %}
                         {% else %}
                             <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
-                            <i class="fa fa-download"></i> <a href="{{  vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
+                            {% if mosque.justificatory %}
+                                <i class="fa fa-download"></i> <a href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
+                            {% endif %}
                         {% endif %}
                     </div>
-                    <div><strong>{{ 'status'|trans }}:</strong> {{('mosque.statuses.' ~  mosque.status)|trans }}</div>
+                    <div><strong>{{ 'status'|trans }}:</strong> {{ ('mosque.statuses.' ~  mosque.status)|trans }}</div>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>
                             <strong>{{ 'user'|trans }}:</strong>

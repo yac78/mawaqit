@@ -40,13 +40,15 @@ class MosqueValidator extends ConstraintValidator
         }
 
         // validate justificatory
-        if (!$mosque->isValidated() && !$mosque->getJustificatoryfile()) {
-            $this->context->buildViolation($constraint->justificatoryMandatory)->addViolation();
-        }
+        if (!$user->isAdmin() && $mosque->isMosque() && !$mosque->isValidated()) {
+            if (!$mosque->getJustificatoryfile()) {
+                $this->context->buildViolation($constraint->justificatoryMandatory)->addViolation();
+            }
 
-        // validate main photo
-        if (!$mosque->isValidated() && !$mosque->getFile1()) {
-            $this->context->buildViolation($constraint->mainImageMandatory)->addViolation();
+            // validate main photo
+            if (!$mosque->getFile1()) {
+                $this->context->buildViolation($constraint->mainImageMandatory)->addViolation();
+            }
         }
     }
 }
