@@ -22,215 +22,224 @@
 </head>
 <body class="text-center">
 
-    {% if mosque.isMosque %}
-        <div class="toggle"><i class="fa fa-bell"></i></div>
-        <div class="toggle-number">{{ messages|length }}</div>
+{% if mosque.isMosque %}
+    <div class="toggle"><i class="fa fa-bell"></i></div>
+    <div class="toggle-number">{{ messages|length }}</div>
 
-        <div class="sidebar">
-            <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
-            {% for message in messages %}
-                <div class="notibox">
-                    <h4>{{ message.title }}</h4>
-                    <p>{{ message.content|raw }}</p>
-                    {% if message.image is not empty %}
-                        <img src="/upload/images/{{ message.image }}" alt="{{ message.title }}"/>
-                    {% endif %}
-                    {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
+    <div class="sidebar">
+        <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
+        {% for message in messages %}
+            <div class="notibox">
+                <h4>{{ message.title }}</h4>
+                <p>{{ message.content|raw }}</p>
+                {% if message.image is not empty %}
+                    <img src="/upload/images/{{ message.image }}" alt="{{ message.title }}"/>
+                {% endif %}
+                {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
+            </div>
+        {% else %}
+            <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="top-buttons">
+    <div id="full-screen" title="{{ 'full_screen'|trans }}">
+        <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
+    </div>
+</div>
+
+<div id="spinner"></div>
+
+<!-- Iqama screen -->
+<div class="iqama ar display-none">
+    <div class="top">{{ 'iqama'|trans }}</div>
+    <div class="image"></div>
+</div>
+
+{% include 'partial/dua-after-adhan.html.twig' %}
+{% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
+{% include 'partial/jumua-dhikr-reminder.html.twig' %}
+
+<div id="main" class="main display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
+    <div class="header ar">{{ mosque.title }}</div>
+    <div class="top-content">
+        <div class="time"></div>
+        {% if mosque.configuration.hijriDateEnabled %}
+            <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
+        {% endif %}
+        <div class="gregorianDate"></div>
+    </div>
+
+    {% set ampmClass = mosque.configuration.timeDisplayFormat == "12" ? 'ampm' : '' %}
+    <div class="prayer-content">
+        {% if app.request.locale == 'ar' %}
+            <div class="row">
+                <div class="col-xs-4 wait _0 text-left"></div>
+                <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan0 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
                 </div>
-            {% else %}
-                <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
-            {% endfor %}
-        </div>
-    {% endif %}
+                <div class="col-xs-4 text ar text-right">{{ 'fajr'|trans }}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 wait _1 text-left"></div>
+                <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan1 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 text ar text-right">{{ 'zuhr'|trans }}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 wait _2 text-left"></div>
+                <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan2 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 text ar text-right">{{ 'asr'|trans }}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 wait _3 text-left"></div>
+                <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan3 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 text ar text-right">{{ 'maghrib'|trans }}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 wait _4 text-left"></div>
+                <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan4 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 text ar text-right">{{ 'isha'|trans }}</div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-xs-4 text text-left">{{ 'fajr'|trans }}</div>
+                <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan0 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 wait _0 text-right"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text text-left">{{ 'zuhr'|trans }}</div>
+                <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan1 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 wait _1 text-right"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text text-left">{{ 'asr'|trans }}</div>
+                <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan2 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 wait _2 text-right"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text text-left">{{ 'maghrib'|trans }}</div>
+                <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan3 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 wait _3 text-right"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text text-left">{{ 'isha'|trans }}</div>
+                <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
+                <div class="col-xs-4 adhan4 hidden">
+                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
+                </div>
+                <div class="col-xs-4 wait _4 text-right"></div>
+            </div>
+        {% endif %}
+    </div>
 
-    <div class="top-buttons">
-        <div id="full-screen" title="{{ 'full_screen'|trans }}">
-            <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
+    <div class="row">
+        <div class="next-prayer text-center">
+            {{ 'next_prayer'|trans }}
+            <div class="countdown"></div>
         </div>
     </div>
 
-    <div id="spinner"></div>
-
-    <!-- Iqama screen -->
-    <div class="iqama ar display-none">
-        <div class="top">{{ 'iqama'|trans }}</div>
-        <div class="image"></div>
-    </div>
-
-    {% include 'partial/dua-after-adhan.html.twig' %}
-    {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
-    {% include 'partial/jumua-dhikr-reminder.html.twig' %}
-
-    <div id="main" class="main display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
-        <div class="header ar">{{ mosque.title }}</div>
-        <div class="top-content">
-            <div class="time"></div>
-            {% if mosque.configuration.hijriDateEnabled %}
-                <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
-            {% endif %}
-            <div class="gregorianDate"></div>
-        </div>
-
-        {% set ampmClass = mosque.configuration.timeDisplayFormat == "12" ? 'ampm' : '' %}
-        <div class="prayer-content">
-            {% if app.request.locale == 'ar' %}
-                <div class="row">
-                    <div class="col-xs-4 wait _0 text-left"></div>
-                    <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan0 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 text ar text-right">{{ 'fajr'|trans }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 wait _1 text-left"></div>
-                    <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan1 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 text ar text-right">{{ 'zuhr'|trans }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 wait _2 text-left"></div>
-                    <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan2 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 text ar text-right">{{ 'asr'|trans }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 wait _3 text-left"></div>
-                    <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan3 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 text ar text-right">{{ 'maghrib'|trans }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 wait _4 text-left"></div>
-                    <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan4 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 text ar text-right">{{ 'isha'|trans }}</div>
-                </div>
-            {% else %}
-                <div class="row">
-                    <div class="col-xs-4 text text-left">{{ 'fajr'|trans }}</div>
-                    <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan0 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 wait _0 text-right"></div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 text text-left">{{ 'zuhr'|trans }}</div>
-                    <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan1 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 wait _1 text-right"></div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 text text-left">{{ 'asr'|trans }}</div>
-                    <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan2 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 wait _2 text-right"></div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 text text-left">{{ 'maghrib'|trans }}</div>
-                    <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan3 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 wait _3 text-right"></div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 text text-left">{{ 'isha'|trans }}</div>
-                    <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
-                    <div class="col-xs-4 adhan4 hidden">
-                        <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                    </div>
-                    <div class="col-xs-4 wait _4 text-right"></div>
-                </div>
-            {% endif %}
-        </div>
-
+    <div class="chourouk-joumouaa">
         <div class="row">
-            <div class="next-prayer text-center">
-                {{ 'next_prayer'|trans }}
-                <div class="countdown"></div>
-            </div>
+            <div class="col-xs-4 col-xs-offset-1 imsak custom-time label ar">{{ 'imsak'|trans }}</div>
+            <div class="col-xs-4 col-xs-offset-1 chourouk custom-time label ar">{{ 'shuruk'|trans }}</div>
+            <div class="col-xs-4 col-xs-offset-1 aid custom-time label ar">{{ 'aid'|trans }}</div>
+            {% if not mosque.configuration.noJumua %}
+                <div class="col-xs-2"></div>
+                <div class="col-xs-4 joumouaa label ar">{{ 'jumua'|trans }}</div>
+                <div class="col-xs-1"></div>
+            {% endif %}
         </div>
-
-        <div class="chourouk-joumouaa">
-            <div class="row">
-                <div class="col-xs-4 col-xs-offset-1 imsak custom-time label ar">{{ 'imsak'|trans }}</div>
-                <div class="col-xs-4 col-xs-offset-1 chourouk custom-time label ar">{{ 'shuruk'|trans }}</div>
-                <div class="col-xs-4 col-xs-offset-1 aid custom-time label ar">{{ 'aid'|trans }}</div>
-                {% if not mosque.configuration.noJumua %}
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-4 joumouaa label ar">{{ 'jumua'|trans }}</div>
-                    <div class="col-xs-1"></div>
-                {% endif %}
-            </div>
-            <div class="row">
-                <div class="col-xs-4 col-xs-offset-1 imsak custom-time imsak-id {{ ampmClass }}"></div>
-                <div class="col-xs-4 col-xs-offset-1 chourouk custom-time chourouk-id  {{ ampmClass }}"></div>
-                <div class="col-xs-4 col-xs-offset-1 aid custom-time aid-id {{ ampmClass }}"></div>
-                {% if not mosque.configuration.noJumua %}
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-4 prayer joumouaa-id {{ ampmClass }}"></div>
-                    <div class="col-xs-1"></div>
-                {% endif %}
-            </div>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-1 imsak custom-time imsak-id {{ ampmClass }}"></div>
+            <div class="col-xs-4 col-xs-offset-1 chourouk custom-time chourouk-id  {{ ampmClass }}"></div>
+            <div class="col-xs-4 col-xs-offset-1 aid custom-time aid-id {{ ampmClass }}"></div>
+            {% if not mosque.configuration.noJumua %}
+                <div class="col-xs-2"></div>
+                <div class="col-xs-4 prayer joumouaa-id {{ ampmClass }}"></div>
+                <div class="col-xs-1"></div>
+            {% endif %}
         </div>
+    </div>
 
-        <div class="footer">
-            <div class="assosciation text-center">
-                <div>{{ mosque.associationName }}</div>
-                {% if mosque.phone %}
-                    &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
-                {% endif %}
-                {% if mosque.email %}
-                    &nbsp;<i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}
-                {% endif %}
-                {% if mosque.site %}
-                    <div><i class="glyphicon glyphicon-link"></i> <a href="{{ mosque.site }}">{{ mosque.site }}</a></div>
-                {% endif %}
-                <div>{{ mosque.localisation }} <i id="navigate" class="fa fa-location-arrow"></i></div>
-            </div>
-            <div class="support">
-                <div>{{ 'developed_by'|trans }}</div>
-                <i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
-            </div>
+    <div class="footer">
+        <div class="assosciation text-center">
+            <div>{{ mosque.associationName }}</div>
+            {% if mosque.phone %}
+                &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+            {% endif %}
+            {% if mosque.email %}
+                &nbsp;<i class="glyphicon glyphicon-envelope"></i> {{ mosque.email }}
+            {% endif %}
+            {% if mosque.site %}
+                <div><i class="glyphicon glyphicon-link"></i> <a href="{{ mosque.site }}">{{ mosque.site }}</a></div>
+            {% endif %}
+            <div>{{ mosque.localisation }} <i id="navigate" class="fa fa-location-arrow"></i></div>
+        </div>
+        <div class="support">
+            <div>{{ 'developed_by'|trans }}</div>
+            <i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
+        </div>
+        <div class="col-xs-6">
+            {% if mosque.isMosque %}
+                <div class="version text-left">#{{ mosque.id }}</div>
+            {% endif %}
+        </div>
+        <div class="col-xs-6">
             <div class="version text-right">v{{ version }}</div>
         </div>
     </div>
 
-    <script>
-        var lastUpdated = {{ mosque.updated }};
-        var confData = {{ config|raw }};
-        var lang = '{{ app.request.locale }}';
-    </script>
 
-    {% javascripts
-        '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
-        '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
-        '@AppBundle/Resources/public/js/tools.js'
-        '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
-        '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
-        '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
-        '@AppBundle/Resources/public/prayer-times/js/date.js'
-        '@AppBundle/Resources/public/prayer-times/js/prayer.js'
-        '@AppBundle/Resources/public/prayer-times/js/notif.js'
-        '@AppBundle/Resources/public/prayer-times/js/mobile.js'
-        '@AppBundle/Resources/public/prayer-times/js/common.js'
-        '@AppBundle/Resources/public/prayer-times/js/main_mobile.js'
-    %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+</div>
+</div>
+
+<script>
+    var lastUpdated = {{ mosque.updated }};
+    var confData = {{ config|raw }};
+    var lang = '{{ app.request.locale }}';
+</script>
+
+{% javascripts
+    '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+    '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
+    '@AppBundle/Resources/public/js/tools.js'
+    '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
+    '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
+    '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
+    '@AppBundle/Resources/public/prayer-times/js/date.js'
+    '@AppBundle/Resources/public/prayer-times/js/prayer.js'
+    '@AppBundle/Resources/public/prayer-times/js/notif.js'
+    '@AppBundle/Resources/public/prayer-times/js/mobile.js'
+    '@AppBundle/Resources/public/prayer-times/js/common.js'
+    '@AppBundle/Resources/public/prayer-times/js/main_mobile.js' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 </body>
 </html>

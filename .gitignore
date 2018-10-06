@@ -17,9 +17,7 @@
 /app/config/parameters.prod.yml
 /web/css/
 /web/js/
-/web/upload/images/mosques/*
-!web/upload/images/mosques/.gitkeep
 /docker/docker-compose.pp.yml
-/web/upload/images/
+/web/upload/*
 /app/config/parameters.prod.vps.yml
 /.idea/
