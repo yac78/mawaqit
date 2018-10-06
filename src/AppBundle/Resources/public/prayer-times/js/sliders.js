@@ -175,7 +175,7 @@ var messageInfoSlider = {
                         $.each(data.messages, function (i, message) {
                             slide = '<li>';
                             if (message.image) {
-                                slide += '<img src="/upload/images/' + message.image + '"/>';
+                                slide += '<img src="/upload/' + message.image + '"/>';
                             } else {
                                 if (message.title) {
                                     slide += '<div class="title">' + message.title + '</div>';

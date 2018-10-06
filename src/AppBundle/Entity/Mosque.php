@@ -890,7 +890,7 @@ class Mosque
             return 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg';
         }
 
-        return "https://mawaqit.net/upload/images/" . $this->image1;
+        return "https://mawaqit.net/upload/" . $this->image1;
     }
 
     /**

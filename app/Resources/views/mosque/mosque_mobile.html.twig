@@ -33,7 +33,7 @@
                 <h4>{{ message.title }}</h4>
                 <p>{{ message.content|raw }}</p>
                 {% if message.image is not empty %}
-                    <img src="/upload/images/{{ message.image }}" alt="{{ message.title }}"/>
+                    <img src="/upload/{{ message.image }}" alt="{{ message.title }}"/>
                 {% endif %}
                 {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
             </div>
