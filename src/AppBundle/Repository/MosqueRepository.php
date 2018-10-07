@@ -200,7 +200,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder("m")
             ->leftJoin("m.configuration", "c", "m.id = c.mosque_id")
-            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.country,  c.longitude as lng, c.latitude as lat")
+            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.countryFullName,  c.longitude as lng, c.latitude as lat")
             ->where("m.addOnMap = 1")
             ->andWhere("m.type = 'mosque'")
             ->andWhere("m.status = :status")

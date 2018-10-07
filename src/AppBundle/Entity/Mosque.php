@@ -74,6 +74,11 @@ class Mosque
     /**
      * @var string
      */
+    private $countryFullName;
+
+    /**
+     * @var string
+     */
     private $associationName;
 
     /**
@@ -327,6 +332,24 @@ class Mosque
     public function getFullCountryName()
     {
         return ToolsService::getCountryNameByCode($this->country);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryFullName(): string
+    {
+        return $this->countryFullName;
+    }
+
+    /**
+     * @param string $countryFullName
+     * @return Mosque
+     */
+    public function setCountryFullName(string $countryFullName): Mosque
+    {
+        $this->countryFullName = $countryFullName;
+        return $this;
     }
 
     /**

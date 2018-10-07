@@ -46,6 +46,9 @@ AppBundle\Entity\Mosque:
         country:
             type: string
             length: 255
+        countryFullName:
+            type: string
+            length: 255
         zipcode:
             type: string
             length: 255
