@@ -148,11 +148,11 @@ class DefaultController extends Controller
 
     /**
      * get cities by country
-     * @param Request $request
+     * @param $country
      * @Route("/cities/{country}", name="cities_country_ajax")
      * @return JsonResponse
      */
-    public function ciiesVyCountryAjaxAction($country)
+    public function citiesByCountryAjaxAction($country)
     {
         $em = $this->getDoctrine()->getManager();
         $cities = $em->getRepository("AppBundle:Mosque")->getCitiesByCountry($country);
