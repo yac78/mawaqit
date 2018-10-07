@@ -234,7 +234,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     function getCitiesByCountry($country)
     {
         $cities = $this->createQueryBuilder("m")
-            ->select("m.city")
+            ->select("UPPER(m.city) as city")
             ->distinct("m.city")
             ->where("m.country = :country")
             ->andWhere("m.type = :type")
