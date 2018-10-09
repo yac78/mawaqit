@@ -96,21 +96,24 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
+    private function getValidatedMosqueQb()
+    {
+        return $this->createQueryBuilder("m")
+            ->where("m.type = 'mosque'")
+            ->andWhere("m.status = :status")
+            ->setParameter(':status', Mosque::STATUS_VALIDATED);
+    }
+
+
     /**
      * @param string $query
      * @return \Doctrine\ORM\QueryBuilder
      */
     function publicSearch($query)
     {
-        $qb = $this->createQueryBuilder("m");
         if (!empty($query)) {
-
             $query = preg_split("/\s+/", trim($query));
-
-            $qb->where("m.type = 'mosque'")
-                ->andWhere("m.status = :status")
-                ->setParameter(':status', Mosque::STATUS_VALIDATED);
-
+            $qb = $this->getValidatedMosqueQb();
             foreach ($query as $key => $keyword) {
                 $qb->andwhere("m.name LIKE :keyword$key "
                     . "OR m.associationName LIKE :keyword$key "
@@ -125,21 +128,6 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-
-    /**
-     * get configured mosques
-     * @param integer $nbMax
-     * @return \Doctrine\ORM\QueryBuilder
-     */
-    private function getMosquesQuery($nbMax = null)
-    {
-        $qb = $this->createQueryBuilder("m");
-        if (is_numeric($nbMax)) {
-            $qb->setMaxResults($nbMax);
-        }
-        return $qb;
-    }
-
     /**
      * get configured mosques with minimum one image set (image1)
      * @param integer $nbMax
@@ -147,12 +135,15 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
      */
     function getMosquesWithImage($nbMax = null)
     {
-        return $this->getMosquesQuery($nbMax)
-            ->where("m.image1 IS NOT NULL")
-            ->andWhere("m.type = 'mosque'")
-            ->orderBy("m.id", "DESC")
-            ->getQuery()
-            ->getResult();
+        $qb = $this->getValidatedMosqueQb()
+            ->andWhere("m.image1 IS NOT NULL")
+            ->orderBy("m.id", "DESC");
+
+        if (is_numeric($nbMax)) {
+            $qb->setMaxResults($nbMax);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     /**
@@ -185,9 +176,8 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
      */
     function countMosques()
     {
-        return $this->createQueryBuilder("m")
+        return $this->getValidatedMosqueQb()
             ->select("count(m.id)")
-            ->where("m.type = 'mosque'")
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -198,15 +188,13 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
      */
     function getAllMosquesForMap()
     {
-        return $this->createQueryBuilder("m")
+        return $this->getValidatedMosqueQb()
             ->leftJoin("m.configuration", "c", "m.id = c.mosque_id")
             ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.countryFullName,  c.longitude as lng, c.latitude as lat")
-            ->where("m.addOnMap = 1")
+            ->andWhere("m.addOnMap = 1")
             ->andWhere("m.type = 'mosque'")
-            ->andWhere("m.status = :status")
             ->andWhere("c.latitude is not null")
             ->andWhere("c.longitude is not null")
-            ->setParameter(':status', Mosque::STATUS_VALIDATED)
             ->getQuery()
             ->getArrayResult();
     }
@@ -255,9 +243,9 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder("m")
             ->delete()
-            ->where("m.status != :newStatus")
+            ->where("m.status != :status")
             ->andWhere("m.updated < :date")
-            ->setParameter(":newStatus", Mosque::STATUS_VALIDATED)
+            ->setParameter(":status", Mosque::STATUS_VALIDATED)
             ->setParameter(":date", new \DateTime("-15 day "))
             ->getQuery()
             ->execute();

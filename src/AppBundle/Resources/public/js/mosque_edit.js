@@ -27,8 +27,6 @@ function typeDisplayHandler() {
         $(".mosque-block").addClass("hidden");
         $("." + $type.val() + "-block").removeClass("hidden");
 
-        $("#justificatoryFile_file").attr('required', 'required');
-        $("#file1_file").attr('required', 'required');
         if ($type.val() === 'home') {
             $("#address").removeAttr('required');
             $("#justificatoryFile_file").removeAttr('required');
