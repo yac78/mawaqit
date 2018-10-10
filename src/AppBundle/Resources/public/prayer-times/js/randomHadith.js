@@ -28,6 +28,10 @@ var randomHadith = {
             return false;
         }
 
+        if (prayer.isJumuaMoment()) {
+            return false;
+        }
+
         if (/^\d\-\d$/.test(prayer.confData.randomHadithIntervalDisabling)) {
             var prayers = prayer.confData.randomHadithIntervalDisabling.split("-");
             var prayer1 = prayer.getTimeByIndex(parseInt(prayers[0]));

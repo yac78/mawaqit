@@ -779,7 +779,7 @@ var prayer = {
                 prayer.duaAfterAdhan.showAdhanDua();
                 setTimeout(function () {
                     prayer.duaAfterAdhan.hideAdhanDua();
-                    if(iqamaWaiting > 2){
+                    if (iqamaWaiting > 2) {
                         // show hadith between adhan and iqama
                         setTimeout(function () {
                             prayer.duaAfterAdhan.showHadith();
@@ -788,7 +788,7 @@ var prayer = {
                             }, 30 * prayer.oneSecond);
                         }, 10 * prayer.oneSecond);
                     }
-                },( iqamaWaiting > 2 ? 30 : 20) * prayer.oneSecond);
+                }, (iqamaWaiting > 2 ? 30 : 20) * prayer.oneSecond);
             }
         }
     },
@@ -854,6 +854,29 @@ var prayer = {
     isJumua: function (currentPrayerIndex) {
         var date = new Date();
         return prayer.confData.noJumua === false && date.getDay() === 5 && currentPrayerIndex === 1;
+    },
+    /**
+     * check if jumua moment
+     * @return {boolean}
+     */
+    isJumuaMoment: function () {
+        var date = new Date();
+
+        if (prayer.confData.noJumua) {
+            return false;
+        }
+
+        if (date.getDay() !== 5) {
+            return false;
+        }
+
+        var beginTime = prayer.getCurrentDateForPrayerTime(prayer.confData.jumuaTime).getTime();
+        var endTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.confData.jumuaTimeout);
+        if (date.getTime() < beginTime || date.getTime() > endTime) {
+            return false;
+        }
+
+        return true;
     },
     /**
      * @param {string} time
