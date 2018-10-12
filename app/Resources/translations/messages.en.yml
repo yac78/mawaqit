@@ -31,6 +31,15 @@ tou:
   label: I accept
 
 mosque:
+    typeExplanation: |
+          Warning : The "Home" type installation is not intended for mosques, it is limited to private use at home
+          <ul>
+            <li>No help in case of problems</li>
+            <li>No SEO on the internet</li>
+            <li>It will not appear on the mawaqit google map and in mosque search results</li>
+            <li>The ads and messages feature is disabled</li>
+            <li>The word "home" will appear systematically on the mawaqit screen</li>
+          </ul>
     statuses_message:
       NEW: |
         Your mosque has been added, the mawaqit team will proceed to its validation after some checks,
@@ -517,3 +526,4 @@ status: Status
 iqama_in: Al-Iqamah in
 
 change_statuses: Bulk Enable/Disable
+homeTitle: Mawaqit %city% - Home

@@ -38,6 +38,15 @@ tou:
   label: J'accepte
 
 mosque:
+    typeExplanation:  |
+        Attention L'installation de type "Domicile" n'est pas destinée aux mosquées, elle est limitée à un usage privé à domicile
+        <ul>
+        <li>Pas d'assistance en cas de problème</li>
+        <li>Pas de référencement sur internet</li>
+        <li>Elle n'apparaitra pas sur la carte google mawaqit et dans les résultats de recherche de mosquées</li>
+        <li>La fonctionnalité annonces et messages est désactivé</li>
+        <li>La mention domicile apparaitra systématqieuemnt sur l'écran mawaqit</li>
+        </ul>
     types:
         all: Tout
         mosque: Mosquée
@@ -547,3 +556,4 @@ terms_of_use:
 iqama_in: Al-Iqâmah dans
 
 change_statuses: Activation/Désactivation multiple
+homeTitle: Mawaqit %city% - Domicile

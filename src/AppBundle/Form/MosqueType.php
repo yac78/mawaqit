@@ -223,8 +223,7 @@ class MosqueType extends AbstractType
         $mosque->getConfiguration()->setLatitude($position->lat);
 
         if ($mosque->getType() === "home") {
-            $mosque->setAddOnMap(false);
-            $mosque->setStatus(Mosque::STATUS_VALIDATED);
+            $mosque->resetTomHome();
         }
     }
 

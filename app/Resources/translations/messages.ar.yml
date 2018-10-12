@@ -52,7 +52,7 @@ mosque:
         name:
             placeholder: مثلا مسجد السنة
         slug:
-            label: يرجى تغيير اسم الموقع
+            label: رابط المسجد
         city:
             placeholder:  اسم المدينة يصلح لحساب الموقع الجغرافي
         zipcode:
@@ -420,3 +420,4 @@ no_notif: لا يوجد إشعارات
 iqama_in: الإقامة بعد
 
 change_statuses:  تمكين / تعطيل دفعة واحدة
+homeTitle:  مواقيت %city% - منزل

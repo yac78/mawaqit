@@ -93,7 +93,7 @@
                 <span></span><sup>°C</sup>
             </div>
         {% endif %}
-        <div class="header">{{ mosque.title }}</div>
+        <div class="header">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
 
         <!-- Adhan flash -->
         <div class="main-iqama-countdown hidden">

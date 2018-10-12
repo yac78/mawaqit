@@ -832,12 +832,16 @@ class Mosque
      */
     function getTitle()
     {
-
-        $title = $this->getName();
-        if (!empty($this->getCity()) && strpos(strtolower($title), strtolower($this->getCity())) === false) {
-            $title .= " - " . $this->getCity();
+        if ($this->isHome()) {
+            return 'homeTitle';
         }
-        return $title;
+
+        $name = $this->getName();
+        if (strpos(strtolower($name), strtolower($this->getCity())) === false) {
+            $name .= " - " . $this->getCity();
+        }
+
+        return $name;
     }
 
     /**
@@ -883,6 +887,18 @@ class Mosque
     public function getType()
     {
         return $this->type;
+    }
+
+    public function resetTomHome()
+    {
+        $this->addOnMap = false;
+        $this->address = null;
+        $this->site = null;
+        $this->phone = null;
+        $this->email = null;
+        $this->associationName = null;
+        $this->rib = null;
+        $this->status = Mosque::STATUS_VALIDATED;
     }
 
     /**
