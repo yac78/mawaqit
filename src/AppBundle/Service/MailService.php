@@ -41,8 +41,8 @@ class MailService
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
-        $this->email = $email;
-        $this->checkEmail = $checkEmail;
+        $this->email = $email; // contact@mawaqit.net
+        $this->checkEmail = $checkEmail; // postmaster@mawaqit.net
         $this->doNotReplyEmail = $doNotReplyEmail;
     }
 
@@ -63,7 +63,7 @@ class MailService
 
         $message = $this->mailer->createMessage();
         $message->setSubject('Nouvelle mosquée')
-            ->setFrom($this->email)
+            ->setFrom($this->checkEmail)
             ->setTo($this->checkEmail)
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
@@ -106,7 +106,7 @@ class MailService
 
         $message = $this->mailer->createMessage();
         $message->setSubject($mosque->getTitle() . " | Votre mosquée a été suspendue / Your mosque has been suspended")
-            ->setFrom($this->email)
+            ->setFrom($this->checkEmail)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');
         $this->mailer->send($message);

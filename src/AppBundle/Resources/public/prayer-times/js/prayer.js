@@ -870,8 +870,10 @@ var prayer = {
             return false;
         }
 
-        var beginTime = prayer.getCurrentDateForPrayerTime(prayer.confData.jumuaTime).getTime();
-        var endTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.confData.jumuaTimeout);
+        var beginDateTime = prayer.getCurrentDateForPrayerTime(prayer.confData.jumuaTime);
+        var beginTime =  beginDateTime.getTime();
+        var endTime = beginDateTime.setMinutes(beginDateTime.getMinutes() + prayer.confData.jumuaTimeout);
+
         if (date.getTime() < beginTime || date.getTime() > endTime) {
             return false;
         }

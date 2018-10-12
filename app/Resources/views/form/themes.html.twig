@@ -2,8 +2,8 @@
 
 
 {% block help -%}
-    <div class="text-muted help" {% if attr.help|trans|length>50 %} title="{{ attr.help|trans }} {% endif %}">
-        {{ attr.help|trans|truncate(50, true) }}
+    <div class="text-muted help mt-1 mb-1" {% if attr.help|trans|length>50 %} title="{{ attr.help|trans }} {% endif %}">
+        {{ attr.help|trans }}
     </div>
 {%- endblock help %}
 
