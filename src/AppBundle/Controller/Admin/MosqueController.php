@@ -276,12 +276,14 @@ class MosqueController extends Controller
     /**
      * @Route("/mosque/check/{id}", name="mosque_check")
      * @param Mosque $mosque
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws @see  MailService->checkMosque
      */
-    public function checkMosqueAction(Mosque $mosque)
+    public function checkMosqueAction(Mosque $mosque, Request $request)
     {
-        $this->get('app.mosque_service')->check($mosque);
+        $duplicated = $request->query->get('duplicated') === 'true';
+        $this->get('app.mosque_service')->check($mosque, $duplicated);
         $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
     }

@@ -121,14 +121,15 @@ class MosqueService
 
     /**
      * @param Mosque $mosque
+     * @param boolean $duplicated mosque
      * @throws @see MailService
      */
-    public function check(Mosque $mosque)
+    public function check(Mosque $mosque, $duplicated)
     {
         $mosque->setStatus(Mosque::STATUS_CHECK);
         $this->em->persist($mosque);
         $this->em->flush();
-        $this->mailService->checkMosque($mosque);
+        $this->mailService->checkMosque($mosque, $duplicated);
     }
 
 }

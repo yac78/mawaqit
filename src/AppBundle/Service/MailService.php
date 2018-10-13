@@ -10,6 +10,7 @@ class MailService
     const TEMPLATE_MOSQUE_CREATED = ':email_templates:mosque_created.html.twig';
     const TEMPLATE_MOSQUE_VALIDATED = ':email_templates:mosque_validated.html.twig';
     const TEMPLATE_MOSQUE_CHECK = ':email_templates:mosque_check.html.twig';
+    const TEMPLATE_MOSQUE_DUPLICATED = ':email_templates:mosque_duplicated.html.twig';
     const TEMPLATE_MOSQUE_SUSPENDED = ':email_templates:mosque_suspended.html.twig';
 
     /**
@@ -115,18 +116,18 @@ class MailService
     /**
      * Send email to user to check information of the mosque
      * @param Mosque $mosque
+     * @param boolean $duplicated mosque
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    function checkMosque(Mosque $mosque)
+    function checkMosque(Mosque $mosque, $duplicated)
     {
-        $body = $this->twig->render(self::TEMPLATE_MOSQUE_CHECK, [
-            'mosque' => $mosque,
-        ]);
-
+        $template = $duplicated ? self::TEMPLATE_MOSQUE_DUPLICATED : self::TEMPLATE_MOSQUE_CHECK;
+        $body = $this->twig->render($template, ['mosque' => $mosque]);
+        $title = $mosque->getTitle() . " | " . ($duplicated ? "Votre mosquée est déjà sur Mawaqit / Your mosque is already on Mawaqit" : "Nous avons besoin d'informations / We need informations");
         $message = $this->mailer->createMessage();
-        $message->setSubject($mosque->getTitle() . " | Nous avons besoin d'informations / We need informations")
+        $message->setSubject($title)
             ->setFrom($this->checkEmail)
             ->setTo($mosque->getUser()->getEmail())
             ->setBody($body, 'text/html');

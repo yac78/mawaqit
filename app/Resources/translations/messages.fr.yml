@@ -17,6 +17,8 @@ form:
         action: Valider
     check:
         action: Vérifier
+    duplicated:
+        action: En double
     suspend:
         action: Suspendre
     configure:

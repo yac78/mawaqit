@@ -21,9 +21,10 @@
 
             {% if isNotLocal() and is_granted('ROLE_ADMIN') %}
                 <li class="check"><a href="{{ path('mosque_check', {id: mosque.id}) }}"><span class="fa fa-exclamation-circle"></span> {{ 'form.check.action'|trans }}</a></li>
+                <li class="duplicated"><a href="{{ path('mosque_check', {id: mosque.id, duplicated: 'true'}) }}"><span class="fa fa-exclamation-circle"></span> {{ 'form.duplicated.action'|trans }}</a></li>
                 <li class="suspended"><a href="{{ path('mosque_suspend', {id: mosque.id}) }}"><span class="fa fa-pause"></span> {{ 'form.suspend.action'|trans }}</a></li>
                 {% if not mosque.isValidated %}
-                    <li class="alert-danger"><a href="{{ path('mosque_validate', {id: mosque.id}) }}"><span class="fa fa-check-circle"></span> {{ 'form.validate.action'|trans }}</a></li>
+                    <li class="alert-success"><a href="{{ path('mosque_validate', {id: mosque.id}) }}"><span class="fa fa-check-circle"></span> {{ 'form.validate.action'|trans }}</a></li>
                 {% endif %}
             {% endif %}
 
