@@ -63,7 +63,7 @@ class MailService
         ]);
 
         $message = $this->mailer->createMessage();
-        $message->setSubject('Nouvelle mosquée')
+        $message->setSubject('Nouvelle mosquée (' . $mosque->getFullCountryName() . ')')
             ->setFrom($this->checkEmail)
             ->setTo($this->checkEmail)
             ->setBody($body, 'text/html');
