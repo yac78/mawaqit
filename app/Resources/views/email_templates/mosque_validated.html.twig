@@ -8,18 +8,37 @@
             Bonne nouvelle, votre mosquée {{ mosque.title }} vient d'être validée par l'équipe mawaqit, vous pouvez dès maintenant la configurer ici <a
                     href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
         </p>
+        <p>
+            Pour toute question veuillez visiter notre <a href="{{ url('homepage') }}#faq">FAQ</a> et notre chaîne
+            <a href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+        </p>
+        <p>
+            Vous pouvez aussi nous contacter <strong>uniquement</strong> par message Whatsapp sur ce numéro {% include "partial/whatsapp_number.html.twig" %}
+        </p>
         <hr>
         <p>
             Good news, your mosque {{ mosque.title }} has been validated by the mawaqit team , you can now configure it on <a href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
+        </p>
+        <p>
+            For any questions please visit our <a href="{{ url('homepage') }}#faq">FAQ</a> and our <a href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a> channel
+        </p>
+        <p>
+            You can also contact us <strong>only</strong> by Whatsapp message on this number {% include "partial/whatsapp_number.html.twig" %}
         </p>
     </div>
     <hr>
     <div style="text-align: right; font-size: 18px">
         <p>
             بشرى سارة، تم تفعيل مسجدك من طرف فريق مواقيت، يمكنك ضبط الإعدادات هنا
+            <br/><a href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
         </p>
         <p>
-            <a href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
+            لأي أسئلة، يرجى زيارة الأسئلة الشائعة وقناتنا على اليوتوب
+            <br/><a href="{{ url('homepage') }}#faq">FAQ</a> / <a href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+        </p>
+        <p>
+            يمكنك أيضًا الاتصال بنا من خلال رسالة الواتساب فقط على هذا الرقم
+            <br/> {% include "partial/whatsapp_number.html.twig" %}
         </p>
     </div>
 {% endblock %}
