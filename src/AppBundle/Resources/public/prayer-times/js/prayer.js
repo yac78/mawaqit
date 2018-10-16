@@ -979,10 +979,10 @@ var prayer = {
     },
     hideSpinner: function () {
         setTimeout(function () {
-            $("#spinner").fadeOut(1000, function () {
+            $("#spinner").fadeOut(500, function () {
                 $(".main").fadeIn(100);
             });
-        }, 3000);
+        }, 2000);
     },
     /**
      * Arabic handler

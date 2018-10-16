@@ -91,8 +91,8 @@ var douaaSlider = {
         $('.slider li').each(function (i, slide) {
             var $slide = $(slide);
             $slide.css('font-size', '120px');
-            while ($slide.height() > $body.height()) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 5) + "px");
+            while ($slide.height() > $body.height() -180) {
+                $slide.css('font-size', (parseInt($slide.css('font-size')) - 20) + "px");
             }
         });
     }

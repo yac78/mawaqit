@@ -17,6 +17,13 @@
 
 .adhkar-after-prayer .title {
     color: yellowgreen;
+    font-size: 700%;
+    padding: 20px 0;
+    height: 180px;
+}
+
+.adhkar-after-prayer .fr {
+    margin-top: 50px;
 }
 
 .message-info-slider .title {
