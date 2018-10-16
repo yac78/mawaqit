@@ -5,19 +5,3 @@ body {
     font-size: 12px;
     font-family: 'mawaqit', Arial, Helvetica, sans-serif;
 }
-
-.top-buttons{
-    font-size: 220%;
-    color: #777777;
-    position: fixed;
-    top: 10px;
-}
-
-.top-buttons div{
-    display: inline;
-    margin-left: 5px;
-}
-
-.top-buttons a{
-    color: #777777;
-}

@@ -292,7 +292,7 @@ small {
 
 .random-hadith .text {
     padding-top: 10px;
-    height: 91%;
+    height: 89%;
     overflow: hidden;
 }
 
@@ -309,7 +309,7 @@ small {
 
 .time-bottom, .next-prayer {
     color: #ec7047;
-    font-size: 380%;
+    font-size: 450%;
 }
 
 .next-prayer .countdown {
@@ -410,4 +410,22 @@ small {
     display: flex;
     align-items: center;
     height: 100%;
+}
+
+.top-buttons{
+    font-size: 220%;
+    color: #777777;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.top-buttons div{
+    display: inline;
+    margin-left: 5px;
+}
+
+.top-buttons a{
+    color: #777777;
 }
