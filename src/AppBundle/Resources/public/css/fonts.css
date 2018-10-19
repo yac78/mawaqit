@@ -1,6 +1,6 @@
 /* arabic */
 @font-face {
-    font-family: 'mawaqit';
+    font-family: 'koufi';
     unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE80-FEFC;
     src: url(/fonts/DroidKufi-Regular.eot);
     src: url(/fonts/DroidKufi-Regular-iefix.eot) format('embedded-opentype'),
