@@ -468,19 +468,19 @@ var prayer = {
          */
         countdown: function (currentPrayerIndex) {
             var time = prayer.getTimeByIndex(currentPrayerIndex);
-            var waiting = $(".wait._" + currentPrayerIndex).text();
+            var waitingText = $(".wait._" + currentPrayerIndex).text();
             var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
             var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
             var currentElem = $(".wait._" + currentPrayerIndex);
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
-                $('.main-iqama-countdown .countdown').text(countdown);
+                $('.main-iqama-countdown .countdown,' + ".mobile .wait._" + currentPrayerIndex).text(countdown);
                 if (prayer.confData.iqamaFullScreenCountdown === false) {
                     $(this).text(countdown);
                 }
             }).on('finish.countdown', function () {
-                $(currentElem).text(waiting);
+                $(currentElem).text(waitingText);
             });
         }
     },
