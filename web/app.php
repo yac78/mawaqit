@@ -10,11 +10,6 @@ $env = getenv('APP_ENV') ? : 'prod';
 $debug = $env !== 'prod';
 
 $kernel = new AppKernel($env, $debug);
-$kernel->loadClassCache();
-
-if ($env === 'prod'){
-    $kernel = new AppCache($kernel);
-}
 
 // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
 //Request::enableHttpMethodParameterOverride();
