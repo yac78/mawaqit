@@ -196,10 +196,11 @@ configuration:
     form: 
         prayerCalcul: Calcul des horaires de prière
         load_predefined_calendar: 
-            1: "Vous avez deux choix :"
-            2: Charger un calendrier pré-défini parmis la liste ci-dessous puis l'éditer par rapport à votre calendrier papier
-            3: Charger les horaires depuis un fichier texte type CSV pour chaque mois de l'année
-             
+            1: "Trois choix disponibles pour créer votre calendrier:"
+            2: Depuis la liste des calendriers disponibles sur mawaqit
+            3: Depuis un fichier CSV (par mois)
+            4: À partir de la méthode de calcul séléctionnée ci-dessus
+
         fill_calendar:
             success: Les horaires du mois ont été remplis avec succès.
             error: Les horaires du mois n'ont pas pu être remplis correctement.
@@ -217,7 +218,7 @@ configuration:
             Standard: Standard (Shafi`i, Maliki, Hanbali)
             Hanafi: Hanafi
         highLatsMethod:
-            label: "Calcul pour les hautes latitude"
+            label: "Calcul pour les hautes latitudes"
             AngleBased: Basé sur l'angle choisi
             NightMiddle: 1/2 ème de la nuit
             OneSeventh: 1/7 ème de la nuit
@@ -439,7 +440,7 @@ Egypt: "Autorité générale égyptienne (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)
-calendar: Manuel (Horaires renseignées pour toute l'année) - Recommandé
+calendar: Calendrier (Horaires renseignées pour toute l'année)
 calendar_times: Calendrier des horaires
 
 day: Jour
@@ -504,7 +505,7 @@ info_dst_change: |
     ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
     vos horaires en heure d'hiver sur toute l'année. Le logiciel s'occupera du passage à l'heure d'été en fonction de vos choix dans les paramètres
     régionnaux. <br>
-    Les horaires doivent être au format 24h exemple 22:00 et non pas 10:00 pour 10h du soir.
+    Les horaires doivent être au format 24h exemple 22:00 et non pas 10:00.
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
 theme_settings: Thème

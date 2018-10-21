@@ -64,6 +64,72 @@ $(".fill-calendar").change(function (e) {
 });
 
 /**
+ * Fill prayer times from API
+ */
+function fillCalendarFromApi(e) {
+
+    e.preventDefault();
+
+    waitingDialog.show();
+
+    setTimeout(function () {
+        var prayerMethod = $('#configuration_prayerMethod').val();
+        var prayTimes = new PrayTimes(prayerMethod);
+
+        if (prayerMethod === "CUSTOM") {
+            var fajrDegree = $('#configuration_fajrDegree').val();
+            var ishaDegree = $('#configuration_ishaDegree').val();
+
+            if (fajrDegree) {
+                prayTimes.adjust({"fajr": parseFloat(fajrDegree)});
+            }
+            if (ishaDegree) {
+                prayTimes.adjust({"isha": parseFloat(ishaDegree)});
+            }
+        }
+
+        prayTimes.adjust({"asr": $('#configuration_asrMethod').val()});
+
+        var highLatsMethod = $('#configuration_highLatsMethod').val();
+
+        if (highLatsMethod) {
+            prayTimes.adjust({"highLats": highLatsMethod});
+        }
+
+        var months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        for (var month = 0; month <= 11; month++) {
+            for (var day = 1; day <= months[month]; day++) {
+                var date = new Date();
+                date.setMonth(month);
+                date.setDate(day);
+                var latitude = $('#configuration_latitude').val();
+                var longitude = $('#configuration_longitude').val();
+                var timezone = $('#configuration_timezone').val();
+                var pt = prayTimes.getTimes(date, [parseFloat(latitude), parseFloat(longitude)], timezone, 0);
+                var times = {
+                    1: pt.fajr,
+                    2: pt.sunrise,
+                    3: pt.dhuhr,
+                    4: pt.asr,
+                    5: pt.maghrib,
+                    6: pt.isha
+                };
+
+                for (var prayer = 1; prayer <= 6; prayer++) {
+                    var inputPrayer = $("input[name='configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
+                    inputPrayer.val(times[prayer]);
+                    inputPrayer.trigger("change");
+                }
+            }
+        }
+        checkAndHilightIncompletedMonths();
+        waitingDialog.hide();
+    }, 500)
+}
+
+
+/**
  * Read CSV and fill prayerTimes in input elements
  * @param {string} csv
  * @param {object} inputFile
@@ -100,7 +166,13 @@ function processFillMonthPrayerTimes(csv, inputFile) {
 }
 
 $("#predefined-calendar").change(function () {
-   window.location.href = $('option:selected', this).data('remote');
+    window.location.href = $('option:selected', this).data('remote');
+});
+
+
+$("input[name='calendarSource']").change(function () {
+    $(".calendarSource").addClass("hidden");
+    $("." + $(this).val()).removeClass("hidden");
 });
 
 function handleErrorsDisplay() {

@@ -32,6 +32,8 @@
                 </div>
                 <div id="regionalSettings" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <input type="hidden" id="configuration_latitude" value="{{ mosque.configuration.latitude }}">
+                        <input type="hidden" id="configuration_longitude" value="{{ mosque.configuration.longitude }}">
                         <div class="row">
                             <div class="col-md-3">
                                 {{ form_row(form.timezone) }}
@@ -94,15 +96,26 @@
                                 <div class="col-md-6">
                                     <div class="alert alert-info" role="alert">
                                         <p>{{ 'configuration.form.load_predefined_calendar.1'|trans }}</p>
-                                        <ul>
-                                            <li>{{ 'configuration.form.load_predefined_calendar.2'|trans }}</li>
-                                            <li>{{ 'configuration.form.load_predefined_calendar.3'|trans }}</li>
-                                        </ul>
+                                        <div class="radio">
+                                            <label><input type="radio" name="calendarSource" value="list">{{ 'configuration.form.load_predefined_calendar.2'|trans }}</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="calendarSource" value="csv">{{ 'configuration.form.load_predefined_calendar.3'|trans }}</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="calendarSource" value="api">{{ 'configuration.form.load_predefined_calendar.4'|trans }}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-2 calendarSource api hidden">
+                                <div class="col-md-6">
+                                    <a class="btn btn-primary" href="#" onclick="fillCalendarFromApi(event)">Charger</a>
+                                </div>
+                            </div>
+
+                            <div class="row calendarSource list hidden">
                                 <div class="form-group col-md-3">
                                     <select class="form-control" id="predefined-calendar">
                                         <option value="">{{ 'configuration.select_calendar'|trans }}</option>
@@ -118,7 +131,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row calendarSource csv hidden">
                                 <div class="col-md-6">
                                     <div class="alert alert-warning">
                                         <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans|raw }}
@@ -249,7 +262,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default api hidden">
+            <div class="panel panel-default calendarSource api hidden">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
                      href="#adjustedTimesPanel">
                     {{ form_label(form.adjustedTimes) }}
@@ -560,6 +573,7 @@
 
 {% block additional_javascripts %}
     {% javascripts
+        '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
         '@AppBundle/Resources/public/js/configure.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

@@ -172,10 +172,11 @@ configuration:
             Be careful the calendar of your mosque is not completed yet
     form:
         prayerCalcul: Calculation of prayer times
-        load_predefined_calendar: 
-            1: "You have two choices :"
-            2: Load a predefined calendar from the list below and edit it against your paper calendar
-            3: Load prayer times from a CSV text file for each month of the year
+        load_predefined_calendar:
+           1: "Three choices available to create your calendar :"
+           2: From the list of calendars available on mawaqit
+           3: From a CSV file (per month)
+           4: From the calculation method selected above
              
         fill_calendar:
             success: The prayer times of the month have been filled successfully.
@@ -413,7 +414,7 @@ Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choose Fajr and `Isha degree"
 
 api: Automatic (Calculation of prayer times by the software)
-calendar: Manual (prayer times filled in for the whole year) - Recommended
+calendar: Calendar (prayer times filled in for the whole year)
 calendar_times: Prayer times calendar
 
 day: Day
@@ -474,7 +475,7 @@ association_info: "%name% - Phone. %phone%"
 info_dst_change: |
   WARNING ! the calendar must be entered without taking into account the change of daylight saving time,
   you must enter your hours in winter time throughout the year. The software will take care of the daylight saving time according to your choices in the regional settings.<br>
-  The hours must be in 24h format example 22:00 and not 10:00 for 10h evening
+  The hours must be in 24h format example 22:00 and not 10:00
 
 other_settings: Other settings
 home_settings: Home use
