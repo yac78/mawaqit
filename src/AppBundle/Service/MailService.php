@@ -7,12 +7,6 @@ use AppBundle\Entity\Mosque;
 class MailService
 {
 
-    const TEMPLATE_MOSQUE_CREATED = ':email_templates:mosque_created.html.twig';
-    const TEMPLATE_MOSQUE_VALIDATED = ':email_templates:mosque_validated.html.twig';
-    const TEMPLATE_MOSQUE_CHECK = ':email_templates:mosque_check.html.twig';
-    const TEMPLATE_MOSQUE_DUPLICATED = ':email_templates:mosque_duplicated.html.twig';
-    const TEMPLATE_MOSQUE_SUSPENDED = ':email_templates:mosque_suspended.html.twig';
-
     /**
      * @var \Swift_Mailer
      */
@@ -26,7 +20,7 @@ class MailService
     /**
      * @var string
      */
-    private $email;
+    private $contactEmail;
 
     /**
      * @var array
@@ -36,72 +30,60 @@ class MailService
     /**
      * @var array
      */
-    private $checkEmail;
+    private $postmasterEmail;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $email, $doNotReplyEmail, $checkEmail)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $contactEmail, $doNotReplyEmail, $postmasterEmail)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
-        $this->email = $email; // contact@mawaqit.net
-        $this->checkEmail = $checkEmail; // postmaster@mawaqit.net
+        $this->contactEmail = $contactEmail; // contact@mawaqit.net
+        $this->postmasterEmail = $postmasterEmail; // postmaster@mawaqit.net
         $this->doNotReplyEmail = $doNotReplyEmail; // no-reply@mawaqit.net
     }
 
     /**
      * Send email when mosque created
      * @param Mosque $mosque
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws @see sendEmail
      */
     function mosqueCreated(Mosque $mosque)
     {
         $title = 'Nouvelle mosquée (' . $mosque->getFullCountryName() . ')';
-        $body = $this->twig->render(self::TEMPLATE_MOSQUE_CREATED, ['mosque' => $mosque]);
-        $this->sendEmail($title, $body, $this->checkEmail, $this->checkEmail);
+        $this->sendEmail($mosque, $title, $this->postmasterEmail, $this->postmasterEmail, 'created');
     }
 
     /**
      * Send email when mosque has been validated by admin
      * @param Mosque $mosque
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws @see sendEmail
      */
     function mosqueValidated(Mosque $mosque)
     {
         $title = $mosque->getTitle() . " | Votre mosquée a été validée / Your mosque has been validated";
-        $body = $this->twig->render(self::TEMPLATE_MOSQUE_VALIDATED, ['mosque' => $mosque]);
-        $this->sendEmail($title, $body, $mosque->getUser()->getEmail(), $this->doNotReplyEmail);
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->doNotReplyEmail, 'validated');
     }
 
 
     /**
      * Send email when mosque has been suspended by admin
      * @param Mosque $mosque
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws @see sendEmail
      */
     function mosqueSuspended(Mosque $mosque)
     {
         $title = $mosque->getTitle() . " | Votre mosquée a été suspendue / Your mosque has been suspended";
-        $body = $this->twig->render(self::TEMPLATE_MOSQUE_SUSPENDED, ['mosque' => $mosque]);
-        $this->sendEmail($title, $body, $mosque->getUser()->getEmail(), $this->checkEmail);
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'suspended');
     }
 
     /**
      * Send email to user to check information of the mosque
      * @param Mosque $mosque
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws @see sendEmail
      */
     function checkMosque(Mosque $mosque)
     {
         $title = $mosque->getTitle() . " | Nous avons besoin d'informations / We need informations";
-        $body = $this->twig->render(self::TEMPLATE_MOSQUE_CHECK, ['mosque' => $mosque]);
-        $this->sendEmail($title, $body, $mosque->getUser()->getEmail(), $this->checkEmail);
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'check');
     }
 
     /**
@@ -112,18 +94,22 @@ class MailService
     function duplicatedMosque(Mosque $mosque)
     {
         $title = $mosque->getTitle() . " | Votre mosquée est en double sur Mawaqit / Your mosque is duplicated on Mawaqit";
-        $body = $this->twig->render(self::TEMPLATE_MOSQUE_DUPLICATED, ['mosque' => $mosque]);
-        $this->sendEmail($title, $body, $mosque->getUser()->getEmail(), $this->checkEmail);
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'duplicated');
     }
 
     /**
      * @param $title
-     * @param $body
+     * @param $mosque
      * @param $to
      * @param $from
+     * @param $status
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    private function sendEmail($title, $body, $to, $from)
+    private function sendEmail(Mosque $mosque, $title, $to, $from, $status)
     {
+        $body = $this->twig->render(":email_templates:mosque_$status.html.twig", ['mosque' => $mosque]);
         $message = $this->mailer->createMessage();
         $message->setSubject($title)
             ->setFrom($from)
