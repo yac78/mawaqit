@@ -73,8 +73,7 @@ class MosqueController extends Controller
 
             // send mail if mosque
             if ($mosque->isMosque()) {
-                $totalMosqueCount = $em->getRepository("AppBundle:Mosque")->getCount();
-                $this->get("app.mail_service")->mosqueCreated($mosque, $totalMosqueCount);
+                $this->get("app.mail_service")->mosqueCreated($mosque);
             }
 
             $this->addFlash('success', "form.create.success");
@@ -276,14 +275,25 @@ class MosqueController extends Controller
     /**
      * @Route("/mosque/check/{id}", name="mosque_check")
      * @param Mosque $mosque
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws @see  MailService->checkMosque
      */
-    public function checkMosqueAction(Mosque $mosque, Request $request)
+    public function checkMosqueAction(Mosque $mosque)
     {
-        $duplicated = $request->query->get('duplicated') === 'true';
-        $this->get('app.mosque_service')->check($mosque, $duplicated);
+        $this->get('app.mosque_service')->check($mosque);
+        $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
+        return $this->redirectToRoute("mosque_index");
+    }
+
+    /**
+     * @Route("/mosque/duplicated/{id}", name="mosque_duplicated")
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws @see  MailService->duplicatedMosque
+     */
+    public function duplicatedMosqueAction(Mosque $mosque)
+    {
+        $this->get('app.mosque_service')->duplicated($mosque);
         $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
     }

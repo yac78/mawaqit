@@ -17,6 +17,7 @@ class Mosque
     const STATUS_VALIDATED = "VALIDATED";
     const STATUS_SUSPENDED = "SUSPENDED";
     const STATUS_CHECK = "CHECK";
+    const STATUS_DUPLICATED = "DUPLICATED";
 
     const TYPE_MOSQUE = "mosque";
     const TYPE_HOME = "home";
@@ -976,17 +977,10 @@ class Mosque
 
     public function statusClass()
     {
-        $class = '';
-        if ($this->status === self::STATUS_NEW) {
-            $class = 'new';
-        } elseif ($this->status === self::STATUS_CHECK) {
-            $class = 'check';
-        } elseif ($this->status === self::STATUS_SUSPENDED) {
-            $class = 'suspended';
-        } elseif (!$this->isCalendarCompleted()) {
-            $class = 'calendarIncompleted';
+        if (!$this->isCalendarCompleted()) {
+            return 'calendarIncompleted';
         }
-        return $class;
+        return strtolower($this->status);
     }
 
     /**

@@ -20,6 +20,9 @@ form:
                      <li>The spelling of the address ("%address%")</li>
                      <li>Your internet connection (it is necessary to geolocate the mosque)</li>
                  </ul>
+    load:
+        action: Load
+
 registration:
     form:
       tou:
@@ -45,11 +48,13 @@ mosque:
         Your mosque has been added, the mawaqit team will proceed to its validation after some checks,
         it may take a few days, you will receive an email informing you of the validation of your mosque.
       CHECK: |
-        We need additional information to validate your mosque, please contact us as soon as possible by mail on
-        the address postmaster@mawaqit.net
+        We need additional information to validate your mosque,
+        please contact us as soon as possible by replying to the email sent to you
       SUSPENDED: |
-         We have suspended your mosque, please contact us as soon as possible by mail on
-         the address postmaster@mawaqit.net
+        We have suspended your mosque, please contact us as soon as possible by replying the email that was sent to you
+      DUPLICATED: |
+        It seems that your mosque is duplicated, we need additional information to validate your mosque,
+        please contact us as soon as possible by replying to the email sent to you
     types:
         all: All
         mosque: Mosque
@@ -58,6 +63,7 @@ mosque:
       NEW: Waiting for validation
       VALIDATED: Validated
       CHECK: Checking in progress
+      DUPLICATED: Duplicated
     add_new: Add
     add: Adding a new mosque
     name: Name
@@ -376,9 +382,9 @@ ph: Phonetic
 both: Arabic & French
 enabled: Enabled
 disabled: Disabled
-dst-auto: Auto (Dépend du réglage système du raspberry, France par défaut)
-dst-enabled: disabled (Country outside France with choice of dates)
-dst-disabled: Désactivé (Countries not practicing dst)
+dst-auto: Auto (Depends on the system setting of raspberry, France by default)
+dst-enabled: Enabled (Country outside France with choice of dates)
+dst-disabled: Disabled (Countries not practicing dst)
 send: Envoyer
 required: Required
 close: Close

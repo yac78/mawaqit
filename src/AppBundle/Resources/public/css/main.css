@@ -132,3 +132,15 @@ body {
     right: 5px;
     color: #3c3c3c;
 }
+
+.checkbox label .toggle, .checkbox-inline .toggle {
+    margin-left: 0;
+}
+
+/*.toggle-on.btn-sm {*/
+    /*padding-right: 15px;*/
+/*}*/
+
+/*.form-control {*/
+    /*height: 40px;*/
+/*}*/

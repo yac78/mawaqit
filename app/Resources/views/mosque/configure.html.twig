@@ -69,7 +69,7 @@
                             <div class="col-md-4">
                                 {{ form_row(form.sourceCalcul) }}
                             </div>
-                            <div class="api hidden">
+                            <div class="api calendarSource hidden">
                                 <div class="col-md-4">
                                     {{ form_row(form.prayerMethod) }}
                                 </div>
@@ -111,7 +111,7 @@
 
                             <div class="row mb-2 calendarSource api hidden">
                                 <div class="col-md-6">
-                                    <a class="btn btn-primary" href="#" onclick="fillCalendarFromApi(event)">Charger</a>
+                                    <a class="btn btn-primary" href="#" onclick="fillCalendarFromApi(event)">{{ 'form.load.action'|trans }}</a>
                                 </div>
                             </div>
 
