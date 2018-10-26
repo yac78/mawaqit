@@ -49,7 +49,7 @@
 <div id="main" class="main display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
 
     <!-- Random hadith container -->
-    <div class="random-hadith display-none" data-remote="{{ path('random_hadith', {slug: mosque.slug}) }}">
+    <div class="random-hadith display-none" data-remote="{{ path('random_hadith', {lang: mosque.configuration.hadithLang}) }}">
         <div class="text">
             <div></div>
         </div>
