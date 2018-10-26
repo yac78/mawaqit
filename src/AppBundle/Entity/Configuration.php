@@ -960,6 +960,11 @@ class Configuration
         return $this->sourceCalcul === self::SOURCE_CALENDAR;
     }
 
+    function isApi()
+    {
+        return $this->sourceCalcul === self::SOURCE_API;
+    }
+
     /**
      * @return boolean
      */

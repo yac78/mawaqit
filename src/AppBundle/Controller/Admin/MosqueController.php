@@ -219,7 +219,9 @@ class MosqueController extends Controller
         $zipFilePath = $this->get("app.prayer_times_service")->getFilesFromCalendar($mosque);
         if (is_file($zipFilePath)) {
             $zipFileName = $mosque->getSlug() . ".zip";
-            return new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
+            $response =  new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
+            $response->deleteFileAfterSend(true);
+            return $response;
         }
 
         return new Response("Cette mosquée n'as pas de calendier renseignée");

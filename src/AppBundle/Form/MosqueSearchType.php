@@ -57,6 +57,7 @@ class MosqueSearchType extends AbstractType
                     "mosque.statuses.CHECK",
                     "mosque.statuses.VALIDATED",
                     "mosque.statuses.SUSPENDED",
+                    "mosque.statuses.DUPLICATED",
                 ], Mosque::STATUSES)
             ])->add('sourceCalcul', ChoiceType::class, [
                 'constraints' => new Choice(["choices" => Configuration::SOURCE_CHOICES]),

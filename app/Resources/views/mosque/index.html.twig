@@ -83,9 +83,10 @@
                     </td>
                     <td>
                         {{ mosque.name }}<br>
-                        {% if mosque.configuration.isCalendar and  mosque.isCalendarCompleted %}
-                            <i class="fa fa-download"></i> <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>
-                        {% endif %}
+                        <i class="fa fa-download"></i>
+                        <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
+                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man'}})
+                        </a>
                     </td>
                     <td>{{ mosque.associationName }}</td>
                     <td style="position: relative">
@@ -198,11 +199,12 @@
                     {% endif %}
                     <div><strong>{{ 'creation_date'|trans }}:</strong> {{ mosque.created|date('d/m/Y H:i') }}</div>
                     <div><strong>{{ 'type'|trans }} :</strong> {{ ('mosque.types.' ~ mosque.type ) | trans }}</div>
-                    {% if mosque.configuration.isCalendar and  mosque.isCalendarCompleted %}
-                        <div>
-                            <i class="fa fa-download"></i> <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">{{ 'configuration.list.download_csv_files'|trans }}</a>
-                        </div>
-                    {% endif %}
+                    <div>
+                        <i class="fa fa-download"></i>
+                        <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
+                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man'}})
+                        </a>
+                    </div>
 
                     {% if not mosque.isCalendarCompleted %}
                         <div>
