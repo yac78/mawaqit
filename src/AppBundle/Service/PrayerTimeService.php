@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\Vendor\PrayTime;
 
@@ -46,9 +47,17 @@ class PrayerTimeService
             if (!is_dir($path)) {
                 mkdir($path);
             }
-            $this->praytime->setCalcMethod($conf->getPrayerMethod());
+
+            if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM){
+                $this->praytime->setCalcMethod($conf->getPrayerMethod());
+            }
+            if ($conf->getPrayerMethod() === Configuration::METHOD_CUSTOM){
+                $this->praytime->setFajrAngle($conf->getFajrDegree());
+                $this->praytime->setIshaAngle($conf->getIshaDegree());
+            }
             $this->praytime->setAsrMethod($conf->getAsrMethod());
             $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
+
             foreach (Calendar::MONTHS as $monthIndex => $days) {
                 $str = "Day,Fajr,Shuruk,Duhr,Asr,Maghrib,Isha\n";
                 for ($day = 1; $day <= $days; $day++) {

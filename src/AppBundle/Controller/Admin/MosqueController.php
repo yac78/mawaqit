@@ -224,7 +224,7 @@ class MosqueController extends Controller
             return $response;
         }
 
-        return new Response("Cette mosquée n'as pas de calendier renseignée");
+        return new Response("An error has occured ", Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     /**
