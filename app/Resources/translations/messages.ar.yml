@@ -1,3 +1,17 @@
+home:
+  menu:
+    main: القائمة
+    project: المشروع
+    mosques: Mosquées équipées
+    equipYourMosque: équipez votre mosquée
+    install: installez
+    faq: faq
+    contactUs: contactez-nous
+
+  title:
+  text:
+  button:
+
 form:
     mandatory_field:  حقل إجباري
     create:

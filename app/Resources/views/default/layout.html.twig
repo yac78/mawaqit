@@ -16,6 +16,7 @@
         "bundles/app/agency/css/agency.min.css"
         "bundles/app/css/main.css"
         "bundles/app/jquery/css/jquery-ui.min.css"
+        "bundles/app/css/fonts.css"
         "bundles/app/agency/css/custom.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
@@ -54,7 +55,7 @@
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle navigation</span>{{ 'home.menu.main'|trans }}<i class="fa fa-bars"></i>
             </button>
         </div>
 
@@ -65,25 +66,25 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{ path('homepage') }}#projet">Le projet</a>
+                    <a class="page-scroll" href="{{ path('homepage') }}#projet">{{ 'home.menu.project'|trans }} </a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{ path('homepage') }}#mosquees">Mosquées équipées</a>
+                    <a class="page-scroll" href="{{ path('homepage') }}#mosquees">{{ 'home.menu.mosques'|trans }}</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{ path('homepage') }}#participer">équipez votre mosquée</a>
+                    <a class="page-scroll" href="{{ path('homepage') }}#participer">{{ 'home.menu.equipYourMosque'|trans }}</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{ path('manual') }}">installez</a>
+                    <a class="page-scroll" href="{{ path('manual') }}">{{ 'home.menu.install'|trans }}</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{ path('homepage') }}#faq">faq</a>
+                    <a class="page-scroll" href="{{ path('homepage') }}#faq">{{ 'home.menu.faq'|trans }}</a>
                 </li>
                 <li>
                     <a class="page-scroll" target="_blank" href="https://app.swaggerhub.com/apis/ibra/Mawaqit/1.0.0">api</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">contactez-nous</a>
+                    <a class="page-scroll" href="#contact">{{ 'home.menu.contactUs'|trans }}</a>
                 </li>
                 <li>
                     <a href="{{ path("fos_user_registration_register") }}"><i

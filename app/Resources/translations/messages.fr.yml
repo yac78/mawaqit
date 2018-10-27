@@ -1,5 +1,13 @@
 home:
   menu:
+    main: Menu
+    project: Le projet
+    mosques: Mosquées équipées
+    equipYourMosque: équipez votre mosquée
+    install: installez
+    faq: faq
+    contactUs: contactez-nous
+
   title:
   text:
   button:
