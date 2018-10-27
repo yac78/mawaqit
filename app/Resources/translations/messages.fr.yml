@@ -1,3 +1,9 @@
+home:
+  menu:
+  title:
+  text:
+  button:
+
 form:
     label:
         delete: Supprimer ?

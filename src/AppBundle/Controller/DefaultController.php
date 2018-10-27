@@ -41,6 +41,17 @@ class DefaultController extends Controller
 
 
     /**
+     * @Route("/manual", name="manual")
+     */
+    public function manualAction()
+    {
+        if ($this->get('app.request_service')->isLocal()) {
+            throw new NotFoundHttpException();
+        }
+        return $this->render('default/manual.html.twig');
+    }
+
+    /**
      * @Route("legal-notice", name="legal_notice")
      */
     public function legalNoticeAction()

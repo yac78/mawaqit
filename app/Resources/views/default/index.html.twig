@@ -9,6 +9,7 @@
     {% endstylesheets %}
 {% endblock %}
 
+
 {% block content %}
     <div class="text-center">
         <!-- projet Section -->
@@ -402,7 +403,7 @@
             <div class="container">
                 <h2 class="section-heading">Installez notre solution</h2>
                 <p>
-                   Veuillez suivre les étapes ci-dessous :
+                    Veuillez suivre les étapes ci-dessous :
                 </p>
                 <br>
                 <ol class="text-muted text-left">
@@ -546,58 +547,6 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-heading">Contactez nous</h2>
-                <div class="text-primary text-left" style="font-weight: bold; font-size: 130%">
-                    <p>
-                        Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel.
-                        Contactez nous :
-                    </p>
-
-                    <ul>
-                        <li><i class="fa fa-whatsapp"></i> Par message WhatsApp uniquement : {{ supportTel1 }} (France) / {{ supportTel2 }} (Reste du monde) du Lundi au Samedi entre 9h et 21h</li>
-                        <li>Via le formulaire ci-dessous</li>
-                    </ul>
-                </div>
-
-                <form name="sentMessage" id="contactForm" novalidate>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nom *" id="name" required
-                                       data-validation-required-message="Veuillez saisir votre nom.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email *" id="email" required
-                                       data-validation-required-message="Veuillez saisir votre adresse.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" class="form-control" placeholder="Téléphone *" id="phone" required
-                                       data-validation-required-message="Veuillez saisir votre numéro de téléphone.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Message *" id="message" required
-                                          data-validation-required-message="Veuillez saisir votre message."></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Envoyer</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </section>
     </div>
