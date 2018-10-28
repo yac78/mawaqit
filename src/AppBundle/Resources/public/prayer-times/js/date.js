@@ -109,7 +109,7 @@ var dateTime = {
         }
 
         date.setHours(4);
-        return date.dst();
+        return moment(date).isDST();
     },
     /**
      * @returns {Date}
