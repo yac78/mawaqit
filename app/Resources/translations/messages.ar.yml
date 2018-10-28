@@ -2,15 +2,37 @@ home:
   menu:
     main: القائمة
     project: المشروع
-    mosques: Mosquées équipées
-    equipYourMosque: équipez votre mosquée
-    install: installez
-    faq: faq
-    contactUs: contactez-nous
+    mosques: مساجد مجهزة
+    equipYourMosque: جهز مسجدك
+    install: تثبيت
+    faq: أسئلة وأجوبة
+    contactUs: إتصل بنا
 
   title:
-  text:
+    header1: |
+      "إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا" (النساء 103)
+    header2: جهز مسجدك أو منزلك بساعة الصلاة الذكية والمتصلة
+    header3: برنامجنا مجاني تماما
+    header4: الأجهزة هي مسؤوليتك
   button:
+    discover: اكتشف
+    send: إرسال
+
+  text:
+    contactUsText1: |
+      لديك أسئلة حول كيفية تجهيز المسجد الخاص بك ببرنامجنا. اتصل بنا:
+    contactUsText2: |
+      <li><i class="fa fa-whatsapp"></i>  على الوانساب (كتابيا فقظ) : supportTel1 (فرنسا) supportTel2 (باقي العالم) من التاسعة صباحا إلى التاسعة مساءا</li>
+      <li>عبر الإستمارة أدناه</li>
+    contactUsFormValidation1: من فضلك ادخل اسمك
+    contactUsFormValidation2: يرجى إدخال عنوانك
+    contactUsFormValidation3: يرجى إدخال رقم هاتفك
+    contactUsFormValidation4: يرجى إدخال رسالتك
+    contactUsFormPlaceholder1: الاسم *
+    contactUsFormPlaceholder2: البريد الإلكتروني *
+    contactUsFormPlaceholder3: الهاتف *
+    contactUsFormPlaceholder4: الرسالة *
+    legalNotice: المعلومات القانونية
 
 form:
     mandatory_field:  حقل إجباري

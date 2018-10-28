@@ -9,8 +9,31 @@ home:
     contactUs: contactez-nous
 
   title:
-  text:
+    header1: |
+      "Certes la prière a été prescrite pour les croyants dans des temps déterminés" [sourat An-Niça’/103]
+    header2: équipez votre mosquée ou domicile d'une horloge de prière connectée et intelligente
+    header3: Notre solution est totalement gratuite
+    header4: Le matériel est à votre charge
   button:
+    discover: Découvrir
+    send: Envoyer
+
+  text:
+    contactUsText1: |
+      Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel. Contactez nous :
+    contactUsText2: |
+      <li><i class="fa fa-whatsapp"></i> Par message WhatsApp uniquement : supportTel1 (France) / supportTel2 (Reste du monde) du Lundi au Samedi entre 9h et 21h</li>
+      <li>Via le formulaire ci-dessous</li>
+    contactUsFormValidation1: Veuillez saisir votre nom.
+    contactUsFormValidation2: Veuillez saisir votre adresse.
+    contactUsFormValidation3: Veuillez saisir votre numéro de téléphone.
+    contactUsFormValidation4: Veuillez saisir votre message.
+    contactUsFormPlaceholder1: Nom *
+    contactUsFormPlaceholder2: Email *
+    contactUsFormPlaceholder3: Téléphone *
+    contactUsFormPlaceholder4: Message *
+    legalNotice: Mentions légales
+
 
 form:
     label:

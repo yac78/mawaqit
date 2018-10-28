@@ -20,6 +20,14 @@
         "bundles/app/agency/css/custom.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+
+        {% if app.request.locale == 'ar' %}
+            {% stylesheets
+                "bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"
+                filter="cssrewrite" %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+            {% endstylesheets %}
+        {% endif %}
     {% endstylesheets %}
 
     <!-- Custom Fonts -->
@@ -103,18 +111,14 @@
         <div class="container">
             <div class="intro-text">
                 {% block textHeader %}
-                    <div class="intro-lead-in">"Certes la prière a été prescrite pour les croyants dans des temps déterminés"
-                        [sourat An-Niça’/103]
-                    </div>
+                    <div class="intro-lead-in">{{ 'home.title.header1'|trans }}</div>
                     <div class="intro-heading">{{ 'site_title'|trans }}</div>
-                    <div class="intro-subheading">équipez votre mosquée ou domicile d'une horloge de prière connectée et
-                        intelligente
-                    </div>
-                    <div class="intro-subheading">Notre solution est totalement gratuite</div>
+                    <div class="intro-subheading">{{ 'home.title.header2'|trans }}</div>
+                    <div class="intro-subheading">{{ 'home.title.header3'|trans }}</div>
                     <div class="text-muted">
-                        <small>Le matériel est à votre charge</small>
+                        <small>{{ 'home.title.header4'|trans }}</small>
                     </div>
-                    <a href="#projet" class="page-scroll btn btn-xl">Découvrir</a>
+                    <a href="#projet" class="page-scroll btn btn-xl">{{ 'home.button.discover'|trans }}</a>
                 {% endblock %}
             </div>
         </div>
@@ -127,49 +131,42 @@
 <!-- Contact Section -->
 <section id="contact">
     <div class="container">
-        <h2 class="section-heading">Contactez nous</h2>
-        <div class="text-primary text-left" style="font-weight: bold; font-size: 130%">
-            <p>
-                Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel.
-                Contactez nous :
-            </p>
-
-            <ul>
-                <li><i class="fa fa-whatsapp"></i> Par message WhatsApp uniquement : {{ supportTel1 }} (France) / {{ supportTel2 }} (Reste du monde) du Lundi au Samedi entre 9h et 21h</li>
-                <li>Via le formulaire ci-dessous</li>
-            </ul>
+        <h2 class="section-heading">{{ 'contactUs'|trans }}</h2>
+        <div class="text-primary" style="font-weight: bold; font-size: 130%">
+            <p>{{ 'home.text.contactUsText1'|trans }}</p>
+            <ul>{{ 'home.text.contactUsText2'|trans({'supportTel1': supportTel1, 'supportTel2': supportTel2})|raw }}</ul>
         </div>
 
         <form name="sentMessage" id="contactForm" novalidate>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nom *" id="name" required
-                               data-validation-required-message="Veuillez saisir votre nom.">
+                        <input type="text" class="form-control" placeholder="{{ 'home.text.contactUsFormPlaceholder1'|trans }}" id="name" required
+                               data-validation-required-message="{{ 'home.text.contactUsFormValidation1'|trans }}">
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email *" id="email" required
-                               data-validation-required-message="Veuillez saisir votre adresse.">
+                        <input type="email" class="form-control" placeholder="{{ 'home.text.contactUsFormPlaceholder2'|trans }}" id="email" required
+                               data-validation-required-message="{{ 'home.text.contactUsFormValidation2'|trans }}">
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control" placeholder="Téléphone *" id="phone" required
-                               data-validation-required-message="Veuillez saisir votre numéro de téléphone.">
+                        <input type="tel" class="form-control" placeholder="{{ 'home.text.contactUsFormPlaceholder3'|trans }}" id="phone" required
+                               data-validation-required-message="{{ 'home.text.contactUsFormValidation3'|trans }}">
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                                <textarea class="form-control" placeholder="Message *" id="message" required
-                                          data-validation-required-message="Veuillez saisir votre message."></textarea>
+                                <textarea class="form-control" placeholder="{{ 'home.text.contactUsFormPlaceholder4'|trans }}" id="message" required
+                                          data-validation-required-message="{{ 'home.text.contactUsFormValidation4'|trans }}"></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
                     <div id="success"></div>
-                    <button type="submit" class="btn btn-xl">Envoyer</button>
+                    <button type="submit" class="btn btn-xl">{{ 'home.button.send'|trans }}</button>
                 </div>
             </div>
         </form>
@@ -189,7 +186,7 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <a href="{{ path('legal_notice') }}" target="_blank">{{ 'Mentions légales'|trans }}</a>
+                <a href="{{ path('legal_notice') }}" target="_blank">{{ 'home.text.legalNotice'|trans }}</a>
             </div>
         </div>
     </div>

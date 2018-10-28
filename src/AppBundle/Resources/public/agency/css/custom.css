@@ -50,12 +50,10 @@ header .intro-text .intro-heading  {
 header .intro-text .text-muted {
     font-size: 150%;
     font-weight: 600;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     margin-bottom: 15px;
 }
 
 header .intro-text .intro-subheading {
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 30px;
