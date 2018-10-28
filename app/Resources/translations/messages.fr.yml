@@ -14,6 +14,8 @@ home:
     header2: équipez votre mosquée ou domicile d'une horloge de prière connectée et intelligente
     header3: Notre solution est totalement gratuite
     header4: Le matériel est à votre charge
+    howItWorks: Comment ça fonctionne ?
+
   button:
     discover: Découvrir
     send: Envoyer
@@ -33,6 +35,25 @@ home:
     contactUsFormPlaceholder3: Téléphone *
     contactUsFormPlaceholder4: Message *
     legalNotice: Mentions légales
+    project1: |
+        La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau
+        éléctronique. Ces horloges ne répondent
+        malheureusement pas aux besoins de plus en plus variés et exigents de nos mosquées.
+        Les horloges digitales sont généralement dotées d’un réglage manuel
+        (à faire tous les jours), ou d’un réglage automatique avec donc des horaires parfois inexacts
+        et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
+        De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
+    project2: |
+      Avec l’aide d’Allah le Tout Puissant, nous nous sommes donc lancés dans le développement d’un
+      logiciel pour améliorer et simplifier l’affichage des horaires de prière. <br>
+      Après plusieurs mois de travail et de tests effectués dans différentes mosquées, nous sommes
+      parvenus, grâce à Allah, à sortir une version stable et précise.
+      <br><br>
+      Notre solution est un WAQF fi sabili Allah et donc gratuite. Le code est open source, il est
+      accessible sur github à l'adresse  suivante
+      <a target="_blank" href="https://github.com/binary010100/mawaqit">https://github.com/binary010100/mawaqit</a><br>
+      <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST
+      STRICTEMENT INTERDITE, veuillez respecter notre choix.
 
 
 form:
