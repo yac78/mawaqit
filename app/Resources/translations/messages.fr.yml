@@ -54,6 +54,13 @@ home:
       <a target="_blank" href="https://github.com/binary010100/mawaqit">https://github.com/binary010100/mawaqit</a><br>
       <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST
       STRICTEMENT INTERDITE, veuillez respecter notre choix.
+    howItWorks1: |
+        Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
+        ordinateur, le Raspberry Pi 3 ou par n'importe quel autre appareil pouvant lancer un navigateur
+        internet,
+        tel que : ordinateur, Apple TV, Android TV...
+        En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
+        code javascript.
 
 
 form:
