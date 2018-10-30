@@ -84,7 +84,7 @@
                         <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
                             {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                         </a>
-                        <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/>
+                        <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/></a>
                     </td>
                     <td>{{ mosque.associationName }}</td>
                     <td style="position: relative">
@@ -210,7 +210,7 @@
                         </div>
                     {% endif %}
 
-                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/>
+                    <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/></a>
                 </div>
             </div>
         {% endfor %}
