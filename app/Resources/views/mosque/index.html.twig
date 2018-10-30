@@ -59,11 +59,10 @@
             <thead>
             <tr class="warning">
                 <th>{{ 'ID' }}</th>
-                <th>{{ 'type'|trans }}</th>
-                <th>{{ 'name'|trans }}</th>
+                <th width="10%">{{ 'name'|trans }}</th>
                 <th>{{ 'association'|trans }}</th>
-                <th style="width: 15%">{{ 'contact'|trans }}</th>
-                <th style="width: 30%">{{ 'prayer_sites'|trans }}</th>
+                <th width="15%">{{ 'contact'|trans }}</th>
+                <th width="30%">{{ 'prayer_sites'|trans }}</th>
                 <th>{{ 'status'|trans }}</th>
                 {% if is_granted('ROLE_ADMIN') %}
                     <th>{{ 'user'|trans }}</th>
@@ -76,17 +75,16 @@
             {% for mosque in mosques %}
                 <tr class="{{ mosque.statusClass }}">
                     <td>
-                        {{ mosque.id }}
+                        {{ mosque.id }} <br/><br/>
+                        <img src="{{ asset('bundles/app/img/'~ mosque.type ~ '.png') }}" title="{{ ('mosque.types.' ~ mosque.type ) | trans }}" width="32px">
                     </td>
                     <td>
-                        {{ ('mosque.types.' ~ mosque.type ) | trans }}
-                    </td>
-                    <td>
-                        {{ mosque.name }}<br>
+                        {{ mosque.name }}<br/>
                         <i class="fa fa-download"></i>
                         <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man'}})
+                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                         </a>
+                        <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/>
                     </td>
                     <td>{{ mosque.associationName }}</td>
                     <td style="position: relative">
@@ -202,7 +200,7 @@
                     <div>
                         <i class="fa fa-download"></i>
                         <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man'}})
+                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                         </a>
                     </div>
 
@@ -211,6 +209,8 @@
                             <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                         </div>
                     {% endif %}
+
+                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/>
                 </div>
             </div>
         {% endfor %}
