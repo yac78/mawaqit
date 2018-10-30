@@ -52,9 +52,9 @@
                 <img src="{{ asset('bundles/app/agency/img/raspberry.jpg') }}" class="img-responsive"
                      style="display: inline" alt="">
 
-                <h3 class="section-heading">Quelles sont les fonctionnalités principales du logiciel ?</h3>
+                <h3 class="section-heading"> {{ 'home.title.feature'|trans }}</h3>
 
-                <h4 class="service-heading">Affichage des horaires de prière en plusieurs langues</h4>
+                <h4 class="service-heading"> {{ 'home.title.feature1'|trans }}</h4>
 
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
@@ -73,9 +73,8 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="service-heading">Signal sonore et visuel du adhân et Iqâma</h4>
-                <p class="text-muted">Lorsqu’il est l'heure du adhan ou de la iqama, l'écran se met à clignoter et un
-                    signal sonore retentira.</p>
+                <h4 class="service-heading">{{ 'home.title.feature2'|trans }}</h4>
+                <p class="text-muted">{{ 'home.text.feature2'|trans }}</p>
 
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
@@ -95,9 +94,8 @@
                     </div>
                 </div>
 
-                <h4 class="service-heading">Affichage de rappels et invocations</h4>
-                <p class="text-muted">Entre chaque adhan et iqama, ainsi qu'à la fin de chaque prière, des rappels et
-                    invocations sont affichés.</p>
+                <h4 class="service-heading">{{ 'home.title.feature3'|trans }}</h4>
+                <p class="text-muted"{{ 'home.text.feature3'|trans }}</p>
 
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
@@ -119,11 +117,8 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="service-heading">Affichage d'annonces en texte ou images</h4>
-                <p class="text-muted">
-                    Avant et après chaque prière, si configurées depuis l'espace utilisateur les annonces défileront sur
-                    l'écran.<br>
-                </p>
+                <h4 class="service-heading">{{ 'home.title.feature4'|trans }}</h4>
+                <p class="text-muted">{{ 'home.text.feature4'|trans }}<br></p>
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
                         <div class="flexslider">
@@ -138,11 +133,8 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="service-heading">Affichage de hadiths</h4>
-                <p class="text-muted">
-                    Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
-                    prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes<br>
-                </p>
+                <h4 class="service-heading">{{ 'home.title.feature5'|trans }}</h4>
+                <p class="text-muted">{{ 'home.text.feature5'|trans }}<br></p>
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
                         <div class="flexslider">
@@ -158,15 +150,8 @@
                     </div>
                 </div>
 
-                <h4 class="service-heading">Une version adaptée aux mobiles et tablettes</h4>
-                <p class="text-muted">
-                    Afin de faciliter aux fidèles la consultation des horaires de prière de leur mosquées,
-                    nous créons un site internet adatapté aux mobiles et tablettes pour chaque installation.<br>
-                </p>
-                <p class="text-left">
-                    Exemples: <a target="_blank"
-                                 href="{{ path('mosque', {'slug': 'mosquee-essunna-houilles'}) }}">{{ url('mosque', {'slug': 'mosquee-essunna-houilles'}) }}</a>
-                </p>
+                <h4 class="service-heading">{{ 'home.title.feature6'|trans }}</h4>
+                <p class="text-muted">{{ 'home.text.feature6'|trans({'%url%': url('mosque', {'slug': 'mosquee-essunna-houilles'}) })|raw }}<br></p>
 
                 <div class="row">
                     <div class="col-md-offset-4 col-md-4">
@@ -183,7 +168,7 @@
                     </div>
                 </div>
 
-                <h4 class="service-heading">Pilotez l'écran depuis votre smartphone</h4>
+                <h4 class="service-heading">{{ 'home.title.feature7'|trans }}</h4>
 
                 <div class="row">
                     <div class="col-md-offset-4 col-md-4">
@@ -203,30 +188,14 @@
                     </div>
                 </div>
 
-                <h4 class="service-heading">Entièrement configurable</h4>
-                <p class="text-muted">
-                    Nous avons essayé de pousser la configuration du logiciel au maximum. Voici quelques exemples de
-                    fonctionnalités
-                    directement configurables depuis l'interface dédiée.
+                <h4 class="service-heading">{{ 'home.title.feature8'|trans }}</h4>
+                <p class="text-muted">{{ 'home.text.feature8_1'|trans }}
                 </p>
-                <ul class="text-muted text-left">
-                    <li>Choix entre calcul des horaires automatique par le logiciel ou lecture depuis des fichiers CSV
-                    </li>
-                    <li>Choix de la langue</li>
-                    <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
-                    <li>Fixation des horaires (exemple: fixer l'heure du `isha en hiver)</li>
-                    <li>Ajustement des temps d'attente entre adhan et iqama</li>
-                    <li>Compte à rebours avant iqama</li>
-                    <li>Ajustement des horaires</li>
-                    <li>Affichage d'annonces en texte ou image</li>
-                    <li>Modification des textes affichés en haut et en bas de l'écran</li>
-                    <li>Modification de la couleur de fond</li>
-                    <li>Adhan du haram</li>
-                    <li>Affichage de la temprérature</li>
-                    <li>Affichage du QR code pour faciliter la copie du lien internet</li>
+                <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left'}}">
+                    {{ 'home.text.feature8_2'|trans|raw }}
                 </ul>
 
-                <h4 class="service-heading">Avis de nos utilisateurs</h4>
+                <h4 class="service-heading">{{ 'home.title.feedback'|trans }}</h4>
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <img src="{{ asset('bundles/app/agency/img/fb1.png') }}"/>

@@ -15,6 +15,16 @@ home:
     header3: Notre solution est totalement gratuite
     header4: Le matériel est à votre charge
     howItWorks: Comment ça fonctionne ?
+    feature: Quelles sont les fonctionnalités principales du logiciel ?
+    feature1: Affichage des horaires de prière en plusieurs langues
+    feature2: Signal visuel du adhân et Iqâma
+    feature3: Affichage de rappels et invocations
+    feature4: Affichage d'annonces en texte ou images
+    feature5: Affichage de hadiths
+    feature6: Une version adaptée aux mobiles et tablettes
+    feature7: Pilotez l'écran depuis votre smartphone
+    feature8: Entièrement configurable
+    feedback: Avis de nos utilisateurs
 
   button:
     discover: Découvrir
@@ -61,6 +71,34 @@ home:
         tel que : ordinateur, Apple TV, Android TV...
         En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
         code javascript.
+    feature2: Lorsqu’il est l'heure du adhan ou de la iqama, l'écran se met à clignoter.
+    feature3: Entre chaque adhan et iqama, ainsi qu'à la fin de chaque prière, des rappels et invocations sont affichés.
+    feature4: Avant et après chaque prière, si configurées depuis l'espace utilisateur les annonces défileront sur l'écran.
+    feature5: |
+        Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
+        prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes
+    feature6: |
+      Afin de faciliter aux fidèles la consultation des horaires de prière de leur mosquées,
+      nous créons un site internet adatapté aux mobiles et tablettes pour chaque installation.
+      Exemples: <a target="_blank" href="%url%">%url%</a>
+    feature8_1: |
+      Nous avons essayé de pousser la configuration du logiciel au maximum. Voici quelques exemples de
+      fonctionnalités
+      directement configurables depuis l'interface dédiée.
+    feature8_2: |
+      <li>Choix entre calcul des horaires automatique par le logiciel ou lecture depuis des fichiers CSV</li>
+      <li>Choix de la langue</li>
+      <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
+      <li>Fixation des horaires (exemple: fixer l'heure du `isha en hiver)</li>
+      <li>Ajustement des temps d'attente entre adhan et iqama</li>
+      <li>Compte à rebours avant iqama</li>
+      <li>Ajustement des horaires</li>
+      <li>Affichage d'annonces en texte ou image</li>
+      <li>Modification des textes affichés en haut et en bas de l'écran</li>
+      <li>Modification de la couleur de fond</li>
+      <li>Adhan du haram</li>
+      <li>Affichage de la temprérature</li>
+      <li>Affichage du QR code pour faciliter la copie du lien internet</li>
 
 
 form:
