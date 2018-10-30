@@ -110,16 +110,7 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                {% block textHeader %}
-                    <div class="intro-lead-in">{{ 'home.title.header1'|trans }}</div>
-                    <div class="intro-heading">{{ 'site_title'|trans }}</div>
-                    <div class="intro-subheading">{{ 'home.title.header2'|trans }}</div>
-                    <div class="intro-subheading">{{ 'home.title.header3'|trans }}</div>
-                    <div class="text-muted">
-                        <small>{{ 'home.title.header4'|trans }}</small>
-                    </div>
-                    <a href="#projet" class="page-scroll btn btn-xl">{{ 'home.button.discover'|trans }}</a>
-                {% endblock %}
+                {% block textHeader %}{% endblock %}
             </div>
         </div>
     </header>
@@ -186,7 +177,7 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <a href="{{ path('legal_notice') }}" target="_blank">{{ 'home.text.legalNotice'|trans }}</a>
+                <a href="{{ path('legal_notice') }}">{{ 'home.text.legalNotice'|trans }}</a>
             </div>
         </div>
     </div>

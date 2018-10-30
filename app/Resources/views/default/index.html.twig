@@ -9,6 +9,16 @@
     {% endstylesheets %}
 {% endblock %}
 
+ {% block textHeader %}
+     <div class="intro-lead-in">{{ 'home.title.header1'|trans }}</div>
+     <div class="intro-heading">{{ 'site_title'|trans }}</div>
+     <div class="intro-subheading">{{ 'home.title.header2'|trans }}</div>
+     <div class="intro-subheading">{{ 'home.title.header3'|trans }}</div>
+     <div class="text-muted">
+         <small>{{ 'home.title.header4'|trans }}</small>
+     </div>
+     <a href="#projet" class="page-scroll btn btn-xl">{{ 'home.button.discover'|trans }}</a>
+ {% endblock %}
 
 {% block content %}
     <div class="text-center">
@@ -370,139 +380,6 @@
                 <h4 class="section-heading">Qu'Allah accepte vos œuvres et les notres</h4>
             </div>
         </section>
-
-        <!-- Section Comment istaller l'application -->
-        <section id="install" class="bg-light-gray">
-            <div class="container">
-                <h2 class="section-heading">Installez notre solution</h2>
-                <p>
-                    Veuillez suivre les étapes ci-dessous :
-                </p>
-                <br>
-                <ol class="text-muted text-left">
-                    <li>
-                        Télécharger l'image système pré configurée ici <i class="fa fa-hand-o-right"></i>
-                        <strong>
-                            {% if app.user %}
-                                <a target="_blank" href="/static/mawaqit.img.zip">
-                                    mawaqit.img.zip
-                                </a>
-                            {% else %}
-                                <a href="{{ path("fos_user_security_login") }}">
-                                    Vous devez être connecté pour télécharger l'image système
-                                </a>
-                            {% endif %}
-                        </strong>
-                    </li>
-                    <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
-                    <li>Téléchargez le logiciel Etcher ici
-                        <i class="fa fa-hand-o-right"></i>
-                        <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
-                        ordinateur
-                    </li>
-                    <li>
-                        Flashez l'image système mawaqit.img.zip sur la carte micro sd avec
-                        Etcher<br><br>
-                    </li>
-                </ol>
-
-                <img src="{{ asset('bundles/app/agency/img/software/etcher.gif') }}" class="img-responsive" alt=""><br>
-
-                <h3>Dernière étape</h3>
-                <div class="text-muted text-left">
-                    <p>Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux
-                        possibiltés: <br><br>
-                    </p>
-
-                    <p>
-                        <strong>OPTION 1. Vous avez une connexion internet (WIFI ou Ethernet) ? </strong>
-                        Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> elle bénéficie des avantages
-                        suivants
-                    </p>
-                    <ul>
-                        <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
-                        <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
-                        </li>
-                        <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
-                        <li>Affichage de hadith du prophète "que la prière d'Allah et son salut soient sur lui"</li>
-                        <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre
-                            part
-                        </li>
-                    </ul>
-                    <br>
-                    <p>
-                        <strong>Suivez les étapes ci-dessous : </strong>
-                    </p>
-
-                    <ol>
-                        <li>Créez votre compte sur notre interface d'administration <a target="_blank"
-                                                                                       href="{{ path('fos_user_registration_register') }}">{{ url('fos_user_registration_register') }}</a>
-                        </li>
-                        <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la
-                            fin de cette étape
-                        </li>
-                        <li>Démarez le raspberry et branchez un clavier et une souris usb</li>
-                        <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
-                        <li>
-                            Ouvrez le fichier <code>online_site.txt</code> présent sur le bureau et remplacez son
-                            contenu
-                            par le lien généré dans votre compte,
-                            exemple: <br>
-                            <code>
-                                {{ url('mosque', {slug: 'mosquee-essunna-houilles'}) }}<br>
-                            </code>
-                        </li>
-                        <li>Sauvegardez et quittez</li>
-                        <li>Lancez Mawaqit depuis le bureau</li>
-                        <li>Au lancement le raspberry vérifie si une connexion internet est disponible,
-                            dans ce cas il lance la version en ligne, sinon il bascule sur la version locale
-                        </li>
-                    </ol>
-
-                    <p><strong>OPTION 2. Vous n'avez pas de connexion internet, lancer la version offline : </strong>
-                        Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
-                        Afin de profiter de la toute dernière version du logiciel, il est recommandé d'exécuter les
-                        étapes suivantes : <br>
-                    </p>
-
-                    <ol>
-                        <li>Quittez le mode plein écran avec F11, puis fermez le logiciel</li>
-                        <li>Connetez le raspberry à internet et double-cliquez sur le fichier <code> upgrade.sh</code>
-                            présent sur le bureau puis appuyez sur Execute in Terminal. Attendre que la procédure de MAJ soit terminée
-                        </li>
-                    </ol>
-                    <p>vous pouvez après configurer les horaires de votre mosquée.<br></p>
-                    <p>
-                        <strong>Important :</strong>
-                        Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
-                        de garder l'heure correctement réglée
-                        quand il est éteint.<br>
-                        Il est donc conseillé d'équiper le raspberry
-                        <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
-                            d'une horloge RTC
-                        </a>
-                        si vous ne comptez pas le connecter à internet, cela évitera la
-                        perte de l'heure système en cas de coupure de courant.
-                        Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans
-                        LXTerminal<br>
-                        <code>sudo date -s "yyyy-mm-dd hh:mm:ss"</code> <br>
-                        exemple: <br>
-                        <code>sudo date -s "{{ "now"|date("Y-m-d H:m:s") }}"</code> <br>
-                        <code>sudo hwclock -w</code> <br><br>
-                    </p>
-                </div>
-
-                <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-rtc.jpg') }}" alt=""><br><br>
-
-                <h4 class="text-muted">
-                    Pour plus d'informations téléchargez notre manuel d'utilisation <a target="_blank" href="/static/Mawaqit-mode-d-emploi.pdf">ICI</a>
-                    et visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
-                </h4>
-
-                <h4 class="text-muted">Vous rencontrez des diffucltés ? envoyez-nous un message <a href="#contact">c'est par ici</a></h4>
-            </div>
-        </section>
-
 
         <!-- FAQ Section -->
         <section id="faq">
