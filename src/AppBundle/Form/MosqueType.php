@@ -207,7 +207,7 @@ class MosqueType extends AbstractType
                     'class' => 'btn btn-primary',
                 ]
             ])
-            ->addEventListener(FormEvents::POST_SUBMIT, array($this, 'onPostSetData'));
+            ->addEventListener(FormEvents::SUBMIT, array($this, 'onPostSetData'));
     }
 
     /**
@@ -216,14 +216,22 @@ class MosqueType extends AbstractType
      */
     public function onPostSetData(FormEvent $event)
     {
+        $oldMosque = null;
         /** @var Mosque $mosque */
         $mosque = $event->getData();
-        $position = $this->googleService->getPosition($mosque);
-        $mosque->getConfiguration()->setLongitude($position->lng);
-        $mosque->getConfiguration()->setLatitude($position->lat);
+
+        if ($mosque->getId()) {
+            $oldMosque = $this->em->getUnitOfWork()->getOriginalEntityData($mosque);
+        }
+
+        if (null === $oldMosque || $oldMosque['address'] !== $mosque->getAddress() || $oldMosque['country'] !== $mosque->getCountry() || $oldMosque['city'] !== $mosque->getCity() || $oldMosque['zipcode'] !== $mosque->getZipcode()) {
+            $position = $this->googleService->getPosition($mosque);
+            $mosque->getConfiguration()->setLongitude($position->lng);
+            $mosque->getConfiguration()->setLatitude($position->lat);
+        }
 
         if ($mosque->getType() === "home") {
-            $mosque->resetTomHome();
+            $mosque->resetToHome();
         }
     }
 

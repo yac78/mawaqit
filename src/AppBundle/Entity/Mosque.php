@@ -890,7 +890,7 @@ class Mosque
         return $this->type;
     }
 
-    public function resetTomHome()
+    public function resetToHome()
     {
         $this->addOnMap = false;
         $this->address = null;
