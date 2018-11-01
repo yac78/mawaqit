@@ -25,10 +25,15 @@ home:
     feature7: Pilotez l'écran depuis votre smartphone
     feature8: Entièrement configurable
     feedback: Avis de nos utilisateurs
+    equipedMosques: Quelques mosquées équipées
+    equipeYourMosque: équipez votre mosquée
+    faq: FAQ
+    install: Installez notre solution
 
   button:
     discover: Découvrir
     send: Envoyer
+    viewPlus: Voir plus
 
   text:
     contactUsText1: |
@@ -99,6 +104,128 @@ home:
       <li>Adhan du haram</li>
       <li>Affichage de la temprérature</li>
       <li>Affichage du QR code pour faciliter la copie du lien internet</li>
+    equipedMosques1: |
+      Grace à Allah notre système est installé dans <strong>totalMosquesCount</strong>
+       mosquées et domiciles partout dans le monde, voici quelques exemples
+    equipedMosques2: |
+      Mawaqit vous propose les horaires de prière exactes, telles qu'elles sont pratiquées par les mosquées, <br>
+      cherchez une mosquée et consultez ses horaires de prière.
+    viewPrayTimes: Consultez les horaires
+    addingDate: Date d'ajout
+    equipeYourMosque1: "Pour participer à ce projet et ainsi équiper votre mosquée c'est très simple :"
+    equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire
+    equipeYourMosque3: |
+      <li>Un écran plat, idéalement 80 cm ou plus.</li>
+      <li>Un kit Raspberry PI 3, prix 60€ environ
+          <a target="_blank"
+             href="https://www.amazon.fr/UCreate-Raspberry-Pi-Desktop-Starter/dp/B07BNQ2TWW/ref=sr_1_10?s=computers&ie=UTF8&qid=1529182406&sr=1-10&keywords=un%2Braspberry%2Bpi%2B3">
+              chez amazon
+          </a>
+      </li>
+      <li>Un support mural pour la TV entre 10 et 15€</li>
+      <li>Un cable HDMI + Une multiprise</li>
+      <li>Si vous ne disposez pas d'une connexion internet
+          <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+              une horloge RTC
+          </a>
+      </li>
+    equipeYourMosque4: "Coût global du matériel : 220€ environ"
+    equipeYourMosque5: Qu'Allah accepte vos œuvres et les notres
+    findMosque: Cherchez une mosquée mawaqit par ville, code postal, pays...
+    install1:  "Veuillez suivre les étapes ci-dessous :"
+    install2:  Télécharger l'image système pré configurée ici
+    install3:  Vous devez être connecté pour télécharger l'image système
+    install4: |
+        <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
+        <li>Téléchargez le logiciel Etcher ici
+            <i class="fa fa-hand-o-right"></i>
+            <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
+            ordinateur
+        </li>
+        <li>
+            Flashez l'image système mawaqit.img.zip sur la carte micro sd avec Etcher<br><br>
+        </li>
+    install5:  Dernière étape
+    install6: |
+        <p>
+          Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
+        </p>
+        <p>
+            <strong>OPTION 1. Vous avez une connexion internet (WIFI ou Ethernet) ? </strong>
+            Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> elle bénéficie des avantages
+            suivants
+        </p>
+        <ul>
+            <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
+            <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
+            </li>
+            <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
+            <li>Affichage de hadith du prophète "que la prière d'Allah et son salut soient sur lui"</li>
+            <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre
+                part
+            </li>
+        </ul>
+        <br>
+        <p>
+            <strong>Suivez les étapes ci-dessous : </strong>
+        </p>
+    install7: |
+      <ol>
+        <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="%registerUrl%">ICI</a>
+        </li>
+        <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la
+            fin de cette étape
+        </li>
+        <li>Démarez le raspberry et branchez un clavier et une souris usb</li>
+        <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
+        <li>
+            Ouvrez le fichier <code>online_site.txt</code> présent sur le bureau et remplacez son
+            contenu
+            par le lien généré dans votre compte,
+            exemple: <br>
+            <code>
+                {{ url('mosque', {slug: 'mosquee-essunna-houilles'}) }}<br>
+            </code>
+        </li>
+        <li>Sauvegardez et quittez</li>
+        <li>Lancez Mawaqit depuis le bureau</li>
+        <li>Au lancement le raspberry vérifie si une connexion internet est disponible,
+            dans ce cas il lance la version en ligne, sinon il bascule sur la version locale
+        </li>
+      </ol>
+
+      <p><strong>OPTION 2. Vous n'avez pas de connexion internet, lancer la version offline : </strong>
+          Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
+          Afin de profiter de la toute dernière version du logiciel, il est recommandé d'exécuter les
+          étapes suivantes : <br>
+      </p>
+
+      <ol>
+          <li>Quittez le mode plein écran avec F11, puis fermez le logiciel</li>
+          <li>Connetez le raspberry à internet et double-cliquez sur le fichier <code> upgrade.sh</code>
+              présent sur le bureau puis appuyez sur Execute in Terminal. Attendre que la procédure de MAJ soit terminée
+          </li>
+      </ol>
+      <p>vous pouvez après configurer les horaires de votre mosquée.<br></p>
+      <p>
+          <strong>Important :</strong>
+          Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
+          de garder l'heure correctement réglée
+          quand il est éteint.<br>
+          Il est donc conseillé d'équiper le raspberry
+          <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+              d'une horloge RTC
+          </a>
+          si vous ne comptez pas le connecter à internet, cela évitera la
+          perte de l'heure système en cas de coupure de courant.
+          Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans
+          LXTerminal<br>
+          <code>sudo date -s "%now%" && hwclock -w</code> <br><br>
+      </p>
+    install8: |
+      Pour plus d'informations téléchargez notre manuel d'utilisation <a target="_blank" href="/static/Mawaqit-mode-d-emploi.pdf">ICI</a>
+      et visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+    install9: Vous rencontrez des diffucltés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
 
 
 form:

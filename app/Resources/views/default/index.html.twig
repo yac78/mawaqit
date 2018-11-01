@@ -217,10 +217,9 @@
         <!-- Mosquées équipées Grid Section -->
         <section id="mosquees" class="bg-light-gray">
             <div class="container">
-                <h2 class="section-heading">Quelques mosquées équipées</h2>
+                <h2 class="section-heading">{{ 'home.title.equipedMosques'|trans }}</h2>
                 <p class="section-subheading text-muted">
-                    Grace à Allah notre système est installé dans <strong>{{ totalMosquesCount }}</strong>
-                    mosquées et domiciles partout dans le monde, voici quelques exemples
+                    {{ 'home.text.equipedMosques1'|trans({'totalMosquesCount': totalMosquesCount})|raw }}
                 </p>
 
                 <div class="row">
@@ -242,12 +241,11 @@
                 <div class="row mt-2 mb-4">
                     <div class="col-md-offset-2 col-md-8 col-xs-12">
                         <div class="form-group">
-                            <input class="form-control input-lg center-placeholder" id="find-mosque" placeholder="Cherchez une mosquée mawaqit par ville, code postal, pays..."
+                            <input class="form-control input-lg center-placeholder" id="find-mosque" placeholder="{{ 'home.text.findMosque'|trans }}"
                                    data-remote="{{ path('public_mosque_search_ajax') }}">
                         </div>
                         <p class="text-muted">
-                            Mawaqit vous propose les horaires de prière exactes, telles qu'elles sont pratiquées par les mosquées, <br>
-                            cherchez une mosquée et consultez ses horaires.
+                            {{ 'home.text.equipedMosques2'|trans }}
                         </p>
                     </div>
                 </div>
@@ -268,15 +266,13 @@
                             </a>
                             <div class="portfolio-caption">
                                 <h4>{{ mosque.title }} {{ mosque.country|country }} </h4>
-                                <a target="_blank" href="{{ path('mosque', {'slug': mosque.slug}) }}">Consultez les
-                                    horaires</a>
+                                <a target="_blank" href="{{ path('mosque', {'slug': mosque.slug}) }}">{{ 'home.text.viewPrayTimes'|trans }}</a>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
                 {% if app.request.get('mosque_nb') != 'all' %}
-                    <a href="{{ path("homepage", {'mosque_nb':'all'}) }}#mosquees" class="page-scroll btn btn-xl">Voir
-                        plus</a>
+                    <a href="{{ path("homepage", {'mosque_nb':'all'}) }}#mosquees" class="page-scroll btn btn-xl">{{ 'home.button.viewPlus'|trans }}</a>
                 {% endif %}
             </div>
         </section>
@@ -305,9 +301,9 @@
                                      src="{{ vich_uploader_asset(mosque, 'file3') }}">
 
                                 <ul class="list-inline">
-                                    <li>Date d'ajout: {{ mosque.created|date("d/m/Y") }}</li>
-                                    <li>Consultez les horaires: <a target="_blank"
-                                                                   href="{{ path('mosque', {'slug': mosque.slug}) }}">{{ url('mosque', {'slug': mosque.slug}) }}</a>
+                                    <li>{{ 'home.text.addingDate'|trans }}: {{ mosque.created|date("d/m/Y") }}</li>
+                                    <li>
+                                        {{ 'home.text.viewPrayTimes'|trans }}: <a target="_blank" href="{{ path('mosque', {'slug': mosque.slug}) }}">{{ url('mosque', {'slug': mosque.slug}) }}</a>
                                     </li>
                                 </ul>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
@@ -321,39 +317,22 @@
         <!-- Participez Section -->
         <section id="participer">
             <div class="container">
-                <h2 class="section-heading">équipez votre mosquée</h2>
-                <p>
-                    Pour participer à ce projet et ainsi équiper votre mosquée c'est très simple :
-                </p>
-                <h4 class="section-heading">Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire</h4>
-                <ul class="text-muted text-left">
-                    <li>Un écran plat, idéalement 80 cm ou plus.</li>
-
-                    <li>Un kit Raspberry PI 3, prix 60€ environ
-                        <a target="_blank"
-                           href="https://www.amazon.fr/UCreate-Raspberry-Pi-Desktop-Starter/dp/B07BNQ2TWW/ref=sr_1_10?s=computers&ie=UTF8&qid=1529182406&sr=1-10&keywords=un%2Braspberry%2Bpi%2B3">
-                            chez amazon
-                        </a>
-                    </li>
-                    <li>Un support mural pour la TV entre 10 et 15€</li>
-                    <li>Un cable HDMI + Une multiprise</li>
-                    <li>Si vous ne disposez pas d'une connexion internet
-                        <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
-                            une horloge RTC
-                        </a>
-                    </li>
-
+                <h2 class="section-heading">{{ 'home.title.equipeYourMosque'|trans }}</h2>
+                <p>{{ 'home.text.equipeYourMosque1'|trans }}</p>
+                <h4 class="section-heading">{{ 'home.text.equipeYourMosque2'|trans }}</h4>
+                <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
+                {{ 'home.text.equipeYourMosque3'|trans|raw }}
                 </ul>
                 <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br>
-                <h4 class="section-heading">Coût global du matériel : 220€ environ</h4>
-                <h4 class="section-heading">Qu'Allah accepte vos œuvres et les notres</h4>
+                <h4 class="section-heading">{{ 'home.text.equipeYourMosque4'|trans }}</h4>
+                <h4 class="section-heading">{{ 'home.text.equipeYourMosque5'|trans }}</h4>
             </div>
         </section>
 
         <!-- FAQ Section -->
         <section id="faq">
             <div class="container">
-                <h2 class="section-heading">FAQ</h2>
+                <h2 class="section-heading">{{ 'home.title.faq'|trans }}</h2>
                 {% for faq in faqs %}
                     <div class="panel panel-default">
                         <div class="panel-heading pointer" data-toggle="collapse" href="#{{ faq.slug }}">
@@ -423,5 +402,4 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap">
     </script>
-
 {% endblock %}
