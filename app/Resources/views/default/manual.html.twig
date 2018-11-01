@@ -12,7 +12,7 @@
                 <br>
                 <ol class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     <li>
-                        {{ 'home.text.install2'|trans }}<i class="fa fa-hand-o-right"></i>
+                        {{ 'home.text.install2'|trans }}
                         <strong>
                             {% if app.user %}
                                 <a target="_blank" href="/static/mawaqit.img.zip">
@@ -27,9 +27,7 @@
                     </li>
                     {{ 'home.text.install4'|trans|raw }}
                 </ol>
-
                 <img src="{{ asset('bundles/app/agency/img/software/etcher.gif') }}" class="img-responsive" alt=""><br>
-
                 <h3> {{ 'home.text.install5'|trans|raw }}</h3>
                 <div class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     {{ 'home.text.install6'|trans|raw }}
@@ -43,5 +41,4 @@
             </div>
         </section>
     </div>
-
 {% endblock %}

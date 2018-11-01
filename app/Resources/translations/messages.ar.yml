@@ -122,7 +122,6 @@ home:
     install4: |
         <li>قم بتوصيل بطاقة SD الصغيرة بالكمبيوتر عبر منفذ مخصص أو محرك أقراص USB</li>
         <li>قم بتنزيل البرنامج Etcher هنا
-            <i class="fa fa-hand-o-right"></i>
             <a href="https://etcher.io" target="_blank">https://etcher.io</a> ثم قم بتثبيته على جهاز الكمبيوتر الخاص بك
         </li>
         <li>
