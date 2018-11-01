@@ -20,11 +20,13 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ 'message.info'|trans|raw }}
             </div>
-            <div class="alert alert-success" role="alert" style="word-wrap: break-word;">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{ 'message.display_messages_in_screen_1'|trans }} : <a target="_blank" href="{{ path("messages", {slug: mosque.slug}) }}">{{ url("messages", {slug: mosque.slug}) }}</a><br>
-                {{ 'message.display_messages_in_screen_2'|trans }}
-            </div>
+            {% if mosque.isMosque %}
+                <div class="alert alert-success" role="alert" style="word-wrap: break-word;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ 'message.display_messages_in_screen_1'|trans }} : <a target="_blank" href="{{ path("messages", {slug: mosque.slug}) }}">{{ url("messages", {slug: mosque.slug}) }}</a><br>
+                    {{ 'message.display_messages_in_screen_2'|trans }}
+                </div>
+            {% endif %}
         </div>
     </div>
 

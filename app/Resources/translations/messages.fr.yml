@@ -279,7 +279,6 @@ mosque:
         <li>Pas d'assistance en cas de problème</li>
         <li>Pas de référencement sur internet</li>
         <li>Elle n'apparaitra pas sur la carte google mawaqit et dans les résultats de recherche de mosquées</li>
-        <li>La fonctionnalité annonces et messages est désactivé</li>
         <li>La mention domicile apparaitra systématqieuemnt sur l'écran mawaqit</li>
         </ul>
     types:
@@ -388,7 +387,7 @@ message:
     edit: Édition de l'annonce %title%
     manage: Gérer les annonces
     info: |
-      Vous avez la possibilité d'ajouter jusqu'à 8 annonces <b>activées</b> à la fois, 20 au total.
+      Vous avez la possibilité d'ajouter jusqu'à 20 annonces dont <b>8 activées</b> à la fois.
 
     form:
         title:

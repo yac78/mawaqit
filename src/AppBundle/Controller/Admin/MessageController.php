@@ -31,10 +31,6 @@ class MessageController extends Controller
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }
-
-            if ($mosque->isHome()) {
-                throw new AccessDeniedException;
-            }
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -90,10 +86,6 @@ class MessageController extends Controller
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }
-
-            if ($mosque->isHome()) {
-                throw new AccessDeniedException;
-            }
         }
 
         $message = new Message();
@@ -127,10 +119,6 @@ class MessageController extends Controller
         $user = $this->getUser();
         if (!$user->isAdmin()) {
             if ($user !== $mosque->getUser()) {
-                throw new AccessDeniedException;
-            }
-
-            if ($mosque->isHome()) {
                 throw new AccessDeniedException;
             }
         }
