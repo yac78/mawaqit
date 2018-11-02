@@ -38,8 +38,9 @@ var douaaSlider = {
         if (!prayer.isJumua(currentTimeIndex)) {
             if (prayer.confData.duaAfterPrayerEnabled) {
                 $("#black-screen, .main").fadeOut(500, function () {
-                    $(".adhkar-after-prayer").fadeIn(500);
-                    douaaSlider.setFontSize();
+                    $(".adhkar-after-prayer").fadeIn(500, function () {
+                        douaaSlider.setFontSize();
+                    });
                 });
 
                 var douaaInterval = setInterval(function () {
@@ -87,13 +88,8 @@ var douaaSlider = {
         });
     },
     setFontSize: function () {
-        var $body = $('body');
         $('.slider li').each(function (i, slide) {
-            var $slide = $(slide);
-            $slide.css('font-size', '120px');
-            while ($slide.height() > $body.height() -180) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 20) + "px");
-            }
+            fixFontSize(slide, 180);
         });
     }
 };
@@ -212,16 +208,12 @@ var messageInfoSlider = {
         });
     },
     setFontSize: function () {
-        var $body = $('body');
         $('.message-info-slider li').each(function (i, slide) {
             var $slide = $(slide);
             if ($slide.find("img").length > 0) {
                 return true;
             }
-            $slide.css('font-size', '130px');
-            while ($slide.height() > $body.height() - 20) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 5) + "px");
-            }
+            fixFontSize(slide, 20);
         });
     }
 };

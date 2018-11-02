@@ -74,16 +74,12 @@ var messageInfoSlider = {
         });
     },
     setFontSize: function () {
-        var $body = $('body');
         $('#slider li').each(function (i, slide) {
             var $slide = $(slide);
             if ($slide.find("img").length > 0) {
                 return true;
             }
-            $slide.css('font-size', '130px');
-            while ($slide.height() > $body.height() - 20) {
-                $slide.css('font-size', (parseInt($slide.css('font-size')) - 5) + "px");
-            }
+            fixFontSize(slide, 20);
         });
     }
 };

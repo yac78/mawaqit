@@ -24,10 +24,7 @@ body {
 
 #black-screen,
 .main,
-.iqama,
-.adhan,
-.douaa-between-adhan-iqama,
-.jumua-dhikr-reminder {
+.iqama {
     height: 100vh;
     margin: auto;
 }
@@ -183,41 +180,17 @@ small {
     width: 300px;
 }
 
-.adhan .ar {
-    font-size: 700%;
+.adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder{
+    padding: 20px 10px;
 }
 
-.adhan .fr {
+
+.adhan .fr, .douaa-between-adhan-iqama .fr, .jumua-dhikr-reminder .fr {
     margin-top: 50px;
-    font-size: 500%;
 }
 
-.douaa-between-adhan-iqama .ar {
-    font-size: 700%;
-}
-
-.douaa-between-adhan-iqama .ar .title {
-    margin-bottom: 20px;
-}
-
-.douaa-between-adhan-iqama .fr {
-    margin-top: 50px;
-    font-size: 600%;
-}
-
-.jumua-dhikr-reminder .title {
-    font-size: 700%;
-    margin: 20px 0;
-}
-
-.jumua-dhikr-reminder .ar {
-    line-height: 140%;
-    font-size: 580%;
-}
-
-.jumua-dhikr-reminder .fr {
-    margin-top: 50px;
-    font-size: 440%;
+.adhan .title, .douaa-between-adhan-iqama .title, .jumua-dhikr-reminder .title {
+    margin-bottom: 30px;
 }
 
 .title {

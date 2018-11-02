@@ -95,3 +95,21 @@ function exitFullscreen() {
     }
     $("body").height($(document).height());
 }
+
+/**
+ * Set font size to contain all screen
+ * @param elem
+ * @param marge
+ */
+function fixFontSize(elem, marge) {
+    if(typeof marge === "undefined")
+    {
+        marge = 0;
+    }
+    var $body = $('body');
+    var $elem = $(elem);
+    $elem.css('font-size', '120px');
+    while ($elem.height() > $body.height() - parseInt(marge)) {
+        $elem.css('font-size', (parseInt($elem.css('font-size')) - 5) + "px");
+    }
+}

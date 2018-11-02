@@ -626,22 +626,23 @@ var prayer = {
             }
         },
         showReminder: function () {
-            $(".main").fadeOut(1000, function () {
-                $(".jumua-dhikr-reminder").fadeIn(1000);
+            fixFontSize('.jumua-dhikr-reminder');
+            $(".main").fadeOut(500, function () {
+                $(".jumua-dhikr-reminder").fadeIn(500);
             });
         },
         hideReminder: function () {
-            $(".jumua-dhikr-reminder").fadeOut(1000, function () {
-                $(".main").fadeIn(1000, function () {
+            $(".jumua-dhikr-reminder").fadeOut(500, function () {
+                $(".main").fadeIn(500, function () {
                     messageInfoSlider.get();
                 });
             });
         },
         showBlackScreen: function () {
-            $(".main").fadeOut(1000);
+            $(".main").fadeOut(500);
         },
         hideBlackScreen: function () {
-            $(".main").fadeIn(1000, function () {
+            $(".main").fadeIn(500, function () {
                 messageInfoSlider.get();
             });
         }
@@ -673,7 +674,10 @@ var prayer = {
      * @param layerToHide the element class to hide
      * @param layerToShow the element class to show
      */
-    switchLayer: function (layerToHide, layerToShow) {
+    switchLayer: function (layerToHide, layerToShow, correctFontSize) {
+        if (correctFontSize === true){
+            fixFontSize('.' + layerToShow);
+        }
         $('.' + layerToHide).fadeOut(500, function () {
             $('.' + layerToShow).fadeIn(500);
         });
@@ -756,13 +760,13 @@ var prayer = {
     },
     duaAfterAdhan: {
         showAdhanDua: function () {
-            prayer.switchLayer('main', 'adhan');
+            prayer.switchLayer('main', 'adhan', true);
         },
         hideAdhanDua: function () {
             prayer.switchLayer('adhan', 'main');
         },
         showHadith: function () {
-            prayer.switchLayer('main', 'douaa-between-adhan-iqama');
+            prayer.switchLayer('main', 'douaa-between-adhan-iqama', true);
         },
         hideHadith: function () {
             prayer.switchLayer('douaa-between-adhan-iqama', 'main');
@@ -1001,7 +1005,6 @@ var prayer = {
             $(".top-content .header").css("font-size", "650%");
             $(".top-content .content .ar").css("font-size", "120%");
             $(".prayer-text").css("line-height", "160%");
-            $(".adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder").css("font-size", "140%");
         }
     },
     /**
