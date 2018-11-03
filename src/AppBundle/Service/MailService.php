@@ -59,7 +59,7 @@ class MailService
      */
     function mosqueValidated(Mosque $mosque)
     {
-        $title = $mosque->getTitle() . " | Votre mosquée a été validée / Your mosque has been validated";
+        $title = $mosque->getTitle() . "(ID " . $mosque->getId() . ") | a été validée / has been validated";
         $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->doNotReplyEmail, 'validated');
     }
 
@@ -71,7 +71,7 @@ class MailService
      */
     function mosqueSuspended(Mosque $mosque)
     {
-        $title = $mosque->getTitle() . " | Votre mosquée a été suspendue / Your mosque has been suspended";
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | a été suspendue / has been suspended";
         $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'suspended');
     }
 
@@ -82,7 +82,7 @@ class MailService
      */
     function checkMosque(Mosque $mosque)
     {
-        $title = $mosque->getTitle() . " | Nous avons besoin d'informations / We need informations";
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | Nous avons besoin d'informations / We need informations";
         $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'check');
     }
 
@@ -93,7 +93,7 @@ class MailService
      */
     function duplicatedMosque(Mosque $mosque)
     {
-        $title = $mosque->getTitle() . " | Votre mosquée est en double sur Mawaqit / Your mosque is duplicated on Mawaqit";
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | est en double sur Mawaqit / is duplicated on Mawaqit";
         $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'duplicated');
     }
 
