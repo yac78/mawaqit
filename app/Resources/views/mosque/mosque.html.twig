@@ -91,7 +91,7 @@
         <!-- temperature container -->
         {% if mosque.configuration.temperatureEnabled %}
             <div id="weather" class="hidden" data-remote="{{ path('weather', {slug: mosque.slug}) }}">
-                <i></i> <span></span><sup>°C</sup>
+                <i></i><span></span><sup>°C</sup>
             </div>
         {% endif %}
         <div class="header">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>

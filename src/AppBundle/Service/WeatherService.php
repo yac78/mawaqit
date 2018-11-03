@@ -75,45 +75,26 @@ class WeatherService extends WeatherApi
             622 => 'rain-mix',
             701 => 'sprinkle',
             711 => 'smoke',
-            721 => 'day-haze',
+            721 => 'haze',
             731 => 'cloudy-gusts',
             741 => 'fog',
             751 => 'cloudy-gusts',
+            761 => 'dust',
             762 => 'smog',
-            771 => 'day-windy',
+            771 => 'windy',
             781 => 'tornado',
             800 => 'sunny',
             801 => 'cloudy',
             802 => 'cloudy',
             803 => 'cloudy',
-            804 => 'cloudy',
-            900 => 'tornado',
-            901 => 'hurricane',
-            902 => 'hurricane',
-            904 => 'hot',
-            905 => 'windy',
-            906 => 'hail',
-            951 => 'sunny',
-            952 => 'cloudy-gusts',
-            953 => 'cloudy-gusts',
-            954 => 'cloudy-gusts',
-            955 => 'cloudy-gusts',
-            956 => 'cloudy-gusts',
-            957 => 'cloudy-gusts',
-            958 => 'cloudy-gusts',
-            959 => 'cloudy-gusts',
-            960 => 'thunderstorm',
-            961 => 'thunderstorm',
-            962 => 'cloudy-gusts'
+            804 => 'cloudy'
         ];
 
-        $id = $res->weather[0]->id;
-        $icon = $iconMapping[$id];
-        if (!($id > 699 && $id < 800) && !($id > 899 && $id < 1000)) {
-            $icon = 'day-' . $icon;
+        if(!isset($res->weather[0]->id)){
+            return '';
         }
 
-        return $icon;
+        return  $iconMapping[$res->weather[0]->id];
     }
 
 }
