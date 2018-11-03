@@ -27,6 +27,6 @@ prayer.setQRCode();
 prayer.hideSpinner();
 prayer.initCronReloadPage();
 randomHadith.init();
-weather.initUpdateTemperature();
+weather.initUpdateWeather();
 douaaSlider.init();
 messageInfoSlider.initCronMessageInfo();

@@ -3,37 +3,39 @@
  */
 var weather = {
     /**
-     * get and display temperature
+     * get and display weather
      */
-    getTemperature: function () {
-        $temperatureEl = $(".temperature");
+    getWeather: function () {
+        $weatherEl = $("#weather");
         $.ajax({
-            url: $temperatureEl.data("remote"),
+            url: $weatherEl.data("remote"),
             success: function (resp) {
-                if (resp != "") {
-                    $temperatureEl.removeClass("blue orange red");
-                    if (parseInt(resp) <= 15) {
-                        $temperatureEl.addClass("blue");
-                    } else if (parseInt(resp) > 15 && parseInt(resp) < 25) {
-                        $temperatureEl.addClass("orange");
-                    } else if (parseInt(resp) >= 25) {
-                        $temperatureEl.addClass("red");
+                if (resp) {
+                    $weatherEl.removeAttr("class");
+                    if (parseInt(resp.temperature) <= 0) {
+                        $weatherEl.addClass("blue");
                     }
-                    $(".temperature span").text(resp);
-                    $temperatureEl.removeClass("hidden");
+                    if (parseInt(resp.temperature) > 10 && parseInt(resp.temperature) <= 25) {
+                        $weatherEl.addClass("orange");
+                    }
+                    if (parseInt(resp.temperature) > 25) {
+                        $weatherEl.addClass("red");
+                    }
+                    $weatherEl.find("i").attr('class', 'wi wi-' + resp.icon);
+                    $weatherEl.find("span").text(resp.temperature);
                 }
             },
             error: function () {
-                $temperatureEl.addClass("hidden");
+                $weatherEl.addClass("hidden");
             }
         });
     },
-    initUpdateTemperature: function () {
+    initUpdateWeather: function () {
         if (prayer.confData.temperatureEnabled === true) {
-            weather.getTemperature();
+            weather.getWeather();
             setInterval(function () {
-                weather.getTemperature();
-            }, prayer.oneMinute * 60);
+                weather.getWeather();
+            }, prayer.oneMinute * 20);
         }
     }
 };

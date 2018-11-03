@@ -132,14 +132,13 @@ class MosqueController extends Controller
     }
 
     /**
-     * get temperature of the mosque city
-     * @Route("/{slug}/temperature", name="temperature")
+     * get weather of the mosque city
+     * @Route("/{slug}/weather", name="weather")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      */
-    public function getTemperatureAjaxAction(Request $request, Mosque $mosque)
+    public function getTemperatureAjaxAction(Mosque $mosque)
     {
-        $temperatur = $this->get("app.weather_service")->getTemperature($mosque);
-        return new Response($temperatur);
+        return new JsonResponse($this->get("app.weather_service")->getWeather($mosque));
     }
 
 }

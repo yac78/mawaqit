@@ -13,6 +13,7 @@
         "bundles/app/prayer-times/css/main.css"
         "bundles/app/prayer-times/css/desktop.css"
         "bundles/app/prayer-times/css/slider.css"
+        "bundles/app/weather/weather-icons.min.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
@@ -89,8 +90,8 @@
 
         <!-- temperature container -->
         {% if mosque.configuration.temperatureEnabled %}
-            <div class="temperature hidden" data-remote="{{ path('temperature', {slug: mosque.slug}) }}">
-                <span></span><sup>°C</sup>
+            <div id="weather" class="hidden" data-remote="{{ path('weather', {slug: mosque.slug}) }}">
+                <i></i> <span></span><sup>°C</sup>
             </div>
         {% endif %}
         <div class="header">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
