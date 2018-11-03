@@ -56,8 +56,8 @@ services:
         parent: app.weather_api
         class: AppBundle\Service\WeatherService
           
-    app.prayer_times_service:
-        class: AppBundle\Service\PrayerTimeService
+    app.prayer_times:
+        class: AppBundle\Service\PrayerTime
         arguments:
             - "@praytimes"
             - "%kernel.cache_dir%"

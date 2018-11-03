@@ -6,7 +6,7 @@ use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\Vendor\PrayTime;
 
-class PrayerTimeService
+class PrayerTime
 {
 
     /**
@@ -48,10 +48,10 @@ class PrayerTimeService
                 mkdir($path);
             }
 
-            if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM){
+            if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
                 $this->praytime->setCalcMethod($conf->getPrayerMethod());
             }
-            if ($conf->getPrayerMethod() === Configuration::METHOD_CUSTOM){
+            if ($conf->getPrayerMethod() === Configuration::METHOD_CUSTOM) {
                 $this->praytime->setFajrAngle($conf->getFajrDegree());
                 $this->praytime->setIshaAngle($conf->getIshaDegree());
             }
@@ -110,4 +110,84 @@ class PrayerTimeService
         return $zipFilePath;
     }
 
+    /**
+     *  Get pray times and other info of the mosque
+     * @param Mosque $mosque
+     * @return array
+     */
+    public function prayTimes(Mosque $mosque)
+    {
+        $conf = $mosque->getConfiguration();
+        $result = [
+            'id' => $mosque->getId(),
+            'name' => $mosque->getTitle(),
+            'localisation' => $mosque->getLocalisation(),
+            'phone' => $mosque->getPhone(),
+            'email' => $mosque->getEmail(),
+            'website' => $mosque->getSite(),
+            'association' => $mosque->getAssociationName(),
+            'latitude' => $conf->getLatitude(),
+            'longitude' => $conf->getLongitude(),
+            'jumua' => $conf->getJumuaTime(),
+            'shuruk' => null,
+            'times' => [],
+            'iqama' => $conf->getWaitingTimes()
+        ];
+
+        if ($conf->isCalendar()) {
+            $times = $this->prayTimesFromCalendar($conf);
+        }
+
+        if ($conf->isApi()) {
+           $times = $this->prayTimesFromApi($conf);
+        }
+
+        $result['shuruk'] = $times[1];
+        unset($times[1]);
+
+        $times =  array_values($times);
+        $times = $this->fixationProcess($times, $conf);
+        $result['times'] = $times;
+        return $result;
+    }
+
+    private function prayTimesFromCalendar(Configuration $conf)
+    {
+        $date = new \DateTime();
+        $calendar = $conf->getCalendar();
+        if (is_array($calendar)) {
+            $month = $date->format('m') - 1;
+            $day = (int)$date->format('d');
+            return $calendar[$month][$day];
+        }
+        return [];
+    }
+
+    private function prayTimesFromApi(Configuration $conf)
+    {
+        $date = new \DateTime();
+        if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
+            $this->praytime->setCalcMethod($conf->getPrayerMethod());
+        }
+        if ($conf->getPrayerMethod() === Configuration::METHOD_CUSTOM) {
+            $this->praytime->setFajrAngle($conf->getFajrDegree());
+            $this->praytime->setIshaAngle($conf->getIshaDegree());
+        }
+        $this->praytime->setAsrMethod($conf->getAsrMethod());
+        $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
+        $times = $this->praytime->getPrayerTimes($date->getTimestamp(), $conf->getLatitude(), $conf->getLongitude(), $conf->getTimezone());
+        unset($times[5]);
+        return $times;
+    }
+
+    private function fixationProcess(array $times, Configuration $conf)
+    {
+        $fixations = $conf->getFixedTimes();
+        foreach ($fixations as $key => $fixation){
+            if(!empty($fixation) && strpos($fixation, "00:") !== 0 && $fixation > $times[$key]){
+                $times[$key] = $fixation;
+            }
+        }
+        return $times;
+    }
 }

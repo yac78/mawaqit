@@ -216,7 +216,7 @@ class MosqueController extends Controller
     public function getCsvFilesAction(Mosque $mosque)
     {
 
-        $zipFilePath = $this->get("app.prayer_times_service")->getFilesFromCalendar($mosque);
+        $zipFilePath = $this->get("app.prayer_times")->getFilesFromCalendar($mosque);
         if (is_file($zipFilePath)) {
             $zipFileName = $mosque->getSlug() . ".zip";
             $response =  new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);

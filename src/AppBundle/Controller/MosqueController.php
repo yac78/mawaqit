@@ -127,7 +127,7 @@ class MosqueController extends Controller
             throw new \RuntimeException();
         }
 
-        $hasBeenUpdated = $this->get("app.prayer_times_service")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);
+        $hasBeenUpdated = $this->get("app.prayer_times")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);
         return new JsonResponse(["hasBeenUpdated" => $hasBeenUpdated]);
     }
 
