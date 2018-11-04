@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Configuration;
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\Vendor\PrayTime;
 
@@ -131,7 +132,8 @@ class PrayerTime
             'jumua' => $conf->getJumuaTime(),
             'shuruq' => null,
             'times' => [],
-            'iqama' => $conf->getWaitingTimes()
+            'iqama' => $conf->getWaitingTimes(),
+            'messages' => $this->getMessages($mosque),
         ];
 
         if ($conf->isCalendar()) {
@@ -189,5 +191,21 @@ class PrayerTime
             }
         }
         return $times;
+    }
+
+    private function getMessages(Mosque $mosque)
+    {
+        $messages = [];
+        /**
+         * @var Message $message
+         */
+        foreach ($mosque->getMessages() as $message){
+            $messages[] = [
+                'title' => $message->getTitle(),
+                'content' => $message->getContent(),
+                'image' => 'https://mawaqit.net/upload/' . $message->getImage(),
+            ];
+        }
+        return $messages;
     }
 }
