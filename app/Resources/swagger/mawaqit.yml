@@ -1,0 +1,239 @@
+swagger: '2.0'
+info:
+  description: API Mawaqit
+  version: 1.0.0
+  title: Mawaqit
+  contact:
+    email: contact@mawaqit.net
+
+host: mawaqit.net
+basePath: /api/1.0.0
+schemes:
+ - https
+
+paths:
+  /mosque/search:
+    get:
+      summary: Search mosques by city, zipcode, name...
+      description: If the lon and lat parameters are present the result will contain the 10 nearest mosques ignoring word query (use it for geoloc system)<br/>  The result contains only valid mawaqit mosques
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: word
+          required: false
+          type: string
+        - in: query
+          name: lon
+          required: false
+          type: number
+          description: The longitude to obtain nearby mosques, for example 2.294359
+        - in: query
+          name: lat
+          required: false
+          type: number
+          description: The longitude to obtain near mosques, for example 48.858205
+      responses:
+        200:
+          description: Search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mosque'
+        400:
+          description: Bad input parameter
+        500:
+          description: Internal Server Error
+        503:
+          description: Not available service
+
+  /mosque/{id}/prayer-times:
+    get:
+      summary:  Get prayer times and other information for the requested mosque
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      responses:
+        200:
+          description: The result
+          schema:
+            $ref: '#/definitions/PrayerTimes'
+        404:
+          description: The mosque has not been found
+        500:
+          description: Internal Server Error
+        503:
+          description: Not available service
+
+  /hadith/random:
+    get:
+      summary: Return a random hadith from ryadh essalihine or hisn muslim
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: lang
+          required: false
+          type: string
+          description: The language of the hadith, ar, fr or both, default to ar
+        - in: query
+          name: maxLength
+          required: false
+          type: integer
+          description: The max length of the hadith, default to 500 characters, if you want short hadith you can put 200 for exemple
+      responses:
+        200:
+          description: The hadith
+          schema:
+            $ref: '#/definitions/Hadith'
+        400:
+          description: Bad input parameter
+        500:
+          description: Internal Server Error
+        503:
+          description: Not available service
+
+definitions:
+  Mosque:
+    type: object
+    required:
+    - id
+    - name
+    - url
+    - email
+    - phone
+    - site
+    - image
+    - location
+    - longitude
+    - latitude
+    - proximity
+    properties:
+      id:
+        type: integer
+        example: 1250
+      name:
+        type: string
+        example: Mosquée Essunna
+      url:
+        type: string
+        example: https://mawaqit.net/fr/mosquee-essunna-houilles
+        description: The mawaqit url screen
+      email:
+        type: string
+        example: exemple@exemple.net
+        description: The email of the mosque, can be null
+      phone:
+        type: string
+        example: 06.00.00.00.00
+        description: The phone of the mosque, can be null
+      site:
+        type: string
+        example: https://mosque-website.com
+        description: The website of the mosque, can be null
+      image:
+        type: string
+        example: https://mawaqit.net/upload/imeges/sqd654dqsd654qsdd.png
+        description: A picture of the mosque, can be null
+      location:
+        type: string
+        description: The full address of the mosque
+        example: 14 rue condorcet 78800 Houilles France
+      longitude:
+        type: number
+        example: 48.12356
+      latitude:
+        type: number
+        example: 2.893254
+      proximity:
+        type: number
+        description: The proximity in meter, distance between GPS position and the mosque
+        example: 1500
+
+  PrayerTimes:
+    type: object
+    required:
+      - id
+      - name
+      - location
+      - phone
+      - email
+      - site
+      - association
+      - jumua
+      - shuruq
+      - longitude
+      - latitude
+      - times
+      - iqama
+    properties:
+      id:
+        type: integer
+        example: 1250
+      name:
+        type: string
+        example: Mosquée Essunna
+      email:
+        type: string
+        example: exemple@exemple.net
+        description: The email of the mosque, can be null
+      phone:
+        type: string
+        example: 06.00.00.00.00
+        description: The phone of the mosque, can be null
+      site:
+        type: string
+        example: https://mosque-website.com
+        description: The website of the mosque, can be null
+      association:
+        type: string
+        description: The association name
+        example: Association SFI
+      jumua:
+        type: string
+        description: Jumu`a time
+        example: "13:00"
+      shuruq:
+        type: string
+        description: Shuruk time
+        example: "07:30"
+      location:
+        type: string
+        description: The full address of the mosque
+        example: 14 rue condorcet 78800 Houilles France
+      longitude:
+        type: number
+        example: 48.12356
+      latitude:
+        type: number
+        example: 2.893254
+      times:
+        type: array
+        items:
+          type: string
+        description: Prayer times [fajr, dhuhr, asr, maghrib, `isha]
+        example: ["06:12", "12:35", "15:02", "17:28", "19:20"]
+      iqama:
+        type: array
+        items:
+          type: string
+        description: Iqama waiting times after adhan, in minutes [fajr, dhuhr, asr, maghrib, `isha]
+        example: [20, 10, 10, 5, 10]
+
+  Hadith:
+    type: object
+    required:
+    - lang
+    - text
+    properties:
+      text:
+        type: string
+        example: "Ibn ‘Omar (رَضِيَ اللهُ عَنْهُ) a dit: «On nous a interdit toute affectation"
+      lang:
+        type: string
+        description: The language of hadith (fr or ar), fr means french hadith and ar means arabic hadith
+        example: ar

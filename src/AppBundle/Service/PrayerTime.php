@@ -121,15 +121,15 @@ class PrayerTime
         $result = [
             'id' => $mosque->getId(),
             'name' => $mosque->getTitle(),
-            'localisation' => $mosque->getLocalisation(),
+            'location' => $mosque->getLocalisation(),
             'phone' => $mosque->getPhone(),
             'email' => $mosque->getEmail(),
-            'website' => $mosque->getSite(),
+            'site' => $mosque->getSite(),
             'association' => $mosque->getAssociationName(),
             'latitude' => $conf->getLatitude(),
             'longitude' => $conf->getLongitude(),
             'jumua' => $conf->getJumuaTime(),
-            'shuruk' => null,
+            'shuruq' => null,
             'times' => [],
             'iqama' => $conf->getWaitingTimes()
         ];
@@ -142,10 +142,9 @@ class PrayerTime
            $times = $this->prayTimesFromApi($conf);
         }
 
-        $result['shuruk'] = $times[1];
+        $result['shuruq'] = $times[1];
         unset($times[1]);
 
-        $times =  array_values($times);
         $times = $this->fixationProcess($times, $conf);
         $result['times'] = $times;
         return $result;
@@ -158,7 +157,7 @@ class PrayerTime
         if (is_array($calendar)) {
             $month = $date->format('m') - 1;
             $day = (int)$date->format('d');
-            return $calendar[$month][$day];
+            return array_values($calendar[$month][$day]);
         }
         return [];
     }
@@ -177,11 +176,12 @@ class PrayerTime
         $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
         $times = $this->praytime->getPrayerTimes($date->getTimestamp(), $conf->getLatitude(), $conf->getLongitude(), $conf->getTimezone());
         unset($times[5]);
-        return $times;
+        return array_values($times);
     }
 
     private function fixationProcess(array $times, Configuration $conf)
     {
+        $times =  array_values($times);
         $fixations = $conf->getFixedTimes();
         foreach ($fixations as $key => $fixation){
             if(!empty($fixation) && strpos($fixation, "00:") !== 0 && $fixation > $times[$key]){

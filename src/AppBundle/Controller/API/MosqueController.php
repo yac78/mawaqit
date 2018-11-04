@@ -34,7 +34,7 @@ class MosqueController extends Controller
 
     /**
      * Get pray times and other info of the mosque by ID
-     * @Route("/{mosque}/pray-times")
+     * @Route("/{mosque}/prayer-times")
      * @Method("GET")
      * @param Mosque $mosque
      * @return JsonResponse

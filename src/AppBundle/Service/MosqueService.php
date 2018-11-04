@@ -79,7 +79,7 @@ class MosqueService
         $mosques = [];
 
         if ($lon !== null && $lat !== null) {
-            $statement = $this->em->getConnection()->prepare("SELECT m.id, m.name, m.phone, m.email, m.site, CONCAT(COALESCE(m.address, ''), ' ',  m.zipcode,' ', m.city, ' ', m.country_full_name) as localisation,  c.longitude , c.latitude, if(m.image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', m.image1)) as image,  CONCAT('https://mawaqit.net/fr/', m.slug) as url, ROUND(get_distance_metres($lat, $lon, latitude, longitude) ,0) AS proximity  FROM configuration c INNER JOIN mosque m on m.configuration_id = c.id where m.status = 'VALIDATED' AND m.type = 'mosque' having proximity < 10000 ORDER BY proximity ASC  LIMIT 10");
+            $statement = $this->em->getConnection()->prepare("SELECT m.id, m.name, m.phone, m.email, m.site, CONCAT(COALESCE(m.address, ''), ' ',  m.zipcode,' ', m.city, ' ', m.country_full_name) as localisation as location,  c.longitude , c.latitude, if(m.image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', m.image1)) as image,  CONCAT('https://mawaqit.net/fr/', m.slug) as url, ROUND(get_distance_metres($lat, $lon, latitude, longitude) ,0) AS proximity  FROM configuration c INNER JOIN mosque m on m.configuration_id = c.id where m.status = 'VALIDATED' AND m.type = 'mosque' having proximity < 10000 ORDER BY proximity ASC  LIMIT 10");
             $statement->execute();
             $mosques = $statement->fetchAll();
         } else if ($query) {
