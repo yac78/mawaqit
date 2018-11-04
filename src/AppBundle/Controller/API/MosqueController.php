@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/api/1.0.0/mosque", options={"i18n"="false"})
@@ -41,6 +42,10 @@ class MosqueController extends Controller
      */
     public function prayTimesAction(Mosque $mosque)
     {
+        if($mosque->isHome()){
+            throw new NotFoundHttpException();
+        }
+
         $result =$this->get('app.prayer_times')->prayTimes($mosque);
         return new JsonResponse($result);
     }
