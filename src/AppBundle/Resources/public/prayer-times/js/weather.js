@@ -29,7 +29,8 @@ var weather = {
                     var today = new Date();
                     var hour = today.getHours();
                     var icon = resp.icon;
-                    if (hour > 6 && hour < 20) {
+                    // @todo compare with maghreb and isha
+                    if (hour > 6 && hour < 18) {
                         icon = "day-" + icon;
                     } else {
                         icon = "night-" + icon;
