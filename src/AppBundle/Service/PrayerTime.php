@@ -122,7 +122,7 @@ class PrayerTime
         $result = [
             'id' => $mosque->getId(),
             'name' => $mosque->getTitle(),
-            'location' => $mosque->getLocalisation(),
+            'localisation' => $mosque->getLocalisation(),
             'phone' => $mosque->getPhone(),
             'email' => $mosque->getEmail(),
             'site' => $mosque->getSite(),
