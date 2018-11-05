@@ -30,7 +30,7 @@ var weather = {
                     var hour = today.getHours();
                     var icon = resp.icon;
                     // @todo compare with maghreb and isha
-                    if (hour > 8 && hour < 18) {
+                    if (hour >= 7 && hour <= 18) {
                         icon = "day-" + icon;
                     } else {
                         // fix night sunny
