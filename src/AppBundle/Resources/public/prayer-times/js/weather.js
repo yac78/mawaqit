@@ -26,11 +26,11 @@ var weather = {
                         $weatherEl.addClass("red");
                     }
 
-                    var today = new Date();
-                    var hour = today.getHours();
                     var icon = resp.icon;
-                    // @todo compare with maghreb and isha
-                    if (hour >= 7 && hour <= 18) {
+                    var now = new Date();
+                    var fajr = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
+                    var maghrib = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(3));
+                    if (now.getTime() > fajr.getTime() && now.getTime() < maghrib.getTime()) {
                         icon = "day-" + icon;
                     } else {
                         // fix night sunny
