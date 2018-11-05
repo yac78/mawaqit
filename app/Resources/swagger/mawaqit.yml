@@ -170,6 +170,7 @@ definitions:
       - latitude
       - times
       - iqama
+      - messages
     properties:
       id:
         type: integer
@@ -223,6 +224,31 @@ definitions:
           type: string
         description: Iqama waiting times after adhan, in minutes [fajr, dhuhr, asr, maghrib, `isha]
         example: [20, 10, 10, 5, 10]
+      messages:
+        type: array
+        items:
+          $ref: '#/definitions/Message'
+        description: A liste of messages
+
+  Message:
+    type: object
+    required:
+    - title
+    - content
+    - image
+    properties:
+      title:
+        type: string
+        description: The message title ,can be null
+        example: "Conference"
+      content:
+        type: string
+        description: The message content, can be null
+        example: Yout mosque communicate with you
+      image:
+        type: string
+        description: The message image, can be null
+        example: https://mawaqit.net/upload/5bdf1a6dcf38b078788723.jpg
 
   Hadith:
     type: object
@@ -237,3 +263,4 @@ definitions:
         type: string
         description: The language of hadith (fr or ar), fr means french hadith and ar means arabic hadith
         example: ar
+
