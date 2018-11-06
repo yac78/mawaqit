@@ -28,9 +28,9 @@ var weather = {
 
                     var icon = resp.icon;
                     var now = new Date();
-                    var fajr = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(0));
+                    var shuruq = prayer.getCurrentDateForPrayerTime(prayer.getChouroukTime());
                     var maghrib = prayer.getCurrentDateForPrayerTime(prayer.getTimeByIndex(3));
-                    if (now.getTime() > fajr.getTime() && now.getTime() < maghrib.getTime()) {
+                    if (now.getTime() > shuruq.getTime() && now.getTime() < maghrib.getTime()) {
                         icon = "day-" + icon;
                     } else {
                         // fix night sunny
