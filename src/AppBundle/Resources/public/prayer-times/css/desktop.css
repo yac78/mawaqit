@@ -55,11 +55,11 @@ body {
 }
 
 .header {
-    font-size: 550%;
+    font-size: 500%;
     color: yellowgreen;
     padding-top: 10px;
     padding-bottom: 15px;
-    width: 80%;
+    width: 75%;
     overflow: hidden;
     white-space: nowrap;
     margin: auto;
