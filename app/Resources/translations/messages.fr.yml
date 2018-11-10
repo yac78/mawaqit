@@ -423,7 +423,7 @@ faq:
 
 configuration:
     select_calendar: Séléctionner un calendrier
-    title: Configuration des horaires de "%mosque%"
+    title: Configuration des horaires
     list:
         download_csv_files: Calendrier
         calendar_not_completed: |
