@@ -495,9 +495,9 @@ configuration:
         timezone: 
             label: Fuseau horaire
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
-        ninetyMinBetweenMaghibAndIsha:
-            label: 1h30 entre maghrib et isha
-            title: Appliquer 1h30 entre maghrib et isha quelque soit la méthode de calcul
+        ishaFixation:
+            label: Fixation du `Isha par rapport au Maghreb
+            title: Appliquer 1h15 ou 1h30 entre maghrib et isha quelque soit la méthode de calcul
         dst: 
             label: Changement d'heure d'été
             title: |
@@ -795,3 +795,4 @@ iqama_in: Al-Iqâmah dans
 
 change_statuses: Activation/Désactivation multiple
 homeTitle: Mawaqit %city% - Domicile
+select_a_value: Séléctionnez une valeur

@@ -124,8 +124,9 @@ AppBundle\Entity\Configuration:
         calendar:
             type: json_array
             nullable: true
-        ninetyMinBetweenMaghibAndIsha:
-            type: boolean
+        ishaFixation:
+            type: smallint
+            nullable: true
         footer:
             type: boolean
         timeToDisplayMessage:

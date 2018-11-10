@@ -186,9 +186,9 @@ var prayer = {
             times[i] = prayer.dstConvertTimeForCalendarMode(time, tomorrow);
 
             // adjust isha to 90 min after maghrib if option enabled
-            if (i === 4 && prayer.confData.ninetyMinBetweenMaghibAndIsha === true) {
+            if (i === 4 && prayer.confData.ishaFixation) {
                 var maghribDateTime = prayer.getCurrentDateForPrayerTime(times[3]);
-                maghribDateTime.setMinutes(maghribDateTime.getMinutes() + 90);
+                maghribDateTime.setMinutes(maghribDateTime.getMinutes() + prayer.confData.ishaFixation);
                 times[i] = addZero(maghribDateTime.getHours()) + ':' + addZero(maghribDateTime.getMinutes());
             }
 

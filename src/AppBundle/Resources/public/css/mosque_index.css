@@ -80,9 +80,6 @@
 }
 
 .fa-map-marker {
-    position: absolute;
-    top: 7px;
-    right: 10px;
     font-size: 150%;
     cursor: pointer
 }

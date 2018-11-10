@@ -438,8 +438,8 @@ configuration:
         randomHadithIntervalDisabling:
             label: "تعطيل الأحاديث بين"
             title: "يمكنك تعطيل ظهور الأحاديث بين صلاتين إذا كانت الدروس تقام في مسجدك بين المغرب والعشاء مثلا"
-        ninetyMinBetweenMaghibAndIsha:
-            label: ساعة و نصف بين المغرب و العشاء
+        ishaFixation:
+            label: تحديد العشاء بالنسبة للمغرب
         footer:
             label: أسفل الصفحة
         iqamaEnabled:
@@ -630,3 +630,5 @@ status: الوضع
 
 invocationAfterPrayer:
     title: أذكار بعد الصلاة
+
+select_a_value: إختر

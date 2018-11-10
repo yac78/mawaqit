@@ -24,13 +24,13 @@
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
             {% endstylesheets %}
 
-            {#{% if app.request.locale == 'ar' %}#}
-                {#{% stylesheets#}
-                    {#"bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"#}
-                    {#filter="cssrewrite" %}#}
-                    {#<link rel="stylesheet" href="{{ asset_url }}" type="text/css">#}
-                {#{% endstylesheets %}#}
-            {#{% endif %}#}
+            {% if app.request.locale == 'ar' %}
+                {% stylesheets
+                    "bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"
+                    filter="cssrewrite" %}
+                    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+                {% endstylesheets %}
+            {% endif %}
         {% endblock %}
 
         {% block additional_stylesheets %}

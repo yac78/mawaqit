@@ -99,11 +99,11 @@ class ConfigurationType extends AbstractType
     {
 
         $adjustedTimesValues = range(-30, 30);
-        $timePattern =  '/^\d{2}:\d{2}$/';
+        $timePattern = '/^\d{2}:\d{2}$/';
 
         $builder
             ->add('jumuaTime', null, [
-                'constraints'=> new Regex(['pattern' => $timePattern]),
+                'constraints' => new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.jumuaTime.title'),
                     'placeholder' => 'hh:mm'
@@ -125,13 +125,13 @@ class ConfigurationType extends AbstractType
                 'required' => false,
             ])
             ->add('jumuaTimeout', IntegerType::class, [
-                'constraints'=> new Range(['min' => 20]),
+                'constraints' => new Range(['min' => 20]),
                 'attr' => [
                     'min' => 20
                 ]
             ])
             ->add('aidTime', null, [
-                'constraints'=> new Regex(['pattern' => $timePattern]),
+                'constraints' => new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.aidTime.title'),
                     'placeholder' => 'hh:mm'
@@ -144,7 +144,7 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('maximumIshaTimeForNoWaiting', null, [
-                'constraints'=> new Regex(['pattern' => $timePattern]),
+                'constraints' => new Regex(['pattern' => $timePattern]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.maximumIshaTimeForNoWaiting.title'),
                     'placeholder' => 'hh:mm',
@@ -176,7 +176,7 @@ class ConfigurationType extends AbstractType
                 ],
                 'sub_options' => [
                     'type' => TextType::class,
-                    'constraints'=> new Regex(['pattern' => $timePattern]),
+                    'constraints' => new Regex(['pattern' => $timePattern]),
                     'attr' => [
                         'placeholder' => "hh:mm"
                     ]
@@ -208,7 +208,6 @@ class ConfigurationType extends AbstractType
             ->add('dst', ChoiceType::class, [
                 'required' => true,
                 'choices' => self::$dstChoices,
-                'choice_translation_domain' => true,
                 'attr' => [
                     'help' => 'configuration.form.dst.title',
                 ],
@@ -232,7 +231,6 @@ class ConfigurationType extends AbstractType
             ->add('hadithLang', ChoiceType::class, [
                 'required' => true,
                 'choices' => array_combine(Configuration::HADITH_LANG, Configuration::HADITH_LANG),
-                'choice_translation_domain' => true
             ])
             ->add('asrMethod', ChoiceType::class, [
                 'required' => true,
@@ -284,12 +282,10 @@ class ConfigurationType extends AbstractType
             ])
             ->add('sourceCalcul', ChoiceType::class, [
                 'required' => true,
-                'choice_translation_domain' => true,
                 'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
             ])
             ->add('prayerMethod', ChoiceType::class, [
                 'required' => true,
-                'choice_translation_domain' => true,
                 'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
             ])
             ->add('fajrDegree', IntegerType::class, [
@@ -305,7 +301,7 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('iqamaDisplayTime', IntegerType::class, [
-                'constraints'=> new Range(['min' => 5]),
+                'constraints' => new Range(['min' => 5]),
                 'label' => 'configuration.form.iqamaDisplayTime.label',
                 'attr' => [
                     'min' => 5
@@ -331,10 +327,12 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.smallScreen.title',
                 ]
             ])
-            ->add('ninetyMinBetweenMaghibAndIsha', CheckboxType::class, [
-                'required' => false,
+            ->add('ishaFixation', ChoiceType::class, [
+                'placeholder' => 'select_a_value',
+                'required' => true,
+                'choices' => ['1h15' => 75, '1h30' => 90],
                 'attr' => [
-                    'help' => 'configuration.form.ninetyMinBetweenMaghibAndIsha.title',
+                    'help' => 'configuration.form.ishaFixation.title',
                 ]
             ])
             ->add('randomHadithEnabled', CheckboxType::class, [

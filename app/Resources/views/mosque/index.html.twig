@@ -14,7 +14,7 @@
     {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
-        <div class="col-md-6 text-left">
+        <div class="col-md-11">
             {% if isNotLocal() %}
                 {% if app.request.get('search') %}
                     <h1>{{ 'found'|trans }} {{ mosques.totalItemCount }}</h1>
@@ -24,7 +24,7 @@
             {% endif %}
         </div>
 
-        <div class="col-md-6 text-right mt-2">
+        <div class="col-md-1 mt-2">
             {% if isNotLocal() %}
                 <a href="{{ path('mosque_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'add'|trans }}</a>
             {% endif %}
@@ -88,8 +88,7 @@
                     </td>
                     <td>{{ mosque.associationName }}</td>
                     <td style="position: relative">
-                        <i class="fa fa-map-marker" data-gps="{{ mosque.configuration.latitude ~ "," ~ mosque.configuration.longitude }}"></i>
-                        <div>{{ mosque.address }}</div>
+                        <div> <i class="fa fa-map-marker" data-gps="{{ mosque.configuration.latitude ~ "," ~ mosque.configuration.longitude }}"></i> {{ mosque.address }}</div>
                         <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
                         <div>{{ mosque.fullCountryName }}</div>
                         {% if mosque.phone %}

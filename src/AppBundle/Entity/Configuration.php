@@ -292,9 +292,9 @@ class Configuration
     private $iqamaEnabled = true;
 
     /**
-     * @var bool
+     * @var string
      */
-    private $ninetyMinBetweenMaghibAndIsha = false;
+    private $ishaFixation;
 
     /**
      * @var bool
@@ -1131,20 +1131,20 @@ class Configuration
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isNinetyMinBetweenMaghibAndIsha()
+    public function getIshaFixation()
     {
-        return $this->ninetyMinBetweenMaghibAndIsha;
+        return $this->ishaFixation;
     }
 
     /**
-     * @param bool $ninetyMinBetweenMaghibAndIsha
+     * @param string $ishaFixation
      * @return Configuration
      */
-    public function setNinetyMinBetweenMaghibAndIsha($ninetyMinBetweenMaghibAndIsha)
+    public function setIshaFixation($ishaFixation)
     {
-        $this->ninetyMinBetweenMaghibAndIsha = $ninetyMinBetweenMaghibAndIsha;
+        $this->ishaFixation = $ishaFixation;
         return $this;
     }
 

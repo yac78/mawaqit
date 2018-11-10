@@ -243,9 +243,9 @@ configuration:
         timezone: 
             label: Time zone
             title: If you have a time difference in the calculation of prayer times, adjust it here
-        ninetyMinBetweenMaghibAndIsha:
-            label: 1h30 between maghrib and isha
-            title: Apply 1h30 min between maghrib and isha whatever the method of calculation
+        ishaFixation:
+            label: Fixing of `Isha in relation to the Maghreb
+            title: Apply 1h15 or 1h30 between maghrib and isha whatever the method of calculation
         dst: 
             label: Daylight saving time (DST)
             title: |
@@ -534,3 +534,4 @@ iqama_in: Al-Iqamah in
 
 change_statuses: Bulk Enable/Disable
 homeTitle: Mawaqit %city% - Home
+select_a_value: Select a value
