@@ -127,6 +127,8 @@ class PrayerTime
             'email' => $mosque->getEmail(),
             'site' => $mosque->getSite(),
             'association' => $mosque->getAssociationName(),
+            'image' => 'https://mawaqit.net/upload/' . $mosque->getImage1(),
+            'url' => 'https://mawaqit.net/fr/' . $mosque->getSlug(),
             'latitude' => $conf->getLatitude(),
             'longitude' => $conf->getLongitude(),
             'jumua' => $conf->getJumuaTime(),
@@ -201,6 +203,7 @@ class PrayerTime
          */
         foreach ($mosque->getMessages() as $message){
             $messages[] = [
+                'id' => $message->getId(),
                 'title' => $message->getTitle(),
                 'content' => $message->getContent(),
                 'image' => 'https://mawaqit.net/upload/' . $message->getImage(),
