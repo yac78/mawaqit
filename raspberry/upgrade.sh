@@ -33,7 +33,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     killall chromium-browser
 
     # run mawaqit
-    ./raspberry/run.sh
+    /home/pi/mawaqit/raspberry/run.sh
 else
     echo "You are on the last version :)"
 fi

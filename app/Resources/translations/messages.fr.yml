@@ -196,18 +196,7 @@ home:
 
       <p><strong>OPTION 2. Vous n'avez pas de connexion internet, lancer la version offline : </strong>
           Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
-          Afin de profiter de la toute dernière version du logiciel, il est recommandé d'exécuter les
-          étapes suivantes : <br>
-      </p>
-
-      <ol>
-          <li>Quittez le mode plein écran avec F11, puis fermez le logiciel</li>
-          <li>Connetez le raspberry à internet et double-cliquez sur le fichier <code> upgrade.sh</code>
-              présent sur le bureau puis appuyez sur Execute in Terminal. Attendre que la procédure de MAJ soit terminée
-          </li>
-      </ol>
-      <p>vous pouvez après configurer les horaires de votre mosquée.<br></p>
-      <p>
+          Afin de profiter de la toute dernière version du logiciel, il est recommandé de le connecter à internet de temps en temps<br>
           <strong>Important :</strong>
           Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
           de garder l'heure correctement réglée
