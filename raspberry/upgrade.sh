@@ -35,5 +35,5 @@ if [ "$currenttag" != "$latesttag" ]; then
     # run mawaqit
     ./raspberry/run.sh
 else
-    echo "You are on the last version"
+    echo "You are on the last version :)"
 fi
