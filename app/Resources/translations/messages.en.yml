@@ -244,7 +244,7 @@ configuration:
             title: If you have a time difference in the calculation of prayer times, adjust it here
         ishaFixation:
             label: Fixing of `Isha in relation to the Maghreb
-            title: Apply 1h15 or 1h30 between maghrib and isha whatever the method of calculation
+            title: Apply a fixed interval between maghrib and isha whatever the method of calculation
         dst: 
             label: Daylight saving time (DST)
             title: |

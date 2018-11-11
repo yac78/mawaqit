@@ -330,7 +330,14 @@ class ConfigurationType extends AbstractType
             ->add('ishaFixation', ChoiceType::class, [
                 'placeholder' => 'select_a_value',
                 'required' => true,
-                'choices' => ['1h15' => 75, '1h30' => 90],
+                'choices' => [
+                    '1h05' => 65,
+                    '1h10' => 70,
+                    '1h15' => 75,
+                    '1h30' => 90,
+                    '1h45' => 105,
+                    '2h00' => 120,
+                ],
                 'attr' => [
                     'help' => 'configuration.form.ishaFixation.title',
                 ]

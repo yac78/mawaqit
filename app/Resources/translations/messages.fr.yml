@@ -497,7 +497,7 @@ configuration:
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
         ishaFixation:
             label: Fixation du `Isha par rapport au Maghreb
-            title: Appliquer 1h15 ou 1h30 entre maghrib et isha quelque soit la méthode de calcul
+            title: Appliquer un interval fixe entre maghrib et isha quelque soit la méthode de calcul
         dst: 
             label: Changement d'heure d'été
             title: |
