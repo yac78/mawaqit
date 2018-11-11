@@ -109,6 +109,7 @@ class MosqueType extends AbstractType
                 'label' => 'mosque.name',
                 'required' => true,
                 'attr' => [
+                    'class' => 'keyboardInput',
                     'placeholder' => 'mosque.form.name.placeholder',
                 ]
             ])
@@ -120,6 +121,9 @@ class MosqueType extends AbstractType
             ])
             ->add('associationName', null, [
                 'label' => 'association_name',
+                'attr' => [
+                    'class' => 'keyboardInput',
+                ]
             ])
             ->add('phone', null, [
                 'label' => 'phone'
@@ -135,13 +139,17 @@ class MosqueType extends AbstractType
                 'label' => 'address',
                 'disabled' => $disabled,
                 'attr' => [
+                    'class' => 'keyboardInput',
                     'placeholder' => 'mosque.form.address.placeholder',
                 ]
             ])
             ->add('city', null, [
                 'label' => 'city',
                 'required' => true,
-                'disabled' => $disabled
+                'disabled' => $disabled,
+                'attr' => [
+                    'class' => 'keyboardInput',
+                ]
             ])
             ->add('zipcode', null, [
                 'label' => 'zipcode',

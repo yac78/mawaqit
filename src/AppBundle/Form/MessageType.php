@@ -37,6 +37,7 @@ class MessageType extends AbstractType
                 'attr' => [
                     'placeholder' => 'message.form.title.placeholder',
                     'maxlength' => "40",
+                    'class' => 'keyboardInput',
                 ]
             ])
             ->add('content', TextareaType::class, [
