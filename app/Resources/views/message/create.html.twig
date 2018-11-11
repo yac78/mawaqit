@@ -15,3 +15,10 @@
         {% include 'message/form.html.twig' %}
     </form>
 {% endblock %}
+
+{% block additional_javascripts %}
+    {% javascripts
+        '@AppBundle/Resources/public/js/message_edit.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

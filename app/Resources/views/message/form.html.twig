@@ -6,9 +6,11 @@
         {{ form_row(form._token) }}
         {{ form_row(form.title) }}
         {{ form_row(form.content) }}
-        {{ form_row(form.desktop) }}
-        {{ form_row(form.mobile) }}
         {{ form_row(form.enabled) }}
+        <div class="bloc-enabling">
+            {{ form_row(form.desktop) }}
+            {{ form_row(form.mobile) }}
+        </div>
     </div>
     <div class="col-md-4">
         <div class="block-image">
