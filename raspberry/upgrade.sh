@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
     echo "offline"
 fi
 
-git fetch --all
+git fetch
 
 currenttag=$(git describe --tags --abbrev=0)
 latesttag=$(git describe --tags $(git rev-list --tags --max-count=1))
