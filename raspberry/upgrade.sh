@@ -14,8 +14,6 @@ currenttag=$(git describe --tags --abbrev=0)
 latesttag=$(git describe --tags $(git rev-list --tags --max-count=1))
 
 if [ "$currenttag" != "$latesttag" ]; then
-    # stop chromium
-    killall chromium-browser
 
     echo checking out ${latesttag}
     git checkout ${latesttag}
@@ -30,6 +28,10 @@ if [ "$currenttag" != "$latesttag" ]; then
     bin/console assetic:dump --env=prod --no-debug
 
     bin/console doctrine:migrations:migrate -n --allow-no-migration
+
+    # stop chromium
+    killall chromium-browser
+
     ./raspberry/run.sh
 else
     echo "You are on the last version"
