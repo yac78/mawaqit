@@ -26,14 +26,7 @@ if [ "$currenttag" != "$latesttag" ]; then
 
     bin/console assets:install --env=prod --no-debug
     bin/console assetic:dump --env=prod --no-debug
-
     bin/console doctrine:migrations:migrate -n --allow-no-migration
-
-    # stop chromium
-    killall chromium-browser
-
-    # run mawaqit
-    /home/pi/mawaqit/raspberry/run.sh
 else
     echo "You are on the last version :)"
 fi
