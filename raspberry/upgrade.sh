@@ -32,5 +32,5 @@ if [ "$currenttag" != "$latesttag" ]; then
     bin/console doctrine:migrations:migrate -n --allow-no-migration
     raspberry/run.sh
 else
-    echo "You are on the laste version"
+    echo "You are on the last version"
 fi
