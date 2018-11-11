@@ -30,7 +30,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     bin/console assetic:dump --env=prod --no-debug
 
     bin/console doctrine:migrations:migrate -n --allow-no-migration
-    raspberry/run.sh
+    ./raspberry/run.sh
 else
     echo "You are on the last version"
 fi
