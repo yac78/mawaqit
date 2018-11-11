@@ -30,14 +30,7 @@ if [ "$currenttag" != "$latesttag"]; then
     bin/console assetic:dump --env=prod --no-debug
 
     bin/console doctrine:migrations:migrate -n --allow-no-migration
-    echo "The upgrade to v$version has been successfully done ;)"
-
-    echo ""
-    echo ""
-    echo ">>>>>  Rebooting system..."
-    sleep 5
-    reboot
-
+    raspberry/run.sh
 else
     echo "You are on the laste version"
 fi
