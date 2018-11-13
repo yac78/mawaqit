@@ -31,10 +31,10 @@ var prayer = {
      */
     oneSecond: 1000,
     /**
-     * Conf from conf.json
      * @type Json
      */
-    confData: confData,
+    mosque: mosque,
+    confData: mosque.configuration,
     /**
      * load all data
      */
@@ -497,11 +497,12 @@ var prayer = {
                     var currentTime = dateTime.getCurrentTime()
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                         if (time === currentTime) {
-                            // if jumua time we don't flash adhan
-                            if (!prayer.isJumua(currentPrayerIndex)) {
-                                prayer.adhan.isFlashing = true;
-                                prayer.adhan.flash(currentPrayerIndex);
+                            // if jumua and mosque type we don't flash adhan
+                            if (prayer.isJumua(currentPrayerIndex) && prayer.mosque.mosque) {
+                                return;
                             }
+                            prayer.adhan.isFlashing = true;
+                            prayer.adhan.flash(currentPrayerIndex);
                         }
                     });
                 }
