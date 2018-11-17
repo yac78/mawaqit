@@ -1274,7 +1274,7 @@ var VKI_attach, VKI_close;
             keybut.alt = self.VKI_i18n['01'];
             keybut.className = "keyboardInputInitiator hidden-xs";
             keybut.title = self.VKI_i18n['01'];
-            keybut.width = 34;
+            keybut.width = 28;
             keybut.elem = elem;
             keybut.onclick = function (e) {
                 e = e || event;

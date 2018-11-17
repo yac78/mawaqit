@@ -401,21 +401,24 @@ var prayer = {
                     var currentDateForPrayerTime, diffTimeInMiniute, currentPrayerWaitingTime, date;
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
 
-                        if (!prayer.isJumua(currentPrayerIndex)) {
-                            date = new Date();
-                            currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
+                        // if jumua and mosque type we don't flash iqama
+                        if (prayer.isJumua(currentPrayerIndex) && prayer.mosque.mosque) {
+                            return;
+                        }
 
-                            if (date.getHours() === 0 && currentDateForPrayerTime.getHours() === 23) {
-                                currentDateForPrayerTime.setDate(currentDateForPrayerTime.getDate() - 1);
-                            }
+                        date = new Date();
+                        currentDateForPrayerTime = prayer.getCurrentDateForPrayerTime(time);
 
-                            diffTimeInMiniute = Math.floor((date - currentDateForPrayerTime) / prayer.oneMinute);
-                            currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
-                            if (diffTimeInMiniute === currentPrayerWaitingTime) {
-                                prayer.iqama.isFlashing = true;
-                                // iqama flashing
-                                prayer.iqama.flash(currentPrayerIndex);
-                            }
+                        if (date.getHours() === 0 && currentDateForPrayerTime.getHours() === 23) {
+                            currentDateForPrayerTime.setDate(currentDateForPrayerTime.getDate() - 1);
+                        }
+
+                        diffTimeInMiniute = Math.floor((date - currentDateForPrayerTime) / prayer.oneMinute);
+                        currentPrayerWaitingTime = prayer.getWaitingByIndex(currentPrayerIndex);
+                        if (diffTimeInMiniute === currentPrayerWaitingTime) {
+                            prayer.iqama.isFlashing = true;
+                            // iqama flashing
+                            prayer.iqama.flash(currentPrayerIndex);
                         }
                     });
                 }
@@ -676,7 +679,7 @@ var prayer = {
      * @param layerToShow the element class to show
      */
     switchLayer: function (layerToHide, layerToShow, correctFontSize) {
-        if (correctFontSize === true){
+        if (correctFontSize === true) {
             fixFontSize('.' + layerToShow);
         }
         $('.' + layerToHide).fadeOut(500, function () {
@@ -730,7 +733,9 @@ var prayer = {
         // if joumouaa we hilight joumouaa time
         if (prayer.isJumua(prayerIndex)) {
             $(".joumouaa-id").addClass("prayer-hilighted");
-            return;
+            if (prayer.mosque.mosque) {
+                return;
+            }
         }
 
         $(".prayer-text ._" + prayerIndex).addClass("text-hilighted");
@@ -876,7 +881,7 @@ var prayer = {
         }
 
         var beginDateTime = prayer.getCurrentDateForPrayerTime(prayer.confData.jumuaTime);
-        var beginTime =  beginDateTime.getTime();
+        var beginTime = beginDateTime.getTime();
         var endTime = beginDateTime.setMinutes(beginDateTime.getMinutes() + prayer.confData.jumuaTimeout);
 
         if (date.getTime() < beginTime || date.getTime() > endTime) {

@@ -35,40 +35,43 @@ var douaaSlider = {
      * @param {Number} currentTimeIndex
      */
     show: function (currentTimeIndex) {
-        if (!prayer.isJumua(currentTimeIndex)) {
-            if (prayer.confData.duaAfterPrayerEnabled) {
-                $("#black-screen, .main").fadeOut(500, function () {
-                    $(".adhkar-after-prayer").fadeIn(500, function () {
-                        douaaSlider.setFontSize();
-                    });
+        // if jumua and mosque type
+        if (prayer.isJumua(currentTimeIndex) && prayer.mosque.mosque) {
+            return;
+        }
+
+        if (prayer.confData.duaAfterPrayerEnabled) {
+            $("#black-screen, .main").fadeOut(500, function () {
+                $(".adhkar-after-prayer").fadeIn(500, function () {
+                    douaaSlider.setFontSize();
                 });
+            });
 
-                var douaaInterval = setInterval(function () {
-                    douaaSlider.moveRight();
-                }, douaaSlider.oneDouaaShowingTime);
+            var douaaInterval = setInterval(function () {
+                douaaSlider.moveRight();
+            }, douaaSlider.oneDouaaShowingTime);
 
-                setTimeout(function () {
-                    clearInterval(douaaInterval);
-                    $(".adhkar-after-prayer").fadeOut(500, function () {
-                        $(".main").fadeIn(500);
-                        $('.adhkar-after-prayer').html(douaaSlider.sliderHtmlContent);
-                    });
-
-                    // show messages if exist after 10 sec after duaa
-                    setTimeout(function () {
-                        messageInfoSlider.get();
-                    }, 10 * prayer.oneSecond);
-
-                }, douaaSlider.getTimeForShow());
-            } else {
-                $("#black-screen").fadeOut(500, function () {
+            setTimeout(function () {
+                clearInterval(douaaInterval);
+                $(".adhkar-after-prayer").fadeOut(500, function () {
                     $(".main").fadeIn(500);
+                    $('.adhkar-after-prayer').html(douaaSlider.sliderHtmlContent);
                 });
+
+                // show messages if exist after 10 sec after duaa
                 setTimeout(function () {
-                    // no douaa, show messages if exist after 2 min after prayer
                     messageInfoSlider.get();
-                }, 2 * prayer.oneMinute);
-            }
+                }, 10 * prayer.oneSecond);
+
+            }, douaaSlider.getTimeForShow());
+        } else {
+            $("#black-screen").fadeOut(500, function () {
+                $(".main").fadeIn(500);
+            });
+            setTimeout(function () {
+                // no douaa, show messages if exist after 2 min after prayer
+                messageInfoSlider.get();
+            }, 2 * prayer.oneMinute);
         }
     },
     /**
