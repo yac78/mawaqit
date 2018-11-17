@@ -39,7 +39,7 @@ home:
     contactUsText1: |
       Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel. Contactez nous :
     contactUsText2: |
-      <li><i class="fa fa-whatsapp"></i> Par message WhatsApp uniquement : supportTel1 (France) / supportTel2 (Reste du monde) du Lundi au Samedi entre 9h et 21h</li>
+      <li><i class="fa fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>Pour la France supportTel1 <br>Pour le reste du monde supportTel2</li>
       <li>Via le formulaire ci-dessous</li>
     contactUsFormValidation1: Veuillez saisir votre nom.
     contactUsFormValidation2: Veuillez saisir votre adresse.
@@ -183,9 +183,7 @@ home:
             contenu
             par le lien généré dans votre compte,
             exemple: <br>
-            <code>
-                {{ url('mosque', {slug: 'mosquee-essunna-houilles'}) }}<br>
-            </code>
+            <code>mosqueUrl<br></code>
         </li>
         <li>Sauvegardez et quittez</li>
         <li>Lancez Mawaqit depuis le bureau</li>

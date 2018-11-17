@@ -39,7 +39,10 @@ home:
     contactUsText1: |
       لديك أسئلة حول كيفية تجهيز مسجدك ببرنامجنا. اتصل بنا:
     contactUsText2: |
-      <li><i class="fa fa-whatsapp"></i>  على الوانساب (كتابيا فقظ) : supportTel1 (فرنسا) supportTel2 (باقي العالم) من التاسعة صباحا إلى التاسعة مساءا</li>
+      <li><i class="fa fa-whatsapp"></i>  من التاسعة صباحا إلى التاسعة مساءا : على الوانساب كتابيا فقظ <br>
+      supportTel1  فرنسا <br>
+      supportTel2 باقي العالم
+      </li>
       <li>عبر الإستمارة أدناه</li>
     contactUsFormValidation1: من فضلك ادخل اسمك
     contactUsFormValidation2: يرجى إدخال عنوانك
