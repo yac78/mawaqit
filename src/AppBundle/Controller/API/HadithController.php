@@ -28,29 +28,29 @@ class HadithController extends Controller
         if (!in_array($lang, ['ar', 'fr', 'both'])) {
             return new Response('The parameter lang must be fr, ar or both', Response::HTTP_BAD_REQUEST);
         }
-        $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ryiad-essalihine.xml";
-        $xmldata = simplexml_load_file($file);
 
         if ($lang === "both") {
-            $hadiths = $xmldata->xpath('hadith');
-        } else {
-            $hadiths = $xmldata->xpath("hadith[@lang=\"$lang\"]");
+            $languages = ['ar', 'fr'];
+            $lang = $languages[array_rand($languages)];
         }
 
-        $hadith = $this->getRandomHadith($hadiths, $maxLength);
+        $file = $this->getParameter("kernel.root_dir") . "/Resources/xml/ahadith-$lang.xml";
+        $xmldata = simplexml_load_file($file);
+        $ahadith = $xmldata->xpath('hadith');
+        $hadith = $this->getRandomHadith($ahadith, $maxLength);
 
         $reponse = [
             "text" => preg_replace('/\s+/', ' ', preg_replace('/\n+/', '', (string)$hadith)),
-            "lang" => (string)(isset($hadith["lang"]) ? $hadith["lang"] : "NA")
+            "lang" => $lang
         ];
         return new JsonResponse($reponse);
     }
 
-    private function getRandomHadith(array $hadiths, $maxLength)
+    private function getRandomHadith(array $ahadith, $maxLength)
     {
-        $hadith = $hadiths[array_rand($hadiths)];
+        $hadith = $ahadith[array_rand($ahadith)];
         if (strlen($hadith) < 10 || strlen($hadith) > (int)$maxLength) {
-            return $this->getRandomHadith($hadiths, $maxLength);
+            return $this->getRandomHadith($ahadith, $maxLength);
         }
         return $hadith;
     }
