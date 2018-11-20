@@ -4,7 +4,7 @@ zuhr: Öğle
 asr: İkindi
 maghrib: Akşam
 isha: Yatsı
-jumua: Cuma namaz
+jumua: Cuma Vâkti
 aid: Bayram Namazı
 imsak: Imsak
 iqama: kamet
@@ -12,3 +12,14 @@ azan: Ezan
 
 power-off-phones: Cep telefonlarınızı lütfen kapalı tutunuz
 next_prayer: Bir sonraki Ezan
+
+duaAfterAthan:
+    title: Ezen sonrası istilası
+    text: |
+        Ey şu eksiksiz davetin ve kılınacak namazın rabbi Allahım! Muhammed'e vesîleyi ve fazîleti ver.
+        Onu, kendisine vaadettiğin makâm-ı mahmûda ulaştır, Muhakkak ki sen vaadinden dönmezsin
+
+duaBetweenAthanAndIqama:
+    text: |
+        Enes b. Mâlik (r.a.)'den rivâyet edildiğine göre, Rasûlullah (s.a.v.) şöyle buyurdu:
+        Ezan ile kamet arasında yapılan dua geri çevrilmez.
