@@ -265,7 +265,9 @@
 }
 
 .keyboardInputInitiator {
-  margin:0px 3px;
   vertical-align:middle;
   cursor:pointer;
+  margin-top: -56px;
+  margin-left: 96%;
+  width: 32px;
 }

@@ -178,6 +178,7 @@ class MosqueType extends AbstractType
                 'label' => 'rib',
                 'attr' => [
                     'placeholder' => 'mosque.form.rib.placeholder',
+                    'class' => 'keyboardInput',
                 ]
             ])
             ->add('addOnMap', CheckboxType::class, [

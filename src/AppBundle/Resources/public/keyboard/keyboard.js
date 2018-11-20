@@ -1274,7 +1274,6 @@ var VKI_attach, VKI_close;
             keybut.alt = self.VKI_i18n['01'];
             keybut.className = "keyboardInputInitiator hidden-xs";
             keybut.title = self.VKI_i18n['01'];
-            keybut.width = 28;
             keybut.elem = elem;
             keybut.onclick = function (e) {
                 e = e || event;
@@ -1284,8 +1283,6 @@ var VKI_attach, VKI_close;
                 self.VKI_show(this.elem);
             };
             elem.parentNode.insertBefore(keybut, (elem.dir == "rtl") ? elem : elem.nextSibling);
-            // elem.style.display = 'inline';
-            // elem.style.width = '90%';
         } else {
             elem.onfocus = function () {
                 if (self.VKI_target != this) {
@@ -1328,8 +1325,7 @@ var VKI_attach, VKI_close;
         ];
         for (var x = 0, elem; elem = inputElems[x++];)
             for (var y = 0, ex; ex = elem[y++];)
-                if (ex.nodeName == "TEXTAREA" || ex.type == "text" || ex.type == "password")
-                    if (ex.className.indexOf("keyboardInput") > -1) VKI_attach(ex);
+                if (ex.className.indexOf("keyboardInput") > -1) VKI_attach(ex);
 
         VKI_addListener(document.documentElement, 'click', function (e) {
             self.VKI_close();
