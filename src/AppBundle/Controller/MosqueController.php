@@ -6,14 +6,10 @@ use AppBundle\Entity\Mosque;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class MosqueController extends Controller
 {
@@ -97,14 +93,9 @@ class MosqueController extends Controller
             $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true);
         }
 
-        $encoder = new JsonEncoder();
-        $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceHandler(function ($mosque) {return $mosque->getId();});
-        $serializer = new Serializer(array($normalizer), array($encoder));
-
         return $this->render("mosque/$template.html.twig", [
             'mosque' => $mosque,
-            'mosqueData' => $serializer->serialize($mosque, 'json'),
+            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
             'languages' => $this->getParameter('languages'),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),

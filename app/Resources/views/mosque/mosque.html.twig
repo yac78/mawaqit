@@ -241,7 +241,8 @@
 
 <script>
     var lastUpdated = {{ mosque.updated }};
-    var mosque = {{ mosqueData|raw }};
+    var isMosque = {{ mosque.mosque|json_encode|raw }};
+    var confData = {{ confData|raw }};
     var lang = '{{ app.request.locale }}';
 </script>
 

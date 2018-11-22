@@ -33,8 +33,8 @@ var prayer = {
     /**
      * @type Json
      */
-    mosque: mosque,
-    confData: mosque.configuration,
+    isMosque: isMosque,
+    confData: confData,
     /**
      * load all data
      */
@@ -46,7 +46,6 @@ var prayer = {
         if (prayer.confData.backgroundType === 'motif') {
             $("body").css("backgroundImage", 'url("/bundles/app/prayer-times/img/background-' + prayer.confData.backgroundMotif + '.jpg")');
         }
-
     },
     /**
      * load all data
@@ -402,7 +401,7 @@ var prayer = {
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
 
                         // if jumua and mosque type we don't flash iqama
-                        if (prayer.isJumua(currentPrayerIndex) && prayer.mosque.mosque) {
+                        if (prayer.isJumua(currentPrayerIndex) && prayer.isMosque) {
                             return;
                         }
 
@@ -501,7 +500,7 @@ var prayer = {
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                         if (time === currentTime) {
                             // if jumua and mosque type we don't flash adhan
-                            if (prayer.isJumua(currentPrayerIndex) && prayer.mosque.mosque) {
+                            if (prayer.isJumua(currentPrayerIndex) && prayer.isMosque) {
                                 return;
                             }
                             prayer.adhan.isFlashing = true;
@@ -733,7 +732,7 @@ var prayer = {
         // if joumouaa we hilight joumouaa time
         if (prayer.isJumua(prayerIndex)) {
             $(".joumouaa-id").addClass("prayer-hilighted");
-            if (prayer.mosque.mosque) {
+            if (prayer.isMosque) {
                 return;
             }
         }

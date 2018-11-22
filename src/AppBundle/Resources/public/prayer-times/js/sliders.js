@@ -36,7 +36,7 @@ var douaaSlider = {
      */
     show: function (currentTimeIndex) {
         // if jumua and mosque type
-        if (prayer.isJumua(currentTimeIndex) && prayer.mosque.mosque) {
+        if (prayer.isJumua(currentTimeIndex) && prayer.isMosque) {
             return;
         }
 

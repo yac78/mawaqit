@@ -264,7 +264,7 @@ small {
 }
 
 .random-hadith .text {
-    padding-top: 10px;
+    padding: 10px;
     height: 89%;
     overflow: hidden;
 }
