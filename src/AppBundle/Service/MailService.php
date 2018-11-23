@@ -59,7 +59,7 @@ class MailService
      */
     function mosqueValidated(Mosque $mosque)
     {
-        $title = $mosque->getTitle() . "(ID " . $mosque->getId() . ") | a été validée / has been validated";
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | a été validée / has been validated";
         $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->doNotReplyEmail, 'validated');
     }
 
