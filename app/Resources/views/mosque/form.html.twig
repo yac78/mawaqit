@@ -43,10 +43,6 @@
         </div>
 
         <div class="mosque-block hidden">
-            {{ form_row(form.associationName) }}
-            {{ form_row(form.phone) }}
-            {{ form_row(form.email) }}
-            {{ form_row(form.site) }}
             {{ form_row(form.address) }}
         </div>
 
@@ -57,8 +53,23 @@
         </div>
 
         <div class="mosque-block hidden">
+            {{ form_row(form.associationName) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.site) }}
+        </div>
+
+        <div class="mosque-block hidden">
             {{ form_row(form.rib) }}
             {{ form_row(form.addOnMap) }}
+            {{ form_row(form.womenSpace) }}
+            {{ form_row(form.handicapAccessibility) }}
+            {{ form_row(form.funeralToilet) }}
+            {{ form_row(form.childrenCourses) }}
+            {{ form_row(form.adultCourses) }}
+            {{ form_row(form.ramadanMeal) }}
+            {{ form_row(form.parking) }}
+            {{ form_row(form.ablutions) }}
         </div>
     </div>
 

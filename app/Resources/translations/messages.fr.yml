@@ -337,6 +337,22 @@ mosque:
             label: Une photo intérieur de la mosquée
         file3:
             label: Une photo de l'écran mawaqit
+        womenSpace:
+            label: Espace femmes
+        funeralToilet:
+            label: Toilette mortuaire
+        childrenCourses:
+            label: Cours pour enfants
+        adultCourses:
+            label: Cours pour adultes
+        ramadanMeal:
+            label: Iftar pendant le Ramadan
+        handicapAccessibility:
+            label: Accès pour hadicapés
+        ablutions:
+            label: Salle d'ablustions
+        parking:
+            label: Parking
     alert:
         slugChange: |
             Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry
