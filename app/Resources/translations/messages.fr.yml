@@ -324,7 +324,7 @@ mosque:
         rib: 
             placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
         addOnMap:
-            label: Ajouter sur la carte Mawaqit (cf. <a target="_blank" href="https://mawaqit.net/fr/#mosquees">https://mawaqit.net/fr/#mosquees</a>)
+            label: Ajouter sur la carte google
         justificatoryFile:
             label: Un document justificatif (.pdf .jpg .png .doc .ppt)
             help: |
@@ -338,7 +338,7 @@ mosque:
         file3:
             label: Une photo de l'écran mawaqit
         womenSpace:
-            label: Espace femmes
+            label: Espace pour femmes
         funeralToilet:
             label: Toilette mortuaire
         childrenCourses:
@@ -346,11 +346,11 @@ mosque:
         adultCourses:
             label: Cours pour adultes
         ramadanMeal:
-            label: Iftar pendant le Ramadan
+            label: Iftar (repas) pendant le Ramadan
         handicapAccessibility:
-            label: Accès pour hadicapés
+            label: Accès pour handicapés
         ablutions:
-            label: Salle d'ablustions
+            label: Salle d'ablutions
         parking:
             label: Parking
     alert:
@@ -790,6 +790,7 @@ found: Trouvés
 your_mosque_informs_you: Votre mosquée vous informe
 no_notif: Aucune notifications
 status: Statut
+usefulInfos: Informations utilies
 
 terms_of_use:
   title: Conditions générales d'utilisation
