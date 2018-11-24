@@ -241,3 +241,7 @@ small{
 .panel-heading .accordion-toggle.collapsed:after {
     content: "\e080";
 }
+
+.footer{
+    margin-top: 20px;
+}

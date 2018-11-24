@@ -1176,6 +1176,10 @@ class Mosque
         return $this;
     }
 
+    public function showUsefullInfo()
+    {
+        return $this->parking === null;
+    }
 
 
 }
