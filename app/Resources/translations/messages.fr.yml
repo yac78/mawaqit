@@ -346,7 +346,7 @@ mosque:
         adultCourses:
             label: Cours pour adultes
         ramadanMeal:
-            label: Iftar (repas) pendant le Ramadan
+            label: Iftar Ramadan
         handicapAccessibility:
             label: Accès pour handicapés
         ablutions:

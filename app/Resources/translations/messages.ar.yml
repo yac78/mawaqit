@@ -294,7 +294,7 @@ mosque:
         ablutions:
             label: غرفة الوضوء
         parking:
-            label: موقف سيارات
+            label: موقف للسيارات
 message:
     mosque: إعلانات "%mosque%"
     add: زيادة إعلان

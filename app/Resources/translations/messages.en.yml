@@ -113,7 +113,7 @@ mosque:
         adultCourses:
             label: Adult courses
         ramadanMeal:
-            label: Iftar (meal) during Ramadan
+            label: Ramadan iftar
         handicapAccessibility:
             label: handicap accessibility
         ablutions:
