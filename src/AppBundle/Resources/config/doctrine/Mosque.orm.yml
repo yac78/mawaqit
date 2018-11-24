@@ -84,6 +84,30 @@ AppBundle\Entity\Mosque:
             type: string
             length: 10
             nullable: true
+        womenSpace:
+            type: boolean
+            nullable: true
+        funeralToilet:
+            type: boolean
+            nullable: true
+        childrenCourses:
+            type: boolean
+            nullable: true
+        adultCourses:
+            type: boolean
+            nullable: true
+        ramadanMeal:
+            type: boolean
+            nullable: true
+        handicapAccessibility:
+            type: boolean
+            nullable: true
+        ablutions:
+            type: boolean
+            nullable: true
+        parking:
+            type: boolean
+            nullable: true
         created:
             type: datetime
             gedmo:

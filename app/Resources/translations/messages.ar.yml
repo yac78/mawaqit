@@ -258,6 +258,8 @@ mosque:
             placeholder: مثلا مسجد السنة، بيتي
         slug:
             label: رابط المسجد
+        addOnMap:
+            label: أضف إلى خريطة جوجل
         city:
             placeholder:  اسم المدينة يصلح لحساب الموقع الجغرافي
         zipcode:
@@ -277,6 +279,22 @@ mosque:
             label: صورة داخلية للمسجد
         file3:
             label: صورة شاشة مواقيت
+        womenSpace:
+            label: مكان للنساء
+        funeralToilet:
+            label: غسل الأموات
+        childrenCourses:
+            label: دروس للأطفال
+        adultCourses:
+            label: دروس للكبار
+        ramadanMeal:
+            label: إفطار رمضان
+        handicapAccessibility:
+            label: سهولة الدخول لذوي الإعاقة
+        ablutions:
+            label: غرفة الوضوء
+        parking:
+            label: موقف للسيارات
 message:
     mosque: إعلانات "%mosque%"
     add: زيادة إعلان
@@ -630,6 +648,7 @@ iqama_in: الإقامة بعد
 change_statuses:  تمكين / تعطيل دفعة واحدة
 homeTitle:  مواقيت %city% - منزل
 status: الوضع
+usefulInfos: معلومات مفيدة
 
 invocationAfterPrayer:
     title: أذكار بعد الصلاة

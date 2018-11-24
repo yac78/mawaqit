@@ -124,10 +124,6 @@ small{
     box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
 }
 
-.footer{
-    margin-top: 30px;
-}
-
 .flash{
     visibility: hidden;
 }
@@ -225,4 +221,23 @@ small{
 
 .adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder {
     margin-top: 50px;
+}
+
+.usefulInfos, .usefulInfos .panel-heading {
+    background-color: rgba(0,0,0,0) !important;
+    border-color: rgba(0,0,0,0) !important;
+}
+
+.usefulInfos .panel-title {
+    color: #fff !important;
+}
+
+.panel-heading .accordion-toggle:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    font-size: 12px;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";
 }

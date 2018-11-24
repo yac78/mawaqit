@@ -183,6 +183,39 @@
         </div>
     </div>
 
+    <div class="panel panel-default mt-1 usefulInfos">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <span class=" accordion-toggle" data-toggle="collapse" href="#usefulInfos">{{ 'usefulInfos'|trans }}</span>
+            </h4>
+        </div>
+        <div id="usefulInfos" class="panel-collapse collapse text-left">
+            <div class="row">
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.womenSpace ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.womenSpace.label'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.ablutions ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ablutions.label'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.childrenCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.childrenCourses.label'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.funeralToilet ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.funeralToilet.label'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.ramadanMeal ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ramadanMeal.label'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    <span class="fa fa-{{ mosque.parking ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.parking.label'|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="footer">
         <div class="assosciation text-center">
             <div>{{ mosque.associationName }}</div>

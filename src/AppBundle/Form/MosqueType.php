@@ -185,6 +185,30 @@ class MosqueType extends AbstractType
                 'label' => 'mosque.form.addOnMap.label',
                 'required' => false,
             ])
+            ->add('womenSpace', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('handicapAccessibility', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('funeralToilet', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('childrenCourses', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('adultCourses', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('ramadanMeal', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('ablutions', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('parking', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('justificatoryFile', VichFileType::class, [
                 'required' => $uploadRequired,
                 'translation_domain' => 'messages',
@@ -259,7 +283,7 @@ class MosqueType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'label_format' => 'message.form.%name%.label',
+            'label_format' => 'mosque.form.%name%.label',
             'data_class' => Mosque::class,
             'validation_groups' => function (FormInterface $form) {
                 $mosque = $form->getData();

@@ -189,6 +189,39 @@ class Mosque
      */
     private $isCalendarCompleted = null;
 
+    /**
+     * @var boolean|null
+     */
+    private $womenSpace;
+    /**
+     * @var boolean|null
+     */
+    private $funeralToilet;
+    /**
+     * @var boolean|null
+     */
+    private $childrenCourses;
+    /**
+     * @var boolean|null
+     */
+    private $adultCourses;
+    /**
+     * @var boolean|null
+     */
+    private $ramadanMeal;
+    /**
+     * @var boolean|null
+     */
+    private $handicapAccessibility;
+    /**
+     * @var boolean|null
+     */
+    private $ablutions;
+    /**
+     * @var boolean|null
+     */
+    private $parking;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -998,6 +1031,151 @@ class Mosque
     {
         $this->locale = $locale;
     }
+
+    /**
+     * @return bool|null
+     */
+    public function getWomenSpace(): ?bool
+    {
+        return $this->womenSpace;
+    }
+
+    /**
+     * @param bool|null $womenSpace
+     * @return Mosque
+     */
+    public function setWomenSpace(?bool $womenSpace): Mosque
+    {
+        $this->womenSpace = $womenSpace;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getFuneralToilet(): ?bool
+    {
+        return $this->funeralToilet;
+    }
+
+    /**
+     * @param bool|null $funeralToilet
+     * @return Mosque
+     */
+    public function setFuneralToilet(?bool $funeralToilet): Mosque
+    {
+        $this->funeralToilet = $funeralToilet;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getChildrenCourses(): ?bool
+    {
+        return $this->childrenCourses;
+    }
+
+    /**
+     * @param bool|null $childrenCourses
+     * @return Mosque
+     */
+    public function setChildrenCourses(?bool $childrenCourses): Mosque
+    {
+        $this->childrenCourses = $childrenCourses;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAdultCourses(): ?bool
+    {
+        return $this->adultCourses;
+    }
+
+    /**
+     * @param bool|null $adultCourses
+     * @return Mosque
+     */
+    public function setAdultCourses(?bool $adultCourses): Mosque
+    {
+        $this->adultCourses = $adultCourses;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getRamadanMeal(): ?bool
+    {
+        return $this->ramadanMeal;
+    }
+
+    /**
+     * @param bool|null $ramadanMeal
+     * @return Mosque
+     */
+    public function setRamadanMeal(?bool $ramadanMeal): Mosque
+    {
+        $this->ramadanMeal = $ramadanMeal;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getHandicapAccessibility(): ?bool
+    {
+        return $this->handicapAccessibility;
+    }
+
+    /**
+     * @param bool|null $handicapAccessibility
+     * @return Mosque
+     */
+    public function setHandicapAccessibility(?bool $handicapAccessibility): Mosque
+    {
+        $this->handicapAccessibility = $handicapAccessibility;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAblutions(): ?bool
+    {
+        return $this->ablutions;
+    }
+
+    /**
+     * @param bool|null $ablutions
+     * @return Mosque
+     */
+    public function setAblutions(?bool $ablutions): Mosque
+    {
+        $this->ablutions = $ablutions;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getParking(): ?bool
+    {
+        return $this->parking;
+    }
+
+    /**
+     * @param bool|null $parking
+     * @return Mosque
+     */
+    public function setParking(?bool $parking): Mosque
+    {
+        $this->parking = $parking;
+        return $this;
+    }
+
 
 
 }

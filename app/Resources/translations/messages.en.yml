@@ -91,7 +91,7 @@ mosque:
         rib:
             placeholder: "If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74"
         addOnMap:
-            label: Add on Mawaqit map (cf. <a target="_blank" href="https://mawaqit.net/fr/#mosquees">https://mawaqit.net/fr/#mosquees</a>)
+            label: Add on google map
         justificatoryFile:
             label: A supporting document (.pdf .jpg .png .doc .ppt)
             help: |
@@ -104,6 +104,22 @@ mosque:
             label: An interior photo of the mosque
         file3:
             label: A photo of the mawaqit screen
+        womenSpace:
+            label: Space for women
+        funeralToilet:
+            label: Funeral toilet
+        childrenCourses:
+            label: Children courses
+        adultCourses:
+            label: Adult courses
+        ramadanMeal:
+            label: Ramadan iftar
+        handicapAccessibility:
+            label: handicap accessibility
+        ablutions:
+            label: Ablutions room
+        parking:
+            label: Parking
     alert:
         slugChange: |
             Warning ! the modification of the url of the site will impact the launch of the software in the raspberry
@@ -528,6 +544,7 @@ no_notif: No notifications
 NEW: Waiting for validation
 VALIDATED: Validated
 status: Status
+usefulInfos: useful information
 
 iqama_in: Al-Iqamah in
 
