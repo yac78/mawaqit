@@ -340,9 +340,9 @@ mosque:
         womenSpace:
             label: Espace pour femmes
         janazaPrayer:
-            label: Salat el-janaza
+            label: Salât al-Janaza
         aidPrayer:
-            label: Salat el-aïd
+            label: Salât al-Aïd
         childrenCourses:
             label: Cours pour enfants
         adultCourses:
@@ -691,6 +691,7 @@ asr: '`Asr'
 maghrib: Maghrib
 isha: '`Isha'
 jumua: 'Jumu`a'
+jumuaPrayer: 'Salat al-Jumu`a'
 aid: 'Salât al-Aïd'
 imsak: Imsak
 iqama: Al-Iqâmah

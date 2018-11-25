@@ -200,6 +200,7 @@
                         <div><span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}</div>
                     </div>
                     <div class="col-xs-6">
+                        <div><span class="fa fa-{{ not mosque.configuration.noJumua ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'jumuaPrayer'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.janazaPrayer ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.janazaPrayer.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.aidPrayer ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.aidPrayer.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.ramadanMeal ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ramadanMeal.label'|trans }}</div>

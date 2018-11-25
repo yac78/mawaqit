@@ -107,9 +107,9 @@ mosque:
         womenSpace:
             label: Space for women
         janazaPrayer:
-            label: Salat el-janaza
+            label: Salât al-Janaza
         aidPrayer:
-            label: Salat el-aïd
+            label: Salât al-Aïd
         childrenCourses:
             label: Children courses
         adultCourses:
@@ -448,6 +448,7 @@ asr: '`Asr'
 maghrib: Maghrib
 isha: '`Isha'
 jumua: 'Jumu`a'
+jumuaPrayer: 'Salât al-Jumu`a'
 aid: 'Salât al-Aïd'
 imsak: Imsak
 iqama: Al-Iqâmah
@@ -546,7 +547,7 @@ no_notif: No notifications
 NEW: Waiting for validation
 VALIDATED: Validated
 status: Status
-usefulInfos: useful information
+usefulInfos: Useful information
 
 iqama_in: Al-Iqamah in
 
