@@ -53,7 +53,10 @@ class MessageType extends AbstractType
                 ],
             ])
             ->add('enabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'help' => $this->translator->trans('message.form.enabled.title'),
+                ]
             ])
             ->add('mobile', CheckboxType::class, [
                 'required' => false,
@@ -63,7 +66,7 @@ class MessageType extends AbstractType
             ])->add('desktop', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
-                    'help' => $this->translator->trans('message.form.desktop.label'),
+                    'help' => $this->translator->trans('message.form.desktop.title'),
                 ]
             ])
             ->add('file', ImageType::class, [

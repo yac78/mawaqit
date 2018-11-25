@@ -171,6 +171,7 @@ message:
       placeholder: Ex. Quran course
     enabled:
       label : Enabled
+      title : Enable/disable the message on all screens (mawaqit screen, message screen and mobile screen)
     content:
       label: Content
       placeholder: 200 characters maximum
@@ -183,8 +184,8 @@ message:
       label : Display on mobile
       title : Your message will be displayed on the mobile version of mawaqit as a notification
     desktop:
-        label : Display on main screen
-        title : Your message will be displayed on the main mawaqit screen at mosque
+      label : Display on main screen
+      title : Your message will be displayed on the main mawaqit screen at mosque
 
 configuration:
     select_calendar: Select a calendar

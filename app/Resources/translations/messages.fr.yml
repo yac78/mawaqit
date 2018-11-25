@@ -403,17 +403,18 @@ message:
             placeholder : 200 caractères maximum
         delay: 
             label : Délai d'affichage (minutes)
+        image:
+            label : Image
+            title : Elle sera affichée à la place du texte. Pour un meilleur affichage chargez que des images au format paysage
         enabled:
             label : Activé
-        image: 
-            label : Image
-            title : Elle sera affichée à la place du texte. Pour un meilleur confort d'affichage chargez que des images au format paysage
+            title : Activer/désactiver le message de tous les écrans (écran mawaqit, écran dédié aux messages et écran mobile)
         mobile:
             label : Afficher sur mobile
             title : Votre message sera affiché sur la version mobile de mawaqit sous forme de notification
         desktop:
             label : Afficher sur l'écran principal
-            title : Votre message sera affiché sur l'écran mawaqit principal de la mosquée
+            title : Votre message sera affiché sur l'écran mawaqit principal de la mosquée.
 
 faq:
     add: Ajout d'une nouvelle Faq
