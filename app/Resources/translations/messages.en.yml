@@ -106,8 +106,10 @@ mosque:
             label: A photo of the mawaqit screen
         womenSpace:
             label: Space for women
-        funeralToilet:
-            label: Funeral toilet
+        janazaPrayer:
+            label: Salat el-janaza
+        aidPrayer:
+            label: Salat el-aïd
         childrenCourses:
             label: Children courses
         adultCourses:

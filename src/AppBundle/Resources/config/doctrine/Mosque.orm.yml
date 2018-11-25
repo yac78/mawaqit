@@ -87,7 +87,10 @@ AppBundle\Entity\Mosque:
         womenSpace:
             type: boolean
             nullable: true
-        funeralToilet:
+        janazaPrayer:
+            type: boolean
+            nullable: true
+        aidPrayer:
             type: boolean
             nullable: true
         childrenCourses:

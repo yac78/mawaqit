@@ -196,7 +196,11 @@ class Mosque
     /**
      * @var boolean|null
      */
-    private $funeralToilet;
+    private $janazaPrayer;
+    /**
+     * @var boolean|null
+     */
+    private $aidPrayer;
     /**
      * @var boolean|null
      */
@@ -1053,18 +1057,18 @@ class Mosque
     /**
      * @return bool|null
      */
-    public function getFuneralToilet(): ?bool
+    public function getJanazaPrayer(): ?bool
     {
-        return $this->funeralToilet;
+        return $this->janazaPrayer;
     }
 
     /**
-     * @param bool|null $funeralToilet
+     * @param bool|null $janazaPrayer
      * @return Mosque
      */
-    public function setFuneralToilet(?bool $funeralToilet): Mosque
+    public function setJanazaPrayer(?bool $janazaPrayer): Mosque
     {
-        $this->funeralToilet = $funeralToilet;
+        $this->janazaPrayer = $janazaPrayer;
         return $this;
     }
 
@@ -1176,9 +1180,29 @@ class Mosque
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function getAidPrayer(): ?bool
+    {
+        return $this->aidPrayer;
+    }
+
+    /**
+     * @param bool|null $aidPrayer
+     * @return Mosque
+     */
+    public function setAidPrayer(?bool $aidPrayer): Mosque
+    {
+        $this->aidPrayer = $aidPrayer;
+        return $this;
+    }
+
+
+
     public function showUsefullInfo()
     {
-        return $this->parking === null;
+        return $this->parking !== null;
     }
 
 

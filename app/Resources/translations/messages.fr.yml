@@ -339,8 +339,10 @@ mosque:
             label: Une photo de l'écran mawaqit
         womenSpace:
             label: Espace pour femmes
-        funeralToilet:
-            label: Toilette mortuaire
+        janazaPrayer:
+            label: Salat el-janaza
+        aidPrayer:
+            label: Salat el-aïd
         childrenCourses:
             label: Cours pour enfants
         adultCourses:
@@ -348,7 +350,7 @@ mosque:
         ramadanMeal:
             label: Iftar Ramadan
         handicapAccessibility:
-            label: Accès pour handicapés
+            label: Accès handicapés
         ablutions:
             label: Salle d'ablutions
         parking:

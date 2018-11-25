@@ -191,7 +191,10 @@ class MosqueType extends AbstractType
             ->add('handicapAccessibility', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('funeralToilet', CheckboxType::class, [
+            ->add('janazaPrayer', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('aidPrayer', CheckboxType::class, [
                 'required' => false,
             ])
             ->add('childrenCourses', CheckboxType::class, [

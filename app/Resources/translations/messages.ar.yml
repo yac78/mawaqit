@@ -281,8 +281,10 @@ mosque:
             label: صورة شاشة مواقيت
         womenSpace:
             label: مكان للنساء
-        funeralToilet:
-            label: غسل الأموات
+        janazaPrayer:
+            label: صلاة الجنازة
+        aidPrayer:
+            label: صلاة العيد
         childrenCourses:
             label: دروس للأطفال
         adultCourses:

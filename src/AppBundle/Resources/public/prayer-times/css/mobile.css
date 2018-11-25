@@ -227,6 +227,10 @@ small{
     background-color: rgba(0,0,0,0) !important;
     border-color: rgba(0,0,0,0) !important;
 }
+.usefulInfos a
+{
+    text-decoration: none;
+}
 
 .usefulInfos .panel-title {
     color: #fff !important;
