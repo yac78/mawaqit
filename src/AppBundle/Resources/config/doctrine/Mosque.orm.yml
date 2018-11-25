@@ -139,6 +139,12 @@ AppBundle\Entity\Mosque:
                 name:  configuration_id
                 referencedColumnName: id
                 onDelete: CASCADE
+        flashMessage:
+            targetEntity: AppBundle\Entity\FlashMessage
+            cascade:
+                - persist
+            joinColumn:
+                onDelete: 'SET NULL'
     oneToMany:
         messages:
             cascade:

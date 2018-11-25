@@ -1,0 +1,20 @@
+AppBundle\Entity\FlashMessage:
+    type: entity
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        content:
+            type: text
+            nullable: true
+        expire:
+            type: datetime
+        updated:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: update

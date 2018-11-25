@@ -162,7 +162,8 @@ message:
   display_messages_in_screen_2: The software checks for changes every 5 mins, if you add or delete a message, the screen will update automatically.
   info: |
     You can add up to 20 messages but <b>8 enabled</b> at a time.
-  mosque: Messages of "%mosque%"
+  mosque: |
+    "%mosque%" annoucements
   add: Add a message
   edit: Editing the message "%title%
   form:
@@ -186,6 +187,20 @@ message:
     desktop:
       label : Display on main screen
       title : Your message will be displayed on the main mawaqit screen at mosque
+
+flashMessage:
+    no: No message
+    label: Flash message
+    info: |
+      The flash message is an ephemeral message it is displayed on the mobile version only, it is usually used to inform the faithful
+      important information
+    form:
+        content:
+            label: Content
+            placeholder : 100 characters maximum
+        expire:
+            label : Expiration date
+            title : The message will not be displayed beyond the chosen date
 
 configuration:
     select_calendar: Select a calendar
@@ -557,3 +572,6 @@ iqama_in: Al-Iqamah in
 change_statuses: Bulk Enable/Disable
 homeTitle: Mawaqit %city% - Home
 select_a_value: Select a value
+announcements: Announcements
+expired: Expired on
+expire: Expire on

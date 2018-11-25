@@ -298,6 +298,10 @@ mosque:
         parking:
             label: موقف للسيارات
 message:
+    display_messages_in_screen_1: يمكنك عرض هذه الرسائل على شاشة مخصصة ، ما عليك سوى استبدال عنوان URL الخاص بالصلوات بهذا
+    display_messages_in_screen_2: يقوم البرنامج بالتحقق من التغييرات كل 5 دقائق ، إذا قمت بإضافة أو حذف رسالة ، سيتم تحديث الشاشة تلقائيًا.
+    info: |
+      يمكنك إضافة ما يصل إلى 20 رسالة ولكن 8 مفعلة في أن واحد.
     mosque: إعلانات "%mosque%"
     add: زيادة إعلان
     edit: ظهور الإعلان %title%
@@ -328,6 +332,20 @@ message:
         desktop:
           label : عرض على الشاشة الرئيسية
           title : سيتم عرض رسالتك على شاشة مواقيت الرئيسية في المسجد
+
+flashMessage:
+    no: لا رسالة
+    label: رسالة فلاش
+    info: |
+      رسالة الفلاش هي رسالة سريعة الزوال يتم عرضها على نسخة الجوال فقط ، وعادة ما تستخدم لإعلام المصلين
+      بمعلومات مهمة
+    form:
+        content:
+            label: المحتوى
+            placeholder : 100 حرفًا كحد أقصى
+        expire:
+            label : تاريخ نهاية الصلاحية
+            title : لن يتم عرض الرسالة بعد التاريخ المحدد
 
 configuration:
     title: ضبط مواقيت الصلاة
@@ -390,6 +408,9 @@ configuration:
             title: صفر يعني أن وقت الامساك لن يظهر على الشاسة .
         waitingTimes:
             label: وقت الإنتظار بين الأذان والإقامة
+        timeToDisplayMessage:
+            label: وقت عرض إعلان (بالثواني)
+            title: This concerns only the screen dedicated to messages and announcements
         fixedTimes:
             label: تحديد المواقيت
             help: تحديد صلاة العشاء على الساعة السابعة مساء يعني أنه مادام الوقت أقل من القيمة المدخلة فإن هذه الأخيرة هي التي ستؤخذ بعين الإعتبار
@@ -664,3 +685,6 @@ invocationAfterPrayer:
     title: أذكار بعد الصلاة
 
 select_a_value: إختر
+announcements: الإعلانات
+expired: انتهت صلاحيته في
+expire: تنتهي صلاحيته في

@@ -21,7 +21,7 @@ class MessageController extends Controller
 {
 
     /**
-     * @Route("/{mosque}/message/", name="message_index")
+     * @Route("/mosque/{mosque}/message", name="message_index")
      */
     public function indexAction(Mosque $mosque)
     {
@@ -45,7 +45,7 @@ class MessageController extends Controller
     }
 
     /**
-     * @Route("/{mosque}/message/update-time", name="ajax_message_update_time")
+     * @Route("/mosque/{mosque}/message/update-time", name="ajax_message_update_time")
      */
     public function ajaxUpdateTimeAction(Request $request, Mosque $mosque)
     {

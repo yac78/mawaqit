@@ -185,6 +185,10 @@ class Mosque
     private $messages;
 
     /**
+     * @var FlashMessage
+     */
+    private $flashMessage;
+    /**
      * @var boolean|null
      */
     private $isCalendarCompleted = null;
@@ -1198,12 +1202,25 @@ class Mosque
         return $this;
     }
 
-
-
     public function showUsefullInfo()
     {
         return $this->parking !== null;
     }
 
+    /**
+     * @return FlashMessage|null
+     */
+    public function getFlashMessage()
+    {
+        return $this->flashMessage === null ? new FlashMessage() : $this->flashMessage;
+    }
+
+    /**
+     * @param FlashMessage $flashMessage
+     */
+    public function setFlashMessage(FlashMessage $flashMessage): void
+    {
+        $this->flashMessage = $flashMessage;
+    }
 
 }

@@ -387,11 +387,12 @@ message:
     display_messages_in_screen_2: |
       Le logiciel vérifie les changements toutes les 5 mins,
       si vous ajoutez ou supprimez une annonce, l'écran se mettra à jour automatiquement.
-    mosque: Annonces de "%mosque%"
+    mosque: Gestion des annonces de "%mosque%"
     add: Ajout d'une annonce
     edit: Édition de l'annonce %title%
     manage: Gérer les annonces
     info: |
+      Les annonces sont des messages de type texte ou image qui défilent sur l'écran ou s'affichent sous forme de notification dans la version mobile de mawaqit.<br>
       Vous avez la possibilité d'ajouter jusqu'à 20 annonces dont <b>8 activées</b> à la fois.
 
     form:
@@ -415,6 +416,20 @@ message:
         desktop:
             label : Afficher sur l'écran principal
             title : Votre message sera affiché sur l'écran mawaqit principal de la mosquée.
+
+flashMessage:
+    no: Aucun message
+    label: Message flash
+    info: |
+      Le message flash est un message éphémère il s'affiche sur la version mobile uniquement, il est utilisé en général pour informer vos fidèles
+      d'une information importante
+    form:
+        content:
+            label: Contenu
+            placeholder : 100 caractères maximum
+        expire:
+            label : Date d'expiration
+            title : Le message ne sera plus affiché au-delà de la date choisie
 
 faq:
     add: Ajout d'une nouvelle Faq
@@ -583,7 +598,7 @@ configuration:
             05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
             ...            
         timeToDisplayMessage: 
-            label: Temps d'affichage par annonce (en seconde)
+            label: Temps de défilement par annonce (en seconde)
             title: Cela concerne que l'écran dédié aux annonces, le temps est fixé à 30 secondes sur l'écran des horaires
         footer:
             label: Footer (le bas de l'écran)
@@ -806,3 +821,6 @@ iqama_in: Al-Iqâmah dans
 change_statuses: Activation/Désactivation multiple
 homeTitle: Mawaqit %city% - Domicile
 select_a_value: Séléctionnez une valeur
+announcements: Annonces
+expired: Expiré le
+expire: Expire le
