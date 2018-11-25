@@ -396,7 +396,9 @@ fr: French
 en: English
 tr: Turkish
 ph: Phonetic
-both: Arabic & French
+fr-ar: French & Arabic
+tr-ar: Turkish & Arabic
+en-ar: English & Arabic
 enabled: Enabled
 disabled: Disabled
 dst-auto: Auto (Depends on the system setting of raspberry, France by default)

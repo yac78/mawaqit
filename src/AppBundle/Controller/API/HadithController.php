@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\API;
 
+use AppBundle\Entity\Configuration;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,12 +26,12 @@ class HadithController extends Controller
     {
         $lang = $request->query->get('lang', 'ar');
         $maxLength = $request->query->get('maxLength', 500);
-        if (!in_array($lang, ['ar', 'fr', 'both'])) {
-            return new Response('The parameter lang must be fr, ar or both', Response::HTTP_BAD_REQUEST);
+        if (!in_array($lang, Configuration::HADITH_LANG)) {
+            return new Response('The parameter lang must be on of ' . implode(',', Configuration::HADITH_LANG), Response::HTTP_BAD_REQUEST);
         }
 
-        if ($lang === "both") {
-            $languages = ['ar', 'fr'];
+        if (strpos($lang, "-") !== false) {
+            $languages = explode('-', $lang);
             $lang = $languages[array_rand($languages)];
         }
 

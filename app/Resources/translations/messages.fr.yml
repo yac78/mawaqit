@@ -638,7 +638,9 @@ fr: Français
 en: Anglais  
 tr: Turque
 ph: Phonétique
-both: Arabe & Français
+fr-ar: Français & Arabe
+tr-ar: Turque & Arabe
+en-ar: Anglais & Arabe
 dst-auto: Auto (Dépend du réglage système du raspberry, France par défaut)
 dst-enabled: Activé (Pays hors France avec choix de dates)
 dst-disabled: Désactivé (Pays ne pratiquant pas le changement d'heure)

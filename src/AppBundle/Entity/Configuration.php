@@ -15,7 +15,7 @@ class Configuration
         self::SOURCE_CALENDAR
     ];
     const HADITH_LANG = [
-        "ar", "fr", "both"
+        "ar", "fr", "tr", "fr-ar", "tr-ar"
     ];
 
     const ASR_METHOD_CHOICES = [
