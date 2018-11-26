@@ -262,9 +262,8 @@ small {
 
 .textSlide p {
     font-size: 130%;
-    color: yellowgreen;
     position: absolute;
-    width: 800px;
+    width: 1000px;
     height: 100%;
     margin: 0;
     line-height: 40px;
@@ -280,18 +279,18 @@ small {
 }
 /* Move it (define the animation) */
 @-moz-keyframes textSlide {
-    0%   { -moz-transform: translateX(50%); }
+    0%   { -moz-transform: translateX(40%); }
     100% { -moz-transform: translateX(-100%); }
 }
 @-webkit-keyframes textSlide {
-    0%   { -webkit-transform: translateX(50%); }
+    0%   { -webkit-transform: translateX(40%); }
     100% { -webkit-transform: translateX(-100%); }
 }
 @keyframes textSlide {
     0%   {
-        -moz-transform: translateX(50%); /* Firefox bug fix */
-        -webkit-transform: translateX(50%); /* Firefox bug fix */
-        transform: translateX(50%);
+        -moz-transform: translateX(40%); /* Firefox bug fix */
+        -webkit-transform: translateX(40%); /* Firefox bug fix */
+        transform: translateX(40%);
     }
     100% {
         -moz-transform: translateX(-100%); /* Firefox bug fix */

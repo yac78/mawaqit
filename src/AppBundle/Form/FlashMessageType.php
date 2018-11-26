@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\FlashMessage;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -19,20 +20,24 @@ class FlashMessageType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'required' => false,
                 'constraints' => [
                     new Length([
                         'max' => 140
                     ]),
                 ],
                 'attr' => [
-                    'maxlength' => 140,
-                    'row' => 3,
+                    'maxlength' => 120,
+                    'rows' => 3,
                     'placeholder' => 'flashMessage.form.content.placeholder'
                 ]
             ])
+            ->add('color', ColorType::class, [
+                'data' => '#cccccc',
+                'attr' => [
+                    'style' => 'width: 100px'
+                ]
+            ])
             ->add('expire', DateTimeType::class, [
-                'required' => false,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'constraints' => [
@@ -55,6 +60,7 @@ class FlashMessageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            'required' => false,
             'label_format' => 'flashMessage.form.%name%.label',
             'data_class' => FlashMessage::class
         ));

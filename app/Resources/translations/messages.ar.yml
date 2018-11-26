@@ -342,7 +342,9 @@ flashMessage:
     form:
         content:
             label: المحتوى
-            placeholder : 100 حرفًا كحد أقصى
+            placeholder : 120 حرفًا كحد أقصى
+        color:
+            label: اللون
         expire:
             label : تاريخ نهاية الصلاحية
             title : لن يتم عرض الرسالة بعد التاريخ المحدد

@@ -68,7 +68,7 @@
 
     {% if not mosque.flashMessage.isExpired %}
         <div class="textSlide">
-            <p>{{ mosque.flashMessage.content }}</p>
+            <p style="color:{{ mosque.flashMessage.color }}">{{ mosque.flashMessage.content }}</p>
         </div>
     {% endif %}
 

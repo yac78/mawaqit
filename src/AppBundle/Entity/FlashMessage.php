@@ -17,6 +17,10 @@ class FlashMessage
     private $content;
 
     /**
+     * @var string
+     */
+    private $color = "#d9ad0f";
+    /**
      * @var \DateTime
      */
     private $updated;
@@ -110,5 +114,24 @@ class FlashMessage
     {
         return $this->expire < new \DateTime();
     }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     * @return FlashMessage
+     */
+    public function setColor(string $color): FlashMessage
+    {
+        $this->color = $color;
+        return $this;
+    }
+
 
 }

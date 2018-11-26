@@ -426,7 +426,9 @@ flashMessage:
     form:
         content:
             label: Contenu
-            placeholder : 100 caractères maximum
+        color:
+            label: Couleur
+            placeholder : 120 caractères maximum
         expire:
             label : Date d'expiration
             title : Le message ne sera plus affiché au-delà de la date choisie

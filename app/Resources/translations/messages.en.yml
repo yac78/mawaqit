@@ -197,7 +197,9 @@ flashMessage:
     form:
         content:
             label: Content
-            placeholder : 100 characters maximum
+            placeholder : 120 characters maximum
+        color:
+            label: Color
         expire:
             label : Expiration date
             title : The message will not be displayed beyond the chosen date

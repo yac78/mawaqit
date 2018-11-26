@@ -10,6 +10,8 @@ AppBundle\Entity\FlashMessage:
         content:
             type: text
             nullable: true
+        color:
+            type: string
         expire:
             type: datetime
         updated:
