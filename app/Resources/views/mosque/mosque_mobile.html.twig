@@ -66,6 +66,12 @@
         <div class="gregorianDate"></div>
     </div>
 
+    {% if not mosque.flashMessage.isExpired %}
+        <div class="textSlide">
+            <p>{{ mosque.flashMessage.content }}</p>
+        </div>
+    {% endif %}
+
     {% set ampmClass = mosque.configuration.timeDisplayFormat == "12" ? 'ampm' : '' %}
     <div class="prayer-content">
         {% if app.request.locale == 'ar' %}
@@ -197,7 +203,9 @@
                         <div><span class="fa fa-{{ mosque.ablutions ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ablutions.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.adultCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.adultCourses.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.childrenCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.childrenCourses.label'|trans }}</div>
-                        <div><span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}</div>
+                        <div>
+                            <span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}
+                        </div>
                     </div>
                     <div class="col-xs-6">
                         <div><span class="fa fa-{{ not mosque.configuration.noJumua ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'jumuaPrayer'|trans }}</div>

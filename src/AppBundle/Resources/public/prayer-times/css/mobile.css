@@ -14,7 +14,7 @@ body {
     }
 }
 
-#spinner{
+#spinner {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #3498db;
     border-radius: 50%;
@@ -28,33 +28,34 @@ body {
     margin-left: -25px;
 }
 
-.row{
+.row {
     margin: 0;
     padding: 0 10px;
 }
 
-.header{
+.header {
     font-size: 20px;
     color: yellowgreen;
     margin: 10px 40px;
 }
-.time{
+
+.time {
     font-size: 350%;
 }
 
-.gregorianDate, .hijriDate{
+.gregorianDate, .hijriDate {
     font-size: 150%
 }
 
-.top-content{
+.top-content {
     margin-bottom: 10px;
 }
 
-.prayer-content{
+.prayer-content {
     margin: 20px 0 10px 0;
 }
 
-.prayer-content>div {
+.prayer-content > div {
     height: 40px;
     line-height: 34px;
 }
@@ -79,22 +80,22 @@ body {
     font-size: 150%;
 }
 
-.prayer-content .prayer, .chourouk-id, .joumouaa-id, .imsak-id, .aid-id{
+.prayer-content .prayer, .chourouk-id, .joumouaa-id, .imsak-id, .aid-id {
     font-size: 250%;
     color: yellowgreen;
 }
 
-#navigate{
+#navigate {
     margin-left: 5px;
     font-size: 120%;
     color: #2aabd2;
 }
 
-.ampm{
+.ampm {
     font-size: 200% !important;
 }
 
-small{
+small {
     font-size: 70%;
     padding-left: 5px;
 }
@@ -118,28 +119,29 @@ small{
 }
 
 .prayer-hilighted {
-    color: #f0ad4e  !important;
-    -webkit-box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
-    -moz-box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
-    box-shadow: 0px 0px 31px 4px rgba(255,255,255,0.47);
+    color: #f0ad4e !important;
+    -webkit-box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.47);
+    -moz-box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.47);
+    box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.47);
 }
 
-.flash{
+.flash {
     visibility: hidden;
 }
 
-.site{
+.site {
     font-size: 100%;
 }
-.site>span{
+
+.site > span {
     color: #1b6d85;
 }
 
-.assosciation{
+.assosciation {
     font-size: 100%;
 }
 
-.version{
+.version {
     font-size: 12px;
     color: #adadad;
     padding-top: 5px;
@@ -154,26 +156,27 @@ small{
     display: none;
 }
 
-.support{
+.support {
     margin-top: 10px;
     font-size: 90%;
     color: gray;
 }
+
 .support a {
     color: gray !important;
 }
 
-.iqama{
+.iqama {
     color: #fff;
     padding: 10px;
 }
 
-.iqama .top{
+.iqama .top {
     height: 25%;
     font-size: 400%;
 }
 
-.iqama .image{
+.iqama .image {
     background-image: url(/bundles/app/prayer-times/img/phone.png);
     background-repeat: no-repeat;
     background-position: 50%;
@@ -181,24 +184,24 @@ small{
     height: 400px;
 }
 
-.hijriDate{
+.hijriDate {
     margin: 10px 0;
 }
 
-.adhan, .douaa-between-adhan-iqama{
+.adhan, .douaa-between-adhan-iqama {
     font-size: 200%;
 }
 
-.adhan .title, .douaa-between-adhan-iqama .title{
+.adhan .title, .douaa-between-adhan-iqama .title {
     margin-top: 10px;
 }
 
- .col-xs-4 {
-     padding-right: 5px;
-     padding-left: 5px;
- }
+.col-xs-4 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
 
-.full-moon{
+.full-moon {
     width: 30px;
     height: 30px;
     margin: -5px 0 0 10px;
@@ -224,11 +227,11 @@ small{
 }
 
 .usefulInfos, .usefulInfos .panel-heading {
-    background-color: rgba(0,0,0,0) !important;
-    border-color: rgba(0,0,0,0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
 }
-.usefulInfos a
-{
+
+.usefulInfos a {
     text-decoration: none;
 }
 
@@ -242,10 +245,57 @@ small{
     float: right;
     font-size: 12px;
 }
+
 .panel-heading .accordion-toggle.collapsed:after {
     content: "\e080";
 }
 
-.footer{
+.footer {
     margin-top: 20px;
+}
+
+.textSlide {
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+}
+
+.textSlide p {
+    font-size: 130%;
+    color: yellowgreen;
+    position: absolute;
+    width: 800px;
+    height: 100%;
+    margin: 0;
+    line-height: 40px;
+    text-align: center;
+    /* Starting position */
+    -moz-transform:translateX(100%);
+    -webkit-transform:translateX(100%);
+    transform:translateX(100%);
+    /* Apply animation to this element */
+    -moz-animation: textSlide 20s linear infinite;
+    -webkit-animation: textSlide 20s linear infinite;
+    animation: textSlide 20s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes textSlide {
+    0%   { -moz-transform: translateX(50%); }
+    100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes textSlide {
+    0%   { -webkit-transform: translateX(50%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes textSlide {
+    0%   {
+        -moz-transform: translateX(50%); /* Firefox bug fix */
+        -webkit-transform: translateX(50%); /* Firefox bug fix */
+        transform: translateX(50%);
+    }
+    100% {
+        -moz-transform: translateX(-100%); /* Firefox bug fix */
+        -webkit-transform: translateX(-100%); /* Firefox bug fix */
+        transform: translateX(-100%);
+    }
 }
