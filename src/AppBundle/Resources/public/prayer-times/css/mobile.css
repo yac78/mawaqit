@@ -277,8 +277,15 @@ small {
     -webkit-animation: textSlide 20s linear infinite;
     animation: textSlide 20s linear infinite;
 }
+
+.textSlide-rtl p {
+    -moz-animation: textSlide-rtl 20s linear infinite;
+    -webkit-animation: textSlide-rtl 20s linear infinite;
+    animation: textSlide-rtl 20s linear infinite;
+}
+
 /* Move it (define the animation) */
-@-moz-keyframes textSlide {
+@-moz-keyframes textSlide-ltr {
     0%   { -moz-transform: translateX(40%); }
     100% { -moz-transform: translateX(-100%); }
 }
@@ -296,5 +303,26 @@ small {
         -moz-transform: translateX(-100%); /* Firefox bug fix */
         -webkit-transform: translateX(-100%); /* Firefox bug fix */
         transform: translateX(-100%);
+    }
+}
+
+@-moz-keyframes textSlide-rtl {
+    0%   { -moz-transform: translateX(-100%); }
+    100% { -moz-transform: translateX(-40%); }
+}
+@-webkit-keyframes textSlide-rtl {
+    0%   { -webkit-transform: translateX(-100%); }
+    100% { -webkit-transform: translateX(40%); }
+}
+@keyframes textSlide-rtl {
+    0%   {
+        -moz-transform: translateX(-100%); /* Firefox bug fix */
+        -webkit-transform: translateX(-100%); /* Firefox bug fix */
+        transform: translateX(-100%);
+    }
+    100% {
+        -moz-transform: translateX(40%); /* Firefox bug fix */
+        -webkit-transform: translateX(40%); /* Firefox bug fix */
+        transform: translateX(40%);
     }
 }

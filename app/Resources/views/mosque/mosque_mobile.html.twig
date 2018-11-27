@@ -67,7 +67,7 @@
     </div>
 
     {% if not mosque.flashMessage.isExpired %}
-        <div class="textSlide">
+        <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl'}}">
             <p style="color:{{ mosque.flashMessage.color }}">{{ mosque.flashMessage.content }}</p>
         </div>
     {% endif %}

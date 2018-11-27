@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\FlashMessage;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,6 +30,12 @@ class FlashMessageType extends AbstractType
                     'maxlength' => 120,
                     'rows' => 3,
                     'placeholder' => 'flashMessage.form.content.placeholder'
+                ]
+            ])
+            ->add('orientation', ChoiceType::class, [
+                'choices'=> [
+                    'flashMessage.form.ltr'=>'ltr',
+                    'flashMessage.form.rtl'=>'rtl'
                 ]
             ])
             ->add('color', ColorType::class, [

@@ -12,6 +12,8 @@ AppBundle\Entity\FlashMessage:
             nullable: true
         color:
             type: string
+        orientation:
+            type: string
         expire:
             type: datetime
         updated:

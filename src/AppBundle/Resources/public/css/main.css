@@ -150,3 +150,7 @@ body {
 .toggle-off {
     left: 60%;
 }
+
+.form-control {
+    height: 40px;
+}

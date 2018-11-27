@@ -424,8 +424,12 @@ flashMessage:
       Le message flash est un message éphémère il s'affiche sur la version mobile uniquement, il est utilisé en général pour informer vos fidèles
       d'une information importante
     form:
+        ltr: Gauche vers droite
+        rtl: Droite vers gauche
         content:
             label: Contenu
+        orientation:
+            label: Orientation
         color:
             label: Couleur
             placeholder : 120 caractères maximum
@@ -813,7 +817,7 @@ found: Trouvés
 your_mosque_informs_you: Votre mosquée vous informe
 no_notif: Aucune notifications
 status: Statut
-usefulInfos: Informations utilies
+usefulInfos: Informations utiles
 
 terms_of_use:
   title: Conditions générales d'utilisation

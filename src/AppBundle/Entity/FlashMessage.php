@@ -20,6 +20,11 @@ class FlashMessage
      * @var string
      */
     private $color = "#d9ad0f";
+
+    /**
+     * @var string
+     */
+    private $orientation = "#ltr";
     /**
      * @var \DateTime
      */
@@ -133,5 +138,21 @@ class FlashMessage
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getOrientation(): string
+    {
+        return $this->orientation;
+    }
 
+    /**
+     * @param string $orientation
+     * @return FlashMessage
+     */
+    public function setOrientation(string $orientation): FlashMessage
+    {
+        $this->orientation = $orientation;
+        return $this;
+    }
 }
