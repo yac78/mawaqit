@@ -67,8 +67,14 @@
     </div>
 
     {% if not mosque.flashMessage.isExpired %}
-        <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl'}}">
-            <p style="color:{{ mosque.flashMessage.color }}">{{ mosque.flashMessage.content }}</p>
+        <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
+            <p style="
+                    color:{{ mosque.flashMessage.color }};
+                    width: {{ (mosque.flashMessage.content|length/120)*1000 }}px;
+                    --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*100) }}%;
+                    ">
+                {{ mosque.flashMessage.content }}
+            </p>
         </div>
     {% endif %}
 

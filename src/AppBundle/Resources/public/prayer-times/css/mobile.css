@@ -275,29 +275,29 @@ small {
     /* Apply animation to this element */
     -moz-animation: textSlide 20s linear infinite;
     -webkit-animation: textSlide 20s linear infinite;
-    animation: textSlide 20s linear infinite;
+    animation: textSlide 15s linear infinite;
 }
 
 .textSlide-rtl p {
-    -moz-animation: textSlide-rtl 20s linear infinite;
-    -webkit-animation: textSlide-rtl 20s linear infinite;
-    animation: textSlide-rtl 20s linear infinite;
+    -moz-animation: textSlide-rtl 15s linear infinite;
+    -webkit-animation: textSlide-rtl 15s linear infinite;
+    animation: textSlide-rtl 15s linear infinite;
 }
 
 /* Move it (define the animation) */
 @-moz-keyframes textSlide-ltr {
-    0%   { -moz-transform: translateX(40%); }
+    0%   { -moz-transform: translateX(var(--translatex)); }
     100% { -moz-transform: translateX(-100%); }
 }
 @-webkit-keyframes textSlide {
-    0%   { -webkit-transform: translateX(40%); }
+    0%   { -webkit-transform: translateX(var(--translatex)); }
     100% { -webkit-transform: translateX(-100%); }
 }
 @keyframes textSlide {
     0%   {
-        -moz-transform: translateX(40%); /* Firefox bug fix */
-        -webkit-transform: translateX(40%); /* Firefox bug fix */
-        transform: translateX(40%);
+        -moz-transform: translateX(var(--translatex)); /* Firefox bug fix */
+        -webkit-transform: translateX(var(--translatex)); /* Firefox bug fix */
+        transform: translateX(var(--translatex));
     }
     100% {
         -moz-transform: translateX(-100%); /* Firefox bug fix */
@@ -308,11 +308,11 @@ small {
 
 @-moz-keyframes textSlide-rtl {
     0%   { -moz-transform: translateX(-100%); }
-    100% { -moz-transform: translateX(-40%); }
+    100% { -moz-transform: translateX(var(--translatex)); }
 }
 @-webkit-keyframes textSlide-rtl {
     0%   { -webkit-transform: translateX(-100%); }
-    100% { -webkit-transform: translateX(40%); }
+    100% { -webkit-transform: translateX(var(--translatex)); }
 }
 @keyframes textSlide-rtl {
     0%   {
@@ -321,8 +321,8 @@ small {
         transform: translateX(-100%);
     }
     100% {
-        -moz-transform: translateX(40%); /* Firefox bug fix */
-        -webkit-transform: translateX(40%); /* Firefox bug fix */
-        transform: translateX(40%);
+        -moz-transform: translateX(var(--translatex)); /* Firefox bug fix */
+        -webkit-transform: translateX(var(--translatex)); /* Firefox bug fix */
+        transform: translateX(var(--translatex));
     }
 }
