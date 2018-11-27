@@ -66,7 +66,7 @@
         <div class="gregorianDate"></div>
     </div>
 
-    {% if not mosque.flashMessage.isExpired %}
+    {% if mosque.flashMessage.available %}
         <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
             <p style="
                     color:{{ mosque.flashMessage.color }};

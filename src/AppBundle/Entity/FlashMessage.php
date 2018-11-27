@@ -121,6 +121,14 @@ class FlashMessage
     }
 
     /**
+     * @return boolean
+     */
+    public function isAvailable()
+    {
+        return $this->content && !$this->isExpired();
+    }
+
+    /**
      * @return string
      */
     public function getColor()
