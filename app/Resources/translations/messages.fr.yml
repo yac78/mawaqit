@@ -693,6 +693,16 @@ email:
         action: Envoyer un mail
         success: Email envoyé avec succès
 
+incorrectsInfos:
+  title:  Horaires ou informations incorrects alertez-nous !
+  mailBody: |
+    Essalam alaykum
+    J'ai remarqué des erreurs dans les horaires ou les informations de la mosquée, et plus précisément :
+
+    - Votre message ici -
+
+    Cordialement
+
 fajr-zuhr: "Fajr et Dhuhr"
 zuhr-asr: "Dhuhr et `Asr"
 asr-maghrib: "`Asr et Maghrib"

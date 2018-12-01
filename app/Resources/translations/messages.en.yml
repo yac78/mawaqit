@@ -451,6 +451,16 @@ email:
         action: Send an email
         success: Eail sent successfully
 
+incorrectsInfos:
+  title:  Incorrect prayer times or information alert us !
+  mailBody: |
+    Essalam alaykum
+    I noticed errors in the prayer times or the information of the mosque, and more precisely :
+
+    - Your message here -
+
+    cordially
+
 fajr-zuhr: "Fajr and Dhuhr"
 zuhr-asr: "Dhuhr and `Asr"
 asr-maghrib: "`Asr and Maghrib"

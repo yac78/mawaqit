@@ -195,6 +195,14 @@
         </div>
     </div>
 
+    {% if mosque.mosque %}
+        <div class="mt-1">
+            <a class="text-muted" href="mailto:{{ postmasterAddress }}?subject=Infos incorrects - {{ mosque.title }} (ID {{ mosque.id }})&body={{ 'incorrectsInfos.mailBody'|trans|nl2br }}">
+                {{ 'incorrectsInfos.title'|trans }}
+            </a>
+        </div>
+    {% endif %}
+
     {% if mosque.mosque and mosque.showUsefullInfo %}
         <div class="panel panel-default mt-1 usefulInfos">
             <div class="panel-heading">
@@ -209,9 +217,7 @@
                         <div><span class="fa fa-{{ mosque.ablutions ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ablutions.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.adultCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.adultCourses.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.childrenCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.childrenCourses.label'|trans }}</div>
-                        <div>
-                            <span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}
-                        </div>
+                        <div><span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}</div>
                     </div>
                     <div class="col-xs-6">
                         <div><span class="fa fa-{{ not mosque.configuration.noJumua ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'jumuaPrayer'|trans }}</div>

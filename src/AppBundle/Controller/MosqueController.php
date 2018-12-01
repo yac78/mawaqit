@@ -99,6 +99,7 @@ class MosqueController extends Controller
             'languages' => $this->getParameter('languages'),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
+            "postmasterAddress" => $this->getParameter("postmaster_address"),
             'messages' => $messages
         ]);
     }

@@ -138,9 +138,6 @@ body {
     margin-right: 0;
 }
 
-.toggle-on.btn-sm {
-    padding-right: 12px;
-}
 
 .checkbox label {
      padding-left: 0px !important;
@@ -148,7 +145,7 @@ body {
 }
 
 .toggle-off {
-    left: 60%;
+    left: 55%;
 }
 
 .form-control {
