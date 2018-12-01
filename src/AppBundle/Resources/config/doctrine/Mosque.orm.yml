@@ -52,6 +52,10 @@ AppBundle\Entity\Mosque:
         zipcode:
             type: string
             length: 255
+        latitude:
+            type: float
+        longitude:
+            type: float
         rib:
             type: string
             length: 1024
@@ -127,17 +131,13 @@ AppBundle\Entity\Mosque:
             targetEntity: AppBundle\Entity\User
             inversedBy: mosques
             joinColumn:
-                name: user_id
-                referencedColumnName: id
-                onDelete: CASCADE 
+                onDelete: CASCADE
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
             cascade:
                 - persist
             joinColumn:
-                name:  configuration_id
-                referencedColumnName: id
                 onDelete: CASCADE
         flashMessage:
             targetEntity: AppBundle\Entity\FlashMessage

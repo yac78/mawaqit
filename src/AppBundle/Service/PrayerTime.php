@@ -63,7 +63,7 @@ class PrayerTime
                 $str = "Day,Fajr,Shuruk,Duhr,Asr,Maghrib,Isha\n";
                 for ($day = 1; $day <= $days; $day++) {
                     $date = strtotime(date('Y') . '-' . ($monthIndex + 1) . '-' . $day);
-                    $prayers = $this->praytime->getPrayerTimes($date, $conf->getLatitude(), $conf->getLongitude(), $conf->getTimezone());
+                    $prayers = $this->praytime->getPrayerTimes($date, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
                     $str .= "$day," . implode(",", $prayers) . "\n";
                 }
@@ -129,8 +129,8 @@ class PrayerTime
             'association' => $mosque->getAssociationName(),
             'image' => 'https://mawaqit.net/upload/' . $mosque->getImage1(),
             'url' => 'https://mawaqit.net/fr/' . $mosque->getSlug(),
-            'latitude' => $conf->getLatitude(),
-            'longitude' => $conf->getLongitude(),
+            'latitude' => $mosque->getLatitude(),
+            'longitude' => $mosque->getLongitude(),
             'jumua' => $conf->getJumuaTime(),
             'shuruq' => null,
             'times' => [],
@@ -143,7 +143,7 @@ class PrayerTime
         }
 
         if ($conf->isApi()) {
-           $times = $this->prayTimesFromApi($conf);
+           $times = $this->prayTimesFromApi($mosque);
         }
 
         $result['shuruq'] = $times[1];
@@ -166,9 +166,10 @@ class PrayerTime
         return [];
     }
 
-    private function prayTimesFromApi(Configuration $conf)
+    private function prayTimesFromApi(Mosque $mosque)
     {
         $date = new \DateTime();
+        $conf = $mosque->getConfiguration();
         if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
             $this->praytime->setCalcMethod($conf->getPrayerMethod());
         }
@@ -178,7 +179,7 @@ class PrayerTime
         }
         $this->praytime->setAsrMethod($conf->getAsrMethod());
         $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
-        $times = $this->praytime->getPrayerTimes($date->getTimestamp(), $conf->getLatitude(), $conf->getLongitude(), $conf->getTimezone());
+        $times = $this->praytime->getPrayerTimes($date->getTimestamp(), $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
         unset($times[5]);
         return array_values($times);
     }

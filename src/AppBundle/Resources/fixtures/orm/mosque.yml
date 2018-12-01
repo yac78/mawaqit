@@ -11,6 +11,8 @@ AppBundle\Entity\Mosque:
         city: Paris
         country: FR
         countryFullName: France
+        longitude: 2.3522
+        latitude: 48.8566
         phone: 06.00.00.00.00
         zipcode: 75000
         rib: "IBAN FRXX XXXX XXXX XXXX XXXX XXXX XXX / BIC XXXXXXXX"

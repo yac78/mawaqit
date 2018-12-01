@@ -103,8 +103,8 @@ function fillCalendarFromApi(e) {
                 var date = new Date();
                 date.setMonth(month);
                 date.setDate(day);
-                var latitude = $('#configuration_latitude').val();
-                var longitude = $('#configuration_longitude').val();
+                var latitude = $('#latitude').val();
+                var longitude = $('#longitude').val();
                 var timezone = $('#configuration_timezone').val();
                 var pt = prayTimes.getTimes(date, [parseFloat(latitude), parseFloat(longitude)], timezone, 0);
                 var times = {

@@ -85,12 +85,6 @@ AppBundle\Entity\Configuration:
             type: string
             length: 255
             nullable: true
-        latitude:
-            type: float
-            nullable: true
-        longitude:
-            type: float
-            nullable: true
         timezone:
             type: decimal
             scale: 2

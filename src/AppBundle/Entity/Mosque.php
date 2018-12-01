@@ -73,6 +73,16 @@ class Mosque
     private $country;
 
     /**
+     * @var float
+     */
+    private $latitude;
+
+    /**
+     * @var float
+     */
+    private $longitude;
+
+    /**
      * @var string
      */
     private $countryFullName;
@@ -863,8 +873,8 @@ class Mosque
     function getGpsCoordinates()
     {
         return [
-            "lat" => $this->getConfiguration()->getLatitude(),
-            "lon" => $this->getConfiguration()->getLongitude()
+            "lat" => $this->getLatitude(),
+            "lon" => $this->getLongitude()
         ];
     }
 
@@ -949,7 +959,7 @@ class Mosque
      */
     public function getLongitude()
     {
-        return $this->configuration->getLongitude();
+        return $this->longitude;
     }
 
     /**
@@ -958,7 +968,23 @@ class Mosque
      */
     public function getLatitude()
     {
-        return $this->configuration->getLatitude();
+        return $this->latitude;
+    }
+
+    /**
+     * @param float $latitude
+     */
+    public function setLatitude(float $latitude): void
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @param float $longitude
+     */
+    public function setLongitude(float $longitude): void
+    {
+        $this->longitude = $longitude;
     }
 
     /**
@@ -1223,4 +1249,6 @@ class Mosque
         $this->flashMessage = $flashMessage;
     }
 
+
 }
+

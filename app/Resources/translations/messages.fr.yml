@@ -306,14 +306,18 @@ mosque:
         type:
             label : Type
             placeholder : Choisir un type d'installation
-        name: 
+        name:
             placeholder : Ex. Mosquée Essunna, Mon domicile
-        slug: 
+        slug:
             label : Changez l'url du site
-        city: 
+        city:
             placeholder: La ville de la mosquée (Sert à calculer la position géographique)
         country:
             placeholder: Choissiez un pays
+        longitude:
+            label : Corriger la position gps (longitude)
+        latitude:
+            label : Corriger la position gps (latitude)
         address:
             help: |
               Il est fortement recommandé de saisir l'adresse postale afin de faciliter aux fidèles la localisation de votre mosquée. <br/>

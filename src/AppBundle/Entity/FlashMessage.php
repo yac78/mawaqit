@@ -43,7 +43,7 @@ class FlashMessage
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -79,7 +79,7 @@ class FlashMessage
     /**
      * @return \DateTime
      */
-    public function getUpdated(): \DateTime
+    public function getUpdated()
     {
         return $this->updated;
     }

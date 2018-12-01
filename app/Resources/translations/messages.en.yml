@@ -88,6 +88,10 @@ mosque:
             placeholder: Choose a country
         zipcode:
             placeholder: "The postal code of the mosque (used to calculate the geographical position)"
+        longitude:
+            label : Correct the gps position (longitude)
+        latitude:
+            label : Correct the gps position (latitude)
         rib:
             placeholder: "If entered it will be displayed at the bottom of the screen. Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74"
         addOnMap:

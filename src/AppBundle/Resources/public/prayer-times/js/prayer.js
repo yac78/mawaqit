@@ -163,7 +163,7 @@ var prayer = {
             date = dateTime.tomorrow();
         }
 
-        var pt = prayTimes.getTimes(date, [prayer.confData.latitude, prayer.confData.longitude], prayer.confData.timezone, prayer.getDst());
+        var pt = prayTimes.getTimes(date, [latitude, longitude], prayer.confData.timezone, prayer.getDst());
 
         this.times = {
             1: pt.fajr,

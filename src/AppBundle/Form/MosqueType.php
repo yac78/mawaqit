@@ -8,6 +8,7 @@ use AppBundle\Service\GoogleService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -152,6 +153,18 @@ class MosqueType extends AbstractType
                     'placeholder' => 'mosque.form.address.placeholder',
                 ]
             ])
+            ->add('latitude', NumberType::class, [
+                'attr' => [
+                    'class' => 'keyboardInput',
+                    'placeholder' => 'mosque.form.latitude.placeholder',
+                ]
+            ])
+            ->add('longitude', NumberType::class, [
+                'attr' => [
+                    'class' => 'keyboardInput',
+                    'placeholder' => 'mosque.form.longitude.placeholder',
+                ]
+            ])
             ->add('city', null, [
                 'label' => 'city',
                 'required' => true,
@@ -274,8 +287,8 @@ class MosqueType extends AbstractType
 
         if (null === $oldMosque || $oldMosque['address'] !== $mosque->getAddress() || $oldMosque['country'] !== $mosque->getCountry() || $oldMosque['city'] !== $mosque->getCity() || $oldMosque['zipcode'] !== $mosque->getZipcode()) {
             $position = $this->googleService->getPosition($mosque);
-            $mosque->getConfiguration()->setLongitude($position->lng);
-            $mosque->getConfiguration()->setLatitude($position->lat);
+            $mosque->setLongitude($position->lng);
+            $mosque->setLatitude($position->lat);
         }
 
         if ($mosque->getType() === "home") {

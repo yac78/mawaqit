@@ -54,21 +54,21 @@ class ToolsService
         $editedMosques = [];
         foreach ($mosques as $mosque) {
 
-            $latBefore = $mosque->getConfiguration()->getLatitude();
-            $lonBefore = $mosque->getConfiguration()->getLongitude();
+            $latBefore = $mosque->getLatitude();
+            $lonBefore = $mosque->getLongitude();
 
             $status = "OK";
             try {
                 $gps = $this->googleService->getPosition($mosque);
-                $mosque->getConfiguration()->setLatitude($gps->lat);
-                $mosque->getConfiguration()->setLongitude($gps->lng);
+                $mosque->setLatitude($gps->lat);
+                $mosque->setLongitude($gps->lng);
                 $this->em->persist($mosque);
 
             } catch (GooglePositionException $e) {
                 $status = "KO";
             }
 
-            $editedMosques[] = $mosque->getId() . ',' . $mosque->getName() . ',' . $mosque->getCity() . ',' . $mosque->getCountry() . ',' . $latBefore . ',' . $lonBefore . ',' . $mosque->getConfiguration()->getLatitude() . ',' . $mosque->getConfiguration()->getLongitude() . ',' . $status;
+            $editedMosques[] = $mosque->getId() . ',' . $mosque->getName() . ',' . $mosque->getCity() . ',' . $mosque->getCountry() . ',' . $latBefore . ',' . $lonBefore . ',' . $mosque->getLatitude() . ',' . $mosque->getLongitude() . ',' . $status;
         }
 
         file_put_contents("/tmp/rapport_gps_$offset.csv", implode("\t\n", $editedMosques));

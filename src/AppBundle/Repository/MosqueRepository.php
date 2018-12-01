@@ -189,12 +189,11 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
     function getAllMosquesForMap()
     {
         return $this->getValidatedMosqueQb()
-            ->leftJoin("m.configuration", "c", "m.id = c.mosque_id")
-            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.countryFullName,  c.longitude as lng, c.latitude as lat")
+            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.countryFullName,  m.longitude as lng, m.latitude as lat")
             ->andWhere("m.addOnMap = 1")
             ->andWhere("m.type = 'mosque'")
-            ->andWhere("c.latitude is not null")
-            ->andWhere("c.longitude is not null")
+            ->andWhere("m.latitude is not null")
+            ->andWhere("m.longitude is not null")
             ->getQuery()
             ->getArrayResult();
     }

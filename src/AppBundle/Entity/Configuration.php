@@ -177,15 +177,6 @@ class Configuration
      * @var string
      */
     private $highLatsMethod = 'AngleBased';
-    /**
-     * @var float
-     */
-    private $latitude;
-
-    /**
-     * @var float
-     */
-    private $longitude;
 
     /**
      * @var integer
@@ -697,54 +688,6 @@ class Configuration
         $this->prayerMethod = $prayerMethod;
 
         return $this;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     *
-     * @return Configuration
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return int
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     *
-     * @return Configuration
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return int
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
     }
 
     function getTimezone()
