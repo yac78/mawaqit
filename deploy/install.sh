@@ -73,11 +73,10 @@ cd $envDir && rm current || true && ln -s $tag current
 echo "Reset opcache"
 curl -s localhost:81/reset_opcache.php
 
-#echo "Force reload mosques"
-#mysql -u mawaqit -p`cat $sharedDir/dbpwd` mawaqit_$env < $repoDir/deploy/update.sql
-
 echo "Deleting old releases, keep 3 latest"
-rm -rf `ls -t  | tail -n +5` || true
+if [ "$env" == "prod" ]; then
+    rm -rf `ls -t  | tail -n +5`
+fi
 
 echo ""
 echo "####################################################"

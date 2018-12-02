@@ -53,7 +53,7 @@
         </div>
 
         <div class="mosque-block hidden">
-            {% if mosque is defined %}
+            {% if mosque is defined and isNotLocal() %}
                 {{ form_row(form.latitude) }}
                 {{ form_row(form.longitude) }}
             {% endif %}
