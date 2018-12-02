@@ -454,11 +454,9 @@ email:
 incorrectsInfos:
   title:  Incorrect prayer times or information alert us !
   mailBody: |
-    Essalam alaykum
+    Essalamu alaykum%0D%0A
     I noticed errors in the prayer times or the information of the mosque, and more precisely :
-
-    - Your message here -
-
+    %0D%0A%0D%0A- Your message here -%0D%0A%0D%0A
     cordially
 
 fajr-zuhr: "Fajr and Dhuhr"
