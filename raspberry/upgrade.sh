@@ -5,7 +5,8 @@ cd /home/pi/mawaqit
 wget -q --spider http://google.com
 
 if [ $? -ne 0 ]; then
-    echo "offline"
+    echo "offline";
+    exit 1;
 fi
 
 git fetch

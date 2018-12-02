@@ -1,5 +1,13 @@
 #!/bin/bash
 
+wget -q --spider http://google.com
+
+if [ $? -ne 0 ]; then
+    echo "offline";
+    exit 1;
+fi
+
+
 # Set the maximum allowed difference in seconds between Hw-Clock and Sys-Clock
 maxDiffSec="5"
 
