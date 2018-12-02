@@ -108,7 +108,6 @@ class MosqueType extends AbstractType
         $builder
             ->add('name', null, [
                 'label' => 'mosque.name',
-                'required' => true,
                 'attr' => [
                     'class' => 'keyboardInput',
                     'placeholder' => 'mosque.form.name.placeholder',
@@ -117,7 +116,6 @@ class MosqueType extends AbstractType
             ->add('type', ChoiceType::class, $typeOptions)
             ->add('slug', null, [
                 'label' => 'mosque.slug',
-                'required' => true,
                 'label' => 'mosque.form.slug.label'
             ])
             ->add('associationName', null, [
@@ -153,21 +151,10 @@ class MosqueType extends AbstractType
                     'placeholder' => 'mosque.form.address.placeholder',
                 ]
             ])
-            ->add('latitude', NumberType::class, [
-                'attr' => [
-                    'class' => 'keyboardInput',
-                    'placeholder' => 'mosque.form.latitude.placeholder',
-                ]
-            ])
-            ->add('longitude', NumberType::class, [
-                'attr' => [
-                    'class' => 'keyboardInput',
-                    'placeholder' => 'mosque.form.longitude.placeholder',
-                ]
-            ])
+            ->add('latitude', NumberType::class)
+            ->add('longitude', NumberType::class)
             ->add('city', null, [
                 'label' => 'city',
-                'required' => true,
                 'disabled' => $disabled,
                 'attr' => [
                     'class' => 'keyboardInput',
@@ -175,7 +162,6 @@ class MosqueType extends AbstractType
             ])
             ->add('zipcode', null, [
                 'label' => 'zipcode',
-                'required' => true,
                 'disabled' => $disabled,
                 'attr' => [
                     'class' => 'keyboardInput',
@@ -184,7 +170,6 @@ class MosqueType extends AbstractType
             ->add('country', CountryType::class, [
                 'placeholder' => 'mosque.form.country.placeholder',
                 'label' => 'country',
-                'required' => true,
                 'disabled' => $disabled
             ])
             ->add('rib', null, [

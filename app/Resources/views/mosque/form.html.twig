@@ -53,37 +53,39 @@
         </div>
 
         <div class="mosque-block hidden">
-            {% if mosque is defined and isNotLocal() %}
-                {{ form_row(form.latitude) }}
-                {{ form_row(form.longitude) }}
+            {% if mosque is defined %}
+                <div class="{{ isLocal() ? 'hidden' }}">
+                    {{ form_row(form.latitude) }}
+                    {{ form_row(form.longitude) }}
+                </div>
             {% endif %}
             {{ form_row(form.associationName) }}
             {{ form_row(form.phone) }}
             {{ form_row(form.email) }}
             {{ form_row(form.site) }}
             {{ form_row(form.rib) }}
-            {{ form_row(form.addOnMap) }}
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>{{ 'usefulInfos'|trans }}</h3>
+            {% if isNotLocal() %}
+                {{ form_row(form.addOnMap) }}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{ 'usefulInfos'|trans }}</h3>
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.womenSpace) }}
+                        {{ form_row(form.ablutions) }}
+                        {{ form_row(form.adultCourses) }}
+                        {{ form_row(form.childrenCourses) }}
+                        {{ form_row(form.handicapAccessibility) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.janazaPrayer) }}
+                        {{ form_row(form.aidPrayer) }}
+                        {{ form_row(form.ramadanMeal) }}
+                        {{ form_row(form.parking) }}
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    {{ form_row(form.womenSpace) }}
-                    {{ form_row(form.ablutions) }}
-                    {{ form_row(form.adultCourses) }}
-                    {{ form_row(form.childrenCourses) }}
-                    {{ form_row(form.handicapAccessibility) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(form.janazaPrayer) }}
-                    {{ form_row(form.aidPrayer) }}
-                    {{ form_row(form.ramadanMeal) }}
-                    {{ form_row(form.parking) }}
-                </div>
-            </div>
+            {% endif %}
         </div>
-
-
     </div>
 
     <div class="mosque-block hidden">
