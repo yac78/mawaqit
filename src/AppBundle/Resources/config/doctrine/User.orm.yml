@@ -21,7 +21,7 @@ AppBundle\Entity\User:
         apiCallNumber:
           type : integer
           nullable: true
-        apiUseComment:
+        apiUseDescription:
           type : text
           nullable: true
         created:

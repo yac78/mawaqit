@@ -108,9 +108,7 @@ class MosqueController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mosque = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($mosque);
             $em->flush();
             $this->addFlash('success', "form.edit.success");
 

@@ -128,9 +128,7 @@ class MessageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $message = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
             $em->flush();
             $this->addFlash('success', "form.edit.success");
 

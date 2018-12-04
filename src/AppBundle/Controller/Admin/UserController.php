@@ -47,6 +47,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $this->addFlash('success', "form.edit.success");
+            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
         }
 
         return $this->render('user/edit.html.twig', [

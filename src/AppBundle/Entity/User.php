@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\PersistentCollection;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -24,6 +23,7 @@ class User extends BaseUser
     private $tou;
 
     /**
+     * @Assert\Uuid()
      * @var string
      */
     private $apiAccessToken;
@@ -38,13 +38,13 @@ class User extends BaseUser
      * The number of api call in the day
      * @var integer
      */
-    private $apiCallNumber = 0;
+    private $apiCallNumber;
 
     /**
      * The api use comment
      * @var string
      */
-    private $apiUseComment;
+    private $apiUseDescription;
 
     /**
      * @var \DateTime
@@ -157,7 +157,7 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getApiAccessToken(): string
+    public function getApiAccessToken()
     {
         return $this->apiAccessToken;
     }
@@ -173,7 +173,7 @@ class User extends BaseUser
     /**
      * @return int
      */
-    public function getApiQuota(): int
+    public function getApiQuota()
     {
         return $this->apiQuota;
     }
@@ -189,7 +189,7 @@ class User extends BaseUser
     /**
      * @return int
      */
-    public function getApiCallNumber(): int
+    public function getApiCallNumber()
     {
         return $this->apiCallNumber;
     }
@@ -197,7 +197,7 @@ class User extends BaseUser
     /**
      * @param int $apiCallNumber
      */
-    public function setApiCallNumber(int $apiCallNumber): void
+    public function setApiCallNumber($apiCallNumber): void
     {
         $this->apiCallNumber = $apiCallNumber;
     }
@@ -205,17 +205,17 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getApiUseComment(): string
+    public function getApiUseDescription()
     {
-        return $this->apiUseComment;
+        return $this->apiUseDescription;
     }
 
     /**
-     * @param string $apiUseComment
+     * @param string $apiUseDescription
      */
-    public function setApiUseComment(string $apiUseComment): void
+    public function setApiUseDescription($apiUseDescription): void
     {
-        $this->apiUseComment = $apiUseComment;
+        $this->apiUseDescription = $apiUseDescription;
     }
 
 }
