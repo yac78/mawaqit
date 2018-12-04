@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\PersistentCollection;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -22,17 +23,28 @@ class User extends BaseUser
      */
     private $tou;
 
-
     /**
      * @var string
      */
     private $apiAccessToken;
 
-
     /**
+     * Allowed quota call per day
      * @var integer
      */
-    private $apiQuota;
+    private $apiQuota = 3000;
+
+    /**
+     * The number of api call in the day
+     * @var integer
+     */
+    private $apiCallNumber = 0;
+
+    /**
+     * The api use comment
+     * @var string
+     */
+    private $apiUseComment;
 
     /**
      * @var \DateTime
@@ -172,6 +184,38 @@ class User extends BaseUser
     public function setApiQuota($apiQuota): void
     {
         $this->apiQuota = $apiQuota;
+    }
+
+    /**
+     * @return int
+     */
+    public function getApiCallNumber(): int
+    {
+        return $this->apiCallNumber;
+    }
+
+    /**
+     * @param int $apiCallNumber
+     */
+    public function setApiCallNumber(int $apiCallNumber): void
+    {
+        $this->apiCallNumber = $apiCallNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiUseComment(): string
+    {
+        return $this->apiUseComment;
+    }
+
+    /**
+     * @param string $apiUseComment
+     */
+    public function setApiUseComment(string $apiUseComment): void
+    {
+        $this->apiUseComment = $apiUseComment;
     }
 
 }

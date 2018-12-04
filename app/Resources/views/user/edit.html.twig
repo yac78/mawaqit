@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
+
+    <h3>{{ 'user'|trans }}: {{ user.username }}</h3>
+    <div class="row">
+        <div class="row col-md-6">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

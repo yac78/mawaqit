@@ -18,6 +18,12 @@ AppBundle\Entity\User:
         apiQuota:
           type : integer
           nullable: true
+        apiCallNumber:
+          type : integer
+          nullable: true
+        apiUseComment:
+          type : text
+          nullable: true
         created:
             type: datetime
             nullable: true

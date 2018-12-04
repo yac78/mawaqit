@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\EmailType;
+use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,9 +34,30 @@ class UserController extends Controller
     }
 
     /**
+     * @Route("/{id}/edit", name="user_edit")
+     */
+    public function editAction(Request $request, User $user)
+    {
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $this->addFlash('success', "form.edit.success");
+        }
+
+        return $this->render('user/edit.html.twig', [
+            "form" => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/{id}/delete", name="user_delete")
      */
-    public function deleteAction(Request $request, User $user)
+    public function deleteAction(User $user)
     {
         if (!$this->getUser()->isAdmin() || $this->getUser() === $user) {
             throw new AccessDeniedException;
@@ -49,19 +71,9 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/{id}/show", name="user_show")
-     */
-    public function showAction(Request $request, User $user)
-    {
-        return $this->render('user/show.html.twig', [
-            "user" => $user
-        ]);
-    }
-
-    /**
      * @Route("/{id}/enable/{status}", name="ajax_user_enable")
      */
-    public function enableAction(Request $request, User $user, $status)
+    public function enableAction(User $user, $status)
     {
         $em = $this->getDoctrine()->getManager();
         $user->setEnabled($status === "true");

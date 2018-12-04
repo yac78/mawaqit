@@ -43,7 +43,7 @@
             {% for user in users %}
                 <tr class="{{ not user.enabled ? 'danger' : '' }}">
                     <td>
-                        <a href="{{ path('user_show', {id: user.id}) }}">{{ user.email }}</a>
+                        <a href="{{ path('user_edit', {id: user.id}) }}">{{ user.email }}</a>
                         <a href="{{ path('mosque_index', {userId: user.id}) }}"> ({{ user.mosques|length }}) </a>
                     </td>
                     <td class="text-center">
@@ -68,7 +68,7 @@
                  style="border-bottom: 1px solid #ccc; padding: 10px 0; margin-top: 10px ">
                 <div class="col-xs-10">
                     <div>
-                        <a href="{{ path('user_show', {id: user.id}) }}">{{ user.email }}</a>
+                        <a href="{{ path('user_edit', {id: user.id}) }}">{{ user.email }}</a>
                         <a href="{{ path('mosque_index', {userId: user.id}) }}"> ({{ user.mosques|length }}) </a>
                     </div>
                     {{ 'enabled'|trans }} ? <span class="fa fa-{{ user.enabled ? 'check' : 'close' }}"></span>
