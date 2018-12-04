@@ -58,6 +58,8 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
+        types:
+            uuid:  Ramsey\Uuid\Doctrine\UuidType
         driver: pdo_mysql
         host: '%database_host%'
         port: '%database_port%'

@@ -11,6 +11,13 @@ AppBundle\Entity\User:
     fields:
         tou:
           type: boolean
+        apiAccessToken:
+          type : uuid
+          unique: true
+          nullable: true
+        apiQuota:
+          type : integer
+          nullable: true
         created:
             type: datetime
             nullable: true

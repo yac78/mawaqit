@@ -8,12 +8,18 @@
 
 {% block additional_javascripts %}
     <script>
-        $("#fos_user_registration_form_tou").change(function (e) {
-            $validButton = $('#validate-btn');
+        function handleTou(touCheckbox) {
+            var $validButton = $('#validate-btn');
             $validButton.prop('disabled', true);
-            if ($(this).is(":checked")) {
+            if ($(touCheckbox).is(":checked")) {
                 $validButton.prop('disabled', false);
             }
+        }
+
+        $("#fos_user_registration_form_tou").change(function (e) {
+            handleTou(this);
         });
+
+        handleTou($("#fos_user_registration_form_tou"));
     </script>
 {% endblock %}

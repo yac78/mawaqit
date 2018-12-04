@@ -15,7 +15,6 @@ parameters:
     postmaster_address: postmaster@mawaqit.net
     secret: theSecret
     languages: [fr, ar, en, tr]
-    visible_languages: [fr, ar, en]
     version: 3.0.0
     site: mawaqit.net
     supportTel1: '+33629111641'

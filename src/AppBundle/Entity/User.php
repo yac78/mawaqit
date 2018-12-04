@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -21,6 +22,17 @@ class User extends BaseUser
      */
     private $tou;
 
+
+    /**
+     * @var string
+     */
+    private $apiAccessToken;
+
+
+    /**
+     * @var integer
+     */
+    private $apiQuota;
 
     /**
      * @var \DateTime
@@ -94,12 +106,13 @@ class User extends BaseUser
     {
         return $this->updated;
     }
-    
+
     /**
-     * 
+     *
      * @return boolean
      */
-    function isAdmin() {
+    function isAdmin()
+    {
         return $this->hasRole("ROLE_ADMIN");
     }
 
@@ -127,6 +140,38 @@ class User extends BaseUser
     {
         $this->tou = $tou;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiAccessToken(): string
+    {
+        return $this->apiAccessToken;
+    }
+
+    /**
+     * @param string $apiAccessToken
+     */
+    public function setApiAccessToken($apiAccessToken): void
+    {
+        $this->apiAccessToken = $apiAccessToken;
+    }
+
+    /**
+     * @return int
+     */
+    public function getApiQuota(): int
+    {
+        return $this->apiQuota;
+    }
+
+    /**
+     * @param int $apiQuota
+     */
+    public function setApiQuota($apiQuota): void
+    {
+        $this->apiQuota = $apiQuota;
     }
 
 }
