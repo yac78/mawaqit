@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\FlashMessage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -38,10 +38,10 @@ class FlashMessageType extends AbstractType
                     'flashMessage.form.rtl'=>'rtl'
                 ]
             ])
-            ->add('color', ColorType::class, [
-                'data' => '#cccccc',
+            ->add('color', TextType::class, [
                 'attr' => [
-                    'style' => 'width: 100px'
+                    'style' => 'width: 100px',
+                    'class'=>"jscolor {width:240, height:150, hash:true, position:'bottom', borderColor:'#000', backgroundColor:'#000'}"
                 ]
             ])
             ->add('expire', DateTimeType::class, [
