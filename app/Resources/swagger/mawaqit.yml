@@ -5,8 +5,8 @@ info:
   title: Mawaqit
   contact:
     email: contact@mawaqit.net
-
-host: mawaqit.net
+ 
+host: pp.mawaqit.net
 basePath: /api/1.0.0
 schemes:
  - https
@@ -31,7 +31,7 @@ paths:
         - in: query
           name: lat
           required: false
-          type: number
+          type: number    
           description: The longitude to obtain near mosques, for example 48.858205
       responses:
         200:
@@ -45,8 +45,8 @@ paths:
         500:
           description: Internal Server Error
         503:
-          description: Not available service
-
+          description: Not available service  
+          
   /mosque/{id}/prayer-times:
     get:
       summary:  Get prayer times and other information for the requested mosque
@@ -67,8 +67,8 @@ paths:
         500:
           description: Internal Server Error
         503:
-          description: Not available service
-
+          description: Not available service             
+          
   /hadith/random:
     get:
       summary: Return a random hadith from ryadh essalihine or hisn muslim
@@ -79,12 +79,12 @@ paths:
           name: lang
           required: false
           type: string
-          description: The language of the hadith, ar, fr or both, default to ar
+          description: The language of the hadith ( "ar", "en", "fr", "tr", "en-ar", "fr-ar", "tr-ar"), default to ar
         - in: query
           name: maxLength
           required: false
           type: integer
-          description: The max length of the hadith, default to 500 characters, if you want short hadith you can put 200 for exemple
+          description: The max length of the hadith, default to 500 characters, if you want short hadith you can put 200 for exemple 
       responses:
         200:
           description: The hadith
@@ -95,8 +95,8 @@ paths:
         500:
           description: Internal Server Error
         503:
-          description: Not available service
-
+          description: Not available service 
+    
 definitions:
   Mosque:
     type: object
@@ -108,7 +108,7 @@ definitions:
     - phone
     - site
     - image
-    - location
+    - localisation
     - longitude
     - latitude
     - proximity
@@ -133,13 +133,13 @@ definitions:
         description: The phone of the mosque, can be null
       site:
         type: string
-        example: https://mosque-website.com
+        example: https://mosque-website.com 
         description: The website of the mosque, can be null
       image:
         type: string
-        example: https://mawaqit.net/upload/imeges/sqd654dqsd654qsdd.png
+        example: https://mawaqit.net/upload/sqd654dqsd654qsdd.png
         description: A picture of the mosque, can be null
-      location:
+      localisation:
         type: string
         description: The full address of the mosque
         example: 14 rue condorcet 78800 Houilles France
@@ -159,10 +159,12 @@ definitions:
     required:
       - id
       - name
-      - location
+      - localisation
       - phone
       - email
       - site
+      - url
+      - image
       - association
       - jumua
       - shuruq
@@ -184,8 +186,16 @@ definitions:
         description: The email of the mosque, can be null
       phone:
         type: string
-        example: 06.00.00.00.00
+        example: 06.00.00.00.00      
         description: The phone of the mosque, can be null
+      url:
+        type: string
+        example: https://mawaqit.net/fr/mosquee-essunna-houilles
+        description: The mawaqit url screen        
+      image:
+        type: string
+        example: https://mawaqit.net/upload/sqd654dqsd654qsdd.png
+        description: A picture of the mosque, can be null        
       site:
         type: string
         example: https://mosque-website.com
@@ -193,7 +203,7 @@ definitions:
       association:
         type: string
         description: The association name
-        example: Association SFI
+        example: Association SFI      
       jumua:
         type: string
         description: Jumu`a time
@@ -201,8 +211,8 @@ definitions:
       shuruq:
         type: string
         description: Shuruk time
-        example: "07:30"
-      location:
+        example: "07:30"        
+      localisation:
         type: string
         description: The full address of the mosque
         example: 14 rue condorcet 78800 Houilles France
@@ -223,20 +233,24 @@ definitions:
         items:
           type: string
         description: Iqama waiting times after adhan, in minutes [fajr, dhuhr, asr, maghrib, `isha]
-        example: [20, 10, 10, 5, 10]
+        example: [20, 10, 10, 5, 10]        
       messages:
         type: array
         items:
           $ref: '#/definitions/Message'
         description: A liste of messages
-
+        
   Message:
     type: object
     required:
+    - id
     - title
     - content
     - image
     properties:
+      id:
+        type: integer
+        example: 55    
       title:
         type: string
         description: The message title ,can be null
@@ -244,12 +258,12 @@ definitions:
       content:
         type: string
         description: The message content, can be null
-        example: Yout mosque communicate with you
+        example: Yout mosque communicate with you   
       image:
         type: string
-        description: The message image, can be null
+        description: The message image, can be null 
         example: https://mawaqit.net/upload/5bdf1a6dcf38b078788723.jpg
-
+        
   Hadith:
     type: object
     required:
@@ -263,4 +277,3 @@ definitions:
         type: string
         description: The language of hadith (fr or ar), fr means french hadith and ar means arabic hadith
         example: ar
-
