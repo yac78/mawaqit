@@ -16,6 +16,10 @@ sharedDir=$baseDir/shared
 envDir=$baseDir/$env
 targetDir=$envDir/$tag
 
+if [ "$env" == "pp" ]; then
+    targetDir=$envDir/master
+fi
+
 cd $repoDir
 
 if [ "$env" == "prod" ]; then
