@@ -72,13 +72,13 @@ fi
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
 echo "Creating current symlink"
-cd $envDir && rm current || true && ln -s $tag current
+cd $envDir && rm current || true && ln -s $targetDir current
 
 echo "Reset opcache"
 curl -s localhost:81/reset_opcache.php
 
-echo "Deleting old releases, keep 3 latest"
 if [ "$env" == "prod" ]; then
+    echo "Deleting old releases, keep 3 latest"
     rm -rf `ls -t  | tail -n +5`
 fi
 
