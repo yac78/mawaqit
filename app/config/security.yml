@@ -15,16 +15,15 @@ security:
 
 
     firewalls:
+        local:
+            host: ^(mawaqit.local|localhost)$
+            security: false
         api:
             stateless: true
-            anonymous: true
             pattern: ^/api
             simple_preauth:
                 authenticator: app.security.uuid_token_authenticator
             provider: api_user
-        local:
-            host: ^(mawaqit.local|localhost)$
-            security: false
         main:
             pattern: ^/
             anonymous: true

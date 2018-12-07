@@ -100,6 +100,7 @@ class MosqueController extends Controller
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
             "postmasterAddress" => $this->getParameter("postmaster_address"),
+            "mawaqitApiAccessToken" => $this->getParameter("mawaqit_api_access_token"),
             'messages' => $messages
         ]);
     }

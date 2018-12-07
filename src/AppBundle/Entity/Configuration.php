@@ -264,7 +264,7 @@ class Configuration
     /**
      * @var string
      */
-    private $hadithLang = "both";
+    private $hadithLang = "ar";
 
     /**
      * @var integer

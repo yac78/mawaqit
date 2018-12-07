@@ -22,10 +22,13 @@ parameters:
     supportEmail: contact@mawaqit.net
 
     # Google API
-    google_api_key: 'AIzaSyC0n3EKMQBPimJseyl_dD-JgemvYaX7_K8'
-    google_maps_api_key: 'AIzaSyBzNPXkdlH11DFZZ0lf8Kj8dao-W7K_MaU'
+    google_api_key: ''
+    google_maps_api_key: ''
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
 
     # Weather API
     weather_api_endpoint: 'http://api.openweathermap.org/data/2.5/weather'
-    weather_api_key: 'c9560e670b050ad1db74f37b086afd44'
+    weather_api_key: ''
+
+    # Mawaqit API
+    mawaqit_api_access_token: ''

@@ -26,7 +26,7 @@ class UserType extends AbstractType
                 'label' => 'Email'
             ])
             ->add('roles', ChoiceType::class, [
-                'label' => 'Roles',
+                'label' => 'Rôles',
                 'required' => false,
                 'multiple' => true,
                 'choices' => [

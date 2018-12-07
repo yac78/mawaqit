@@ -50,7 +50,7 @@
 <div id="main" class="main display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
 
     <!-- Random hadith container -->
-    <div class="random-hadith display-none" data-remote="{{ path('random_hadith', {lang: mosque.configuration.hadithLang}) }}">
+    <div class="random-hadith display-none" data-remote="{{ path('random_hadith', {lang: mosque.configuration.hadithLang}) }}" data-api-access-token="{{ mawaqitApiAccessToken }}">
         <div class="text">
             <div></div>
         </div>

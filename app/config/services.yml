@@ -47,6 +47,7 @@ services:
           - '@logger'
           
     app.google_service:
+        public: true
         parent: app.google_api
         class: AppBundle\Service\GoogleService
         calls:
@@ -180,10 +181,16 @@ services:
             - { name: kernel.event_listener, event: vich_uploader.post_upload , method: resizeImage }
 
     app.event.request:
-        class: AppBundle\EventListener\Request
+        class: AppBundle\EventListener\LocalRequest
         arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
         tags:
             - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
+
+    app.event.api_call_counter:
+        class: AppBundle\EventListener\ApiCallCounter
+        arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest, priority: -10 }
 
     app.event.terms_of_use:
         class: AppBundle\EventListener\TermsOfUse

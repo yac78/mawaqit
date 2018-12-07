@@ -32,7 +32,7 @@ class User extends BaseUser
      * Allowed quota call per day
      * @var integer
      */
-    private $apiQuota = 3000;
+    private $apiQuota;
 
     /**
      * The number of api call in the day
@@ -218,5 +218,9 @@ class User extends BaseUser
         $this->apiUseDescription = $apiUseDescription;
     }
 
+    public function incrementApiCallNumber()
+    {
+        $this->apiCallNumber++;
+    }
 }
 

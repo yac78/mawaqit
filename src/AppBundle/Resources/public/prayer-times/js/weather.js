@@ -54,7 +54,7 @@ var weather = {
             weather.getWeather();
             setInterval(function () {
                 weather.getWeather();
-            }, prayer.oneMinute * 10);
+            }, prayer.oneMinute * 15);
         }
     }
 };

@@ -76,7 +76,7 @@ class UuidTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
     private function checkQuota(User $user)
     {
         if ($user->getApiCallNumber() >= $user->getApiQuota()) {
-            throw new AccessDeniedHttpException('You have reach your quota ' . $user->getApiCallNumber() . ' of ' . $user->getApiQuota());
+            throw new AccessDeniedHttpException(sprintf('You have reached your quota %s of %s allowed', $user->getApiCallNumber(), $user->getApiQuota()));
         }
     }
 

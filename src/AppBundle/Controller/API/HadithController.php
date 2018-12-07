@@ -24,10 +24,10 @@ class HadithController extends Controller
      */
     public function randomAction(Request $request)
     {
-        $lang = $request->query->get('lang', 'ar');
+        $lang = $request->query->get('lang');
         $maxLength = $request->query->get('maxLength', 500);
         if (!in_array($lang, Configuration::HADITH_LANG)) {
-            return new Response('The parameter lang must be on of ' . implode(',', Configuration::HADITH_LANG), Response::HTTP_BAD_REQUEST);
+            $lang = 'ar';
         }
 
         if (strpos($lang, "-") !== false) {

@@ -5,11 +5,9 @@ namespace AppBundle\EventListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class Request
+class ApiCallCounter
 {
-
     /**
      * @var TokenStorage
      */
@@ -28,13 +26,17 @@ class Request
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (!in_array($event->getRequest()->getHost(), ['mawaqit.local', 'localhost'])) {
+        $path = $event->getRequest()->getPathInfo();
+
+        if (strpos($path, "/api") !== 0) {
             return;
         }
 
-        $user = $this->em->getRepository('AppBundle:User')->findOneBy(['email' => 'local@local.com']);
-        $providerKey = 'main';
-        $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
-        $this->tokenStorage->setToken($token);
+        $token = $this->tokenStorage->getToken();
+        if (null !== $token) {
+            $user = $token->getUser();
+            $user->incrementApiCallNumber();
+            $this->em->flush();
+        }
     }
 }

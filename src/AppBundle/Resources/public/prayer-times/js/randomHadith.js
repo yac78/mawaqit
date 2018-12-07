@@ -54,6 +54,7 @@ var randomHadith = {
                 var $randomHadithEl = $(".random-hadith");
                 $.ajax({
                     url: $randomHadithEl.data("remote"),
+                    headers: {'Api-Access-Token' : $randomHadithEl.data("apiAccessToken")},
                     success: function (resp) {
                         if (resp.text !== "") {
                             $(".random-hadith .text div").text(resp.text);
@@ -61,7 +62,6 @@ var randomHadith = {
                         }
                     },
                     error: function () {
-                        randomHadith.hide();
                         var hadith = $(".random-hadith .text div").text();
                         if (hadith != "") {
                             randomHadith.show();
