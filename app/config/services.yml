@@ -102,6 +102,11 @@ services:
         arguments:
           - "@request_stack"
 
+    app.security.uuid_token_authenticator:
+        class: AppBundle\Security\UuidTokenAuthenticator
+        public: false
+
+
     # Commands
     app.clean_old_users_command:
         class: AppBundle\Command\CleanOldUsersCommand

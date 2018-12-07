@@ -8,14 +8,23 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username_email
+        api_user:
+            entity:
+              class: AppBundle\Entity\User
+              property: apiAccessToken
+
 
     firewalls:
+        api:
+            stateless: true
+            anonymous: true
+            pattern: ^/api
+            simple_preauth:
+                authenticator: app.security.uuid_token_authenticator
+            provider: api_user
         local:
             host: ^(mawaqit.local|localhost)$
             security: false
-        api:
-            pattern: ^/api
-            anonymous: true
         main:
             pattern: ^/
             anonymous: true
@@ -51,3 +60,4 @@ security:
         - { path: /admin/mosque/suspend, role: ROLE_ADMIN }
         # ROLE_USER for all rest of /admin routes
         - { path: /admin, role: ROLE_USER }
+        - { path: /api, role: ROLE_USER }
