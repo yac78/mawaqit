@@ -27,7 +27,7 @@ if [ "$env" == "prod" ]; then
 fi
 
 if [ "$env" == "pp" ]; then
-    git checkout $tag && git pull origin $tag
+    git fetch && git checkout $tag && git pull origin $tag
 fi
 
 version=$tag

@@ -37,7 +37,7 @@ if echo "$answer" | grep -iq "^y" ;then
     port="1983"
 
     git pull origin master
-    git push
+    git push origin $tag
 
     # create tag if prod
     if [ "$env" == "prod" ]; then
