@@ -12,10 +12,12 @@
                 <div class="form-group">
                     <label> {{ 'disabledOnly'|trans }}</label>
                     <input type="checkbox" {{ app.request.get('disabled') == 'on' ? "checked" : "" }} name="disabled">
+                    <label class="ml-2">Utilisateur api</label>
+                    <input type="checkbox" {{ app.request.get('api-users') == 'on' ? "checked" : "" }} name="api-users">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" value="{{ app.request.get('search') }}" class="form-control" name="search" placeholder="{{ 'search'|trans }}">
+                    <input type="text" value="{{ app.request.get('search') }}" class="form-control ml-2" name="search" placeholder="{{ 'search'|trans }}">
                 </div>
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             </form>
@@ -34,9 +36,12 @@
             <thead>
             <tr class="warning">
                 <th>{{ 'email'|trans }}</th>
+                <th>Api token</th>
+                <th>Api calls</th>
+                <th>Api use description</th>
                 <th class="text-center">{{ 'active'|trans }}</th>
                 <th>{{ 'creation_date'|trans }}</th>
-                <th></th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -46,6 +51,9 @@
                         <a href="{{ path('user_edit', {id: user.id}) }}">{{ user.email }}</a>
                         <a href="{{ path('mosque_index', {userId: user.id}) }}"> ({{ user.mosques|length }}) </a>
                     </td>
+                    <td>{{ user.apiAccessToken }}</td>
+                    <td>{% if user.apiQuota %} {{ user.apiCallNumber }} / {{ user.apiQuota }} {% endif %}</td>
+                    <td>{{ user.apiUseDescription|nl2br }}</td>
                     <td class="text-center">
                         <span class="fa fa-{{ user.enabled ? 'check' : 'close' }}"></span>
                     </td>

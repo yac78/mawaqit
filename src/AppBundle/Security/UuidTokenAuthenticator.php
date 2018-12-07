@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
@@ -53,9 +52,13 @@ class UuidTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
         $user = $userProvider->loadUserByUsername($apiAccessToken);
 
         if (!$user instanceof UserInterface) {
-            throw new CustomUserMessageAuthenticationException(
+            throw new AccessDeniedHttpException(
                 sprintf('No user found for token "%s".', $apiAccessToken)
             );
+        }
+
+        if (!$user->isEnabled()) {
+            throw new AccessDeniedHttpException('User not enabled');
         }
 
         $this->checkQuota($user);

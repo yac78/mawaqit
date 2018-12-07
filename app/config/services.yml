@@ -116,6 +116,13 @@ services:
         tags:
             - { name: 'console.command', command: 'app:clean-old-users' }
 
+    app.reset_api_counters.command:
+        class: AppBundle\Command\ResetApiCountersCommand
+        arguments:
+            - "@app.user_repository"
+        tags:
+            - { name: 'console.command', command: 'app:reset-api-counters' }
+
     app.clean_mosques_command:
         class: AppBundle\Command\CleanNotValidatedMosquesCommand
         arguments:
