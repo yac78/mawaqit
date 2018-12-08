@@ -11,3 +11,23 @@ $('#navigate').click(function (e) {
 
     window.open($url + prayer.confData.latitude + "," + prayer.confData.longitude + "&amp;ll=");
 });
+
+
+$("#search").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: $("#search").data("remote"),
+            dataType: "json",
+            data: {
+                term: request.term
+            },
+            success: function (data) {
+                response(data);
+            }
+        });
+    },
+    minLength: 2,
+    select: function (event, ui) {
+        window.location.href = 'https://mawaqit.net/fr/' + ui.item.slug;
+    }
+});

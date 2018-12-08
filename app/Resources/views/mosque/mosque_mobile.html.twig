@@ -10,6 +10,7 @@
 
     {% stylesheets
         "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+        "bundles/app/jquery/css/jquery-ui.min.css"
         "bundles/app/css/fonts.css"
         "bundles/app/font-awesome/css/font-awesome.min.css"
         "bundles/app/prayer-times/css/main.css"
@@ -56,6 +57,9 @@
 {% include 'partial/jumua-dhikr-reminder.html.twig' %}
 
 <div id="main" class="main mobile display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
+
+    <input type="text" id="search" placeholder="{{ 'searchOtherMosque'|trans }}" data-remote="{{ path('public_mosque_search_ajax') }}">
+
     <div class="header ar">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
 
     <div class="top-content">
@@ -274,6 +278,7 @@
 
 {% javascripts
     '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+    '@AppBundle/Resources/public/jquery/js/jquery-ui.min.js'
     '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
     '@AppBundle/Resources/public/js/tools.js'
     '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
