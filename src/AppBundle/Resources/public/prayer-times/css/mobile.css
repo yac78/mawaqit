@@ -328,7 +328,7 @@ small {
 }
 
 #search {
-    background: #FFFFFF url(/bundles/app/img/search-icon.png) no-repeat 7px center;
+    background: #FFFFFF url(/bundles/app/img/search-icon.png) no-repeat 6px center;
     outline: none;
     font-family: inherit;
     font-size: 120%;
@@ -379,4 +379,6 @@ small {
 
 .ui-autocomplete {
     width: 95%;
+    background-color: #cccccc;
+    border-radius: 5px;
 }
