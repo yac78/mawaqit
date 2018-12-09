@@ -201,7 +201,9 @@
 
     {% if mosque.mosque %}
         <div class="mt-1">
-            <a class="text-muted" href="mailto:{{ postmasterAddress }}?subject=Infos incorrects - {{ mosque.title }} (ID {{ mosque.id }})&body={{ 'incorrectsInfos.mailBody'|trans }}">
+            <a class="text-muted"
+               href="mailto:{{ mosque.user.email }}?subject=Mawaqit | Infos incorrects - {{ mosque.title }} (ID {{ mosque.id }})
+               &body={{ 'incorrectsInfos.mailBody'|trans({'%link%': url('mosque', {'slug': mosque.slug}, true)}) }}">
                 {{ 'incorrectsInfos.title'|trans }}
             </a>
         </div>

@@ -455,7 +455,7 @@ incorrectsInfos:
   title:  Incorrect prayer times or information alert us !
   mailBody: |
     Essalamu alaykum%0D%0A
-    I noticed errors in the prayer times or the information of the mosque, and more precisely :
+    I noticed errors in the prayer times or the information of the mosque https:%link%, and more precisely :
     %0D%0A%0D%0A- Your message here -%0D%0A%0D%0A
     cordially
 

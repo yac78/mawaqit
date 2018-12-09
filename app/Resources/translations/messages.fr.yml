@@ -697,7 +697,7 @@ incorrectsInfos:
   title:  Horaires ou informations incorrects alertez-nous !
   mailBody: |
     Essalamu alaykum%0D%0A
-    J'ai remarqué des erreurs dans les horaires ou les informations de la mosquée, et plus précisément :
+    J'ai remarqué des erreurs dans les horaires ou les informations de la mosquée https:%link%, et plus précisément :
     %0D%0A%0D%0A- Votre message ici -%0D%0A%0D%0A
     Cordialement
 

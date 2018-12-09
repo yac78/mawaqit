@@ -9,15 +9,14 @@
     <div class="row mt-2">
         <div class="col-md-8 col-xs-12 text-left">
             <form action="{{ path('user_index') }}" class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <label> {{ 'disabledOnly'|trans }}</label>
-                    <input type="checkbox" {{ app.request.get('disabled') == 'on' ? "checked" : "" }} name="disabled">
-                    <label class="ml-2">Utilisateur api</label>
-                    <input type="checkbox" {{ app.request.get('api-users') == 'on' ? "checked" : "" }} name="api-users">
+                <div class="form-group ml-1">
+                    <label> <input class="form-control" type="checkbox" {{ app.request.get('disabled') == 'on' ? "checked" : "" }} name="disabled"> {{ 'disabledOnly'|trans }}</label>
                 </div>
-
-                <div class="form-group">
-                    <input type="text" value="{{ app.request.get('search') }}" class="form-control ml-2" name="search" placeholder="{{ 'search'|trans }}">
+                <div class="form-group ml-1">
+                    <label><input class="form-control" type="checkbox" {{ app.request.get('api-users') == 'on' ? "checked" : "" }} name="api-users"> Utilisateur api</label>
+                </div>
+                <div class="form-group ml-1">
+                    <input type="text" value="{{ app.request.get('search') }}" class="form-control" name="search" placeholder="{{ 'search'|trans }}">
                 </div>
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             </form>
