@@ -11,7 +11,7 @@ fi
 env=$1
 tag=$(git branch | grep \* | cut -d ' ' -f2)
 
-if [ "tag" == "master" ]; then
+if [ "$tag" == "master" ]; then
     git pull
     git push
 fi
