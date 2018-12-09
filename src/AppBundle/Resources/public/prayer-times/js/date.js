@@ -77,9 +77,6 @@ var dateTime = {
      */
     getCurrentDate: function (lang) {
         var date = new Date();
-        if (lang === 'ar') {
-            return addZero(this.getCurrentDay()) + "/" + this.getCurrentMonthText() + "/" + date.getFullYear();
-        }
         var options = {weekday: "long", year: "numeric", month: "short", day: "numeric"}
         lang  = lang + '-' + lang.toUpperCase();
         try {
