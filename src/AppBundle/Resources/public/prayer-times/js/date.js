@@ -78,7 +78,14 @@ var dateTime = {
     getCurrentDate: function (lang) {
         var date = new Date();
         var options = {weekday: "long", year: "numeric", month: "short", day: "numeric"}
-        lang  = lang + '-' + lang.toUpperCase();
+
+        if (lang === 'ar') {
+            options = {month: "short"};
+            return addZero(date.getDate())  + ' ' + date.toLocaleDateString(lang, options) + ' ' + date.getFullYear();
+        }
+
+        lang = lang + '-' + lang.toUpperCase();
+
         try {
             return date.toLocaleDateString(lang, options).firstCapitalize();
         } catch (e) {
@@ -101,7 +108,7 @@ var dateTime = {
      */
     isDst: function (tomorrow) {
         var date = new Date();
-        if(tomorrow === true){
+        if (tomorrow === true) {
             date = dateTime.tomorrow();
         }
 
@@ -124,7 +131,7 @@ var dateTime = {
      */
     formatTime: function (time, timeDisplayFormat) {
 
-        if(timeDisplayFormat === "24"){
+        if (timeDisplayFormat === "24") {
             return time;
         }
 
