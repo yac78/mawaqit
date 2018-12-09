@@ -11,6 +11,11 @@ fi
 env=$1
 tag=$(git branch | grep \* | cut -d ' ' -f2)
 
+if [ "tag" == "master" ]; then
+    git pull
+    git push
+fi
+
 if [ "$env" != "pp" ] && [ "$env" != "prod" ] ; then
     echo "wrong env $env"
 fi
@@ -35,9 +40,6 @@ fi
 if echo "$answer" | grep -iq "^y" ;then
     server="137.74.45.69"
     port="1983"
-
-    git pull origin master
-    git push origin $tag
 
     # create tag if prod
     if [ "$env" == "prod" ]; then
