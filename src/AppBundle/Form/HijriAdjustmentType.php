@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,11 +18,14 @@ class HijriAdjustmentType extends AbstractType
         $builder
             ->add('hijriAdjustment', ChoiceType::class, [
                 'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
-                'label' => false,
+                'label' => 'Ajustement',
                 'placeholder' => 'Choisir une valeur',
-                'required' =>  true
             ])
-
+            ->add('country', CountryType::class, [
+                'placeholder' => 'Tout pays',
+                'label' => 'country',
+                'required' =>  false
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [

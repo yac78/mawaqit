@@ -8,16 +8,14 @@
     {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
-        <div class="col-md-4 mt-3">
-            <p>Forcer le rechargement de l'écran de toutes les mosquées et domiciles</p>
-            <a href="{{ path('mosque_force_update_all') }}" class="btn btn-primary">{{ 'mosque.force_update_all.action'|trans }}</a>
+        <div class="col-md-5 mt-3">
+            <h3>Ajuster la date hégirienne de toutes les mosquées et domiciles</h3>
+            {{ form(hijriForm) }}
         </div>
-        <div class="col-md-4 mt-3">
-            <p>Ajuster la date hégirienne de toutes les mosquées et domiciles</p>
-            {{ form_start(hijriForm, {action: path('update_hijri_date'), attr: { class : "navbar-form navbar-left"}}) }}
-                {{ form_widget(hijriForm.hijriAdjustment) }}
-                {{ form_widget(hijriForm.save) }}
-            {{ form_end(hijriForm) }}
+        <div class="col-md-2 mt-3"></div>
+        <div class="col-md-5 mt-3">
+            <h3>Forcer le rechargement</h3>
+            <a href="{{ path('mosque_force_update_all') }}" class="btn btn-primary">{{ 'mosque.force_update_all.action'|trans }}</a>
         </div>
     </div>
 {% endblock %}

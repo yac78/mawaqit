@@ -19,8 +19,7 @@ class ToolsController extends Controller
      */
     public function indexAction()
     {
-        $form = $this->createForm(HijriAdjustmentType::class);
-
+        $form = $this->createForm(HijriAdjustmentType::class, null, ['action' => $this->generateUrl('update_hijri_date')]);
         return $this->render('tools/index.html.twig', [
             'hijriForm' => $form->createView()
         ]);
@@ -57,7 +56,7 @@ class ToolsController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->getRepository("AppBundle:Configuration")->updateHijriDate($form->get('hijriAdjustment')->getData());
+            $em->getRepository("AppBundle:Configuration")->updateHijriDate($form->getData());
             $this->addFlash('success',"mosque.update_hijri_date.success");
             return $this->redirectToRoute('admin_index');
         }

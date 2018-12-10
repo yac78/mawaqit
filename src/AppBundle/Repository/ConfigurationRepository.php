@@ -10,20 +10,30 @@ namespace AppBundle\Repository;
  */
 class ConfigurationRepository extends \Doctrine\ORM\EntityRepository
 {
-
     /**
      * Update hijri date for all mosques
      */
-    function updateHijriDate($adjustment)
+    function updateHijriDate($data)
     {
         $qb = $this->createQueryBuilder("c")
             ->update()
             ->set("c.hijriAdjustment", ":adjustment")
             ->set("c.updated", ":date")
             ->setParameters([
-                ":adjustment" => $adjustment,
+                ":adjustment" => $data['hijriAdjustment'],
                 ":date" => new \DateTime()
             ]);
+
+        if ($data['country']) {
+            $subQuert = $this->_em->createQueryBuilder()
+                ->select('IDENTITY(m.configuration)')
+                ->from('AppBundle:Mosque', 'm')
+                ->where('m.country = :country');
+
+            $qb->where($qb->expr()->in('c.id', $subQuert->getDQL()))
+                ->setParameter(':country', $data['country']);
+        }
+
         $qb->getQuery()->execute();
     }
 }
