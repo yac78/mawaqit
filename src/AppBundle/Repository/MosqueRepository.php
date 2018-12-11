@@ -15,10 +15,10 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
      * @param User $user
-     * @param array $search
+     * @param array|null $search
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function search(User $user, array $search)
+    function search(User $user, $search)
     {
         $qb = $this->createQueryBuilder("m")
             ->leftJoin("m.user", "u", "m.user_id = u.id");

@@ -124,7 +124,7 @@ class DefaultController extends Controller
     /**
      * get cities by country
      * @param $country
-     * @Route("/cities/{country}", name="cities_country_ajax")
+     * @Route("/cities/{country}", name="cities_country_ajax", options={"i18n"="false"})
      * @return JsonResponse
      */
     public function citiesByCountryAjaxAction($country)

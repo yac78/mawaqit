@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\EmailType;
+use AppBundle\Form\UserSearchType;
 use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,12 +24,17 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $search = $request->query->all();
         $em = $this->getDoctrine()->getManager();
-        $qb = $em->getRepository("AppBundle:User")->search($search);
+
+        $form = $this->createForm(UserSearchType::class);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository("AppBundle:User")->search($form->getData());
+
         $paginator = $this->get('knp_paginator');
         $users = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
         return $this->render('user/index.html.twig', [
+            "form" => $form->createView(),
             "users" => $users
         ]);
     }

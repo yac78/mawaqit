@@ -29,15 +29,17 @@ class MosqueController extends Controller
     public function indexAction(Request $request)
     {
 
-        $search = $request->query->all();
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
-        $qb = $mosqueRepository->search($user, $search);
+
+        $form = $this->createForm(MosqueSearchType::class);
+        $form->handleRequest($request);
+
+        $qb = $mosqueRepository->search($user, $form->getData());
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
-        $form = $this->createForm(MosqueSearchType::class);
 
         $result = [
             "form" => $form->createView(),

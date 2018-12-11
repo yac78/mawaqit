@@ -15,7 +15,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
      * @param $filter
      * @return \Doctrine\ORM\QueryBuilder
      */
-    function search(array $filter)
+    function search($filter)
     {
         $qb = $this->createQueryBuilder("u")
             ->orderBy("u.id", "DESC");
@@ -29,7 +29,11 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             $qb->andWhere("u.apiAccessToken IS NOT NULL");
         }
 
-        if (isset($filter["disabled"]) && $filter["disabled"] === "on") {
+        if (!empty($filter["admin"])) {
+            $qb->andWhere("u.roles LIKE '%ROLE_ADMIN%'");
+        }
+
+        if (isset($filter["disabled"]) && $filter["disabled"] === true) {
             $qb->andWhere("u.enabled = 0");
         }
         return $qb;
