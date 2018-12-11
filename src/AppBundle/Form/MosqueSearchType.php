@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -90,6 +91,8 @@ class MosqueSearchType extends AbstractType
 
                 ]
             ]);
+
+        $builder->get('city')->resetViewTransformers();
     }
 
     public function configureOptions(OptionsResolver $resolver)
