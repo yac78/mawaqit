@@ -34,6 +34,7 @@ class UserSearchType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'class' => 'btn btn-default ml-1 fa fa-search',
+                    'style' => 'padding:0.9rem',
                 ]
             ])
         ;

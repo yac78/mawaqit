@@ -152,7 +152,6 @@ class ConfigurationType extends AbstractType
             ])
             ->add('waitingTimes', PrayerType::class, [
                 'sub_options' => [
-                    'required' => true,
                     'type' => IntegerType::class,
                     'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                     'attr' => [
@@ -161,7 +160,6 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('adjustedTimes', PrayerType::class, [
-                'required' => true,
                 'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
                 'sub_options' => [
                     'type' => ChoiceType::class,
@@ -186,7 +184,6 @@ class ConfigurationType extends AbstractType
                 'sub_options' => [
                     'type' => IntegerType::class,
                     'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
-                    'required' => true,
                     'attr' => [
                         'min' => 5
                     ]
@@ -199,14 +196,12 @@ class ConfigurationType extends AbstractType
                 'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
             ])
             ->add('timezone', ChoiceType::class, [
-                'required' => true,
                 'choices' => array_flip(self::$timezones),
                 'attr' => [
                     'help' => 'configuration.form.timezone.title',
                 ],
             ])
             ->add('dst', ChoiceType::class, [
-                'required' => true,
                 'choices' => self::$dstChoices,
                 'attr' => [
                     'help' => 'configuration.form.dst.title',
@@ -229,11 +224,9 @@ class ConfigurationType extends AbstractType
                 ],
             ])
             ->add('hadithLang', ChoiceType::class, [
-                'required' => true,
                 'choices' => array_combine(Configuration::HADITH_LANG, Configuration::HADITH_LANG),
             ])
             ->add('asrMethod', ChoiceType::class, [
-                'required' => true,
                 'choices' => [
                     "configuration.form.asrMethod.Standard" => "Standard",
                     "configuration.form.asrMethod.Hanafi" => "Hanafi",
@@ -263,7 +256,6 @@ class ConfigurationType extends AbstractType
                 ],
             ])
             ->add('wakeAzanVoice', ChoiceType::class, [
-                'required' => true,
                 'choices' => [
                     "configuration.form.wakeAzanVoice.haram" => "adhan-maquah",
                     "configuration.form.wakeAzanVoice.algeria" => "adhan-algeria",
@@ -281,11 +273,9 @@ class ConfigurationType extends AbstractType
                 ],
             ])
             ->add('sourceCalcul', ChoiceType::class, [
-                'required' => true,
                 'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
             ])
             ->add('prayerMethod', ChoiceType::class, [
-                'required' => true,
                 'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
             ])
             ->add('fajrDegree', IntegerType::class, [
@@ -328,8 +318,8 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('ishaFixation', ChoiceType::class, [
+                'required' => false,
                 'placeholder' => 'select_a_value',
-                'required' => true,
                 'choices' => [
                     '1h05' => 65,
                     '1h10' => 70,
@@ -374,7 +364,6 @@ class ConfigurationType extends AbstractType
                 'label' => 'configuration.form.footer.label'
             ])
             ->add('timeDisplayFormat', ChoiceType::class, [
-                'required' => true,
                 'choices' => ["24h" => "24", "12h" => "12"],
                 'constraints' => [
                     new Choice(['choices' => ["24", "12"]]),
@@ -386,7 +375,6 @@ class ConfigurationType extends AbstractType
                 )
             ])
             ->add('backgroundType', ChoiceType::class, [
-                'required' => true,
                 'choices' => ["color" => "color", "motif" => "motif"],
                 'constraints' => [
                     new Choice(['choices' => ["color", "motif"]]),
@@ -394,7 +382,6 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('backgroundMotif', ChoiceType::class, [
-                'required' => true,
                 'choices' => range(1, 20),
                 'constraints' => [
                     new NotBlank(),
