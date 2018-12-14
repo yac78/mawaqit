@@ -21,4 +21,8 @@
         '@AppBundle/Resources/public/js/mosque_edit.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    {% if mosque is defined and is_granted('ROLE_ADMIN') and isNotLocal()%}
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap"></script>
+    {% endif %}
 {% endblock %}

@@ -90,7 +90,7 @@
 
     {% if isNotLocal() %}
         <div class="mosque-block hidden">
-            <div class="col-md-3 ">
+            <div class="col-md-6 ">
                 {% if is_granted('ROLE_ADMIN') or mosque is not defined or not mosque.validated %}
                     <div class="block-image">
                         {{ form_row(form.justificatoryFile) }}
@@ -126,6 +126,14 @@
                     {% endif %}
                 {% endif %}
             </div>
+
+            {% if mosque is defined and is_granted('ROLE_ADMIN') and isNotLocal() %}
+                <div class="col-md-6">
+                    <h4>Cliquez pour corriger la position GPS</h4>
+                    <div id="map" style="width: 100%; height: 500px"></div>
+                </div>
+            {% endif %}
+
         </div>
     {% endif %}
 </div>

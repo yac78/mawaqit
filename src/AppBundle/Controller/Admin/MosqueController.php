@@ -86,6 +86,7 @@ class MosqueController extends Controller
 
         return $this->render('mosque/create.html.twig', [
             'form' => $form->createView(),
+            "google_maps_api_key" => $this->getParameter('google_maps_api_key')
         ]);
     }
 
@@ -119,7 +120,8 @@ class MosqueController extends Controller
         }
         return $this->render('mosque/edit.html.twig', [
             'mosque' => $mosque,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            "google_maps_api_key" => $this->getParameter('google_maps_api_key')
         ]);
     }
 

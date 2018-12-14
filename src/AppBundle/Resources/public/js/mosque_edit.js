@@ -38,3 +38,19 @@ $("#type").bind("change", function (event) {
 });
 
 typeDisplayHandler();
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 2,
+        center: {lat: 48, lng: 3},
+        streetViewControl: false,
+        mapTypeControl: false,
+        fullscreenControl: false
+    });
+    new google.maps.Marker({position: {lat: parseFloat($("#latitude").val()), lng: parseFloat($("#longitude").val())}, map: map});
+    google.maps.event.addListener(map, "click", function (e) {
+        var latLng = e.latLng;
+        $("#latitude").val(latLng.lat());
+        $("#longitude").val(latLng.lng());
+    });
+}
