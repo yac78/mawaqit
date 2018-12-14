@@ -23,27 +23,6 @@
 </head>
 <body class="text-center">
 
-{% if mosque.isMosque %}
-    <div class="toggle"><i class="fa fa-bell"></i></div>
-    <div class="toggle-number">{{ messages|length }}</div>
-
-    <div class="sidebar">
-        <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
-        {% for message in messages %}
-            <div class="notibox">
-                <h4>{{ message.title }}</h4>
-                <p>{{ message.content|raw }}</p>
-                {% if message.image is not empty %}
-                    <img src="/upload/{{ message.image }}" alt="{{ message.title }}"/>
-                {% endif %}
-                {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
-            </div>
-        {% else %}
-            <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
-        {% endfor %}
-    </div>
-{% endif %}
-
 <div id="spinner"></div>
 
 <!-- Iqama screen -->
@@ -57,6 +36,27 @@
 {% include 'partial/jumua-dhikr-reminder.html.twig' %}
 
 <div id="main" class="main mobile display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
+
+    {% if mosque.isMosque %}
+        <div class="toggle"><i class="fa fa-bell"></i></div>
+        <div class="toggle-number">{{ messages|length }}</div>
+
+        <div class="sidebar">
+            <h3>{{ 'your_mosque_informs_you'|trans }}</h3>
+            {% for message in messages %}
+                <div class="notibox">
+                    <h4>{{ message.title }}</h4>
+                    <p>{{ message.content|raw }}</p>
+                    {% if message.image is not empty %}
+                        <img src="/upload/{{ message.image }}" alt="{{ message.title }}"/>
+                    {% endif %}
+                    {#<div class="cancel" data-id="{{ message.id }}">✕</div>#}
+                </div>
+            {% else %}
+                <h2 class="text-muted">{{ 'no_notif'|trans }}</h2>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <input type="text" id="search" placeholder="{{ 'searchOtherMosque'|trans }}" data-remote="{{ path('public_mosque_search_ajax') }}">
 
@@ -223,7 +223,9 @@
                         <div><span class="fa fa-{{ mosque.ablutions ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ablutions.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.adultCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.adultCourses.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.childrenCourses ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.childrenCourses.label'|trans }}</div>
-                        <div><span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}</div>
+                        <div>
+                            <span class="fa fa-{{ mosque.handicapAccessibility ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.handicapAccessibility.label'|trans }}
+                        </div>
                     </div>
                     <div class="col-xs-6">
                         <div><span class="fa fa-{{ not mosque.configuration.noJumua ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'jumuaPrayer'|trans }}</div>
