@@ -36,7 +36,8 @@ class MosqueController extends Controller
         $form = $this->createForm(MosqueSearchType::class);
         $form->handleRequest($request);
 
-        $qb = $mosqueRepository->search($user, $form->getData());
+        $filter = array_merge($request->query->all(), (array)$form->getData());
+        $qb = $mosqueRepository->search($user, $filter);
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
