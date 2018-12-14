@@ -60,14 +60,14 @@
 
     <input type="text" id="search" placeholder="{{ 'searchOtherMosque'|trans }}" data-remote="{{ path('public_mosque_search_ajax') }}">
 
-    <div class="header ar">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
+    <div class="header {{ app.request.locale == 'ar' ? 'rtl' }}">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
 
     <div class="top-content">
         <div class="time"></div>
         {% if mosque.configuration.hijriDateEnabled %}
             <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
         {% endif %}
-        <div class="gregorianDate" {{ app.request.locale == 'ar' ? 'style="direction: rtl"' }}></div>
+        <div class="gregorianDate {{ app.request.locale == 'ar' ? 'rtl' }}"></div>
     </div>
 
     {% if mosque.flashMessage.available %}

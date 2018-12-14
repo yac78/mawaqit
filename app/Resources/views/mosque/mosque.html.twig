@@ -94,7 +94,7 @@
                 <i style="color: #FFF;"></i> <span></span><sup>°C</sup>
             </div>
         {% endif %}
-        <div class="header">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
+        <div class="header {{ app.request.locale == 'ar' ? 'rtl' }}">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
 
         <!-- Adhan flash -->
         <div class="main-iqama-countdown hidden">
@@ -149,7 +149,7 @@
                     {% if mosque.configuration.hijriDateEnabled %}
                         <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
                     {% endif %}
-                    <div class="gregorianDate" {{ app.request.locale == 'ar' ? 'style="direction: rtl"' }}></div>
+                    <div class="gregorianDate {{ app.request.locale == 'ar' ? 'rtl' }}"></div>
                 </div>
             </div>
             <div class="col-md-3 joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
@@ -210,7 +210,7 @@
 
         <div class="{{ not mosque.configuration.footer ? 'hidden' : '' }}">
             {% if url is defined %}
-                <div class="site">
+                <div class="site {{ app.request.locale == 'ar' ? 'rtl' }}">
                     {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
                 </div>
             {% endif %}

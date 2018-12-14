@@ -336,7 +336,7 @@ small {
     padding: 9px;
     border-radius: 10em;
     transition: all .7s;
-    position: fixed;
+    position: absolute;
     right: 5px;
     top: 15px;
     width: 12px;

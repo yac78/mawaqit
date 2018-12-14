@@ -6,6 +6,10 @@ body {
     font-family: 'koufi', Arial, Helvetica, sans-serif;
 }
 
+.rtl{
+    direction: rtl;
+}
+
 .mt-1 {
     margin-top: 1rem;
 }
