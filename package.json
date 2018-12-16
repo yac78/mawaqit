@@ -1,0 +1,10 @@
+{
+    "private": true,
+    "engines": {
+        "node": "6.*",
+        "npm": "5.*"
+    },
+    "dependencies": {
+        "sw-toolbox": "^3.6.0"
+    }
+}

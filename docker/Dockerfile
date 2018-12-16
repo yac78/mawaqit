@@ -32,6 +32,11 @@ RUN \
   php7.1-zip \
   php7.1-imagick
 
+# install node-js
+RUN curl --silent --location https://deb.nodesource.com/setup_6.x | bash - &&\
+    apt-get install --yes nodejs &&\
+    npm install -g npm@5
+
 # install composer
 RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN chmod +x /usr/local/bin/composer
