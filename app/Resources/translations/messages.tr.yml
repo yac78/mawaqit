@@ -24,4 +24,11 @@ duaBetweenAthanAndIqama:
         Enes b. Mâlik (r.a.)'den rivâyet edildiğine göre, Rasûlullah (s.a.v.) şöyle buyurdu:
         Ezan ile kamet arasında yapılan dua geri çevrilmez.
 
+jumuaReminder:
+    text: |
+        Le Prophète (que la prière d'Allah et son salut soient sur lui) a dit
+        "Celui qui fait les ablutions parfaitement puis se rend au jumu'a puis écoute et se tait,
+        il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
+        et celui qui touche des cailloux a certes fait une futilité"
+
 searchOtherMosque: Başka bir camiye bak
