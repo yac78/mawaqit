@@ -280,15 +280,18 @@
     var confData = {{ confData|raw }};
     var lang = '{{ app.request.locale }}';
 
-    // if ('serviceWorker' in navigator) {
-    //     try {
-    //         navigator.serviceWorker.register('/sw.js', {scope: '/'});
-    //         console.log('SW registered');
-    //     } catch (error) {
-    //         console.log('SW failed');
-    //     }
-    // }
-
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(
+                function (registration) {
+                    console.log('SW registered with scope ', registration.scope);
+                },
+                function (err) {
+                    console.log('SW failed ', err);
+                }
+            );
+        });
+    }
 </script>
 
 {% javascripts
