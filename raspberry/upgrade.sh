@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# disable upgrade temporrly
+exit 0;
+
 cd /home/pi/mawaqit
 
 wget -q --spider http://google.com
