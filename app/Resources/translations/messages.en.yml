@@ -597,3 +597,6 @@ announcements: Announcements
 expired: Expired on
 expire: Expire on
 searchOtherMosque: Look for another mosque
+
+prayerTimeIn10MinTitle: "Al-Adhan in 10 min"
+prayerTimeIn10MinBody: "You still have 10 minutes to go to mosque and pray in group inshAllah"

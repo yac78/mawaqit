@@ -284,6 +284,8 @@
     var latitude = {{ mosque.latitude }};
     var confData = {{ confData|raw }};
     var lang = '{{ app.request.locale }}';
+    var prayerTimeIn10MinTitle = '{{ 'prayerTimeIn10MinTitle'|trans }}';
+    var prayerTimeIn10MinBody = '{{ 'prayerTimeIn10MinBody'|trans }}';
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -303,6 +305,7 @@
     '@AppBundle/Resources/public/prayer-times/js/date.js'
     '@AppBundle/Resources/public/prayer-times/js/prayer.js'
     '@AppBundle/Resources/public/prayer-times/js/notif.js'
+    '@AppBundle/Resources/public/prayer-times/js/push_notif.js'
     '@AppBundle/Resources/public/prayer-times/js/mobile.js'
     '@AppBundle/Resources/public/prayer-times/js/common.js'
     '@AppBundle/Resources/public/prayer-times/js/main_mobile.js' %}

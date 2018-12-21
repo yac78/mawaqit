@@ -498,6 +498,16 @@ var prayer = {
                 if (!prayer.adhan.isFlashing) {
                     var currentTime = dateTime.getCurrentTime()
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
+
+                        if(prayer.isMobile()){
+                            var currentTimeStamp = (new Date()).getTime();
+                            var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+                            var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
+                            if (currentTimeStamp === tenMinBeforAdhan) {
+                                MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
+                            }
+                        }
+
                         if (time === currentTime) {
                             // if jumua and mosque type we don't flash adhan
                             if (prayer.isJumua(currentPrayerIndex) && prayer.isMosque) {
