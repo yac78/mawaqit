@@ -194,7 +194,12 @@
             <div class="col-xs-4 col-xs-offset-1 aid custom-time aid-id {{ ampmClass }}"></div>
             {% if not mosque.configuration.noJumua %}
                 <div class="col-xs-2"></div>
-                <div class="col-xs-4 prayer joumouaa-id {{ ampmClass }}"></div>
+                <div class="col-xs-4 prayer">
+                    <div class="joumouaa-id"></div>
+                    {% if mosque.configuration.jumuaTime2 is not null %}
+                        <div class="joumouaa2-id"></div>
+                    {% endif %}
+                </div>
                 <div class="col-xs-1"></div>
             {% endif %}
         </div>

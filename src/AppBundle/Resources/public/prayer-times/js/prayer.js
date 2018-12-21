@@ -731,7 +731,7 @@ var prayer = {
         // if joumouaa we hilight joumouaa time
         if (prayer.isJumua(prayerIndex)) {
             $(".joumouaa > div").addClass("text-hilighted");
-            $(".joumouaa .prayer").addClass("prayer-hilighted");
+            $(".joumouaa-id, .joumouaa2-id").addClass("prayer-hilighted");
             if (prayer.isMosque) {
                 return;
             }
@@ -951,7 +951,7 @@ var prayer = {
     setSpecialTimes: function () {
         // jumua
         $(".joumouaa-id").html(prayer.formatTime(this.getJumuaTime()));
-        $(".joumouaa2-id > span").text(prayer.formatTime(prayer.confData.jumuaTime2));
+        $(".joumouaa2-id").html(prayer.formatTime(prayer.confData.jumuaTime2));
 
         // if aid time enabled we set/show it
         $(".aid-id").html(prayer.formatTime(this.confData.aidTime));
