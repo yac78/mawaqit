@@ -497,21 +497,19 @@ var prayer = {
         initFlash: function () {
             setInterval(function () {
                 if (!prayer.adhan.isFlashing) {
-                    var currentTime = dateTime.getCurrentTime()
+                    var currentTime = dateTime.getCurrentTime();
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-
                         if(prayer.isMobile()){
-                            var currentTimeStamp = (new Date()).getTime();
+                            var options = {hour: '2-digit', minute: '2-digit'};
                             var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
                             var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-                            if (!prayer.adhan.hasNotified && currentTimeStamp === tenMinBeforAdhan) {
+                            tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr',  options);
+                            if (!prayer.adhan.hasNotified && currentTime === tenMinBeforAdhan) {
                                 prayer.adhan.hasNotified = true;
                                 MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
-
                                 setTimeout(function () {
                                     prayer.adhan.hasNotified = false;
                                 }, 2 * prayer.oneMinute);
-
                             }
                         }
 

@@ -64,12 +64,12 @@ var dateTime = {
      */
     getCurrentTime: function (withSeconds) {
         var date = new Date();
-        var second = addZero(date.getSeconds());
-        var time = this.getCurrentHour() + ':' + this.getCurrentMinute();
-        if (withSeconds === true) {
-            time += ':' + second;
+        var options = {hour: '2-digit', minute: '2-digit'};
+        if(withSeconds){
+            options.second = '2-digit';
         }
-        return time;
+
+        return date.toLocaleString('fr',  options);
     },
     /**
      * get current gregorian date
