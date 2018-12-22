@@ -493,6 +493,7 @@ var prayer = {
      */
     adhan: {
         isFlashing: false,
+        hasNotified: false,
         initFlash: function () {
             setInterval(function () {
                 if (!prayer.adhan.isFlashing) {
@@ -503,8 +504,14 @@ var prayer = {
                             var currentTimeStamp = (new Date()).getTime();
                             var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
                             var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-                            if (currentTimeStamp === tenMinBeforAdhan) {
+                            if (!prayer.adhan.hasNotified && currentTimeStamp === tenMinBeforAdhan) {
+                                prayer.adhan.hasNotified = true;
                                 MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
+
+                                setTimeout(function () {
+                                    prayer.adhan.hasNotified = false;
+                                }, 2 * prayer.oneMinute);
+
                             }
                         }
 
