@@ -1,9 +1,11 @@
 var MawaqitNotification = {
     getPermision: function () {
-        Notification.requestPermission();
+        if ('Notification' in window) {
+            Notification.requestPermission();
+        }
     },
     showNotification: function (title, body) {
-        if (Notification.permission == 'granted') {
+        if ('Notification' in window && Notification.permission === 'granted') {
             navigator.serviceWorker.getRegistration().then(function (reg) {
                 var options = {
                     body: body,
