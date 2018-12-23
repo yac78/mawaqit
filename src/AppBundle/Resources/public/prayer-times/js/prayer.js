@@ -69,6 +69,10 @@ var prayer = {
      * check for update every 1 minute
      */
     initUpdateConfData: function () {
+        if(typeof isLocal !== 'undefined' && isLocal){
+            return;
+        }
+
         var remote = $("#main").data("remote");
         setInterval(function () {
             $.ajax({

@@ -237,7 +237,7 @@
             {% endif %}
         </div>
         <div class="version">v{{ version }}</div>
-        {% if mosque.isMosque %}
+        {% if mosque.isMosque and isNotLocal() %}
             <div id="mosque-id" style="{{ mosque.configuration.urlQrCodeEnabled ? 'left:130px;' : '' }}">#{{ mosque.id }}</div>
         {% endif %}
     </div>
@@ -251,6 +251,7 @@
     var latitude = {{ mosque.latitude }};
     var confData = {{ confData|raw }};
     var lang = '{{ app.request.locale }}';
+    var isLocal = {{ isLocal()|json_encode|raw }};
 </script>
 
 {% javascripts
