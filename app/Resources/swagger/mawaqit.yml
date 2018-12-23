@@ -187,6 +187,7 @@ definitions:
       - times
       - iqama
       - fixedTimes
+      - flashMessage
       - announcements
     properties:
       id:
