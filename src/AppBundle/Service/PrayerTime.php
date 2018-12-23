@@ -34,21 +34,16 @@ class PrayerTime
         return $mosque->getUpdated() > $lastUpdatedDate;
     }
 
-    /**
-     * transforme json calendar in csv files and compress theme in a zip file
-     * @param Mosque $mosque
-     * @return string the path of the zip file
-     */
-    function getFilesFromCalendar(Mosque $mosque)
+    function getCalendar(Mosque $mosque)
     {
         $conf = $mosque->getConfiguration();
 
-        if ($conf->isApi()) {
-            $path = $this->cacheDir . "/" . $mosque->getId();
-            if (!is_dir($path)) {
-                mkdir($path);
-            }
+        if ($conf->isCalendar()) {
+            $calendar = $conf->getCalendar();
+        }
 
+        if ($conf->isApi()) {
+            $calendar = [];
             if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
                 $this->praytime->setCalcMethod($conf->getPrayerMethod());
             }
@@ -60,38 +55,42 @@ class PrayerTime
             $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
 
             foreach (Calendar::MONTHS as $monthIndex => $days) {
-                $str = "Day,Fajr,Shuruk,Duhr,Asr,Maghrib,Isha\n";
                 for ($day = 1; $day <= $days; $day++) {
                     $date = strtotime(date('Y') . '-' . ($monthIndex + 1) . '-' . $day);
                     $prayers = $this->praytime->getPrayerTimes($date, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
+                    $calendar[$monthIndex][$day] = $prayers;
+                }
+            }
+        }
+        return $calendar;
+    }
+
+
+    /**
+     * transforme json calendar in csv files and compress theme in a zip file
+     * @param Mosque $mosque
+     * @return string the path of the zip file
+     */
+    function getFilesFromCalendar(Mosque $mosque)
+    {
+        $calendar = $this->getCalendar($mosque);
+
+        if (is_array($calendar)) {
+            $path = $this->cacheDir . "/" . $mosque->getId();
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+            foreach ($calendar as $key => $monthIndex) {
+                $str = "Day,Fajr,Shuruk,Duhr,Asr,Maghrib,Isha\n";
+                foreach ($monthIndex as $day => $prayers) {
                     $str .= "$day," . implode(",", $prayers) . "\n";
                 }
-                $fileName = str_pad($monthIndex + 1, 2, "0", STR_PAD_LEFT) . ".csv";
+                $fileName = str_pad($key + 1, 2, "0", STR_PAD_LEFT) . ".csv";
                 file_put_contents("$path/$fileName", $str);
             }
 
             return $this->getZipFile($mosque, $path);
-        }
-
-        if ($conf->isCalendar()) {
-            $calendar = $conf->getCalendar();
-            if (is_array($calendar)) {
-                $path = $this->cacheDir . "/" . $mosque->getId();
-                if (!is_dir($path)) {
-                    mkdir($path);
-                }
-                foreach ($calendar as $key => $monthIndex) {
-                    $str = "Day,Fajr,Shuruk,Duhr,Asr,Maghrib,Isha\n";
-                    foreach ($monthIndex as $day => $prayers) {
-                        $str .= "$day," . implode(",", $prayers) . "\n";
-                    }
-                    $fileName = str_pad($key + 1, 2, "0", STR_PAD_LEFT) . ".csv";
-                    file_put_contents("$path/$fileName", $str);
-                }
-
-                return $this->getZipFile($mosque, $path);
-            }
         }
 
         return null;
@@ -114,9 +113,10 @@ class PrayerTime
     /**
      *  Get pray times and other info of the mosque
      * @param Mosque $mosque
+     * @param bool $calendar
      * @return array
      */
-    public function prayTimes(Mosque $mosque)
+    public function prayTimes(Mosque $mosque, $calendar = false)
     {
         $conf = $mosque->getConfiguration();
         $result = [
@@ -134,20 +134,18 @@ class PrayerTime
             'jumua' => $conf->getJumuaTime(),
             'jumua2' => $conf->getJumuaTime2(),
             'shuruq' => null,
-            'times' => [],
+            'times' => null,
+            'fixedTimes' => $conf->getFixedTimes(),
             'iqama' => $conf->getWaitingTimes(),
-            'flashMessage' => $mosque->getFlashMessage()->isAvailable() ?  $mosque->getFlashMessage()->getContent() : null,
-            'messages' => $this->getMessages($mosque),
+            'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
+            'announcements' => $this->getMessages($mosque),
         ];
 
-        if ($conf->isCalendar()) {
-            $times = $this->prayTimesFromCalendar($conf);
+        if ($calendar) {
+            $result['calendar'] = $this->getCalendar($mosque);
         }
 
-        if ($conf->isApi()) {
-            $times = $this->prayTimesFromApi($mosque);
-        }
-
+        $times = $this->getPrayTimes($mosque);
         $result['shuruq'] = $times[1];
         unset($times[1]);
 
@@ -156,34 +154,16 @@ class PrayerTime
         return $result;
     }
 
-    private function prayTimesFromCalendar(Configuration $conf)
+    private function getPrayTimes(Mosque $mosque)
     {
         $date = new \DateTime();
-        $calendar = $conf->getCalendar();
+        $calendar = $this->getCalendar($mosque);
         if (is_array($calendar)) {
             $month = $date->format('m') - 1;
             $day = (int)$date->format('d');
             return array_values($calendar[$month][$day]);
         }
         return [];
-    }
-
-    private function prayTimesFromApi(Mosque $mosque)
-    {
-        $date = new \DateTime();
-        $conf = $mosque->getConfiguration();
-        if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
-            $this->praytime->setCalcMethod($conf->getPrayerMethod());
-        }
-        if ($conf->getPrayerMethod() === Configuration::METHOD_CUSTOM) {
-            $this->praytime->setFajrAngle($conf->getFajrDegree());
-            $this->praytime->setIshaAngle($conf->getIshaDegree());
-        }
-        $this->praytime->setAsrMethod($conf->getAsrMethod());
-        $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
-        $times = $this->praytime->getPrayerTimes($date->getTimestamp(), $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
-        unset($times[5]);
-        return array_values($times);
     }
 
     private function fixationProcess(array $times, Configuration $conf)
@@ -210,6 +190,8 @@ class PrayerTime
                     'id' => $message->getId(),
                     'title' => $message->getTitle(),
                     'content' => $message->getContent(),
+                    'isMobile' => $message->isMobile(),
+                    'isDesktop' => $message->isDesktop(),
                     'image' => $message->getImage() ? 'https://mawaqit.net/upload/' . $message->getImage() : null,
                 ];
             }

@@ -37,16 +37,18 @@ class MosqueController extends Controller
      * Get pray times and other info of the mosque by ID
      * @Route("/{mosque}/prayer-times")
      * @Method("GET")
+     * @param Request $request
      * @param Mosque $mosque
      * @return JsonResponse
      */
-    public function prayTimesAction(Mosque $mosque)
+    public function prayTimesAction(Request $request, Mosque $mosque)
     {
         if($mosque->isHome()){
             throw new NotFoundHttpException();
         }
 
-        $result =$this->get('app.prayer_times')->prayTimes($mosque);
+        $calendar = $request->query->has('calendar');
+        $result =$this->get('app.prayer_times')->prayTimes($mosque, $calendar);
         return new JsonResponse($result);
     }
 
