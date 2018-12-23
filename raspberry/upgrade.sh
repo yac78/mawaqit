@@ -26,6 +26,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     bin/console assets:install --env=prod --no-debug
     bin/console assetic:dump --env=prod --no-debug
     bin/console doctrine:migrations:migrate -n --allow-no-migration
+    # update cache permission
     sudo chmod 777 -R var/cache var/logs
 else
     echo "You are on the last version :)"
