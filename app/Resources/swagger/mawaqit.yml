@@ -67,6 +67,11 @@ paths:
           name: id
           type: string
           required: true
+        - in: query
+          name: calendar
+          type: string
+          required: false          
+          description: if this parameter is present, the full year calendar of prayer times is returned
       responses:
         200:
           description: The result
@@ -265,6 +270,11 @@ definitions:
         items:
           $ref: '#/definitions/Announcement'
         description: A list of announcements
+      calendar:
+        type: array
+        items: 
+          type: object
+        description: The full year prayer times calendar    
         
   Announcement:
     type: object
