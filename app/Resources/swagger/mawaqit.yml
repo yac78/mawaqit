@@ -282,6 +282,8 @@ definitions:
     - id
     - title
     - content
+    - isMobile
+    - isDesktop
     - image
     properties:
       id:
@@ -295,6 +297,12 @@ definitions:
         type: string
         description: The announcement content, can be null
         example: Yout mosque communicate with you   
+      isMobile:
+        type: boolean
+        description: the annoucement is visible on mobile
+      isDesktop:
+        type: boolean
+        description: the annoucement is visible on desktop
       image:
         type: string
         description: The announcement image, can be null 
