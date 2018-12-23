@@ -127,7 +127,7 @@ class PrayerTime
             'email' => $mosque->getEmail(),
             'site' => $mosque->getSite(),
             'association' => $mosque->getAssociationName(),
-            'image' => 'https://mawaqit.net/upload/' . $mosque->getImage1(),
+            'image' => $mosque->getImage1() ? 'https://mawaqit.net/upload/' . $mosque->getImage1() : null,
             'url' => 'https://mawaqit.net/fr/' . $mosque->getSlug(),
             'latitude' => $mosque->getLatitude(),
             'longitude' => $mosque->getLongitude(),
@@ -136,6 +136,7 @@ class PrayerTime
             'shuruq' => null,
             'times' => [],
             'iqama' => $conf->getWaitingTimes(),
+            'flashMessage' => $mosque->getFlashMessage()->isAvailable() ?  $mosque->getFlashMessage()->getContent() : null,
             'messages' => $this->getMessages($mosque),
         ];
 
@@ -144,7 +145,7 @@ class PrayerTime
         }
 
         if ($conf->isApi()) {
-           $times = $this->prayTimesFromApi($mosque);
+            $times = $this->prayTimesFromApi($mosque);
         }
 
         $result['shuruq'] = $times[1];
@@ -187,10 +188,10 @@ class PrayerTime
 
     private function fixationProcess(array $times, Configuration $conf)
     {
-        $times =  array_values($times);
+        $times = array_values($times);
         $fixations = $conf->getFixedTimes();
-        foreach ($fixations as $key => $fixation){
-            if(!empty($fixation) && strpos($fixation, "00:") !== 0 && $fixation > $times[$key]){
+        foreach ($fixations as $key => $fixation) {
+            if (!empty($fixation) && strpos($fixation, "00:") !== 0 && $fixation > $times[$key]) {
                 $times[$key] = $fixation;
             }
         }
@@ -203,13 +204,15 @@ class PrayerTime
         /**
          * @var Message $message
          */
-        foreach ($mosque->getMessages() as $message){
-            $messages[] = [
-                'id' => $message->getId(),
-                'title' => $message->getTitle(),
-                'content' => $message->getContent(),
-                'image' => 'https://mawaqit.net/upload/' . $message->getImage(),
-            ];
+        foreach ($mosque->getMessages() as $message) {
+            if ($message->isEnabled()) {
+                $messages[] = [
+                    'id' => $message->getId(),
+                    'title' => $message->getTitle(),
+                    'content' => $message->getContent(),
+                    'image' => $message->getImage() ? 'https://mawaqit.net/upload/' . $message->getImage() : null,
+                ];
+            }
         }
         return $messages;
     }
