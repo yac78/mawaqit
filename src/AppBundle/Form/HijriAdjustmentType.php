@@ -22,7 +22,7 @@ class HijriAdjustmentType extends AbstractType
                 'placeholder' => 'Choisir une valeur',
             ])
             ->add('country', CountryType::class, [
-                'placeholder' => 'Tout pays',
+                'placeholder' => 'Tous les pays',
                 'label' => 'country',
                 'required' =>  false
             ])
