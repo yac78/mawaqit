@@ -186,7 +186,8 @@ definitions:
       - latitude
       - times
       - iqama
-      - messages
+      - fixedTimes
+      - announcements
     properties:
       id:
         type: integer
@@ -247,14 +248,24 @@ definitions:
         items:
           type: string
         description: Iqama waiting times after adhan, in minutes [fajr, dhuhr, asr, maghrib, `isha]
-        example: [20, 10, 10, 5, 10]        
-      messages:
+        example: [20, 10, 10, 5, 10]
+      fixedTimes:
         type: array
         items:
-          $ref: '#/definitions/Message'
-        description: A liste of messages
+          type: string
+        description: fixed prayer times [fajr, dhuhr, asr, maghrib, `isha]
+        example: ["", "13:00", "", "", "19:20"]
+      flashMessage:
+        type: string
+        example: Salat eljanaza demain après el asr
+        description: A flash short message
+      announcements:
+        type: array
+        items:
+          $ref: '#/definitions/Announcement'
+        description: A list of announcements
         
-  Message:
+  Announcement:
     type: object
     required:
     - id
@@ -267,15 +278,15 @@ definitions:
         example: 55    
       title:
         type: string
-        description: The message title ,can be null
+        description: The announcement title, can be null
         example: "Conference"
       content:
         type: string
-        description: The message content, can be null
+        description: The announcement content, can be null
         example: Yout mosque communicate with you   
       image:
         type: string
-        description: The message image, can be null 
+        description: The announcement image, can be null 
         example: https://mawaqit.net/upload/5bdf1a6dcf38b078788723.jpg
         
   Hadith:
