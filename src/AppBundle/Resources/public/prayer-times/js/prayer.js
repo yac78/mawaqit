@@ -503,19 +503,20 @@ var prayer = {
                 if (!prayer.adhan.isFlashing) {
                     var currentTime = dateTime.getCurrentTime();
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-                        if(prayer.isMobile()){
-                            var options = {hour: '2-digit', minute: '2-digit'};
-                            var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
-                            var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-                            tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr',  options);
-                            if (!prayer.adhan.hasNotified && currentTime === tenMinBeforAdhan) {
-                                prayer.adhan.hasNotified = true;
-                                MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
-                                setTimeout(function () {
-                                    prayer.adhan.hasNotified = false;
-                                }, 2 * prayer.oneMinute);
-                            }
-                        }
+
+                        // if(prayer.isMobile()){
+                        //     var options = {hour: '2-digit', minute: '2-digit'};
+                        //     var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+                        //     var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
+                        //     tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr',  options);
+                        //     if (!prayer.adhan.hasNotified && currentTime === tenMinBeforAdhan) {
+                        //         prayer.adhan.hasNotified = true;
+                        //         MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
+                        //         setTimeout(function () {
+                        //             prayer.adhan.hasNotified = false;
+                        //         }, 2 * prayer.oneMinute);
+                        //     }
+                        // }
 
                         if (time === currentTime) {
                             // if jumua and mosque type we don't flash adhan
