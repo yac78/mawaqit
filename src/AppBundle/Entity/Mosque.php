@@ -342,7 +342,13 @@ class Mosque
      */
     public function setCity($city)
     {
-        $this->city = preg_replace("/\s+/", "-", ucfirst(strtolower(trim($city))));
+        $transformedCity = [];
+        $cityParts = preg_split('/\s+/', $city);
+        foreach ($cityParts as $key => $part) {
+            $transformedCity[$key] = ucfirst(strtolower($part));
+        }
+
+        $this->city = implode("-", $transformedCity);
 
         return $this;
     }
