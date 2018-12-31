@@ -69,7 +69,7 @@ var prayer = {
      * check for update every 1 minute
      */
     initUpdateConfData: function () {
-        if(typeof isLocal !== 'undefined' && isLocal){
+        if (typeof isLocal !== 'undefined' && isLocal) {
             return;
         }
 
@@ -460,7 +460,7 @@ var prayer = {
         },
         stopFlashing: function (iqamaFlashInterval) {
             $(".iqama").fadeOut(500, function () {
-                if (prayer.confData.blackScreenWhenPraying && !prayer.isMobile()) {
+                if (prayer.confData.blackScreenWhenPraying && !isMobile) {
                     $("#black-screen").fadeIn(500);
                 } else {
                     $(".main").fadeIn(500);
@@ -503,21 +503,6 @@ var prayer = {
                 if (!prayer.adhan.isFlashing) {
                     var currentTime = dateTime.getCurrentTime();
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-
-                        // if(prayer.isMobile()){
-                        //     var options = {hour: '2-digit', minute: '2-digit'};
-                        //     var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
-                        //     var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-                        //     tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr',  options);
-                        //     if (!prayer.adhan.hasNotified && currentTime === tenMinBeforAdhan) {
-                        //         prayer.adhan.hasNotified = true;
-                        //         MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
-                        //         setTimeout(function () {
-                        //             prayer.adhan.hasNotified = false;
-                        //         }, 2 * prayer.oneMinute);
-                        //     }
-                        // }
-
                         if (time === currentTime) {
                             // if jumua and mosque type we don't flash adhan
                             if (prayer.isJumua(currentPrayerIndex) && prayer.isMosque) {
@@ -529,6 +514,20 @@ var prayer = {
                     });
                 }
             }, prayer.oneSecond);
+        },
+        initNotif: function () {
+            setInterval(function () {
+                var currentTime = dateTime.getCurrentTime();
+                var options = {hour: '2-digit', minute: '2-digit'};
+                $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
+                    var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+                    var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
+                    tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr', options);
+                    if (currentTime === tenMinBeforAdhan) {
+                        MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
+                    }
+                });
+            }, prayer.oneMinute);
         },
         /**
          * Flash adhan, play sound if enabled
@@ -704,13 +703,6 @@ var prayer = {
         $('.' + layerToHide).fadeOut(500, function () {
             $('.' + layerToShow).fadeIn(500);
         });
-    },
-    /**
-     * @return boolean
-     */
-    isMobile: function () {
-        // The black screen element dos not exist in mobile view
-        return $("#black-screen").length === 0;
     },
     /**
      * Play a bip
