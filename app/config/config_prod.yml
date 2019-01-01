@@ -19,7 +19,7 @@ monolog:
             level: debug
             max_files: 10
         slack:
-            type:        slack
-            token:       %slack_token%
-            channel:     %slack_channel%
-            level:       %slack_level%
+            type: slack
+            token: %slack_token%
+            channel: '#prod-errors'
+            level: critical
