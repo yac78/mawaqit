@@ -20,8 +20,7 @@ class TestController extends Controller
      */
     public function testAllAction()
     {
-        $var
-        return new Response('ok');
+        return new Response('ok', 500);
     }
 
 }
