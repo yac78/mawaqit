@@ -32,3 +32,8 @@ parameters:
 
     # Mawaqit API
     mawaqit_api_access_token: ''
+
+    # slack
+    slack_token: ''
+    slack_channel: ''
+    slack_level: critical

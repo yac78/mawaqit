@@ -25,7 +25,7 @@ class WeatherService extends WeatherApi
                 'icon' => $this->getIcon($res),
             ];
         } else {
-            $this->logger->error("Weather API Error", [$res]);
+            $this->logger->warning("Weather API Error", [$res]);
         }
 
         return [];

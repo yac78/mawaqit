@@ -32,7 +32,7 @@ abstract class WeatherApi {
         $result = curl_exec($curl);
         
         if ($result === false) {
-            $this->logger->error("No response from weather api", [
+            $this->logger->warning("No response from weather api", [
                 "url" => $url
             ]);
             return null;
