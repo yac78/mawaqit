@@ -35,3 +35,5 @@ parameters:
 
     # slack
     slack_token: ''
+    slack_bot: 'Monolog Prod'
+    slack_channel: '#prod-errors'

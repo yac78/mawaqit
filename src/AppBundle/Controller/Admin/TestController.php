@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/admin/test")
+ * @Route("/admin/test", options={"i18n"="false"})
  */
 class TestController extends Controller
 {
@@ -20,19 +20,7 @@ class TestController extends Controller
      */
     public function testAllAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $mosques = $em->getRepository("AppBundle:Mosque")->findAll();
-        $i = 1;
-        $toolsService = $this->get('app.tools_service');
-        foreach ($mosques as $mosque) {
-            $mosque->setCountryFullName($toolsService->getCountryNameByCode($mosque->getCountry()));
-            $em->persist($mosque);
-            if ($i % 100 === 0) {
-                $em->flush();
-            }
-            $i++;
-        }
-        $em->flush();
+        $var
         return new Response('ok');
     }
 

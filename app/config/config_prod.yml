@@ -20,6 +20,8 @@ monolog:
             max_files: 10
         slack:
             type: slack
-            token: %slack_token%
-            channel: '#prod-errors'
+            token: '%slack_token%'
+            bot_name:  '%slack_bot%'
+            channel: '%slack_channel%'
+            icon_emoji: :depressed:
             level: critical
