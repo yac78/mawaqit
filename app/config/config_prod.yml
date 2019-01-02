@@ -18,10 +18,10 @@ monolog:
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
             max_files: 10
-        slack:
-            type: slack
-            token: '%slack_token%'
-            bot_name:  '%slack_bot%'
-            channel: '%slack_channel%'
-            icon_emoji: ':depressed:'
-            level: critical
+#        slack:
+#            type: slack
+#            token: '%slack_token%'
+#            bot_name:  '%slack_bot%'
+#            channel: '%slack_channel%'
+#            icon_emoji: ':depressed:'
+#            level: critical
