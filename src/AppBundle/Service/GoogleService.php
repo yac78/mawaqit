@@ -33,7 +33,7 @@ class GoogleService extends GoogleApi
             return $res->results[0]->geometry->location;
         }
 
-        $this->logger->error("Impossible de localiser l'adresse $addr");
+        $this->logger->warning("Impossible de localiser l'adresse $addr");
         throw new GooglePositionException();
     }
 
