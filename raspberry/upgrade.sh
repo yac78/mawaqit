@@ -21,6 +21,7 @@ if [ "$currenttag" != "$latesttag" ]; then
 
     version=`echo $latesttag | sed 's/-.*//'`
     sed -i "s/version: .*/version: $version/" app/config/parameters.yml
+    sudo rm -rf /tmp/*
     sudo rm -rf var/cache/* var/logs/*
     composer install --optimize-autoloader --no-interaction
     sudo rm -rf var/cache/* var/logs/*
