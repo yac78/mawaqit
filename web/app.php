@@ -7,7 +7,8 @@ $loader = require __DIR__.'/../app/autoload.php';
 include_once __DIR__.'/../var/bootstrap.php.cache';
 
 $env = getenv('APP_ENV') ? : 'prod';
-$debug = $env !== 'prod';
+
+$debug = !in_array($env, ['prod', 'raspberry']);
 
 $kernel = new AppKernel($env, $debug);
 
