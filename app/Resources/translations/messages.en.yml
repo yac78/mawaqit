@@ -281,7 +281,10 @@ configuration:
         fixedTimes:
             label: Fixing prayer times
             help: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
-        duaAfterPrayerShowTimes: 
+        fixedIqama:
+            label: Fixing iqama
+            help: "You can set the time of the iqama for each prayer, for example: fix iqama of 'isha at 20:00 whatever the time of prayer"
+        duaAfterPrayerShowTimes:
             label: Estimated duration of each prayer (in minutes)
             help: These values are as an estimate, it is the duration that the imam puts to finish a prayer
         hijriAdjustment: 

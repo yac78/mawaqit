@@ -223,16 +223,35 @@ var prayer = {
      * get prayer waiting taimes
      * @returns {Array}
      */
+    waitings: [],
     getWaitingTimes: function () {
-        var waitings = this.confData.waitingTimes;
+
+        if (prayer.waitings.length !== 0) {
+            return prayer.waitings;
+        }
+
+        prayer.waitings = this.confData.waitingTimes;
+        var prayerTimes = prayer.getTimes();
+
+        var prayerTime, iqamaTime;
+        $.each(prayer.confData.fixedIqama, function (index, time) {
+            if (prayer.confData.fixedIqama[index] !== "") {
+                prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[index]);
+                iqamaTime = prayer.getCurrentDateForPrayerTime(time);
+                if (iqamaTime.getTime() > prayerTime.getTime()) {
+                    prayer.waitings[index] = Math.floor((Math.abs(iqamaTime - prayerTime) / 1000) / 60);
+                }
+            }
+        });
+
         var ishaDate = this.getCurrentDateForPrayerTime(this.getIshaTime());
         if (this.confData.maximumIshaTimeForNoWaiting != null && this.confData.maximumIshaTimeForNoWaiting.matchTime()) {
             var maximumIshaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIshaTimeForNoWaiting);
             if (ishaDate.getHours() === 0 || ishaDate >= maximumIshaTimeForNoWaitingDate) {
-                waitings[4] = 0;
+                prayer.waitings[4] = 0;
             }
         }
-        return waitings;
+        return prayer.waitings;
     },
     /**
      * handle next prayer countdown
@@ -481,6 +500,10 @@ var prayer = {
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
+                if(prayer.getWaitingByIndex(currentPrayerIndex) > 60){
+                    countdown = event.strftime('%H:%M:%S');
+                }
+
                 $('.main-iqama-countdown .countdown,' + ".mobile .wait._" + currentPrayerIndex).text(countdown);
                 if (prayer.confData.iqamaFullScreenCountdown === false) {
                     $(this).text(countdown);
@@ -995,8 +1018,14 @@ var prayer = {
      * set wating times
      */
     setWaitings: function () {
+        var wait;
         $(".wait").each(function (i, e) {
-            $(e).text(prayer.getWaitingTimes()[i % 5] + "'");
+            wait = prayer.getWaitingTimes()[i % 5] + "'";
+            if (prayer.confData.fixedIqama[i] !== "") {
+                wait = prayer.confData.fixedIqama[i];
+            }
+
+            $(e).text(wait);
         });
     },
     hideSpinner: function () {

@@ -187,6 +187,19 @@ class ConfigurationType extends AbstractType
                     ]
                 ]
             ])
+            ->add('fixedIqama', PrayerType::class, [
+                'required' => false,
+                'attr' => [
+                    'help' => $this->translator->trans('configuration.form.fixedIqama.title')
+                ],
+                'sub_options' => [
+                    'type' => TextType::class,
+                    'constraints' => new Regex(['pattern' => $timePattern]),
+                    'attr' => [
+                        'placeholder' => "hh:mm"
+                    ]
+                ]
+            ])
             ->add('duaAfterPrayerShowTimes', PrayerType::class, [
                 'sub_options' => [
                     'type' => IntegerType::class,
@@ -418,6 +431,8 @@ class ConfigurationType extends AbstractType
         $builder->get('adjustedTimes')
             ->addModelTransformer(new PrayerTransformer(IntegerType::class));
         $builder->get('fixedTimes')
+            ->addModelTransformer(new PrayerTransformer(TimeType::class));
+        $builder->get('fixedIqama')
             ->addModelTransformer(new PrayerTransformer(TimeType::class));
         $builder->get('duaAfterPrayerShowTimes')
             ->addModelTransformer(new PrayerTransformer(IntegerType::class));
