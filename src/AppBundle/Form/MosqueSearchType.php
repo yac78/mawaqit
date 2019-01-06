@@ -101,6 +101,8 @@ class MosqueSearchType extends AbstractType
             'attr' => [
                 'class' => 'navbar-form'
             ],
+            'allow_extra_fields' => true,
+            'csrf_protection' => false,
             'required' => false
         ));
     }

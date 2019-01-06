@@ -33,7 +33,7 @@ class MosqueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
 
-        $form = $this->createForm(MosqueSearchType::class);
+        $form = $this->createForm(MosqueSearchType::class, null, ['method' => 'GET']);
         $form->handleRequest($request);
 
         $filter = array_merge($request->query->all(), (array)$form->getData());
