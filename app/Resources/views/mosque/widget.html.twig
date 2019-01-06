@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "partial/ga.html.twig" %}
+    <meta charset="UTF-8">
+
+    {% stylesheets
+        "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+        "bundles/app/jquery/css/jquery-ui.min.css"
+        "bundles/app/prayer-times/css/widget.css"
+        filter="cssrewrite" %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+
+    {% if app.request.locale == 'ar' %}
+        {% stylesheets
+            "bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"
+            filter="cssrewrite" %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}
+    {% endif %}
+
+</head>
+<body class="text-center">
+<div class="widget" data-remote="{{ path('app_api_mosque_praytimes', {mosque: mosque.id}) }}" data-api-access-token="{{ mawaqitApiAccessToken }}">
+
+    <div class="top">
+        <div class="shuruq">
+            <div class="name">{{ 'shuruk'|trans }}</div>
+            <div class="time"></div>
+        </div>
+        <div>
+            <div class="current-time"></div>
+            <div class="date"></div>
+            <div class="hijriDate"></div>
+        </div>
+        <div class="jumua">
+            <div class="name">{{ 'jumua'|trans }}</div>
+            <div class="time"></div>
+        </div>
+    </div>
+
+    <div class="prayers">
+        <div>
+            <div class="name">{{ 'fajr'|trans }}</div>
+            <div class="time"></div>
+            <div class="iqama"></div>
+        </div>
+        <div>
+            <div class="name">{{ 'zuhr'|trans }}</div>
+            <div class="time"></div>
+            <div class="iqama"></div>
+        </div>
+        <div>
+            <div class="name">{{ 'asr'|trans }}</div>
+            <div class="time"></div>
+            <div class="iqama"></div>
+        </div>
+        <div>
+            <div class="name">{{ 'maghrib'|trans }}</div>
+            <div class="time"></div>
+            <div class="iqama"></div>
+        </div>
+        <div>
+            <div class="name">{{ 'isha'|trans }}</div>
+            <div class="time"></div>
+            <div class="iqama"></div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script>
+    var lang = '{{ app.request.locale }}';
+</script>
+
+{% javascripts
+    '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+    '@AppBundle/Resources/public/jquery/js/jquery-ui.min.js'
+    '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
+    '@AppBundle/Resources/public/js/tools.js'
+    '@AppBundle/Resources/public/prayer-times/js/date.js'
+    '@AppBundle/Resources/public/prayer-times/js/widget.js' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
+</html>

@@ -95,7 +95,7 @@
                                             href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}</a>
                                 </div>
                             {% endfor %}
-                            {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button" data-url="{{ url('mosque', {slug: mosque.slug}) }}?view=mobile">{{ 'show'|trans }}</a>
+                            {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button" data-url="{{ url('mosque_widget', {slug: mosque.slug}) }}">{{ 'show'|trans }}</a>
                             {% if not mosque.isCalendarCompleted %}
                                 <div>
                                     <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}

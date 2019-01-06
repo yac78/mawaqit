@@ -131,6 +131,7 @@ class PrayerTime
             'url' => 'https://mawaqit.net/fr/' . $mosque->getSlug(),
             'latitude' => $mosque->getLatitude(),
             'longitude' => $mosque->getLongitude(),
+            'hijriAdjustment' => $conf->getHijriAdjustment(),
             'jumua' => $conf->getJumuaTime(),
             'jumua2' => $conf->getJumuaTime2(),
             'shuruq' => null,

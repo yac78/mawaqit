@@ -59,6 +59,10 @@
     color: #005fb3;
 }
 
+iframe{
+    resize: both;
+}
+
 .check {
     background-color: #c7e5fd;
 }
