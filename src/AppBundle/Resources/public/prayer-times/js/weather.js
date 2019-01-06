@@ -10,7 +10,7 @@ var weather = {
         $.ajax({
             url: $weatherEl.data("remote"),
             success: function (resp) {
-                if (resp) {
+                if (resp && resp.length > 0) {
                     $weatherEl.removeAttr("class");
                     if (parseInt(resp.temperature) <= 0) {
                         $weatherEl.addClass("blue");
@@ -54,7 +54,7 @@ var weather = {
             weather.getWeather();
             setInterval(function () {
                 weather.getWeather();
-            }, prayer.oneMinute * 15);
+            }, prayer.oneMinute * 60);
         }
     }
 };
