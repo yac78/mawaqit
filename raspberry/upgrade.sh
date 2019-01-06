@@ -25,8 +25,8 @@ if [ "$currenttag" != "$latesttag" ]; then
     sudo rm -rf var/cache/* var/logs/*
     composer install --optimize-autoloader --no-interaction
     sudo rm -rf var/cache/* var/logs/*
-    bin/console assets:install --env=prod --no-debug
-    bin/console assetic:dump --env=prod --no-debug
+    bin/console assets:install --env=raspberry --no-debug
+    bin/console assetic:dump --env=raspberry --no-debug
     bin/console doctrine:migrations:migrate -n --allow-no-migration
     sudo rm -rf var/cache/* var/logs/*
 else
