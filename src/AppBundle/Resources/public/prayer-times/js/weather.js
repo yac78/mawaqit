@@ -7,10 +7,11 @@ var weather = {
      */
     getWeather: function () {
         $weatherEl = $("#weather");
+        $weatherEl.addClass("hidden");
         $.ajax({
             url: $weatherEl.data("remote"),
             success: function (resp) {
-                if (resp && resp.length > 0) {
+                if (resp && "temperature" in resp) {
                     $weatherEl.removeAttr("class");
                     if (parseInt(resp.temperature) <= 0) {
                         $weatherEl.addClass("blue");
@@ -43,9 +44,6 @@ var weather = {
                     $weatherEl.find("i").attr('class', 'wi wi-' + icon);
                     $weatherEl.find("span").text(resp.temperature);
                 }
-            },
-            error: function () {
-                $weatherEl.addClass("hidden");
             }
         });
     },
