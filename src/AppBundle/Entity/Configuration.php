@@ -106,6 +106,11 @@ class Configuration
     /**
      * @var array
      */
+    private $fixedIqama = ["", "", "", "", ""];
+
+    /**
+     * @var array
+     */
     private $adjustedTimes = [0, 0, 0, 0, 0];
 
     /**
@@ -528,6 +533,22 @@ class Configuration
     public function getFixedTimes()
     {
         return $this->fixedTimes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFixedIqama(): array
+    {
+        return $this->fixedIqama;
+    }
+
+    /**
+     * @param array $fixedIqama
+     */
+    public function setFixedIqama(array $fixedIqama): void
+    {
+        $this->fixedIqama = $fixedIqama;
     }
 
     /**

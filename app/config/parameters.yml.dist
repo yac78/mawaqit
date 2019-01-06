@@ -32,3 +32,8 @@ parameters:
 
     # Mawaqit API
     mawaqit_api_access_token: ''
+
+    # slack
+    slack_token: 'fake-token'
+    slack_bot: 'Monolog Prod'
+    slack_channel: '#prod-errors'

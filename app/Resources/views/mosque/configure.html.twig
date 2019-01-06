@@ -321,9 +321,6 @@
                             <div class="col-md-3 iqama-settings">
                                 {{ form_row(form.iqamaFullScreenCountdown) }}
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-3 iqama-settings">
                                 {{ form_row(form.iqamaDisplayTime) }}
                             </div>
@@ -346,6 +343,26 @@
                                 </div>
                                 <div class="col-md-2">
                                     {{ form_row(form.waitingTimes.isha) }}
+                                </div>
+                            </div>
+
+                            {{ form_label(form.fixedIqama) }}
+                            <div class="text-muted" style="font-size: 13px">{{ 'configuration.form.fixedIqama.help'|trans }}</div>
+                            <div class="row mt-1">
+                                <div class="col-md-2">
+                                    {{ form_row(form.fixedIqama.fajr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.fixedIqama.zuhr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.fixedIqama.asr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.fixedIqama.maghrib) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.fixedIqama.isha) }}
                                 </div>
                             </div>
                         </div>

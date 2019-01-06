@@ -69,7 +69,7 @@ var prayer = {
      * check for update every 1 minute
      */
     initUpdateConfData: function () {
-        if(typeof isLocal !== 'undefined' && isLocal){
+        if (typeof isLocal !== 'undefined' && isLocal) {
             return;
         }
 
@@ -223,16 +223,35 @@ var prayer = {
      * get prayer waiting taimes
      * @returns {Array}
      */
+    waitings: [],
     getWaitingTimes: function () {
-        var waitings = this.confData.waitingTimes;
+
+        if (prayer.waitings.length !== 0) {
+            return prayer.waitings;
+        }
+
+        prayer.waitings = this.confData.waitingTimes;
+        var prayerTimes = prayer.getTimes();
+
+        var prayerTime, iqamaTime;
+        $.each(prayer.confData.fixedIqama, function (index, time) {
+            if (prayer.confData.fixedIqama[index] !== "") {
+                prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[index]);
+                iqamaTime = prayer.getCurrentDateForPrayerTime(time);
+                if (iqamaTime.getTime() > prayerTime.getTime()) {
+                    prayer.waitings[index] = Math.floor((Math.abs(iqamaTime - prayerTime) / 1000) / 60);
+                }
+            }
+        });
+
         var ishaDate = this.getCurrentDateForPrayerTime(this.getIshaTime());
         if (this.confData.maximumIshaTimeForNoWaiting != null && this.confData.maximumIshaTimeForNoWaiting.matchTime()) {
             var maximumIshaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIshaTimeForNoWaiting);
             if (ishaDate.getHours() === 0 || ishaDate >= maximumIshaTimeForNoWaitingDate) {
-                waitings[4] = 0;
+                prayer.waitings[4] = 0;
             }
         }
-        return waitings;
+        return prayer.waitings;
     },
     /**
      * handle next prayer countdown
@@ -460,7 +479,7 @@ var prayer = {
         },
         stopFlashing: function (iqamaFlashInterval) {
             $(".iqama").fadeOut(500, function () {
-                if (prayer.confData.blackScreenWhenPraying && !prayer.isMobile()) {
+                if (prayer.confData.blackScreenWhenPraying && !isMobile) {
                     $("#black-screen").fadeIn(500);
                 } else {
                     $(".main").fadeIn(500);
@@ -481,6 +500,10 @@ var prayer = {
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
+                if(prayer.getWaitingByIndex(currentPrayerIndex) > 60){
+                    countdown = event.strftime('%H:%M:%S');
+                }
+
                 $('.main-iqama-countdown .countdown,' + ".mobile .wait._" + currentPrayerIndex).text(countdown);
                 if (prayer.confData.iqamaFullScreenCountdown === false) {
                     $(this).text(countdown);
@@ -503,20 +526,6 @@ var prayer = {
                 if (!prayer.adhan.isFlashing) {
                     var currentTime = dateTime.getCurrentTime();
                     $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
-                        if(prayer.isMobile()){
-                            var options = {hour: '2-digit', minute: '2-digit'};
-                            var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
-                            var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-                            tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr',  options);
-                            if (!prayer.adhan.hasNotified && currentTime === tenMinBeforAdhan) {
-                                prayer.adhan.hasNotified = true;
-                                MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
-                                setTimeout(function () {
-                                    prayer.adhan.hasNotified = false;
-                                }, 2 * prayer.oneMinute);
-                            }
-                        }
-
                         if (time === currentTime) {
                             // if jumua and mosque type we don't flash adhan
                             if (prayer.isJumua(currentPrayerIndex) && prayer.isMosque) {
@@ -528,6 +537,20 @@ var prayer = {
                     });
                 }
             }, prayer.oneSecond);
+        },
+        initNotif: function () {
+            setInterval(function () {
+                var currentTime = dateTime.getCurrentTime();
+                var options = {hour: '2-digit', minute: '2-digit'};
+                $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
+                    var prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
+                    var tenMinBeforAdhan = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
+                    tenMinBeforAdhan = (new Date(tenMinBeforAdhan)).toLocaleString('fr', options);
+                    if (currentTime === tenMinBeforAdhan) {
+                        MawaqitNotification.showNotification(prayerTimeIn10MinTitle, prayerTimeIn10MinBody);
+                    }
+                });
+            }, prayer.oneMinute);
         },
         /**
          * Flash adhan, play sound if enabled
@@ -703,13 +726,6 @@ var prayer = {
         $('.' + layerToHide).fadeOut(500, function () {
             $('.' + layerToShow).fadeIn(500);
         });
-    },
-    /**
-     * @return boolean
-     */
-    isMobile: function () {
-        // The black screen element dos not exist in mobile view
-        return $("#black-screen").length === 0;
     },
     /**
      * Play a bip
@@ -1002,8 +1018,14 @@ var prayer = {
      * set wating times
      */
     setWaitings: function () {
+        var wait;
         $(".wait").each(function (i, e) {
-            $(e).text(prayer.getWaitingTimes()[i % 5] + "'");
+            wait = prayer.getWaitingTimes()[i % 5] + "'";
+            if (prayer.confData.fixedIqama[i] !== "") {
+                wait = prayer.confData.fixedIqama[i];
+            }
+
+            $(e).text(wait);
         });
     },
     hideSpinner: function () {

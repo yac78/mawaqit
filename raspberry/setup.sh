@@ -4,13 +4,17 @@
 
 set -e
 
+APP_ENV=raspberry; export APP_ENV
+
 # add hosts
 echo "127.0.0.1       mawaqit.local" >> /etc/hosts
 
 # fstab
-echo "tmpfs /tmp tmpfs defaults,noatime,nosuid,size=10m 0 0" >> /etc/fstab
-echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=10m 0 0" >> /etc/fstab
-echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=10m 0 0" >> /etc/fstab
+echo "tmpfs /tmp tmpfs defaults,noatime,nosuid,size=100m 0 0" >> /etc/fstab
+echo "tmpfs /home/pi/mawaqit/var/cache tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
+echo "tmpfs /home/pi/mawaqit/var/logs tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
+echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
+echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=50m 0 0" >> /etc/fstab
 
 # config autostart
 echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart

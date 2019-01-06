@@ -136,6 +136,7 @@ class PrayerTime
             'shuruq' => null,
             'times' => null,
             'fixedTimes' => $conf->getFixedTimes(),
+            'fixedIqama' => $conf->getFixedIqama(),
             'iqama' => $conf->getWaitingTimes(),
             'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
             'announcements' => $this->getMessages($mosque),

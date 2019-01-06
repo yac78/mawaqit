@@ -46,6 +46,9 @@ AppBundle\Entity\Configuration:
         fixedTimes:
             type: simple_array
             nullable: true
+        fixedIqama:
+            type: simple_array
+            nullable: true
         duaAfterPrayerShowTimes:
             type: simple_array
         hijriAdjustment:

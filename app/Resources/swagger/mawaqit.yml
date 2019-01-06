@@ -192,6 +192,7 @@ definitions:
       - times
       - iqama
       - fixedTimes
+      - fixedIqama
       - flashMessage
       - announcements
     properties:
@@ -261,6 +262,12 @@ definitions:
           type: string
         description: fixed prayer times [fajr, dhuhr, asr, maghrib, `isha]
         example: ["", "13:00", "", "", "19:20"]
+      fixedIqama:
+        type: array
+        items:
+          type: string
+        description: fixed iqama times [fajr, dhuhr, asr, maghrib, `isha]
+        example: ["", "14:00", "", "", "20:00"]        
       flashMessage:
         type: string
         example: Salat eljanaza demain après el asr

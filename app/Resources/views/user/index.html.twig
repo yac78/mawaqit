@@ -11,7 +11,9 @@
             {{ form(form) }}
         </div>
         <div class="col-md-4 col-xs-12 text-right">
-            <a href="{{ path('users_send_email') }}" class="btn btn-primary" title="Envoyez un mail à tous les utilisateurs"><i class="fa fa-envelope"></i> {{ 'email.send.action'|trans }}</a>
+            <a href="{{ path('users_send_email') }}" class="btn btn-primary"
+               title="Envoyez un mail à tous les utilisateurs"><i
+                        class="fa fa-envelope"></i> {{ 'email.send.action'|trans }}</a>
         </div>
     </div>
 
@@ -67,8 +69,23 @@
                         <a href="{{ path('user_edit', {id: user.id}) }}">{{ user.email }}</a>
                         <a href="{{ path('mosque_index', {userId: user.id}) }}"> ({{ user.mosques|length }}) </a>
                     </div>
-                    {{ 'enabled'|trans }} ? <span class="fa fa-{{ user.enabled ? 'check' : 'close' }}"></span>
-                    <div>{{ 'creation_date'|trans }}: {{ user.created|date('d/m/Y H:i') }}</div>
+                    {% if user.apiAccessToken %}
+                        <div>
+                            <b>Api token :</b> {{ user.apiAccessToken }}
+                        </div>
+                        <div>
+                            <b>Api calls :</b> {{ user.apiCallNumber }} / {{ user.apiQuota }}
+                        </div>
+                        <div>
+                            <b>Api use description :</b> {{ user.apiUseDescription|nl2br }}
+                        </div>
+                    {% endif %}
+                    <div>
+                        <b>{{ 'enabled'|trans }} ? </b><span class="fa fa-{{ user.enabled ? 'check' : 'close' }}"></span>
+                    </div>
+                    <div>
+                        <b>Date d'inscription :</b> {{ user.created|date('d/m/Y H:i') }}
+                    </div>
                 </div>
 
                 <div class="col-xs-2">

@@ -521,7 +521,10 @@ configuration:
         fixedTimes: 
             label: Fixation des horaires
             help: "Exemple: fixer `isha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
-        duaAfterPrayerShowTimes: 
+        fixedIqama:
+            label: Fixation de l'iqama
+            help: "Vous pouvez fixer l'heure de l'iqama pour chaque prière, par exemple: fixer iqama du `isha à 20:00 quelque soit l'heure de la prière"
+        duaAfterPrayerShowTimes:
             label: Durée estimée de chaque prière (en minute)
             help: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour accomplir une prière
         hijriAdjustment: 
