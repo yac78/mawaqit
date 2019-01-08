@@ -121,7 +121,7 @@ mosque:
         ramadanMeal:
             label: Ramadan iftar
         handicapAccessibility:
-            label: handicap accessibility
+            label: Disabled accessibility
         ablutions:
             label: Ablutions room
         parking:
