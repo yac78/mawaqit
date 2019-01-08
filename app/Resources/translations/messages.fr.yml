@@ -519,7 +519,7 @@ configuration:
         waitingTimes: 
             label: Temps d'attente entre adhân et iqâmah
         fixedTimes: 
-            label: Fixation des horaires
+            label: Fixation des horaires du adhan
             help: "Exemple: fixer `isha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
         fixedIqama:
             label: Fixation de l'iqama

@@ -425,7 +425,7 @@ configuration:
             label: وقت عرض إعلان (بالثواني)
             title: This concerns only the screen dedicated to messages and announcements
         fixedTimes:
-            label: تحديد المواقيت
+            label: تحديد مواقيت الأذان
             help: تحديد صلاة العشاء على الساعة السابعة مساء يعني أنه مادام الوقت أقل من القيمة المدخلة فإن هذه الأخيرة هي التي ستؤخذ بعين الإعتبار
         fixedIqama:
             label: تحديد وقت الإقامة

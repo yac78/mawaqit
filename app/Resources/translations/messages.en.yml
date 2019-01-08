@@ -279,7 +279,7 @@ configuration:
         waitingTimes: 
             label: Waiting time between adhân and iqâmah
         fixedTimes:
-            label: Fixing prayer times
+            label: Fixing adhan times
             help: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
         fixedIqama:
             label: Fixing iqama
