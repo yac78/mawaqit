@@ -21,7 +21,7 @@ class MosqueValidator extends ConstraintValidator
         $this->tokenStorage = $tokenStorage;
     }
 
-    const LIMIT_INSTALL = 10;
+    const MAX_DEFAULT_MOSQUE_QUOTA = 10;
 
     /**
      * @param Mosque $mosque
@@ -35,7 +35,12 @@ class MosqueValidator extends ConstraintValidator
         $user = $this->tokenStorage->getToken()->getUser();
 
         // validate max authorized mosques
-        if (!$user->isAdmin() && $user->getMosques()->count() >= self::LIMIT_INSTALL) {
+        $quota = self::MAX_DEFAULT_MOSQUE_QUOTA;
+        if($user->getMosqueQuota() !== null){
+            $quota = $user->getMosqueQuota();
+        }
+
+        if (!$user->isAdmin() && $user->getMosques()->count() >= $quota) {
             $this->context->buildViolation($constraint->maxReachedMsg)->addViolation();
         }
 

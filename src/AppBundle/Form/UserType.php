@@ -59,6 +59,10 @@ class UserType extends AbstractType
                     'readonly' => true
                 ]
             ])
+            ->add('mosqueQuota', IntegerType::class, [
+                'required' => false,
+                'label' => 'Quota de mosquée (10 par défaut)'
+            ])
             ->add('enabled', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Activé ?'
