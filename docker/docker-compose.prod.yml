@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  mawaqit:
-    container_name : mawaqit
+  mawaqit_prod:
+    container_name : mawaqit_prod
     build: .
     tty: true
     links:
-      - mawaqit_db:mysql
+      - mawaqit_prod_db:mysql
     ports:
       - "80:80"
     volumes:
@@ -14,9 +14,10 @@ services:
       - $SSH_AUTH_SOCK:/ssh-agent
     environment:
       SSH_AUTH_SOCK: /ssh-agent
+      APP_ENV: prod
       
-  mawaqit_db:
-    container_name : mawaqit_db
+  mawaqit_prod_db:
+    container_name : mawaqit_prod_db
     image: mysql:5.6
     environment:
       MYSQL_DATABASE: mawaqit
