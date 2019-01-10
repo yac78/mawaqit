@@ -18,7 +18,7 @@
 /app/config/parameters.prod.yml
 /web/css/
 /web/js/
-/docker/docker-compose.pp.yml
+/docker/docker-compose.yml
 /web/upload/*
 /app/config/parameters.prod.vps.yml
 /.idea/
