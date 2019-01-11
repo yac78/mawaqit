@@ -12,7 +12,7 @@ cd $repoDir
 docker exec $dockerContainer git fetch && git checkout $tag
 
 #echo "Creating symlinks"
-docker exec $dockerContainer ln -snf /var/www/web/robots.txt.$env /var/www/web/robots.txt
+docker exec $dockerContainer bash -c "(cd web && ln -snf robots.txt.$env robots.txt)"
 
 echo "Set version"
 docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
