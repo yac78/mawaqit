@@ -23,6 +23,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/www/mawaqit/mysql:/var/lib/mysql
+      - /var/www/mawaqit/dbBackups:/home/dbBackups
     environment:
       MYSQL_DATABASE: mawaqit
       MYSQL_ROOT_PASSWORD: mawaqit
