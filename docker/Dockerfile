@@ -1,57 +1,20 @@
-FROM debian:stretch
+FROM alpine:latest
 
-ENV DEBIAN_FRONTEND noninteractive
+RUN apk update \
+    apk upgrade
 
+RUN apk --no-cache add php7 php7-fpm php7-mbstring php7-pdo_mysql php7-session php7-json php7-curl php7-tokenizer \
+    php7-xml php7-ctype php7-simplexml php7-iconv php7-zip php7-dom php7-opcache php7-imagick \
+    nginx supervisor curl imagemagick wget vim git gzip
 
-RUN \
-  apt-get update && \
-  apt-get install -y \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  wget \
-  vim \
-  git \
-  nginx \
-  zip \
-  acl \
-  imagemagick
+COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY config/fpm-pool.conf /etc/php7/php-fpm.d/mawaqit_custom.conf
+COPY config/php.ini /etc/php7/conf.d/mawaqit_custom.ini
 
-# install PHP7.1
-RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
-    sh -c 'echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list'
+COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN \
-  apt-get update && \
-  apt-get install -y \
-  php7.1 \
-  php7.1-fpm \
-  php7.1-mysql \
-  php7.1-curl \
-  php7.1-json \
-  php7.1-xml \
-  php7.1-zip \
-  php7.1-imagick
-
-# install node-js
-#RUN curl --silent --location https://deb.nodesource.com/setup_6.x | bash - &&\
-#    apt-get install --yes nodejs &&\
-#    npm install -g npm@5
-
-# install composer
-RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN chmod +x /usr/local/bin/composer
-
-ADD vhost /etc/nginx/sites-available/default
-RUN sed -i "s/;date.timezone =.*/date.timezone = Europe\/Paris/" /etc/php/7.1/fpm/php.ini && \
-    sed -i "s/;memory_limit =.*/memory_limit = 128/" /etc/php/7.1/fpm/php.ini && \
-    sed -i "s/;\s*max_input_vars =.*/max_input_vars = 10000/" /etc/php/7.1/fpm/php.ini && \
-    sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.1/fpm/php.ini && \
-    sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/fpm/php.ini && \
-    sed -i "s/upload_max_filesize =.*/upload_max_filesize = 10M/" /etc/php/7.1/fpm/php.ini
-
-EXPOSE 80
 VOLUME /var/www
 WORKDIR /var/www
 
-ENTRYPOINT nginx && service php7.1-fpm start && /bin/bash
+EXPOSE 80
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
