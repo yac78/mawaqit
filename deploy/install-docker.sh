@@ -1,12 +1,8 @@
 #!/bin/bash
 set -e
 
-if [ $# -lt 1 ]; then
-    echo "tag is mandatory"
-    exit;
-fi
-
-tag=$1
+env=$1
+tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
 dockerContainer=mawaqit_prod

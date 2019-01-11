@@ -12,6 +12,8 @@ if [ $# -lt 2 ]; then
 fi
 
 env=$1
+tag=$2
+
 if [ "$env" != "pp" ] && [ "$env" != "prod" ] ; then
     echo "wrong env $env"
     exit
@@ -23,8 +25,6 @@ echo "current branch > $currentBranch"
 
 git pull origin $currentBranch
 git push origin $currentBranch
-
-tag=$2
 
 if [ "$env" == "prod" ]; then
     echo -n "Are you sur you want to deploy $tag to $env (y/n)? "
@@ -39,5 +39,5 @@ if echo "$answer" | grep -iq "^y" ;then
     git tag $tag -m "new release $tag" || true
     git push origin $tag
     server=$prodServer
-    ssh -p $port mawaqit@$server 'bash -s' < deploy/install-docker.sh $tag
+    ssh -p $port mawaqit@$server 'bash -s' < deploy/install-docker.sh $env $tag
 fi
