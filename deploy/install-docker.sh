@@ -35,7 +35,7 @@ docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
 #fi
 
 # migrate DB
-docker exec $dockerContainer bash -c "bin/console doc:mig:mig -n --allow-no-migration"
+docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
 
 echo "Reset opcache"
 #curl -s localhost/reset_opcache.php
