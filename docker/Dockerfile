@@ -14,6 +14,7 @@ RUN \
   git \
   nginx \
   zip \
+  acl \
   imagemagick
 
 # install PHP7.1
