@@ -16,9 +16,7 @@ cd $repoDir
 docker exec $dockerContainer git fetch && git checkout $tag
 
 #echo "Creating symlinks"
-#ln -snf $sharedDir/upload/ $targetDir/web/upload
-#ln -snf $sharedDir/static $targetDir/web/static
-#ln -snf $sharedDir/robots.txt.$env $targetDir/web/robots.txt
+ln -snf web/robots.txt.$env web/robots.txt
 
 echo "Set version"
 docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
@@ -38,7 +36,7 @@ docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
 
 echo "Reset opcache"
-#curl -s localhost/reset_opcache.php
+#docker exec $dockerContainer curl -s http://localhost/api/1.0.0/tools/opcache/reset
 
 echo ""
 echo "####################################################"
