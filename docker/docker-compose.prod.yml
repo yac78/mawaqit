@@ -12,9 +12,8 @@ services:
     volumes:
       - ../:/var/www
       - /etc/localtime:/etc/localtime:ro
-      - $SSH_AUTH_SOCK:/ssh-agent
+      - ~/.ssh:/home/mawaqit/.ssh
     environment:
-      SSH_AUTH_SOCK: /ssh-agent
       APP_ENV: prod
       
   mawaqit_prod_db:
