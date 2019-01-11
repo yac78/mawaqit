@@ -22,4 +22,5 @@
 /web/js/
 /web/upload/*
 /web/static/*
+/web/robot.txt
 /.idea/
