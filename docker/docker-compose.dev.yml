@@ -11,9 +11,10 @@ services:
       - "1100:80"
     volumes:
       - ../:/var/www
-      - $SSH_AUTH_SOCK:/ssh-agent
+      - /etc/localtime:/etc/localtime:ro
+      - ~/.ssh:/root/.ssh
+      - ../docker/config/vhost.dev:/etc/nginx/sites-enabled/vhost
     environment:
-      SSH_AUTH_SOCK: /ssh-agent
       APP_ENV: dev
       
   mawaqit_db:
