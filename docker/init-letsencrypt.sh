@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=(p.mawaqit)
+domains=(p.mawaqit.net)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="ibrahim.zehhaf.pro@gmail.com" # Adding a valid address is strongly recommended
