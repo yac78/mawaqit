@@ -13,53 +13,8 @@ server {
 
 server {
     listen 443 ssl;
-    listen [::]:443 ssl;
-    root /var/www/web;
     server_name p.mawaqit.net;
-
-    #SSL Certificates
-
-    #ssl on;
-    ssl_certificate "/etc/letsencrypt/live/p.mawaqit.net/fullchain.pem";
-    ssl_certificate_key "/etc/letsencrypt/live/p.mawaqit.net/privkey.pem";
-    ssl_stapling on;
-    ssl_stapling_verify on;
-    ssl_trusted_certificate /etc/letsencrypt/live/p.mawaqit.net/fullchain.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-    sl_session_cache shared:SSL:1m;
-    ssl_session_timeout 10m;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-    ssl_prefer_server_ciphers  on;
-
     location / {
-        try_files $uri /app.php$is_args$args;
+        proxy_pass http://example.org;
     }
-
-    location ~ ^/(\w+)\.php(/|$) {
-        fastcgi_pass  127.0.0.1:9000;
-        include fastcgi_params;
-        fastcgi_read_timeout 300;
-        fastcgi_split_path_info ^(.+\.php)(/.*)$;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param HTTPS on;
-    }
-
-    set $cache_uri $request_uri;
-
-    location ~ /.well-known {
-        allow all;
-    }
-
-    # cache assets
-    location ~* \.(?:jpg|jpeg|gif|png|ico|gz|svg|mp4|css|js|eot|woff|woff2|ttf)$ {
-        expires 1y;
-        access_log off;
-        add_header Cache-Control "public";
-    }
-
-    # Deny dotfiles
-    location ~ /\. { deny all; access_log off; log_not_found off; }
-
 }
