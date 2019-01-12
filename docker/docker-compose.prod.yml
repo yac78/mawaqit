@@ -7,8 +7,11 @@ services:
     tty: true
     links:
       - mawaqit_prod_db:mysql
+    expose:
+      - "443"
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ../:/var/www
       - /etc/localtime:/etc/localtime:ro
