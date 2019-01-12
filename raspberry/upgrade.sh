@@ -23,6 +23,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     sed -i "s/version: .*/version: $version/" app/config/parameters.yml
     sudo rm -rf /tmp/*
     sudo rm -rf var/cache/* var/logs/*
+    SYMFONY_ENV=raspberry
     composer install --optimize-autoloader --no-interaction
     sudo rm -rf var/cache/* var/logs/*
     bin/console assets:install --env=raspberry --no-debug

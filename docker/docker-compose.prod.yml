@@ -13,7 +13,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ../:/var/www
+      - ../:/var/www/mawaqit
       - /etc/localtime:/etc/localtime:ro
       - ~/.ssh:/root/.ssh
       - ../docker/config/vhost.prod:/etc/nginx/sites-enabled/vhost
