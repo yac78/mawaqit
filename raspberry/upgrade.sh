@@ -27,7 +27,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     sudo rm -rf var/cache/* var/logs/*
     bin/console assets:install --env=raspberry --no-debug
     bin/console assetic:dump --env=raspberry --no-debug
-    bin/console doctrine:migrations:migrate -n --allow-no-migration
+    SYMFONY_ENV=raspberry bin/console doctrine:migrations:migrate -n --allow-no-migration
     sudo rm -rf var/cache/* var/logs/*
 else
     echo "You are on the last version :)"
