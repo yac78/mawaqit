@@ -11,7 +11,8 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/fpm-pool.conf /etc/php7/php-fpm.d/mawaqit_custom.conf
 COPY config/php.ini /etc/php7/conf.d/mawaqit_custom.ini
 
-WORKDIR /var/www
+RUN mkdir /var/www/mawaqit
+WORKDIR /var/www/mawaqit
 
 COPY ["start.sh", "/tmp/start.sh"]
 CMD ["/tmp/start.sh"]
