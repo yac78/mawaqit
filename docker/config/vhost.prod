@@ -2,6 +2,11 @@ server {
       listen 80;
       listen [::]:80;
       server_name p.mawaqit.net;
+
+      location /.well-known/acme-challenge/ {
+          root /var/www/certbot;
+      }
+
       # redirect HTTP to HTTPS
       return 301 https://$server_name$request_uri;
 }
@@ -15,17 +20,18 @@ server {
     #SSL Certificates
 
     #ssl on;
-    #ssl_certificate "/etc/letsencrypt/live/p.mawaqit.net/fullchain.pem";
-    #ssl_certificate_key "/etc/letsencrypt/live/p.mawaqit.net/privkey.pem";
-    #ssl_stapling on;
-    #ssl_stapling_verify on;
-    #ssl_trusted_certificate /etc/letsencrypt/live/p.mawaqit.net/fullchain.pem;
-    #ssl_dhparam /etc/nginx/dhparam.pem;
-    #ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-    #ssl_session_cache shared:SSL:1m;
-    #ssl_session_timeout 10m;
-    #ssl_ciphers HIGH:!aNULL:!MD5;
-    #ssl_prefer_server_ciphers  on;
+    ssl_certificate "/etc/letsencrypt/live/p.mawaqit.net/fullchain.pem";
+    ssl_certificate_key "/etc/letsencrypt/live/p.mawaqit.net/privkey.pem";
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    ssl_trusted_certificate /etc/letsencrypt/live/p.mawaqit.net/fullchain.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    sl_session_cache shared:SSL:1m;
+    ssl_session_timeout 10m;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
 
     location / {
         try_files $uri /app.php$is_args$args;

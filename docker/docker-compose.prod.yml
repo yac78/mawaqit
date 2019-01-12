@@ -17,8 +17,16 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ~/.ssh:/root/.ssh
       - ../docker/config/vhost.prod:/etc/nginx/sites-enabled/vhost
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     environment:
       APP_ENV: prod
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
       
   mawaqit_prod_db:
     container_name : mawaqit_prod_db
