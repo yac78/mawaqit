@@ -25,6 +25,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       APP_ENV: prod
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done'"
 
   certbot:
     image: certbot/certbot
