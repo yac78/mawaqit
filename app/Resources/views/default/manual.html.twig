@@ -31,7 +31,7 @@
                 <h3> {{ 'home.text.install5'|trans|raw }}</h3>
                 <div class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     {{ 'home.text.install6'|trans|raw }}
-                    {{ 'home.text.install7'|trans({'%%registerUrl%': path('fos_user_registration_register'), '%now%': "now"|date("Y-m-d H:m:s"), 'mosqueUrl': url('mosque', {slug: 'mosquee-essunna-houilles'})  })|raw }}
+                    {{ 'home.text.install7'|trans({'%registerUrl%': path('fos_user_registration_register'), '%now%': "now"|date("Y-m-d H:m:s"), 'mosqueUrl': url('mosque', {slug: 'mosquee-essunna-houilles'})  })|raw }}
                 </div>
                 <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-rtc.jpg') }}" alt=""><br><br>
                 <h4 class="text-muted">

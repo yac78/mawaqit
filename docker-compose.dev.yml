@@ -10,7 +10,7 @@ services:
     ports:
       - "1100:80"
     volumes:
-      - ./:/var/www
+      - ./:/var/www/mawaqit
       - /etc/localtime:/etc/localtime:ro
       - ~/.ssh:/root/.ssh
       - ./docker/config/vhost.dev:/etc/nginx/sites-enabled/vhost
