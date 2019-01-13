@@ -8,8 +8,7 @@ services:
     links:
       - db:mysql
     ports:
-      - "80:80"
-      - "443:443"
+      - 443:443
     volumes:
       - ./:/var/www/mawaqit
       - ./docker/data/logs/symfony:/var/www/mawaqit/var/logs
