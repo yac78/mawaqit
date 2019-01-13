@@ -3,6 +3,7 @@ version: '3'
 services:
   mawaqit:
     container_name : mawaqit
+    restart: always
     build: .
     tty: true
     links:
@@ -28,6 +29,7 @@ services:
     command: sh -c "php-fpm7 -F & nginx -g 'daemon off;'; while true; do nginx -s reload; sleep 12h; done"
 
   certbot:
+    restart: always
     image: certbot/certbot
     restart: unless-stopped
     volumes:
@@ -37,6 +39,7 @@ services:
       
   db:
     container_name : db
+    restart: always
     image: mysql:5.6
     volumes:
       - /etc/localtime:/etc/localtime:ro
