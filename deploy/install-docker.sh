@@ -5,20 +5,20 @@ env=$1
 tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
-dockerContainer=mawaqit_prod
+dockerContainer=mawaqit
 
 cd $repoDir
 
 docker exec $dockerContainer git fetch && git checkout $tag
 
-#echo "Creating symlinks"
-docker exec $dockerContainer bash -c "(cd web && ln -snf robots.txt.$env robots.txt)"
+echo "Creating symlinks"
+docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$env robots.txt)"
 
 echo "Set version"
 docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
 # install vendors and assets
-docker exec $dockerContainer bash -c "SYMFONY_ENV=prod composer install -on --no-dev"
+docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -on --no-dev"
 docker exec $dockerContainer bin/console assets:install --env=prod --no-debug
 docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
 
