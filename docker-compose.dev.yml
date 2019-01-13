@@ -2,28 +2,35 @@ version: '3'
 
 services:
   mawaqit:
-    container_name : mawaqit
     build: .
+    container_name: mawaqit
     tty: true
     links:
-      - mawaqit_db:mysql
+      - db:mysql
     ports:
-      - "1100:80"
+      - 80:80
     volumes:
       - ./:/var/www/mawaqit
-      - /etc/localtime:/etc/localtime:ro
+      - ./docker/data/logs/symfony:/var/www/mawaqit/var/logs
+      - ./docker/data/logs/nginx:/var/log/nginx
+
+      - ./docker/config/fpm-pool.conf:/etc/php7/php-fpm.d/mawaqit_custom.conf
+      - ./docker/config/php.ini:/etc/php7/conf.d/mawaqit_custom.ini
+      - ./docker/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/config/mawaqit.localhost.conf:/etc/nginx/sites-enabled/mawaqit.localhost.conf
+
       - ~/.ssh:/root/.ssh
-      - ./docker/config/vhost.dev:/etc/nginx/sites-enabled/vhost
+      - /etc/localtime:/etc/localtime:ro
     environment:
       APP_ENV: dev
-      
-  mawaqit_db:
-    container_name : mawaqit_db
+
+  db:
+    container_name: db
     image: mysql:5.6
     expose:
-      - "1106"
+      - 1106
     ports:
-      - "1106:3306"
+      - 1106:3306
     environment:
       MYSQL_DATABASE: mawaqit
       MYSQL_ROOT_PASSWORD: mawaqit
