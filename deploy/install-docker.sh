@@ -17,10 +17,11 @@ docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$env robots.tx
 echo "Set version"
 docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
-# install vendors and assets
+# Install vendors and assets
 docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -on --no-dev"
 docker exec $dockerContainer bin/console assets:install --env=prod --no-debug
 docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
+docker exec $dockerContainer chmod -R 777 var/cache var/logs var/sessions
 
 # backup DB if prod deploy
 #if [ "$env" == "prod" ]; then
@@ -28,13 +29,13 @@ docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
 #    $baseDir/tools/dbBackup.sh
 #fi
 
-# migrate DB
+# Migrate DB
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
 
-echo "Reset opcache"
-#docker exec $dockerContainer curl -X DELETE -H "Api-Access-Token: f18e7703-01a3-4869-b3cc-7153af421911" http://localhost/api/1.0.0/tools/opcache/reset
+# Restart php
+docker exec $dockerContainer kill -USR2 1
 
 echo ""
 echo "####################################################"
-echo "The upgrade to v$tag has been successfully done ;)"
+echo "The upgrade to $tag has been successfully done ;)"
 echo "####################################################"
