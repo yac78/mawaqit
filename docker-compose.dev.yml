@@ -23,6 +23,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       APP_ENV: dev
+    command: sh -c "php-fpm7 -F & nginx -g 'daemon off;'"
 
   db:
     container_name: db

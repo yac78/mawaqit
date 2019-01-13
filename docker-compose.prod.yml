@@ -25,7 +25,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       APP_ENV: prod
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done'"
+    command: sh -c "php-fpm7 -F & nginx -g 'daemon off;'; while true; do nginx -s reload; sleep 12h; done"
 
   certbot:
     image: certbot/certbot
@@ -33,7 +33,7 @@ services:
     volumes:
       - ./docker/data/certbot/conf:/etc/letsencrypt
       - ./docker/data/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 24h & wait $${!}; done;'"
       
   db:
     container_name : db

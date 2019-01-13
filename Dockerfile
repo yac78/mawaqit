@@ -8,6 +8,3 @@ RUN apk --no-cache add php7 php7-fpm php7-mbstring php7-pdo_mysql php7-session p
 
 RUN mkdir -p /var/www/mawaqit
 WORKDIR /var/www/mawaqit
-
-COPY ["./docker/start.sh", "/tmp/start.sh"]
-CMD ["/tmp/start.sh"]
