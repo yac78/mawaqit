@@ -7,12 +7,12 @@ RUN apk --update add php7 php7-fpm php7-mbstring php7-pdo_mysql php7-session php
     acl nginx curl imagemagick wget vim git gzip \
     && rm -rf /var/cache/apk/*
 
-COPY config/nginx.conf /etc/nginx/nginx.conf
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/mawaqit_custom.conf
-COPY config/php.ini /etc/php7/conf.d/mawaqit_custom.ini
+COPY docker/config/nginx.conf /etc/nginx/nginx.conf
+COPY docker/config/fpm-pool.conf /etc/php7/php-fpm.d/mawaqit_custom.conf
+COPY docker/config/php.ini /etc/php7/conf.d/mawaqit_custom.ini
 
 RUN mkdir /var/www/mawaqit
 WORKDIR /var/www/mawaqit
 
-COPY ["start.sh", "/tmp/start.sh"]
+COPY ["./docker/start.sh", "/tmp/start.sh"]
 CMD ["/tmp/start.sh"]

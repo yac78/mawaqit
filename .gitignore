@@ -15,7 +15,7 @@
 /vendor/
 /node_modules/
 /app/config/parameters.prod.yml
-/docker/docker-compose.yml
+docker-compose.yml
 /app/config/parameters.prod.vps.yml
 /web/bundles/
 /web/css/
