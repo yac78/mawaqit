@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=(p.mawaqit.net)
+domains=(mawaqit.net)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="ibrahim.zehhaf.pro@gmail.com" # Adding a valid address is strongly recommended
@@ -34,7 +34,7 @@ echo
 
 
 echo "### Starting nginx ..."
-docker-compose up --force-recreate -d mawaqit_prod
+docker-compose up --force-recreate -d mawaqit
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
@@ -72,4 +72,4 @@ docker-compose run --rm --entrypoint "\
 echo
 
 echo "### Reloading nginx ..."
-docker-compose exec mawaqit_prod nginx -s reload
+docker-compose exec mawaqit nginx -s reload
