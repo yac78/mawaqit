@@ -19,3 +19,7 @@ curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compo
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 echo "AddressFamily inet" >> /etc/ssh/sshd_config
+
+# Customise .bashrc
+echo "cd /var/www/mawaqit" >> ~/.bashrc
+echo "alias dock=\"docker exec -it --user $(id -u):$(id -g)\"" >> ~/.bashrc

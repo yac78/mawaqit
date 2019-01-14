@@ -5,25 +5,24 @@ env=$1
 tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
-dockerContainer=mawaqit
 
 cd $repoDir
 
-docker exec $dockerContainer git fetch && git checkout $tag
+dock git fetch && git checkout $tag
 
 echo "Creating symlinks"
-docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$env robots.txt)"
+dock sh -c "(cd web && ln -snf robots.txt.$env robots.txt)"
 
 echo "Set version"
-docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
+dock sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
 # Install vendors and assets
-docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -on --no-dev"
-docker exec $dockerContainer bin/console assets:install -e prod --no-debug
-docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
+dock sh -c "SYMFONY_ENV=prod composer install -on --no-dev"
+dock bin/console assets:install -e prod --no-debug
+dock bin/console assetic:dump -e prod --no-debug
 
 # Fix permissions
-docker exec $dockerContainer chmod -R 777 var/cache var/logs var/sessions
+dock chmod -R 777 var/cache var/logs var/sessions
 
 # Sync DB if prod deploy
 if [ "$env" == "prod" ]; then
@@ -32,10 +31,10 @@ if [ "$env" == "prod" ]; then
 fi
 
 # Migrate DB
-docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
+dock bin/console doc:mig:mig -n --allow-no-migration -e prod
 
 # Restart php
-docker exec $dockerContainer kill -USR2 1
+dock kill -USR2 1
 
 echo ""
 echo "####################################################"
