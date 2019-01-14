@@ -25,17 +25,14 @@ docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
 # Fix permissions
 docker exec $dockerContainer chmod -R 777 var/cache var/logs var/sessions
 
-# Backup DB if prod deploy
+# Sync DB if prod deploy
 if [ "$env" == "prod" ]; then
-    echo "Backup prod DB"
+    echo "Sync DB"
     $baseDir/tools/dbSync.sh
 fi
 
 # Migrate DB
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
-
-echo "Reset opcache"
-#docker exec $dockerContainer curl -X DELETE -H "Api-Access-Token: f18e7703-01a3-4869-b3cc-7153af421911" http://localhost/api/1.0.0/tools/opcache/reset
 
 echo ""
 echo "####################################################"
