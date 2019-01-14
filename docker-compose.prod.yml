@@ -15,17 +15,20 @@ services:
       - ./:/var/www/mawaqit
       # nginx / php
       - ./docker/data/logs/nginx:/var/log/nginx
-      - ./docker/config/mawaqit.net.conf:/etc/nginx/sites-enabled/mawaqit.net.conf
-      - ./docker/config/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/config/fpm-pool.conf:/etc/php7/php-fpm.d/mawaqit_custom.conf
-      - ./docker/config/php.ini:/etc/php7/conf.d/mawaqit_custom.ini
+      - ./docker/config/mawaqit.net.conf:/etc/nginx/sites-enabled/mawaqit.net.conf:ro
+      - ./docker/config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/config/fpm-pool.conf:/etc/php7/php-fpm.d/mawaqit_custom.conf:ro
+      - ./docker/config/php.ini:/etc/php7/conf.d/mawaqit_custom.ini:ro
       # certbot
       - ./docker/data/certbot/conf:/etc/letsencrypt
       - ./docker/data/certbot/www:/var/www/certbot
       # ssh
-      - ~/.ssh:/root/.ssh
+      - ~/.ssh:/root/.ssh:ro
       # clock
       - /etc/localtime:/etc/localtime:ro
+      # users
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
     environment:
       APP_ENV: prod
     command: sh -c "php-fpm7 -F & nginx -g 'daemon off;'; while true; do nginx -s reload; sleep 12h; done"
