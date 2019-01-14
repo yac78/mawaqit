@@ -23,7 +23,7 @@ docker exec $dockerContainer bin/console assets:install -e prod --no-debug
 docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
 
 # Fix permissions
-docker exec $dockerContainer chmod -R 755 var/cache var/logs var/sessions
+docker exec $dockerContainer chmod -R 777 var/cache var/logs var/sessions
 
 # Backup DB if prod deploy
 if [ "$env" == "prod" ]; then
