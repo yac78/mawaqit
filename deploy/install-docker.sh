@@ -23,10 +23,10 @@ docker exec $dockerContainer bin/console assets:install --env=prod --no-debug
 docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
 
 # backup DB if prod deploy
-#if [ "$env" == "prod" ]; then
-#    echo "Backup prod DB"
-#    $baseDir/tools/dbBackup.sh
-#fi
+if [ "$env" == "prod" ]; then
+    echo "Backup prod DB"
+    $baseDir/tools/dbSync.sh
+fi
 
 # migrate DB
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
