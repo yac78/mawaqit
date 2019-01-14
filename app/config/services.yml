@@ -205,6 +205,14 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
 
+    app.maintenance_listener:
+        class: AppBundle\EventListener\MaintenanceListener
+        arguments:
+            - "%kernel.cache_dir%/maintenance"
+            - "@twig"
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
     # Validators
     app.validator.mosque:
         class: AppBundle\Validator\Constraints\MosqueValidator

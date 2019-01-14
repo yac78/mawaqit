@@ -19,15 +19,17 @@ docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/pa
 
 # Install vendors and assets
 docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -on --no-dev"
-docker exec $dockerContainer bin/console assets:install --env=prod --no-debug
-docker exec $dockerContainer bin/console assetic:dump --env=prod --no-debug
+docker exec $dockerContainer bin/console assets:install -e prod --no-debug
+docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
+
+# Fix permissions
 docker exec $dockerContainer chmod -R 777 var/cache var/logs var/sessions
 
-# backup DB if prod deploy
-#if [ "$env" == "prod" ]; then
-#    echo "Backup prod DB"
-#    $baseDir/tools/dbBackup.sh
-#fi
+# Sync DB if prod deploy
+if [ "$env" == "prod" ]; then
+    echo "Sync DB"
+    $baseDir/tools/dbSync.sh
+fi
 
 # Migrate DB
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
