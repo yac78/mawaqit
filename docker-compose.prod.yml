@@ -31,7 +31,10 @@ services:
       - /etc/group:/etc/group:ro
     environment:
       APP_ENV: prod
-    command: sh -c "php-fpm7 -F & nginx -g 'daemon off;'; while true; do nginx -s reload; sleep 12h; done"
+    command: >
+      sh -c "chown -R mawaqit:mawaqit /var/tmp/nginx;
+      php-fpm7 -F & nginx -g 'daemon off;';
+      while true; do nginx -s reload; sleep 12h; done"
 
   certbot:
     restart: always
