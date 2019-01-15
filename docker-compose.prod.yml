@@ -9,6 +9,7 @@ services:
     links:
       - db:mysql
     ports:
+      - 80:80
       - 443:443
     volumes:
       # symfony code
