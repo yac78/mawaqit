@@ -1,0 +1,12 @@
+######################################################
+# Reset api call counters every day at 01:00
+1 0 * * * dock bin/console app:reset-api-counters -e prod > /var/log/mawaqit/cron-reset-api-counters.log
+
+######################################################
+# Remove older users and not validated mosques every day at 01:15
+1 15 * * * dock bin/console app:clean-old-users -e prod > /var/log/mawaqit/cron-remove-old-users.log
+
+######################################################
+# Email sending from spool, 150 every 1h30 hours
+00 0-21/3 * * * dock bin/console swiftmailer:spool:send --message-limit=150 --env=prod > /var/log/mawaqit/cron-email.log
+30 1-22/3 * * * dock bin/console swiftmailer:spool:send --message-limit=150 --env=prod > /dev/null 2>&1
