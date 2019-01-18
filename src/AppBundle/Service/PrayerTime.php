@@ -103,7 +103,12 @@ class PrayerTime
         $zipFilePath = "$path/" . $zipFileName;
 
         if ($zip->open($zipFilePath, \ZipArchive::CREATE) === true) {
-            $zip->addGlob("$path/*.csv", GLOB_BRACE, array('remove_all_path' => TRUE));
+            $files = scandir("$path");
+            foreach($files as $file) {
+                if(strpos($file, ".") !== 0 ){
+                    $zip->addFile("$path/$file", $file);
+                }
+            }
             $zip->close();
             array_map('unlink', glob("$path/*.csv"));
         }
