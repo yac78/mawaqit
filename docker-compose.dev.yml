@@ -11,15 +11,22 @@ services:
     ports:
       - 80:80
     volumes:
+      # symfony code
       - ./:/var/www/mawaqit
-      - ./docker/data/logs/symfony:/var/www/mawaqit/var/logs
+      # nginx / php
       - ./docker/data/logs/nginx:/var/log/nginx
       - ./docker/config/fpm-pool.conf:/etc/php7/php-fpm.d/mawaqit_custom.conf
       - ./docker/config/php.ini:/etc/php7/conf.d/mawaqit_custom.ini
       - ./docker/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/config/www.conf:/etc/php7/php-fpm.d/www.conf
       - ./docker/config/mawaqit.localhost.conf:/etc/nginx/sites-enabled/mawaqit.localhost.conf
+      # ssh
       - ~/.ssh:/root/.ssh
+      # clock
       - /etc/localtime:/etc/localtime:ro
+      # users
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
     environment:
       APP_ENV: dev
     command: sh -c "php-fpm7 -F & nginx -g 'daemon off;'"
