@@ -76,7 +76,7 @@ paths:
           name: updatedAt
           type: integer
           required: false          
-          description: if this parameter is present, that means the call is for check updates, if no upadates then no body will returned and the http status will be 304
+          description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
       responses:
         200:
           description: The result
