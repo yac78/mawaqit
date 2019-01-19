@@ -146,6 +146,7 @@ class PrayerTime
             'iqama' => $conf->getWaitingTimes(),
             'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
             'announcements' => $this->getMessages($mosque),
+            'updatedAt' => $mosque->getUpdated(),
         ];
 
         if ($calendar) {

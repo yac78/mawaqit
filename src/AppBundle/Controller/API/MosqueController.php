@@ -8,12 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/api/1.0.0/mosque", options={"i18n"="false"})
  */
-
 class MosqueController extends Controller
 {
     /**
@@ -25,10 +25,10 @@ class MosqueController extends Controller
      */
     public function searchAction(Request $request)
     {
-        $word = $request->query->get('word') ;
-        $lat = $request->query->get('lat') ;
-        $lon = $request->query->get('lon') ;
-        $result =$this->get('app.mosque_service')->searchApi($word, $lat, $lon);
+        $word = $request->query->get('word');
+        $lat = $request->query->get('lat');
+        $lon = $request->query->get('lon');
+        $result = $this->get('app.mosque_service')->searchApi($word, $lat, $lon);
         return new JsonResponse($result);
     }
 
@@ -43,12 +43,23 @@ class MosqueController extends Controller
      */
     public function prayTimesAction(Request $request, Mosque $mosque)
     {
-        if($mosque->isHome()){
+        if ($mosque->isHome()) {
             throw new NotFoundHttpException();
         }
 
+        if ($request->query->has('updatedAt')) {
+            $updatedAt = $request->query->get('updatedAt');
+            if (!is_numeric($updatedAt)) {
+                throw new BadRequestHttpException();
+            }
+
+            if ($mosque->getUpdated() <= $updatedAt) {
+                return new JsonResponse(null, JsonResponse::HTTP_NOT_MODIFIED);
+            }
+        }
+
         $calendar = $request->query->has('calendar');
-        $result =$this->get('app.prayer_times')->prayTimes($mosque, $calendar);
+        $result = $this->get('app.prayer_times')->prayTimes($mosque, $calendar);
         return new JsonResponse($result);
     }
 
