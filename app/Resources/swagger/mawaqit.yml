@@ -72,6 +72,11 @@ paths:
           type: string
           required: false          
           description: if this parameter is present, the full year calendar of prayer times is returned
+        - in: query
+          name: updatedAt
+          type: integer
+          required: false          
+          description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
       responses:
         200:
           description: The result
@@ -195,6 +200,7 @@ definitions:
       - fixedIqama
       - flashMessage
       - announcements
+      - updatedAt
     properties:
       id:
         type: integer
@@ -282,6 +288,10 @@ definitions:
         items: 
           type: object
         description: The full year prayer times calendar    
+      updatedAt:    
+        type: integer
+        example: 1547833429
+        description: The timestamp when the mosque has last updated
         
   Announcement:
     type: object
