@@ -195,6 +195,7 @@ definitions:
       - fixedIqama
       - flashMessage
       - announcements
+      - updatedAt
     properties:
       id:
         type: integer
@@ -282,6 +283,10 @@ definitions:
         items: 
           type: object
         description: The full year prayer times calendar    
+      updatedAt:    
+        type: integer
+        example: 1547833429
+        description: The timestamp when the mosque has last updated
         
   Announcement:
     type: object
