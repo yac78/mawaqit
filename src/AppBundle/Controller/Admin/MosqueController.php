@@ -79,12 +79,9 @@ class MosqueController extends Controller
                 $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
                 $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
                 $serializer = new Serializer([new ArrayDenormalizer(),  $normalizer], [ new JsonEncoder()]);
-                $newMosque = $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json');
-                $newMosque->setId($mosque->getId());
-                $newMosque->setSynchronized(true);
+                $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
+                $mosque->setSynchronized(true);
             }
-
-            $em->persist($newMosque);
 
             $em->flush();
         }
