@@ -83,7 +83,7 @@
                     <td style="position: relative">
                         <div><i class="fa fa-map-marker" data-gps="{{ mosque.latitude ~ "," ~ mosque.longitude }}"></i> {{ mosque.address }}</div>
                         <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
-                        <div>{{ mosque.fullCountryName }}</div>
+                        <div>{{ mosque.countryFullName }}</div>
                         {% if mosque.phone %}
                             <div><span class="fa fa-phone">&nbsp;</span><a href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a></div>
                         {% endif %}
@@ -159,7 +159,7 @@
                     <div>{{ mosque.associationName }}</div>
                     <div>{{ mosque.address }}</div>
                     <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
-                    <div>{{ mosque.fullCountryName }} </div>
+                    <div>{{ mosque.countryFullName }} </div>
                     {% if mosque.phone %}
                         <span class="fa fa-phone">&nbsp;</span><a href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a>
                         <br>

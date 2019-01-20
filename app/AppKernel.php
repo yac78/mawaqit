@@ -22,6 +22,7 @@ class AppKernel extends Kernel {
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
             new AppBundle\AppBundle(),
         ];
 

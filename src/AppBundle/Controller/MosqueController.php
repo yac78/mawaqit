@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
+use AppBundle\Form\MosqueSyncType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -101,7 +102,8 @@ class MosqueController extends Controller
             "supportEmail" => $this->getParameter("supportEmail"),
             "postmasterAddress" => $this->getParameter("postmaster_address"),
             "mawaqitApiAccessToken" => $this->getParameter("mawaqit_api_access_token"),
-            'messages' => $messages
+            'messages' => $messages,
+            'form' => $this->createForm(MosqueSyncType::class)->createView()
         ]);
     }
 

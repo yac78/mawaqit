@@ -115,6 +115,9 @@ AppBundle\Entity\Mosque:
         parking:
             type: boolean
             nullable: true
+        synchronized:
+            type: boolean
+            nullable: true
         created:
             type: datetime
             gedmo:

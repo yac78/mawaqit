@@ -866,7 +866,7 @@ class Configuration
      *
      * @return Configuration
      */
-    public function setCalendar($calendar)
+    public function setCalendar(array $calendar)
     {
         $this->calendar = $calendar;
 
