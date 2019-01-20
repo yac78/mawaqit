@@ -1,3 +1,9 @@
+mosqueScreen:
+  syncYourMosque: Syncroniser votre mosquée
+  anInternetConnectionRequired: Une connexion internet est requise
+  nb: Cette étape vous permet de récupérer les données saisies sur mawaqit.net vers votre raspberry
+  fillId: Veuillez saisir l'id de votre mosquée en ligne
+
 home:
   menu:
     main: Menu
@@ -224,6 +230,8 @@ form:
     edit:
         success:  L'édition a été réalisée avec succès.
         action: Éditer
+    sync:
+        action: Synchroniser avec la mosquée en ligne
     delete:
         success:  La suppression a été réalisée avec succès.
         action: Supprimer
@@ -682,6 +690,7 @@ send: Envoyer
 required: Champ obligatoire
 close: Fermer
 show: voir
+later: Plus tard
 links: Liens
 site: Site internet
 motif: Motif

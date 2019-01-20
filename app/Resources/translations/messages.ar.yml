@@ -1,3 +1,9 @@
+#mosqueScreen:
+#  syncYourMosque: مزامنة المسجد
+#  anInternetConnectionRequired: مطلوب اتصال بالإنترنت
+#  nb: هذه الخطوة تسمح لك باستعادة البيانات المدخلة على الموقع mawaqit.net إلى الراسبيري
+#  fillId: الرجاء إدخال ID المسجد الخاص بك على الإنترنت
+
 home:
   menu:
     main: القائمة
@@ -204,6 +210,8 @@ form:
     edit:
         success:  تمت التعديل بنجاح
         action: تعديل
+    sync:
+        action: تزامن مع المسجد على الانترنت
     delete:
         success:  تم الحذف بنجاح
         action: إحذف
@@ -575,6 +583,7 @@ dst-disabled: Disabled (Countries not practicing dst)
 send: إرسال
 required: حقل إجباري
 close: إغلاق
+later: فيما بعد
 iframe_copy_text: لعرض ويدجت widget المواقيت أدناه يكفي نسخ ولصق كود html
 
 iframe_add_title: أضف الويدجت إلى موقعك

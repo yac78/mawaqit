@@ -394,7 +394,7 @@ class Mosque
     /**
      * @return string
      */
-    public function getCountryFullName(): string
+    public function getCountryFullName()
     {
         return $this->countryFullName;
     }

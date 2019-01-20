@@ -1,3 +1,9 @@
+mosqueScreen:
+  syncYourMosque: Sync your mosque
+  anInternetConnectionRequired: An internet connection is required
+  nb: This step allows you to recover data entered on mawaqit.net to your raspberry
+  fillId: Please enter the id of your online mosque
+
 form:
     label:
         delete: Delete ?
@@ -6,6 +12,8 @@ form:
     edit:
         success:  The edition has been successfully completed.
         action: Edit
+    sync:
+        action: Sync with online mosque
     delete:
         success:  Removing has been successfully completed.
         action: Remove
@@ -439,6 +447,7 @@ dst-disabled: Disabled (Countries not practicing dst)
 send: Envoyer
 required: Required
 close: Close
+later: Later
 show: Show
 links: Links
 site: Website

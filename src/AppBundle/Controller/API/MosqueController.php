@@ -54,7 +54,7 @@ class MosqueController extends Controller
 
         $normalizer = new ObjectNormalizer();
         $normalizer->setIgnoredAttributes(['user', 'id', 'created', 'updated', 'messages', 'image1', 'image2', 'image3', 'localisation','justificatory',
-            'nbOfEnabledMessages', 'calendarCompleted', 'gpsCoordinates', 'title', 'types','synchronized', 'slug', 'locale', 'flashMessage']);
+            'nbOfEnabledMessages', 'calendarCompleted', 'gpsCoordinates', 'title', 'types','synchronized', 'slug', 'locale', 'flashMessage', 'status']);
 
         $normalizer->setCircularReferenceHandler(function ($mosque) {
             return $mosque->getId();

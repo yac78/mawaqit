@@ -11,6 +11,7 @@ use AppBundle\Form\MosqueSyncType;
 use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\TransferException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
@@ -59,6 +60,20 @@ class MosqueController extends Controller
     }
 
     /**
+     * Restet Sync flag
+     * This is useful for raspberry env
+     * @Route("/sync/reset/{id}", name="mosque_reset_sync")
+     */
+    public function resetSyncAction(Mosque $mosque)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $mosque->setSynchronized(false);
+        $em->flush();
+
+        return $this->redirectToRoute('mosque', ['slug' => $mosque->getSlug()]);
+    }
+
+    /**
      * Sync mosque data
      * This is useful for raspberry env
      * @Route("/sync/{id}", name="mosque_sync")
@@ -67,7 +82,6 @@ class MosqueController extends Controller
     {
         $form = $this->createForm(MosqueSyncType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -76,11 +90,15 @@ class MosqueController extends Controller
             }
 
             if ($request->request->has('validate')) {
-                $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
-                $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
-                $serializer = new Serializer([new ArrayDenormalizer(),  $normalizer], [ new JsonEncoder()]);
-                $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
-                $mosque->setSynchronized(true);
+                try {
+                    $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
+                    $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
+                    $serializer = new Serializer([new ArrayDenormalizer(), $normalizer], [new JsonEncoder()]);
+                    $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
+                    $mosque->setSynchronized(true);
+                } catch (TransferException $e) {
+                    $this->addFlash("danger", "No mosque found for this id " . $form->getData()['id']);
+                }
             }
 
             $em->flush();
