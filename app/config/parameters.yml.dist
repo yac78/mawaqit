@@ -33,6 +33,7 @@ parameters:
 
     # Mawaqit API
     mawaqit_api_access_token: ''
+    local_mawaqit_api_access_token: ''
 
     # slack
     slack_token: 'fake-token'
