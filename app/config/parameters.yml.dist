@@ -17,6 +17,7 @@ parameters:
     languages: [fr, ar, en, tr]
     version: 3.0.0
     site: https://mawaqit.net
+    api_base_url: https://mawaqit.net
     supportTel1: '+33629111641'
     supportTel2: '+33666137234'
     supportEmail: contact@mawaqit.net

@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -93,7 +94,7 @@ class MosqueController extends Controller
                 try {
                     $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
                     $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
-                    $serializer = new Serializer([new ArrayDenormalizer(), $normalizer], [new JsonEncoder()]);
+                    $serializer = new Serializer([new DateTimeNormalizer(), new ArrayDenormalizer(), $normalizer], [new JsonEncoder()]);
                     $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
                     $mosque->setSynchronized(true);
                 } catch (TransferException $e) {

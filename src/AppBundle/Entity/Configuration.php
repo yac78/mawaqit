@@ -1137,7 +1137,7 @@ class Configuration
     /**
      * @return mixed
      */
-    public function getDstSummerDate()
+    public function getDstSummerDate(): ?\DateTime
     {
         return $this->dstSummerDate;
     }
@@ -1155,7 +1155,7 @@ class Configuration
     /**
      * @return mixed
      */
-    public function getDstWinterDate()
+    public function getDstWinterDate():?\DateTime
     {
         return $this->dstWinterDate;
     }

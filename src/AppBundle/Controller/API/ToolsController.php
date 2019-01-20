@@ -17,13 +17,4 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ToolsController extends Controller
 {
-    /**
-     * @Route("/opcache/reset")
-     * @Method("DELETE")
-     */
-    public function opcacheResetAction()
-    {
-        opcache_reset();
-        return new Response("Opcache successfully reset");
-    }
 }

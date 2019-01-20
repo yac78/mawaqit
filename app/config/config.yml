@@ -161,7 +161,7 @@ csa_guzzle:
     clients:
         api:
             config:
-                base_uri: '%site%/api/1.0.0/'
+                base_uri: '%api_base_url%/api/1.0.0/'
                 headers:
                     Accept: application/json
                     Api-Access-Token: '%mawaqit_api_access_token%'
