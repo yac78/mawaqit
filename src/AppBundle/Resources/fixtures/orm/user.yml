@@ -6,5 +6,4 @@ AppBundle\Entity\User:
         enabled: true
         tou: true
         roles: [ROLE_ADMIN]
-        apiAccessToken: 86ed48fd-691e-4370-a9bf-ae74f788ed54
         apiQuota: 1000000
