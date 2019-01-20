@@ -1026,11 +1026,11 @@ var prayer = {
                 prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
                 iqamaTime = prayer.getCurrentDateForPrayerTime(prayer.confData.fixedIqama[i]);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
-                    wait = prayer.confData.fixedIqama[i];
+                    wait = prayer.formatTime(prayer.confData.fixedIqama[i]);
                 }
             }
 
-            $(e).text(wait);
+            $(e).html(wait);
         });
     },
     hideSpinner: function () {
