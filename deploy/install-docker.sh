@@ -22,17 +22,17 @@ docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -on --no-d
 docker exec $dockerContainer bin/console assets:install -e prod --no-debug
 docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
 
-# Sync DB if prod deploy
-if [ "$env" == "prod" ]; then
-    echo "Sync DB"
-    $baseDir/tools/dbSync.sh
-fi
-
 # Migrate DB
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
 
 # Restart php
 docker exec $dockerContainer kill -USR2 1
+
+# Sync DB if prod deploy
+if [ "$env" == "prod" ]; then
+    echo "Sync DB"
+    $baseDir/tools/dbSync.sh
+fi
 
 echo ""
 echo "####################################################"
