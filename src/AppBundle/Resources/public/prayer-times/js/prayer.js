@@ -1018,14 +1018,19 @@ var prayer = {
      * set wating times
      */
     setWaitings: function () {
-        var wait;
+        var wait, prayerTime, iqamaTime;
         $(".wait").each(function (i, e) {
             wait = prayer.getWaitingTimes()[i % 5] + "'";
             if (prayer.confData.fixedIqama[i] !== "") {
-                wait = prayer.confData.fixedIqama[i];
+                var prayerTimes = prayer.getTimes();
+                prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
+                iqamaTime = prayer.getCurrentDateForPrayerTime(prayer.confData.fixedIqama[i]);
+                if (iqamaTime.getTime() > prayerTime.getTime()) {
+                    wait = prayer.formatTime(prayer.confData.fixedIqama[i]);
+                }
             }
 
-            $(e).text(wait);
+            $(e).html(wait);
         });
     },
     hideSpinner: function () {
