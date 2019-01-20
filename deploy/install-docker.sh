@@ -18,7 +18,7 @@ echo "Set version"
 docker exec $dockerContainer sed -i "s/version: .*/version: $tag/" app/config/parameters.yml
 
 # Install vendors and assets
-docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -on --no-dev"
+docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -o -n --no-dev"
 docker exec $dockerContainer bin/console assets:install -e prod --no-debug
 docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
 
