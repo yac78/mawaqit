@@ -3,6 +3,9 @@
 #  anInternetConnectionRequired: مطلوب اتصال بالإنترنت
 #  nb: هذه الخطوة تسمح لك باستعادة البيانات المدخلة على الموقع mawaqit.net إلى الراسبيري
 #  fillId: الرجاء إدخال ID المسجد الخاص بك على الإنترنت
+#  noInternetConnection: Veuillez vérifier votre connexion intenet
+#  noMosqueFound: Aucune mosquée trouvée avec l'id saisi
+#  otherPb: A problem has been occured, please try later
 
 home:
   menu:

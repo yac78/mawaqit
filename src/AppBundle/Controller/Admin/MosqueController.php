@@ -11,6 +11,7 @@ use AppBundle\Form\MosqueSyncType;
 use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\TransferException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -97,8 +98,12 @@ class MosqueController extends Controller
                     $serializer = new Serializer([new DateTimeNormalizer(), new ArrayDenormalizer(), $normalizer], [new JsonEncoder()]);
                     $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
                     $mosque->setSynchronized(true);
+                } catch (ConnectException $e) {
+                    $this->addFlash("danger", "mosqueScreen.noInternetConnection");
                 } catch (TransferException $e) {
-                    $this->addFlash("danger", "No mosque found for this id " . $form->getData()['id']);
+                    $this->addFlash("danger", "mosqueScreen.noMosqueFound");
+                }catch (\Exception $e) {
+                    $this->addFlash("danger", "mosqueScreen.otherPb");
                 }
             }
 

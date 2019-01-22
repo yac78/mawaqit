@@ -3,6 +3,9 @@ mosqueScreen:
   anInternetConnectionRequired: Une connexion internet est requise
   nb: Cette étape vous permet de récupérer les données saisies sur mawaqit.net vers votre raspberry
   fillId: Veuillez saisir l'id de votre mosquée en ligne
+  noInternetConnection: Veuillez vérifier votre connexion intenet
+  noMosqueFound: Aucune mosquée trouvée avec l'ID saisi
+  otherPb: Un problème est surevnu, veuillez réessayer plus tard
 
 home:
   menu:
