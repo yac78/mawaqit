@@ -99,10 +99,10 @@ function writeIslamicDate(adjustment, lang) {
 
     var iDate = kuwaiticalendar(adjustment);
 
-    var date =  addZero(iDate[5]) + " " + iMonthNames[iDate[6]] + " " + iDate[7];
+    var date = addZero(iDate[5]) + " " + iMonthNames[iDate[6]] + " " + iDate[7];
 
-    if(lang === 'ar'){
-        date =  iDate[7] + " " + wdNames[iDate[4]] + " " + addZero(iDate[5]) + " " + iMonthNames[iDate[6]];
+    if (lang === 'ar') {
+        date = wdNames[iDate[4]] + " " + addZero(iDate[5]) + " " + iMonthNames[iDate[6]] + " " + iDate[7];
     }
 
     return date;

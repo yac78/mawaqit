@@ -22,7 +22,6 @@ prayer.showSpecialTimes();
 prayer.initUpdateConfData();
 prayer.initWakupFajr();
 prayer.initEvents();
-prayer.translateToArabic();
 prayer.setQRCode();
 prayer.hideSpinner();
 prayer.initCronReloadPage();

@@ -15,16 +15,14 @@ body {
     display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .top {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 3vw;
-}
-
-.top div {
-    flex-grow: 1;
+    justify-content: space-between;
 }
 
 .current-time {
@@ -38,9 +36,6 @@ body {
 
 .shuruq, .jumua{
     padding-top: 5vw;
-}
-.prayers > div {
-    flex-grow: 1;
 }
 
 .name {

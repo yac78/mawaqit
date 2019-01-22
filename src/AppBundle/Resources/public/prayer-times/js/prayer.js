@@ -765,16 +765,14 @@ var prayer = {
 
         // if joumouaa we hilight joumouaa time
         if (prayer.isJumua(prayerIndex)) {
-            $(".joumouaa > div").addClass("text-hilighted");
-            $(".joumouaa-id, .joumouaa2-id").addClass("prayer-hilighted");
+            $(".joumouaa").addClass("prayer-hilighted");
             if (prayer.isMosque) {
                 return;
             }
         }
 
-        $(".prayer-text ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer-wait ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer-time ._" + prayerIndex).addClass("prayer-hilighted");
+        $(".prayers .time").eq(prayerIndex).addClass("prayer-hilighted");
+        $(".prayers div").eq(prayerIndex).addClass("text-hilighted");
         $(".prayer.prayer" + prayerIndex).addClass("prayer-hilighted");
     },
     /**
@@ -1002,25 +1000,22 @@ var prayer = {
      * @param {Boolean} tomorrow
      */
     setTimes: function (tomorrow) {
-        var sobh = prayer.formatTime(this.getTimes(tomorrow)[0]);
-        var dohr = prayer.formatTime(this.getTimes(tomorrow)[1]);
-        var asr = prayer.formatTime(this.getTimes(tomorrow)[2]);
-        var maghrib = prayer.formatTime(this.getTimes(tomorrow)[3]);
-        var ichaa = prayer.formatTime(this.getTimes(tomorrow)[4]);
-
-        $(".sobh").html(sobh);
-        $(".dohr").html(dohr);
-        $(".asr").html(asr);
-        $(".maghrib").html(maghrib);
-        $(".ichaa").html(ichaa);
+        var times = this.getTimes(tomorrow);
+        $.each(times, function (i, time) {
+            $('.prayers .time').eq(i).html(prayer.formatTime(time))
+        });
     },
     /**
      * set wating times
      */
     setWaitings: function () {
+        if(!prayer.confData.iqamaEnabled){
+            return;
+        }
+
         var wait, prayerTime, iqamaTime;
-        $(".wait").each(function (i, e) {
-            wait = prayer.getWaitingTimes()[i % 5] + "'";
+        $.each(prayer.getWaitingTimes(), function (i, wait) {
+            wait = wait + "'";
             if (prayer.confData.fixedIqama[i] !== "") {
                 var prayerTimes = prayer.getTimes();
                 prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
@@ -1029,8 +1024,7 @@ var prayer = {
                     wait = prayer.formatTime(prayer.confData.fixedIqama[i]);
                 }
             }
-
-            $(e).html(wait);
+            $('.prayers .wait').eq(i).html(wait);
         });
     },
     hideSpinner: function () {
@@ -1038,28 +1032,9 @@ var prayer = {
             $("#spinner").fadeOut(500, function () {
                 $(".main").fadeIn(100);
             });
-        }, 2000);
+        }, 1500);
     },
-    /**
-     * Arabic handler
-     */
-    translateToArabic: function () {
-        if (lang === "ar") {
-            var texts = $(".prayer-text").find("div");
-            var times = $(".prayer-time").find("div");
-            var waits = $(".prayer-wait").find("div");
-            for (var i = 4; i >= 0; i--) {
-                $(".prayer-text").append(texts[i]);
-                $(".prayer-time").append(times[i]);
-                $(".prayer-wait").append(waits[i]);
-            }
-
-            $(".top-content .header").css("font-size", "650%");
-            $(".top-content .content .ar").css("font-size", "120%");
-            $(".prayer-text").css("line-height", "160%");
-        }
-    },
-    /**
+     /**
      * Init events
      */
     initEvents: function () {

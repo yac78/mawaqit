@@ -61,14 +61,14 @@
 
     <input type="text" id="search" placeholder="{{ 'searchOtherMosque'|trans }}" data-remote="{{ path('public_mosque_search_ajax') }}">
 
-    <div class="header {{ app.request.locale == 'ar' ? 'rtl' }}">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
+    <div class="header">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
 
     <div class="top-content">
         <div class="time"></div>
         {% if mosque.configuration.hijriDateEnabled %}
             <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
         {% endif %}
-        <div class="gregorianDate {{ app.request.locale == 'ar' ? 'rtl' }}"></div>
+        <div class="gregorianDate"></div>
     </div>
 
     {% if mosque.flashMessage.available %}
@@ -85,89 +85,46 @@
 
     {% set ampmClass = mosque.configuration.timeDisplayFormat == "12" ? 'ampm' : '' %}
     <div class="prayer-content">
-        {% if app.request.locale == 'ar' %}
-            <div class="row">
-                <div class="col-xs-4 wait _0 text-left"></div>
-                <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan0 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 text ar text-right">{{ 'fajr'|trans }}</div>
+        <div class="row">
+            <div class="col-xs-4 text text-left">{{ 'fajr'|trans }}</div>
+            <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
+            <div class="col-xs-4 adhan0 hidden">
+                <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
             </div>
-            <div class="row">
-                <div class="col-xs-4 wait _1 text-left"></div>
-                <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan1 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 text ar text-right">{{ 'zuhr'|trans }}</div>
+            <div class="col-xs-4 wait _0 text-right"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text text-left">{{ 'zuhr'|trans }}</div>
+            <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
+            <div class="col-xs-4 adhan1 hidden">
+                <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
             </div>
-            <div class="row">
-                <div class="col-xs-4 wait _2 text-left"></div>
-                <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan2 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 text ar text-right">{{ 'asr'|trans }}</div>
+            <div class="col-xs-4 wait _1 text-right"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text text-left">{{ 'asr'|trans }}</div>
+            <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
+            <div class="col-xs-4 adhan2 hidden">
+                <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
             </div>
-            <div class="row">
-                <div class="col-xs-4 wait _3 text-left"></div>
-                <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan3 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 text ar text-right">{{ 'maghrib'|trans }}</div>
+            <div class="col-xs-4 wait _2 text-right"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text text-left">{{ 'maghrib'|trans }}</div>
+            <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
+            <div class="col-xs-4 adhan3 hidden">
+                <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
             </div>
-            <div class="row">
-                <div class="col-xs-4 wait _4 text-left"></div>
-                <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan4 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 text ar text-right">{{ 'isha'|trans }}</div>
+            <div class="col-xs-4 wait _3 text-right"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text text-left">{{ 'isha'|trans }}</div>
+            <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
+            <div class="col-xs-4 adhan4 hidden">
+                <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
             </div>
-        {% else %}
-            <div class="row">
-                <div class="col-xs-4 text text-left">{{ 'fajr'|trans }}</div>
-                <div class="col-xs-4 prayer prayer0 sobh {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan0 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 wait _0 text-right"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4 text text-left">{{ 'zuhr'|trans }}</div>
-                <div class="col-xs-4 prayer prayer1 dohr {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan1 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 wait _1 text-right"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4 text text-left">{{ 'asr'|trans }}</div>
-                <div class="col-xs-4 prayer prayer2 asr {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan2 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 wait _2 text-right"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4 text text-left">{{ 'maghrib'|trans }}</div>
-                <div class="col-xs-4 prayer prayer3 maghrib {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan3 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 wait _3 text-right"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4 text text-left">{{ 'isha'|trans }}</div>
-                <div class="col-xs-4 prayer prayer4 ichaa {{ ampmClass }}"></div>
-                <div class="col-xs-4 adhan4 hidden">
-                    <img src="{{ asset('bundles/app/prayer-times/img/loudspeaker.png') }}" class="athan-img">
-                </div>
-                <div class="col-xs-4 wait _4 text-right"></div>
-            </div>
-        {% endif %}
+            <div class="col-xs-4 wait _4 text-right"></div>
+        </div>
     </div>
 
     <div class="row">
@@ -289,7 +246,7 @@
     var prayerTimeIn10MinBody = '{{ 'prayerTimeIn10MinBody'|trans }}';
 
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             navigator.serviceWorker.register('/sw.js');
         });
     }

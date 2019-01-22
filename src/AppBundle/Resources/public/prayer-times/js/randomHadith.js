@@ -54,11 +54,11 @@ var randomHadith = {
                 var $randomHadithEl = $(".random-hadith");
                 $.ajax({
                     url: $randomHadithEl.data("remote"),
-                    headers: {'Api-Access-Token' : $randomHadithEl.data("apiAccessToken")},
+                    headers: {'Api-Access-Token': $randomHadithEl.data("apiAccessToken")},
                     success: function (resp) {
                         if (resp.text !== "") {
                             $(".random-hadith .text div").text(resp.text);
-                            randomHadith.show(randomHadith.setFontSize, resp.lang);
+                            randomHadith.show(randomHadith.setFontSize);
                         }
                     },
                     error: function () {
@@ -71,13 +71,13 @@ var randomHadith = {
             }
         }, 5000);
     },
-    show: function (callback, lang) {
+    show: function (callback) {
         prayer.nextPrayerCountdown();
         $(".top-content").fadeOut(1000, function () {
             $(".footer").hide();
             $(".random-hadith").fadeIn(1000);
-            if (typeof callback !== 'undefined' && typeof lang !== 'undefined') {
-                callback(lang);
+            if (typeof callback !== 'undefined') {
+                callback();
             }
         });
     },
@@ -87,19 +87,14 @@ var randomHadith = {
             $(".top-content").fadeIn(1000);
         });
     },
-    setFontSize: function (lang) {
+    setFontSize: function () {
         var $textContainer = $('.random-hadith .text');
         var $textContainerDiv = $('.random-hadith .text div');
-        $textContainerDiv.css('font-size', '150px');
-        $textContainerDiv.css('line-height', '300px');
-        if (lang !== "ar") {
-            $textContainerDiv.css('line-height', '140%');
-        }
+        var defaultFontSize = 10;
+        $textContainerDiv.css('font-size', defaultFontSize + 'vw');
         while ($textContainerDiv.height() > $textContainer.height() - 30) {
-            $textContainerDiv.css('font-size', (parseInt($textContainerDiv.css('font-size')) - 1) + "px");
-            if (lang === "ar") {
-                $textContainerDiv.css('line-height', (parseInt($textContainerDiv.css('line-height')) - 2) + "px");
-            }
+            defaultFontSize = defaultFontSize - 0.3;
+            $textContainerDiv.css('font-size', (defaultFontSize) + 'vw');
         }
     }
 };
