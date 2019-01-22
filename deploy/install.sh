@@ -4,36 +4,25 @@
 set -e
 
 if [ $# -lt 2 ]; then
-    echo "env and tag are mandatory"
+    echo "env and branch are mandatory"
     exit;
 fi
 
 env=$1
-tag=$2
+branch=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
 sharedDir=$baseDir/shared
 envDir=$baseDir/$env
-targetDir=$envDir/$tag
-
-if [ "$env" == "pp" ]; then
-    targetDir=$envDir/master
-fi
+targetDir=$envDir/master
 
 cd $repoDir
 
 if [ "$env" == "prod" ]; then
-    git fetch && git checkout $tag
+    git fetch && git checkout $branch && git pull origin $branch
 fi
 
-if [ "$env" == "pp" ]; then
-    git fetch && git checkout $tag && git pull origin $tag
-fi
-
-version=$tag
-if [ "$env" == "pp" ]; then
-    version=dev@`git rev-parse --short HEAD`
-fi
+version=dev@`git rev-parse --short HEAD`
 
 mkdir -p $targetDir
 
@@ -62,14 +51,6 @@ composer install --no-dev --optimize-autoloader --no-interaction
 bin/console assets:install --env=prod --no-debug
 bin/console assetic:dump --env=prod --no-debug
 
-#npm install
-
-# backup DB if prod deploy
-if [ "$env" == "prod" ]; then
-    echo "Backup prod DB"
-    $baseDir/tools/dbBackup.sh
-fi
-
 # migrate DB
 bin/console doctrine:migrations:migrate -n --allow-no-migration
 
@@ -79,12 +60,7 @@ cd $envDir && rm current || true && ln -s $targetDir current
 echo "Reset opcache"
 curl -s localhost:81/reset_opcache.php
 
-if [ "$env" == "prod" ]; then
-    echo "Deleting old releases, keep 3 latest"
-    rm -rf `ls -t  | tail -n +5`
-fi
-
 echo ""
 echo "####################################################"
-echo "The upgrade to v$tag has been successfully done ;)"
+echo "The upgrade has been successfully done ;)"
 echo "####################################################"
