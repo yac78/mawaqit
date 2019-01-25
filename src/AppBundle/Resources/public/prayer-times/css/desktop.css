@@ -42,18 +42,24 @@ body {
 }
 
 .prayers {
-    -webkit-box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.6);
-    -moz-box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.6);
-    box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.6);
+    -webkit-box-shadow: 10px 10px 15px #45733f;
+    -moz-box-shadow: 10px 10px 15px #45733f;
+    box-shadow: 10px 10px 15px #45733f;
+    background-color: #000000;
+    margin: auto;
+    width: 98%;
     padding: 5px 10px;
-    display: -webkit-box;
-    display: -moz-box;
     display: -ms-flexbox;
     display: -moz-flex;
     display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.prayer-hilighted {
+    color: #FFFFFF;
+    background-color: #175200;
 }
 
 .prayers .name {
@@ -114,17 +120,6 @@ body {
 small {
     font-size: 2vw;
     padding-left: 8px;
-}
-
-.prayer-hilighted {
-    color: #f0ad4e !important;
-    -webkit-box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.6);
-    -moz-box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.6);
-    box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.6);
-}
-
-.text-hilighted {
-    color: #f0ad4e !important;
 }
 
 .flash, .visibilty-hidden {

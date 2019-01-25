@@ -58,7 +58,7 @@
 
     <!-- Random hadith container -->
     <div class="random-hadith display-none" data-remote="{{ path('random_hadith', {lang: mosque.configuration.hadithLang}) }}" data-api-access-token="{{ mawaqitApiAccessToken }}">
-        <div class="text">
+        <div class="text ltr">
             <div></div>
         </div>
         <div class="next-prayer-bloc">
@@ -97,7 +97,7 @@
 
         <!-- temperature container -->
         {% if mosque.configuration.temperatureEnabled %}
-            <div id="weather" class="hidden" data-remote="{{ path('weather', {slug: mosque.slug}) }}">
+            <div id="weather" class="hidden ltr" data-remote="{{ path('weather', {slug: mosque.slug}) }}">
                 <i style="color: #FFF;"></i> <span></span><sup>°C</sup>
             </div>
         {% endif %}

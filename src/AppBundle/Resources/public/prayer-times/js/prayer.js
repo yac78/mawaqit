@@ -493,10 +493,10 @@ var prayer = {
          */
         countdown: function (currentPrayerIndex) {
             var time = prayer.getTimeByIndex(currentPrayerIndex);
-            var waitingText = $(".wait._" + currentPrayerIndex).text();
+            var currentElem = $(".wait").eq(currentPrayerIndex);
+            var waitingText = currentElem.text();
             var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
             var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
-            var currentElem = $(".wait._" + currentPrayerIndex);
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
@@ -577,8 +577,8 @@ var prayer = {
 
             var adhanFlashInterval = setInterval(function () {
                 $(".top-content .adhan-flash").toggleClass("hidden");
-                $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
-                $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
+                // $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
+                // $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
             }, prayer.oneSecond);
 
             setTimeout(function () {
@@ -596,8 +596,8 @@ var prayer = {
                 $(".top-content .content").removeClass("hidden");
             }
 
-            $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
-            $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
+            // $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
+            // $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
             prayer.duaAfterAdhan.handle(currentPrayerIndex);
         }
     },
@@ -761,7 +761,6 @@ var prayer = {
      */
     hilightByIndex: function (prayerIndex) {
         $(".prayer-hilighted").removeClass("prayer-hilighted");
-        $(".text-hilighted").removeClass("text-hilighted");
 
         // if joumouaa we hilight joumouaa time
         if (prayer.isJumua(prayerIndex)) {
@@ -771,9 +770,7 @@ var prayer = {
             }
         }
 
-        $(".prayers .time").eq(prayerIndex).addClass("prayer-hilighted");
-        $(".prayers div").eq(prayerIndex).addClass("text-hilighted");
-        $(".prayer.prayer" + prayerIndex).addClass("prayer-hilighted");
+        $(".prayers > div").eq(prayerIndex).addClass("prayer-hilighted");
     },
     /**
      * 10 minute after current iqama we hilight the next prayer time
