@@ -1,0 +1,28 @@
+fajr: Fadjr
+shuruk: Shuruk
+zuhr: Dohr
+asr: Assr
+maghrib: Maghrib
+isha: Ishaa
+jumua: Freitagsgebet
+aid: Eid Fest
+imsak: Imsak
+iqama: Iqamah
+azan: Adhan
+
+power-off-phones: Bitte Handys aus !
+next_prayer: Nächste Adhan
+
+duaAfterAthan:
+    title: Bittgebet nach dem Adhan
+    text: |
+        O Allah, Herr dieses vollkommenen Rufes dieses bevorstehenden Gebet, gewähre Muhammad die Wasilah ( Ort im Paradies) und die Fadhilah ( die höchste Stufe des Paradieses )  und lass ihn auferstehen in einer lobenswerten Rangstellung, die Du ihm versprochen hast.
+duaBetweenAthanAndIqama:
+    text: |
+      “Das Bittgebet zwischen Gebetsruf (Adhan) und Gebetsbeginn (Iqama) wird nicht zurückgewiesen.” [Abu Dawud, Tirmidhi]
+
+jumuaReminder:
+    text: |
+      Der Prophet ( Allahs Frieden und Segen auf ihm) hat gesagt:
+      "Derjenige der in einer schönen weise seine Gebetswaschung vollzieht und dann zum Freitagsgebet kommt, leise die Khutba zuhört, dessen Sünden werden zwichen den zwei Freitage und noch drei Tage, vergeben. Und wer während der Khutba mit Kieselsteine spielt, der macht etwas sinnloses"
+searchOtherMosque: Suche eine andere Moschee
