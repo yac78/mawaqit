@@ -14,7 +14,7 @@ parameters:
     no_reply_address: 'no-reply@mawaqit.net'
     postmaster_address: postmaster@mawaqit.net
     secret: theSecret
-    languages: [fr, ar, en, tr]
+    languages: [fr, ar, en, tr, de]
     version: 3.0.0
     site: https://mawaqit.net
     api_base_url: https://mawaqit.net
