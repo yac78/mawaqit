@@ -11,6 +11,10 @@ cd $repoDir
 
 docker exec $dockerContainer git fetch && git checkout $tag
 
+if [ "$env" == "pp" ]; then
+    docker exec $dockerContainer git pull origin $tag
+fi
+
 echo "Creating symlinks"
 docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$env robots.txt)"
 
