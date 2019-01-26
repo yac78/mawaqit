@@ -53,13 +53,16 @@ body {
     display: -moz-flex;
     display: -webkit-flex;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .prayer-hilighted {
-    color: #FFFFFF;
-    background-color: #175200;
+    background-color: #074200;
+    border-radius: 20px;
+}
+
+.prayer-hilighted .time {
+    color: #FFFFFF !important;
 }
 
 .prayers .name {
