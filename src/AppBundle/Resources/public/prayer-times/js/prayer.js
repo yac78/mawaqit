@@ -577,8 +577,8 @@ var prayer = {
 
             var adhanFlashInterval = setInterval(function () {
                 $(".top-content .adhan-flash").toggleClass("hidden");
-                // $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
-                // $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
+                $(".prayers .adhan").eq(currentPrayerIndex).toggleClass("hidden");
+                $(".prayers .time").eq(currentPrayerIndex).toggleClass("hidden");
             }, prayer.oneSecond);
 
             setTimeout(function () {
@@ -596,8 +596,9 @@ var prayer = {
                 $(".top-content .content").removeClass("hidden");
             }
 
-            // $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
-            // $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
+            $(".prayers .adhan").eq(currentPrayerIndex).addClass("hidden");
+            $(".prayers .time").eq(currentPrayerIndex).removeClass("hidden");
+
             prayer.duaAfterAdhan.handle(currentPrayerIndex);
         }
     },
@@ -836,8 +837,8 @@ var prayer = {
      */
     setTime: function () {
         var time, timeWithoutSec;
-        var timeEl = $(".top-content .time");
-        var timeBottomEl = $(".time-bottom");
+        var timeEl = $(".currentTime");
+        var timeBottomEl = $(".currentTime-bottom");
         time = dateTime.getCurrentTime(true);
         timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
         timeEl.html(prayer.formatTime(time));

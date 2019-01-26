@@ -66,7 +66,7 @@
                 {{ 'next_prayer'|trans }}
                 <div class="countdown"></div>
             </div>
-            <div class="time-bottom"></div>
+            <div class="currentTime-bottom"></div>
         </div>
     </div>
 
@@ -140,20 +140,20 @@
         <div class="content">
             <div class="col-md-3">
                 <div class="aid custom-time">
-                    <div class="ar">{{ 'aid'|trans }}</div>
-                    <div class="aid-id"></div>
+                    <div>{{ 'aid'|trans }}</div>
+                    <div class="time aid-id"></div>
                 </div>
                 <div class="chourouk custom-time">
-                    <div class="ar">{{ 'shuruk'|trans }}</div>
-                    <div class="chourouk-id"></div>
+                    <div>{{ 'shuruk'|trans }}</div>
+                    <div class="time chourouk-id"></div>
                 </div>
                 <div class="imsak custom-time">
-                    <div class="ar">{{ 'imsak'|trans }}</div>
-                    <div class="imsak-id"></div>
+                    <div>{{ 'imsak'|trans }}</div>
+                    <div class="time imsak-id"></div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="time"></div>
+                <div class="currentTime"></div>
                 <div class="date">
                     {% if mosque.configuration.hijriDateEnabled %}
                         <div class="hijriDate"><span></span> <img class="full-moon" src="{{ asset('bundles/app/prayer-times/img/full-moon.png') }}" alt=""></div>
@@ -162,15 +162,17 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="joumouaa {{ mosque.configuration.noJumua ? 'hidden' : '' }}">
-                    <div class="ar">{{ 'jumua'|trans }}</div>
-                    <div class="prayer">
-                        <div class="joumouaa-id"></div>
-                        {% if mosque.configuration.jumuaTime2 is not null %}
-                            <div class="joumouaa2-id"></div>
-                        {% endif %}
+                {% if not mosque.configuration.noJumua %}
+                    <div class="joumouaa">
+                        <div class="ar">{{ 'jumua'|trans }}</div>
+                        <div class="prayer">
+                            <div class="time joumouaa-id"></div>
+                            {% if mosque.configuration.jumuaTime2 is not null %}
+                                <div class="joumouaa2-id"></div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
 
             {% if mosque.configuration.showNextAdhanCountdown %}
