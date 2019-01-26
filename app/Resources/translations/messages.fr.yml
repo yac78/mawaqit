@@ -681,6 +681,7 @@ fr: Français
 en: Anglais  
 tr: Turque
 de: Allemand
+nl: Néerlandais
 ph: Phonétique
 fr-ar: Français & Arabe
 tr-ar: Turque & Arabe
@@ -835,6 +836,8 @@ jumuaReminder:
         il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
         et celui qui touche des cailloux a certes fait une futilité"
 
+selectLanguage: Sélectionner une langue
+language: Langue
 languages: Langues
 
 error404: Désolé, une erreur est survenue, la page que vous cherchez n'existe pas!

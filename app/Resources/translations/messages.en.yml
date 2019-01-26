@@ -440,6 +440,7 @@ en: English
 tr: Turkish
 de: German
 ph: Phonetic
+nl: Dutch
 fr-ar: French & Arabic
 tr-ar: Turkish & Arabic
 en-ar: English & Arabic
@@ -587,6 +588,8 @@ duaAfterAthan:
 duaBetweenAthanAndIqama:
     text: "According to Anas Ibn Mâlik, the Prophet (sallallahu 'alayhi wa sallam) said: The invocations between Adhân and Iqâmah are not rejected"
 
+selectLanguage: Select a language
+language: Language
 languages: Languages
 
 error404: Sorry, an error has occured, Requested page not found!

@@ -169,3 +169,7 @@ body {
 .toggle-off {
     left: 55%;
 }
+
+.form-control{
+    padding: 3px 12px;
+}

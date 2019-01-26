@@ -41,3 +41,14 @@ $('.fa-map-marker').click(function (e) {
 
     window.open($url + $(this).data('gps') + "&amp;ll=");
 });
+
+$(".linkSelector").change(function (e) {
+    let link = $('.link');
+    link.addClass('hidden');
+    if($(this).val()){
+        var selected = $(this).find(':selected');
+        link.attr('href',selected.data('link'))
+        link.text(selected.data('link'));
+        link.removeClass('hidden');
+    }
+});

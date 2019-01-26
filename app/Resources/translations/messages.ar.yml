@@ -573,6 +573,7 @@ fr: فرنسي
 en: إنجليزي
 tr: تركي
 de: ألماني
+nl: هولندي
 fr-ar: فرنسي و عربي
 tr-ar:  تركي و عربي
 en-ar:  إنجليزي و عربي
@@ -691,7 +692,9 @@ month_10: نوفمبر
 month_11: ديسمبر
 type: التثبيت
 
-languages: اللغة
+selectLanguage: إختر اللغة
+language: اللغة
+languages: اللغات
 
 prayer_mobile_site: المواقيت على الجوال <a href='%site%'>%site%</a>
 association_info: "%name% - الهاتف %phone%"
