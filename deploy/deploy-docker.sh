@@ -2,8 +2,7 @@
 set -e
 
 prodServer="51.77.203.203"
-ppServer="51.77.203.203"
-#ppServer="137.74.45.69"
+ppServer="137.74.45.69"
 port="1983"
 
 if [ $# -lt 2 ]; then
@@ -26,18 +25,18 @@ echo "current branch > $currentBranch"
 git pull origin $currentBranch
 git push origin $currentBranch
 
+server=$prodServer
+
 if [ "$env" == "prod" ]; then
     echo -n "Are you sur you want to deploy $tag to $env (y/n)? "
     read answer
 else
+    server=$ppServer
     answer=y
 fi
-
-server=$ppServer
 
 if echo "$answer" | grep -iq "^y" ;then
     git tag $tag -m "new release $tag" || true
     git push origin $tag
-    server=$prodServer
     ssh -p $port mawaqit@$server 'bash -s' < deploy/install-docker.sh $env $tag
 fi
