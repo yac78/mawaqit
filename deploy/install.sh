@@ -1,42 +1,45 @@
 #!/bin/bash
-
-# Exit on first error
 set -e
 
-if [ $# -lt 2 ]; then
-    echo "env and branch are mandatory"
-    exit;
-fi
-
 env=$1
-branch=$2
+tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
+dockerContainer=mawaqit
 
 cd $repoDir
 
-git checkout $branch && git pull origin $branch
+docker exec $dockerContainer git fetch && git checkout $tag
 
 echo "Creating symlinks"
-ln -snf $repoDir/web/robots.txt.$env $repoDir/web/robots.txt
+docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$env robots.txt)"
 
 echo "Set version"
 version=dev@`git rev-parse --short HEAD`
-sed -i "s/version: .*/version: $version/" app/config/parameters.yml
+if [ "$env" == "prod" ]; then
+    version=$tag
+fi
 
-# install vendors and assets
-export SYMFONY_ENV=prod
-composer install --no-dev -n -o
-bin/console assets:install -e prod --no-debug
-bin/console assetic:dump -e prod --no-debug
+docker exec $dockerContainer sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
-# migrate DB
-bin/console doctrine:migrations:migrate -n --allow-no-migration -e prod
+# Install vendors and assets
+docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -o -n --no-dev"
+docker exec $dockerContainer bin/console assets:install -e prod --no-debug
+docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
 
-echo "Reset opcache"
-curl -s localhost:81/reset_opcache.php
+# Migrate DB
+docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
+
+# Restart php
+docker exec $dockerContainer kill -USR2 1
+
+# Sync DB if prod deploy
+if [ "$env" == "prod" ]; then
+    echo "Sync DB"
+    $baseDir/tools/dbSync.sh
+fi
 
 echo ""
 echo "####################################################"
-echo "The upgrade has been successfully done ;)"
+echo "The upgrade to $tag has been successfully done ;)"
 echo "####################################################"

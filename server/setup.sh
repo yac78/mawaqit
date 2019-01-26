@@ -26,4 +26,4 @@ sudo echo "AddressFamily inet" >> /etc/ssh/sshd_config
 
 # Customise .bashrc
 echo "cd /var/www/mawaqit" >> ~/.bashrc
-echo "alias dock=\"docker exec -it --user $(id -u):$(id -g)\"" >> ~/.bashrc
+echo "alias dock=\"docker exec -it --user $(id -u):$(id -g) mawaqit\"" >> ~/.bashrc
