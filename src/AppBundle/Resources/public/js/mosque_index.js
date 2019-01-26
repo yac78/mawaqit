@@ -43,7 +43,7 @@ $('.fa-map-marker').click(function (e) {
 });
 
 $(".linkSelector").change(function (e) {
-    let link = $('.link');
+    let link = $(this).parent().find('.link');
     link.addClass('hidden');
     if($(this).val()){
         var selected = $(this).find(':selected');
