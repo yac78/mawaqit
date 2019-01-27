@@ -46,5 +46,5 @@ fi
 
 echo ""
 echo "####################################################"
-echo "$env as been successfully upgraded to $tag ;)"
+echo "$env has been successfully upgraded to $tag ;)"
 echo "####################################################"
