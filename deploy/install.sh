@@ -28,7 +28,7 @@ fi
 docker exec --user $dockerUser $dockerContainer sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
 # Install vendors and assets
-docker exec --user $dockerUser $dockerContainer sh -c "SYMFONY_ENV=prod composer install -o -n --no-dev"
+docker exec --user $dockerUser $dockerContainer sh -c "SYMFONY_ENV=$env composer install -o -n --no-dev"
 docker exec --user $dockerUser $dockerContainer bin/console assets:install -e $env --no-debug
 docker exec --user $dockerUser $dockerContainer bin/console assetic:dump -e $env --no-debug
 
