@@ -36,7 +36,7 @@ docker exec --user $dockerUser $dockerContainer bin/console assetic:dump -e prod
 docker exec --user $dockerUser $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
 
 # Restart php
-docker exec --user $dockerUser $dockerContainer kill -USR2 1
+docker exec $dockerContainer kill -USR2 1
 
 # Sync DB if prod deploy
 if [ "$env" == "prod" ]; then
