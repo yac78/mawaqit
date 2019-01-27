@@ -6,14 +6,14 @@ tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
 dockerContainer=mawaqit
-dockerUser=mawaqit:mawaqit
+dockerUser=1001:1001
 
 cd $repoDir
 
 docker exec --user $dockerUser $dockerContainer git fetch && git checkout $tag
 
 if [ "$env" == "pp" ]; then
-    docker exec --user $dockerUser $$dockerContainer git pull origin $tag
+    docker exec --user $dockerUser $dockerContainer git pull origin $tag
 fi
 
 echo "Creating symlinks"
