@@ -29,11 +29,11 @@ docker exec --user $dockerUser $dockerContainer sed -i "s/version: .*/version: $
 
 # Install vendors and assets
 docker exec --user $dockerUser $dockerContainer sh -c "SYMFONY_ENV=prod composer install -o -n --no-dev"
-docker exec --user $dockerUser $dockerContainer bin/console assets:install -e prod --no-debug
-docker exec --user $dockerUser $dockerContainer bin/console assetic:dump -e prod --no-debug
+docker exec --user $dockerUser $dockerContainer bin/console assets:install -e $env --no-debug
+docker exec --user $dockerUser $dockerContainer bin/console assetic:dump -e $env --no-debug
 
 # Migrate DB
-docker exec --user $dockerUser $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
+docker exec --user $dockerUser $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e $env
 
 # Restart php
 docker exec $dockerContainer kill -USR2 1
@@ -46,5 +46,5 @@ fi
 
 echo ""
 echo "####################################################"
-echo "The upgrade to $tag has been successfully done ;)"
+echo "$env as been successfully upgraded to $tag ;)"
 echo "####################################################"
