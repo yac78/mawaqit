@@ -577,8 +577,8 @@ var prayer = {
 
             var adhanFlashInterval = setInterval(function () {
                 $(".top-content .adhan-flash").toggleClass("hidden");
-                $(".prayers .adhan").eq(currentPrayerIndex).toggleClass("hidden");
-                $(".prayers .time").eq(currentPrayerIndex).toggleClass("hidden");
+                $(".mobile .prayers .adhan").eq(currentPrayerIndex).toggleClass("hidden");
+                $(".mobile .prayers .time").eq(currentPrayerIndex).toggleClass("hidden");
             }, prayer.oneSecond);
 
             setTimeout(function () {
@@ -596,8 +596,8 @@ var prayer = {
                 $(".top-content .content").removeClass("hidden");
             }
 
-            $(".prayers .adhan").eq(currentPrayerIndex).addClass("hidden");
-            $(".prayers .time").eq(currentPrayerIndex).removeClass("hidden");
+            $(".mobile .prayers .adhan").eq(currentPrayerIndex).addClass("hidden");
+            $(".mobile .prayers .time").eq(currentPrayerIndex).removeClass("hidden");
 
             prayer.duaAfterAdhan.handle(currentPrayerIndex);
         }
