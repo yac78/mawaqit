@@ -796,7 +796,7 @@ month_9: Octobre
 month_10: Novembre
 month_11: Décembre
 
-prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
+prayer_mobile_site: "Mawaqit sur mobile <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
