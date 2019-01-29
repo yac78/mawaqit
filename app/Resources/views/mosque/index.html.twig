@@ -97,7 +97,7 @@
                             <select class="form-control linkSelector" style="width: 50%">
                                 <option>{{ 'selectLanguage'|trans }}</option>
                                 {% for lang in languages %}
-                                    <option value="{{ lang }}" data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|trans }}</option>
+                                    <option value="{{ lang }}" data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</option>
                                 {% endfor %}
                             </select>
 
@@ -176,10 +176,10 @@
                     <div>
                         {% if mosque.isValidated %}
                             <strong>{{ 'links'|trans }}</strong>:
-                            <select class="form-control linkSelector" style="width: 50%">
+                            <select class="form-control linkSelector" style="width: 60%">
                                 <option>{{ 'selectLanguage'|trans }}</option>
                                 {% for lang in languages %}
-                                    <option value="{{ lang }}" data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|trans }}</option>
+                                    <option value="{{ lang }}" data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</option>
                                 {% endfor %}
                             </select>
                             <div class="mt-1 mb-1"><a class="hidden link" {{ isLocal() ? '' : 'target="_blank"' }} href=""></a></div>

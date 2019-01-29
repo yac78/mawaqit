@@ -1,33 +1,34 @@
-fajr: Fajr
-shuruk: Shuruq
-zuhr: Dohr
-asr: Asr
+fajr: Fadjr
+shuruk: Shoeroeq
+zuhr: Dhoehr
+asr: ‘Asr
 maghrib: Maghrib
-isha: Isha
-jumua: Jumua
-aid: Al-aid
-imsak: Imsak
+isha: ‘Ishaa
+jumua: Djoemoe’ah
+aid: Eid
+imsak: Imsaak
 iqama: Al-Iqama
 azan: Al-Adhan
 
+searchOtherMosque: Een andere moskee zoeken
 power-off-phones: Vriendelijk verzoek om uw telefoon uit te zetten!
-next_prayer: Gebed oproep over
+next_prayer: Adhan in
 
 duaAfterAthan:
-    title: smeekbede na gebed oproep
-    text: |
-        Ey şu eksiksiz davetin ve kılınacak namazın rabbi Allahım! Muhammed's.a.v'e vesîleyi ve fazîleti ver.
-        Onu, kendisine vaadettiğin makâm-ı mahmûda ulaştır, Muhakkak ki sen vaadinden dönmezsin
+  title: Smeekbede na Adhan
+  text: |
+    Allah, Heer van deze perfecte oproep en van het te verrichten gebed, schenk Mohammed
+    al-wasielah en al-fadielah en schenk hem de verheven positie die U hem heeft beloofd.
+    (Voorwaar, U verbreekt geen belofte).
 
 duaBetweenAthanAndIqama:
-    text: |
-        Enes b. Mâlik (r.a.)'den rivâyet edildiğine göre, Rasûlullah (s.a.v.) şöyle buyurdu:
-        Ezan ile kamet arasında yapılan dua geri çevrilmez.
+  text: |
+    Volgens Anas Ibn Mâlik, de profeet (vrede en zegeningen zij met hem) said: "De
+    smeekbede tussen de Adhan en de Iqama wordt niet geweigerd, dus verricht smeekbeden (tot Allah)".
 
 jumuaReminder:
-    text: |
-        Yine Ebu Hüreyre (Allah Ondan razı olsun)'den rivayet edildiğine göre Rasûlullah (sallallahu aleyhi vesellem) şöyle buyurdu:
-        Bir kimse abdestini güzelce alarak Cuma için camiye gelir, hutbeyi sessizce dinlerse iki Cuma arasındaki ve fazladan üç günlük daha(10 günlük işlenen küçük) günahları bağışlanır.
-        Kim hutbe okunurken gereği gibi dinlemeyip çakıl taşlarıyla oynarsa, meşgul olursa boş ve manasız bir iş yapmış olur. (Müslim, Cuma 27)
-
-searchOtherMosque: zoek een ander moskee.
+  text: |
+    "Iemand die een bad neemt op vrijdag en zichzelf goed wast, olie plaatst in zijn haar en
+    parfum gebruikt, daarna vroeg in de middag naar de moskee gaat voor het vrijdaggebed, rustig en
+    zonder te duwen of de mensen te storen plaats neemt, dan vrijwillige gebeden bidt zoveel als hij kan,
+    daarna stil luistert naar de preek, al zijn zonden tussen deze en de laatste vrijdag zullen vergeven worden!”

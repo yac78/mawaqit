@@ -131,7 +131,7 @@ services:
 
     # Twig extension
     app.twig.country_extension:
-        class: AppBundle\Twig\CountryExtension
+        class: AppBundle\Twig\ToolsExtension
         arguments:
           - "@app.tools_service"
         tags:
