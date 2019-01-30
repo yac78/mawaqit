@@ -14,7 +14,7 @@ power-off-phones: Please turn off your mobile phones !
 next_prayer: Adhan in
 searchOtherMosque: Look for another mosque
 your_mosque_informs_you: Your mosque informs you
-prayer_mobile_site: "Mawaqit on mobile <a href='%site%'>%site%</a>"
+prayer_mobile_site: Mawaqit on mobile <a href='%site%'>%site%</a>
 
 duaAfterAthan:
     title: Invocation after adhân
