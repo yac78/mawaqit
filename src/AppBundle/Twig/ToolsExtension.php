@@ -3,8 +3,9 @@
 namespace AppBundle\Twig;
 
 use AppBundle\Service\ToolsService;
+use Symfony\Component\Intl\Intl;
 
-class CountryExtension extends \Twig_Extension
+class ToolsExtension extends \Twig_Extension
 {
 
     /**
@@ -21,6 +22,7 @@ class CountryExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFilter('country', array($this, 'countryFilter')),
+            new \Twig_SimpleFilter('langTrans', array($this, 'langTrans')),
         ];
     }
 
@@ -29,8 +31,13 @@ class CountryExtension extends \Twig_Extension
         return $this->toolsService->getCountryNameByCode($countryCode);
     }
 
+    public function langTrans($code, $locale)
+    {
+        return Intl::getLanguageBundle()->getLanguageName($code, null, $locale);
+    }
+
     public function getName()
     {
-        return 'country_extension';
+        return 'tools_extension';
     }
 }

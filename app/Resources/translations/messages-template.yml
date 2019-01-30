@@ -12,6 +12,9 @@ azan: Al-Adhan
 
 power-off-phones: Please turn off your mobile phones !
 next_prayer: Adhan in
+searchOtherMosque: Look for another mosque
+your_mosque_informs_you: Your mosque informs you
+prayer_mobile_site: Mawaqit on mobile <a href='%site%'>%site%</a>
 
 duaAfterAthan:
     title: Invocation after adhân
@@ -29,5 +32,3 @@ jumuaReminder:
       "Whoever does the ablutions perfectly then goes to jumu`a and then listens and is silent,
       he is forgiven what is between that time and the following Friday and three more days
       and the one who touches stones has certainly made a futility"
-
-searchOtherMosque: Look for an other mosque

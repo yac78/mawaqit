@@ -1,0 +1,28 @@
+fajr: Sabah
+shuruk: Izlazak sunca
+zuhr: Podne
+asr:  Ikindija
+maghrib: Aksam
+isha: Jacija
+jumua: Dzuma
+aid: Bajram
+imsak: Imsak
+iqama: Ikamet
+azan: Ezan
+
+power-off-phones:  Molim vas, iskljucite mobilne telefone !
+next_prayer: Ezan za
+searchOtherMosque: Potrazite drugu dzamiju
+
+duaAfterAthan:
+    title: Dova iza ezana
+    text: |
+        Allahu moj, Gospodaru ovog savrsenog poziva i namaza koji se upravo uspostavlja, podari Muhamedu veliki stepen (u Dzennetu) i svako dobro. Uzdigni ga na uzviseno mjesto koje si mu obecao.
+
+duaBetweenAthanAndIqama:
+    text: |
+Prema Anas Ibn Mâlik, Poslanika (salallahu ‘alejhi wa salam) da je reako : Dova izmedzu ezana i ikameta se ne odbija.
+jumuaReminder:
+    text: |
+      Allahov Poslanik (salallahu ‘alejhi wa salam) rekao :
+      « Ko se abdesti upotpunjujuci abdest, potom ode na dzumu, bude pazljivo slusao i sutio bice mu oprosteno sto pocinje do naredne dzume »
