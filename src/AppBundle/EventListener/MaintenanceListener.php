@@ -7,17 +7,24 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class MaintenanceListener
 {
+    private $maintenanceHeader;
     private $lockFilePath;
     private $twig;
 
-    public function __construct($lockFilePath, \Twig_Environment $twig)
+    public function __construct($lockFilePath, $maintenanceHeader, \Twig_Environment $twig)
     {
+        $this->maintenanceHeader = $maintenanceHeader;
         $this->lockFilePath = $lockFilePath;
         $this->twig = $twig;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+
+        if($event->getRequest()->headers->has($this->maintenanceHeader)){
+            return;
+        }
+
         if (!file_exists($this->lockFilePath)) {
             return;
         }

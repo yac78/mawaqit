@@ -3,7 +3,7 @@ version: '3'
 services:
   mawaqit:
     container_name : mawaqit
-    user: ${CURRENT_UID}
+    user: 1001:1001
     restart: always
     build: .
     tty: true
@@ -48,10 +48,10 @@ services:
     entrypoint: sh -c "while true; do certbot renew; sleep 24h; done >> /tmp/certbot.log;"
 
   db:
-    container_name : db
-    user: ${CURRENT_UID}
-    restart: always
     image: mysql:5.6
+    container_name : db
+    user: 1001:1001
+    restart: always
     volumes:
       - /var/www/mawaqit/mysql:/var/lib/mysql
     environment:

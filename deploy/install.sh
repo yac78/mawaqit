@@ -10,6 +10,12 @@ dockerUser=1001:1001
 
 cd $repoDir
 
+# Sync DB if prod deploy
+if [ "$env" == "prod" ]; then
+    echo "Sync DB"
+    $baseDir/tools/dbSync.sh
+fi
+
 docker exec --user $dockerUser $dockerContainer git fetch && git checkout $tag
 
 if [ "$env" == "pp" ]; then
@@ -37,12 +43,6 @@ docker exec --user $dockerUser $dockerContainer bin/console doc:mig:mig -n --all
 
 # Restart php
 docker exec $dockerContainer kill -USR2 1
-
-# Sync DB if prod deploy
-if [ "$env" == "prod" ]; then
-    echo "Sync DB"
-    $baseDir/tools/dbSync.sh
-fi
 
 echo ""
 echo "####################################################"

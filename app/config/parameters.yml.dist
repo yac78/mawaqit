@@ -20,6 +20,7 @@ parameters:
     supportTel1: '+33629111641'
     supportTel2: '+33666137234'
     supportEmail: contact@mawaqit.net
+    maintenance_header: ''
 
     # Google API
     google_api_key: ''
