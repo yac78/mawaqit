@@ -33,12 +33,12 @@ body {
 }
 
 .top-content .adhan-flash, .top-content .alarm-flash {
-    font-size: 10vw;
+    font-size: 18vh;
     line-height: 160%;
 }
 
 .top-content .alarm-flash {
-    font-size: 6vw;
+    font-size: 11vh;
 }
 
 .prayers {
@@ -70,34 +70,34 @@ body {
 }
 
 .prayers .name {
-    font-size: 3vw;
+    font-size: 6vh;
 }
 
 .prayers .wait {
-    font-size: 3vw;
-}
-
-.joumouaa, .custom-time {
-    margin-top: 50px;
-    font-size: 3vw;
-    width: 90%;
+    font-size: 5vh;
 }
 
 .time {
     color: yellowgreen;
     font-weight: bold;
-    font-size: 5vw;
-    line-height: 6vw;
+    font-size: 10vh;
+    line-height: 10vh;
     padding: 0 10px;
 }
 
+.joumouaa, .custom-time {
+    margin-top: 50px;
+    font-size: 5vh;
+    width: 90%;
+}
+
 .joumouaa2-id {
-    margin-top: -10px;
-    font-size: 3vw;
+    margin-top: -5px;
+    font-size: 6vh;
 }
 
 .header {
-    font-size: 3.5vw;
+    font-size: 7vh;
     color: yellowgreen;
     padding-top: 10px;
     padding-bottom: 15px;
@@ -117,15 +117,15 @@ body {
 
 .currentTime {
     text-shadow: 6px 6px 10px #632e2e;
-    font-size: 8vw;
+    font-size: 15vh;
 }
 
 .gregorianDate, .hijriDate {
-    font-size: 3vw;
+    font-size: 5vh;
 }
 
 small {
-    font-size: 2vw;
+    font-size: 3vh;
     padding-left: 8px;
 }
 
@@ -140,12 +140,12 @@ small {
 
 .iqama .top {
     height: 20%;
-    font-size: 7vw;
+    font-size: 12vh;
 }
 
 .iqama .bottom {
     padding-top: 50px;
-    font-size: 5vw;
+    font-size: 8vh;
     position: fixed;
     bottom: 50px;
     left: 0;
@@ -179,13 +179,17 @@ small {
     color: yellowgreen;
 }
 
-.site, .assosciation, .support {
-    font-size: 1.5vw;
+.site {
+    font-size: 3vh;
+}
+
+.assosciation {
+    font-size: 2.5vh;
 }
 
 .support {
     color: gray;
-    font-size: 1vw;
+    font-size: 2vh;
 }
 
 .support a {
@@ -255,7 +259,7 @@ small {
 
 .currentTime-bottom, .next-prayer {
     color: #ec7047;
-    font-size: 3vw;
+    font-size: 5vh;
 }
 
 .next-prayer .countdown {
@@ -270,7 +274,7 @@ small {
 #weather {
     top: 10px;
     right: 10px;
-    font-size: 3vw;
+    font-size: 6vh;
     position: fixed;
 }
 
@@ -328,11 +332,11 @@ small {
 }
 
 .main-iqama-countdown .text {
-    font-size: 5vw;
+    font-size: 9vh;
 }
 
 .main-iqama-countdown .countdown {
-    font-size: 11vw;
+    font-size: 20vh;
     color: #f0ad4e;
 }
 
