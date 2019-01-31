@@ -45,7 +45,7 @@ body {
     -webkit-box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.6);
     -moz-box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.6);
     box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.6);
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.6);
     margin: auto;
     width: 98%;
     padding: 10px;
@@ -61,7 +61,7 @@ body {
 }
 
 .prayer-hilighted {
-    background-color: #0b6500;
+    background-color: #0b5c00;
     border-radius: 50px;
 }
 
@@ -163,10 +163,9 @@ small {
     width: 300px;
 }
 
-.adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder{
+.adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder {
     padding: 20px 10px;
 }
-
 
 .adhan .fr, .douaa-between-adhan-iqama .fr, .jumua-dhikr-reminder .fr {
     margin-top: 50px;
@@ -343,7 +342,7 @@ small {
     height: 100%;
 }
 
-.top-buttons{
+.top-buttons {
     font-size: 220%;
     color: #777777;
     position: fixed;
@@ -357,6 +356,6 @@ small {
     margin-left: 5px;
 }
 
-.top-buttons a{
+.top-buttons a {
     color: #777777;
 }
