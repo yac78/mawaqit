@@ -2,14 +2,10 @@
     background-color: rgba(43, 43, 43, 0.6);
 }
 
+.time, .header, .joumouaa2-id {
+    color: #000000;
+}
+
 .prayer-hilighted {
     background-color: #090a08;
-}
-
-.prayer-hilighted div {
-    color: #FFFFFF !important;
-}
-
-.time, .header {
-    color: #000000;
 }

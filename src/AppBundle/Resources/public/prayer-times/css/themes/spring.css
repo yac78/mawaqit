@@ -3,13 +3,13 @@
 }
 
 .time, .header, .joumouaa2-id {
-    color: #cd4200;
+    color: #dbdd01;
 }
 
 .prayer-hilighted {
-    background-color: #cd4200;
+    background-color: #dbdd01;
 }
 
 .prayer-hilighted div {
-    color: #FFFFFF !important;
+    color: #000000 !important;
 }

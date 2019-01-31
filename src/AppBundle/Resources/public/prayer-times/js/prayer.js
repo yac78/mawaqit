@@ -610,7 +610,7 @@ var prayer = {
     fajrWakeAdhanIsPlaying: false,
     initWakupFajr: function () {
         setInterval(function () {
-            if (prayer.fajrWakeAdhanIsPlaying === false && parseInt(prayer.confData.wakeForFajrTime) > 0) {
+            if (!prayer.isMosque && prayer.fajrWakeAdhanIsPlaying === false && parseInt(prayer.confData.wakeForFajrTime) > 0) {
                 var date = new Date();
                 var fajrTime = prayer.getTimeByIndex(0);
                 var diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(fajrTime)) / prayer.oneMinute);
