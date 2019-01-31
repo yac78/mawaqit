@@ -365,6 +365,8 @@ configuration:
             title: This will display a QR code at the bottom left of the screen, the QR code is used to facilitate the copying of the mawaqit link
         backgroundColor: 
             label: Background color
+        theme:
+            label: Theme
         fajrDegree: 
             label: fajr degree
             placeholder: Ex. 18

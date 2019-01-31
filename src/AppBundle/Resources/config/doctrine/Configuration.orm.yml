@@ -120,8 +120,6 @@ AppBundle\Entity\Configuration:
             type: string
         smallScreen:
             type: boolean            
-        backgroundColor:
-            type: string            
         calendar:
             type: json_array
             nullable: true
@@ -138,7 +136,11 @@ AppBundle\Entity\Configuration:
             type: boolean
         backgroundType:
             type: string
+        backgroundColor:
+            type: string
         backgroundMotif:
+            type: string
+        theme:
             type: string
         updated:
             type: datetime

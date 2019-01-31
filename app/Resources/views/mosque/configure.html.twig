@@ -452,11 +452,41 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#themeSettings">
-                    <span style="font-weight: 700;">{{ "theme_settings"|trans }}</span>
+                     href="#displaySettings">
+                    <span style="font-weight: 700;">{{ "display_settings"|trans }}</span>
                 </div>
-                <div id="themeSettings" class="panel-collapse collapse">
+                <div id="displaySettings" class="panel-collapse collapse">
                     <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.hijriDateEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.temperatureEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.urlQrCodeEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.footer) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.blackScreenWhenPraying) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.smallScreen) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.theme) }}
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-3">
@@ -481,37 +511,6 @@
                                 {{ form_label(form.backgroundColor) }}
                                 <input class="form-control" type="color" name="configuration[backgroundColor]"
                                        value="{{ mosque.configuration.backgroundColor }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#displaySettings">
-                    <span style="font-weight: 700;">{{ "display_settings"|trans }}</span>
-                </div>
-                <div id="displaySettings" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_widget(form.hijriDateEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.blackScreenWhenPraying) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.temperatureEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.urlQrCodeEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.footer) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.smallScreen) }}
                             </div>
                         </div>
                     </div>

@@ -497,6 +497,8 @@ configuration:
 
         backgroundColor:
             label: لون الخلفية
+        theme:
+            label: العرض
         fajrDegree:
             label: درجة الفجر
             placeholder: مثال 18 درجة

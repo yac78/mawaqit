@@ -16,6 +16,7 @@
         "bundles/app/weather/weather-icons.min.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        <link href="{{ asset('bundles/app/prayer-times/css/themes/' ~ mosque.conf.theme ~ '.css') }}" type="text/css"  rel="stylesheet"/>
         {% if app.request.locale == 'ar' %}
             {% stylesheets
                 "bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"

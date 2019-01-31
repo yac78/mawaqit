@@ -1270,5 +1270,10 @@ class Mosque
         $this->synchronized = $synchronized;
     }
 
+    public function getConf(): Configuration
+    {
+        return $this->configuration;
+    }
+
 }
 

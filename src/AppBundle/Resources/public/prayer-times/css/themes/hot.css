@@ -1,0 +1,15 @@
+.prayers {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.prayer-hilighted {
+    background-color: #ba2d0a;
+}
+
+.prayer-hilighted div {
+    color: #FFFFFF !important;
+}
+
+.time, .header {
+    color: #cd670d;
+}

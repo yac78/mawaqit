@@ -274,6 +274,11 @@ class Configuration
     /**
      * @var string
      */
+    private $theme = "default";
+
+    /**
+     * @var string
+     */
     private $hadithLang = "ar";
 
     /**
@@ -1338,6 +1343,22 @@ class Configuration
     {
         $this->iqamaFullScreenCountdown = $iqamaFullScreenCountdown;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTheme(): string
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param string $theme
+     */
+    public function setTheme(string $theme): void
+    {
+        $this->theme = $theme;
     }
 
 }

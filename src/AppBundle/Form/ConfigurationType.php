@@ -31,7 +31,7 @@ class ConfigurationType extends AbstractType
     /**
      * @var Array
      */
-    private static $timezones = [
+    private static $TIMEZONES = [
         "-12.00" => "(GMT-12:00) International Date Line West",
         "-11.00" => "(GMT-11:00) Midway Island, Samoa",
         "-10.00" => "(GMT-10:00) Hawaii",
@@ -70,7 +70,7 @@ class ConfigurationType extends AbstractType
     /**
      * @var Array
      */
-    private static $dstChoices = [
+    private static $DST = [
         "dst-auto" => 2,
         "dst-disabled" => 0,
         "dst-enabled" => 1
@@ -79,7 +79,14 @@ class ConfigurationType extends AbstractType
     /**
      * @var Array
      */
-    private static $randomHadithIntervalDisabling = [
+    private static $THEMES = [
+        "default", "hot", "darkness"
+    ];
+
+    /**
+     * @var Array
+     */
+    private static $RANDOM_HADITH_INTERVAL_DISABLING = [
         "" => "",
         "fajr-zuhr" => "0-1",
         "zuhr-asr" => "1-2",
@@ -216,13 +223,13 @@ class ConfigurationType extends AbstractType
                 'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
             ])
             ->add('timezone', ChoiceType::class, [
-                'choices' => array_flip(self::$timezones),
+                'choices' => array_flip(self::$TIMEZONES),
                 'attr' => [
                     'help' => 'configuration.form.timezone.title',
                 ],
             ])
             ->add('dst', ChoiceType::class, [
-                'choices' => self::$dstChoices,
+                'choices' => self::$DST,
                 'attr' => [
                     'help' => 'configuration.form.dst.title',
                 ],
@@ -361,7 +368,7 @@ class ConfigurationType extends AbstractType
             ])
             ->add('randomHadithIntervalDisabling', ChoiceType::class, [
                 'required' => false,
-                'choices' => self::$randomHadithIntervalDisabling,
+                'choices' => self::$RANDOM_HADITH_INTERVAL_DISABLING,
                 'attr' => [
                     'help' => 'configuration.form.randomHadithIntervalDisabling.title',
                 ]
@@ -393,6 +400,13 @@ class ConfigurationType extends AbstractType
                 'label_attr' => array(
                     'class' => 'radio-inline'
                 )
+            ])
+            ->add('theme', ChoiceType::class, [
+                'choices' =>  array_combine(self::$THEMES, self::$THEMES),
+                'constraints' => [
+                    new Choice(['choices' => self::$THEMES]),
+                    new NotBlank(),
+                ]
             ])
             ->add('backgroundType', ChoiceType::class, [
                 'choices' => ["color" => "color", "motif" => "motif"],

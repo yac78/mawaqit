@@ -606,6 +606,8 @@ configuration:
             title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien mawaqit
         backgroundColor: 
             label: Couleur de fond
+        theme:
+            label: Thème
         fajrDegree: 
             label: Degré du fajr
             placeholder: Ex. 18
