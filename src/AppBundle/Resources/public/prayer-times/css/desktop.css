@@ -251,6 +251,10 @@ small {
     overflow: hidden;
 }
 
+.random-hadith .text div {
+    line-height: 170%;
+}
+
 .next-prayer-bloc {
     display: flex;
     padding: 0 10px;

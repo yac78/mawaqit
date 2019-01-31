@@ -75,7 +75,7 @@ var randomHadith = {
         prayer.nextPrayerCountdown();
         $(".top-content").fadeOut(1000, function () {
             $(".footer").hide();
-            $(".random-hadith").fadeIn(1000);
+            $(".random-hadith").fadeIn(300);
             if (typeof callback !== 'undefined') {
                 callback();
             }
@@ -84,17 +84,17 @@ var randomHadith = {
     hide: function () {
         $(".random-hadith").fadeOut(1000, function () {
             $(".footer").show();
-            $(".top-content").fadeIn(1000);
+            $(".top-content").fadeIn(300);
         });
     },
     setFontSize: function () {
         var $textContainer = $('.random-hadith .text');
         var $textContainerDiv = $('.random-hadith .text div');
-        var defaultFontSize = 10;
-        $textContainerDiv.css('font-size', defaultFontSize + 'vw');
+        var defaultSize = 10;
+        $textContainerDiv.css('font-size', defaultSize + 'vh');
         while ($textContainerDiv.height() > $textContainer.height() - 30) {
-            defaultFontSize = defaultFontSize - 0.3;
-            $textContainerDiv.css('font-size', (defaultFontSize) + 'vw');
+            defaultSize = defaultSize - 0.2;
+            $textContainerDiv.css('font-size', (defaultSize) + 'vh');
         }
     }
 };
