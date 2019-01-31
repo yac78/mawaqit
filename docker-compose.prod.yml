@@ -25,7 +25,7 @@ services:
       - ./docker/data/certbot/conf:/etc/letsencrypt
       - ./docker/data/certbot/www:/var/www/certbot
       # ssh
-      - ~/.ssh:/home/mawaqit/.ssh
+      - ~/:/home/mawaqit
       # clock
       - /etc/localtime:/etc/localtime:ro
       # users

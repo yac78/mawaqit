@@ -17,7 +17,7 @@ if [ "$env" != "pp" ] && [ "$env" != "prod" ] ; then
     exit
 fi
 
-if [ $# -lt 2 ]; then
+if [ $# -eq 2 ]; then
     tag=$2
 fi
 
