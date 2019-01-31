@@ -80,7 +80,7 @@ class ConfigurationType extends AbstractType
      * @var Array
      */
     private static $THEMES = [
-        "default", "hot", "darkness", "spring"
+        "mawaqit", "spring", "summer", "autumn", "winter"
     ];
 
     /**

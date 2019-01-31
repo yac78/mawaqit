@@ -798,6 +798,12 @@ month_9: Octobre
 month_10: Novembre
 month_11: Décembre
 
+mawaqit: Mawaqit
+spring: Printemps
+summer: Été
+autumn: Automne
+winter: Hiver
+
 prayer_mobile_site: "Mawaqit sur mobile <a href='%site%'>%site%</a>"
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |

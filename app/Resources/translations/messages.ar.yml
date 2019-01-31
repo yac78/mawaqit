@@ -694,6 +694,12 @@ month_10: نوفمبر
 month_11: ديسمبر
 type: التثبيت
 
+mawaqit: مواقيت
+spring: ربيع
+summer: صيف
+autumn: خريف
+winter: شتاء
+
 selectLanguage: إختر اللغة
 language: اللغة
 languages: اللغات

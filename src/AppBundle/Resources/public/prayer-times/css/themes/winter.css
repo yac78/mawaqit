@@ -1,0 +1,11 @@
+.prayers {
+    background-color: rgba(43, 43, 43, 0.6);
+}
+
+.time, .header, .joumouaa2-id {
+    color: #298bb2;
+}
+
+.prayer-hilighted {
+    background-color: #265e83;
+}
