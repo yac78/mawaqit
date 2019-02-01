@@ -225,7 +225,7 @@ flashMessage:
 
 configuration:
     select_calendar: Select a calendar
-    title: Prayer times configuration of "%mosque%"
+    title: Prayer times configuration
     list:
         download_csv_files: Calendar
         calendar_not_completed: |
