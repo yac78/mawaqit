@@ -13,7 +13,7 @@ cd $repoDir
 # Sync DB if prod deploy
 if [ "$env" == "prod" ]; then
     echo "Sync DB"
-#    $baseDir/tools/dbSync.sh
+    $baseDir/tools/dbSync.sh
 fi
 
 docker exec --user $dockerUser $dockerContainer git fetch && git checkout $tag
