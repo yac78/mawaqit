@@ -43,3 +43,15 @@ label {
     height: 200px;
     margin-top: 1rem;
 }
+
+#big-illustration {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 320px;
+    z-index: 9999;
+}
+
+#small-illustration:hover + #big-illustration {
+    display: block;
+}

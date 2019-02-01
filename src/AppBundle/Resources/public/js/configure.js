@@ -300,9 +300,21 @@ $("#configuration_backgroundType").change(function () {
     backgroundHandler();
 });
 
+function themeIllustrationHandler() {
+    let themeSelector = $("#configuration_theme");
+    let img = $('.theme > .illustration');
+    let imgPattern = img.data('src');
+    img.attr('src', imgPattern.replace('name', themeSelector.val()))
+}
+
+$("#configuration_theme").bind("change", function (event) {
+    themeIllustrationHandler()
+});
+
 dstDisplayHandler();
 checkAndHilightIncompletedMonths();
 handleErrorsDisplay();
 iqamaSettingsDisplayHandler();
 wakeUpAzanDisplayHandler();
 backgroundHandler();
+themeIllustrationHandler();

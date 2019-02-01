@@ -62,7 +62,7 @@ body {
 
 .prayer-hilighted {
     background-color: #0b5c00;
-    border-radius: 50px;
+    border-radius: 40px;
 }
 
 .prayer-hilighted div {
@@ -80,8 +80,8 @@ body {
 .time {
     color: yellowgreen;
     font-weight: bold;
-    font-size: 10vh;
-    line-height: 10vh;
+    font-size: 9vh;
+    line-height: 8vh;
     padding: 0 10px;
 }
 

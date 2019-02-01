@@ -16,7 +16,7 @@
         "bundles/app/weather/weather-icons.min.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        <link href="{{ asset('bundles/app/prayer-times/css/themes/' ~ mosque.conf.theme ~ '.css') }}" type="text/css"  rel="stylesheet"/>
+        <link href="{{ asset('bundles/app/prayer-times/css/themes/' ~ mosque.conf.theme ~ '.css') }}" type="text/css" rel="stylesheet"/>
         {% if app.request.locale == 'ar' %}
             {% stylesheets
                 "bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"
@@ -139,7 +139,7 @@
         </div>
 
         <div class="content">
-            <div class="col-md-3">
+            <div class="col-sm-3">
                 <div class="aid custom-time">
                     <div>{{ 'aid'|trans }}</div>
                     <div class="time aid-id"></div>
@@ -153,7 +153,7 @@
                     <div class="time imsak-id"></div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="currentTime"></div>
                 <div class="date">
                     {% if mosque.configuration.hijriDateEnabled %}
@@ -162,7 +162,7 @@
                     <div class="gregorianDate"></div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-sm-3">
                 {% if not mosque.configuration.noJumua %}
                     <div class="joumouaa">
                         <div class="ar">{{ 'jumua'|trans }}</div>
@@ -177,7 +177,7 @@
             </div>
 
             {% if mosque.configuration.showNextAdhanCountdown %}
-                <div class="col-md-12 next-prayer-bloc">
+                <div class="col-sm-12 next-prayer-bloc">
                     <div class="next-prayer">
                         {{ 'next_prayer'|trans }}
                         <div class="countdown"></div>
@@ -226,28 +226,31 @@
             {% set url =  mosque.site %}
         {% endif %}
 
-        <div class="{{ not mosque.configuration.footer ? 'hidden' : '' }}">
-            {% if url is defined %}
-                <div class="site">
-                    {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
-                </div>
-            {% endif %}
-
-            <div class="assosciation">
-                {{ mosque.associationName }}
-                {% if mosque.phone %}
-                    &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+        {% if mosque.configuration.footer %}
+            <div>
+                {% if url is defined %}
+                    <div class="site">
+                        {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
+                    </div>
                 {% endif %}
-                &nbsp;&nbsp;{{ mosque.rib }}
-            </div>
-            <div class="support">
-                <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
-            </div>
-            {% if mosque.configuration.urlQrCodeEnabled %}
-                <div class="qr-code {{ url is defined ? '' : 'hidden' }}" data-url="{{ url|default('') }}">
-                    <div id="qr-code"></div>
+
+                <div class="assosciation">
+                    {{ mosque.associationName }}
+                    {% if mosque.phone %}
+                        &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                    {% endif %}
+                    &nbsp;&nbsp;{{ mosque.rib }}
                 </div>
-            {% endif %}
+                {% if mosque.isMosque and mosque.configuration.urlQrCodeEnabled %}
+                    <div class="qr-code {{ url is defined  ? '' : 'hidden' }}" data-url="{{ url|default('') }}">
+                        <div id="qr-code"></div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="support">
+            <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
         </div>
         <div class="version">v{{ version }}</div>
         {% if mosque.isMosque and isNotLocal() %}

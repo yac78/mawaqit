@@ -1063,7 +1063,7 @@ var prayer = {
      * Set QR code
      */
     setQRCode: function () {
-        if (prayer.confData.urlQrCodeEnabled === true) {
+        if (prayer.isMosque  && $(".qr-code").length > 0) {
             new QRCode("qr-code", {
                 text: $(".qr-code").data("url"),
                 width: 100,
