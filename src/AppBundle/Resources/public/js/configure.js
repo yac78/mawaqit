@@ -141,15 +141,17 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         var month = panelId.split('_');
         var error = false;
         var lines = csv.split(/(?:\r?\n)/g);
+        var val;
         month = month[1];
         for (var day = 1; day < lines.length; day++) {
             var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
                 var inputPrayer = $("input[name='configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
-                if (/^\d{2}:\d{2}$/.test(line[prayer]) === false) {
+                val = line[prayer].trim();
+                if (/^\d{2}:\d{2}$/.test(val) === false) {
                     error = true;
                 }
-                inputPrayer.val(line[prayer]);
+                inputPrayer.val(val);
                 inputPrayer.trigger("change");
             }
         }
