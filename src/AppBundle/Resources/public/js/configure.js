@@ -304,7 +304,7 @@ $("#configuration_backgroundType").change(function () {
 
 function themeIllustrationHandler() {
     let themeSelector = $("#configuration_theme");
-    let img = $('.theme > .illustration');
+    let img = $('#illustration');
     let imgPattern = img.data('src');
     img.attr('src', imgPattern.replace('name', themeSelector.val()))
 }
