@@ -10,11 +10,11 @@ dockerUser=1001:1001
 
 cd $repoDir
 
-# maintenance
-touch $repoDir/docker/data/maintenance
-
-# Sync DB if prod deploy
 if [ "$env" == "prod" ]; then
+    # maintenance
+    touch $repoDir/docker/data/maintenance
+
+    # Sync DB if prod deploy
     echo "Sync DB"
     $baseDir/tools/dbSync.sh
 fi

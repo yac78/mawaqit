@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh -p $port mawaqit@$server 'bash -s' < deploy/maintenance.sh
+ssh -p 1983 mawaqit@mawaqit.net 'bash -s' < deploy/maintenance.sh
