@@ -88,7 +88,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-globe"></i></a>
                         <ul class="dropdown-menu">
                             {% for lang in languages %}
-                                <li><a href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale) }}</a></li>
+                                <li><a href="{{ path("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

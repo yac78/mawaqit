@@ -357,6 +357,7 @@ small {
 }
 
 .top-buttons {
+    z-index: 1000;
     font-size: 220%;
     color: #777777;
     position: fixed;
