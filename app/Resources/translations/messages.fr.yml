@@ -808,7 +808,7 @@ autumn: Automne
 winter: Hiver
 
 prayer_mobile_site: "Mawaqit sur mobile <a href='%site%'>%site%</a>"
-mawaqitOnMobile: Mawaqit sur mobile
+mawaqitOnMobile: Les horaires de prière sur mobile
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir

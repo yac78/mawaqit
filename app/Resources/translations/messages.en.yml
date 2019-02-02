@@ -558,7 +558,7 @@ autumn: Autumn
 winter: Winter
 
 prayer_mobile_site: "Mawaqit on mobile <a href='%site%'>%site%</a>"
-mawaqitOnMobile: Mawaqit on mobile
+mawaqitOnMobile: Prayer times on mobile
 association_info: "%name% - Phone. %phone%"
 info_dst_change: |
   WARNING ! the calendar must be entered without taking into account the change of daylight saving time,

@@ -707,7 +707,7 @@ language: اللغة
 languages: اللغات
 
 prayer_mobile_site: مواقيت على الجوال <a href='%site%'>%site%</a>
-mawaqitOnMobile: مواقيت على الجوال
+mawaqitOnMobile: أوقات الصلاة على الجوال
 association_info: "%name% - الهاتف %phone%"
 info_dst_change: |
      تحذير! يجب إدخال التقويم دون الأخذ في الاعتبار تغيير التوقيت الصيفي ، لذلك يجب عليك إدخال
