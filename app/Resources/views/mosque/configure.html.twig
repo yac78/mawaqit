@@ -513,7 +513,7 @@
                         <div class="row mt-2 color">
                             <div class="col-md-2">
                                 {{ form_label(form.backgroundColor) }}
-                                <input class="form-control" type="color" name="configuration[backgroundColor]"
+                                <input class="form-control jscolor {hash:true, mode:'HVS'}" name="configuration[backgroundColor]"
                                        value="{{ mosque.configuration.backgroundColor }}">
                             </div>
                         </div>
@@ -584,6 +584,7 @@
 {% block additional_javascripts %}
     {% javascripts
         '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
+        '@AppBundle/Resources/public/jscolor/jscolor.js'
         '@AppBundle/Resources/public/js/configure.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

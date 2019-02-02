@@ -13,6 +13,12 @@ use AppBundle\Entity\User;
  */
 class MosqueRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    const ADMIN_EMAILS = [
+        "fb.hp.mawaqit@gmail.com",
+        "contact@mawaqit.net"
+    ];
+
     /**
      * @param User $user
      * @param array|null $search
@@ -80,7 +86,7 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
         }
 
         // By default not show homes for admin user
-        if (empty($search["userId"]) && $user->getEmail() === "fb.hp.mawaqit@gmail.com" && empty($search["type"])) {
+        if (empty($search["userId"]) && in_array($user->getEmail(), self::ADMIN_EMAILS) && empty($search["type"])) {
             $qb->andWhere("m.type = :type")
                 ->setParameter(":type", "mosque");
         }
