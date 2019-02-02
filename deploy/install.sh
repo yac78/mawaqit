@@ -10,6 +10,9 @@ dockerUser=1001:1001
 
 cd $repoDir
 
+# maintenance
+touch $repoDir/docker/data/maintenance
+
 # Sync DB if prod deploy
 if [ "$env" == "prod" ]; then
     echo "Sync DB"
@@ -43,6 +46,9 @@ docker exec --user $dockerUser $dockerContainer bin/console doc:mig:mig -n --all
 
 # Restart php
 docker exec $dockerContainer kill -USR2 1
+
+# remove maintenance
+rm $repoDir/docker/data/maintenance
 
 echo ""
 echo "####################################################"
