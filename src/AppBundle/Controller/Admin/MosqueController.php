@@ -294,6 +294,16 @@ class MosqueController extends Controller
     }
 
     /**
+     * @Route("/qrcode/{id}", name="mosque_qr_code")
+     */
+    public function qrCodeAction(Mosque $mosque)
+    {
+        return $this->render('mosque/qrcode.html.twig', [
+            'mosque' => $mosque
+        ]);
+    }
+
+    /**
      * @param Mosque $mosque
      * @param Configuration $configuration
      * @Route("/copy-calendar/mosque/{mosque}/from-configure/{configuration}", name="copy_calendar")

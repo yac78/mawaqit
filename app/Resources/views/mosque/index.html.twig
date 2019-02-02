@@ -73,10 +73,18 @@
                     {% endif %}
                     <td>
                         {{ mosque.name }}<br/>
-                        <i class="fa fa-download"></i>
-                        <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                            {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
-                        </a>
+                        <div>
+                            <i class="fa fa-download"></i>
+                            <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
+                                {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
+                            </a>
+                        </div>
+                        {% if mosque.isMosque %}
+                            <div>
+                                <i class="fa fa-print"></i>
+                                <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank" title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
+                            </div>
+                        {% endif %}
                         <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/></a>
                     </td>
                     <td>{{ mosque.associationName }}</td>
@@ -127,7 +135,7 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <td>
                                 <a href="{{ path('user_edit', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a>
-                                <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}"> ({{ mosque.user.mosques|length }}) </a>
+                                <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}"> | {{ mosque.user.mosques|length }} </a>
                             </td>
                         {% endif %}
                         <td>
@@ -206,6 +214,12 @@
                             {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                         </a>
                     </div>
+                    {% if mosque.isMosque %}
+                        <div>
+                            <i class="fa fa-print"></i>
+                            <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank">Qr Code</a>
+                        </div>
+                    {% endif %}
 
                     {% if not mosque.isCalendarCompleted %}
                         <div>

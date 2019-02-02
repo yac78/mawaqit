@@ -1063,11 +1063,12 @@ var prayer = {
      * Set QR code
      */
     setQRCode: function () {
-        if (prayer.isMosque  && $(".qr-code").length > 0) {
-            new QRCode("qr-code", {
-                text: $(".qr-code").data("url"),
-                width: 100,
-                height: 100
+        var qrCodeElm = $("#qrcode")
+        if (prayer.isMosque  && qrCodeElm.length > 0) {
+            qrCodeElm.qrcode({
+                background: '#ffffff',
+                size: 100,
+                text: qrCodeElm.data("url")
             });
         }
     },

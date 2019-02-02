@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @media print {
+            @page {
+                margin: 0;
+            }
+        }
+
+        body {
+            text-align: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            padding: 30px;
+            font-size: 18px;
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 100px;
+        }
+
+        #qrcode {
+            margin: 100px auto;
+        }
+
+        .link {
+            font-size: 30px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 50px;
+            right: 0;
+            left: 0;
+        }
+    </style>
+
+</head>
+<body class="text-center" id="body">
+<h1>{{ mosque.title }}</h1>
+<h2>{{ 'mawaqitOnMobile'|trans }}</h2>
+<p class="link">{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}</p>
+<div id="qrcode" data-url="{{ url('mosque', {slug: mosque.slug, _locale: app.request.locale}) }}"></div>
+<footer>{{ site }}</footer>
+{% javascripts
+    '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+    '@AppBundle/Resources/public/jquery/js/jquery-qrcode-0.14.0.min.js' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script>
+    $("#qrcode").qrcode({
+        size: 300,
+        text: $("#qrcode").data("url"),
+    });
+    window.onload(window.print());
+</script>
+</body>
+</html>

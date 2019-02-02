@@ -708,6 +708,7 @@ mosqueList:
     iframeAddTitle: Ajouter le widget à votre site
     widgetForYourSite: Widget pour votre site internet
     csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
+    qrcodeTitle: A afficher dans un endroit accessible au fidèles
     
 email:
     text: Adresse mail
@@ -805,6 +806,7 @@ autumn: Automne
 winter: Hiver
 
 prayer_mobile_site: "Mawaqit sur mobile <a href='%site%'>%site%</a>"
+mawaqitOnMobile: Mawaqit sur mobile
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir

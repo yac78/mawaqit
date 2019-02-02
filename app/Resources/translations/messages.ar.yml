@@ -573,9 +573,6 @@ date: التاريخ
 ar: عربي
 fr: فرنسي
 en: إنجليزي
-tr: تركي
-de: ألماني
-nl: هولندي
 fr-ar: فرنسي و عربي
 tr-ar:  تركي و عربي
 en-ar:  إنجليزي و عربي
@@ -599,6 +596,9 @@ show: أنظر
 links: الرابط
 site: موقع الأنترنيت
 csv_file_exemple: هذا مثال لملف سي اس في CSV لمواقيت مدينة باريس
+
+mosqueList:
+    widgetForYourSite: ويجات على موقعكم
 
 stats:
     title: الإحصائيات
@@ -705,6 +705,7 @@ language: اللغة
 languages: اللغات
 
 prayer_mobile_site: مواقيت على الجوال <a href='%site%'>%site%</a>
+mawaqitOnMobile: مواقيت على الجوال
 association_info: "%name% - الهاتف %phone%"
 info_dst_change: |
      تحذير! يجب إدخال التقويم دون الأخذ في الاعتبار تغيير التوقيت الصيفي ، لذلك يجب عليك إدخال

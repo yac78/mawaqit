@@ -242,9 +242,7 @@
                     &nbsp;&nbsp;{{ mosque.rib }}
                 </div>
                 {% if mosque.isMosque and mosque.configuration.urlQrCodeEnabled %}
-                    <div class="qr-code {{ url is defined  ? '' : 'hidden' }}" data-url="{{ url|default('') }}">
-                        <div id="qr-code"></div>
-                    </div>
+                    <div id="qrcode" data-url="{{ url|default('') }}"></div>
                 {% endif %}
             </div>
         {% endif %}
@@ -254,7 +252,7 @@
         </div>
         <div class="version">v{{ version }}</div>
         {% if mosque.isMosque and isNotLocal() %}
-            <div id="mosque-id" style="{{ mosque.configuration.urlQrCodeEnabled ? 'left:130px;' : '' }}">#{{ mosque.id }}</div>
+            <div id="mosque-id" style="{{ mosque.conf.footer and mosque.conf.urlQrCodeEnabled ? 'left:130px;' : '' }}">#{{ mosque.id }}</div>
         {% endif %}
     </div>
 
@@ -301,12 +299,12 @@
 
 {% javascripts
     '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+    '@AppBundle/Resources/public/jquery/js/jquery-qrcode-0.14.0.min.js'
     '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
     '@AppBundle/Resources/public/js/tools.js'
     '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
     '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
     '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
-    '@AppBundle/Resources/public/prayer-times/js/vendor/qrcode.js'
     '@AppBundle/Resources/public/prayer-times/js/date.js'
     '@AppBundle/Resources/public/prayer-times/js/prayer.js'
     '@AppBundle/Resources/public/prayer-times/js/sliders.js'

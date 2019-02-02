@@ -26,6 +26,7 @@
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "doctrine/orm": "^2.5",
+        "dompdf/dompdf": "^0.8.3",
         "friendsofsymfony/user-bundle": "~2.0",
         "gedmo/doctrine-extensions": "^2.4",
         "incenteev/composer-parameter-handler": "^2.1",

@@ -213,11 +213,12 @@ small {
     left: 10px;
 }
 
-.qr-code {
+#qrcode {
     position: fixed;
     bottom: 10px;
     left: 10px;
-    background-color: #fff;
+    height: 102px;
+    width: 102px;
     border: solid 1px #fff;
 }
 

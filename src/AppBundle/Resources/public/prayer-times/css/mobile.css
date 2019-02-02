@@ -163,6 +163,18 @@ small {
     padding-top: 5px;
 }
 
+.version {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.id {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
 .title {
     color: yellowgreen;
     margin-bottom: 20px;

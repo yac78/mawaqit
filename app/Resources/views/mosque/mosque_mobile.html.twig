@@ -168,7 +168,7 @@
     {% endif %}
 
     {% if mosque.mosque and mosque.showUsefullInfo %}
-        <div class="panel panel-default usefulInfos">
+        <div class="panel panel-default usefulInfos ltr">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a class=" accordion-toggle" data-toggle="collapse" href="#usefulInfos">{{ 'usefulInfos'|trans }}</a>
@@ -197,7 +197,7 @@
         </div>
     {% endif %}
 
-    <div class="footer">
+    <div class="footer ltr">
         <div class="assosciation text-center">
             <div>{{ mosque.associationName }}</div>
             {% if mosque.phone %}
@@ -215,18 +215,17 @@
             <div>{{ 'developed_by'|trans }}</div>
             <i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
         </div>
-        <div class="col-xs-6">
-            {% if mosque.isMosque %}
-                <div class="version text-left">#{{ mosque.id }}</div>
-            {% endif %}
-        </div>
-        <div class="col-xs-6">
-            <div class="version text-right">v{{ version }}</div>
+        <div class="mt-2">
+            <div class="id">
+                {% if mosque.isMosque %}
+                    <div class="text-muted">#{{ mosque.id }}</div>
+                {% endif %}
+            </div>
+            <div class="version">
+                <div class="text-muted">v{{ version }}</div>
+            </div>
         </div>
     </div>
-
-
-</div>
 </div>
 
 <script>

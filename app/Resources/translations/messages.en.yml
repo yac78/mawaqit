@@ -439,10 +439,6 @@ search: Search
 ar: Arabic
 fr: French
 en: English
-tr: Turkish
-de: German
-ph: Phonetic
-nl: Dutch
 fr-ar: French & Arabic
 tr-ar: Turkish & Arabic
 en-ar: English & Arabic
@@ -466,6 +462,7 @@ mosqueList:
     iframeAddTitle: Add the widget to your website
     widgetForYourSite: Widget for your website
     csvFileExemple: Here is an example of csv files of all months for Paris UOIF prayer times
+    qrcodeTitle: To post in a place accessible to the faithful
     
 email:
     text: Email address
@@ -559,6 +556,7 @@ autumn: Autumn
 winter: Winter
 
 prayer_mobile_site: "Mawaqit on mobile <a href='%site%'>%site%</a>"
+mawaqitOnMobile: Mawaqit on mobile
 association_info: "%name% - Phone. %phone%"
 info_dst_change: |
   WARNING ! the calendar must be entered without taking into account the change of daylight saving time,
