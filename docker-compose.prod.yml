@@ -15,11 +15,12 @@ services:
       # symfony code
       - ./:/var/www/mawaqit
       # nginx / php
+      - ./docker/config/php/php.ini:/etc/php7/conf.d/mawaqit_custom.ini
+      - ./docker/config/php/www.conf:/etc/php7/php-fpm.d/www.conf
+      - ./docker/config/nginx/mawaqit.net.conf:/etc/nginx/sites-enabled/mawaqit
+      - ./docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/config/nginx/logrotate:/etc/logrotate.d/nginx
       - ./docker/data/logs/nginx:/var/log/nginx
-      - ./docker/config/mawaqit.net.conf.prod:/etc/nginx/sites-enabled/mawaqit
-      - ./docker/config/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/config/www.conf:/etc/php7/php-fpm.d/www.conf
-      - ./docker/config/php.ini:/etc/php7/conf.d/mawaqit_custom.ini
       # certbot
       - ./docker/data/certbot/conf:/etc/letsencrypt
       - ./docker/data/certbot/www:/var/www/certbot
