@@ -44,11 +44,11 @@ docker exec --user $dockerUser $dockerContainer bin/console assetic:dump -e $env
 # Migrate DB
 docker exec --user $dockerUser $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e $env
 
-# Restart php
-docker exec $dockerContainer kill -USR2 1
-
 # remove maintenance
 rm $repoDir/docker/data/maintenance
+
+# Restart php
+docker exec $dockerContainer kill -USR2 1
 
 echo ""
 echo "####################################################"
