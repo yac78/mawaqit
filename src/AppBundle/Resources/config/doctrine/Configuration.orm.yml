@@ -78,6 +78,8 @@ AppBundle\Entity\Configuration:
             nullable: true
         temperatureEnabled:
             type: boolean
+        temperatureUnit:
+            type: string
         sourceCalcul:
             type: string
             length: 255

@@ -635,6 +635,8 @@ configuration:
             label: Compte à rebours du prochain adhân
         timeDisplayFormat:
             label: Format de l'heure
+        temperatureUnit:
+            label: Unité de la température
         backgroundType:
             label: Fon d'écran
         iqamaEnabled:

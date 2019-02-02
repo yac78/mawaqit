@@ -511,6 +511,8 @@ configuration:
           label :  العد التنازلي للآذان القادم
         timeDisplayFormat:
             label: صيغة الوقت
+        temperatureUnit:
+            label: وحدة درجة الحرارة
         backgroundType:
             label: نوع الخلفية
         randomHadithIntervalDisabling:

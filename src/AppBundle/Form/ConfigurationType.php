@@ -386,6 +386,17 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.temperatureEnabled.title',
                 ]
             ])
+            ->add('temperatureUnit', ChoiceType::class, [
+                'choices' => ["°C" => "C", "°F" => "F"],
+                'constraints' => [
+                    new Choice(['choices' => ["C", "F"]]),
+                    new NotBlank(),
+                ],
+                'expanded' => true,
+                'label_attr' => array(
+                    'class' => 'radio-inline'
+                )
+            ])
             ->add('footer', CheckboxType::class, [
                 'required' => false,
                 'label' => 'configuration.form.footer.label'

@@ -13,20 +13,7 @@ var weather = {
             success: function (resp) {
                 if (resp && "temperature" in resp) {
                     $weatherEl.removeAttr("class");
-                    if (parseInt(resp.temperature) <= 0) {
-                        $weatherEl.addClass("blue");
-                    }
-                    // default white if > 0 && <= 10
-                    if (parseInt(resp.temperature) > 10 && parseInt(resp.temperature) <= 20) {
-                        $weatherEl.addClass("yellow");
-                    }
-                    if (parseInt(resp.temperature) > 20 && parseInt(resp.temperature) <= 30) {
-                        $weatherEl.addClass("orange");
-                    }
-                    if (parseInt(resp.temperature) > 30) {
-                        $weatherEl.addClass("red");
-                    }
-
+                    $weatherEl.addClass(resp.feeling);
                     var icon = resp.icon;
                     var now = new Date();
                     var shuruq = prayer.getCurrentDateForPrayerTime(prayer.getChouroukTime());

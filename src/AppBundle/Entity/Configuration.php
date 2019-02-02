@@ -269,6 +269,10 @@ class Configuration
     /**
      * @var string
      */
+    private $temperatureUnit = 'C';
+    /**
+     * @var string
+     */
     private $backgroundColor = "#000000";
 
     /**
@@ -1060,6 +1064,22 @@ class Configuration
     function setTemperatureEnabled($temperatureEnabled)
     {
         $this->temperatureEnabled = $temperatureEnabled;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemperatureUnit(): string
+    {
+        return $this->temperatureUnit;
+    }
+
+    /**
+     * @param string $temperatureUnit
+     */
+    public function setTemperatureUnit(string $temperatureUnit): void
+    {
+        $this->temperatureUnit = $temperatureUnit;
     }
 
     function getHadithLang()

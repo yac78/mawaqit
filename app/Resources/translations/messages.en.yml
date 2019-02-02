@@ -394,6 +394,8 @@ configuration:
             label: Next adhan countdown
         timeDisplayFormat:
             label: Time format
+        temperatureUnit:
+            label: Temperarture unit
         backgroundType:
             label: wallpaper
         iqamaEnabled:
