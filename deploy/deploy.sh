@@ -32,7 +32,7 @@ server=$ppServer
 
 if [ "$env" == "prod" ]; then
     server=$prodServer
-    echo -n "Are you sur you want to deploy $tag to $env (y/n)? "
+    echo -n "Are you sur you want to deploy $tag to $env ? (y/n)"
     read answer
 else
     tag=$currentBranch
