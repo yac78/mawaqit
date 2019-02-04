@@ -248,13 +248,16 @@ small {
 }
 
 .random-hadith .text {
-    padding: 20px 10px;
+    padding: 0 10px;
     height: 88%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .random-hadith .text div {
     line-height: 170%;
+    margin: auto;
 }
 
 .next-prayer-bloc {
