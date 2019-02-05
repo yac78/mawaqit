@@ -344,7 +344,7 @@ configuration:
         iqamaBip:
             label:  Beep when it's time for iqamah
         iqamaFullScreenCountdown:
-            label:  Countdown
+            label:  Fullscreen countdown
         wakeForFajrTime: 
             label:  Wake up before fajr (minute)
             title: If you want to be woken before fajr with a first adhân, put here the number of minutes before fajr. Leave empty otherwise.

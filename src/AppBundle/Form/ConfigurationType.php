@@ -276,6 +276,10 @@ class ConfigurationType extends AbstractType
             ->add('duaAfterPrayerEnabled', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('azanBip', CheckboxType::class, [
+                'required' => false,
+                'label' => 'configuration.form.azanBip.label',
+            ])
             ->add('azanVoiceEnabled', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
@@ -289,6 +293,9 @@ class ConfigurationType extends AbstractType
                     "configuration.form.wakeAzanVoice.quds" => "adhan-quds",
                     "configuration.form.wakeAzanVoice.egypt" => "adhan-egypt",
                 ]
+            ])
+            ->add('iqamaBip', CheckboxType::class, [
+                'required' => false,
             ])
             ->add('iqamaFullScreenCountdown', CheckboxType::class, [
                 'required' => false,

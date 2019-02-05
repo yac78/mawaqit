@@ -61,7 +61,11 @@ AppBundle\Entity\Configuration:
             type: boolean
         urlQrCodeEnabled:
             type: boolean
+        azanBip:
+            type: boolean
         azanVoiceEnabled:
+            type: boolean
+        iqamaBip:
             type: boolean
         iqamaEnabled:
             type: boolean

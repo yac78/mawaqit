@@ -452,6 +452,10 @@ var prayer = {
          */
         flash: function (currentPrayerIndex) {
 
+            if (prayer.confData.iqamaBip === true) {
+                prayer.playSound();
+            }
+
             $(".main-iqama-countdown").addClass("hidden");
             $(".top-content .content").removeClass("hidden");
 
@@ -563,6 +567,8 @@ var prayer = {
                     var file = "adhan-maquah-fajr.mp3";
                 }
                 prayer.playSound(file);
+            } else if (prayer.confData.azanBip === true) {
+                prayer.playSound();
             }
 
             // init next hilight timeout
@@ -732,6 +738,10 @@ var prayer = {
      * Play a bip
      */
     playSound: function (file) {
+        if (typeof file === "undefined") {
+            file = "bip.mp3";
+        }
+
         var audio = new Audio('/static/mp3/' + file);
         audio.play();
     },
