@@ -17,4 +17,8 @@ $("#timeToDisplayMessageButton").click(function (e) {
 
 $("#configuration_timeToDisplayMessage").on("keyup change", function (e) {
     $("#timeToDisplayMessageButton").fadeIn(500);
-})
+});
+
+var url = window.location.href;
+var activeTab = url.substring(url.indexOf("#") + 1);
+$('a[href="#'+ activeTab +'"]').tab('show')
