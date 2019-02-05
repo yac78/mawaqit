@@ -37,7 +37,7 @@ home:
     equipedMosques: بعض المساجد المجهزة
     equipeYourMosque: جهز مسجدك
     faq: أسئلة و أجوبة
-    install: ثبت برنامجنا
+    install: تثبيت
 
   button:
     discover: إكتشف
@@ -120,8 +120,9 @@ home:
       <li>مثبت حائطي لشاشة التلفزيون بين 10 و 15 €</li>
       <li>كابل HDMI + شريط الطاقة</li>
       <li>إذا لم يكن لديك اتصال بالإنترنت:
-          <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
-              ساعة RTC
+          <a target="_blank"
+             href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+             ساعة RTC
           </a>
       </li>
     equipeYourMosque4: "التكلفة الجملية للمعدات: 220 € تقريبًا"
@@ -161,7 +162,7 @@ home:
         </p>
     install7: |
       <ol>
-        <li>قم بإنشاء حسابك على واجهة الإدارة الخاصة بنا <a target="_blank" href="%registerUrl%">هنا</a>
+        <li>قم بالتسجيل <a target="_blank" href="%registerUrl%">هنا</a>
         </li>
         <li>عرف نفسك ثم أضف مسجداً وقم بضبط مميزاته، سيتم إنشاء رابط إنترنت في نهاية هذه الخطوة
         </li>
@@ -179,15 +180,7 @@ home:
 
       <br><br>
       <p><strong>الخيار 2: إذا كان لا يوجد لديك اتصال بالإنترنت، فإنه يمكنك إطلاق النسخة المحلية، فقط قم بتوصيل الراسبيري بالشاشة، سيتم تشغيل البرنامج بصفة تلقائية.
-      للاستفادة من أحدث إصدار من البرنامج، نوصى بتنفيذ الخطوات التالية:</strong>
       </p>
-
-      <ol>
-          <li>اخرج من وضع ملء الشاشة باستخدام F11 ، ثم أغلق البرنامج</li>
-          <li>قم بتوصيل الراسبيري بالإنترنت وانقر نقرًا مزدوجًا فوق ملف upgrade.sh على سطح المكتب واضغط على تنفيذ في Terminal. انتظر حتى اكتمال إجراء التحديث
-
-          </li>
-      </ol>
       <p>يمكنك بعد ذلك ضبط أوقات الصلاة في مسجدك.<br></p>
       <p>
           <strong>هام :</strong>
