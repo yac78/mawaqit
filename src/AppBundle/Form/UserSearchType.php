@@ -47,6 +47,8 @@ class UserSearchType extends AbstractType
                 'class' => 'navbar-form'
             ],
             'required' => false,
+            'allow_extra_fields' => true,
+            'csrf_protection' => false,
         ));
     }
 
