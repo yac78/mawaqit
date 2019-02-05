@@ -88,7 +88,7 @@ class FlashMessage
      * @param \DateTime $updated
      * @return FlashMessage
      */
-    public function setUpdated(\DateTime $updated): FlashMessage
+    public function setUpdated(\DateTime $updated = null): FlashMessage
     {
         $this->updated = $updated;
         return $this;
@@ -106,7 +106,7 @@ class FlashMessage
      * @param \DateTime $expire
      * @return FlashMessage
      */
-    public function setExpire(\DateTime $expire): FlashMessage
+    public function setExpire(\DateTime $expire = null): FlashMessage
     {
         $this->expire = $expire;
         return $this;

@@ -403,7 +403,7 @@ class Mosque
      * @param string $countryFullName
      * @return Mosque
      */
-    public function setCountryFullName(string $countryFullName): Mosque
+    public function setCountryFullName($countryFullName): Mosque
     {
         $this->countryFullName = $countryFullName;
         return $this;
