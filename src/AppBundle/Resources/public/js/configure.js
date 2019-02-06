@@ -34,7 +34,7 @@ $("#configuration_prayerMethod").bind("change keyup", function (event) {
     }
 });
 
-$(".calendar-prayer input").bind("change keyup", function (event) {
+$(".month-panel .calendar-prayer input").bind("change keyup", function (event) {
     $(this).css("background-color", /^\d{2}:\d{2}$/g.test($(this).val()) ? "#ffffff" : "#f8d4d4");
 });
 
@@ -242,11 +242,13 @@ $("#configuration_iqamaEnabled").bind("change", function (event) {
 
 
 $("." + $("#configuration_sourceCalcul").val()).removeClass("hidden");
-$(".calendar-prayer input").each(function (index) {
+
+$(".month-panel .calendar-prayer input").each(function (index) {
     if ($(this).val() === "") {
         $(this).css("background-color", "#f8d4d4");
     }
 });
+
 $("#configuration_prayerMethod").trigger("change");
 $("#configuration_jumuaAsDuhr").trigger("change");
 $("#configuration_noJumua").trigger("change");

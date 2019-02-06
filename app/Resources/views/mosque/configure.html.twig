@@ -143,8 +143,9 @@
                                 </div>
                             </div>
 
+
                             {% for month,days in months %}
-                                <div class="panel panel-default month-panel">
+                                <div class="panel panel-default">
                                     <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion"
                                          href="{{ '#' ~ month }}">
                                         <h4 class="panel-title"><strong>{{ ('month_' ~ month)|trans }}</strong></h4>
@@ -311,7 +312,9 @@
                         </div>
 
                         {{ form_label(form.fixedTimes) }}
-                        <div class="text-muted mb-1"><small>{{ 'configuration.form.fixedTimes.help'|trans }}</small></div>
+                        <div class="text-muted mb-1">
+                            <small>{{ 'configuration.form.fixedTimes.help'|trans }}</small>
+                        </div>
                         <div class="row">
                             <div class="col-md-2">
                                 {{ form_row(form.fixedTimes.fajr) }}
@@ -344,7 +347,6 @@
                 </div>
                 <div id="iqama" class="panel-collapse collapse">
                     <div class="panel-body">
-
                         <div class="row">
                             <div class="col-md-3">
                                 {{ form_row(form.iqamaEnabled) }}
@@ -397,6 +399,83 @@
                                 </div>
                                 <div class="col-md-2">
                                     {{ form_row(form.fixedIqama.isha) }}
+                                </div>
+                            </div>
+
+                            <h4>Saisir un calendrier de l'iqama</h4>
+
+                            <div class="row mt-1">
+                                <div class="col-md-7">
+                                    {% for month,days in months %}
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion"
+                                                 href="{{ '#iqama-' ~ month }}">
+                                                <h4 class="panel-title"><strong>{{ ('month_' ~ month)|trans }}</strong></h4>
+                                            </div>
+                                            <div id="{{ 'iqama-' ~ month }}" class="panel-collapse collapse">
+                                                <div class="panel-body iqama-month-panel">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-md-offset-1 hidden">
+                                                            <label class="btn btn-info btn-file">
+                                                                {{ 'configuration.form.fill_calendar_from_csv'|trans }}
+                                                                <input type="file" accept=".csv" class="hidden fill-calendar">
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="alert alert-success hidden alert-dismissible"
+                                                                 role="alert">
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                        aria-label="Close"><span
+                                                                            aria-hidden="true">&times;</span></button>
+                                                                {{ 'configuration.form.fill_calendar.success'|trans }}
+                                                            </div>
+                                                            <div class="alert alert-danger hidden alert-dismissible"
+                                                                 role="alert">
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                        aria-label="Close"><span
+                                                                            aria-hidden="true">&times;</span></button>
+                                                                {{ 'configuration.form.fill_calendar.error'|trans }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+
+                                                    <div class="row text-center">
+                                                        <div class="calendar-prayer">{{ 'day'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'fajr'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'zuhr'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'asr'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'maghrib'|trans }}</div>
+                                                        <div class="calendar-prayer">{{ 'isha'|trans }}</div>
+                                                    </div>
+                                                    {% for day in 1..days %}
+                                                        <div class="row">
+                                                            <div class="text-center calendar-prayer">
+                                                                {{ day }}
+                                                            </div>
+                                                            {% for prayer in 1..5 %}
+                                                                <div class="calendar-prayer">
+                                                                    <input
+                                                                            name="configuration[iqamaCalendar][{{ month }}][{{ day }}][{{ prayer }}]"
+                                                                            value="{{ form.vars.value.iqamaCalendar[month] is defined ? form.vars.value.iqamaCalendar[month][day][prayer] : '' }}"
+                                                                            type="text"
+                                                                            pattern="\d{2}:\d{2}"
+                                                                            placeholder="hh:mm"
+                                                                            class="form-control text-center"
+                                                                            maxlength="5"
+                                                                            oninvalid="setCustomValidity('{{ 'configuration.form.time_invalid'|trans }}')"
+                                                                            onchange="try {
+                                                                                    setCustomValidity('')
+                                                                                } catch (e) {
+                                                                                }">
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

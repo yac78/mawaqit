@@ -441,6 +441,7 @@ class ConfigurationType extends AbstractType
             ])
             ->add('backgroundColor', null)
             ->add('calendar')
+            ->add('iqamaCalendar')
             ->add('timeToDisplayMessage', IntegerType::class, [
                 'required' => false,
                 'attr' => [

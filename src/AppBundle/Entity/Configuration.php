@@ -246,6 +246,10 @@ class Configuration
     private $calendar = [];
 
     /**
+     * @var array
+     */
+    private $iqamaCalendar = [];
+    /**
      * @var \DateTime
      */
     private $created;
@@ -881,7 +885,7 @@ class Configuration
     /**
      * Set calendar
      *
-     * @param string $calendar
+     * @param array $calendar
      *
      * @return Configuration
      */
@@ -900,6 +904,22 @@ class Configuration
     public function getCalendar(): array
     {
         return $this->calendar;
+    }
+
+    /**
+     * @return array
+     */
+    public function getIqamaCalendar(): array
+    {
+        return $this->iqamaCalendar;
+    }
+
+    /**
+     * @param array $iqamaCalendar
+     */
+    public function setIqamaCalendar(array $iqamaCalendar): void
+    {
+        $this->iqamaCalendar = $iqamaCalendar;
     }
 
     /**
