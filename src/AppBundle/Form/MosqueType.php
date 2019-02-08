@@ -272,8 +272,9 @@ class MosqueType extends AbstractType
 
         if (null === $oldMosque || $oldMosque['address'] !== $mosque->getAddress() || $oldMosque['country'] !== $mosque->getCountry() || $oldMosque['city'] !== $mosque->getCity() || $oldMosque['zipcode'] !== $mosque->getZipcode()) {
             $position = $this->googleService->getPosition($mosque);
-            $mosque->setLongitude($position->lng);
-            $mosque->setLatitude($position->lat);
+            $mosque->setLongitude($position['lng']);
+            $mosque->setLatitude($position['lat']);
+            $mosque->getConfiguration()->setTimezone($position['timezone']);
         }
 
         if ($mosque->getType() === "home") {

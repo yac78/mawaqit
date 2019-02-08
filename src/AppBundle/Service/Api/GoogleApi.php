@@ -2,18 +2,21 @@
 
 namespace AppBundle\Service\Api;
 
-abstract class GoogleApi {
+abstract class GoogleApi
+{
 
     private $endpoint;
     private $key;
 
-    function __construct($endpoint, $key) {
+    function __construct($endpoint, $key)
+    {
         $this->endpoint = $endpoint;
         $this->key = $key;
     }
 
-    function call($method, $path, $body = null) {
-        $url = $this->endpoint . $path . "&key=" . $this->key;
+    function call($method, $path, $body = null)
+    {
+        $url = $this->endpoint . $path . "&key=" . $this->key . "&timestamp=" . time();
 
         if ($body) {
             $body = json_encode($body);
@@ -40,19 +43,23 @@ abstract class GoogleApi {
         return json_decode($result);
     }
 
-    function get($path) {
+    function get($path)
+    {
         return $this->call("GET", $path);
     }
 
-    function put($path, $body) {
+    function put($path, $body)
+    {
         return $this->call("PUT", $path, $body);
     }
 
-    function post($path, $body) {
+    function post($path, $body)
+    {
         return $this->call("POST", $path, $body);
     }
 
-    function delete($path) {
+    function delete($path)
+    {
         return $this->call("DELETE", $path);
     }
 
