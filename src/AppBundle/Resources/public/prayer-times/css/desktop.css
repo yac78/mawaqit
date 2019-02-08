@@ -56,13 +56,10 @@ body {
     justify-content: space-between;
 }
 
-.prayers > div {
-    padding: 0 5px;
-}
-
 .prayer-hilighted {
     background-color: #0b5c00;
     border-radius: 40px;
+    padding: 0 5px;
 }
 
 .prayer-hilighted div {
@@ -81,7 +78,7 @@ body {
     color: yellowgreen;
     font-weight: bold;
     font-size: 9vh;
-    line-height: 8vh;
+    line-height: 10vh;
     padding: 0 10px;
 }
 
@@ -89,7 +86,6 @@ body {
     margin: 50px auto;
     font-size: 5vh;
     width: 70%;
-    padding-bottom: 10px;
 }
 
 .joumouaa2-id {
