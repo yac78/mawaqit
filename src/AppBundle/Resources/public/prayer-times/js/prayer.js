@@ -233,15 +233,27 @@ var prayer = {
         prayer.waitings = this.confData.waitingTimes;
         var prayerTimes = prayer.getTimes();
 
-        var prayerTime, iqamaTime;
-        $.each(prayer.confData.fixedIqama, function (index, time) {
-            if (prayer.confData.fixedIqama[index] !== "") {
-                prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[index]);
-                iqamaTime = prayer.getCurrentDateForPrayerTime(time);
+        var prayerTime, iqamaTime, month, day, fixedIqama;
+        $.each(prayer.waitings, function (i, wait) {
+            prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
+
+            if (prayer.confData.fixedIqama[i] !== "") {
+                fixedIqama = prayer.confData.fixedIqama[i];
+            }
+
+            month = dateTime.getCurrentMonth();
+            day = dateTime.getCurrentDay();
+            if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
+                fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1]
+            }
+
+            if (fixedIqama) {
+                iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
-                    prayer.waitings[index] = Math.floor((Math.abs(iqamaTime - prayerTime) / 1000) / 60);
+                    prayer.waitings[i] = Math.floor((Math.abs(iqamaTime - prayerTime) / 1000) / 60);
                 }
             }
+
         });
 
         var ishaDate = this.getCurrentDateForPrayerTime(this.getIshaTime());
@@ -504,7 +516,7 @@ var prayer = {
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
-                if(prayer.getWaitingByIndex(currentPrayerIndex) > 60){
+                if (prayer.getWaitingByIndex(currentPrayerIndex) > 60) {
                     countdown = event.strftime('%H:%M:%S');
                 }
 
@@ -1017,21 +1029,33 @@ var prayer = {
      * set wating times
      */
     setWaitings: function () {
-        if(!prayer.confData.iqamaEnabled){
+        if (!prayer.confData.iqamaEnabled) {
             return;
         }
 
-        var wait, prayerTime, iqamaTime;
+        var wait, prayerTime, iqamaTime, fixedIqama, prayerTimes, month, day;
         $.each(prayer.getWaitingTimes(), function (i, wait) {
             wait = wait + "'";
+            prayerTimes = prayer.getTimes();
+            prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
+
             if (prayer.confData.fixedIqama[i] !== "") {
-                var prayerTimes = prayer.getTimes();
-                prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
-                iqamaTime = prayer.getCurrentDateForPrayerTime(prayer.confData.fixedIqama[i]);
+                fixedIqama = prayer.confData.fixedIqama[i];
+            }
+
+            month = dateTime.getCurrentMonth();
+            day = dateTime.getCurrentDay();
+            if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
+                fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
+            }
+
+            if (fixedIqama) {
+                iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
-                    wait = prayer.formatTime(prayer.confData.fixedIqama[i]);
+                    wait = fixedIqama;
                 }
             }
+
             $('.prayers .wait').eq(i).html(wait);
         });
     },
@@ -1042,7 +1066,7 @@ var prayer = {
             });
         }, 1500);
     },
-     /**
+    /**
      * Init events
      */
     initEvents: function () {
@@ -1074,7 +1098,7 @@ var prayer = {
      */
     setQRCode: function () {
         var qrCodeElm = $("#qrcode")
-        if (prayer.isMosque  && qrCodeElm.length > 0) {
+        if (prayer.isMosque && qrCodeElm.length > 0) {
             qrCodeElm.qrcode({
                 background: '#ffffff',
                 size: 100,

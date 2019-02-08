@@ -136,7 +136,7 @@ function fillCalendarFromApi(e) {
  */
 function processFillMonthPrayerTimes(csv, inputFile) {
     try {
-        var panel = $(inputFile).parents(".month-panel");
+        var panel = $(inputFile).parents(".panel-body");
         var panelId = panel.attr("id");
         var month = panelId.split('_');
         var error = false;
@@ -146,7 +146,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         for (var day = 1; day < lines.length; day++) {
             var line = lines[day].split(/,|;/);
             for (var prayer = 1; prayer < line.length; prayer++) {
-                var inputPrayer = $("input[name='configuration[calendar][" + month + "][" + day + "][" + prayer + "]']");
+                var inputPrayer = $("input[name='configuration[" + $(inputFile).data("calendar") + "][" + month + "][" + day + "][" + prayer + "]']");
                 val = line[prayer].trim();
                 if (/^\d{2}:\d{2}$/.test(val) === false) {
                     error = true;

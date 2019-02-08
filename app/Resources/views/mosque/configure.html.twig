@@ -156,7 +156,7 @@
                                                 <div class="col-md-2 col-md-offset-1">
                                                     <label class="btn btn-info btn-file">
                                                         {{ 'configuration.form.fill_calendar_from_csv'|trans }} <input
-                                                                type="file" accept=".csv" class="hidden fill-calendar">
+                                                                type="file" accept=".csv" class="hidden fill-calendar" data-calendar="calendar">
                                                     </label>
                                                 </div>
                                                 <div class="col-md-4">
@@ -413,20 +413,18 @@
                                                 <h4 class="panel-title"><strong>{{ ('month_' ~ month)|trans }}</strong></h4>
                                             </div>
                                             <div id="{{ 'iqama-' ~ month }}" class="panel-collapse collapse">
-                                                <div class="panel-body iqama-month-panel">
+                                                <div class="panel-body iqama-month-panel" id="{{ 'month_' ~ month }}">
                                                     <div class="row">
-                                                        <div class="col-md-4 col-md-offset-1 hidden">
+                                                        <div class="col-md-4 col-md-offset-2">
                                                             <label class="btn btn-info btn-file">
                                                                 {{ 'configuration.form.fill_calendar_from_csv'|trans }}
-                                                                <input type="file" accept=".csv" class="hidden fill-calendar">
+                                                                <input type="file" accept=".csv" class="hidden fill-calendar" data-calendar="iqamaCalendar">
                                                             </label>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="alert alert-success hidden alert-dismissible"
                                                                  role="alert">
-                                                                <button type="button" class="close" data-dismiss="alert"
-                                                                        aria-label="Close"><span
-                                                                            aria-hidden="true">&times;</span></button>
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                                 {{ 'configuration.form.fill_calendar.success'|trans }}
                                                             </div>
                                                             <div class="alert alert-danger hidden alert-dismissible"
