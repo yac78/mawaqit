@@ -31,7 +31,9 @@ services:
       APP_ENV: dev
     command: >
       sh -c "chown -R mawaqit:mawaqit /var/tmp/nginx;
-      php-fpm7 -F & nginx -g 'daemon off;';"
+      php-fpm7 -F & nginx -g 'daemon off;';
+      contab /var/www/mawaqit/docker/crontab;
+      crond -f"
 
   db:
     container_name: db
