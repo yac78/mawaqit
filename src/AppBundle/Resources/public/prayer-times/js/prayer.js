@@ -235,6 +235,7 @@ var prayer = {
 
         var prayerTime, iqamaTime, month, day, fixedIqama;
         $.each(prayer.waitings, function (i, wait) {
+            fixedIqama = null;
             prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
 
             if (prayer.confData.fixedIqama[i] !== "") {
@@ -243,9 +244,12 @@ var prayer = {
 
             month = dateTime.getCurrentMonth();
             day = dateTime.getCurrentDay();
-            if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
-                fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1]
-            }
+
+            try {
+                if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
+                    fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
+                }
+            } catch (e) {}
 
             if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
@@ -1035,6 +1039,7 @@ var prayer = {
 
         var wait, prayerTime, iqamaTime, fixedIqama, prayerTimes, month, day;
         $.each(prayer.getWaitingTimes(), function (i, wait) {
+            fixedIqama = null;
             wait = wait + "'";
             prayerTimes = prayer.getTimes();
             prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
@@ -1045,9 +1050,12 @@ var prayer = {
 
             month = dateTime.getCurrentMonth();
             day = dateTime.getCurrentDay();
-            if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
-                fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
-            }
+
+            try {
+                if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
+                    fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
+                }
+            } catch (e) {}
 
             if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
