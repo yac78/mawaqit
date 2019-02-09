@@ -848,11 +848,11 @@ var prayer = {
     setTime: function () {
         var time, timeWithoutSec;
         var timeEl = $(".currentTime");
-        var timeBottomEl = $(".currentTime-bottom");
+        var timeShortEl = $(".currentTimeShort");
         time = dateTime.getCurrentTime(true);
         timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
         timeEl.html(prayer.formatTime(time));
-        timeBottomEl.html(timeWithoutSec);
+        timeShortEl.html(timeWithoutSec);
     },
     setTimeInterval: function () {
         setInterval(function () {

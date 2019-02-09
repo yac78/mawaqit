@@ -146,15 +146,15 @@ var messageInfoSlider = {
      */
     run: function () {
         var screenWidth = $(window).width();
-        var nbSlides = $('.message-info-slider li').length;
+        var nbSlides = $('.message-slider li').length;
 
-        $('.message-info-slider li').width(screenWidth);
+        $('.message-slider li').width(screenWidth);
 
         var sliderUlWidth = nbSlides * screenWidth;
-        $('.message-info-slider ul').css({width: sliderUlWidth});
+        $('.message-slider ul').css({width: sliderUlWidth});
 
         //save html slider
-        messageInfoSlider.sliderHtmlContent = $('.message-info-slider').html();
+        messageInfoSlider.sliderHtmlContent = $('.message-slider .messageContent').html();
 
         var interval = setInterval(function () {
             messageInfoSlider.moveRight();
@@ -163,14 +163,14 @@ var messageInfoSlider = {
         messageInfoSlider.messageInfoIsShowing = true;
         setTimeout(function () {
             clearInterval(interval);
-            $(".message-info-slider").fadeOut(1000, function () {
+            $(".message-slider").fadeOut(1000, function () {
                 $(".main").fadeIn(1000);
             });
             messageInfoSlider.messageInfoIsShowing = false;
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
 
         $(".main").fadeOut(500, function () {
-            $(".message-info-slider").fadeIn(500);
+            $(".message-slider").fadeIn(500);
             messageInfoSlider.setFontSize();
         });
     },
@@ -181,7 +181,7 @@ var messageInfoSlider = {
         if ($(".main").is(":visible")) {
             $.ajax({
                 dataType: "json",
-                url: $(".message-info-slider").data("remote"),
+                url: $(".message-slider").data("remote"),
                 success: function (data) {
                     if (data.messages.length > 0) {
                         var slide;
@@ -201,7 +201,7 @@ var messageInfoSlider = {
                             slide += '</li>';
                             items.push(slide);
                         });
-                        $(".message-info-slider").html("<ul>" + items.join("") + "</ul>");
+                        $(".message-slider .messageContent").html("<ul>" + items.join("") + "</ul>");
                         messageInfoSlider.run();
                     }
                 },
@@ -209,7 +209,7 @@ var messageInfoSlider = {
                  * If error show offline existing message
                  */
                 error: function () {
-                    if ($(".message-info-slider li").length > 0) {
+                    if ($(".message-slider li").length > 0) {
                         messageInfoSlider.run();
                     }
                 },
@@ -218,15 +218,15 @@ var messageInfoSlider = {
     },
     moveRight: function () {
         var screenWidth = $(window).width();
-        $('.message-info-slider ul').animate({
+        $('.message-slider ul').animate({
             left: -screenWidth
         }, 1000, function () {
-            $('.message-info-slider li:first-child').appendTo('.message-info-slider ul');
-            $('.message-info-slider ul').css('left', '');
+            $('.message-slider li:first-child').appendTo('.message-slider ul');
+            $('.message-slider ul').css('left', '');
         });
     },
     setFontSize: function () {
-        $('.message-info-slider li').each(function (i, slide) {
+        $('.message-slider li').each(function (i, slide) {
             var $slide = $(slide);
             if ($slide.find("img").length > 0) {
                 return true;

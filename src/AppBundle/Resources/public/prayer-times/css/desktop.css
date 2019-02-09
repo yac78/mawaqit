@@ -112,7 +112,7 @@ body {
     color: #B0413E;
 }
 
-.currentTime {
+.content .currentTime {
     text-shadow: 6px 6px 10px #632e2e;
     font-size: 15vh;
 }
@@ -239,7 +239,7 @@ small {
 }
 
 .random-hadith {
-    height: 72%;
+    height: 70%;
     position: relative;
 }
 
@@ -262,7 +262,7 @@ small {
     justify-content: space-between;
 }
 
-.currentTime-bottom, .next-prayer {
+.next-prayer-bloc .currentTimeShort, .next-prayer-bloc .next-prayer {
     color: #ec7047;
     font-size: 6vh;
 }
