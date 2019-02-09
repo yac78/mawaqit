@@ -25,7 +25,7 @@
 .message-slider .currentTimeShort{
     position: fixed;
     font-size: 6vh;
-    top: 30px;
+    top: 10px;
     left: 10px;
     color: #ec7047;
     z-index: 1000;
