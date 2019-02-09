@@ -47,7 +47,10 @@
 </div>
 
 <!-- message info slider -->
-<div class="message-info-slider slider display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id, main_screen: true}) }}"></div>
+<div class="message-slider slider display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id, main_screen: true}) }}">
+    <div class="currentTimeShort"></div>
+    <div class="messageContent"></div>
+</div>
 
 {% include 'partial/dua-after-adhan.html.twig' %}
 {% include 'partial/dua-between-adhan-and-iqama.html.twig' %}
@@ -67,7 +70,7 @@
                 {{ 'next_prayer'|trans }}
                 <div class="countdown"></div>
             </div>
-            <div class="currentTime-bottom"></div>
+            <div class="currentTimeShort"></div>
         </div>
     </div>
 
