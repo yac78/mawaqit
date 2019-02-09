@@ -224,6 +224,9 @@ flashMessage:
             title : The message will not be displayed beyond the chosen date
 
 configuration:
+    iqamaCalendar:
+      label: By calendar
+    iqamaFixed: Simple
     select_calendar: Select a calendar
     title: Prayer times configuration
     list:

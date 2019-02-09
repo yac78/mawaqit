@@ -464,6 +464,9 @@ faq:
             label : Publiée
 
 configuration:
+    iqamaCalendar:
+      label: Par calendrier
+    iqamaFixed: Simple
     select_calendar: Séléctionner un calendrier
     title: Configuration des horaires
     list:
