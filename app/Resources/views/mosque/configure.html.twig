@@ -94,6 +94,55 @@
                             </div>
                         </div>
 
+                        <div id="adjustedTimesPanel" class="calendarSource api hidden">
+                            {{ form_label(form.adjustedTimes) }}
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.fajr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.zuhr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.asr) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.maghrib) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_row(form.adjustedTimes.isha) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ form_label(form.fixedTimes) }}
+                        <div class="text-muted mb-1">
+                            <small>{{ 'configuration.form.fixedTimes.help'|trans }}</small>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.fajr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.zuhr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.asr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.maghrib) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.isha) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.ishaFixation) }}
+                            </div>
+                        </div>
+
+
                         <div class="calendar hidden">
                             <h3>{{ 'configuration.form.calendar'|trans }}</h3>
                             <div class="row">
@@ -234,107 +283,17 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#jumua">
-                    <span style="font-weight: 700;">{{ "jumua"|trans }}</span>
-                </div>
-                <div id="jumua" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.noJumua) }}
-                            </div>
-                            <div class="col-md-3 jumua-bloc">
-                                {{ form_row(form.jumuaAsDuhr) }}
-                            </div>
-                            <div class="col-md-3 jumua-bloc jumua-bloc-time">
-                                {{ form_row(form.jumuaTime) }}
-                            </div>
-                            <div class="col-md-3 jumua-bloc jumua-bloc-time">
-                                {{ form_row(form.jumuaTime2) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="jumua-bloc">
-                                <div class="col-md-3 jumuaTimeoutHandler">
-                                    {{ form_row(form.jumuaDhikrReminderEnabled) }}
-                                </div>
-                                <div class="col-md-3 jumuaTimeoutHandler">
-                                    {{ form_row(form.jumuaBlackScreenEnabled) }}
-                                </div>
-                                <div class="col-md-3">
-                                    {{ form_row(form.jumuaTimeout) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default calendarSource api hidden">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#adjustedTimesPanel">
-                    {{ form_label(form.adjustedTimes) }}
-                </div>
-                <div id="adjustedTimesPanel" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="col-md-2">
-                            {{ form_row(form.adjustedTimes.fajr) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.adjustedTimes.zuhr) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.adjustedTimes.asr) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.adjustedTimes.maghrib) }}
-                        </div>
-                        <div class="col-md-2">
-                            {{ form_row(form.adjustedTimes.isha) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" href="#adhan">
                     <span style="font-weight: 700;">{{ 'azan'|trans }}</span>
                 </div>
                 <div id="adhan" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="row mb-2">
+                        <div class="row">
                             <div class="col-md-3">
                                 {{ form_widget(form.azanBip) }}
                             </div>
                             <div class="col-md-3">
                                 {{ form_widget(form.showNextAdhanCountdown) }}
-                            </div>
-                        </div>
-
-                        {{ form_label(form.fixedTimes) }}
-                        <div class="text-muted mb-1">
-                            <small>{{ 'configuration.form.fixedTimes.help'|trans }}</small>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.fajr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.zuhr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.asr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.maghrib) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.isha) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.ishaFixation) }}
                             </div>
                         </div>
                     </div>
@@ -486,6 +445,43 @@
                                             {% endfor %}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#jumua">
+                    <span style="font-weight: 700;">{{ "jumua"|trans }}</span>
+                </div>
+                <div id="jumua" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.noJumua) }}
+                            </div>
+                            <div class="col-md-3 jumua-bloc">
+                                {{ form_row(form.jumuaAsDuhr) }}
+                            </div>
+                            <div class="col-md-3 jumua-bloc jumua-bloc-time">
+                                {{ form_row(form.jumuaTime) }}
+                            </div>
+                            <div class="col-md-3 jumua-bloc jumua-bloc-time">
+                                {{ form_row(form.jumuaTime2) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="jumua-bloc">
+                                <div class="col-md-3 jumuaTimeoutHandler">
+                                    {{ form_row(form.jumuaDhikrReminderEnabled) }}
+                                </div>
+                                <div class="col-md-3 jumuaTimeoutHandler">
+                                    {{ form_row(form.jumuaBlackScreenEnabled) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_row(form.jumuaTimeout) }}
                                 </div>
                             </div>
                         </div>
