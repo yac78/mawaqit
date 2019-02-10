@@ -14,11 +14,14 @@
 !var/SymfonyRequirements.php
 /vendor/
 /node_modules/
-/web/bundles/
 /app/config/parameters.prod.yml
+docker-compose.yml
+/app/config/parameters.prod.vps.yml
+/web/bundles/
 /web/css/
 /web/js/
-/docker/docker-compose.pp.yml
 /web/upload/*
-/app/config/parameters.prod.vps.yml
+/web/static/*
+/web/robots.txt
 /.idea/
+/docker/data/

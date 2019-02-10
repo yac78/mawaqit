@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(UserSearchType::class);
+        $form = $this->createForm(UserSearchType::class, null, ['method' => 'GET']);
         $form->handleRequest($request);
 
         $qb = $em->getRepository("AppBundle:User")->search($form->getData());

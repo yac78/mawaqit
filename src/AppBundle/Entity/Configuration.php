@@ -146,12 +146,22 @@ class Configuration
     /**
      * @var bool
      */
+    private $azanBip = false;
+
+    /**
+     * @var bool
+     */
     private $azanVoiceEnabled = false;
 
     /**
      * @var string
      */
     private $wakeAzanVoice = "adhan-maquah";
+
+    /**
+     * @var bool
+     */
+    private $iqamaBip = false;
 
     /**
      * @var bool
@@ -269,7 +279,16 @@ class Configuration
     /**
      * @var string
      */
+    private $temperatureUnit = 'C';
+    /**
+     * @var string
+     */
     private $backgroundColor = "#000000";
+
+    /**
+     * @var string
+     */
+    private $theme = "default";
 
     /**
      * @var string
@@ -866,7 +885,7 @@ class Configuration
      *
      * @return Configuration
      */
-    public function setCalendar($calendar)
+    public function setCalendar(array $calendar)
     {
         $this->calendar = $calendar;
 
@@ -929,6 +948,26 @@ class Configuration
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    function getAzanBip()
+    {
+        return $this->azanBip;
+    }
+
+    function getIqamaBip()
+    {
+        return $this->iqamaBip;
+    }
+
+    function setAzanBip($azanBip)
+    {
+        $this->azanBip = $azanBip;
+    }
+
+    function setIqamaBip($iqamaBip)
+    {
+        $this->iqamaBip = $iqamaBip;
     }
 
     function isAzanVoiceEnabled()
@@ -1057,6 +1096,22 @@ class Configuration
         $this->temperatureEnabled = $temperatureEnabled;
     }
 
+    /**
+     * @return string
+     */
+    public function getTemperatureUnit(): string
+    {
+        return $this->temperatureUnit;
+    }
+
+    /**
+     * @param string $temperatureUnit
+     */
+    public function setTemperatureUnit(string $temperatureUnit): void
+    {
+        $this->temperatureUnit = $temperatureUnit;
+    }
+
     function getHadithLang()
     {
         return $this->hadithLang;
@@ -1137,7 +1192,7 @@ class Configuration
     /**
      * @return mixed
      */
-    public function getDstSummerDate()
+    public function getDstSummerDate(): ?\DateTime
     {
         return $this->dstSummerDate;
     }
@@ -1155,7 +1210,7 @@ class Configuration
     /**
      * @return mixed
      */
-    public function getDstWinterDate()
+    public function getDstWinterDate():?\DateTime
     {
         return $this->dstWinterDate;
     }
@@ -1338,6 +1393,22 @@ class Configuration
     {
         $this->iqamaFullScreenCountdown = $iqamaFullScreenCountdown;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTheme(): string
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param string $theme
+     */
+    public function setTheme(string $theme): void
+    {
+        $this->theme = $theme;
     }
 
 }

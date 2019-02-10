@@ -24,6 +24,9 @@ AppBundle\Entity\User:
         apiUseDescription:
           type : text
           nullable: true
+        mosqueQuota:
+          type : integer
+          nullable: true
         created:
             type: datetime
             nullable: true

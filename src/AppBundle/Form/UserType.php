@@ -52,12 +52,9 @@ class UserType extends AbstractType
                 'required' => false,
                 'label' => 'Quota API'
             ])
-            ->add('apiCallNumber', IntegerType::class, [
+            ->add('mosqueQuota', IntegerType::class, [
                 'required' => false,
-                'label' => "Nombre d'appl API aujourd'hui",
-                'attr' => [
-                    'readonly' => true
-                ]
+                'label' => 'Quota de mosquée (10 par défaut)'
             ])
             ->add('enabled', CheckboxType::class, [
                 'required' => false,

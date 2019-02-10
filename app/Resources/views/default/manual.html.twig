@@ -2,8 +2,23 @@
 
 {% block content %}
     <div class="text-center">
+        <!-- Participez Section -->
+        <section>
+            <div class="container">
+                <h2 class="section-heading">{{ 'home.title.equipeYourMosque'|trans }}</h2>
+                <p>{{ 'home.text.equipeYourMosque1'|trans }}</p>
+                <h4 class="section-heading">{{ 'home.text.equipeYourMosque2'|trans }}</h4>
+                <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
+                    {{ 'home.text.equipeYourMosque3'|trans|raw }}
+                </ul>
+                <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br>
+                <h4 class="section-heading">{{ 'home.text.equipeYourMosque4'|trans }}</h4>
+                <h4 class="section-heading">{{ 'home.text.equipeYourMosque5'|trans }}</h4>
+            </div>
+        </section>
+
         <!-- Section Comment istaller l'application -->
-        <section id="install" class="bg-light-gray">
+        <section class="bg-light-gray">
             <div class="container">
                 <h2 class="section-heading">{{ 'home.title.install'|trans }}</h2>
                 <p>
@@ -31,7 +46,7 @@
                 <h3> {{ 'home.text.install5'|trans|raw }}</h3>
                 <div class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     {{ 'home.text.install6'|trans|raw }}
-                    {{ 'home.text.install7'|trans({'%%registerUrl%': path('fos_user_registration_register'), '%now%': "now"|date("Y-m-d H:m:s"), 'mosqueUrl': url('mosque', {slug: 'mosquee-essunna-houilles'})  })|raw }}
+                    {{ 'home.text.install7'|trans({'%registerUrl%': path('fos_user_registration_register'), '%now%': "now"|date("Y-m-d H:m:s"), 'mosqueUrl': url('mosque', {slug: 'mosquee-essunna-houilles'})  })|raw }}
                 </div>
                 <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-rtc.jpg') }}" alt=""><br><br>
                 <h4 class="text-muted">

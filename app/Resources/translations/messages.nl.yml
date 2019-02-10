@@ -1,0 +1,34 @@
+fajr: Fadjr
+shuruk: Shoeroeq
+zuhr: Dhoehr
+asr: ‘Asr
+maghrib: Maghrib
+isha: ‘Ishaa
+jumua: Djoemoe’ah
+aid: Eid
+imsak: Imsaak
+iqama: Al-Iqama
+azan: Al-Adhan
+
+searchOtherMosque: Een andere moskee zoeken
+power-off-phones: Vriendelijk verzoek om uw telefoon uit te zetten!
+next_prayer: Adhan in
+
+duaAfterAthan:
+  title: Smeekbede na Adhan
+  text: |
+    Allah, Heer van deze perfecte oproep en van het te verrichten gebed, schenk Mohammed
+    al-wasielah en al-fadielah en schenk hem de verheven positie die U hem heeft beloofd.
+    (Voorwaar, U verbreekt geen belofte).
+
+duaBetweenAthanAndIqama:
+  text: |
+    Volgens Anas Ibn Mâlik, de profeet (vrede en zegeningen zij met hem) said: "De
+    smeekbede tussen de Adhan en de Iqama wordt niet geweigerd, dus verricht smeekbeden (tot Allah)".
+
+jumuaReminder:
+  text: |
+    "Iemand die een bad neemt op vrijdag en zichzelf goed wast, olie plaatst in zijn haar en
+    parfum gebruikt, daarna vroeg in de middag naar de moskee gaat voor het vrijdaggebed, rustig en
+    zonder te duwen of de mensen te storen plaats neemt, dan vrijwillige gebeden bidt zoveel als hij kan,
+    daarna stil luistert naar de preek, al zijn zonden tussen deze en de laatste vrijdag zullen vergeven worden!”

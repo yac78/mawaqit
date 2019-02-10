@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title  'configuration' %}
 
 {% block additional_stylesheets %}
     {% stylesheets
@@ -51,6 +52,9 @@
                             </div>
                             <div class="col-md-3">
                                 {{ form_row(form.timeDisplayFormat) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.temperatureUnit) }}
                             </div>
                         </div>
                     </div>
@@ -297,10 +301,37 @@
                 </div>
                 <div id="adhan" class="panel-collapse collapse">
                     <div class="panel-body">
-
-                        <div class="row">
+                        <div class="row mb-2">
+                            <div class="col-md-3">
+                                {{ form_widget(form.azanBip) }}
+                            </div>
                             <div class="col-md-3">
                                 {{ form_widget(form.showNextAdhanCountdown) }}
+                            </div>
+                        </div>
+
+                        {{ form_label(form.fixedTimes) }}
+                        <div class="text-muted mb-1"><small>{{ 'configuration.form.fixedTimes.help'|trans }}</small></div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.fajr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.zuhr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.asr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.maghrib) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.isha) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.ishaFixation) }}
                             </div>
                         </div>
                     </div>
@@ -317,6 +348,9 @@
                         <div class="row">
                             <div class="col-md-3">
                                 {{ form_row(form.iqamaEnabled) }}
+                            </div>
+                            <div class="col-md-3 iqama-settings">
+                                {{ form_row(form.iqamaBip) }}
                             </div>
                             <div class="col-md-3 iqama-settings">
                                 {{ form_row(form.iqamaFullScreenCountdown) }}
@@ -364,40 +398,6 @@
                                 <div class="col-md-2">
                                     {{ form_row(form.fixedIqama.isha) }}
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1" href="#fixedTimes">
-                    {{ form_label(form.fixedTimes) }}
-                    <div class="text-muted"
-                         style="font-size: 13px">{{ 'configuration.form.fixedTimes.help'|trans }}</div>
-                </div>
-                <div id="fixedTimes" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.fajr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.zuhr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.asr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.maghrib) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.isha) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.ishaFixation) }}
                             </div>
                         </div>
                     </div>
@@ -465,11 +465,45 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#themeSettings">
-                    <span style="font-weight: 700;">{{ "theme_settings"|trans }}</span>
+                     href="#displaySettings">
+                    <span style="font-weight: 700;">{{ "display_settings"|trans }}</span>
                 </div>
-                <div id="themeSettings" class="panel-collapse collapse">
+                <div id="displaySettings" class="panel-collapse collapse">
                     <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.hijriDateEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.temperatureEnabled) }}
+                            </div>
+                            <div class="col-md-3 {{ mosque.isHome ? 'hidden' : '' }}">
+                                {{ form_widget(form.urlQrCodeEnabled) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.footer) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_widget(form.blackScreenWhenPraying) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_widget(form.smallScreen) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.theme) }}
+                            </div>
+
+                            <div class="col-md-3 theme">
+                                <img id="illustration" data-src="{{ asset('bundles/app/agency/img/software/theme-name.png') }}" alt="">
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-3">
@@ -492,39 +526,8 @@
                         <div class="row mt-2 color">
                             <div class="col-md-2">
                                 {{ form_label(form.backgroundColor) }}
-                                <input class="form-control" type="color" name="configuration[backgroundColor]"
+                                <input class="form-control jscolor {hash:true, mode:'HVS'}" readonly name="configuration[backgroundColor]"
                                        value="{{ mosque.configuration.backgroundColor }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading pointer" data-toggle="collapse" data-parent="#accordion1"
-                     href="#displaySettings">
-                    <span style="font-weight: 700;">{{ "display_settings"|trans }}</span>
-                </div>
-                <div id="displaySettings" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_widget(form.hijriDateEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.blackScreenWhenPraying) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.temperatureEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.urlQrCodeEnabled) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.footer) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ form_widget(form.smallScreen) }}
                             </div>
                         </div>
                     </div>
@@ -594,6 +597,7 @@
 {% block additional_javascripts %}
     {% javascripts
         '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
+        '@AppBundle/Resources/public/jscolor/jscolor.js'
         '@AppBundle/Resources/public/js/configure.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

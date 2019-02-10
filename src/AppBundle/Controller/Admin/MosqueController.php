@@ -7,15 +7,25 @@ use AppBundle\Entity\Mosque;
 use AppBundle\Exception\GooglePositionException;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MosqueSearchType;
+use AppBundle\Form\MosqueSyncType;
 use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\TransferException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @Route("/admin/mosque")
@@ -50,6 +60,59 @@ class MosqueController extends Controller
 
         return $this->render('mosque/index.html.twig', $result);
     }
+
+    /**
+     * Restet Sync flag
+     * This is useful for raspberry env
+     * @Route("/sync/reset/{id}", name="mosque_reset_sync")
+     */
+    public function resetSyncAction(Mosque $mosque)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $mosque->setSynchronized(false);
+        $em->flush();
+
+        return $this->redirectToRoute('mosque', ['slug' => $mosque->getSlug()]);
+    }
+
+    /**
+     * Sync mosque data
+     * This is useful for raspberry env
+     * @Route("/sync/{id}", name="mosque_sync")
+     */
+    public function syncAction(Request $request, Client $client, Mosque $mosque)
+    {
+        $form = $this->createForm(MosqueSyncType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            if ($request->request->has('later')) {
+                $mosque->setSynchronized(true);
+            }
+
+            if ($request->request->has('validate')) {
+                try {
+                    $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
+                    $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
+                    $serializer = new Serializer([new DateTimeNormalizer(), new ArrayDenormalizer(), $normalizer], [new JsonEncoder()]);
+                    $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
+                    $mosque->setSynchronized(true);
+                } catch (ConnectException $e) {
+                    $this->addFlash("danger", "mosqueScreen.noInternetConnection");
+                } catch (TransferException $e) {
+                    $this->addFlash("danger", "mosqueScreen.noMosqueFound");
+                }catch (\Exception $e) {
+                    $this->addFlash("danger", "mosqueScreen.otherPb");
+                }
+            }
+
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('mosque', ['slug' => $mosque->getSlug()]);
+    }
+
 
     /**
      * @Route("/create", name="mosque_create")
@@ -222,12 +285,22 @@ class MosqueController extends Controller
         $zipFilePath = $this->get("app.prayer_times")->getFilesFromCalendar($mosque);
         if (is_file($zipFilePath)) {
             $zipFileName = $mosque->getSlug() . ".zip";
-            $response =  new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
+            $response = new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
             $response->deleteFileAfterSend(true);
             return $response;
         }
 
         return new Response("An error has occured ", Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * @Route("/qrcode/{id}", name="mosque_qr_code")
+     */
+    public function qrCodeAction(Mosque $mosque)
+    {
+        return $this->render('mosque/qrcode.html.twig', [
+            'mosque' => $mosque
+        ]);
     }
 
     /**

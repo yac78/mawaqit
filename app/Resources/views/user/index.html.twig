@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block additional_stylesheets %}
+    <style>
+        .navbar-form .form-group {
+            margin-right: 20px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 
     {% include 'partial/flash_msg.html.twig' %}
 
     <h1>{{ 'users'|trans }}</h1>
 
-    <div class="row mt-2">
-        <div class="col-md-8 col-xs-12 text-left">
-            {{ form(form) }}
-        </div>
-        <div class="col-md-4 col-xs-12 text-right">
-            <a href="{{ path('users_send_email') }}" class="btn btn-primary"
-               title="Envoyez un mail à tous les utilisateurs"><i
-                        class="fa fa-envelope"></i> {{ 'email.send.action'|trans }}</a>
-        </div>
+    <div class="text-right">
+        <a href="{{ path('users_send_email') }}" class="btn btn-primary"
+           title="Envoyez un mail à tous les utilisateurs"><i
+                    class="fa fa-envelope"></i> {{ 'email.send.action'|trans }}</a>
+    </div>
+
+    <div class="mt-1 text-left">
+        {{ form(form) }}
     </div>
 
     <div class="navigation text-center">

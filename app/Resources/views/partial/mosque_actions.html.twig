@@ -7,6 +7,9 @@
         <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="{{ path('mosque_edit', {id: mosque.id}) }}"><span class="fa fa-pencil-square"></span> {{ 'form.edit.action'|trans }}</a></li>
             <li><a href="{{ path('mosque_configure', {id: mosque.id}) }}"><span class="fa fa-cog"></span> {{ 'form.configure.action'|trans }}</a></li>
+            {% if isLocal() %}
+                <li><a href="{{ path('mosque_reset_sync', {id: mosque.id}) }}"><span class="fa fa-refresh"></span> {{ 'form.sync.action'|trans }}</a></li>
+            {% endif %}
             <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><span class="fa fa-comment-o"></span> {{ 'message.manage'|trans }}</a></li>
             {% if isNotLocal() %}
                 {% if is_granted('ROLE_ADMIN') %}

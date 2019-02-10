@@ -1,0 +1,53 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.widget {
+    padding: 10px;
+}
+
+.prayers {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.top {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 3vw;
+    justify-content: space-between;
+}
+
+.current-time {
+    font-size: 8vw;
+    font-weight: bold;
+}
+
+.date, .hijriDate {
+    font-size: 3vw;
+}
+
+.shuruq, .jumua{
+    padding-top: 5vw;
+}
+
+.name {
+    font-size: 4vw;
+}
+
+.time {
+    color: yellowgreen;
+    font-weight: bold;
+    font-size: 5vw;
+}
+
+.iqama {
+    font-size: 3vw;
+}

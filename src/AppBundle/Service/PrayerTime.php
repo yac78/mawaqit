@@ -103,7 +103,12 @@ class PrayerTime
         $zipFilePath = "$path/" . $zipFileName;
 
         if ($zip->open($zipFilePath, \ZipArchive::CREATE) === true) {
-            $zip->addGlob("$path/*.csv", GLOB_BRACE, array('remove_all_path' => TRUE));
+            $files = scandir("$path");
+            foreach($files as $file) {
+                if(strpos($file, ".") !== 0 ){
+                    $zip->addFile("$path/$file", $file);
+                }
+            }
             $zip->close();
             array_map('unlink', glob("$path/*.csv"));
         }
@@ -131,6 +136,7 @@ class PrayerTime
             'url' => 'https://mawaqit.net/fr/' . $mosque->getSlug(),
             'latitude' => $mosque->getLatitude(),
             'longitude' => $mosque->getLongitude(),
+            'hijriAdjustment' => $conf->getHijriAdjustment(),
             'jumua' => $conf->getJumuaTime(),
             'jumua2' => $conf->getJumuaTime2(),
             'shuruq' => null,
@@ -138,8 +144,18 @@ class PrayerTime
             'fixedTimes' => $conf->getFixedTimes(),
             'fixedIqama' => $conf->getFixedIqama(),
             'iqama' => $conf->getWaitingTimes(),
+            'womenSpace' => $mosque->getWomenSpace(),
+            'janazaPrayer' => $mosque->getJanazaPrayer(),
+            'aidPrayer' => $mosque->getAidPrayer(),
+            'childrenCourses' => $mosque->getChildrenCourses(),
+            'adultCourses' => $mosque->getAdultCourses(),
+            'ramadanMeal' => $mosque->getRamadanMeal(),
+            'handicapAccessibility' => $mosque->getHandicapAccessibility(),
+            'ablutions' => $mosque->getAblutions(),
+            'parking' => $mosque->getParking(),
             'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
             'announcements' => $this->getMessages($mosque),
+            'updatedAt' => $mosque->getUpdated(),
         ];
 
         if ($calendar) {

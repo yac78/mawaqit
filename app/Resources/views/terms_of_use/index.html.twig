@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
-{% block title 'CGU | ' ~ parent() %}
+{% block title "Conditions générales d'utilisation" %}
 {% block body %}
     <div class="container">
-
         <h1 class="mb-3">Conditions générales d'utilisation</h1>
-
         {% include 'partial/terms_of_use.html.twig' %}
         {{ form(form) }}
     </div>

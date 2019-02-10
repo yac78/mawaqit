@@ -48,7 +48,7 @@ class MailService
      */
     function mosqueCreated(Mosque $mosque)
     {
-        $title = 'Nouvelle mosquée (' . $mosque->getFullCountryName() . ')';
+        $title = 'Nouvelle mosquée (' . $mosque->getCountryFullName() . ')';
         $this->sendEmail($mosque, $title, $this->postmasterEmail, $this->postmasterEmail, 'created');
     }
 

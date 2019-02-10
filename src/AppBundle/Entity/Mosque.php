@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Service\ToolsService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -240,6 +239,11 @@ class Mosque
      */
     private $parking;
 
+    /**
+     * @var boolean|null
+     */
+    private $synchronized;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -387,15 +391,10 @@ class Mosque
         return $this->country;
     }
 
-    public function getFullCountryName()
-    {
-        return ToolsService::getCountryNameByCode($this->country);
-    }
-
     /**
      * @return string
      */
-    public function getCountryFullName(): string
+    public function getCountryFullName()
     {
         return $this->countryFullName;
     }
@@ -404,7 +403,7 @@ class Mosque
      * @param string $countryFullName
      * @return Mosque
      */
-    public function setCountryFullName(string $countryFullName): Mosque
+    public function setCountryFullName($countryFullName): Mosque
     {
         $this->countryFullName = $countryFullName;
         return $this;
@@ -614,7 +613,7 @@ class Mosque
      */
     public function getLocalisation()
     {
-        return ($this->address ? $this->address . ' ' : '') . $this->zipcode . ' ' . $this->city . ' ' . $this->getFullCountryName();
+        return ($this->address ? $this->address . ' ' : '') . $this->zipcode . ' ' . $this->city . ' ' . $this->getCountryFullName();
     }
 
     function getUser()
@@ -1250,11 +1249,31 @@ class Mosque
     /**
      * @param FlashMessage $flashMessage
      */
-    public function setFlashMessage(FlashMessage $flashMessage): void
+    public function setFlashMessage($flashMessage): void
     {
         $this->flashMessage = $flashMessage;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function getSynchronized(): ?bool
+    {
+        return $this->synchronized;
+    }
+
+    /**
+     * @param bool|null $synchronized
+     */
+    public function setSynchronized(?bool $synchronized): void
+    {
+        $this->synchronized = $synchronized;
+    }
+
+    public function getConf(): Configuration
+    {
+        return $this->configuration;
+    }
 
 }
 

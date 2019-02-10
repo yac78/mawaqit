@@ -31,7 +31,7 @@ class ConfigurationType extends AbstractType
     /**
      * @var Array
      */
-    private static $timezones = [
+    private static $TIMEZONES = [
         "-12.00" => "(GMT-12:00) International Date Line West",
         "-11.00" => "(GMT-11:00) Midway Island, Samoa",
         "-10.00" => "(GMT-10:00) Hawaii",
@@ -70,7 +70,7 @@ class ConfigurationType extends AbstractType
     /**
      * @var Array
      */
-    private static $dstChoices = [
+    private static $DST = [
         "dst-auto" => 2,
         "dst-disabled" => 0,
         "dst-enabled" => 1
@@ -79,7 +79,14 @@ class ConfigurationType extends AbstractType
     /**
      * @var Array
      */
-    private static $randomHadithIntervalDisabling = [
+    private static $THEMES = [
+        "mawaqit", "spring", "summer", "autumn", "winter"
+    ];
+
+    /**
+     * @var Array
+     */
+    private static $RANDOM_HADITH_INTERVAL_DISABLING = [
         "" => "",
         "fajr-zuhr" => "0-1",
         "zuhr-asr" => "1-2",
@@ -216,13 +223,13 @@ class ConfigurationType extends AbstractType
                 'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
             ])
             ->add('timezone', ChoiceType::class, [
-                'choices' => array_flip(self::$timezones),
+                'choices' => array_flip(self::$TIMEZONES),
                 'attr' => [
                     'help' => 'configuration.form.timezone.title',
                 ],
             ])
             ->add('dst', ChoiceType::class, [
-                'choices' => self::$dstChoices,
+                'choices' => self::$DST,
                 'attr' => [
                     'help' => 'configuration.form.dst.title',
                 ],
@@ -269,6 +276,10 @@ class ConfigurationType extends AbstractType
             ->add('duaAfterPrayerEnabled', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('azanBip', CheckboxType::class, [
+                'required' => false,
+                'label' => 'configuration.form.azanBip.label',
+            ])
             ->add('azanVoiceEnabled', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
@@ -282,6 +293,9 @@ class ConfigurationType extends AbstractType
                     "configuration.form.wakeAzanVoice.quds" => "adhan-quds",
                     "configuration.form.wakeAzanVoice.egypt" => "adhan-egypt",
                 ]
+            ])
+            ->add('iqamaBip', CheckboxType::class, [
+                'required' => false,
             ])
             ->add('iqamaFullScreenCountdown', CheckboxType::class, [
                 'required' => false,
@@ -361,7 +375,7 @@ class ConfigurationType extends AbstractType
             ])
             ->add('randomHadithIntervalDisabling', ChoiceType::class, [
                 'required' => false,
-                'choices' => self::$randomHadithIntervalDisabling,
+                'choices' => self::$RANDOM_HADITH_INTERVAL_DISABLING,
                 'attr' => [
                     'help' => 'configuration.form.randomHadithIntervalDisabling.title',
                 ]
@@ -379,6 +393,17 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.temperatureEnabled.title',
                 ]
             ])
+            ->add('temperatureUnit', ChoiceType::class, [
+                'choices' => ["°C" => "C", "°F" => "F"],
+                'constraints' => [
+                    new Choice(['choices' => ["C", "F"]]),
+                    new NotBlank(),
+                ],
+                'expanded' => true,
+                'label_attr' => array(
+                    'class' => 'radio-inline'
+                )
+            ])
             ->add('footer', CheckboxType::class, [
                 'required' => false,
                 'label' => 'configuration.form.footer.label'
@@ -393,6 +418,13 @@ class ConfigurationType extends AbstractType
                 'label_attr' => array(
                     'class' => 'radio-inline'
                 )
+            ])
+            ->add('theme', ChoiceType::class, [
+                'choices' =>  array_combine(self::$THEMES, self::$THEMES),
+                'constraints' => [
+                    new Choice(['choices' => self::$THEMES]),
+                    new NotBlank(),
+                ]
             ])
             ->add('backgroundType', ChoiceType::class, [
                 'choices' => ["color" => "color", "motif" => "motif"],

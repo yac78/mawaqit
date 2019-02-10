@@ -1,0 +1,35 @@
+fajr: Fajr
+shuruk: Shuruq
+zuhr: Dohr
+asr: Asr
+maghrib: Maghrib
+isha: Isha
+jumua: Jumua
+aid: Al-aid
+imsak: Imsak
+iqama: Al-Iqama
+azan: Al-Adhan
+
+power-off-phones: Please turn off your mobile phones !
+next_prayer: Adhan in
+iqama_in: Al-Iqamah in
+searchOtherMosque: Look for another mosque
+your_mosque_informs_you: Your mosque informs you
+prayer_mobile_site: Mawaqit on mobile <a href='%site%'>%site%</a>
+
+duaAfterAthan:
+    title: Invocation after adhân
+    text: |
+        O Allah, Master of this perfect call and the prayer that we are going to perform, gives Muhammad the power to intercede
+        (the Day of Judgment) and the place of honor [in Paradise], and resurrect him in the laudable position that You promised him
+
+duaBetweenAthanAndIqama:
+    text: |
+      According to Anas Ibn Mâlik, the Prophet (sallallahu 'alayhi wa sallam) said: The invocations between Adhân and Iqâmah are not rejected
+
+jumuaReminder:
+    text: |
+      The Prophet (peace and blessings of Allah be upon him) said
+      "Whoever does the ablutions perfectly then goes to jumu`a and then listens and is silent,
+      he is forgiven what is between that time and the following Friday and three more days
+      and the one who touches stones has certainly made a futility"

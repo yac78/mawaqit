@@ -47,6 +47,12 @@ class User extends BaseUser
     private $apiUseDescription;
 
     /**
+     * Allowed quota call per day
+     * @var integer
+     */
+    private $mosqueQuota;
+
+    /**
      * @var \DateTime
      */
     private $created;
@@ -222,5 +228,23 @@ class User extends BaseUser
     {
         $this->apiCallNumber++;
     }
+
+    /**
+     * @return int
+     */
+    public function getMosqueQuota()
+    {
+        return $this->mosqueQuota;
+    }
+
+    /**
+     * @param int $mosqueQuota
+     */
+    public function setMosqueQuota($mosqueQuota): void
+    {
+        $this->mosqueQuota = $mosqueQuota;
+    }
+
+
 }
 

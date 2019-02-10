@@ -1,0 +1,221 @@
+services:
+    ## Tiers services
+    gedmo.listener.sluggable:
+        class: Gedmo\Sluggable\SluggableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+            
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    gedmo.listener.sortable:
+        class: Gedmo\Sortable\SortableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+
+    praytimes:
+        class: AppBundle\Service\Vendor\PrayTime
+
+    ## App services
+    app.google_api:
+        abstract: true
+        class: AppBundle\Service\Api\GoogleApi
+        arguments: 
+          - '%google_api_endpoint%'
+          - '%google_api_key%'
+          
+    app.weather_api:
+        abstract: true
+        class: AppBundle\Service\Api\WeatherApi
+        arguments: 
+          - '%weather_api_endpoint%'
+          - '%weather_api_key%'
+          - '@logger'
+          
+    app.google_service:
+        public: true
+        parent: app.google_api
+        class: AppBundle\Service\GoogleService
+        calls:
+          - [setLogger, ['@logger']]
+
+    app.weather_service:
+        parent: app.weather_api
+        class: AppBundle\Service\WeatherService
+          
+    app.prayer_times:
+        class: AppBundle\Service\PrayerTime
+        arguments:
+            - "@praytimes"
+            - "%kernel.cache_dir%"
+
+    app.mail_service:
+        class: AppBundle\Service\MailService
+        arguments:
+            - "@swiftmailer.mailer"
+            - "@twig"
+            - {"%supportEmail%" : "%name%"}
+            - {"%no_reply_address%" : "%name%"}
+            - {"%postmaster_address%" : "%name%"}
+
+    app.user_service:
+        class: AppBundle\Service\UserService
+        arguments:
+            - "@swiftmailer.mailer.file"
+            - "@doctrine.orm.entity_manager"
+            - ["%supportEmail%", "%name%"]
+
+    app.tools_service:
+        class: AppBundle\Service\ToolsService
+        arguments:
+            - "@service_container"
+
+    app.mosque_service:
+        class: AppBundle\Service\MosqueService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@serializer"
+            - "@vich_uploader.upload_handler"
+            - "@app.mail_service"
+
+    app.user_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments:
+            - AppBundle\Entity\User
+
+    app.request_service:
+        class: AppBundle\Service\RequestService
+        arguments:
+          - "@request_stack"
+
+    app.security.uuid_token_authenticator:
+        class: AppBundle\Security\UuidTokenAuthenticator
+        public: false
+
+
+    # Commands
+    app.clean_old_users_command:
+        class: AppBundle\Command\CleanOldUsersCommand
+        arguments:
+            - "@app.user_repository"
+        tags:
+            - { name: 'console.command', command: 'app:clean-old-users' }
+
+    app.reset_api_counters.command:
+        class: AppBundle\Command\ResetApiCountersCommand
+        arguments:
+            - "@app.user_repository"
+        tags:
+            - { name: 'console.command', command: 'app:reset-api-counters' }
+
+    app.clean_mosques_command:
+        class: AppBundle\Command\CleanNotValidatedMosquesCommand
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: 'console.command', command: 'app:clean-mosques' }
+
+    # Twig extension
+    app.twig.country_extension:
+        class: AppBundle\Twig\ToolsExtension
+        arguments:
+          - "@app.tools_service"
+        tags:
+            - { name: twig.extension }
+
+    app.twig.local:
+        class: AppBundle\Twig\LocalExtension
+        arguments:
+          - "@app.request_service"
+        tags:
+            - { name: twig.extension }
+
+    # Forms
+    app.form_configuration:
+        class: AppBundle\Form\ConfigurationType
+        arguments:
+            - "@translator"
+        tags:
+            - { name: form.type }
+
+    app.form_message:
+        class: AppBundle\Form\MessageType
+        arguments:
+            - "@translator"
+        tags:
+            - { name: form.type }
+
+    app.form_prayer:
+        class: AppBundle\Form\PrayerType
+        arguments:
+            - "@translator"
+        tags:
+            - { name: form.type }
+            
+    app.form_mosque:
+        class: AppBundle\Form\MosqueType
+        arguments:
+            - "@security.authorization_checker"
+            - "@doctrine.orm.entity_manager"
+            - "@app.google_service"
+        tags:
+            - { name: form.type }
+
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    # Listeners
+    app.event.vich_uploader_post_upload:
+        class: AppBundle\EventListener\VichImageHandling
+        tags:
+            - { name: kernel.event_listener, event: vich_uploader.post_upload , method: resizeImage }
+
+    app.event.request:
+        class: AppBundle\EventListener\LocalRequest
+        arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
+
+    app.event.api_call_counter:
+        class: AppBundle\EventListener\ApiCallCounter
+        arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest, priority: -10 }
+
+    app.event.terms_of_use:
+        class: AppBundle\EventListener\TermsOfUse
+        arguments: ['@security.token_storage', '@router']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request , method: onKernelRequest }
+
+    app.maintenance_listener:
+        class: AppBundle\EventListener\MaintenanceListener
+        arguments:
+            - "%kernel.root_dir%/../docker/data/maintenance"
+            - "%maintenance_header%"
+            - "@twig"
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    # Validators
+    app.validator.mosque:
+        class: AppBundle\Validator\Constraints\MosqueValidator
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: validator.constraint_validator }

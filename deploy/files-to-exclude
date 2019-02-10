@@ -1,9 +1,0 @@
-app/config/config_dev.yml
-app/config/routing_dev.yml
-var/logs
-var/cache
-var/sessions
-web/upload
-web/static
-web/robots.txt
-web/.htaccess

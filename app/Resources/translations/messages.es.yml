@@ -1,0 +1,31 @@
+fajr: Fayr
+shuruk: Shuruq
+zuhr: Duhr
+asr: Asr
+maghrib: Maghrib
+isha: Isha
+jumua: Yumuah
+aid: Eid
+imsak: Imsak
+iqama: qama
+azan: Adan
+
+power-off-phones: Por favor, apague sus teléfonos móviles!
+next_prayer:  Adan en
+searchOtherMosque:  Buscar otra mezquita
+your_mosque_informs_you: Tu mezquita te informa
+prayer_mobile_site: Mawaqit en el móvil <a href='%site%'>%site%</a>
+
+duaAfterAthan:
+    title: Dua después del Adan
+    text: |
+        O Allah, maestro del llamado perfecto, y la oración que estamos próximos a ofrecer, otorgarle a Muhammad el poder
+        para interceder (el día de juicio final) y el lugar de honor (en el Paraíso) y resusítalo en la posición loable que le has prometido.
+duaBetweenAthanAndIqama:
+    text: |
+      Anas Iben Malik narró que el Profeta, la paz y bendiciones de Allah sean con él, dijo que la invocación entre el Adan y la Iqamah nunca será rechazada.
+jumuaReminder:
+    text: |
+      El Profeta la paz y bendiciones de Allah sean con él dijo: "La persona que hace la ablución perfectamente y luego va para Yumuah y
+      escucha silenciosa y atentamente, sus pecados serán perdonados entre ese tiempo y el próximo viernes más tres días adicionales.
+      Y la persona que toca las piedras, ciertamente ha cometido un acto de futilidad"

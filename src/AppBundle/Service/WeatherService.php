@@ -20,8 +20,16 @@ class WeatherService extends WeatherApi
         $res = $this->call("GET", $position);
 
         if ($res instanceof \stdClass && isset($res->main->temp)) {
+            $temp = $res->main->temp - 273.15;
+            $feeling = $this->getFeeling($temp);
+
+            if ($mosque->getConf()->getTemperatureUnit() === 'F') {
+                $temp = $temp * 9 / 5 + 32;
+            }
+
             return [
-                'temperature' => number_format(round($res->main->temp - 273.15), 0),
+                'temperature' => round($temp),
+                'feeling' => $feeling,
                 'icon' => $this->getIcon($res),
             ];
         } else {
@@ -29,6 +37,26 @@ class WeatherService extends WeatherApi
         }
 
         return [];
+    }
+
+
+    private function getFeeling($temp)
+    {
+        if ($temp <= 0) {
+            return 'verry-cold';
+        }
+        if ($temp > 0 && $temp <= 10) {
+            return 'cold';
+        }
+        if ($temp > 10 && $temp <= 20) {
+            return 'middle';
+        }
+        if ($temp > 20 && $temp <= 30) {
+            return 'hot';
+        }
+        if ($temp > 30) {
+            return 'verry-hot';
+        }
     }
 
     private function getIcon($res)
@@ -90,11 +118,11 @@ class WeatherService extends WeatherApi
             804 => 'cloudy'
         ];
 
-        if(!isset($res->weather[0]->id)){
+        if (!isset($res->weather[0]->id)) {
             return '';
         }
 
-        return  $iconMapping[$res->weather[0]->id];
+        return $iconMapping[$res->weather[0]->id];
     }
 
 }

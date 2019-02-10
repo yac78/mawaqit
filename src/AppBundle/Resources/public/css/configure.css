@@ -43,3 +43,19 @@ label {
     height: 200px;
     margin-top: 1rem;
 }
+
+.theme {
+    width: 300px;
+    height: 175px;
+}
+
+#illustration {
+    width: 100%;
+}
+
+#illustration:hover {
+    display: block;
+    width: 800px;
+    position: absolute;
+    z-index: 9999;
+}

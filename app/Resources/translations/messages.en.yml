@@ -1,3 +1,12 @@
+mosqueScreen:
+  syncYourMosque: Sync your mosque
+  anInternetConnectionRequired: An internet connection is required
+  nb: This step allows you to recover data entered on mawaqit.net to your raspberry
+  fillId: Please enter the id of your online mosque
+  noInternetConnection: Please check you internet connection
+  noMosqueFound: No mosque found with this ID
+  otherPb: A problem has been occured, please try later
+
 form:
     label:
         delete: Delete ?
@@ -6,6 +15,8 @@ form:
     edit:
         success:  The edition has been successfully completed.
         action: Edit
+    sync:
+        action: Sync with online mosque
     delete:
         success:  Removing has been successfully completed.
         action: Remove
@@ -121,7 +132,7 @@ mosque:
         ramadanMeal:
             label: Ramadan iftar
         handicapAccessibility:
-            label: handicap accessibility
+            label: Disabled accessibility
         ablutions:
             label: Ablutions room
         parking:
@@ -214,7 +225,7 @@ flashMessage:
 
 configuration:
     select_calendar: Select a calendar
-    title: Prayer times configuration of "%mosque%"
+    title: Prayer times configuration
     list:
         download_csv_files: Calendar
         calendar_not_completed: |
@@ -279,7 +290,7 @@ configuration:
         waitingTimes: 
             label: Waiting time between adhân and iqâmah
         fixedTimes:
-            label: Fixing prayer times
+            label: Fixing adhan times
             help: "Example: set `isha in winter at 19:00, as long as the time is below the entered value it is the latter which will be taken into account"
         fixedIqama:
             label: Fixing iqama
@@ -333,7 +344,7 @@ configuration:
         iqamaBip:
             label:  Beep when it's time for iqamah
         iqamaFullScreenCountdown:
-            label:  Countdown
+            label:  Fullscreen countdown
         wakeForFajrTime: 
             label:  Wake up before fajr (minute)
             title: If you want to be woken before fajr with a first adhân, put here the number of minutes before fajr. Leave empty otherwise.
@@ -354,6 +365,8 @@ configuration:
             title: This will display a QR code at the bottom left of the screen, the QR code is used to facilitate the copying of the mawaqit link
         backgroundColor: 
             label: Background color
+        theme:
+            label: Theme
         fajrDegree: 
             label: fajr degree
             placeholder: Ex. 18
@@ -381,6 +394,8 @@ configuration:
             label: Next adhan countdown
         timeDisplayFormat:
             label: Time format
+        temperatureUnit:
+            label: Temperarture unit
         backgroundType:
             label: wallpaper
         iqamaEnabled:
@@ -426,8 +441,6 @@ search: Search
 ar: Arabic
 fr: French
 en: English
-tr: Turkish
-ph: Phonetic
 fr-ar: French & Arabic
 tr-ar: Turkish & Arabic
 en-ar: English & Arabic
@@ -439,6 +452,7 @@ dst-disabled: Disabled (Countries not practicing dst)
 send: Envoyer
 required: Required
 close: Close
+later: Later
 show: Show
 links: Links
 site: Website
@@ -450,6 +464,7 @@ mosqueList:
     iframeAddTitle: Add the widget to your website
     widgetForYourSite: Widget for your website
     csvFileExemple: Here is an example of csv files of all months for Paris UOIF prayer times
+    qrcodeTitle: To post in a place accessible to the faithful
     
 email:
     text: Email address
@@ -536,7 +551,14 @@ month_9: October
 month_10: Novembre
 month_11: December
 
-prayer_mobile_site: "Mawaqit on mobile and tablet <a href='%site%'>%site%</a>"
+mawaqit: Mawaqit
+spring: Spring
+summer: Summer
+autumn: Autumn
+winter: Winter
+
+prayer_mobile_site: "Mawaqit on mobile <a href='%site%'>%site%</a>"
+mawaqitOnMobile: Prayer times on mobile
 association_info: "%name% - Phone. %phone%"
 info_dst_change: |
   WARNING ! the calendar must be entered without taking into account the change of daylight saving time,
@@ -574,6 +596,8 @@ duaAfterAthan:
 duaBetweenAthanAndIqama:
     text: "According to Anas Ibn Mâlik, the Prophet (sallallahu 'alayhi wa sallam) said: The invocations between Adhân and Iqâmah are not rejected"
 
+selectLanguage: Select a language
+language: Language
 languages: Languages
 
 error404: Sorry, an error has occured, Requested page not found!
@@ -599,7 +623,7 @@ select_a_value: Select a value
 announcements: Announcements
 expired: Expired on
 expire: Expire on
-searchOtherMosque: Look for another mosque
+searchOtherMosque: Look for an other mosque
 
 prayerTimeIn10MinTitle: "Al-Adhan in 10 min"
 prayerTimeIn10MinBody: "You still have 10 minutes to go to mosque and pray in group inshAllah"

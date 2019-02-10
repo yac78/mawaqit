@@ -1,3 +1,12 @@
+mosqueScreen:
+  syncYourMosque: Syncroniser votre mosquée
+  anInternetConnectionRequired: Une connexion internet est requise
+  nb: Cette étape vous permet de récupérer les données saisies sur mawaqit.net vers votre raspberry
+  fillId: Veuillez saisir l'id de votre mosquée en ligne
+  noInternetConnection: Veuillez vérifier votre connexion intenet
+  noMosqueFound: Aucune mosquée trouvée avec l'ID saisi
+  otherPb: Un problème est surevnu, veuillez réessayer plus tard
+
 home:
   menu:
     main: Menu
@@ -28,7 +37,7 @@ home:
     equipedMosques: Quelques mosquées équipées
     equipeYourMosque: équipez votre mosquée
     faq: FAQ
-    install: Installez notre solution
+    install: Installez
 
   button:
     discover: Découvrir
@@ -119,14 +128,15 @@ home:
       <li>Un kit Raspberry PI 3, prix 60€ environ
           <a target="_blank"
              href="https://www.amazon.fr/UCreate-Raspberry-Pi-Desktop-Starter/dp/B07BNQ2TWW/ref=sr_1_10?s=computers&ie=UTF8&qid=1529182406&sr=1-10&keywords=un%2Braspberry%2Bpi%2B3">
-              chez amazon
+             chez amazon
           </a>
       </li>
       <li>Un support mural pour la TV entre 10 et 15€</li>
       <li>Un cable HDMI + Une multiprise</li>
       <li>Si vous ne disposez pas d'une connexion internet
-          <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
-              une horloge RTC
+          <a target="_blank"
+             href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+             une horloge RTC
           </a>
       </li>
     equipeYourMosque4: "Coût global du matériel : 220€ environ"
@@ -171,7 +181,7 @@ home:
         </p>
     install7: |
       <ol>
-        <li>Créez votre compte sur notre interface d'administration <a target="_blank" href="%registerUrl%">ICI</a>
+        <li>Inscrivez-vous <a target="_blank" href="%registerUrl%">ici</a>
         </li>
         <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la
             fin de cette étape
@@ -188,13 +198,12 @@ home:
         <li>Sauvegardez et quittez</li>
         <li>Lancez Mawaqit depuis le bureau</li>
         <li>Au lancement le raspberry vérifie si une connexion internet est disponible,
-            dans ce cas il lance la version en ligne, sinon il bascule sur la version locale
+            dans ce cas il lance la version en ligne, sinon il bascule sur la version offline
         </li>
       </ol>
 
       <p><strong>OPTION 2. Vous n'avez pas de connexion internet, lancer la version offline : </strong>
           Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
-          Afin de profiter de la toute dernière version du logiciel, il est recommandé de le connecter à internet de temps en temps<br>
           <strong>Important :</strong>
           Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
           de garder l'heure correctement réglée
@@ -224,6 +233,8 @@ form:
     edit:
         success:  L'édition a été réalisée avec succès.
         action: Éditer
+    sync:
+        action: Synchroniser avec la mosquée en ligne
     delete:
         success:  La suppression a été réalisée avec succès.
         action: Supprimer
@@ -519,7 +530,7 @@ configuration:
         waitingTimes: 
             label: Temps d'attente entre adhân et iqâmah
         fixedTimes: 
-            label: Fixation des horaires
+            label: Fixation des horaires du adhan
             help: "Exemple: fixer `isha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
         fixedIqama:
             label: Fixation de l'iqama
@@ -574,7 +585,7 @@ configuration:
         iqamaBip:
             label:  Bip quand c'est l'heure de l'iqâmah
         iqamaFullScreenCountdown:
-            label:  Compte à rebours
+            label:  Compte à rebours en plein écran
         wakeForFajrTime:
             label:  Réveil avant fajr (minute)
             title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
@@ -595,6 +606,8 @@ configuration:
             title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien mawaqit
         backgroundColor: 
             label: Couleur de fond
+        theme:
+            label: Thème
         fajrDegree: 
             label: Degré du fajr
             placeholder: Ex. 18
@@ -622,6 +635,8 @@ configuration:
             label: Compte à rebours du prochain adhân
         timeDisplayFormat:
             label: Format de l'heure
+        temperatureUnit:
+            label: Unité de la température
         backgroundType:
             label: Fon d'écran
         iqamaEnabled:
@@ -669,6 +684,8 @@ ar: Arabe
 fr: Français
 en: Anglais  
 tr: Turque
+de: Allemand
+nl: Néerlandais
 ph: Phonétique
 fr-ar: Français & Arabe
 tr-ar: Turque & Arabe
@@ -682,6 +699,7 @@ send: Envoyer
 required: Champ obligatoire
 close: Fermer
 show: voir
+later: Plus tard
 links: Liens
 site: Site internet
 motif: Motif
@@ -692,6 +710,7 @@ mosqueList:
     iframeAddTitle: Ajouter le widget à votre site
     widgetForYourSite: Widget pour votre site internet
     csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
+    qrcodeTitle: A afficher dans un endroit accessible au fidèles
     
 email:
     text: Adresse mail
@@ -782,7 +801,14 @@ month_9: Octobre
 month_10: Novembre
 month_11: Décembre
 
-prayer_mobile_site: "Mawaqit sur mobile et tablette <a href='%site%'>%site%</a>"
+mawaqit: Mawaqit
+spring: Printemps
+summer: Été
+autumn: Automne
+winter: Hiver
+
+prayer_mobile_site: "Mawaqit sur mobile <a href='%site%'>%site%</a>"
+mawaqitOnMobile: Les horaires de prière sur mobile
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
     ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
@@ -822,6 +848,8 @@ jumuaReminder:
         il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
         et celui qui touche des cailloux a certes fait une futilité"
 
+selectLanguage: Sélectionner une langue
+language: Langue
 languages: Langues
 
 error404: Désolé, une erreur est survenue, la page que vous cherchez n'existe pas!

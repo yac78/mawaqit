@@ -132,11 +132,7 @@ class ToolsService
 
     public static function getCountryNameByCode($countryCode)
     {
-        $countries = Intl::getRegionBundle()->getCountryNames("en");
-
-        return array_key_exists($countryCode, $countries)
-            ? strtoupper($countries[$countryCode])
-            : $countryCode;
+        return Intl::getRegionBundle()->getCountryName($countryCode);
     }
 
 }

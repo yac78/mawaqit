@@ -72,6 +72,11 @@ paths:
           type: string
           required: false          
           description: if this parameter is present, the full year calendar of prayer times is returned
+        - in: query
+          name: updatedAt
+          type: integer
+          required: false          
+          description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
       responses:
         200:
           description: The result
@@ -193,8 +198,18 @@ definitions:
       - iqama
       - fixedTimes
       - fixedIqama
+      - womenSpace
+      - janazaPrayer
+      - aidPrayer
+      - childrenCourses
+      - adultCourses
+      - ramadanMeal
+      - handicapAccessibility
+      - ablutions
+      - parking
       - flashMessage
       - announcements
+      - updatedAt
     properties:
       id:
         type: integer
@@ -267,7 +282,34 @@ definitions:
         items:
           type: string
         description: fixed iqama times [fajr, dhuhr, asr, maghrib, `isha]
-        example: ["", "14:00", "", "", "20:00"]        
+        example: ["", "14:00", "", "", "20:00"]
+      womenSpace:
+        type: boolean
+        description: If null that means information not available    
+      janazaPrayer:
+        type: boolean
+        description: If null that means information not available       
+      aidPrayer:
+        type: boolean
+        description: If null that means information not available       
+      childrenCourses:
+        type: boolean
+        description: If null that means information not available       
+      adultCourses:
+        type: boolean
+        description: If null that means information not available       
+      ramadanMeal:
+        type: boolean
+        description: If null that means information not available       
+      handicapAccessibility:
+        type: boolean
+        description: If null that means information not available       
+      ablutions:
+        type: boolean
+        description: If null that means information not available       
+      parking:
+        type: boolean
+        description: If null that means information not available       
       flashMessage:
         type: string
         example: Salat eljanaza demain après el asr
@@ -282,6 +324,10 @@ definitions:
         items: 
           type: object
         description: The full year prayer times calendar    
+      updatedAt:    
+        type: integer
+        example: 1547833429
+        description: The timestamp when the mosque has last updated
         
   Announcement:
     type: object

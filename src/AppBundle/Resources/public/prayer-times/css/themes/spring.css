@@ -1,0 +1,15 @@
+.prayers {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.time, .header, .joumouaa2-id {
+    color: #dbdd01;
+}
+
+.prayer-hilighted {
+    background-color: #dbdd01;
+}
+
+.prayer-hilighted div {
+    color: #000000 !important;
+}

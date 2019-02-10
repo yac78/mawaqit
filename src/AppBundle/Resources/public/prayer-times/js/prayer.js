@@ -452,6 +452,10 @@ var prayer = {
          */
         flash: function (currentPrayerIndex) {
 
+            if (prayer.confData.iqamaBip === true) {
+                prayer.playSound();
+            }
+
             $(".main-iqama-countdown").addClass("hidden");
             $(".top-content .content").removeClass("hidden");
 
@@ -493,10 +497,10 @@ var prayer = {
          */
         countdown: function (currentPrayerIndex) {
             var time = prayer.getTimeByIndex(currentPrayerIndex);
-            var waitingText = $(".wait._" + currentPrayerIndex).text();
+            var currentElem = $(".wait").eq(currentPrayerIndex);
+            var waitingText = currentElem.text();
             var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
             var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
-            var currentElem = $(".wait._" + currentPrayerIndex);
             var countdown;
             $(currentElem).countdown(prayerTimePlusWaiting, function (event) {
                 countdown = event.strftime('%M:%S');
@@ -563,6 +567,8 @@ var prayer = {
                     var file = "adhan-maquah-fajr.mp3";
                 }
                 prayer.playSound(file);
+            } else if (prayer.confData.azanBip === true) {
+                prayer.playSound();
             }
 
             // init next hilight timeout
@@ -577,8 +583,8 @@ var prayer = {
 
             var adhanFlashInterval = setInterval(function () {
                 $(".top-content .adhan-flash").toggleClass("hidden");
-                $(".prayer-content .adhan" + currentPrayerIndex).toggleClass("hidden");
-                $(".prayer-content .prayer" + currentPrayerIndex).toggleClass("hidden");
+                $(".mobile .prayers .adhan").eq(currentPrayerIndex).toggleClass("hidden");
+                $(".mobile .prayers .time").eq(currentPrayerIndex).toggleClass("hidden");
             }, prayer.oneSecond);
 
             setTimeout(function () {
@@ -596,8 +602,9 @@ var prayer = {
                 $(".top-content .content").removeClass("hidden");
             }
 
-            $(".prayer-content .adhan" + currentPrayerIndex).addClass("hidden");
-            $(".prayer-content .prayer" + currentPrayerIndex).removeClass("hidden");
+            $(".mobile .prayers .adhan").eq(currentPrayerIndex).addClass("hidden");
+            $(".mobile .prayers .time").eq(currentPrayerIndex).removeClass("hidden");
+
             prayer.duaAfterAdhan.handle(currentPrayerIndex);
         }
     },
@@ -609,7 +616,7 @@ var prayer = {
     fajrWakeAdhanIsPlaying: false,
     initWakupFajr: function () {
         setInterval(function () {
-            if (prayer.fajrWakeAdhanIsPlaying === false && parseInt(prayer.confData.wakeForFajrTime) > 0) {
+            if (!prayer.isMosque && prayer.fajrWakeAdhanIsPlaying === false && parseInt(prayer.confData.wakeForFajrTime) > 0) {
                 var date = new Date();
                 var fajrTime = prayer.getTimeByIndex(0);
                 var diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(fajrTime)) / prayer.oneMinute);
@@ -731,6 +738,10 @@ var prayer = {
      * Play a bip
      */
     playSound: function (file) {
+        if (typeof file === "undefined") {
+            file = "bip.mp3";
+        }
+
         var audio = new Audio('/static/mp3/' + file);
         audio.play();
     },
@@ -761,21 +772,16 @@ var prayer = {
      */
     hilightByIndex: function (prayerIndex) {
         $(".prayer-hilighted").removeClass("prayer-hilighted");
-        $(".text-hilighted").removeClass("text-hilighted");
 
         // if joumouaa we hilight joumouaa time
         if (prayer.isJumua(prayerIndex)) {
-            $(".joumouaa > div").addClass("text-hilighted");
-            $(".joumouaa-id, .joumouaa2-id").addClass("prayer-hilighted");
+            $(".joumouaa").addClass("prayer-hilighted");
             if (prayer.isMosque) {
                 return;
             }
         }
 
-        $(".prayer-text ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer-wait ._" + prayerIndex).addClass("text-hilighted");
-        $(".prayer-time ._" + prayerIndex).addClass("prayer-hilighted");
-        $(".prayer.prayer" + prayerIndex).addClass("prayer-hilighted");
+        $(".prayers > div").eq(prayerIndex).addClass("prayer-hilighted");
     },
     /**
      * 10 minute after current iqama we hilight the next prayer time
@@ -841,12 +847,12 @@ var prayer = {
      */
     setTime: function () {
         var time, timeWithoutSec;
-        var timeEl = $(".top-content .time");
-        var timeBottomEl = $(".time-bottom");
+        var timeEl = $(".currentTime");
+        var timeShortEl = $(".currentTimeShort");
         time = dateTime.getCurrentTime(true);
         timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
         timeEl.html(prayer.formatTime(time));
-        timeBottomEl.html(timeWithoutSec);
+        timeShortEl.html(timeWithoutSec);
     },
     setTimeInterval: function () {
         setInterval(function () {
@@ -1002,30 +1008,31 @@ var prayer = {
      * @param {Boolean} tomorrow
      */
     setTimes: function (tomorrow) {
-        var sobh = prayer.formatTime(this.getTimes(tomorrow)[0]);
-        var dohr = prayer.formatTime(this.getTimes(tomorrow)[1]);
-        var asr = prayer.formatTime(this.getTimes(tomorrow)[2]);
-        var maghrib = prayer.formatTime(this.getTimes(tomorrow)[3]);
-        var ichaa = prayer.formatTime(this.getTimes(tomorrow)[4]);
-
-        $(".sobh").html(sobh);
-        $(".dohr").html(dohr);
-        $(".asr").html(asr);
-        $(".maghrib").html(maghrib);
-        $(".ichaa").html(ichaa);
+        var times = this.getTimes(tomorrow);
+        $.each(times, function (i, time) {
+            $('.prayers .time').eq(i).html(prayer.formatTime(time))
+        });
     },
     /**
      * set wating times
      */
     setWaitings: function () {
-        var wait;
-        $(".wait").each(function (i, e) {
-            wait = prayer.getWaitingTimes()[i % 5] + "'";
-            if (prayer.confData.fixedIqama[i] !== "") {
-                wait = prayer.confData.fixedIqama[i];
-            }
+        if(!prayer.confData.iqamaEnabled){
+            return;
+        }
 
-            $(e).text(wait);
+        var wait, prayerTime, iqamaTime;
+        $.each(prayer.getWaitingTimes(), function (i, wait) {
+            wait = wait + "'";
+            if (prayer.confData.fixedIqama[i] !== "") {
+                var prayerTimes = prayer.getTimes();
+                prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
+                iqamaTime = prayer.getCurrentDateForPrayerTime(prayer.confData.fixedIqama[i]);
+                if (iqamaTime.getTime() > prayerTime.getTime()) {
+                    wait = prayer.formatTime(prayer.confData.fixedIqama[i]);
+                }
+            }
+            $('.prayers .wait').eq(i).html(wait);
         });
     },
     hideSpinner: function () {
@@ -1033,28 +1040,9 @@ var prayer = {
             $("#spinner").fadeOut(500, function () {
                 $(".main").fadeIn(100);
             });
-        }, 2000);
+        }, 1500);
     },
-    /**
-     * Arabic handler
-     */
-    translateToArabic: function () {
-        if (lang === "ar") {
-            var texts = $(".prayer-text").find("div");
-            var times = $(".prayer-time").find("div");
-            var waits = $(".prayer-wait").find("div");
-            for (var i = 4; i >= 0; i--) {
-                $(".prayer-text").append(texts[i]);
-                $(".prayer-time").append(times[i]);
-                $(".prayer-wait").append(waits[i]);
-            }
-
-            $(".top-content .header").css("font-size", "650%");
-            $(".top-content .content .ar").css("font-size", "120%");
-            $(".prayer-text").css("line-height", "160%");
-        }
-    },
-    /**
+     /**
      * Init events
      */
     initEvents: function () {
@@ -1085,11 +1073,12 @@ var prayer = {
      * Set QR code
      */
     setQRCode: function () {
-        if (prayer.confData.urlQrCodeEnabled === true) {
-            new QRCode("qr-code", {
-                text: $(".qr-code").data("url"),
-                width: 100,
-                height: 100
+        var qrCodeElm = $("#qrcode")
+        if (prayer.isMosque  && qrCodeElm.length > 0) {
+            qrCodeElm.qrcode({
+                background: '#ffffff',
+                size: 100,
+                text: qrCodeElm.data("url")
             });
         }
     },

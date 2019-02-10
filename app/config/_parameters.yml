@@ -1,0 +1,3 @@
+parameters:
+    locale: ar
+    languages: [ar, fr, en, tr, de, nl, it, es, hr, ta, sq, pt]

@@ -61,7 +61,11 @@ AppBundle\Entity\Configuration:
             type: boolean
         urlQrCodeEnabled:
             type: boolean
+        azanBip:
+            type: boolean
         azanVoiceEnabled:
+            type: boolean
+        iqamaBip:
             type: boolean
         iqamaEnabled:
             type: boolean
@@ -78,6 +82,8 @@ AppBundle\Entity\Configuration:
             nullable: true
         temperatureEnabled:
             type: boolean
+        temperatureUnit:
+            type: string
         sourceCalcul:
             type: string
             length: 255
@@ -120,8 +126,6 @@ AppBundle\Entity\Configuration:
             type: string
         smallScreen:
             type: boolean            
-        backgroundColor:
-            type: string            
         calendar:
             type: json_array
             nullable: true
@@ -138,7 +142,11 @@ AppBundle\Entity\Configuration:
             type: boolean
         backgroundType:
             type: string
+        backgroundColor:
+            type: string
         backgroundMotif:
+            type: string
+        theme:
             type: string
         updated:
             type: datetime
