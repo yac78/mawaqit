@@ -228,22 +228,20 @@
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-7">
-                                                    <div class="row text-center">
-                                                        <div class="calendar-prayer">{{ 'day'|trans }}</div>
-                                                        <div class="calendar-prayer">{{ 'fajr'|trans }}</div>
-                                                        <div class="calendar-prayer">{{ 'shuruk'|trans }}</div>
-                                                        <div class="calendar-prayer">{{ 'zuhr'|trans }}</div>
-                                                        <div class="calendar-prayer">{{ 'asr'|trans }}</div>
-                                                        <div class="calendar-prayer">{{ 'maghrib'|trans }}</div>
-                                                        <div class="calendar-prayer">{{ 'isha'|trans }}</div>
+                                                    <div class="flex text-center">
+                                                        <div>{{ 'day'|trans }}</div>
+                                                        <div>{{ 'fajr'|trans }}</div>
+                                                        <div>{{ 'shuruk'|trans }}</div>
+                                                        <div>{{ 'zuhr'|trans }}</div>
+                                                        <div>{{ 'asr'|trans }}</div>
+                                                        <div>{{ 'maghrib'|trans }}</div>
+                                                        <div>{{ 'isha'|trans }}</div>
                                                     </div>
                                                     {% for day in 1..days %}
-                                                        <div class="row">
-                                                            <div class="text-center calendar-prayer">
-                                                                {{ day }}
-                                                            </div>
+                                                        <div class="flex text-center">
+                                                            <div>{{ day }}</div>
                                                             {% for prayer in 1..6 %}
-                                                                <div class="calendar-prayer">
+                                                                <div>
                                                                     <input
                                                                             name="configuration[calendar][{{ month }}][{{ day }}][{{ prayer }}]"
                                                                             value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : '' }}"
@@ -407,21 +405,19 @@
                                                             </div>
                                                             <br>
 
-                                                            <div class="row text-center">
-                                                                <div class="calendar-prayer">{{ 'day'|trans }}</div>
-                                                                <div class="calendar-prayer">{{ 'fajr'|trans }}</div>
-                                                                <div class="calendar-prayer">{{ 'zuhr'|trans }}</div>
-                                                                <div class="calendar-prayer">{{ 'asr'|trans }}</div>
-                                                                <div class="calendar-prayer">{{ 'maghrib'|trans }}</div>
-                                                                <div class="calendar-prayer">{{ 'isha'|trans }}</div>
+                                                            <div class="flex text-center">
+                                                                <div>{{ 'day'|trans }}</div>
+                                                                <div>{{ 'fajr'|trans }}</div>
+                                                                <div>{{ 'zuhr'|trans }}</div>
+                                                                <div>{{ 'asr'|trans }}</div>
+                                                                <div>{{ 'maghrib'|trans }}</div>
+                                                                <div>{{ 'isha'|trans }}</div>
                                                             </div>
                                                             {% for day in 1..days %}
-                                                                <div class="row">
-                                                                    <div class="text-center calendar-prayer">
-                                                                        {{ day }}
-                                                                    </div>
+                                                                <div class="flex text-center">
+                                                                    <div>{{ day }}</div>
                                                                     {% for prayer in 1..5 %}
-                                                                        <div class="calendar-prayer">
+                                                                        <div>
                                                                             <input
                                                                                     name="configuration[iqamaCalendar][{{ month }}][{{ day }}][{{ prayer }}]"
                                                                                     value="{{ form.vars.value.iqamaCalendar[month] is defined ? form.vars.value.iqamaCalendar[month][day][prayer] : '' }}"

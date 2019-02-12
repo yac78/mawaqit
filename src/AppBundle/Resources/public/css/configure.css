@@ -1,7 +1,15 @@
-.calendar-prayer {
-    padding: 1px;
-    float: left;
-    width: 14.2%;
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex > div {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.month-panel .form-control, .iqama-month-panel .form-control  {
+     padding: 0;
 }
 
 .calendar-prayer-time {

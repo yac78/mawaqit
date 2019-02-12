@@ -137,7 +137,7 @@ home:
             <a href="https://etcher.io" target="_blank">https://etcher.io</a> ثم قم بتثبيته على جهاز الكمبيوتر الخاص بك
         </li>
         <li>
-             قم بعملية الفلاش لصورة النظام mawaqit.img.zip على بطاقة SD الصغيرة مع Etcher
+             قم بعملية الفلاش لصورة النظام mawaqit.xz على بطاقة SD الصغيرة مع Etcher
         </li>
     install5:  الخطوة الأخيرة
     install6: |
