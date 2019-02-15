@@ -109,7 +109,7 @@ class MailService
      */
     private function sendEmail(Mosque $mosque, $title, $to, $from, $status)
     {
-        $body = $this->twig->render(":email_templates:mosque_$status.html.twig", ['mosque' => $mosque]);
+        $body = $this->twig->render("email_templates/mosque_$status.html.twig", ['mosque' => $mosque]);
         $message = $this->mailer->createMessage();
         $message->setSubject($title)
             ->setFrom($from)

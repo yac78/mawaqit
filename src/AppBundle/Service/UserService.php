@@ -8,8 +8,6 @@ use Doctrine\ORM\EntityManager;
 class UserService
 {
 
-    const SIGNATURE = "<br><br>Regards<br>Cordialement<br> تحياتي";
-
     /**
      * @var \Swift_Mailer
      */
@@ -25,20 +23,31 @@ class UserService
      */
     private $emailFrom;
 
-    public function __construct(\Swift_Mailer $mailer, EntityManager $em, $emailFrom)
+    /**
+     * @var \Twig_Environment
+     */
+    private $twig;
+
+    public function __construct(\Swift_Mailer $mailer, EntityManager $em, \Twig_Environment $twig, $emailFrom)
     {
         $this->mailer = $mailer;
         $this->em = $em;
         $this->emailFrom = $emailFrom;
+        $this->twig = $twig;
     }
 
     /**
-     * @param $data email details
+     * @param $data
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     function sendEmailToAllUsers($data)
     {
         $subject = $data["subject"];
-        $body = $data["content"] . self::SIGNATURE;
+
+        $body = $this->twig->render("email_templates/communication.html.twig", ['content' => $data["content"]]);
+
         $recipients = $this->em->createQueryBuilder()
             ->from("AppBundle:User", "u")
             ->select("u.email")

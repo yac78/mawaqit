@@ -76,6 +76,7 @@ services:
         arguments:
             - "@swiftmailer.mailer.file"
             - "@doctrine.orm.entity_manager"
+            - "@twig"
             - ["%supportEmail%", "%name%"]
 
     app.tools_service:
