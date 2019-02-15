@@ -385,8 +385,7 @@ footer .info {
 .textSlide {
     overflow: hidden;
     position: relative;
-    height: 11vh;
-    padding: 20px 0;
+    height: 13vh;
 }
 
 .textSlide p {

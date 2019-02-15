@@ -66,10 +66,9 @@ body {
 }
 
 .textSlide p {
-    font-size: 130%;
+    font-size: 3vh;
     position: absolute;
     margin: 0;
-    line-height: 40px;
     text-align: center;
     /* Starting position */
     -moz-transform:translateX(100%);
