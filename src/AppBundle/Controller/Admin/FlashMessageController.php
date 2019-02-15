@@ -33,6 +33,7 @@ class FlashMessageController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mosque->setFlashMessage($message);
+            $mosque->setUpdated(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $this->addFlash('success', "form.edit.success");
@@ -58,6 +59,7 @@ class FlashMessageController extends Controller
         }
         $message = $mosque->getFlashMessage();
         $message->setContent(null);
+        $mosque->setUpdated(new \DateTime());
         $em = $this->getDoctrine()->getManager();
         $em->flush();
         $this->addFlash('success', "form.delete.success");

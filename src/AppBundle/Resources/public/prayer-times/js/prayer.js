@@ -495,6 +495,7 @@ var prayer = {
             // init douaa after prayer timeout
             setTimeout(function () {
                 douaaSlider.show(currentPrayerIndex);
+                flashMessage.show();
             }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
         },
         stopFlashing: function (iqamaFlashInterval) {
@@ -596,6 +597,8 @@ var prayer = {
             }
 
             $(".top-content .content").addClass("hidden");
+
+            flashMessage.hide();
 
             var adhanFlashInterval = setInterval(function () {
                 $(".top-content .adhan-flash").toggleClass("hidden");

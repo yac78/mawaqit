@@ -222,44 +222,58 @@
     </div>
 
     <!-- footer container -->
-    <div class="footer">
-        {% if isNotLocal() %}
-            {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
-        {% endif %}
-
-        {% if isLocal() and mosque.site is not empty %}
-            {% set url =  mosque.site %}
-        {% endif %}
-
-        {% if mosque.configuration.footer %}
-            <div>
-                {% if url is defined %}
-                    <div class="site">
-                        {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
-                    </div>
-                {% endif %}
-
-                <div class="assosciation">
-                    {{ mosque.associationName }}
-                    {% if mosque.phone %}
-                        &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
-                    {% endif %}
-                    &nbsp;&nbsp;{{ mosque.rib }}
-                </div>
-                {% if mosque.isMosque and mosque.configuration.urlQrCodeEnabled %}
-                    <div id="qrcode" data-url="{{ url|default('') }}"></div>
-                {% endif %}
+    <footer>
+        {% if mosque.flashMessage.available %}
+            <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
+                <p style="
+                        color:{{ mosque.flashMessage.color }};
+                        width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
+                        --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*100) }}%;
+                        ">
+                    {{ mosque.flashMessage.content }}
+                </p>
             </div>
         {% endif %}
 
-        <div class="support">
-            <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
+        <div class="info {{  mosque.flashMessage.available ? 'hidden' : '' }}">
+            {% if isNotLocal() %}
+                {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
+            {% endif %}
+
+            {% if isLocal() and mosque.site is not empty %}
+                {% set url =  mosque.site %}
+            {% endif %}
+
+            {% if mosque.configuration.footer %}
+                <div>
+                    {% if url is defined %}
+                        <div class="site">
+                            {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
+                        </div>
+                    {% endif %}
+
+                    <div class="assosciation">
+                        {{ mosque.associationName }}
+                        {% if mosque.phone %}
+                            &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                        {% endif %}
+                        &nbsp;&nbsp;{{ mosque.rib }}
+                    </div>
+                    {% if mosque.isMosque and mosque.configuration.urlQrCodeEnabled %}
+                        <div id="qrcode" data-url="{{ url|default('') }}"></div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="support">
+                <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a href="{{ site }}">{{ site }}</a>
+            </div>
+            <div class="version">v{{ version }}</div>
+            {% if mosque.isMosque and isNotLocal() %}
+                <div id="mosque-id" style="{{ mosque.conf.footer and mosque.conf.urlQrCodeEnabled ? 'left:130px;' : '' }}">#{{ mosque.id }}</div>
+            {% endif %}
         </div>
-        <div class="version">v{{ version }}</div>
-        {% if mosque.isMosque and isNotLocal() %}
-            <div id="mosque-id" style="{{ mosque.conf.footer and mosque.conf.urlQrCodeEnabled ? 'left:130px;' : '' }}">#{{ mosque.id }}</div>
-        {% endif %}
-    </div>
+    </footer>
 
 </div>
 

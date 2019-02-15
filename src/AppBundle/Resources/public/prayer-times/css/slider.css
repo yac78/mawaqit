@@ -24,13 +24,15 @@
 
 .message-slider .currentTimeShort{
     position: fixed;
-    font-size: 6vh;
+    font-size: 7vh;
     top: 10px;
     left: 10px;
-    color: #ec7047;
+    margin: auto;
+    width: fit-content;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 0 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    line-height: 1;
     border-radius: 20px;
 }
 

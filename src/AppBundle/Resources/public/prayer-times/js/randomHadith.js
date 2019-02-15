@@ -74,7 +74,7 @@ var randomHadith = {
     show: function (callback) {
         prayer.nextPrayerCountdown();
         $(".top-content").fadeOut(1000, function () {
-            $(".footer").hide();
+            $("footer").hide();
             $(".random-hadith").fadeIn(300);
             if (typeof callback !== 'undefined') {
                 callback();
@@ -83,7 +83,7 @@ var randomHadith = {
     },
     hide: function () {
         $(".random-hadith").fadeOut(1000, function () {
-            $(".footer").show();
+            $("footer").show();
             $(".top-content").fadeIn(300);
         });
     },

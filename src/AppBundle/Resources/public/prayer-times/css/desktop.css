@@ -230,12 +230,16 @@ small {
     display: none;
 }
 
-.footer {
+footer {
     position: fixed;
     bottom: 10px;
     left: 0;
     right: 0;
-    padding: 0 200px;
+}
+
+footer .info {
+    width: 80%;
+    margin: auto;
 }
 
 .random-hadith {
@@ -376,4 +380,24 @@ small {
 
 .top-buttons a {
     color: #777777;
+}
+
+.textSlide {
+    overflow: hidden;
+    position: relative;
+    height: 11vh;
+    padding: 20px 0;
+}
+
+.textSlide p {
+    font-size: 8vh;
+    -moz-animation: textSlide 40s linear infinite;
+    -webkit-animation: textSlide 40s linear infinite;
+    animation: textSlide 40s linear infinite;
+}
+
+.textSlide-rtl p {
+    -moz-animation: textSlide-rtl 40s linear infinite;
+    -webkit-animation: textSlide-rtl 40s linear infinite;
+    animation: textSlide-rtl 40s linear infinite;
 }
