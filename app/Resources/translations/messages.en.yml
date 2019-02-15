@@ -207,8 +207,7 @@ flashMessage:
     no: No message
     label: Flash message
     info: |
-      The flash message is an ephemeral message it is displayed on the mobile version only, it is usually used to inform the faithful
-      important information
+      The flash message is an ephemeral message, it is usually used to inform the faithful important information
     form:
         ltr: Left to right
         rtl: Right to left
