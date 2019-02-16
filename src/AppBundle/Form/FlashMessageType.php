@@ -23,7 +23,7 @@ class FlashMessageType extends AbstractType
             ->add('content', TextareaType::class, [
                 'constraints' => [
                     new Length([
-                        'max' => 140
+                        'max' => 120
                     ]),
                 ],
                 'attr' => [

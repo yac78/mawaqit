@@ -60,13 +60,13 @@ body {
 }
 
 .textSlide {
-    height: 40px;
+    height: 20px;
     overflow: hidden;
     position: relative;
 }
 
 .textSlide p {
-    font-size: 3vh;
+    font-size: 2.5vh;
     position: absolute;
     margin: 0;
     text-align: center;
