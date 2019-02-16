@@ -436,7 +436,7 @@ flashMessage:
     no: Aucun message
     label: Message flash
     info: |
-      Le message flash est un message éphémère, il est utilisé en général pour informer vos fidèles d'une information importante
+      Le message flash est un message éphémère, il est utilisé en général pour informer vos fidèles d'un évènement important
     form:
         ltr: Gauche vers droite
         rtl: Droite vers gauche
