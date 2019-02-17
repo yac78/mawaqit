@@ -1873,6 +1873,12 @@ var VKI_attach, VKI_close;
             if (this.VKI_shift) this.VKI_modify("Shift");
             if (this.VKI_altgr) this.VKI_modify("AltGr");
             this.VKI_target.focus();
+
+            // insert in tinymce if present
+            if (typeof(tinymce) !== "undefined") {
+                tinymce.activeEditor.execCommand('mceInsertContent', false, text);
+            }
+
         } else if (this.VKI_target.createTextRange && this.VKI_target.range)
             this.VKI_target.range.select();
     };

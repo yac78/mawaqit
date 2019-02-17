@@ -48,7 +48,7 @@ class MessageType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'class' => "tinymce",
+                    'class' => "tinymce keyboardInput",
                     'placeholder' => 'message.form.content.placeholder'
                 ],
             ])

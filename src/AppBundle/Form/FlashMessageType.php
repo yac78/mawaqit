@@ -27,6 +27,7 @@ class FlashMessageType extends AbstractType
                     ]),
                 ],
                 'attr' => [
+                    'class' => 'keyboardInput',
                     'maxlength' => 120,
                     'rows' => 3,
                     'placeholder' => 'flashMessage.form.content.placeholder'
