@@ -213,7 +213,7 @@ flashMessage:
         rtl: Right to left
         content:
             label: Content
-            placeholder : 120 characters maximum
+            placeholder : 160 characters maximum
         orientation:
             label: Orientation
         color:

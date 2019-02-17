@@ -23,12 +23,12 @@ class FlashMessageType extends AbstractType
             ->add('content', TextareaType::class, [
                 'constraints' => [
                     new Length([
-                        'max' => 120
+                        'max' => 160
                     ]),
                 ],
                 'attr' => [
                     'class' => 'keyboardInput',
-                    'maxlength' => 120,
+                    'maxlength' => 160,
                     'rows' => 3,
                     'placeholder' => 'flashMessage.form.content.placeholder'
                 ]

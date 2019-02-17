@@ -442,7 +442,7 @@ flashMessage:
         rtl: Droite vers gauche
         content:
             label: Contenu
-            placeholder : 120 caractères maximum
+            placeholder : 160 caractères maximum
         orientation:
             label: Orientation
         color:

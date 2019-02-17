@@ -352,7 +352,7 @@ flashMessage:
         rtl: من اليمين إلى اليسار
         content:
             label: المحتوى
-            placeholder : 120 حرفًا كحد أقصى
+            placeholder : 160 حرفًا كحد أقصى
         orientation:
             label: الإتجاه
         color:
