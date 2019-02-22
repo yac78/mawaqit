@@ -17,9 +17,8 @@ monolog:
             type:  rotating_file
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             action_level: error
-            level: debug
             max_files: 1
-            channels: ['!event']
+            channels: ['!event', '!php']
             
 hautelook_alice:
     fixtures_path: 'Resources/fixtures/orm'

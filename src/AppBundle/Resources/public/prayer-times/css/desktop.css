@@ -266,13 +266,9 @@ footer .info {
     justify-content: space-between;
 }
 
-.next-prayer-bloc .currentTimeShort, .next-prayer-bloc .next-prayer {
+.next-prayer-bloc {
     color: #ec7047;
     font-size: 6vh;
-}
-
-.next-prayer {
-    font-size: 5vh;
 }
 
 .next-prayer .countdown {

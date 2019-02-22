@@ -8,15 +8,15 @@ framework:
 monolog:
     handlers:
         main:
-            type:         fingers_crossed
+            type: fingers_crossed
             action_level: error
-            handler:      nested
+            channels: [!event, !php, !doctrine]
+            handler:  file
             excluded_404s:
               - ^/
-        nested:
+        file:
             type:  rotating_file
             path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: debug
             max_files: 10
         slack:
             type: slack
@@ -24,4 +24,4 @@ monolog:
             bot_name:  '%slack_bot%'
             channel: '%slack_channel%'
             icon_emoji: ':depressed:'
-            level: critical
+            level: error

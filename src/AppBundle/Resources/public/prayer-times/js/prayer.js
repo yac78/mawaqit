@@ -1063,7 +1063,7 @@ var prayer = {
             if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
-                    wait = fixedIqama;
+                    wait =  prayer.formatTime(fixedIqama);
                 }
             }
 
