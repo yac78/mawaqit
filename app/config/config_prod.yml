@@ -24,4 +24,4 @@ monolog:
             bot_name:  '%slack_bot%'
             channel: '%slack_channel%'
             icon_emoji: ':depressed:'
-            level: error
+            level: critical
