@@ -59,13 +59,23 @@ class PrayerTime
                     $date = strtotime(date('Y') . '-' . ($monthIndex + 1) . '-' . $day);
                     $prayers = $this->praytime->getPrayerTimes($date, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
-                    $calendar[$monthIndex][$day] = $prayers;
+                    $calendar[$monthIndex][$day] = $this->adjust($prayers, $mosque);
                 }
             }
         }
         return $calendar;
     }
 
+    private function adjust($prayers, Mosque $mosque){
+        $adjusted = $mosque->getConf()->getAdjustedTimes();
+        foreach ($prayers as $k => $prayer) {
+            if(empty($adjusted[$k])){
+                continue;
+            }
+            $prayers[$k] = ((new \DateTime($prayer))->modify( $adjusted[$k] . " minutes"))->format("H:i");
+        }
+        return $prayers;
+    }
 
     /**
      * transforme json calendar in csv files and compress theme in a zip file

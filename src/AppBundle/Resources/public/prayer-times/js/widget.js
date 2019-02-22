@@ -10,7 +10,6 @@ $.ajax({
     url: widget.data("remote"),
     headers: {'Api-Access-Token': widget.data("apiAccessToken")},
     success: function (mosque) {
-        console.dir(mosque)
         // hijri date
         $(".hijriDate").text(writeIslamicDate(mosque.hijriAdjustment, lang));
 
