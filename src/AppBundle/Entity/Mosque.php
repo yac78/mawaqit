@@ -1011,7 +1011,7 @@ class Mosque
      */
     public function getUrl()
     {
-        return "https://mawaqit.net/fr/" . $this->slug;
+        return "https://mawaqit.net/ar/" . $this->slug;
     }
 
     public function isHome()

@@ -227,29 +227,31 @@
             <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
                 <p class="{{ mosque.flashMessage.orientation }}"
                    style="color:{{ mosque.flashMessage.color }};
-                          width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
-                          --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
+                           width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
+                           --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
                 >
                     {{ mosque.flashMessage.content }}
                 </p>
             </div>
         {% endif %}
 
-        <div class="info {{  mosque.flashMessage.available ? 'hidden' : '' }}">
-            {% if isNotLocal() %}
-                {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
-            {% endif %}
-
-            {% if isLocal() and mosque.site is not empty %}
-                {% set url =  mosque.site %}
-            {% endif %}
-
+        <div class="info {{ mosque.flashMessage.available ? 'hidden' : '' }}">
             {% if mosque.configuration.footer %}
+                {% if isNotLocal() %}
+                    {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
+                {% endif %}
+
+                {% if isLocal() and mosque.site is not empty %}
+                    {% set url =  mosque.site %}
+                {% endif %}
                 <div>
                     {% if url is defined %}
                         <div class="site">
                             {{ 'prayer_mobile_site'|trans({'%site%': url})|raw }}
                         </div>
+                        {% if mosque.isMosque and mosque.configuration.urlQrCodeEnabled and url is not empty %}
+                            <div id="qrcode" data-url="{{ url|default('') }}"></div>
+                        {% endif %}
                     {% endif %}
 
                     <div class="assosciation">
@@ -259,9 +261,6 @@
                         {% endif %}
                         &nbsp;&nbsp;{{ mosque.rib }}
                     </div>
-                    {% if mosque.isMosque and mosque.configuration.urlQrCodeEnabled %}
-                        <div id="qrcode" data-url="{{ url|default('') }}"></div>
-                    {% endif %}
                 </div>
             {% endif %}
 

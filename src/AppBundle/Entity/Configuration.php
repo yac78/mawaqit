@@ -292,7 +292,7 @@ class Configuration
     /**
      * @var string
      */
-    private $theme = "default";
+    private $theme = "mawaqit";
 
     /**
      * @var string

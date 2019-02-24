@@ -37,8 +37,6 @@ class MosqueController extends Controller
         return new JsonResponse($result);
     }
 
-
-
     /**
      * Get all data of mosque
      * @Route("/{id}")
@@ -53,15 +51,17 @@ class MosqueController extends Controller
         }
 
         $normalizer = new ObjectNormalizer();
-        $normalizer->setIgnoredAttributes(['user', 'id', 'created', 'updated', 'messages', 'image1', 'image2', 'image3', 'localisation','justificatory',
-            'nbOfEnabledMessages', 'calendarCompleted', 'gpsCoordinates', 'title', 'types','synchronized', 'slug', 'locale', 'flashMessage', 'status']);
+        $normalizer->setIgnoredAttributes(['user', 'id', 'created', 'updated', 'messages', 'image1', 'image2', 'image3', 'localisation', 'justificatory',
+            'nbOfEnabledMessages', 'calendarCompleted', 'gpsCoordinates', 'title', 'types', 'synchronized', 'slug', 'locale', 'flashMessage', 'status']);
 
         $normalizer->setCircularReferenceHandler(function ($mosque) {
             return $mosque->getId();
         });
+
         $serializer = new Serializer([new DateTimeNormalizer(), $normalizer], [new JsonEncoder()]);
+        $mosque->setSite($mosque->getUrl());
         $result = $serializer->serialize($mosque, 'json');
-        return new Response($result, Response::HTTP_OK, ['Content-Type'=> 'application/json']);
+        return new Response($result, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
 
     /**
