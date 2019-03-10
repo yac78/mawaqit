@@ -18,22 +18,16 @@ services:
       - ./docker/config/php/www.conf:/etc/php7/php-fpm.d/www.conf
       - ./docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/config/nginx/mawaqit.localhost.conf:/etc/nginx/sites-enabled/mawaqit.localhost.conf
-      - ./docker/config/nginx/logrotate:/etc/logrotate.d/nginx
       - ./docker/data/logs/nginx:/var/log/nginx
       # ssh
       - ~/.ssh:/root/.ssh
       # clock
       - /etc/localtime:/etc/localtime:ro
-      # users
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
     environment:
       APP_ENV: dev
     command: >
       sh -c "chown -R mawaqit:mawaqit /var/tmp/nginx;
-      php-fpm7 -F & nginx -g 'daemon off;';
-      contab /var/www/mawaqit/docker/crontab;
-      crond -f"
+      php-fpm7 -F & nginx -g 'daemon off;';"
 
   db:
     container_name: db

@@ -19,7 +19,6 @@ services:
       - ./docker/config/php/www.conf:/etc/php7/php-fpm.d/www.conf
       - ./docker/config/nginx/mawaqit.net.conf.prod:/etc/nginx/sites-enabled/mawaqit
       - ./docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/config/nginx/logrotate:/etc/logrotate.d/nginx
       - ./docker/data/logs/nginx:/var/log/nginx
       # certbot
       - ./docker/data/certbot/conf:/etc/letsencrypt
@@ -28,16 +27,12 @@ services:
       - ~/:/home/mawaqit
       # clock
       - /etc/localtime:/etc/localtime:ro
-      # users
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
     environment:
       APP_ENV: prod
     command: >
       sh -c "chown -R mawaqit:mawaqit /var/tmp/nginx;
       php-fpm7 -F & nginx -g 'daemon off;';
-      while true; do nginx -s reload; sleep 12h; done;
-      logrotate /etc/logrotate.d/nginx;"
+      while true; do nginx -s reload; sleep 12h; done;"
 
   certbot:
     restart: always
