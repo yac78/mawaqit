@@ -26,8 +26,7 @@ services:
     environment:
       APP_ENV: dev
     command: >
-      sh -c "chown -R mawaqit:mawaqit /var/tmp/nginx;
-      php-fpm7 -F & nginx -g 'daemon off;';"
+      sh -c "php-fpm7 -F & nginx -g 'daemon off;';"
 
   db:
     container_name: db
