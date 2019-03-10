@@ -24,7 +24,7 @@ class FlashMessage
     /**
      * @var string
      */
-    private $orientation = "#ltr";
+    private $orientation = "ltr";
     /**
      * @var \DateTime
      */
@@ -34,6 +34,11 @@ class FlashMessage
      * @var \DateTime
      */
     private $expire;
+
+    /**
+     * @var Mosque
+     */
+    private $mosque;
 
     public function __construct()
     {
@@ -108,6 +113,7 @@ class FlashMessage
      */
     public function setExpire(\DateTime $expire): FlashMessage
     {
+        $expire->setTime(23,59,59);
         $this->expire = $expire;
         return $this;
     }
@@ -117,7 +123,10 @@ class FlashMessage
      */
     public function isExpired()
     {
-        return $this->expire < new \DateTime();
+        $expire = clone  $this->expire;
+        $expire->setTimezone(new \DateTimeZone($this->mosque->getConf()->getTimezone()));
+        $expire->setTime(23,59,59);
+        return $expire < new \DateTime("now", new \DateTimeZone($this->mosque->getConf()->getTimezone()));
     }
 
     /**
