@@ -329,9 +329,6 @@ configuration:
             label: Du`aa after adhân
         duaAfterPrayerEnabled: 
             label: Invocations after salat
-        smallScreen: 
-            label: Small screen ?
-            title: Check this box if your screen is less than 32 inches, this will allow us to adapt some texts
         azanBip: 
             label: Beep when it's time for adhân
         azanVoiceEnabled: 

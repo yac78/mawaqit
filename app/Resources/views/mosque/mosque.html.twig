@@ -39,15 +39,11 @@
 
 <!-- Douaa after prayer slider -->
 <div class="adhkar-after-prayer display-none">
-    {% if mosque.configuration.smallScreen %}
-        {% include 'partial/dua-slider.html.twig' %}
-    {% else %}
-        {% include 'partial/dua-slider-one-screen.html.twig' %}
-    {% endif %}
+    {% include 'partial/dua-slider.html.twig' %}
 </div>
 
 <!-- message info slider -->
-<div class="message-slider slider display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id, main_screen: true}) }}">
+<div class="message-slider slider ltr display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id, main_screen: true}) }}">
     <div class="currentTimeShort"></div>
     <div class="messageContent"></div>
 </div>

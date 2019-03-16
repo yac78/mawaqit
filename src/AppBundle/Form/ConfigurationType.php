@@ -344,13 +344,6 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.urlQrCodeEnabled.title',
                 ]
             ])
-            ->add('smallScreen', CheckboxType::class, [
-                'required' => false,
-                'label' => 'configuration.form.smallScreen.label',
-                'attr' => [
-                    'help' => 'configuration.form.smallScreen.title',
-                ]
-            ])
             ->add('ishaFixation', ChoiceType::class, [
                 'required' => false,
                 'placeholder' => 'select_a_value',
@@ -358,6 +351,7 @@ class ConfigurationType extends AbstractType
                     '1h05' => 65,
                     '1h10' => 70,
                     '1h15' => 75,
+                    '1h20' => 80,
                     '1h30' => 90,
                     '1h45' => 105,
                     '2h00' => 120,

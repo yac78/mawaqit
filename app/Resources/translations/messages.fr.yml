@@ -570,9 +570,6 @@ configuration:
             label: Du`aa après adhân
         duaAfterPrayerEnabled: 
             label: Invocations après salat
-        smallScreen: 
-            label: Petit écran ?
-            title: Cochez cette case si votre écran mesure moins de 32 pouces, cela permettra d'adapter quelques textes
         azanBip: 
             label: Bip quand c'est l'heure du adhân
         azanVoiceEnabled:

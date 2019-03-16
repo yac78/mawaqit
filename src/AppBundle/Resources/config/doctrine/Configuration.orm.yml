@@ -124,8 +124,6 @@ AppBundle\Entity\Configuration:
             nullable: true
         wakeAzanVoice:
             type: string
-        smallScreen:
-            type: boolean            
         calendar:
             type: json_array
             nullable: true

@@ -460,9 +460,6 @@ configuration:
             label: دعاء ما بعد الأذان
         duaAfterPrayerEnabled:
             label: الأدعية بعد الصلاة
-        smallScreen:
-            label: شاشة صغيرة ؟
-            title: ضع علامة في هذه الخانة إذا كانت شاشتك أقل من 32 بوصة  مما سيسهل إخراج بعض النصوص بصفة أوضح
         noJumua:
             label: لا تقام صلاة الجمعة
         azanBip:

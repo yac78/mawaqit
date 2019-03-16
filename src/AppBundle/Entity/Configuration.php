@@ -262,11 +262,6 @@ class Configuration
     /**
      * @var bool
      */
-    private $smallScreen = false;
-
-    /**
-     * @var bool
-     */
     private $randomHadithEnabled = true;
 
     /**
@@ -1008,19 +1003,6 @@ class Configuration
     function isApi()
     {
         return $this->sourceCalcul === self::SOURCE_API;
-    }
-
-    /**
-     * @return boolean
-     */
-    function getSmallScreen()
-    {
-        return $this->smallScreen;
-    }
-
-    function setSmallScreen($smallScreen)
-    {
-        $this->smallScreen = $smallScreen;
     }
 
     /**

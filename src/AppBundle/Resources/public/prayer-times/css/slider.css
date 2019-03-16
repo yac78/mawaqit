@@ -9,10 +9,11 @@
     list-style: none;
 }
 
-.slider ul li {
+.slider li {
     display: block;
     float: left;
     margin: auto;
+    font-size: 13vh;
 }
 
 .adhkar-after-prayer .title {

@@ -113,7 +113,6 @@ class FlashMessage
      */
     public function setExpire(\DateTime $expire): FlashMessage
     {
-        $expire->setTime(23,59,59);
         $this->expire = $expire;
         return $this;
     }
@@ -124,9 +123,9 @@ class FlashMessage
     public function isExpired()
     {
         $expire = clone  $this->expire;
-        $expire->setTimezone(new \DateTimeZone($this->mosque->getConf()->getTimezone()));
-        $expire->setTime(23,59,59);
-        return $expire < new \DateTime("now", new \DateTimeZone($this->mosque->getConf()->getTimezone()));
+        $timezoneName = timezone_name_from_abbr("", $this->mosque->getConf()->getTimezone() * 3600, false);
+        $expire->setTimezone(new \DateTimeZone($timezoneName));
+        return $expire < new \DateTime("now", new \DateTimeZone($timezoneName));
     }
 
     /**

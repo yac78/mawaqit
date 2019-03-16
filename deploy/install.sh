@@ -33,7 +33,7 @@ if [ "$env" == "prod" ]; then
     version=$tag
 fi
 
-docker exec --user $dockerUser $dockerContainer sed -i "s/version: .*/version: $version/" app/config/parameters.yml
+docker exec $dockerContainer sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
 # Install vendors and assets
 docker exec $dockerContainer sh -c "SYMFONY_ENV=$env composer install -o -n --no-dev"
