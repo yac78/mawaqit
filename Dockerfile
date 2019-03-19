@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.8
 
 MAINTAINER Ibrahim Zehhaf <ibrahim.zehhaf.pro@gmail.com>
 
