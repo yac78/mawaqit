@@ -1,13 +1,42 @@
-FROM alpine:3.9
+FROM debian:latest
 
 MAINTAINER Ibrahim Zehhaf <ibrahim.zehhaf.pro@gmail.com>
 
-RUN apk --no-cache add php7 php7-fpm php7-mbstring php7-pdo_mysql php7-session php7-json php7-curl php7-tokenizer \
-    php7-xml php7-ctype php7-simplexml php7-iconv php7-zip php7-dom php7-opcache php7-imagick php7-fileinfo php-phar \
-    nginx gzip curl imagemagick wget vim git openssh busybox-suid
+RUN apt-get update && \
+    apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    wget \
+    vim \
+    git \
+    gzip \
+    nginx \
+    zip \
+    imagemagick
 
-# Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+# install php
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
+    sh -c 'echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list'
 
-RUN mkdir -p /var/www/mawaqit
+RUN apt-get update && \
+    apt-get install -y \
+    php7.1 \
+    php7.1-fpm \
+    php7.1-mysql \
+    php7.1-curl \
+    php7.1-json \
+    php7.1-xml \
+    php7.1-zip \
+    php7.1-opcache \
+    php7.1-imagick
+
+
+# install composer
+RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#RUN chmod +x /usr/local/bin/composer
+
+RUN mkdir /var/www/mawaqit
 WORKDIR /var/www/mawaqit
+
+ENTRYPOINT nginx && service php7.1-fpm start && /bin/bash
