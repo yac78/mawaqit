@@ -122,10 +122,11 @@ class FlashMessage
      */
     public function isExpired()
     {
-        $expire = clone  $this->expire;
-        $timezoneName = timezone_name_from_abbr("", $this->mosque->getConf()->getTimezone() * 3600, false);
-        $expire->setTimezone(new \DateTimeZone($timezoneName));
-        return $expire < new \DateTime("now", new \DateTimeZone($timezoneName));
+        return $this->expire < new \DateTime();
+//        $expire = clone  $this->expire;
+//        $timezoneName = timezone_name_from_abbr("", $this->mosque->getConf()->getTimezone() * 3600, false);
+//        $expire->setTimezone(new \DateTimeZone($timezoneName));
+//        return $expire < new \DateTime("now", new \DateTimeZone($timezoneName));
     }
 
     /**

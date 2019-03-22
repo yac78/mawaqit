@@ -41,9 +41,12 @@ var douaaSlider = {
         }
 
         if (prayer.confData.duaAfterPrayerEnabled) {
-            $("#black-screen, .main").hide()
-            $(".adhkar-after-prayer").show();
-            douaaSlider.setFontSize();
+
+            $("#black-screen, .main").fadeOut(500, function () {
+                $(".adhkar-after-prayer").fadeIn(500, function () {
+                   douaaSlider.setFontSize();
+                });
+            });
 
             var douaaInterval = setInterval(function () {
                 douaaSlider.moveRight();
