@@ -162,6 +162,7 @@ small {
 
 .adhan, .douaa-between-adhan-iqama, .jumua-dhikr-reminder {
     padding: 20px 10px;
+    font-size: 10vh;
 }
 
 .adhan .fr, .douaa-between-adhan-iqama .fr, .jumua-dhikr-reminder .fr {
@@ -351,12 +352,6 @@ footer .info {
 .main-iqama-countdown .countdown {
     font-size: 20vh;
     color: #f0ad4e;
-}
-
-.dua-content {
-    display: flex;
-    align-items: center;
-    height: 100%;
 }
 
 .top-buttons {

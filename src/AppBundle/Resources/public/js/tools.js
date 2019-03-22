@@ -109,6 +109,6 @@ function fixFontSize(elem, marge) {
     var $body = $('body');
     var $elem = $(elem);
     while ($elem.height() > $body.height() - parseInt(marge)) {
-        $elem.css('font-size', (parseInt($elem.css('font-size')) - 5) + "px");
+        $elem.css('font-size', (parseInt($elem.css('font-size')) - 10) + "px");
     }
 }

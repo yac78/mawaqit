@@ -746,11 +746,12 @@ var prayer = {
      * @param layerToShow the element class to show
      */
     switchLayer: function (layerToHide, layerToShow, correctFontSize) {
-        if (correctFontSize === true) {
-            fixFontSize('.' + layerToShow);
-        }
         $('.' + layerToHide).fadeOut(500, function () {
-            $('.' + layerToShow).fadeIn(500);
+            $('.' + layerToShow).fadeIn(500, function () {
+                if (correctFontSize === true) {
+                    fixFontSize('.' + layerToShow);
+                }
+            });
         });
     },
     /**
