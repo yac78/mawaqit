@@ -37,7 +37,6 @@ RUN apt-get update && \
 
 # install composer
 RUN curl -k -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#RUN chmod +x /usr/local/bin/composer
 
 RUN mkdir /var/www/mawaqit
 WORKDIR /var/www/mawaqit

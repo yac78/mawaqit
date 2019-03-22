@@ -36,7 +36,14 @@ server {
         fastcgi_read_timeout 300;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
         fastcgi_param HTTPS on;
+        fastcgi_param APP_ENV pp;
+        internal;
+    }
+
+    location ~ \.php$ {
+        return 404;
     }
 
     set $cache_uri $request_uri;

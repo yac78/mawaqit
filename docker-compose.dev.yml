@@ -23,8 +23,6 @@ services:
       - ~/.ssh:/root/.ssh
       # clock
       - /etc/localtime:/etc/localtime:ro
-    environment:
-      APP_ENV: dev
 
   db:
     container_name: db
