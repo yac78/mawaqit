@@ -261,7 +261,6 @@ class MosqueController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($configuration);
             $em->flush();
             return $this->redirectToRoute('mosque', [
                 'slug' => $mosque->getSlug()

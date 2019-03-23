@@ -125,10 +125,10 @@ AppBundle\Entity\Configuration:
         wakeAzanVoice:
             type: string
         calendar:
-            type: json_array
+            type: json
             nullable: true
         iqamaCalendar:
-            type: json_array
+            type: json
             nullable: true
         ishaFixation:
             type: smallint

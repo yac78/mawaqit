@@ -433,7 +433,7 @@ class ConfigurationType extends AbstractType
                     new NotBlank(),
                 ]
             ])
-            ->add('backgroundColor', null)
+            ->add('backgroundColor')
             ->add('calendar')
             ->add('iqamaCalendar')
             ->add('timeToDisplayMessage', IntegerType::class, [

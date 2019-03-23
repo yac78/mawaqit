@@ -143,6 +143,7 @@ AppBundle\Entity\Mosque:
             joinColumn:
                 onDelete: CASCADE
         flashMessage:
+            inversedBy: mosque
             targetEntity: AppBundle\Entity\FlashMessage
             cascade:
                 - persist
