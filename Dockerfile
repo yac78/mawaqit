@@ -15,6 +15,7 @@ RUN apt-get update && \
     vim \
     git \
     nginx \
+    ssh \
     zip \
     unzip \
     imagemagick

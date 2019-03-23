@@ -18,8 +18,7 @@ if [ "$env" == "prod" ]; then
     $baseDir/tools/dbSync.sh
 fi
 
-#docker exec $dockerContainer git fetch && git checkout $tag
-git fetch && git checkout $tag
+docker exec $dockerContainer git fetch && git checkout $tag
 
 if [ "$env" == "pp" ]; then
     docker exec $dockerContainer git pull origin $tag
