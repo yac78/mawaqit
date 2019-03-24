@@ -904,7 +904,7 @@ class Configuration
     /**
      * @return array
      */
-    public function getIqamaCalendar(): array
+    public function getIqamaCalendar():? array
     {
         return $this->iqamaCalendar;
     }
