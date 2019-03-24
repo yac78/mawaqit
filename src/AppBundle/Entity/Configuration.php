@@ -896,7 +896,7 @@ class Configuration
      *
      * @return array
      */
-    public function getCalendar(): array
+    public function getCalendar():? array
     {
         return $this->calendar;
     }
