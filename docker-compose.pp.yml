@@ -27,6 +27,8 @@ services:
       - ~/.ssh:/root/.ssh
       # clock
       - /etc/localtime:/etc/localtime:ro
+    command: >
+      sh -c "while true; do nginx -s reload; sleep 12h; done;"
 
   certbot:
     restart: always
