@@ -128,6 +128,10 @@ var prayer = {
             return 0;
         }
 
+        if(prayer.confData.dst === 2){
+            return "auto";
+        }
+
         return prayer.confData.dst;
     },
 
@@ -321,7 +325,7 @@ var prayer = {
     applyDstForCalendarMode: function (tomorrow) {
         if (prayer.confData.sourceCalcul === "calendar") {
             // dst = 2 => auto
-            if (prayer.confData.dst === "auto") {
+            if (prayer.confData.dst === 2) {
                 return dateTime.isDst(tomorrow);
             }
 
@@ -910,10 +914,8 @@ var prayer = {
             // return duhr
             return this.getTimeByIndex(1);
         }
-        if (this.confData.jumuaTime) {
-            return this.confData.jumuaTime;
-        }
-        return dateTime.isDst() ? "14:00" : "13:00";
+
+        return this.confData.jumuaTime;
     },
     /**
      * if current time is joumouaa

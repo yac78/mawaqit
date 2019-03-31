@@ -42,7 +42,7 @@ class MosqueController extends Controller
      * @Route("/{id}")
      * @Method("GET")
      * @param Mosque $mosque
-     * @return JsonResponse
+     * @return Response
      */
     public function dataAction(Mosque $mosque)
     {

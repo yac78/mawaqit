@@ -377,7 +377,7 @@ class Configuration
      */
     public function getJumuaTime()
     {
-        return $this->jumuaTime;
+        return !empty($this->jumuaTime) ? $this->jumuaTime : '13:00';
     }
 
     /**
@@ -763,7 +763,7 @@ class Configuration
 
     function getDst()
     {
-        return $this->dst === 2 ? "auto" : $this->dst;
+        return $this->dst;
     }
 
     function setDst($dst)
