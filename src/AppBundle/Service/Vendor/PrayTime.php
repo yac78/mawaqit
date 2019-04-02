@@ -364,6 +364,12 @@ class PrayTime
     function computeTime($G, $t)
     {
         $D = $this->sunDeclination($this->JDate+ $t);
+
+        // fix bug ibra
+        if($D > 21){
+            $D = 21;
+        }
+
         $Z = $this->computeMidDay($t);
         $V = 1/15* $this->darccos((-$this->dsin($G)- $this->dsin($D)* $this->dsin($this->lat))/
                 ($this->dcos($D)* $this->dcos($this->lat)));

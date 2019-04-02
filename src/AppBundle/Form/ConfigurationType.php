@@ -16,6 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -139,7 +140,7 @@ class ConfigurationType extends AbstractType
                 'required' => false,
             ])
             ->add('jumuaTimeout', IntegerType::class, [
-                'constraints' => new Range(['min' => 20]),
+                'constraints' => new GreaterThanOrEqual(['value' => 20]),
                 'attr' => [
                     'min' => 20
                 ]
@@ -152,6 +153,7 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('imsakNbMinBeforeFajr', IntegerType::class, [
+                'constraints' => new GreaterThanOrEqual(['value' => 0]),
                 'attr' => [
                     'help' => $this->translator->trans('configuration.form.imsakNbMinBeforeFajr.title'),
                     'min' => 0
@@ -167,7 +169,7 @@ class ConfigurationType extends AbstractType
             ->add('waitingTimes', PrayerType::class, [
                 'sub_options' => [
                     'type' => IntegerType::class,
-                    'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
+                    'constraints' => new GreaterThanOrEqual(['value' => 0]),
                     'attr' => [
                         'min' => 0
                     ]
@@ -210,7 +212,7 @@ class ConfigurationType extends AbstractType
             ->add('duaAfterPrayerShowTimes', PrayerType::class, [
                 'sub_options' => [
                     'type' => IntegerType::class,
-                    'constraints' => new NotBlank(['message' => "form.configuration.mandatory"]),
+                    'constraints' => new GreaterThanOrEqual(['value' => 5]),
                     'attr' => [
                         'min' => 5
                     ]
@@ -325,7 +327,7 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('iqamaDisplayTime', IntegerType::class, [
-                'constraints' => new Range(['min' => 5]),
+                'constraints' => new GreaterThanOrEqual(['value' => 5]),
                 'label' => 'configuration.form.iqamaDisplayTime.label',
                 'attr' => [
                     'min' => 5
@@ -333,6 +335,7 @@ class ConfigurationType extends AbstractType
             ])
             ->add('wakeForFajrTime', IntegerType::class, [
                 'required' => false,
+                'constraints' => new GreaterThanOrEqual(['value' => 0]),
                 'attr' => [
                     'min' => 0,
                     'help' => 'configuration.form.wakeForFajrTime.title',
@@ -414,7 +417,7 @@ class ConfigurationType extends AbstractType
                 )
             ])
             ->add('theme', ChoiceType::class, [
-                'choices' =>  array_combine(self::$THEMES, self::$THEMES),
+                'choices' => array_combine(self::$THEMES, self::$THEMES),
                 'constraints' => [
                     new Choice(['choices' => self::$THEMES]),
                     new NotBlank(),
@@ -438,6 +441,7 @@ class ConfigurationType extends AbstractType
             ->add('iqamaCalendar')
             ->add('timeToDisplayMessage', IntegerType::class, [
                 'required' => false,
+                'constraints' => new Range(['min' => 5, 'max' => 60]),
                 'attr' => [
                     'min' => 5,
                     'max' => 60
