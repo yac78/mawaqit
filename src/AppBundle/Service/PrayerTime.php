@@ -40,6 +40,14 @@ class PrayerTime
 
         if ($conf->isCalendar()) {
             $calendar = $conf->getCalendar();
+            foreach ($calendar as $month => $days) {
+                foreach ($days as $day => $prayers) {
+                    $this->adjust($prayers, $mosque);
+                    $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
+                    $this->applyDst($prayers, $mosque, $timestamp);
+                    $calendar[$month][$day] = $prayers;
+                }
+            }
         }
 
         if ($conf->isApi()) {
@@ -54,17 +62,18 @@ class PrayerTime
             $this->praytime->setAsrMethod($conf->getAsrMethod());
             $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
 
-            foreach (Calendar::MONTHS as $monthIndex => $days) {
+            foreach (Calendar::MONTHS as $month => $days) {
                 for ($day = 1; $day <= $days; $day++) {
-                    $timestamp = strtotime(date('Y') . '-' . ($monthIndex + 1) . '-' . $day . " 12:00:00");
+                    $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
                     $prayers = $this->praytime->getPrayerTimes($timestamp, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
                     $this->adjust($prayers, $mosque);
                     $this->applyDst($prayers, $mosque, $timestamp);
-                    $calendar[$monthIndex][$day] = $prayers;
+                    $calendar[$month][$day] = $prayers;
                 }
             }
         }
+
         return $calendar;
     }
 
