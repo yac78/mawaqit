@@ -4,7 +4,8 @@ form:
       justificatoryMandatory: The supporting document is mandatory
       mainImageMandatory: The mosque photo is mandatory
     configuration:
-        mandatory: Ce champ est obligatoire
+        mandatory: حقل إجباري
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
+        dst_dates_mandatory:  تواريخ التغيير الصيفي إجبارية
     registration:
         wrong_password_message: Le mot de passe doit contenir 8 caractères minimum, dont une majuscule, une minuscule et un nombre

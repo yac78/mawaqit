@@ -56,25 +56,55 @@ class PrayerTime
 
             foreach (Calendar::MONTHS as $monthIndex => $days) {
                 for ($day = 1; $day <= $days; $day++) {
-                    $date = strtotime(date('Y') . '-' . ($monthIndex + 1) . '-' . $day);
-                    $prayers = $this->praytime->getPrayerTimes($date, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
+                    $timestamp = strtotime(date('Y') . '-' . ($monthIndex + 1) . '-' . $day . " 12:00:00");
+                    $prayers = $this->praytime->getPrayerTimes($timestamp, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
-                    $calendar[$monthIndex][$day] = $this->adjust($prayers, $mosque);
+                    $this->adjust($prayers, $mosque);
+                    $this->applyDst($prayers, $mosque, $timestamp);
+                    $calendar[$monthIndex][$day] = $prayers;
                 }
             }
         }
         return $calendar;
     }
 
-    private function adjust($prayers, Mosque $mosque){
+    private function adjust(&$prayers, Mosque $mosque)
+    {
         $adjusted = $mosque->getConf()->getAdjustedTimes();
         foreach ($prayers as $k => $prayer) {
-            if(empty($adjusted[$k])){
+            if (empty($adjusted[$k])) {
                 continue;
             }
-            $prayers[$k] = ((new \DateTime($prayer))->modify( $adjusted[$k] . " minutes"))->format("H:i");
+
+            $prayers[$k] = ((new \DateTime($prayer))->modify($adjusted[$k] . " minutes"))->format("H:i");
         }
-        return $prayers;
+    }
+
+    private function applyDst(&$prayers, Mosque $mosque, $timestamp)
+    {
+        $conf = $mosque->getConf();
+        // dst disabled
+        if ($conf->getDst() === 0) {
+            return;
+        }
+
+        // dst programmed and not between selected dates
+        if ($conf->getDst() === 1 && ($conf->getDstWinterDate() === null || $conf->getDstSummerDate() === null)) {
+            return;
+        }
+
+        if ($conf->getDst() === 1 && ($timestamp < $conf->getDstSummerDate()->getTimestamp() || $timestamp > $conf->getDstWinterDate()->getTimestamp())) {
+            return;
+        }
+
+        // dst auto and not in effect
+        if ($conf->getDst() === 2 && date('I', $timestamp) == 0) {
+            return;
+        }
+
+        foreach ($prayers as $k => $prayer) {
+            $prayers[$k] = ((new \DateTime($prayer))->modify("+1 hour"))->format("H:i");
+        }
     }
 
     /**
@@ -114,8 +144,8 @@ class PrayerTime
 
         if ($zip->open($zipFilePath, \ZipArchive::CREATE) === true) {
             $files = scandir("$path");
-            foreach($files as $file) {
-                if(strpos($file, ".") !== 0 ){
+            foreach ($files as $file) {
+                if (strpos($file, ".") !== 0) {
                     $zip->addFile("$path/$file", $file);
                 }
             }

@@ -172,4 +172,6 @@ body {
 
 .form-control{
     padding: 3px 12px;
+    display: block !important;
+    width: 100% !important;
 }
