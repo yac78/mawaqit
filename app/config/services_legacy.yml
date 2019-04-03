@@ -60,6 +60,7 @@ services:
         class: AppBundle\Service\PrayerTime
         arguments:
             - "@praytimes"
+            - "@logger"
             - "%kernel.cache_dir%"
 
     app.mail_service:

@@ -6,6 +6,7 @@ use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\Vendor\PrayTime;
+use Psr\Log\LoggerInterface;
 
 class PrayerTime
 {
@@ -15,11 +16,17 @@ class PrayerTime
      */
     private $praytime;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     private $cacheDir;
 
-    public function __construct($praytime, $cacheDir)
+    public function __construct($praytime, LoggerInterface $logger, $cacheDir)
     {
         $this->praytime = $praytime;
+        $this->logger = $logger;
         $this->cacheDir = $cacheDir;
     }
 
@@ -85,7 +92,12 @@ class PrayerTime
                 continue;
             }
 
-            $prayers[$k] = ((new \DateTime($prayer))->modify($adjusted[$k] . " minutes"))->format("H:i");
+            try {
+                $prayers[$k] = ((new \DateTime($prayer))->modify($adjusted[$k] . " minutes"))->format("H:i");
+            } catch (\Exception $e) {
+                $prayers[$k] = "ERROR";
+                $this->logger->error("Erreur de parsing heure de prière", [$e, $mosque->getId()]);
+            }
         }
     }
 
@@ -112,7 +124,12 @@ class PrayerTime
         }
 
         foreach ($prayers as $k => $prayer) {
-            $prayers[$k] = ((new \DateTime($prayer))->modify("+1 hour"))->format("H:i");
+            try {
+                $prayers[$k] = ((new \DateTime($prayer))->modify("+1 hour"))->format("H:i");
+            } catch (\Exception $e) {
+                $prayers[$k] = "ERROR";
+                $this->logger->error("Erreur de parsing heure de prière", [$e, $mosque->getId()]);
+            }
         }
     }
 
