@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\MosqueSyncType;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class MosqueController extends Controller
 {
@@ -63,18 +65,26 @@ class MosqueController extends Controller
      * @Route("/{slug}", name="mosque")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      * @param Request $request
+     * @param EntityManagerInterface $em ,
      * @param Mosque $mosque
      * @return Response
      */
-    public function mosqueAction(Request $request, Mosque $mosque)
+    public function mosqueAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
     {
 
         if (!$mosque->isValidated()) {
             throw new NotFoundHttpException();
         }
 
+        $mobileDetect = $this->get('mobile_detect.mobile_detector');
+        $view = $request->query->get("view");
+
+        // if mobile device request
+        if (($view !== "desktop" && $mobileDetect->isMobile() && !$mobileDetect->isTablet()) || $view === "mobile") {
+            return $this->redirectToRoute("mosque_mobile", ['slug' => $mosque->getSlug()]);
+        }
+
         // saving locale
-        $em = $this->getDoctrine()->getManager();
         $savedLocale = $mosque->getLocale();
         if ($this->get('app.request_service')->isLocal() && $savedLocale !== $request->getLocale()) {
             $mosque->setLocale($request->getLocale());
@@ -82,19 +92,7 @@ class MosqueController extends Controller
             $em->flush();
         }
 
-        $mobileDetect = $this->get('mobile_detect.mobile_detector');
-        $view = $request->query->get("view");
-        $template = 'mosque';
-        $messages = [];
-
-        // if mobile device request
-        if (($view !== "desktop" && $mobileDetect->isMobile() && !$mobileDetect->isTablet()) || $view === "mobile") {
-            $template .= '_mobile';
-            $em = $this->getDoctrine()->getManager();
-            $messages = $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true);
-        }
-
-        return $this->render("mosque/$template.html.twig", [
+        return $this->render("mosque/mosque.html.twig", [
             'mosque' => $mosque,
             'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
             'languages' => $this->getParameter('languages'),
@@ -102,8 +100,32 @@ class MosqueController extends Controller
             "supportEmail" => $this->getParameter("supportEmail"),
             "postmasterAddress" => $this->getParameter("postmaster_address"),
             "mawaqitApiAccessToken" => $this->getParameter("mawaqit_api_access_token"),
-            'messages' => $messages,
             'form' => $this->createForm(MosqueSyncType::class)->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/m/{slug}", name="mosque_mobile")
+     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     * @Cache(expires="+10min", public=true)
+     * @param EntityManagerInterface $em
+     * @param Mosque $mosque
+     * @return Response
+     */
+    public function mosqueMobileAction(EntityManagerInterface $em, Mosque $mosque)
+    {
+
+        if (!$mosque->isValidated()) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render("mosque/mosque_mobile.html.twig", [
+            'mosque' => $mosque,
+            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
+            'version' => $this->getParameter('version'),
+            "supportEmail" => $this->getParameter("supportEmail"),
+            "postmasterAddress" => $this->getParameter("postmaster_address"),
+            'messages' => $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true)
         ]);
     }
 
