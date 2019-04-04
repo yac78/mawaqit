@@ -15,7 +15,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("", name="homepage")
-     * @Cache(expires="+1d", public=true, smaxage="86400", maxage="86400")
+     * @Cache(expires="+1 day", public=true, smaxage="86400", maxage="86400")
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -46,7 +46,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/manual", name="manual")
-     * @Cache(expires="+1d", public=true, smaxage="86400", maxage="86400")
+     * @Cache(expires="+1 day", public=true, smaxage="86400", maxage="86400")
      */
     public function manualAction()
     {
