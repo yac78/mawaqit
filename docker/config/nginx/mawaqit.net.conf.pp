@@ -13,23 +13,6 @@ server {
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    location  / {
-        proxy_buffering   on;
-        proxy_cache_valid 200 302 301 1d;
-        proxy_cache_valid 404 1h;
-        proxy_cache mobile;
-        include proxy_params;
-        add_header X-Proxy-Cache $upstream_cache_status;
-        proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;
-        proxy_pass http://localhost:81/;
-        proxy_redirect http://localhost:81 https://localhost;
-    }
-}
-
-server {
-    listen 81;
-    root /var/www/mawaqit/web;
-    server_name pp.mawaqit.net;
 
     proxy_buffers 4 64k;
     proxy_buffer_size 64k;
@@ -43,6 +26,23 @@ server {
     ssl_trusted_certificate /etc/letsencrypt/live/pp.mawaqit.net/fullchain.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location  / {
+        proxy_buffering   on;
+        proxy_cache_valid 200 302 301 1d;
+        proxy_cache_valid 404 1h;
+        proxy_cache mobile;
+        include proxy_params;
+        add_header X-Proxy-Cache $upstream_cache_status;
+        proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;
+        proxy_pass http://localhost:81/;
+    }
+}
+
+server {
+    listen 81;
+    root /var/www/mawaqit/web;
+    server_name pp.mawaqit.net;
 
     location / {
         try_files $uri /app.php$is_args$args;
