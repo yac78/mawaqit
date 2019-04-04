@@ -1,4 +1,4 @@
-proxy_cache_path /tmp/nginx/cache levels=1:2 keys_zone=mobile:10m inactive=60m inactive=24h  max_size=1g;
+proxy_cache_path /tmp/nginx_cache levels=1:2 keys_zone=mobile:10m inactive=60m inactive=24h  max_size=1g;
 proxy_cache_key "$scheme$request_method$host$request_uri";
 
 server {
@@ -22,6 +22,7 @@ server {
         add_header X-Proxy-Cache $upstream_cache_status;
         proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;
         proxy_pass http://localhost:81/;
+        proxy_redirect http://localhost:81 https://localhost;
     }
 }
 
@@ -78,5 +79,4 @@ server {
 
     # Deny dotfiles
     location ~ /\. { deny all; access_log off; log_not_found off; }
-
 }
