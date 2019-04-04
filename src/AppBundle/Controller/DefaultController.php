@@ -9,12 +9,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class DefaultController extends Controller
 {
 
     /**
      * @Route("", name="homepage")
+     * @Cache(expires="+1d", public=true, smaxage="86400", maxage="86400")
      */
     public function indexAction(Request $request)
     {
@@ -42,6 +44,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/manual", name="manual")
+     * @Cache(expires="+1d", public=true, smaxage="86400", maxage="86400")
      */
     public function manualAction()
     {
