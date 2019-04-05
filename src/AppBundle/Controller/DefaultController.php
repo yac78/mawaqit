@@ -46,7 +46,6 @@ class DefaultController extends Controller
 
     /**
      * @Route("/manual", name="manual")
-     * @Cache(expires="+1 day", public=true, smaxage="86400", maxage="86400")
      */
     public function manualAction()
     {
