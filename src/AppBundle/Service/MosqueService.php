@@ -50,7 +50,7 @@ class MosqueService
             ->andWhere("m.city IS NOT NULL AND m.city != ''")
             ->andWhere("m.type = :mosqueType")
             ->groupBy("m.country, m.city, m.name")
-            ->orderBy("m.country, m.city", "ASC")
+            ->orderBy("m.countryFullName, m.city", "ASC")
             ->setParameter(':mosqueType', Mosque::TYPE_MOSQUE)
             ->getQuery()
             ->execute();
