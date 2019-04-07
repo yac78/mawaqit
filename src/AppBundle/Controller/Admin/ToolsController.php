@@ -19,7 +19,10 @@ class ToolsController extends Controller
      */
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $parameter = $em->getRepository("AppBundle:Parameters")->findOneBy(['key' => 'hijri_adjustment']);
         $form = $this->createForm(HijriAdjustmentType::class, null, ['action' => $this->generateUrl('update_hijri_date')]);
+        $form->get('hijriAdjustment')->setData($parameter->getValue());
         return $this->render('tools/index.html.twig', [
             'hijriForm' => $form->createView()
         ]);
@@ -57,7 +60,12 @@ class ToolsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->getRepository("AppBundle:Configuration")->updateHijriDate($form->getData());
-            $this->addFlash('success',"mosque.update_hijri_date.success");
+            $parameter = $em->getRepository("AppBundle:Parameters")->findOneBy(['key' => 'hijri_adjustment']);
+            // if no country submitted, update the ijri_adjustment value in parameters
+            $parameter->setValue($form->getData()["hijriAdjustment"]);
+            $em->flush();
+
+            $this->addFlash('success', "mosque.update_hijri_date.success");
             return $this->redirectToRoute('admin_index');
         }
     }

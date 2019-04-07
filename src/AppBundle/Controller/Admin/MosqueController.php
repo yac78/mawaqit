@@ -102,7 +102,7 @@ class MosqueController extends Controller
                     $this->addFlash("danger", "mosqueScreen.noInternetConnection");
                 } catch (TransferException $e) {
                     $this->addFlash("danger", "mosqueScreen.noMosqueFound");
-                }catch (\Exception $e) {
+                } catch (\Exception $e) {
                     $this->addFlash("danger", "mosqueScreen.otherPb");
                 }
             }
@@ -116,6 +116,7 @@ class MosqueController extends Controller
 
     /**
      * @Route("/create", name="mosque_create")
+     * @throws GooglePositionException
      */
     public function createAction(Request $request)
     {
@@ -134,6 +135,8 @@ class MosqueController extends Controller
             $em = $this->getDoctrine()->getManager();
             $mosque->setUser($this->getUser());
             $mosque->setCountryFullName($this->get('app.tools_service')->getCountryNameByCode($mosque->getCountry()));
+            $hijriAdjutment = $em->getRepository('AppBundle:Parameters')->findOneBy(['key' => 'hijri_adjustment']);
+            $mosque->getConfiguration()->setHijriAdjustment((int)$hijriAdjutment->getValue());
             $em->persist($mosque);
             $em->flush();
 
