@@ -836,14 +836,15 @@ class Mosque
 
     public function addMessage(Message $message)
     {
-        $this->messages[] = $message;
+        $this->messages->add($message);
+        $message->setMosque($this);
+        $this->setUpdated(new \DateTime());
     }
 
     public function clearMessages()
     {
         $this->messages = null;
     }
-
 
     /**
      * True if calendar is completed
@@ -1241,17 +1242,18 @@ class Mosque
     /**
      * @return FlashMessage|null
      */
-    public function getFlashMessage()
+    public function getFlashMessage(): FlashMessage
     {
-        return $this->flashMessage === null ? new FlashMessage() : $this->flashMessage;
+        return $this->flashMessage instanceof FlashMessage ? $this->flashMessage : new FlashMessage();
     }
 
     /**
      * @param FlashMessage $flashMessage
      */
-    public function setFlashMessage($flashMessage): void
+    public function setFlashMessage(FlashMessage $flashMessage = null): void
     {
         $this->flashMessage = $flashMessage;
+        $this->setUpdated(new \DateTime());
     }
 
     /**

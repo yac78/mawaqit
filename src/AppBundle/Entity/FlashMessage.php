@@ -1,11 +1,9 @@
 <?php
 
 namespace AppBundle\Entity;
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\HasLifecycleCallbacks()
- */
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 class FlashMessage
 {
@@ -16,25 +14,32 @@ class FlashMessage
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=160, min=30)
      * @var string
      */
     private $content;
 
     /**
+     * @Assert\NotBlank()
      * @var string
      */
     private $color = "#d9ad0f";
 
     /**
+     * @Assert\NotBlank()
      * @var string
      */
     private $orientation = "ltr";
+
     /**
      * @var \DateTime
      */
     private $updated;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan("now")
      * @var \DateTime
      */
     private $expire;
@@ -79,7 +84,7 @@ class FlashMessage
      * @param string|null $content
      * @return FlashMessage
      */
-    public function setContent($content): FlashMessage
+    public function setContent($content = null): FlashMessage
     {
         $this->content = $content;
         return $this;
@@ -115,7 +120,7 @@ class FlashMessage
      * @param \DateTime $expire
      * @return FlashMessage
      */
-    public function setExpire(\DateTime $expire): FlashMessage
+    public function setExpire(\DateTime $expire = null): FlashMessage
     {
         $this->expire = $expire;
         return $this;
@@ -175,14 +180,5 @@ class FlashMessage
     {
         $this->orientation = $orientation;
         return $this;
-    }
-
-    /**
-     * @ORM\PostPersist
-     * @ORM\PostRemove
-     */
-    public function setMosqueUpdatedAtValue()
-    {
-        $this->mosque->setUpdated(new \DateTime());
     }
 }
