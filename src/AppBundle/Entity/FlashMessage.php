@@ -1,7 +1,11 @@
 <?php
 
 namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\HasLifecycleCallbacks()
+ */
 
 class FlashMessage
 {
@@ -171,5 +175,14 @@ class FlashMessage
     {
         $this->orientation = $orientation;
         return $this;
+    }
+
+    /**
+     * @ORM\PostPersist
+     * @ORM\PostRemove
+     */
+    public function setMosqueUpdatedAtValue()
+    {
+        $this->mosque->setUpdated(new \DateTime());
     }
 }

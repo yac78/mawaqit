@@ -2,11 +2,12 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Mosque;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Message
+ * @ORM\HasLifecycleCallbacks()
  */
 class Message
 {
@@ -243,5 +244,13 @@ class Message
         $this->desktop = $desktop;
     }
 
+    /**
+     * @ORM\PostPersist
+     * @ORM\PostRemove
+     */
+    public function setMosqueUpdatedAtValue()
+    {
+        $this->mosque->setUpdated(new \DateTime());
+    }
 
 }
