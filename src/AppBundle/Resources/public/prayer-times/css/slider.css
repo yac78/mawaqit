@@ -14,6 +14,7 @@
     float: left;
     margin: auto;
     font-size: 70px;
+    word-break: break-all;
 }
 
 .adhkar-after-prayer .title {
