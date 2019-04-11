@@ -205,8 +205,9 @@ class MessageController extends Controller
 
         foreach ($messages as $id => $status) {
             $message = $repo->find($id);
-            $message->setEnabled((bool)$status);
-            $em->persist($message);
+            if($message instanceof Message){
+                $message->setEnabled((bool)$status);
+            }
         }
 
         $em->flush();
