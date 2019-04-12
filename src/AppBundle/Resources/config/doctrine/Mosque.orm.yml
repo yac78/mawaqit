@@ -138,6 +138,7 @@ AppBundle\Entity\Mosque:
     oneToOne:
         configuration:
             targetEntity: AppBundle\Entity\Configuration
+            orphanRemoval: true
             cascade:
                 - persist
             joinColumn:
