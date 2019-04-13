@@ -73,7 +73,7 @@ paths:
           required: false          
           description: if this parameter is present, the full year calendar of prayer times is returned
         - in: header
-          name: If-None-Match
+          name: If-Modified-Since
           type: string
           required: false          
           description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
@@ -82,6 +82,12 @@ paths:
           description: The result
           schema:
             $ref: '#/definitions/PrayerTimes'
+          headers:
+            Last-Modified:
+              type: string
+              description: The last update date of the mosque           
+        304:
+          description: Not modified          
         404:
           description: The mosque has not been found
         500:
@@ -350,10 +356,6 @@ definitions:
         items: 
           type: object
         description: The full year prayer times calendar    
-      updatedAt:    
-        type: integer
-        example: 1547833429
-        description: The timestamp when the mosque has last updated
         
   Announcement:
     type: object
