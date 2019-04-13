@@ -177,6 +177,33 @@ definitions:
         type: number
         description: The proximity in meter, distance between GPS position and the mosque
         example: 1500
+      womenSpace:
+        type: string
+        description: 0 or 1, If null that means information not available
+      janazaPrayer:
+        type: string
+        description: 0 or 1, If null that means information not available
+      aidPrayer:
+        type: string
+        description: 0 or 1, If null that means information not available
+      childrenCourses:
+        type: string
+        description: 0 or 1, If null that means information not available
+      adultCourses:
+        type: string
+        description: 0 or 1, If null that means information not available
+      ramadanMeal:
+        type: string
+        description: 0 or 1, If null that means information not available
+      handicapAccessibility:
+        type: string
+        description: 0 or 1, If null that means information not available
+      ablutions:
+        type: string
+        description: 0 or 1, If null that means information not available
+      parking:
+        type: boolean
+        description: 0 or 1, If null that means information not available
 
   PrayerTimes:
     type: object
