@@ -236,7 +236,6 @@ definitions:
       - parking
       - flashMessage
       - announcements
-      - updatedAt
     properties:
       id:
         type: integer
