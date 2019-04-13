@@ -75,21 +75,48 @@ class MosqueService
      */
     public function searchApi($query, $lat, $lon)
     {
-        $repo = $this->em->getRepository("AppBundle:Mosque");
-        $mosques = [];
-
-        if ($lon !== null && $lat !== null) {
-            $statement = $this->em->getConnection()->prepare("SELECT m.id, m.name, m.phone, m.email, m.site, CONCAT(COALESCE(m.address, ''), ' ',  m.zipcode,' ', m.city, ' ', m.country_full_name) as localisation,  m.longitude , m.latitude, if(m.image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', m.image1)) as image,  CONCAT('https://mawaqit.net/fr/', m.slug) as url, ROUND(get_distance_metres($lat, $lon, latitude, longitude) ,0) AS proximity  FROM mosque m where m.status = 'VALIDATED' AND m.type = 'mosque' having proximity < 10000 ORDER BY proximity ASC  LIMIT 10");
-            $statement->execute();
-            $mosques = $statement->fetchAll();
-        } else if ($query) {
-            $mosques = $repo->publicSearch($query)
-                ->getQuery()
-                ->getResult();
-            $mosques = $this->serializer->normalize($mosques, 'json', ["groups" => ["search"]]);
+        if (empty($query) && empty($lat) && empty($lon)) {
+            return [];
         }
 
-        return $mosques;
+        $q = "SELECT id, name, phone, email, site, 
+                      CONCAT(COALESCE(address, ''), ' ', zipcode,' ', city, ' ', country_full_name) as localisation,  
+                      longitude , latitude, 
+                      if(image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', image1)) as image,  
+                      CONCAT('https://mawaqit.net/fr/', slug) as url,                         
+                      women_space, janaza_prayer, aid_prayer, children_courses, adult_courses, ramadan_meal, handicap_accessibility, ablutions, parking";
+
+        if ($lon !== null && $lat !== null) {
+            $q .= ",ROUND(get_distance_metres($lat, $lon, latitude, longitude) ,0) AS proximity
+                            FROM mosque 
+                            WHERE status = 'VALIDATED' AND type = 'mosque' 
+                            HAVING proximity < 10000 ORDER BY proximity ASC  LIMIT 10";
+        } else if ($query) {
+            $query = preg_split("/\s+/", trim($query));
+            $q .= " FROM mosque WHERE status = 'VALIDATED' AND type = 'mosque'";
+            foreach ($query as $key => $keyword) {
+                $q .= " AND (name LIKE :keyword$key 
+                OR association_name LIKE :keyword$key 
+                OR address LIKE :keyword$key 
+                OR city LIKE :keyword$key 
+                OR zipcode LIKE :keyword$key 
+                OR country LIKE :keyword$key)";
+            }
+        }
+
+        $stmt = $this->em->getConnection()->prepare($q);
+
+        if ($lon !== null && $lat !== null) {
+            $stmt->bindValue(":lat", $lat);
+            $stmt->bindValue(":lon", $lon);
+        } else if ($query) {
+            foreach ($query as $key => $keyword) {
+                $stmt->bindValue(":keyword$key", "%$keyword%");
+            }
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     /**
