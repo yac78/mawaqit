@@ -84,7 +84,15 @@ class MosqueService
                       longitude , latitude, 
                       if(image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', image1)) as image,  
                       CONCAT('https://mawaqit.net/fr/', slug) as url,                         
-                      women_space, janaza_prayer, aid_prayer, children_courses, adult_courses, ramadan_meal, handicap_accessibility, ablutions, parking";
+                      women_space AS womenSpace, 
+                      janaza_prayer AS janazaPrayer, 
+                      aid_prayer AS aidPrayer, 
+                      children_courses AS childrenCourses, 
+                      adult_courses AS adultCourses, 
+                      ramadan_meal AS ramadanMeal, 
+                      handicap_accessibility AS handicapAccessibility, 
+                      ablutions, 
+                      parking";
 
         if ($lon !== null && $lat !== null) {
             $q .= ",ROUND(get_distance_metres($lat, $lon, latitude, longitude) ,0) AS proximity
