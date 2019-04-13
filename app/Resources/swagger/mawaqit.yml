@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: '3.0'
 info:
   description: |
       Our API need authentication by token, please feel free to contact us by email to obtain your access token.<br> 
@@ -82,6 +82,11 @@ paths:
           description: The result
           schema:
             $ref: '#/definitions/PrayerTimes'
+          headers:
+            Last-Modified:
+              schema:
+                type: string
+              description: The last update date of the mosque           
         304:
           description: Not modified          
         404:
