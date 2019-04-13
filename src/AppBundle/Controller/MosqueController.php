@@ -107,16 +107,23 @@ class MosqueController extends Controller
     /**
      * @Route("/m/{slug}", name="mosque_mobile")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     * @Cache(expires="+10 mins", public=true, smaxage="600", maxage="600")
+     * @Cache(public=true, smaxage="300", maxage="300")
      * @param EntityManagerInterface $em
+     * @param Request $request
      * @param Mosque $mosque
      * @return Response
      */
-    public function mosqueMobileAction(EntityManagerInterface $em, Mosque $mosque)
+    public function mosqueMobileAction(EntityManagerInterface $em, Request $request, Mosque $mosque)
     {
-
         if (!$mosque->isValidated()) {
             throw new NotFoundHttpException();
+        }
+
+        $response = new Response();
+        $response->setLastModified($mosque->getUpdated());
+
+        if ($response->isNotModified($request)) {
+            return $response;
         }
 
         return $this->render("mosque/mosque_mobile.html.twig", [
@@ -126,7 +133,7 @@ class MosqueController extends Controller
             "supportEmail" => $this->getParameter("supportEmail"),
             "postmasterAddress" => $this->getParameter("postmaster_address"),
             'messages' => $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true)
-        ]);
+        ], $response);
     }
 
     /**

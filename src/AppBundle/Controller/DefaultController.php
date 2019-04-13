@@ -15,7 +15,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("", name="homepage")
-     * @Cache(expires="+1 day", public=true, smaxage="86400", maxage="86400")
+     * @Cache(public=true, smaxage="86400", maxage="86400")
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException

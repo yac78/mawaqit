@@ -594,16 +594,16 @@ class Mosque
     /**
      * Get updated
      *
-     * @return integer
+     * @return \DateTime
      */
     public function getUpdated()
     {
         $mosqueUpdated = $this->updated;
         $configurationUpdated = $this->configuration->getUpdated();
         if ($mosqueUpdated > $configurationUpdated) {
-            return $mosqueUpdated->getTimestamp();
+            return $mosqueUpdated;
         }
-        return $configurationUpdated->getTimestamp();
+        return $configurationUpdated;
     }
 
     /**

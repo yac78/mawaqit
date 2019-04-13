@@ -38,7 +38,7 @@ class PrayerTime
      */
     function mosqueHasBeenUpdated(Mosque $mosque, $lastUpdatedDate)
     {
-        return $mosque->getUpdated() > $lastUpdatedDate;
+        return $mosque->getUpdated()->getTimestamp() > $lastUpdatedDate;
     }
 
     function getCalendar(Mosque $mosque)
@@ -221,7 +221,7 @@ class PrayerTime
             'parking' => $mosque->getParking(),
             'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
             'announcements' => $this->getMessages($mosque),
-            'updatedAt' => $mosque->getUpdated(),
+            'updatedAt' => $mosque->getUpdated()->getTimestamp(),
         ];
 
         if ($calendar) {

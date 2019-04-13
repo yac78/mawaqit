@@ -302,7 +302,7 @@
 
 <script>
     var isMobile = false;
-    var lastUpdated = {{ mosque.updated }};
+    var lastUpdated = {{ mosque.updated.timestamp  }};
     var isMosque = {{ mosque.mosque|json_encode|raw }};
     var longitude = {{ mosque.longitude }};
     var latitude = {{ mosque.latitude }};
