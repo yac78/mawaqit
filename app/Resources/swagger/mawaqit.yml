@@ -72,9 +72,9 @@ paths:
           type: string
           required: false          
           description: if this parameter is present, the full year calendar of prayer times is returned
-        - in: query
-          name: updatedAt
-          type: integer
+        - in: header
+          name: If-None-Match
+          type: string
           required: false          
           description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
       responses:
