@@ -193,6 +193,7 @@ class MessageController extends Controller
 
     /**
      * @param Request $request
+     * @param Mosque $mosque
      * @Route("/mosque/{mosque}/message-bulk-change-status", name="message_bulk_change_status")
      * @Method("POST")
      * @return Response
@@ -210,6 +211,7 @@ class MessageController extends Controller
             }
         }
 
+        $mosque->setUpdated(new \DateTime());
         $em->flush();
 
         return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
