@@ -7,9 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ * @Route("/android", options={"i18n"="false"})
+ * @return JsonResponse
+ */
+
 class AndroidController extends Controller
 {
-
     /**
      * @Route("/{mosque}/manifest.json", name="manifest")
      * @return JsonResponse
