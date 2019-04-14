@@ -8,14 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * @Route("/android", options={"i18n"="false"})
+ * @Route("/android")
  * @return JsonResponse
  */
 
 class AndroidController extends Controller
 {
     /**
-     * @Route("/{mosque}/manifest.json", name="manifest")
+     * @Route("/{mosque}/manifest.json", name="manifest", options={"i18n"="false"})
      * @return JsonResponse
      */
     public function manifestAction(Mosque $mosque)

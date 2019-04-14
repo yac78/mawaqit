@@ -57,6 +57,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("legal-notice", name="legal_notice")
+     * @Cache(public=true, smaxage="259320", maxage="259320")
      */
     public function legalNoticeAction()
     {

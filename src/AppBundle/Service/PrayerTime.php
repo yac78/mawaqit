@@ -207,7 +207,6 @@ class PrayerTime
             'jumua2' => $conf->getJumuaTime2(),
             'shuruq' => null,
             'times' => null,
-            'fixedTimes' => $conf->getFixedTimes(),
             'fixedIqama' => $conf->getFixedIqama(),
             'iqama' => $conf->getWaitingTimes(),
             'womenSpace' => $mosque->getWomenSpace(),
@@ -268,7 +267,7 @@ class PrayerTime
          * @var Message $message
          */
         foreach ($mosque->getMessages() as $message) {
-            if ($message->isEnabled()) {
+            if ($message->isEnabled() && $message->isMobile()) {
                 $messages[] = [
                     'id' => $message->getId(),
                     'title' => $message->getTitle(),
