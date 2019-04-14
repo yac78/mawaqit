@@ -81,7 +81,18 @@ class MosqueController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $response =  new JsonResponse();
+        if ($request->query->has('updatedAt')) {
+            $updatedAt = $request->query->get('updatedAt');
+            if (!is_numeric($updatedAt)) {
+                throw new BadRequestHttpException();
+            }
+
+            if ($mosque->getUpdated()->getTimestamp() <= $updatedAt) {
+                return new Response(null, Response::HTTP_NOT_MODIFIED);
+            }
+        }
+
+        $response = new JsonResponse();
         $response->setLastModified($mosque->getUpdated());
 
         if ($response->isNotModified($request)) {
