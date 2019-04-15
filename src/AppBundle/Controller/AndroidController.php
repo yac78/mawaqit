@@ -17,7 +17,7 @@ class AndroidController extends Controller
 {
     /**
      * @Route("/{mosque}/manifest", name="manifest", options={"i18n"="false"})
-     * @Cache(public=true, smaxage="259320", maxage="259320")
+     * @Cache(public=true, maxage="259320")
      * @return JsonResponse
      */
     public function manifestAction(Mosque $mosque)

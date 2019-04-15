@@ -15,7 +15,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("", name="homepage")
-     * @Cache(public=true, smaxage="86400", maxage="86400")
+     * @Cache(public=true, maxage="86400")
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -57,7 +57,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("legal-notice", name="legal_notice")
-     * @Cache(public=true, smaxage="259320", maxage="259320")
+     * @Cache(public=true, maxage="259320")
      */
     public function legalNoticeAction()
     {

@@ -107,7 +107,7 @@ class MosqueController extends Controller
     /**
      * @Route("/m/{slug}", name="mosque_mobile")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     * @Cache(public=true, smaxage="300", maxage="300")
+     * @Cache(public=true, maxage="300")
      * @param EntityManagerInterface $em
      * @param Request $request
      * @param Mosque $mosque
