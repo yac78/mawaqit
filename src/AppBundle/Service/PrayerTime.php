@@ -259,7 +259,7 @@ class PrayerTime
         $result['shuruq'] = $times[1];
         unset($times[1]);
 
-        $result['times'] = $times;
+        $result['times'] = array_values($times);
         return $result;
     }
 
