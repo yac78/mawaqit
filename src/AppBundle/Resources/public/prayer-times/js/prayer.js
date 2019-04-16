@@ -192,7 +192,7 @@ var prayer = {
         $.each(times, function (i, time) {
             times[i] = prayer.dstConvertTimeForCalendarMode(time, tomorrow);
 
-            // adjust isha to 90 min after maghrib if option enabled
+            // adjust isha to x min after maghrib if option enabled
             if (i === 4 && prayer.confData.ishaFixation) {
                 var maghribDateTime = prayer.getCurrentDateForPrayerTime(times[3]);
                 maghribDateTime.setMinutes(maghribDateTime.getMinutes() + prayer.confData.ishaFixation);

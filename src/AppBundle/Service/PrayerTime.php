@@ -49,7 +49,6 @@ class PrayerTime
             $calendar = $conf->getCalendar();
             foreach ($calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
-                    $this->adjust($prayers, $mosque);
                     $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
                     $this->applyDst($prayers, $mosque, $timestamp);
                     $calendar[$month][$day] = $prayers;
@@ -252,7 +251,13 @@ class PrayerTime
     {
         $times = array_values($times);
         $fixations = $conf->getFixedTimes();
+
         foreach ($fixations as $key => $fixation) {
+            // adjust isha to x min after maghrib if option enabled
+            if ($key === 4 && is_numeric($conf->getIshaFixation())) {
+                $times[$key] = (new \DateTime($times[3]))->modify($conf->getIshaFixation() . "minutes")->format("H:i");;
+            }
+
             if (!empty($fixation) && strpos($fixation, "00:") !== 0 && $fixation > $times[$key]) {
                 $times[$key] = $fixation;
             }
