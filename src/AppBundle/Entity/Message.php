@@ -112,6 +112,8 @@ class Message
      */
     public function setContent($content)
     {
+        $content = preg_replace("/<li>|<ul>|<ol>|<\/ul>|<\/ol>/i", "", $content);
+        $content = preg_replace("/<\/li>/i", "<br>", $content);
         $this->content = $content;
 
         return $this;

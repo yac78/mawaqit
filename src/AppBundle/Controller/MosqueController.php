@@ -107,7 +107,7 @@ class MosqueController extends Controller
     /**
      * @Route("/m/{slug}", name="mosque_mobile")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     * @Cache(public=true, maxage="300")
+     * @Cache(public=true, maxage="600")
      * @param EntityManagerInterface $em
      * @param Request $request
      * @param Mosque $mosque
@@ -139,6 +139,7 @@ class MosqueController extends Controller
     /**
      * @Route("/w/{slug}", name="mosque_widget")
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
+     * @Cache(public=true, maxage="600")
      * @param Mosque $mosque
      * @return Response
      */
@@ -147,19 +148,6 @@ class MosqueController extends Controller
         return $this->render("mosque/widget.html.twig", [
             'mawaqitApiAccessToken' => $this->getParameter("mawaqit_api_access_token"),
             'mosque' => $mosque
-        ]);
-    }
-
-
-    /**
-     * @Route("/{slug}/has-been-updated/{lastUpdatedDate}", name="mosque_has_been_updated_deprecated", options={"i18n"="false"})
-     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     */
-    public function hasUpdatedAjaxDeprecatedAction(Request $request, Mosque $mosque, $lastUpdatedDate)
-    {
-        return $this->forward("AppBundle:Mosque:hasUpdatedAjax", [
-            "slug" => $mosque->getSlug(),
-            "request" => $request
         ]);
     }
 
