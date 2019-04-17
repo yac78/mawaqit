@@ -19,7 +19,7 @@ class HadithController extends Controller
 
     /**
      * @Route("/random", name="random_hadith", options={"i18n"="false"})
-     * @Cache(public=true, maxage="1200")
+     * @Cache(public=true, maxage="1800")
      * @Method("GET")
      * @param Request $request
      * @return Response
