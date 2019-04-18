@@ -1242,9 +1242,9 @@ class Mosque
     /**
      * @return FlashMessage|null
      */
-    public function getFlashMessage(): FlashMessage
+    public function getFlashMessage():? FlashMessage
     {
-        return $this->flashMessage instanceof FlashMessage ? $this->flashMessage : new FlashMessage();
+        return $this->flashMessage;
     }
 
     /**

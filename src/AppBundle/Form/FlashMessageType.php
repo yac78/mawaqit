@@ -39,8 +39,9 @@ class FlashMessageType extends AbstractType
             ])
             ->add('expire', DateTimeType::class, [
                 'required' => true,
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
+                'data' => new \DateTime("+1 day"),
+                'date_widget' => 'choice',
+                'time_widget' => 'choice',
                 'attr' => [
                     'help' => 'flashMessage.form.expire.title',
                 ]

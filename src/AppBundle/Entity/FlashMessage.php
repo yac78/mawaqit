@@ -49,27 +49,12 @@ class FlashMessage
      */
     private $mosque;
 
-    public function __construct()
-    {
-        $this->expire = new \DateTime("+1 day");
-    }
-
     /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return FlashMessage
-     */
-    public function setId(int $id): FlashMessage
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -84,7 +69,7 @@ class FlashMessage
      * @param string|null $content
      * @return FlashMessage
      */
-    public function setContent($content = null): FlashMessage
+    public function setContent($content): FlashMessage
     {
         $this->content = $content;
         return $this;
@@ -120,7 +105,7 @@ class FlashMessage
      * @param \DateTime $expire
      * @return FlashMessage
      */
-    public function setExpire(\DateTime $expire = null): FlashMessage
+    public function setExpire(\DateTime $expire): FlashMessage
     {
         $this->expire = $expire;
         return $this;
@@ -180,5 +165,13 @@ class FlashMessage
     {
         $this->orientation = $orientation;
         return $this;
+    }
+
+    /**
+     * @return Mosque
+     */
+    public function getMosque(): Mosque
+    {
+        return $this->mosque;
     }
 }

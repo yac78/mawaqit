@@ -145,10 +145,11 @@ AppBundle\Entity\Mosque:
                 onDelete: CASCADE
         flashMessage:
             targetEntity: AppBundle\Entity\FlashMessage
+            orphanRemoval: true
             cascade:
                 - persist
             joinColumn:
-                onDelete: 'SET NULL'
+                onDelete: CASCADE
     oneToMany:
         messages:
             cascade:
