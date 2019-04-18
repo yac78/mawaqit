@@ -92,11 +92,7 @@ var prayer = {
      * @param {boolean} tomorrow if true we load tomorrow time, otherxise we load today times
      */
     loadTimes: function (tomorrow) {
-        if (this.confData.sourceCalcul === "calendar") {
-            this.loadTimesFromCalendar(tomorrow);
-        } else if (this.confData.sourceCalcul === "api") {
-            this.loadTimesFromApi(tomorrow);
-        }
+        this.loadTimesFromCalendar(tomorrow);
     },
     /**
      * @param {boolean} tomorrow
@@ -110,7 +106,7 @@ var prayer = {
             month = dateTime.getTomorrowMonth();
             day = dateTime.getTomorrowDay();
         }
-        this.times = prayer.confData.calendar[month][day];
+        this.times = calendar[month][day];
 
     },
     /**
@@ -128,7 +124,7 @@ var prayer = {
             return 0;
         }
 
-        if(prayer.confData.dst === 2){
+        if (prayer.confData.dst === 2) {
             return "auto";
         }
 
@@ -136,81 +132,12 @@ var prayer = {
     },
 
     /**
-     * @param {boolean} tomorrow
-     * Load times from PrayTimes API
-     */
-    loadTimesFromApi: function (tomorrow) {
-        var prayTimes = new PrayTimes(prayer.confData.prayerMethod);
-
-        if (prayer.confData.prayerMethod === "CUSTOM") {
-            if (prayer.confData.fajrDegree) {
-                prayTimes.adjust({"fajr": parseFloat(prayer.confData.fajrDegree)});
-            }
-            if (prayer.confData.ishaDegree) {
-                prayTimes.adjust({"isha": parseFloat(prayer.confData.ishaDegree)});
-            }
-        }
-
-        prayTimes.adjust({"asr": prayer.confData.asrMethod});
-
-        if (prayer.confData.highLatsMethod) {
-            prayTimes.adjust({"highLats": prayer.confData.highLatsMethod});
-        }
-
-        // times adjustment
-        prayTimes.tune({
-            fajr: prayer.confData.adjustedTimes[0],
-            dhuhr: prayer.confData.adjustedTimes[1],
-            asr: prayer.confData.adjustedTimes[2],
-            maghrib: prayer.confData.adjustedTimes[3],
-            isha: prayer.confData.adjustedTimes[4]
-        });
-
-        var date = new Date();
-        if (typeof tomorrow === 'boolean' && tomorrow === true) {
-            date = dateTime.tomorrow();
-        }
-
-        var pt = prayTimes.getTimes(date, [latitude, longitude], prayer.confData.timezone, prayer.getDst());
-
-        this.times = {
-            1: pt.fajr,
-            2: pt.sunrise,
-            3: pt.dhuhr,
-            4: pt.asr,
-            5: pt.maghrib,
-            6: pt.isha
-        };
-    },
-    /**
      * get today prayer times, array of only five prayer times
      * @param {boolean} tomorrow
      * @returns {Array}
      */
-    getTimes: function (tomorrow) {
-        var times = [this.times[1], this.times[3], this.times[4], this.times[5], this.times[6]];
-        $.each(times, function (i, time) {
-            times[i] = prayer.dstConvertTimeForCalendarMode(time, tomorrow);
-
-            // adjust isha to x min after maghrib if option enabled
-            if (i === 4 && prayer.confData.ishaFixation) {
-                var maghribDateTime = prayer.getCurrentDateForPrayerTime(times[3]);
-                maghribDateTime.setMinutes(maghribDateTime.getMinutes() + prayer.confData.ishaFixation);
-                times[i] = addZero(maghribDateTime.getHours()) + ':' + addZero(maghribDateTime.getMinutes());
-            }
-
-            // handle fixed times
-            // exception for isha when its at 00 o'clock
-            if (i === 4 && times[i].startsWith('00')) {
-                return false;
-            }
-
-            if (prayer.confData.fixedTimes[i] && prayer.confData.fixedTimes[i] > times[i]) {
-                times[i] = prayer.confData.fixedTimes[i];
-            }
-
-        });
-        return times;
+    getTimes: function () {
+        return [this.times[0], this.times[2], this.times[3], this.times[4], this.times[6]];
     },
     getTimeByIndex: function (index) {
         return this.getTimes()[index];
@@ -253,7 +180,8 @@ var prayer = {
                 if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
                     fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
                 }
-            } catch (e) {}
+            } catch (e) {
+            }
 
             if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
@@ -384,7 +312,7 @@ var prayer = {
      * @returns {String}
      */
     getChouroukTime: function () {
-        return prayer.dstConvertTimeForCalendarMode(this.times[2]);
+        return prayer.dstConvertTimeForCalendarMode(this.times[1]);
     },
     /**
      * Get the imsak time calculated by soustraction of imsakNbMinBeforeFajr from sobh time
@@ -1060,12 +988,13 @@ var prayer = {
                 if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
                     fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
                 }
-            } catch (e) {}
+            } catch (e) {
+            }
 
             if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
-                    wait =  prayer.formatTime(fixedIqama);
+                    wait = prayer.formatTime(fixedIqama);
                 }
             }
 

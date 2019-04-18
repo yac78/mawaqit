@@ -94,7 +94,8 @@ class MosqueController extends Controller
 
         return $this->render("mosque/mosque.html.twig", [
             'mosque' => $mosque,
-            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
+            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]),
+            'calendar' => $this->get('app.prayer_times')->getCalendar($mosque),
             'languages' => $this->getParameter('languages'),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
@@ -128,7 +129,8 @@ class MosqueController extends Controller
 
         return $this->render("mosque/mosque_mobile.html.twig", [
             'mosque' => $mosque,
-            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json'),
+            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]),
+            'calendar' => $this->get('app.prayer_times')->getCalendar($mosque),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
             "postmasterAddress" => $this->getParameter("postmaster_address"),

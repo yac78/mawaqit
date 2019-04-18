@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * Configuration
  */
@@ -50,61 +52,73 @@ class Configuration
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $jumuaTime = "13:30";
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $jumuaTime2;
 
     /**
      * @var boolean
+     * @Groups({"screen"})
      */
     private $jumuaAsDuhr = false;
 
     /**
      * @var boolean
+     * @Groups({"screen"})
      */
     private $noJumua = false;
 
     /**
      * @var boolean
+     * @Groups({"screen"})
      */
     private $jumuaDhikrReminderEnabled = true;
 
     /**
      * @var boolean
+     * @Groups({"screen"})
      */
     private $jumuaBlackScreenEnabled = false;
 
     /**
      * @var integer
+     * @Groups({"screen"})
      */
     private $jumuaTimeout = 30;
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $aidTime;
 
     /**
      * @var int
+     * @Groups({"screen"})
      */
     private $imsakNbMinBeforeFajr = 0;
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $maximumIshaTimeForNoWaiting;
 
     /**
      * @var array
+     * @Groups({"screen"})
      */
     private $waitingTimes = [10, 10, 10, 5, 10];
 
     /**
      * @var array
+     * @Groups({"screen"})
      */
     private $fixedIqama = ["", "", "", "", ""];
 
@@ -120,61 +134,73 @@ class Configuration
 
     /**
      * @var array
+     * @Groups({"screen"})
      */
     private $duaAfterPrayerShowTimes = [9, 8, 8, 8, 9];
 
     /**
      * @var int
+     * @Groups({"screen"})
      */
     private $hijriAdjustment = 0;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $hijriDateEnabled = true;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $duaAfterAzanEnabled = true;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $duaAfterPrayerEnabled = true;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $azanBip = false;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $azanVoiceEnabled = false;
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $wakeAzanVoice = "adhan-maquah";
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $iqamaBip = false;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $iqamaFullScreenCountdown = true;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $blackScreenWhenPraying = true;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $urlQrCodeEnabled = true;
 
@@ -232,11 +258,13 @@ class Configuration
 
     /**
      * @var int
+     * @Groups({"screen"})
      */
     private $iqamaDisplayTime = 30;
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $site;
 
@@ -247,6 +275,7 @@ class Configuration
 
     /**
      * @var array
+     * @Groups({"screen"})
      */
     private $iqamaCalendar = [];
     /**
@@ -261,41 +290,49 @@ class Configuration
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $randomHadithEnabled = true;
 
     /**
      * Interval (exception) for disabling hadith between 2 prayers
      * @var string
+     * @Groups({"screen"})
      */
     private $randomHadithIntervalDisabling;
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $temperatureEnabled = true;
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $temperatureUnit = 'C';
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $backgroundColor = "#000000";
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $theme = "mawaqit";
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $hadithLang = "ar";
 
     /**
      * @var integer
+     * @Groups({"screen"})
      */
     private $wakeForFajrTime;
 
@@ -307,6 +344,7 @@ class Configuration
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $iqamaEnabled = true;
 
@@ -317,26 +355,31 @@ class Configuration
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $footer = true;
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $backgroundType = "motif";
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $backgroundMotif = "1";
 
     /**
      * @var string
+     * @Groups({"screen"})
      */
     private $timeDisplayFormat = "24";
 
     /**
      * @var bool
+     * @Groups({"screen"})
      */
     private $showNextAdhanCountdown = true;
 
