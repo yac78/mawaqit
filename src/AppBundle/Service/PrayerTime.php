@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Configuration;
+use AppBundle\Entity\FlashMessage;
 use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\Vendor\PrayTime;
@@ -72,7 +73,8 @@ class PrayerTime
             foreach (Calendar::MONTHS as $month => $days) {
                 for ($day = 1; $day <= $days; $day++) {
                     $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
-                    $prayers = $this->praytime->getPrayerTimes($timestamp, $mosque->getLatitude(), $mosque->getLongitude(), $conf->getTimezone());
+                    $prayers = $this->praytime->getPrayerTimes($timestamp, $mosque->getLatitude(),
+                        $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
                     $this->adjust($prayers, $mosque);
                     $this->applyDst($prayers, $mosque, $timestamp);
@@ -216,6 +218,8 @@ class PrayerTime
     public function prayTimes(Mosque $mosque, $returnFullCalendar = false)
     {
         $conf = $mosque->getConfiguration();
+        $flashMessage = $mosque->getFlashMessage();
+
         $result = [
             'id' => $mosque->getId(),
             'name' => $mosque->getTitle(),
@@ -244,7 +248,7 @@ class PrayerTime
             'handicapAccessibility' => $mosque->getHandicapAccessibility(),
             'ablutions' => $mosque->getAblutions(),
             'parking' => $mosque->getParking(),
-            'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
+            'flashMessage' => $flashMessage instanceof FlashMessage && $flashMessage->isAvailable() ? $flashMessage->getContent() : null,
             'announcements' => $this->getMessages($mosque),
             'updatedAt' => $mosque->getUpdated()->getTimestamp(),
         ];
