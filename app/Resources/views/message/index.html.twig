@@ -149,7 +149,7 @@
             <div id="flashMessage" class="tab-pane fade">
                 <div class="col-md-6 mt-2">
                     <p class="text-muted">{{ 'flashMessage.info'|trans|raw }}</p>
-                    {% if mosque.flashMessage.content %}
+                    {% if mosque.flashMessage and mosque.flashMessage.content %}
                         <div class="alert alert-{{ mosque.flashMessage.expired ?  'danger' : 'success' }}">
                             <p><strong>{{ mosque.flashMessage.content }}</strong></p><br>
                             <p>{{ ( mosque.flashMessage.expired ? 'expired' : 'expire')|trans }} {{ mosque.flashMessage.expire|date }}</p>
@@ -166,7 +166,7 @@
                             </a>
                             <a href="{{ path('mosque_index') }}" class="btn btn-default"><i class="fa fa-caret-left"></i> {{ 'return'|trans }}</a>
                         </div>
-                        {% if mosque.flashMessage.content %}
+                        {% if mosque.flashMessage and mosque.flashMessage.content %}
                             <div class="col-xs-4 text-right">
                                 <a href="{{ path('flash_message_delete', {'mosque': mosque.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> {{ 'form.delete.action'|trans }}</a>
                             </div>

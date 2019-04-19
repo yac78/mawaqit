@@ -6,7 +6,12 @@
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    {#<meta name="apple-itunes-app" content="app-id=472332600">#}
+    {#<link rel="manifest" href="/static/android-manifest.json">#}
+
     <link rel="manifest" href="{{ path('manifest', {mosque: mosque.id}) }}">
+
     {% include "partial/favicon.html.twig" %}
 
     {% stylesheets
@@ -78,7 +83,7 @@
         <div class="gregorianDate"></div>
     </div>
 
-    {% if mosque.flashMessage.available %}
+    {% if mosque.flashMessage and mosque.flashMessage.available %}
         <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
             <p class="{{ mosque.flashMessage.orientation }}"
                style="color:{{ mosque.flashMessage.color }};
@@ -230,7 +235,7 @@
 
 <script>
     var isMobile = true;
-    var lastUpdated = {{ mosque.updated }};
+    var lastUpdated = {{ mosque.updated.timestamp }};
     var isMosque = {{ mosque.mosque|json_encode|raw }};
     var longitude = {{ mosque.longitude }};
     var latitude = {{ mosque.latitude }};

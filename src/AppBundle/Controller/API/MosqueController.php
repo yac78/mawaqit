@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * @Route("/api/1.0.0/mosque", options={"i18n"="false"})
@@ -67,13 +68,15 @@ class MosqueController extends Controller
     /**
      * Get pray times and other info of the mosque by ID
      * @Route("/{mosque}/prayer-times")
+     * @Cache(public=true, maxage="300")
      * @Method("GET")
      * @param Request $request
      * @param Mosque $mosque
-     * @return JsonResponse
+     * @return Response
      */
     public function prayTimesAction(Request $request, Mosque $mosque)
     {
+
         if ($mosque->isHome()) {
             throw new NotFoundHttpException();
         }
@@ -84,14 +87,23 @@ class MosqueController extends Controller
                 throw new BadRequestHttpException();
             }
 
-            if ($mosque->getUpdated() <= $updatedAt) {
-                return new JsonResponse(null, JsonResponse::HTTP_NOT_MODIFIED);
+            if ($mosque->getUpdated()->getTimestamp() <= $updatedAt) {
+                return new Response(null, Response::HTTP_NOT_MODIFIED);
             }
+        }
+
+        $response = new JsonResponse();
+        $response->setLastModified($mosque->getUpdated());
+
+        if ($response->isNotModified($request)) {
+            return $response;
         }
 
         $calendar = $request->query->has('calendar');
         $result = $this->get('app.prayer_times')->prayTimes($mosque, $calendar);
-        return new JsonResponse($result);
+        $response->setData($result);
+
+        return $response;
     }
 
 }

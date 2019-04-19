@@ -219,7 +219,7 @@
 
     <!-- footer container -->
     <footer>
-        {% if mosque.flashMessage.available %}
+        {% if mosque.flashMessage and mosque.flashMessage.available %}
             <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
                 <p class="{{ mosque.flashMessage.orientation }}"
                    style="color:{{ mosque.flashMessage.color }};
@@ -231,7 +231,7 @@
             </div>
         {% endif %}
 
-        <div class="info {{ mosque.flashMessage.available ? 'hidden' : '' }}">
+        <div class="info {{ mosque.flashMessage and mosque.flashMessage.available ? 'hidden' : '' }}">
             {% if mosque.configuration.footer %}
                 {% if isNotLocal() %}
                     {% set url =  url('mosque', {slug: mosque.slug, _locale: app.request.locale}) %}
@@ -302,7 +302,7 @@
 
 <script>
     var isMobile = false;
-    var lastUpdated = {{ mosque.updated }};
+    var lastUpdated = {{ mosque.updated.timestamp  }};
     var isMosque = {{ mosque.mosque|json_encode|raw }};
     var longitude = {{ mosque.longitude }};
     var latitude = {{ mosque.latitude }};
@@ -326,7 +326,7 @@
     '@AppBundle/Resources/public/prayer-times/js/weather.js'
     '@AppBundle/Resources/public/prayer-times/js/main.js'
     '@AppBundle/Resources/public/prayer-times/js/common.js'
-    '@AppBundle/Resources/public/prayer-times/js/desktop.js' %}
+    '@AppBundle/Resources/public/prayer-times/js/fullscreen.js' %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 </body>

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\FlashMessageType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -16,8 +17,12 @@ class FlashMessageController extends Controller
 {
     /**
      * @Route("/mosque/{mosque}/flash-message/edit", name="flash_message_edit")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, Mosque $mosque)
+    public function editAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
     {
         $user = $this->getUser();
         if (!$user->isAdmin()) {
@@ -32,8 +37,7 @@ class FlashMessageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mosque->setFlashMessage($message);
-            $em = $this->getDoctrine()->getManager();
+            $mosque->setFlashMessage($form->getData());
             $em->flush();
             $this->addFlash('success', "form.edit.success");
             return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId(), '_fragment' => 'flashMessage']);
@@ -47,8 +51,11 @@ class FlashMessageController extends Controller
 
     /**
      * @Route("/mosque/{mosque}/flash-message/delete", name="flash_message_delete")
+     * @param EntityManagerInterface $em
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Mosque $mosque)
+    public function deleteAction(EntityManagerInterface $em, Mosque $mosque)
     {
         $user = $this->getUser();
         if (!$user->isAdmin()) {
@@ -56,9 +63,8 @@ class FlashMessageController extends Controller
                 throw new AccessDeniedException;
             }
         }
-        $message = $mosque->getFlashMessage();
-        $message->setContent(null);
-        $em = $this->getDoctrine()->getManager();
+        $mesage = $mosque->getFlashMessage();
+        $em->remove($mesage);
         $em->flush();
         $this->addFlash('success', "form.delete.success");
 

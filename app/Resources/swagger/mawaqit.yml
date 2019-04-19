@@ -72,9 +72,9 @@ paths:
           type: string
           required: false          
           description: if this parameter is present, the full year calendar of prayer times is returned
-        - in: query
-          name: updatedAt
-          type: integer
+        - in: header
+          name: If-Modified-Since
+          type: string
           required: false          
           description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
       responses:
@@ -82,6 +82,12 @@ paths:
           description: The result
           schema:
             $ref: '#/definitions/PrayerTimes'
+          headers:
+            Last-Modified:
+              type: string
+              description: The last update date of the mosque           
+        304:
+          description: Not modified          
         404:
           description: The mosque has not been found
         500:
@@ -177,6 +183,33 @@ definitions:
         type: number
         description: The proximity in meter, distance between GPS position and the mosque
         example: 1500
+      womenSpace:
+        type: string
+        description: 0 or 1, If null that means information not available
+      janazaPrayer:
+        type: string
+        description: 0 or 1, If null that means information not available
+      aidPrayer:
+        type: string
+        description: 0 or 1, If null that means information not available
+      childrenCourses:
+        type: string
+        description: 0 or 1, If null that means information not available
+      adultCourses:
+        type: string
+        description: 0 or 1, If null that means information not available
+      ramadanMeal:
+        type: string
+        description: 0 or 1, If null that means information not available
+      handicapAccessibility:
+        type: string
+        description: 0 or 1, If null that means information not available
+      ablutions:
+        type: string
+        description: 0 or 1, If null that means information not available
+      parking:
+        type: boolean
+        description: 0 or 1, If null that means information not available
 
   PrayerTimes:
     type: object
@@ -209,7 +242,6 @@ definitions:
       - parking
       - flashMessage
       - announcements
-      - updatedAt
     properties:
       id:
         type: integer
@@ -324,10 +356,6 @@ definitions:
         items: 
           type: object
         description: The full year prayer times calendar    
-      updatedAt:    
-        type: integer
-        example: 1547833429
-        description: The timestamp when the mosque has last updated
         
   Announcement:
     type: object

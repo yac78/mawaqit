@@ -169,7 +169,7 @@ class ConfigurationType extends AbstractType
             ->add('waitingTimes', PrayerType::class, [
                 'sub_options' => [
                     'type' => IntegerType::class,
-                    'constraints' => new GreaterThanOrEqual(['value' => 0]),
+                    'constraints' => [new GreaterThanOrEqual(['value' => 0]), new NotBlank()],
                     'attr' => [
                         'min' => 0
                     ]
@@ -212,7 +212,7 @@ class ConfigurationType extends AbstractType
             ->add('duaAfterPrayerShowTimes', PrayerType::class, [
                 'sub_options' => [
                     'type' => IntegerType::class,
-                    'constraints' => new GreaterThanOrEqual(['value' => 5]),
+                    'constraints' => [new GreaterThanOrEqual(['value' => 5]), new NotBlank()],
                     'attr' => [
                         'min' => 5
                     ]

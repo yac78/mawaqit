@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{{'site_title'|trans}}</title>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="user-scalable=no">
-        <meta name="google" content="notranslate">
-        {% include "partial/favicon.html.twig" %}
+<head>
+    <title>{{ 'site_title'|trans }}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no">
+    <meta name="google" content="notranslate">
+    {% include "partial/favicon.html.twig" %}
 
-        {% stylesheets 
-            "bundles/app/css/fonts.css"
-            "bundles/app/css/full_message_slider.css"
-            filter="cssrewrite"
-        %}
+    {% stylesheets
+        "bundles/app/css/fonts.css"
+        "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+        "bundles/app/css/full_message_slider.css"
+        filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        {% endstylesheets %}
-    </head>
+    {% endstylesheets %}
+</head>
 
-    <body>
-        <div id="slider" data-remote="{{path('ajax_get_messages', {id: mosque.id})}}"></div>
+<body>
+<div id="full-screen" title="{{ 'full_screen'|trans }}">
+    <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
+</div>
+<div id="slider" data-remote="{{ path('ajax_get_messages', {id: mosque.id}) }}"></div>
 
-        {% javascripts
-                '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
-                '@AppBundle/Resources/public/js/tools.js'
-                '@AppBundle/Resources/public/js/full_message_slider.js'
-        %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}    
-    </body>
+{% javascripts
+    '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+    '@AppBundle/Resources/public/js/tools.js'
+    '@AppBundle/Resources/public/js/full_message_slider.js'
+    '@AppBundle/Resources/public/prayer-times/js/fullscreen.js' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
 
 </html>

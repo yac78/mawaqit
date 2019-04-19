@@ -38,7 +38,7 @@ class PrayerTime
      */
     function mosqueHasBeenUpdated(Mosque $mosque, $lastUpdatedDate)
     {
-        return $mosque->getUpdated() > $lastUpdatedDate;
+        return $mosque->getUpdated()->getTimestamp() > $lastUpdatedDate;
     }
 
     function getCalendar(Mosque $mosque)
@@ -49,9 +49,9 @@ class PrayerTime
             $calendar = $conf->getCalendar();
             foreach ($calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
-                    $this->adjust($prayers, $mosque);
                     $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
                     $this->applyDst($prayers, $mosque, $timestamp);
+                    $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
                 }
             }
@@ -76,6 +76,7 @@ class PrayerTime
                     unset($prayers[5]);
                     $this->adjust($prayers, $mosque);
                     $this->applyDst($prayers, $mosque, $timestamp);
+                    $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
                 }
             }
@@ -133,6 +134,31 @@ class PrayerTime
         }
     }
 
+    private function fixationProcess(array &$prayers, Configuration $conf)
+    {
+        $fixations = $conf->getFixedTimes();
+        $fixations = [
+            1 => $fixations[0],
+            2 => null,
+            3 => $fixations[1],
+            4 => $fixations[2],
+            5 => $fixations[3],
+            6 => $fixations[4],
+        ];
+
+        foreach ($fixations as $k => $fixation) {
+            // adjust isha to x min after maghrib if option enabled
+            if ($k === 6 && is_numeric($conf->getIshaFixation())) {
+                $prayers[6] = (new \DateTime($prayers[5]))->modify($conf->getIshaFixation() . "minutes")->format("H:i");;
+            }
+
+            if (!empty($fixation) && $fixation > $prayers[$k]) {
+                $prayers[$k] = $fixation;
+            }
+        }
+        return $prayers;
+    }
+
     /**
      * transforme json calendar in csv files and compress theme in a zip file
      * @param Mosque $mosque
@@ -184,10 +210,10 @@ class PrayerTime
     /**
      *  Get pray times and other info of the mosque
      * @param Mosque $mosque
-     * @param bool $calendar
+     * @param bool $returnFullCalendar
      * @return array
      */
-    public function prayTimes(Mosque $mosque, $calendar = false)
+    public function prayTimes(Mosque $mosque, $returnFullCalendar = false)
     {
         $conf = $mosque->getConfiguration();
         $result = [
@@ -207,7 +233,6 @@ class PrayerTime
             'jumua2' => $conf->getJumuaTime2(),
             'shuruq' => null,
             'times' => null,
-            'fixedTimes' => $conf->getFixedTimes(),
             'fixedIqama' => $conf->getFixedIqama(),
             'iqama' => $conf->getWaitingTimes(),
             'womenSpace' => $mosque->getWomenSpace(),
@@ -221,44 +246,29 @@ class PrayerTime
             'parking' => $mosque->getParking(),
             'flashMessage' => $mosque->getFlashMessage()->isAvailable() ? $mosque->getFlashMessage()->getContent() : null,
             'announcements' => $this->getMessages($mosque),
-            'updatedAt' => $mosque->getUpdated(),
+            'updatedAt' => $mosque->getUpdated()->getTimestamp(),
         ];
 
-        if ($calendar) {
-            $result['calendar'] = $this->getCalendar($mosque);
+        $calendar = $this->getCalendar($mosque);
+
+        if ($returnFullCalendar) {
+            $result['calendar'] = $calendar;
         }
 
-        $times = $this->getPrayTimes($mosque);
+        $times = $this->getPrayTimes($calendar);
         $result['shuruq'] = $times[1];
         unset($times[1]);
 
-        $times = $this->fixationProcess($times, $conf);
-        $result['times'] = $times;
+        $result['times'] = array_values($times);
         return $result;
     }
 
-    private function getPrayTimes(Mosque $mosque)
+    private function getPrayTimes($calendar)
     {
         $date = new \DateTime();
-        $calendar = $this->getCalendar($mosque);
-        if (is_array($calendar)) {
-            $month = $date->format('m') - 1;
-            $day = (int)$date->format('d');
-            return array_values($calendar[$month][$day]);
-        }
-        return [];
-    }
-
-    private function fixationProcess(array $times, Configuration $conf)
-    {
-        $times = array_values($times);
-        $fixations = $conf->getFixedTimes();
-        foreach ($fixations as $key => $fixation) {
-            if (!empty($fixation) && strpos($fixation, "00:") !== 0 && $fixation > $times[$key]) {
-                $times[$key] = $fixation;
-            }
-        }
-        return $times;
+        $month = $date->format('m') - 1;
+        $day = (int)$date->format('d');
+        return array_values($calendar[$month][$day]);
     }
 
     private function getMessages(Mosque $mosque)
@@ -268,7 +278,7 @@ class PrayerTime
          * @var Message $message
          */
         foreach ($mosque->getMessages() as $message) {
-            if ($message->isEnabled()) {
+            if ($message->isEnabled() && $message->isMobile()) {
                 $messages[] = [
                     'id' => $message->getId(),
                     'title' => $message->getTitle(),

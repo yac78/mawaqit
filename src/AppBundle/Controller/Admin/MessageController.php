@@ -6,6 +6,7 @@ use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MessageType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,8 @@ class MessageController extends Controller
 
     /**
      * @Route("/mosque/{mosque}/message", name="message_index")
+     * @param Mosque $mosque
+     * @return Response
      */
     public function indexAction(Mosque $mosque)
     {
@@ -64,7 +67,7 @@ class MessageController extends Controller
         if (count($violations) > 0) {
             $messageViolation = '';
             foreach ($violations as $violation) {
-                $messageViolation .= $violation->getMessage().'<br>';
+                $messageViolation .= $violation->getMessage() . '<br>';
             }
             return new Response($messageViolation, Response::HTTP_BAD_REQUEST);
         }
@@ -77,8 +80,12 @@ class MessageController extends Controller
 
     /**
      * @Route("/mosque/{mosque}/message/create", name="message_create")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function createAction(Request $request, Mosque $mosque)
+    public function createAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
     {
 
         $user = $this->getUser();
@@ -89,18 +96,14 @@ class MessageController extends Controller
         }
 
         $message = new Message();
-        $message->setMosque($mosque);
-
+        $mosque->addMessage($message);
         $form = $this->createForm(MessageType::class, $message);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
             $em->flush();
             $this->addFlash('success', "form.create.success");
-
             return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
         }
 
@@ -112,8 +115,13 @@ class MessageController extends Controller
 
     /**
      * @Route("/mosque/{mosque}/message/{message}/edit", name="message_edit")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param Mosque $mosque
+     * @param Message $message
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editAction(Request $request, Mosque $mosque, Message $message)
+    public function editAction(Request $request, EntityManagerInterface $em, Mosque $mosque, Message $message)
     {
 
         $user = $this->getUser();
@@ -128,7 +136,7 @@ class MessageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $mosque->setUpdated(new \DateTime());
             $em->flush();
             $this->addFlash('success', "form.edit.success");
 
@@ -144,19 +152,23 @@ class MessageController extends Controller
 
     /**
      * @Route("/message/{id}/delete", name="message_delete")
+     * @param EntityManagerInterface $em
+     * @param Message $message
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Message $message)
+    public function deleteAction(EntityManagerInterface $em, Message $message)
     {
         $user = $this->getUser();
         if (!$user->isAdmin() && $user !== $message->getMosque()->getUser()) {
             throw new AccessDeniedException;
         }
 
-        $em = $this->getDoctrine()->getManager();
+        $mosque = $message->getMosque();
+        $mosque->setUpdated(new \DateTime());
         $em->remove($message);
         $em->flush();
         $this->addFlash('success', "form.delete.success");
-        return $this->redirectToRoute('message_index', ['mosque' => $message->getMosque()->getId()]);
+        return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
     }
 
 
@@ -181,6 +193,7 @@ class MessageController extends Controller
 
     /**
      * @param Request $request
+     * @param Mosque $mosque
      * @Route("/mosque/{mosque}/message-bulk-change-status", name="message_bulk_change_status")
      * @Method("POST")
      * @return Response
@@ -191,14 +204,16 @@ class MessageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('AppBundle:Message');
 
-        foreach ($messages as $id => $status){
+        foreach ($messages as $id => $status) {
             $message = $repo->find($id);
-            $message->setEnabled((bool)$status);
-            $em->persist($message);
+            if($message instanceof Message){
+                $message->setEnabled((bool)$status);
+            }
         }
 
+        $mosque->setUpdated(new \DateTime());
         $em->flush();
 
-        return $this->redirectToRoute('message_index', ['mosque'=> $mosque->getId()]);
+        return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
     }
 }

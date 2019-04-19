@@ -25,5 +25,4 @@ prayer.iqama.initFlash();
 prayer.initCronHandlingTimes();
 prayer.setSpecialTimes();
 prayer.showSpecialTimes();
-prayer.initUpdateConfData();
 prayer.hideSpinner();

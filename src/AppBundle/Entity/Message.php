@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Message
- * @ORM\HasLifecycleCallbacks()
  */
 class Message
 {
@@ -68,7 +67,7 @@ class Message
     /**
      * @var Mosque
      */
-    public $mosque;
+    private $mosque;
 
     /**
      * Get id
@@ -113,6 +112,8 @@ class Message
      */
     public function setContent($content)
     {
+        $content = preg_replace("/<li>|<ul>|<ol>|<\/ul>|<\/ol>/i", "", $content);
+        $content = preg_replace("/<\/li>/i", "<br>", $content);
         $this->content = $content;
 
         return $this;
@@ -139,9 +140,9 @@ class Message
     }
 
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
-     *
-     * @return self
+     * @param File|null $image
+     * @return $this
+     * @throws \Exception
      */
     public function setFile(File $image = null)
     {
@@ -242,15 +243,6 @@ class Message
     public function setDesktop(bool $desktop): void
     {
         $this->desktop = $desktop;
-    }
-
-    /**
-     * @ORM\PostPersist
-     * @ORM\PostRemove
-     */
-    public function setMosqueUpdatedAtValue()
-    {
-        $this->mosque->setUpdated(new \DateTime());
     }
 
 }

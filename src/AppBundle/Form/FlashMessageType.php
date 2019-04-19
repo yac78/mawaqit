@@ -11,9 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\GreaterThan;
-
 
 class FlashMessageType extends AbstractType
 {
@@ -21,11 +18,6 @@ class FlashMessageType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'constraints' => [
-                    new Length([
-                        'max' => 160
-                    ]),
-                ],
                 'attr' => [
                     'class' => 'keyboardInput',
                     'maxlength' => 160,
@@ -34,25 +26,22 @@ class FlashMessageType extends AbstractType
                 ]
             ])
             ->add('orientation', ChoiceType::class, [
-                'choices'=> [
-                    'flashMessage.form.ltr'=>'ltr',
-                    'flashMessage.form.rtl'=>'rtl'
+                'choices' => [
+                    'flashMessage.form.ltr' => 'ltr',
+                    'flashMessage.form.rtl' => 'rtl'
                 ]
             ])
             ->add('color', TextType::class, [
                 'attr' => [
                     'style' => 'width: 100px',
-                    'class'=>"jscolor {width:240, height:150, hash:true, position:'bottom', borderColor:'#000', backgroundColor:'#000'}"
+                    'class' => "jscolor {width:240, height:150, hash:true, position:'bottom', borderColor:'#000', backgroundColor:'#000'}"
                 ]
             ])
             ->add('expire', DateTimeType::class, [
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
-                'constraints' => [
-                    new GreaterThan([
-                        'value' => new \DateTime()
-                    ])
-                ],
+                'required' => true,
+                'data' => new \DateTime("+1 day"),
+                'date_widget' => 'choice',
+                'time_widget' => 'choice',
                 'attr' => [
                     'help' => 'flashMessage.form.expire.title',
                 ]

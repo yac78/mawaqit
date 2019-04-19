@@ -22,7 +22,3 @@ AppBundle\Entity\FlashMessage:
             gedmo:
                 timestampable:
                     on: update
-    oneToOne:
-      mosque:
-        targetEntity: AppBundle\Entity\Mosque
-        mappedBy: flashMessage

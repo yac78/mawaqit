@@ -958,7 +958,7 @@ class Configuration
     /**
      * Get updated
      *
-     * @return string
+     * @return \DateTime
      */
     public function getUpdated()
     {

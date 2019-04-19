@@ -6,12 +6,18 @@ use AppBundle\Entity\Mosque;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
+/**
+ * @Route("/android")
+ * @return JsonResponse
+ */
 
 class AndroidController extends Controller
 {
-
     /**
-     * @Route("/{mosque}/manifest.json", name="manifest")
+     * @Route("/{mosque}/manifest", name="manifest", options={"i18n"="false"})
+     * @Cache(public=true, maxage="259320")
      * @return JsonResponse
      */
     public function manifestAction(Mosque $mosque)
