@@ -110,34 +110,12 @@ var prayer = {
 
     },
     /**
-     * Get dst for API prayer calcul
-     * @returns {Integer}
-     */
-    getDst: function () {
-        if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
-            var dstSummerDate = (new Date(prayer.confData.dstSummerDate)).getTime();
-            var dstWinterDate = (new Date(prayer.confData.dstWinterDate)).getTime();
-            var date = (new Date()).setHours(4);
-            if (date > dstSummerDate && date < dstWinterDate) {
-                return 1;
-            }
-            return 0;
-        }
-
-        if (prayer.confData.dst === 2) {
-            return "auto";
-        }
-
-        return prayer.confData.dst;
-    },
-
-    /**
      * get today prayer times, array of only five prayer times
      * @param {boolean} tomorrow
      * @returns {Array}
      */
     getTimes: function () {
-        return [this.times[0], this.times[2], this.times[3], this.times[4], this.times[6]];
+        return [this.times[0], this.times[2], this.times[3], this.times[4], this.times[5]];
     },
     getTimeByIndex: function (index) {
         return this.getTimes()[index];
@@ -246,48 +224,6 @@ var prayer = {
         }
     },
     /**
-     * Check conditions to apply dst for calendar mode
-     * @param {Boolean} tomorrow
-     * @return {boolean}
-     */
-    applyDstForCalendarMode: function (tomorrow) {
-        if (prayer.confData.sourceCalcul === "calendar") {
-            // dst = 2 => auto
-            if (prayer.confData.dst === 2) {
-                return dateTime.isDst(tomorrow);
-            }
-
-            // dst = 1 => enabled
-            if (prayer.confData.dst === 1 && prayer.confData.dstSummerDate && prayer.confData.dstWinterDate) {
-                var dstSummerDate = (new Date(prayer.confData.dstSummerDate)).getTime();
-                var dstWinterDate = (new Date(prayer.confData.dstWinterDate).getTime());
-                var date = (new Date()).setHours(4);
-                if (date > dstSummerDate && date < dstWinterDate) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    },
-    /**
-     * +1|-1 hour on time for calendar times
-     * Condition 1 : on calendar prayers
-     * Condition 2 : if dst auto and we are between last sunday of march oand last sunday of october
-     * Condition 3 : if dst enablded and we are in choosen dates
-     * @param {Boolean} tomorrow
-     * @param {String} time
-     * @returns {String}
-     */
-    dstConvertTimeForCalendarMode: function (time, tomorrow) {
-        if (this.applyDstForCalendarMode(tomorrow)) {
-            var prayerdateTime = prayer.getCurrentDateForPrayerTime(time);
-            prayerdateTime.setHours(prayerdateTime.getHours() + 1);
-            return addZero(prayerdateTime.getHours()) + ':' + addZero(prayerdateTime.getMinutes());
-        }
-        return time;
-    },
-    /**
      * get current date object for given prayer time
      * @param {String} time
      * @returns {Date}
@@ -312,16 +248,16 @@ var prayer = {
      * @returns {String}
      */
     getChouroukTime: function () {
-        return prayer.dstConvertTimeForCalendarMode(this.times[1]);
+        return this.times[1];
     },
     /**
      * Get the imsak time calculated by soustraction of imsakNbMinBeforeFajr from sobh time
      * @returns {String}
      */
     getImsak: function () {
-        var sobh = this.getTimeByIndex(0);
-        var sobhDateTime = this.getCurrentDateForPrayerTime(sobh);
-        var imsakDateTime = sobhDateTime.setMinutes(sobhDateTime.getMinutes() - this.confData.imsakNbMinBeforeFajr);
+        var fajr = this.getTimeByIndex(0);
+        var fajrDateTime = this.getCurrentDateForPrayerTime(fajr);
+        var imsakDateTime = fajrDateTime.setMinutes(fajrDateTime.getMinutes() - this.confData.imsakNbMinBeforeFajr);
         imsakDateTime = new Date(imsakDateTime);
         return addZero(imsakDateTime.getHours()) + ':' + addZero(imsakDateTime.getMinutes());
     },
@@ -700,7 +636,7 @@ var prayer = {
      * search and set the next prayer time hilight
      */
     initNextTimeHilight: function () {
-        var date = new Date();
+        var date = new Date(); var prayerDateTime;
         // sobh is default
         prayer.hilightByIndex(0);
         var times = this.getTimes();
@@ -878,19 +814,6 @@ var prayer = {
         }
 
         return true;
-    },
-    /**
-     * @param {string} time
-     * @returns {Number}
-     */
-    getPrayerIndexByTime: function (time) {
-        var index = null;
-        $.each(prayer.getTimes(), function (i, t) {
-            if (t === time) {
-                index = i;
-            }
-        });
-        return index;
     },
     /**
      * handle custom time display
@@ -1074,46 +997,5 @@ var prayer = {
             return true;
         }
         return false;
-    },
-    /**
-     * Test main app features
-     */
-    test: function () {
-        // show douaa after prayer
-        douaaSlider.oneDouaaShowingTime = 2000;
-        douaaSlider.show(0);
-        setTimeout(function () {
-            // show douaa after adhan
-            prayer.duaAfterAdhan.showAdhanDua();
-            setTimeout(function () {
-                prayer.duaAfterAdhan.hideAdhanDua();
-            }, 3000);
-            setTimeout(function () {
-                //show hadith between adhan and iqama
-                prayer.duaAfterAdhan.showHadith();
-                setTimeout(function () {
-                    prayer.duaAfterAdhan.hideHadith();
-                    prayer.jumuaHandler.showReminder();
-                    setTimeout(function () {
-                        prayer.jumuaHandler.hideReminder();
-                        randomHadith.get();
-                        setTimeout(function () {
-                            randomHadith.hide();
-                            prayer.adhan.flash(2);
-                            setTimeout(function () {
-                                prayer.adhan.stopFlashing();
-                                // flash iqama
-                                prayer.confData.iqamaDisplayTime = 5;
-                                prayer.iqama.flash(4);
-                                // flash adhan
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 5000);
-                            }, 5000);
-                        }, 5000);
-                    }, 5000);
-                }, 5000);
-            }, 5000);
-        }, douaaSlider.getTimeForShow() + 3000);
     }
 };

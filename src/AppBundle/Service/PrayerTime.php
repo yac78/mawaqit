@@ -51,6 +51,7 @@ class PrayerTime
             foreach ($calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
                     $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
+                    $prayers = array_values($prayers);
                     $this->applyDst($prayers, $mosque, $timestamp);
                     $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
@@ -76,6 +77,7 @@ class PrayerTime
                     $prayers = $this->praytime->getPrayerTimes($timestamp, $mosque->getLatitude(),
                         $mosque->getLongitude(), $conf->getTimezone());
                     unset($prayers[5]);
+                    $prayers = array_values($prayers);
                     $this->adjust($prayers, $mosque);
                     $this->applyDst($prayers, $mosque, $timestamp);
                     $this->fixationProcess($prayers, $conf);
@@ -89,7 +91,10 @@ class PrayerTime
 
     private function adjust(&$prayers, Mosque $mosque)
     {
+
         $adjusted = $mosque->getConf()->getAdjustedTimes();
+        $adjusted = [$adjusted[0], null, $adjusted[1], $adjusted[2], $adjusted[3], $adjusted[4]];
+
         foreach ($prayers as $k => $prayer) {
             if (empty($adjusted[$k])) {
                 continue;
@@ -139,19 +144,12 @@ class PrayerTime
     private function fixationProcess(array &$prayers, Configuration $conf)
     {
         $fixations = $conf->getFixedTimes();
-        $fixations = [
-            1 => $fixations[0],
-            2 => null,
-            3 => $fixations[1],
-            4 => $fixations[2],
-            5 => $fixations[3],
-            6 => $fixations[4],
-        ];
+        $fixations = [$fixations[0], null, $fixations[1], $fixations[2], $fixations[3], $fixations[4]];
 
         foreach ($fixations as $k => $fixation) {
             // adjust isha to x min after maghrib if option enabled
-            if ($k === 6 && is_numeric($conf->getIshaFixation())) {
-                $prayers[6] = (new \DateTime($prayers[5]))->modify($conf->getIshaFixation() . "minutes")->format("H:i");;
+            if ($k === 5 && is_numeric($conf->getIshaFixation())) {
+                $prayers[5] = (new \DateTime($prayers[4]))->modify($conf->getIshaFixation() . "minutes")->format("H:i");;
             }
 
             if (!empty($fixation) && $fixation > $prayers[$k]) {
@@ -272,7 +270,7 @@ class PrayerTime
         $date = new \DateTime();
         $month = $date->format('m') - 1;
         $day = (int)$date->format('d');
-        return array_values($calendar[$month][$day]);
+        return $calendar[$month][$day];
     }
 
     private function getMessages(Mosque $mosque)
