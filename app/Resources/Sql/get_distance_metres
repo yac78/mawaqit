@@ -1,4 +1,4 @@
-use mawaqit;
+USE mawaqit;
 DELIMITER |
 DROP FUNCTION IF EXISTS get_distance_metres|
 CREATE FUNCTION get_distance_metres (lat1 DOUBLE, lng1 DOUBLE, lat2 DOUBLE, lng2 DOUBLE) RETURNS DOUBLE

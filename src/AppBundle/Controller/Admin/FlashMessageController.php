@@ -37,7 +37,7 @@ class FlashMessageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mosque->setFlashMessage($message);
+            $mosque->setFlashMessage($form->getData());
             $em->flush();
             $this->addFlash('success', "form.edit.success");
             return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId(), '_fragment' => 'flashMessage']);
@@ -63,7 +63,8 @@ class FlashMessageController extends Controller
                 throw new AccessDeniedException;
             }
         }
-        $mosque->setFlashMessage(null);
+        $mesage = $mosque->getFlashMessage();
+        $em->remove($mesage);
         $em->flush();
         $this->addFlash('success', "form.delete.success");
 
