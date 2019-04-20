@@ -338,6 +338,7 @@ class Configuration
 
     /**
      * time in second
+     * @Groups({"screen"})
      * @var integer
      */
     private $timeToDisplayMessage = 30;

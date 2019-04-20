@@ -758,7 +758,7 @@ var prayer = {
         }
     },
     /**
-     * get jumu`a time depending dst
+     * get jumu`a time
      * @returns {String}
      */
     getJumuaTime: function () {

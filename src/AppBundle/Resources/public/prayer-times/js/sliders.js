@@ -157,11 +157,17 @@ var messageInfoSlider = {
         //save html slider
         messageInfoSlider.sliderHtmlContent = $('.message-slider .messageContent').html();
 
+        $(".main").fadeOut(500, function () {
+            $(".message-slider").fadeIn(500);
+            messageInfoSlider.setFontSize();
+        });
+
+        messageInfoSlider.messageInfoIsShowing = true;
+
         var interval = setInterval(function () {
             messageInfoSlider.moveRight();
         }, prayer.confData.timeToDisplayMessage * 1000);
 
-        messageInfoSlider.messageInfoIsShowing = true;
         setTimeout(function () {
             clearInterval(interval);
             $(".message-slider").fadeOut(1000, function () {
@@ -169,11 +175,6 @@ var messageInfoSlider = {
             });
             messageInfoSlider.messageInfoIsShowing = false;
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
-
-        $(".main").fadeOut(500, function () {
-            $(".message-slider").fadeIn(500);
-            messageInfoSlider.setFontSize();
-        });
     },
     /**
      * Get message from server
