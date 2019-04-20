@@ -25,6 +25,17 @@
             {% endstylesheets %}
         {% endif %}
     {% endstylesheets %}
+
+    <style>
+        body {
+            {% if mosque.conf.backgroundType == 'color' %}
+                background-color: {{ mosque.conf.backgroundColor }};
+            {% endif %}
+            {% if mosque.conf.backgroundType == 'motif' %}
+                background-image: url('/bundles/app/prayer-times/img/background-{{ mosque.conf.backgroundMotif }}.jpg');
+            {% endif %}
+        }
+    </style>
 </head>
 <body class="text-center">
 
@@ -302,7 +313,7 @@
 
 <script>
     var isMobile = false;
-    var lastUpdated = {{ mosque.updated.timestamp  }};
+    var lastUpdated = {{ mosque.updated.timestamp }};
     var isMosque = {{ mosque.mosque|json_encode|raw }};
     var longitude = {{ mosque.longitude }};
     var latitude = {{ mosque.latitude }};

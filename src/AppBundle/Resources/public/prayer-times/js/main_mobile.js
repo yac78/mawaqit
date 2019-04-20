@@ -13,7 +13,6 @@ if(!prayer.confData.iqamaEnabled){
 prayer.setTime();
 prayer.setTimeInterval();
 prayer.loadData();
-prayer.setBackgroundColor();
 prayer.setDate();
 prayer.setTimes();
 prayer.nextPrayerCountdown();

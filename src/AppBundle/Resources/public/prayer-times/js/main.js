@@ -5,7 +5,6 @@
 /* global douaaSlider */
 
 prayer.loadData();
-prayer.setBackgroundColor();
 prayer.setTime();
 prayer.setTimeInterval();
 prayer.setDate();
