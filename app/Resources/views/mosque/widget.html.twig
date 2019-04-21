@@ -20,6 +20,17 @@
         {% endstylesheets %}
     {% endif %}
 
+    <style>
+        body {
+        {% if mosque.conf.backgroundType == 'color' %}
+            background-color: {{ mosque.conf.backgroundColor }};
+        {% endif %}
+        {% if mosque.conf.backgroundType == 'motif' %}
+            background-image: url('/bundles/app/prayer-times/img/background-{{ mosque.conf.backgroundMotif }}.jpg');
+        {% endif %}
+        }
+    </style>
+
 </head>
 <body class="text-center">
 <div class="widget" data-remote="{{ path('app_api_mosque_praytimes', {mosque: mosque.id}) }}" data-api-access-token="{{ mawaqitApiAccessToken }}">
