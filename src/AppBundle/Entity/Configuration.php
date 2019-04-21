@@ -51,7 +51,7 @@ class Configuration
     /**
      * @var string
      */
-    private $jumuaTime = "13:30";
+    private $jumuaTime;
 
     /**
      * @var string
@@ -377,7 +377,7 @@ class Configuration
      */
     public function getJumuaTime()
     {
-        return !empty($this->jumuaTime) ? $this->jumuaTime : '13:00';
+        return $this->jumuaTime;
     }
 
     /**
