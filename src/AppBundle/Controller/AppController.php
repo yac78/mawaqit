@@ -7,20 +7,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/android")
+ * @Route("/app")
  * @return JsonResponse
  */
-
-class AndroidController extends Controller
+class AppController extends Controller
 {
     /**
-     * @Route("/{mosque}/manifest", name="manifest", options={"i18n"="false"})
+     * @Route("/android/{mosque}/manifest", name="manifest", options={"i18n"="false"})
      * @Cache(public=true, maxage="259320")
      * @return JsonResponse
      */
-    public function manifestAction(Mosque $mosque)
+    public function androidManifestAction(Mosque $mosque)
     {
         $manifest = [
             "short_name" => "Mawaqit",
@@ -45,4 +45,20 @@ class AndroidController extends Controller
 
         return new JsonResponse($manifest);
     }
+
+    /**
+     * @Route("/store-url", name="store_url", options={"i18n"="false"})
+     * @return Response
+     */
+    public function getStoreUrlAction(\Mobile_Detect $mobileDretect)
+    {
+        $url = $this->getParameter("app_google_play_url");
+
+        if ($mobileDretect->is('iOs')) {
+            $url = $this->getParameter("app_apple_store_url");
+        }
+
+        return $this->redirect($url);
+    }
+
 }

@@ -202,17 +202,32 @@ small {
 #mosque-id {
     font-size: 20px;
     color: #adadad;
+}
+
+.store {
+    direction: ltr;
     position: fixed;
     bottom: 10px;
     left: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 12vw;
+}
+
+.store div {
+    width: 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.store img {
+    width: 100%;
 }
 
 #qrcode {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    height: 102px;
-    width: 102px;
+    height: 110px;
+    width: 110px;
     border: solid 1px #fff;
 }
 
@@ -236,7 +251,7 @@ footer {
 }
 
 footer .info {
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 

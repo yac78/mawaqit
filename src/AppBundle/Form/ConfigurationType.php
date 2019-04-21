@@ -341,12 +341,6 @@ class ConfigurationType extends AbstractType
                     'help' => 'configuration.form.wakeForFajrTime.title',
                 ]
             ])
-            ->add('urlQrCodeEnabled', CheckboxType::class, [
-                'required' => false,
-                'attr' => [
-                    'help' => 'configuration.form.urlQrCodeEnabled.title',
-                ]
-            ])
             ->add('ishaFixation', ChoiceType::class, [
                 'required' => false,
                 'placeholder' => 'select_a_value',

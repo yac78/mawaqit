@@ -358,10 +358,7 @@ configuration:
         temperatureEnabled:
             label:  Temperature
             title:  The temperature displayed is that of the city outside and not inside the mosque
-        urlQrCodeEnabled: 
-            label: QR code for the site link
-            title: This will display a QR code at the bottom left of the screen, the QR code is used to facilitate the copying of the mawaqit link
-        backgroundColor: 
+        backgroundColor:
             label: Background color
         theme:
             label: Theme
@@ -387,7 +384,7 @@ configuration:
             label: Display time of a message/announcement (in seconds)
             title: This concerns only the screen dedicated to messages and announcements
         footer:
-            label: Footer
+            label: Mosque info
         showNextAdhanCountdown:
             label: Next adhan countdown
         timeDisplayFormat:
@@ -518,7 +515,7 @@ delete_element_question: Are you sure you want to validate the deletion?
 add: Add
 title: Title
 content: Content
-developed_by: Developed by Binary Consulting SAS
+developed_by: Mawaqit - Developed by Binary Consulting SAS
 next_prayer: Athan in
 last_login: Last log in
 alarm: Alarm

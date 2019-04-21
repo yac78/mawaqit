@@ -484,10 +484,6 @@ configuration:
         temperatureEnabled:
             label:  درجة الحرارة
             title:  درجة الحرارة المعروضة على الشاشة هي درجة الحرارة الخارجية للمدينة
-        urlQrCodeEnabled:
-            label: كود كي ار QR code لرابط الموقع
-            title: هذا الكود سيظهر أسفل الشاسةمن جهة اليسار لتسهيل نسخ رابط الصفحة
-
         backgroundColor:
             label: لون الخلفية
         theme:
@@ -514,7 +510,7 @@ configuration:
         ishaFixation:
             label: تحديد العشاء بالنسبة للمغرب
         footer:
-            label: أسفل الصفحة
+            label: معلومات المسجد
         iqamaEnabled:
             label: مفعّل
         calendar_explication: |
@@ -657,7 +653,6 @@ changing_password: تغيير كلمة المرور
 add: إضافة
 title: العنوان
 content: المحتوى
-developed_by: 'Binary Consulting SAS '
 next_prayer: الأذان بعد
 last_login: آخر إتصال
 alarm: الصلاة خير من النوم

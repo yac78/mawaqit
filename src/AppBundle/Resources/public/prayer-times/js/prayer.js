@@ -954,7 +954,7 @@ var prayer = {
         if (prayer.isMosque && qrCodeElm.length > 0) {
             qrCodeElm.qrcode({
                 background: '#ffffff',
-                size: 100,
+                size: 108,
                 text: qrCodeElm.data("url")
             });
         }

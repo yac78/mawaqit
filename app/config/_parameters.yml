@@ -1,3 +1,19 @@
 parameters:
     locale: ar
     languages: [ar, fr, en, tr, de, nl, it, es, hr, ta, sq, pt]
+    mailer_transport: smtp
+    mailer_host: SSL0.OVH.NET
+    mailer_port: 587
+    mailer_user: '%supportEmail%'
+    no_reply_address: no-reply@mawaqit.net
+    postmaster_address: postmaster@mawaqit.net
+    mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'
+    supportTel1: '+33651061498 / +33629111641'
+    supportTel2: '+33638159980'
+    supportEmail: contact@mawaqit.net
+    google_api_endpoint: 'https://maps.googleapis.com/maps/api'
+    weather_api_endpoint: 'http://api.openweathermap.org/data/2.5/weather'
+    slack_bot: 'Monolog Prod'
+    slack_channel: '#prod-errors'
+    app_apple_store_url: https://itunes.apple.com/fr/app/orange-business-lounge/id472332600?mt=8
+    app_google_play_url: https://play.google.com/store/apps/details?id=com.orange.obl

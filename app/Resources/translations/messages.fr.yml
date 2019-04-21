@@ -599,9 +599,6 @@ configuration:
         temperatureEnabled: 
             label:  Température
             title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
-        urlQrCodeEnabled: 
-            label: QR code pour le lien du site
-            title: Cela permettra d'afficher un QR code en bas à gauche de l'écran, le QR code sert à faciliter la copie du lien mawaqit
         backgroundColor: 
             label: Couleur de fond
         theme:
@@ -628,7 +625,7 @@ configuration:
             label: Temps de défilement par annonce (en seconde)
             title: Cela concerne que l'écran dédié aux annonces, le temps est fixé à 30 secondes sur l'écran des horaires
         footer:
-            label: Footer (le bas de l'écran)
+            label: Info de la mosquée
         showNextAdhanCountdown:
             label: Compte à rebours du prochain adhân
         timeDisplayFormat:
@@ -768,7 +765,7 @@ add: Ajouter
 title: Titre
 content: Contenu
 subject: Sujet
-developed_by: Développé par Binary Consulting SAS
+developed_by: Mawaqit - Développé par Binary Consulting SAS
 next_prayer: Adhân dans
 last_login: dernière connexion
 alarm: Essalatu khayrun mina ennawm

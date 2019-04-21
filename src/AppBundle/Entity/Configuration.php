@@ -200,7 +200,6 @@ class Configuration
 
     /**
      * @var bool
-     * @Groups({"screen"})
      */
     private $urlQrCodeEnabled = true;
 
