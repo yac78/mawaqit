@@ -26,6 +26,11 @@ class ConfigurationValidator extends ConstraintValidator
         if ($value->getDst() === 1 && ($value->getDstSummerDate() === null || $value->getDstWinterDate() === null)) {
             $this->context->buildViolation($constraint->m2)->addViolation();
         }
+
+        // validate jumua
+        if (!$value->isNoJumua() && empty($value->getJumuaTime())) {
+            $this->context->buildViolation($constraint->m3)->addViolation();
+        }
     }
 
 }
