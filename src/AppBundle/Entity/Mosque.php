@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Mosque
@@ -238,6 +238,11 @@ class Mosque
      * @var boolean|null
      */
     private $parking;
+    /**
+     * @var string
+     * @Assert\Length(max="200")
+     */
+    private $otherInfo;
 
     /**
      * @var boolean|null
@@ -1275,6 +1280,22 @@ class Mosque
     public function getConf(): Configuration
     {
         return $this->configuration;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOtherInfo():? string
+    {
+        return $this->otherInfo;
+    }
+
+    /**
+     * @param string $otherInfo
+     */
+    public function setOtherInfo(string $otherInfo = null): void
+    {
+        $this->otherInfo = $otherInfo;
     }
 
 }

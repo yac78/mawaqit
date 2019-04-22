@@ -30,11 +30,9 @@ AppBundle\Entity\Mosque:
                     - city    
         phone:
             type: string
-            length: 255
             nullable: true
         email:
             type: string
-            length: 255
             nullable: true
         address:
             type: string
@@ -42,16 +40,12 @@ AppBundle\Entity\Mosque:
             nullable: true
         city:
             type: string
-            length: 255
         country:
             type: string
-            length: 255
         countryFullName:
             type: string
-            length: 255
         zipcode:
             type: string
-            length: 255
         latitude:
             type: float
         longitude:
@@ -62,7 +56,6 @@ AppBundle\Entity\Mosque:
             nullable: true
         site:
             type: string
-            length: 255
             nullable: true
         status:
             type: string
@@ -70,19 +63,15 @@ AppBundle\Entity\Mosque:
             type: boolean
         justificatory:
             type: string
-            length: 255
             nullable: true
         image1:
             type: string
-            length: 255
             nullable: true
         image2:
             type: string
-            length: 255
             nullable: true
         image3:
             type: string
-            length: 255
             nullable: true
         locale:
             type: string
@@ -114,6 +103,9 @@ AppBundle\Entity\Mosque:
             nullable: true
         parking:
             type: boolean
+            nullable: true
+        otherInfo:
+            type: string
             nullable: true
         synchronized:
             type: boolean

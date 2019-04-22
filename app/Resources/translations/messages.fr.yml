@@ -369,6 +369,9 @@ mosque:
             label: Salle d'ablutions
         parking:
             label: Parking
+        otherInfo:
+            label: Autres info
+            placeholder: "Ex: Horaires d'ouverture et fermeture (200 caractères max)"
     alert:
         slugChange: |
             Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry

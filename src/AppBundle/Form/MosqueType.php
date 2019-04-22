@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -246,6 +247,15 @@ class MosqueType extends AbstractType
             ])
             ->add('file3', ImageType::class, [
                 'label' => 'mosque.form.file3.label'
+            ])
+            ->add('otherInfo', TextareaType::class, [
+                'required' => false,
+                'attr' => [
+                    'maxlength' => '200',
+                    'rows' => '3',
+                    'class' => 'keyboardInput',
+                    'placeholder' => 'mosque.form.otherInfo.placeholder',
+                ]
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',

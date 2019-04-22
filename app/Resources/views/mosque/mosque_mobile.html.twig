@@ -207,6 +207,11 @@
                         <div><span class="fa fa-{{ mosque.parking ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.parking.label'|trans }}</div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12 mt-2">
+                        <p>{{ mosque.otherInfo|nl2br }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     {% endif %}

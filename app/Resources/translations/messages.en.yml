@@ -136,6 +136,9 @@ mosque:
             label: Ablutions room
         parking:
             label: Parking
+        otherInfo:
+            label: Other info
+            placeholder: "Ex: Opening and closing hours (200 characters max)"
     alert:
         slugChange: |
             Warning ! the modification of the url of the site will impact the launch of the software in the raspberry
