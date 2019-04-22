@@ -28,12 +28,9 @@
 
     <style>
         body {
-            {% if mosque.conf.backgroundType == 'color' %}
-                background-color: {{ mosque.conf.backgroundColor }};
-            {% endif %}
-            {% if mosque.conf.backgroundType == 'motif' %}
-                background-image: url('/bundles/app/prayer-times/img/background-{{ mosque.conf.backgroundMotif }}.jpg');
-            {% endif %}
+        {% if mosque.conf.backgroundType == 'color' %} background-color: {{ mosque.conf.backgroundColor }};
+        {% endif %}{% if mosque.conf.backgroundType == 'motif' %} background-image: url('/bundles/app/prayer-times/img/background-{{ mosque.conf.backgroundMotif }}.jpg');
+        {% endif %}
         }
     </style>
 </head>
@@ -258,9 +255,7 @@
                 <div>
                     <img src="{{ asset('bundles/app/prayer-times/img/appstore.svg') }}">
                     <img src="{{ asset('bundles/app/prayer-times/img/playstore.svg') }}">
-                    {% if mosque.isMosque and isNotLocal() %}
-                        <div id="mosque-id">#{{ mosque.id }}</div>
-                    {% endif %}
+                    <div id="mosque-id">#{{ mosque.id }}</div>
                 </div>
             </div>
 

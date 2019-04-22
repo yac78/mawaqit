@@ -624,7 +624,8 @@ var prayer = {
      * search and set the next prayer time hilight
      */
     initNextTimeHilight: function () {
-        var date = new Date(); var prayerDateTime;
+        var date = new Date();
+        var prayerDateTime;
         // sobh is default
         prayer.hilightByIndex(0);
         var times = this.getTimes();
@@ -951,13 +952,11 @@ var prayer = {
      */
     setQRCode: function () {
         var qrCodeElm = $("#qrcode")
-        if (prayer.isMosque && qrCodeElm.length > 0) {
-            qrCodeElm.qrcode({
-                background: '#ffffff',
-                size: 108,
-                text: qrCodeElm.data("url")
-            });
-        }
+        qrCodeElm.qrcode({
+            background: '#ffffff',
+            size: 108,
+            text: qrCodeElm.data("url")
+        });
     },
     isRamadan: function () {
         var hijriDateInfo = kuwaiticalendar(prayer.confData.hijriAdjustment);
