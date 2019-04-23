@@ -246,6 +246,7 @@ class PrayerTime
             'handicapAccessibility' => $mosque->getHandicapAccessibility(),
             'ablutions' => $mosque->getAblutions(),
             'parking' => $mosque->getParking(),
+            'otherInfo' => $mosque->getOtherInfo(),
             'flashMessage' => $flashMessage instanceof FlashMessage && $flashMessage->isAvailable() ? $flashMessage->getContent() : null,
             'announcements' => $this->getMessages($mosque),
             'updatedAt' => $mosque->getUpdated()->getTimestamp(),
