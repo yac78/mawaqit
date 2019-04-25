@@ -9,6 +9,7 @@ class Configuration extends Constraint {
     public $m1 = 'form.configuration.custom_prayer_method';
     public $m2 = 'form.configuration.dst_dates_mandatory';
     public $m3 = 'form.configuration.jumua_mandatory';
+    public $m4 = 'form.configuration.calendar_not_valid';
 
     public function getTargets() {
         return self::CLASS_CONSTRAINT;

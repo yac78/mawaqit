@@ -249,15 +249,13 @@
                                                                             name="configuration[calendar][{{ month }}][{{ day }}][{{ prayer }}]"
                                                                             value="{{ form.vars.value.calendar[month] is defined ? form.vars.value.calendar[month][day][prayer] : '' }}"
                                                                             type="text"
-                                                                            pattern="\d{2}:\d{2}"
+                                                                            pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
                                                                             placeholder="hh:mm"
                                                                             class="form-control text-center calendar-prayer-time"
                                                                             maxlength="5"
                                                                             oninvalid="setCustomValidity('{{ 'configuration.form.time_invalid'|trans }}')"
-                                                                            onchange="try {
-                                                                                    setCustomValidity('')
-                                                                                } catch (e) {
-                                                                                }">
+                                                                            onchange="setCustomValidity('')">
+
                                                                 </div>
                                                             {% endfor %}
                                                         </div>
@@ -425,7 +423,7 @@
                                                                                     name="configuration[iqamaCalendar][{{ month }}][{{ day }}][{{ prayer }}]"
                                                                                     value="{{ form.vars.value.iqamaCalendar[month] is defined ? form.vars.value.iqamaCalendar[month][day][prayer] : '' }}"
                                                                                     type="text"
-                                                                                    pattern="\d{2}:\d{2}"
+                                                                                    pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
                                                                                     placeholder="hh:mm"
                                                                                     class="form-control text-center"
                                                                                     maxlength="5"

@@ -151,7 +151,12 @@ class PrayerTime
         foreach ($fixations as $k => $fixation) {
             // adjust isha to x min after maghrib if option enabled
             if ($k === 6 && is_numeric($conf->getIshaFixation())) {
-                $prayers[6] = (new \DateTime($prayers[5]))->modify($conf->getIshaFixation() . "minutes")->format("H:i");;
+                try {
+                    $prayers[6] = (new \DateTime($prayers[5]))->modify($conf->getIshaFixation() . "minutes")->format("H:i");;
+                } catch (\Exception $e) {
+                    $prayers[$k] = "ERROR";
+                    $this->logger->error("Erreur de parsing heure de prière", [$e]);
+                }
             }
 
             if (!empty($fixation) && $fixation > $prayers[$k]) {
