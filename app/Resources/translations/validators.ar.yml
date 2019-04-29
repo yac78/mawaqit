@@ -8,5 +8,6 @@ form:
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
         dst_dates_mandatory:  تواريخ التغيير الصيفي إجبارية
         jumua_mandatory:  عليك أدخال وقت الجمعة
+        calendar_not_valid: بعض إدخالات الرزنامة غير صالحة
     registration:
         wrong_password_message: Le mot de passe doit contenir 8 caractères minimum, dont une majuscule, une minuscule et un nombre

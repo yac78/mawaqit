@@ -9,6 +9,7 @@ form:
         custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
         dst_dates_mandatory: Dst dates are mandatory
         jumua_mandatory: You must fill jumua time
+        calendar_not_valid: Some entries of the calendar are not valid
     registration:
         wrong_password_message: Le mot de passe doit contenir 8 caractères minimum, dont une majuscule, une minuscule et un nombre
     message:

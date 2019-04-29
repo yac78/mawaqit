@@ -34,8 +34,8 @@ $("#configuration_prayerMethod").bind("change keyup", function (event) {
     }
 });
 
-$(".month-panel .calendar-prayer input").bind("change keyup", function (event) {
-    $(this).css("background-color", /^\d{2}:\d{2}$/g.test($(this).val()) ? "#ffffff" : "#f8d4d4");
+$(".month-panel .calendar-prayer-time").bind("change keyup", function (event) {
+    $(this).css("background-color", /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test($(this).val()) ? "#ffffff" : "#f8d4d4");
 });
 
 /**
@@ -148,7 +148,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
             for (var prayer = 1; prayer < line.length; prayer++) {
                 var inputPrayer = $("input[name='configuration[" + $(inputFile).data("calendar") + "][" + month + "][" + day + "][" + prayer + "]']");
                 val = line[prayer].trim();
-                if (/^\d{2}:\d{2}$/.test(val) === false) {
+                if (/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(val) === false) {
                     error = true;
                 }
                 inputPrayer.val(val);
