@@ -717,7 +717,7 @@ email:
         success: Email envoyé avec succès
 
 incorrectsInfos:
-  title:  Horaires ou informations incorrects alertez-nous !
+  title:  Horaires ou informations incorrects ? alertez-nous
   mailBody: |
     Essalamu alaykum%0D%0A
     J'ai remarqué des erreurs dans les horaires ou les informations de la mosquée https:%link%, et plus précisément :
