@@ -233,9 +233,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <div id="map"></div>
-                    </div>
+                    {#<div class="col-md-12">#}
+                        {#<div id="map"></div>#}
+                    {#</div>#}
                 </div>
 
                 <div class="row mt-2 mb-4">
@@ -343,48 +343,48 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 2,
-                center: {lat: 48, lng: 3}
-            });
+    {#<script>#}
+        {#function initMap() {#}
+            {#var map = new google.maps.Map(document.getElementById('map'), {#}
+                {#zoom: 2,#}
+                {#center: {lat: 48, lng: 3}#}
+            {#});#}
 
-            var mosquesForMap = {{ mosquesForMap|json_encode|raw }};
-            $.each(mosquesForMap, function (i, mosque) {
-                addMosque(mosque, map);
-            })
-        }
+            {#var mosquesForMap = {{ mosquesForMap|json_encode|raw }};#}
+            {#$.each(mosquesForMap, function (i, mosque) {#}
+                {#addMosque(mosque, map);#}
+            {#})#}
+        {#}#}
 
-        function addMosque(mosque, map) {
-            var marker = new google.maps.Marker({
-                map: map,
-                position: {lng: mosque.lng, lat: mosque.lat},
-                title: mosque.name + ' (' + mosque.city + ')',
-                icon: {
-                    url: '{{ asset('bundles/app/img/location.png') }}',
-                    scaledSize: new google.maps.Size(24, 24)
-                }
-            });
+        {#function addMosque(mosque, map) {#}
+            {#var marker = new google.maps.Marker({#}
+                {#map: map,#}
+                {#position: {lng: mosque.lng, lat: mosque.lat},#}
+                {#title: mosque.name + ' (' + mosque.city + ')',#}
+                {#icon: {#}
+                    {#url: '{{ asset('bundles/app/img/location.png') }}',#}
+                    {#scaledSize: new google.maps.Size(24, 24)#}
+                {#}#}
+            {#});#}
 
-            var infowindow = new google.maps.InfoWindow({
-                content: '<div>' +
-                '<h4> ' + mosque.name + ' </h4>' +
-                '<p> ' +
-                (mosque.address ? mosque.address : '') + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +
-                '</p>' +
-                '<p> ' +
-                '<a target="_blank" href="' + 'https://mawaqit.net/ar/' + mosque.slug + '">' + 'https://mawaqit.net/ar/' + mosque.slug + '</a>' +
-                '</p>' +
-                '</div>'
-            });
+            {#var infowindow = new google.maps.InfoWindow({#}
+                {#content: '<div>' +#}
+                {#'<h4> ' + mosque.name + ' </h4>' +#}
+                {#'<p> ' +#}
+                {#(mosque.address ? mosque.address : '') + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +#}
+                {#'</p>' +#}
+                {#'<p> ' +#}
+                {#'<a target="_blank" href="' + 'https://mawaqit.net/ar/' + mosque.slug + '">' + 'https://mawaqit.net/ar/' + mosque.slug + '</a>' +#}
+                {#'</p>' +#}
+                {#'</div>'#}
+            {#});#}
 
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap">
-    </script>
+            {#marker.addListener('click', function () {#}
+                {#infowindow.open(map, marker);#}
+            {#});#}
+        {#}#}
+    {#</script>#}
+    {#<script async defer#}
+            {#src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap">#}
+    {#</script>#}
 {% endblock %}
