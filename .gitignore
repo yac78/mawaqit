@@ -21,7 +21,6 @@ docker-compose.yml
 /web/css/
 /web/js/
 /web/upload/*
-/web/static/*
 /web/robots.txt
 /.idea/
 /docker/data/
