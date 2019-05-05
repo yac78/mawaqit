@@ -243,6 +243,7 @@ definitions:
       - otherInfo
       - flashMessage
       - announcements
+      - updatedAt
     properties:
       id:
         type: integer
@@ -350,6 +351,12 @@ definitions:
         type: string
         example: Salat eljanaza demain après el asr
         description: A flash short message
+      updatedAt:
+        type: integer
+        example: 15231564654
+        description: Last updated         
+      flash:
+        $ref: '#/definitions/Flash'
       announcements:
         type: array
         items:
@@ -392,6 +399,21 @@ definitions:
         type: string
         description: The announcement image, can be null 
         example: https://mawaqit.net/upload/5bdf1a6dcf38b078788723.jpg
+        
+  Flash:
+    type: object
+    required:
+    - content
+    - expire
+    properties:
+      content:
+        type: string
+        description: The flash message content, can be null
+        example: Salat eljanaza demain après el asr
+      expire:
+        type: integer
+        example: 15231564654
+        description: Last updated     
         
   Hadith:
     type: object
