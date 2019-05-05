@@ -257,6 +257,14 @@ class PrayerTime
             'updatedAt' => $mosque->getUpdated()->getTimestamp(),
         ];
 
+        // add flash message
+        if ($flashMessage instanceof FlashMessage && $flashMessage->isAvailable()) {
+            $result['flash'] = [
+                'content' => $flashMessage->getContent(),
+                'expire' => $flashMessage->getExpire()->getTimestamp()
+            ];
+        }
+
         $calendar = $this->getCalendar($mosque);
 
         if ($returnFullCalendar) {

@@ -141,7 +141,7 @@ AppBundle\Entity\Mosque:
             cascade:
                 - persist
             joinColumn:
-                onDelete: CASCADE
+                onDelete: 'SET NULL'
     oneToMany:
         messages:
             cascade:
