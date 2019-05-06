@@ -54,9 +54,9 @@ class AppController extends Controller
     {
         $url = $this->getParameter("app_google_play_url");
 
-        if ($mobileDretect->is('iOs')) {
-            $url = $this->getParameter("app_apple_store_url");
-        }
+//        if ($mobileDretect->is('iOs')) {
+//            $url = $this->getParameter("app_apple_store_url");
+//        }
 
         return $this->redirect($url);
     }
