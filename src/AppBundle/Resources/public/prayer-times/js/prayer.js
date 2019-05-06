@@ -954,7 +954,7 @@ var prayer = {
         var qrCodeElm = $("#qrcode")
         qrCodeElm.qrcode({
             background: '#ffffff',
-            size: 108,
+            size: 100,
             text: qrCodeElm.data("url")
         });
     },
