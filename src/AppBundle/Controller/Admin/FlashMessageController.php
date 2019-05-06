@@ -65,6 +65,7 @@ class FlashMessageController extends Controller
         }
         $mesage = $mosque->getFlashMessage();
         $em->remove($mesage);
+        $mosque->setUpdated(new \DateTime());
         $em->flush();
         $this->addFlash('success', "form.delete.success");
 
