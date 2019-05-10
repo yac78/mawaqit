@@ -240,6 +240,7 @@ class PrayerTime
             'jumua2' => $conf->isNoJumua() ? null : $conf->getJumuaTime2(),
             'jumuaAsDuhr' => $conf->isJumuaAsDuhr(),
             'imsakNbMinBeforeFajr' => $conf->getImsakNbMinBeforeFajr(),
+            'maximumIshaTimeForNoWaiting' => $conf->getMaximumIshaTimeForNoWaiting(),
             'shuruq' => null,
             'times' => null,
             'fixedIqama' => $conf->getFixedIqama(),
