@@ -19,3 +19,4 @@ parameters:
     # Mawaqit API
     mawaqit_api_access_token: ''
     slack_token: 'fake-token'
+    mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'

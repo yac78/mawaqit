@@ -8,7 +8,6 @@ parameters:
     mailer_user: '%supportEmail%'
     no_reply_address: no-reply@mawaqit.net
     postmaster_address: postmaster@mawaqit.net
-    mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'
     supportTel1: '+33651061498 / +33629111641'
     supportTel2: '+33638159980'
     supportEmail: contact@mawaqit.net

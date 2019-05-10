@@ -238,6 +238,8 @@ class PrayerTime
             'hijriAdjustment' => $conf->getHijriAdjustment(),
             'jumua' => $conf->isNoJumua() ? null : $conf->getJumuaTime(),
             'jumua2' => $conf->isNoJumua() ? null : $conf->getJumuaTime2(),
+            'jumuaAsDuhr' => $conf->isJumuaAsDuhr(),
+            'imsakNbMinBeforeFajr' => $conf->getImsakNbMinBeforeFajr(),
             'shuruq' => null,
             'times' => null,
             'fixedIqama' => $conf->getFixedIqama(),
