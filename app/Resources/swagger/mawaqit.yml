@@ -224,6 +224,8 @@ definitions:
       - image
       - association
       - jumua
+      - jumua2
+      - jumuaAsDuhr
       - shuruq
       - longitude
       - latitude
@@ -279,6 +281,14 @@ definitions:
         type: string
         description: Jumu`a time
         example: "13:00"
+      jumua2:
+        type: string
+        description: The second Jumu`a time can be null if not available
+        example: "14:00"        
+      jumuaAsDuhr:
+        type: boolean
+        description: True if Jumu`a time is identical to duhr time
+        example: true  
       shuruq:
         type: string
         description: Shuruk time
