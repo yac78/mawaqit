@@ -226,6 +226,8 @@ definitions:
       - jumua
       - jumua2
       - jumuaAsDuhr
+      - imsakNbMinBeforeFajr
+      - maximumIshaTimeForNoWaiting
       - shuruq
       - longitude
       - latitude
@@ -289,6 +291,14 @@ definitions:
         type: boolean
         description: True if Jumu`a time is identical to duhr time
         example: true  
+      imsakNbMinBeforeFajr:
+        type: integer
+        description: Number of minutes before fajr (stop eating)
+        example: 20  
+      maximumIshaTimeForNoWaiting:
+        type: string
+        description: The maximum time for isha, to fixe iqama to 0 min
+        example: "22:30"         
       shuruq:
         type: string
         description: Shuruk time
