@@ -36,7 +36,7 @@ class ConfigurationValidator extends ConstraintValidator
         foreach ($value->getCalendar() as $month) {
             foreach ($month as $prayers) {
                 foreach ($prayers as $prayer) {
-                    if (!preg_match("/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/", $prayer)) {
+                    if (!empty($prayer) && !preg_match("/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/", $prayer)) {
                         $this->context->buildViolation($constraint->m4)->addViolation();
                         return;
                     }
