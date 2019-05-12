@@ -120,12 +120,6 @@ a, code {
     overflow-wrap: break-word;
 }
 
-#map {
-    margin-bottom: 4rem;
-    margin-top: 4rem;
-    height: 400px;
-}
-
 .slides li{
     padding: 0 3px !important;
 }

@@ -16,7 +16,7 @@
 
     <h1>{{ 'stats'|trans }}</h1>
 
-    <h3>Mosquées</h3>
+    <h3>Installations</h3>
     <div class="row">
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail mosque">
@@ -44,13 +44,12 @@
         </div>
 
         <div class="col-sm-12 col-md-12">
-            <div class="">
-                {% for item in mosques.byCountry %}
-                    <span class="btn btn-success mt-1">
-                        {{ item.country|country }} <span class="badge">{{ item.nb }}</span>
-                    </span>
-                {% endfor %}
-            </div>
+            <h3>Par pays</h3>
+            {% for item in mosques.byCountry %}
+                <span class="btn btn-success mt-1">
+                   {{ item.country|country }} <span class="badge">{{ item.nb }}</span>
+                </span>
+            {% endfor %}
         </div>
     </div>
 

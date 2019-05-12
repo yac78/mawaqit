@@ -7,6 +7,8 @@
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
 {% endblock %}
 
  {% block textHeader %}
@@ -191,7 +193,7 @@
                 <h4 class="service-heading">{{ 'home.title.feature8'|trans }}</h4>
                 <p class="text-muted">{{ 'home.text.feature8_1'|trans }}
                 </p>
-                <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left'}}">
+                <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     {{ 'home.text.feature8_2'|trans|raw }}
                 </ul>
 
@@ -233,9 +235,9 @@
                         </div>
                     </div>
 
-                    {#<div class="col-md-12">#}
-                        {#<div id="map"></div>#}
-                    {#</div>#}
+                    <div class="col-md-12 mt-3">
+                        <div id="map" style="height: 600px"></div>
+                    </div>
                 </div>
 
                 <div class="row mt-2 mb-4">
@@ -343,48 +345,30 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {#<script>#}
-        {#function initMap() {#}
-            {#var map = new google.maps.Map(document.getElementById('map'), {#}
-                {#zoom: 2,#}
-                {#center: {lat: 48, lng: 3}#}
-            {#});#}
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script>
 
-            {#var mosquesForMap = {{ mosquesForMap|json_encode|raw }};#}
-            {#$.each(mosquesForMap, function (i, mosque) {#}
-                {#addMosque(mosque, map);#}
-            {#})#}
-        {#}#}
+        var map = L.map('map').setView([48, 3], 2);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        {#function addMosque(mosque, map) {#}
-            {#var marker = new google.maps.Marker({#}
-                {#map: map,#}
-                {#position: {lng: mosque.lng, lat: mosque.lat},#}
-                {#title: mosque.name + ' (' + mosque.city + ')',#}
-                {#icon: {#}
-                    {#url: '{{ asset('bundles/app/img/location.png') }}',#}
-                    {#scaledSize: new google.maps.Size(24, 24)#}
-                {#}#}
-            {#});#}
+        var mosquesForMap = {{ mosquesForMap|json_encode|raw }};
+        $.each(mosquesForMap, function (i, mosque) {
 
-            {#var infowindow = new google.maps.InfoWindow({#}
-                {#content: '<div>' +#}
-                {#'<h4> ' + mosque.name + ' </h4>' +#}
-                {#'<p> ' +#}
-                {#(mosque.address ? mosque.address : '') + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +#}
-                {#'</p>' +#}
-                {#'<p> ' +#}
-                {#'<a target="_blank" href="' + 'https://mawaqit.net/ar/' + mosque.slug + '">' + 'https://mawaqit.net/ar/' + mosque.slug + '</a>' +#}
-                {#'</p>' +#}
-                {#'</div>'#}
-            {#});#}
+            var popup = '<div>' +
+                '<h4> ' + mosque.name + ' </h4>' +
+                '<p> ' +
+                mosque.address + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +
+                '</p>' +
+                '<p> ' +
+                '<a target="_blank" href="' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '">' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '</a>' +
+                '</p>' +
+                '</div>';
 
-            {#marker.addListener('click', function () {#}
-                {#infowindow.open(map, marker);#}
-            {#});#}
-        {#}#}
-    {#</script>#}
-    {#<script async defer#}
-            {#src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap">#}
-    {#</script>#}
-{% endblock %}
+            marker = new L.marker([mosque.lat, mosque.lng])
+                .bindPopup(popup)
+                .addTo(map);
+        });
+
+    </script>
+
+  {% endblock %}
