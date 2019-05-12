@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AppController extends Controller
 {
     /**
-     * @Route("/android/{mosque}/manifest", name="manifest", options={"i18n"="false"})
+     * @Route("/android/{mosque}/manifest.json", name="manifest", options={"i18n"="false"})
      * @Cache(public=true, maxage="259320")
      * @return JsonResponse
      */
@@ -36,11 +36,17 @@ class AppController extends Controller
                     "sizes" => "192x192"
                 ]
             ],
-            "lang" => "en",
             "start_url" => $this->generateUrl('mosque', ['slug' => $mosque->getSlug()]),
-            "background_color" => "#000000",
-            "theme_color" => "#000000",
-            "display" => "standalone"
+            "background_color" => "#286029",
+            "theme_color" => "#286029",
+            "display" => "standalone",
+            "prefer_related_applications" => true,
+            "related_applications" => [
+                [
+                    "platform" => "play",
+                    "id" => "com.kanout.mawaqit"
+                ]
+            ],
         ];
 
         return new JsonResponse($manifest);

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google" content="notranslate">
     <meta name="apple-itunes-app" content="app-id=1460522683, app-argument={{ url('mosque_mobile', {'slug': mosque.slug}) }}">
-    <link rel="manifest" href="/static/android-manifest.json">
+    <link rel="manifest" href="{{ path('manifest', {mosque: mosque.id}) }}">
 
     {% include "partial/ga.html.twig" %}
     {% include "partial/favicon.html.twig" %}
