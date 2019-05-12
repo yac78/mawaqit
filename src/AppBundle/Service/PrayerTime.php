@@ -272,6 +272,7 @@ class PrayerTime
 
         if ($returnFullCalendar) {
             $result['calendar'] = $calendar;
+            $result['iqamaCalendar'] = $conf->getIqamaCalendar();
         }
 
         $times = $this->getPrayTimes($calendar);
