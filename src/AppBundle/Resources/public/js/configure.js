@@ -10,13 +10,11 @@ function checkAndHilightIncompletedMonths() {
     $(".month-panel").each(function (i, elm) {
         var panel = elm;
         $(panel).find(".panel-heading").css("background-color", " #e2e2e2");
-        var title = $(panel).find("h4>strong");
-        title.text(title.text().replace(" (Mois incomplet)", ""));
         $(panel).find(".calendar-prayer-time").each(function (i, input) {
-            if ($(input).val() === "") {
+            $(input).css("background-color", "#ffffff");
+            if (!/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test($(input).val())) {
+                $(input).css("background-color", "#f8d4d4");
                 $(panel).find(".panel-heading").css("background-color", "#f2dede");
-                title.text(title.text() + " (Mois incomplet)");
-                return false;
             }
         });
     });
@@ -34,8 +32,8 @@ $("#configuration_prayerMethod").bind("change keyup", function (event) {
     }
 });
 
-$(".month-panel .calendar-prayer-time").bind("change keyup", function (event) {
-    $(this).css("background-color", /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test($(this).val()) ? "#ffffff" : "#f8d4d4");
+$(".month-panel .calendar-prayer-time").bind("keyup", function (event) {
+    checkAndHilightIncompletedMonths();
 });
 
 /**
@@ -240,14 +238,7 @@ $("#configuration_iqamaEnabled").bind("change", function (event) {
     iqamaSettingsDisplayHandler();
 });
 
-
 $("." + $("#configuration_sourceCalcul").val()).removeClass("hidden");
-
-$(".month-panel .calendar-prayer input").each(function (index) {
-    if ($(this).val() === "") {
-        $(this).css("background-color", "#f8d4d4");
-    }
-});
 
 $("#configuration_prayerMethod").trigger("change");
 $("#configuration_jumuaAsDuhr").trigger("change");
