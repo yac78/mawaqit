@@ -28,7 +28,7 @@ final class Version20190528123920 extends AbstractMigration
         $this->addSql("UPDATE configuration SET high_lats_method = 'ONE_SEVENTH' WHERE high_lats_method = 'OneSeventh'");
 
         $this->addSql("update configuration set timezone = 0.00 where id in (select mosque.configuration_id from mosque where mosque.country = 'DZ')");
-        $this->addSql("update configuration set adjusted_times = '0,0,0,0,0' where id in (select mosque.configuration_id from mosque where mosque.country = 'FR')");
+        $this->addSql("update configuration set adjusted_times = '0,0,0,0,0'");
     }
 
     public function down(Schema $schema) : void
