@@ -26,6 +26,9 @@ final class Version20190528123920 extends AbstractMigration
         $this->addSql("UPDATE configuration SET high_lats_method = 'ANGLE_BASED' WHERE high_lats_method = 'AngleBased' OR high_lats_method  IS NULL");
         $this->addSql("UPDATE configuration SET high_lats_method = 'MIDDLE_OF_THE_NIGHT' WHERE high_lats_method = 'NightMiddle'");
         $this->addSql("UPDATE configuration SET high_lats_method = 'ONE_SEVENTH' WHERE high_lats_method = 'OneSeventh'");
+
+        $this->addSql("update configuration set timezone = 0.00 where id in (select mosque.configuration_id from mosque where mosque.country = 'DZ')");
+        $this->addSql("update configuration set adjusted_times = '0,0,0,0,0' where id in (select mosque.configuration_id from mosque where mosque.country = 'FR')");
     }
 
     public function down(Schema $schema) : void

@@ -51,7 +51,7 @@ class Configuration
      * @var string
      * @Groups({"screen"})
      */
-    private $jumuaTime;
+    private $jumuaTime = "13:00";
 
     /**
      * @var string
