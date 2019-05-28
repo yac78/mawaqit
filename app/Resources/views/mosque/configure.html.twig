@@ -39,7 +39,7 @@
                             <div class="col-md-3">
                                 {{ form_row(form.timezone) }}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 calendar hidden">
                                 {{ form_row(form.dst) }}
                             </div>
                             <div class="dst-bloc">
@@ -158,9 +158,9 @@
                                         <div class="radio">
                                             <label><input type="radio" name="calendarSource" value="csv">{{ 'configuration.form.load_predefined_calendar.3'|trans }}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input type="radio" name="calendarSource" value="api">{{ 'configuration.form.load_predefined_calendar.4'|trans }}</label>
-                                        </div>
+                                        {#<div class="radio">#}
+                                            {#<label><input type="radio" name="calendarSource" value="api">{{ 'configuration.form.load_predefined_calendar.4'|trans }}</label>#}
+                                        {#</div>#}
                                     </div>
                                 </div>
                             </div>

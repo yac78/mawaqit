@@ -444,9 +444,9 @@ tr-ar: Turkish & Arabic
 en-ar: English & Arabic
 enabled: Enabled
 disabled: Disabled
-dst-auto: Auto (Depends on the system setting of raspberry, France by default)
-dst-enabled: Enabled (Country outside France with choice of dates)
-dst-disabled: Disabled (Countries not practicing dst)
+dst-auto: Auto (Depends on timezone)
+dst-enabled: Enabled (Forced with choice of dates)
+dst-disabled: Disabled
 send: Envoyer
 required: Required
 close: Close
@@ -484,11 +484,11 @@ asr-maghrib: "`Asr and Maghrib"
 maghrib-isha: "Maghrib and `Isha"
 
 ISNA: "Islamic Society of North America (fajr 15°, ichaa 15°)"
-UOIF: The Union of Islamic Organizations of France (UOIF) (fajr 12°, ichaa 12°)"
-Karachi: "University of Science of Karachi (fajr 18°, ichaa 18°)"
+FRANCE: The Union of Islamic Organizations of France (UOIF) (fajr 12°, ichaa 12°)"
+KARACHI: "University of Science of Karachi (fajr 18°, ichaa 18°)"
 MWL: "World Islamic League (fajr 18°, ichaa 17°)"
-Makkah: "Umm al-Qura University - Mecca (fajr 18°, ichaa 90 minutes après maghrib)"
-Egypt: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
+MAKKAH: "Umm al-Qura University - Mecca (fajr 18°, ichaa 90 minutes après maghrib)"
+EGYPT: "Egyptian General Authority of Survey (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choose Fajr and `Isha degree"
 
 api: Automatic (Calculation of prayer times by the software)
@@ -518,7 +518,7 @@ delete_element_question: Are you sure you want to validate the deletion?
 add: Add
 title: Title
 content: Content
-developed_by: Mawaqit - Developed by Binary Consulting SAS
+developed_by: MAWAQIT - Developed by Binary Consulting SAS
 next_prayer: Athan in
 last_login: Last log in
 alarm: Alarm

@@ -6,16 +6,12 @@ use AppBundle\Entity\Configuration;
 use AppBundle\Entity\FlashMessage;
 use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
-use AppBundle\Service\Vendor\PrayTime;
+use Meezaan\PrayerTimes\Method;
 use Psr\Log\LoggerInterface;
+use Meezaan\PrayerTimes\PrayerTimes;
 
 class PrayerTime
 {
-
-    /**
-     * @var PrayTime
-     */
-    private $praytime;
 
     /**
      * @var LoggerInterface
@@ -24,9 +20,8 @@ class PrayerTime
 
     private $cacheDir;
 
-    public function __construct($praytime, LoggerInterface $logger, $cacheDir)
+    public function __construct(LoggerInterface $logger, $cacheDir)
     {
-        $this->praytime = $praytime;
         $this->logger = $logger;
         $this->cacheDir = $cacheDir;
     }
@@ -45,14 +40,15 @@ class PrayerTime
     function getCalendar(Mosque $mosque)
     {
         $conf = $mosque->getConfiguration();
+        $timezone = timezone_name_from_abbr("", $conf->getTimezone() * 3600, 0);
 
         if ($conf->isCalendar()) {
             $calendar = $conf->getCalendar();
             foreach ($calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
-                    $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
                     $prayers = array_values($prayers);
-                    $this->applyDst($prayers, $mosque, $timestamp);
+                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($timezone));
+                    $this->applyDst($prayers, $mosque, $date);
                     $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
                 }
@@ -61,25 +57,28 @@ class PrayerTime
 
         if ($conf->isApi()) {
             $calendar = [];
-            if ($conf->getPrayerMethod() !== Configuration::METHOD_CUSTOM) {
-                $this->praytime->setCalcMethod($conf->getPrayerMethod());
+            if ($conf->getPrayerMethod() !== PrayerTimes::METHOD_CUSTOM) {
+                $pt = new PrayerTimes($conf->getPrayerMethod());
             }
-            if ($conf->getPrayerMethod() === Configuration::METHOD_CUSTOM) {
-                $this->praytime->setFajrAngle($conf->getFajrDegree());
-                $this->praytime->setIshaAngle($conf->getIshaDegree());
+
+            if ($conf->getPrayerMethod() === PrayerTimes::METHOD_CUSTOM) {
+                $method = new Method();
+                $method->setFajrAngle($conf->getFajrDegree());
+                $method->setIshaAngleOrMins($conf->getIshaDegree());
+                $pt = new PrayerTimes(PrayerTimes::METHOD_CUSTOM);
+                $pt->setCustomMethod($method);
             }
-            $this->praytime->setAsrMethod($conf->getAsrMethod());
-            $this->praytime->setHighLatsMethod($conf->getHighLatsMethod());
+
+            $pt->setAsrJuristicMethod($conf->getAsrMethod());
+            $pt->setLatitudeAdjustmentMethod($conf->getHighLatsMethod());
 
             foreach (Calendar::MONTHS as $month => $days) {
                 for ($day = 1; $day <= $days; $day++) {
-                    $timestamp = strtotime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00");
-                    $prayers = $this->praytime->getPrayerTimes($timestamp, $mosque->getLatitude(),
-                        $mosque->getLongitude(), $conf->getTimezone());
-                    unset($prayers[5]);
+                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($timezone));
+                    $prayers = $pt->getTimes($date, $mosque->getLatitude(), $mosque->getLongitude());
+                    unset($prayers["Sunset"], $prayers["Imsak"], $prayers["Midnight"]);
                     $prayers = array_values($prayers);
                     $this->adjust($prayers, $mosque);
-                    $this->applyDst($prayers, $mosque, $timestamp);
                     $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
                 }
@@ -109,7 +108,7 @@ class PrayerTime
         }
     }
 
-    private function applyDst(&$prayers, Mosque $mosque, $timestamp)
+    private function applyDst(&$prayers, Mosque $mosque, \DateTime $date)
     {
         $conf = $mosque->getConf();
         // dst disabled
@@ -122,12 +121,12 @@ class PrayerTime
             return;
         }
 
-        if ($conf->getDst() === 1 && ($timestamp < $conf->getDstSummerDate()->getTimestamp() || $timestamp > $conf->getDstWinterDate()->getTimestamp())) {
+        if ($conf->getDst() === 1 && ($date < $conf->getDstSummerDate() || $date > $conf->getDstWinterDate())) {
             return;
         }
 
         // dst auto and not in effect
-        if ($conf->getDst() === 2 && date('I', $timestamp) == 0) {
+        if ($conf->getDst() === 2 &&  $date->format("I") === "0") {
             return;
         }
 

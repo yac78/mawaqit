@@ -688,9 +688,9 @@ ph: Phonétique
 fr-ar: Français & Arabe
 tr-ar: Turque & Arabe
 en-ar: Anglais & Arabe
-dst-auto: Auto (Dépend du réglage système du raspberry, France par défaut)
-dst-enabled: Activé (Pays hors France avec choix de dates)
-dst-disabled: Désactivé (Pays ne pratiquant pas le changement d'heure)
+dst-auto: Auto (Dépend du fuseau horaire)
+dst-enabled: Activé (Forcé avec choix de dates)
+dst-disabled: Désactivé
 enabled: Activé
 disabled: Désactivé
 send: Envoyer
@@ -731,11 +731,11 @@ maghrib-isha: "Maghrib et `Isha"
 
         
 ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
-UOIF: L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
-Karachi: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
+FRANCE: "L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
+KARACHI: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
 MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
-Makkah: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
-Egypt: "Autorité générale égyptienne (fajr 19.5°, ichaa 17.9°)"
+MAKKAH: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
+EGYPT: "Autorité générale égyptienne (fajr 19.5°, ichaa 17.9°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)
@@ -768,7 +768,7 @@ add: Ajouter
 title: Titre
 content: Contenu
 subject: Sujet
-developed_by: Mawaqit - Développé par Binary Consulting SAS
+developed_by: MAWAQIT - Développé par Binary Consulting SAS
 next_prayer: Adhân dans
 last_login: dernière connexion
 alarm: Essalatu khayrun mina ennawm

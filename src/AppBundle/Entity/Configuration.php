@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Meezaan\PrayerTimes\PrayerTimes;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -21,28 +22,24 @@ class Configuration
     ];
 
     const ASR_METHOD_CHOICES = [
-        "Standard", "Hanafi"
+        PrayerTimes::SCHOOL_STANDARD,
+        PrayerTimes::SCHOOL_HANAFI
     ];
 
     const HIGH_LATS_CHOICES = [
-        "AngleBased", "NightMiddle", "OneSeventh"
+        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ANGLE,
+        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_MOTN,
+        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ONESEVENTH
     ];
 
-    const METHOD_ISNA = 'ISNA';
-    const METHOD_UOIF = 'UOIF';
-    const METHOD_Karachi = 'Karachi';
-    const METHOD_MWL = 'MWL';
-    const METHOD_Makkah = 'Makkah';
-    const METHOD_Egypt = 'Egypt';
-    const METHOD_CUSTOM = 'CUSTOM';
     const METHOD_CHOICES = [
-        self::METHOD_ISNA,
-        self::METHOD_UOIF,
-        self::METHOD_Karachi,
-        self::METHOD_MWL,
-        self::METHOD_Makkah,
-        self::METHOD_Egypt,
-        self::METHOD_CUSTOM,
+        PrayerTimes::METHOD_ISNA,
+        PrayerTimes::METHOD_FRANCE,
+        PrayerTimes::METHOD_KARACHI,
+        PrayerTimes::METHOD_MWL,
+        PrayerTimes::METHOD_MAKKAH,
+        PrayerTimes::METHOD_EGYPT,
+        PrayerTimes::METHOD_CUSTOM
     ];
 
     /**
@@ -211,17 +208,17 @@ class Configuration
     /**
      * @var string
      */
-    private $prayerMethod = 'ISNA';
+    private $prayerMethod = PrayerTimes::METHOD_ISNA;
 
     /**
      * @var string
      */
-    private $asrMethod = 'Standard';
+    private $asrMethod = PrayerTimes::SCHOOL_STANDARD;
 
     /**
      * @var string
      */
-    private $highLatsMethod = 'AngleBased';
+    private $highLatsMethod = PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ANGLE;
 
     /**
      * @var integer

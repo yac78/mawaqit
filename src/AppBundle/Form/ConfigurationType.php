@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Configuration;
 use AppBundle\Form\DataTransformer\PrayerTransformer;
+use Meezaan\PrayerTimes\PrayerTimes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -232,22 +233,17 @@ class ConfigurationType extends AbstractType
             ])
             ->add('dst', ChoiceType::class, [
                 'choices' => self::$DST,
-                'attr' => [
-                    'help' => 'configuration.form.dst.title',
-                ],
             ])
             ->add('dstSummerDate', DateType::class, [
                 'required' => false,
-                'widget' => 'single_text',
-                'placeholder' => 'jj/mm/aaaa',
+                'widget' => 'choice',
                 'attr' => [
                     'help' => 'configuration.form.dstSummerDate.title',
                 ],
             ])
             ->add('dstWinterDate', DateType::class, [
                 'required' => false,
-                'placeholder' => 'jj/mm/aaaa',
-                'widget' => 'single_text',
+                'widget' => 'choice',
                 'attr' => [
                     'help' => 'configuration.form.dstWinterDate.title',
                 ],
@@ -257,16 +253,16 @@ class ConfigurationType extends AbstractType
             ])
             ->add('asrMethod', ChoiceType::class, [
                 'choices' => [
-                    "configuration.form.asrMethod.Standard" => "Standard",
-                    "configuration.form.asrMethod.Hanafi" => "Hanafi",
+                    "configuration.form.asrMethod.Standard" => PrayerTimes::MIDNIGHT_MODE_STANDARD,
+                    "configuration.form.asrMethod.Hanafi" => PrayerTimes::SCHOOL_HANAFI,
                 ]
             ])
             ->add('highLatsMethod', ChoiceType::class, [
                 'required' => false,
                 'choices' => [
-                    "configuration.form.highLatsMethod.AngleBased" => "AngleBased",
-                    "configuration.form.highLatsMethod.NightMiddle" => "NightMiddle",
-                    "configuration.form.highLatsMethod.OneSeventh" => "OneSeventh"
+                    "configuration.form.highLatsMethod.AngleBased" => PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ANGLE,
+                    "configuration.form.highLatsMethod.NightMiddle" => PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_MOTN,
+                    "configuration.form.highLatsMethod.OneSeventh" => PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ONESEVENTH
                 ]
             ])
             ->add('hijriDateEnabled', CheckboxType::class, [

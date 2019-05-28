@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1448537b41dc74f793eeb3bbecb0d66d",
+    "content-hash": "df33a84a8f740cf5c731771182769a1f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2288,6 +2288,39 @@
                 "minification"
             ],
             "time": "2016-11-11T18:43:20+00:00"
+        },
+        {
+            "name": "meezaan/prayer-times",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/meezaan/prayer-times.git",
+                "reference": "bb065d01ad4e8fc63ddcfed41c1de8edff92855d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/meezaan/prayer-times/zipball/bb065d01ad4e8fc63ddcfed41c1de8edff92855d",
+                "reference": "bb065d01ad4e8fc63ddcfed41c1de8edff92855d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Meezaan\\PrayerTimes\\": "src/PrayerTimes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Meezaan-ud-Din Abdu Dhil-Jalali Wal-Ikram",
+                    "email": "website@meezaan.net"
+                }
+            ],
+            "description": "Precision and Powerful PHP Prayer Times Library",
+            "time": "2019-03-20T15:10:09+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
