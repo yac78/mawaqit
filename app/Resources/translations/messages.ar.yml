@@ -445,7 +445,7 @@ configuration:
             help: هذه القيم هي بصفة تقريبية،وتعني المدة الزمنية لصلاة الجماعة مع الإمام
         hijriAdjustment:
             label: تعديل التاريخ الهجري
-        timezone:
+        timezoneName:
             label: المنطقة الزمنية
             title: إذا تم ملاحظة خطأ من جهةالوقت فيرجى إصلاحه هنا
         dst:

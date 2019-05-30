@@ -304,7 +304,7 @@ configuration:
             help: These values are as an estimate, it is the duration that the imam puts to finish a prayer
         hijriAdjustment: 
             label: Adjustment of the Hegira date
-        timezone: 
+        timezoneName:
             label: Time zone
             title: If you have a time difference in the calculation of prayer times, adjust it here
         ishaFixation:

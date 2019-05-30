@@ -544,7 +544,7 @@ configuration:
             help: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour accomplir une prière
         hijriAdjustment: 
             label: Ajustement de la date hégire
-        timezone: 
+        timezoneName:
             label: Fuseau horaire
             title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
         ishaFixation:

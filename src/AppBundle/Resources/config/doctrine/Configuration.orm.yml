@@ -90,10 +90,6 @@ AppBundle\Entity\Configuration:
         highLatsMethod:
             type: string
             nullable: true
-        timezone:
-            type: decimal
-            scale: 2
-            precision: 4
         timezoneName:
             type: string
         dst:

@@ -190,7 +190,7 @@ class ConfigurationType extends AbstractType
             ])
             ->add('timezoneName', TimezoneType::class, [
                 'attr' => [
-                    'help' => 'configuration.form.timezone.title',
+                    'help' => 'configuration.form.timezoneName.title',
                 ],
             ])
             ->add('dst', ChoiceType::class, [

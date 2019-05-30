@@ -201,11 +201,6 @@ class Configuration
     private $highLatsMethod = PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ANGLE;
 
     /**
-     * @var integer
-     */
-    private $timezone = 1;
-
-    /**
      * @var string
      */
     private $timezoneName = "Europe/Paris";
@@ -774,16 +769,6 @@ class Configuration
         $this->prayerMethod = $prayerMethod;
 
         return $this;
-    }
-
-    function getTimezone()
-    {
-        return $this->timezone;
-    }
-
-    function setTimezone($timezone)
-    {
-        $this->timezone = $timezone;
     }
 
     /**
