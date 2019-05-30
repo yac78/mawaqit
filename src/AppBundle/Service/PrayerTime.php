@@ -78,14 +78,13 @@ class PrayerTime
     function getCalendar(Mosque $mosque)
     {
         $conf = $mosque->getConfiguration();
-        $timezone = timezone_name_from_abbr("", $conf->getTimezone() * 3600, 0);
 
         if ($conf->isCalendar()) {
             $calendar = $conf->getCalendar();
             foreach ($calendar as $month => $days) {
                 foreach ($days as $day => $prayers) {
                     $prayers = array_values($prayers);
-                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($timezone));
+                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($conf->getTimezoneName()));
                     $this->applyDst($prayers, $mosque, $date);
                     $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
@@ -96,6 +95,7 @@ class PrayerTime
         if ($conf->isApi()) {
             $calendar = [];
 
+            $pt = new PrayerTimes();
             if ($conf->getPrayerMethod() !== PrayerTimes::METHOD_CUSTOM) {
                 $pt = new PrayerTimes($conf->getPrayerMethod());
             }
@@ -122,7 +122,7 @@ class PrayerTime
 
             foreach (Calendar::MONTHS as $month => $days) {
                 for ($day = 1; $day <= $days; $day++) {
-                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($timezone));
+                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($conf->getTimezoneName()));
                     $this->applyAdjustment($pt, $mosque);
                     $prayers = $pt->getTimes($date, $mosque->getLatitude(), $mosque->getLongitude());
                     unset($prayers["Sunset"], $prayers["Imsak"], $prayers["Midnight"]);

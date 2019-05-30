@@ -284,7 +284,7 @@ class MosqueType extends AbstractType
             $position = $this->googleService->getPosition($mosque);
             $mosque->setLongitude($position['lng']);
             $mosque->setLatitude($position['lat']);
-            $mosque->getConfiguration()->setTimezone($position['timezone']);
+            $mosque->getConfiguration()->setTimezoneName($position['timezone']);
         }
 
         if ($mosque->getType() === "home") {

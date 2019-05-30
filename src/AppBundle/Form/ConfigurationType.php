@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -30,45 +31,6 @@ class ConfigurationType extends AbstractType
      * @var Translator
      */
     private $translator;
-
-    /**
-     * @var Array
-     */
-    private static $TIMEZONES = [
-        "-12.00" => "(GMT-12:00) International Date Line West",
-        "-11.00" => "(GMT-11:00) Midway Island, Samoa",
-        "-10.00" => "(GMT-10:00) Hawaii",
-        "-9.00" => "(GMT-09:00) Alaska",
-        "-8.00" => "(GMT-08:00) Pacific Time (US & Canada), Tijuana, Baja California",
-        "-7.00" => "(GMT-07:00) Arizona, Chihuahua, La Paz, Mazatlan, Mountain Time (US & Canada)",
-        "-6.00" => "(GMT-06:00) Central Time (US & Canada), Guadalajara, Mexico City, Monterrey, Saskatchewan, ",
-        "-5.00" => "(GMT-05:00) Bogota, Lima, Quito, Rio Branco, Eastern Time (US & Canada), Indiana (East)",
-        "-4.00" => "(GMT-04:00) Atlantic Time (Canada), Caracas, La Paz, Manaus, Santiago",
-        "-3.50" => "(GMT-03:30) Newfoundland",
-        "-3.00" => "(GMT-03:00) Brasilia, Buenos Aires, Georgetown, Greenland, Montevideo",
-        "-2.00" => "(GMT-02:00) Mid-Atlantic",
-        "-1.00" => "(GMT-01:00) Cape Verde Is, Azores",
-        "0.00" => "(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London, Casablanca, Monrovia, Reykjavik",
-        "1.00" => "(GMT+01:00) Paris, Brussels, Copenhagen, Madrid, Amsterdam, Berlin, Bern, Rome, West Central Africa",
-        "2.00" => "(GMT+02:00) Amman, Athens, Bucharest, Istanbul, Beirut, Cairo",
-        "3.00" => "(GMT+03:00) Kuwait, Riyadh, Baghdad, Moscow, Nairobi",
-        "3.50" => "(GMT+03:30) Tehran",
-        "4.00" => "(GMT+04:00) Abu Dhabi, Muscat",
-        "4.50" => "(GMT+04:30) Kabul",
-        "5.00" => "(GMT+05:00) Islamabad, Karachi, Tashkent",
-        "5.50" => "(GMT+05:30) Sri Jayawardenapura, Chennai, Kolkata, Mumbai, New Delh",
-        "5.75" => "(GMT+05:45) Kathmandu",
-        "6.00" => "(GMT+06:00) Almaty, Novosibirsk",
-        "6.50" => "(GMT+06:30) Yangon (Rangoon)",
-        "7.00" => "(GMT+07:00) Bangkok, Hanoi, Jakarta",
-        "8.00" => "(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi, Kuala Lumpur, Singapore",
-        "9.00" => "(GMT+09:00) Osaka, Sapporo, Tokyo, Seoul",
-        "9.50" => "(GMT+09:30) Adelaide, Darwin",
-        "10.00" => "(GMT+10:00) Canberra, Melbourne, Sydney",
-        "11.00" => "(GMT+11:00) Magadan, Solomon Is., New Caledonia",
-        "12.00" => "(GMT+12:00) Fiji, Kamchatka, Marshall Is.",
-        "13.00" => "(GMT+13:00) Nuku'alofa"
-    ];
 
     /**
      * @var Array
@@ -226,8 +188,7 @@ class ConfigurationType extends AbstractType
             ->add('hijriAdjustment', ChoiceType::class, [
                 'choices' => [-2 => -2, -1 => -1, 0 => 0, 1 => 1, 2 => 2],
             ])
-            ->add('timezone', ChoiceType::class, [
-                'choices' => array_flip(self::$TIMEZONES),
+            ->add('timezoneName', TimezoneType::class, [
                 'attr' => [
                     'help' => 'configuration.form.timezone.title',
                 ],

@@ -206,6 +206,11 @@ class Configuration
     private $timezone = 1;
 
     /**
+     * @var string
+     */
+    private $timezoneName = "Europe/Paris";
+
+    /**
      * @var integer
      * default to 2 = auto
      * possible values 0 (disabled), 1 (enabled), 2 (auto)
@@ -779,6 +784,22 @@ class Configuration
     function setTimezone($timezone)
     {
         $this->timezone = $timezone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimezoneName(): string
+    {
+        return $this->timezoneName;
+    }
+
+    /**
+     * @param int $timezoneName
+     */
+    public function setTimezoneName($timezoneName): void
+    {
+        $this->timezoneName = $timezoneName;
     }
 
     function getDst()

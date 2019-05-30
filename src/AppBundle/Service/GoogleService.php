@@ -37,8 +37,8 @@ class GoogleService extends GoogleApi
 
             // get timezone
             $res = $this->get(self::PATH_TIMEZONE . "?location=$lat,$lng");
-            if ($res instanceof \stdClass && isset($res->rawOffset)) {
-                $position['timezone'] = $res->rawOffset / 3600;
+            if ($res instanceof \stdClass && isset($res->timeZoneId)) {
+                $position['timezone'] = $res->timeZoneId;
             }
 
             return $position;

@@ -11,11 +11,9 @@ AppBundle\Entity\Configuration:
     fields:
         jumuaTime:
             type: string
-            length: 255
             nullable: true
         jumuaTime2:
             type: string
-            length: 255
             nullable: true
         jumuaAsDuhr:
             type: boolean             
@@ -29,14 +27,12 @@ AppBundle\Entity\Configuration:
             type: integer             
         aidTime:
             type: string
-            length: 255
             nullable: true
         imsakNbMinBeforeFajr:
             type: smallint
             nullable: true
         maximumIshaTimeForNoWaiting:
             type: string
-            length: 255
             nullable: true
         waitingTimes:
             type: simple_array
@@ -86,22 +82,20 @@ AppBundle\Entity\Configuration:
             type: string
         sourceCalcul:
             type: string
-            length: 255
         prayerMethod:
             type: string
-            length: 255
             nullable: true
         asrMethod:
             type: string
-            length: 255
         highLatsMethod:
             type: string
-            length: 255
             nullable: true
         timezone:
             type: decimal
             scale: 2
             precision: 4
+        timezoneName:
+            type: string
         dst:
             type: smallint
         dstSummerDate:
