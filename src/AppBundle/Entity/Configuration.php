@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Service\PrayerTime;
 use Meezaan\PrayerTimes\PrayerTimes;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -19,27 +20,6 @@ class Configuration
     ];
     const HADITH_LANG = [
         "ar", "en", "fr", "tr", "en-ar", "fr-ar", "tr-ar"
-    ];
-
-    const ASR_METHOD_CHOICES = [
-        PrayerTimes::SCHOOL_STANDARD,
-        PrayerTimes::SCHOOL_HANAFI
-    ];
-
-    const HIGH_LATS_CHOICES = [
-        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ANGLE,
-        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_MOTN,
-        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ONESEVENTH
-    ];
-
-    const METHOD_CHOICES = [
-        PrayerTimes::METHOD_ISNA,
-        PrayerTimes::METHOD_FRANCE,
-        PrayerTimes::METHOD_KARACHI,
-        PrayerTimes::METHOD_MWL,
-        PrayerTimes::METHOD_MAKKAH,
-        PrayerTimes::METHOD_EGYPT,
-        PrayerTimes::METHOD_CUSTOM
     ];
 
     /**
@@ -1411,12 +1391,12 @@ class Configuration
 
     public static function getHighLatsChoices()
     {
-        return self::HIGH_LATS_CHOICES;
+        return PrayerTime::HIGH_LATS_CHOICES;
     }
 
     public static function getAsrMethodChoices()
     {
-        return self::ASR_METHOD_CHOICES;
+        return PrayerTime::ASR_METHOD_CHOICES;
     }
 
     /**

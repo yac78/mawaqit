@@ -20,6 +20,44 @@ class PrayerTime
 
     private $cacheDir;
 
+    const METHOD_ALGERIA = 'ALGERIA';
+    const METHOD_MOROCCO = 'MOROCCO';
+
+    const DEFAULT_ADJUSTMENT = [
+        PrayerTimes::METHOD_FRANCE => [-4, 5, 0, 3, 5],
+        self::METHOD_ALGERIA => [1, 1, 2, 4, 2],
+        self::METHOD_MOROCCO => [-8, 5, 0, 4, 0],
+    ];
+
+    const NEW_METHODS = [
+        self::METHOD_ALGERIA => [18, 17],
+        self::METHOD_MOROCCO => [18, 17],
+    ];
+
+    const ASR_METHOD_CHOICES = [
+        PrayerTimes::SCHOOL_STANDARD,
+        PrayerTimes::SCHOOL_HANAFI
+    ];
+
+    const HIGH_LATS_CHOICES = [
+        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ANGLE,
+        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_MOTN,
+        PrayerTimes::LATITUDE_ADJUSTMENT_METHOD_ONESEVENTH
+    ];
+
+    const METHOD_CHOICES = [
+        self::METHOD_ALGERIA,
+        self::METHOD_MOROCCO,
+        PrayerTimes::METHOD_FRANCE,
+        PrayerTimes::METHOD_MWL,
+        PrayerTimes::METHOD_ISNA,
+        PrayerTimes::METHOD_MAKKAH,
+        PrayerTimes::METHOD_EGYPT,
+        PrayerTimes::METHOD_KARACHI,
+        PrayerTimes::METHOD_RUSSIA,
+        PrayerTimes::METHOD_CUSTOM
+    ];
+
     public function __construct(LoggerInterface $logger, $cacheDir)
     {
         $this->logger = $logger;
@@ -57,8 +95,18 @@ class PrayerTime
 
         if ($conf->isApi()) {
             $calendar = [];
+
             if ($conf->getPrayerMethod() !== PrayerTimes::METHOD_CUSTOM) {
                 $pt = new PrayerTimes($conf->getPrayerMethod());
+            }
+
+            if (isset(self::NEW_METHODS[$conf->getPrayerMethod()])) {
+                $method = new Method();
+                $angle = self::NEW_METHODS[$conf->getPrayerMethod()];
+                $method->setFajrAngle($angle[0]);
+                $method->setIshaAngleOrMins($angle[1]);
+                $pt = new PrayerTimes(PrayerTimes::METHOD_CUSTOM);
+                $pt->setCustomMethod($method);
             }
 
             if ($conf->getPrayerMethod() === PrayerTimes::METHOD_CUSTOM) {
@@ -75,10 +123,10 @@ class PrayerTime
             foreach (Calendar::MONTHS as $month => $days) {
                 for ($day = 1; $day <= $days; $day++) {
                     $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($timezone));
+                    $this->applyAdjustment($pt, $mosque);
                     $prayers = $pt->getTimes($date, $mosque->getLatitude(), $mosque->getLongitude());
                     unset($prayers["Sunset"], $prayers["Imsak"], $prayers["Midnight"]);
                     $prayers = array_values($prayers);
-                    $this->adjust($prayers, $mosque);
                     $this->fixationProcess($prayers, $conf);
                     $calendar[$month][$day] = $prayers;
                 }
@@ -88,24 +136,23 @@ class PrayerTime
         return $calendar;
     }
 
-    private function adjust(&$prayers, Mosque $mosque)
+    private function applyAdjustment(PrayerTimes &$pt, Mosque $mosque)
     {
+        $conf = $mosque->getConf();
+        $defaultAdjustment = [0, 0, 0, 0, 0];
 
-        $adjusted = $mosque->getConf()->getAdjustedTimes();
-        $adjusted = [$adjusted[0], null, $adjusted[1], $adjusted[2], $adjusted[3], $adjusted[4]];
-
-        foreach ($prayers as $k => $prayer) {
-            if (empty($adjusted[$k])) {
-                continue;
-            }
-
-            try {
-                $prayers[$k] = ((new \DateTime($prayer))->modify($adjusted[$k] . " minutes"))->format("H:i");
-            } catch (\Exception $e) {
-                $prayers[$k] = "ERROR";
-                $this->logger->error("Erreur de parsing heure de prière", [$e, $mosque->getId()]);
-            }
+        if (isset(self::DEFAULT_ADJUSTMENT[$conf->getPrayerMethod()])) {
+            $defaultAdjustment = self::DEFAULT_ADJUSTMENT[$conf->getPrayerMethod()];
         }
+
+        $adjustment = $mosque->getConf()->getAdjustedTimes();
+
+        foreach ($adjustment as $k => $v) {
+            $v = (int)$v;
+            $adjustment[$k] = $v !== 0 ? $v : $defaultAdjustment[$k];
+        }
+
+        $pt->tune(0, $adjustment[0], 0, $adjustment[1], $adjustment[2], $adjustment[3], 0, $adjustment[4]);
     }
 
     private function applyDst(&$prayers, Mosque $mosque, \DateTime $date)
@@ -126,7 +173,7 @@ class PrayerTime
         }
 
         // dst auto and not in effect
-        if ($conf->getDst() === 2 &&  $date->format("I") === "0") {
+        if ($conf->getDst() === 2 && $date->format("I") === "0") {
             return;
         }
 

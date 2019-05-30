@@ -730,12 +730,15 @@ asr-maghrib: "`Asr et Maghrib"
 maghrib-isha: "Maghrib et `Isha"
 
         
-ISNA: "Société Islamique d'Amérique du Nord (fajr 15°, ichaa 15°)"
-FRANCE: "L'Union des Organisations Islamiques de France (UOIF) (fajr 12°, ichaa 12°)"
-KARACHI: "Université des sciences de Karachi (fajr 18°, ichaa 18°)"
-MWL: "Ligue islamique mondiale (fajr 18°, ichaa 17°)"
-MAKKAH: "Umm al-Qura University - La Mecque (fajr 18°, ichaa 90 minutes après maghrib)"
-EGYPT: "Autorité générale égyptienne (fajr 19.5°, ichaa 17.9°)"
+ISNA: "Société Islamique d'Amérique du Nord (Fajr 15°, `Isha 15°)"
+ALGERIA: "Ministère des affaires religieuses et des wakfs Algérien (Fajr 18°, `Isha 17°)"
+MOROCCO: "Ministère des wakfs et affaires islamiques Marocain (Fajr 18°, `Isha 17°)"
+FRANCE: "L'Union des Organisations Islamiques de France (UOIF) (Fajr 12°, `Isha 12°)"
+KARACHI: "Université des sciences de Karachi (Fajr 18°, `Isha 18°)"
+MWL: "Ligue islamique mondiale (Fajr 18°, `Isha 17°)"
+MAKKAH: "Umm al-Qura University - La Mecque (Fajr 18°, `Isha 90 minutes après maghrib)"
+EGYPT: "Autorité générale égyptienne (Fajr 19.5°, `Isha 17.9°)"
+RUSSIA: "Administration spirituelle des musulmans de Russie (Fajr 16°, `Isha 15°)"
 CUSTOM: "Choisir le degré du Fajr et `Isha"
 
 api: Automatique (Calcul des horaires par le logiciel)

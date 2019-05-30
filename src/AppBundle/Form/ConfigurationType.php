@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Configuration;
 use AppBundle\Form\DataTransformer\PrayerTransformer;
+use AppBundle\Service\PrayerTime;
 use Meezaan\PrayerTimes\PrayerTimes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -308,7 +309,7 @@ class ConfigurationType extends AbstractType
                 'choices' => array_combine(Configuration::SOURCE_CHOICES, Configuration::SOURCE_CHOICES)
             ])
             ->add('prayerMethod', ChoiceType::class, [
-                'choices' => array_combine(Configuration::METHOD_CHOICES, Configuration::METHOD_CHOICES)
+                'choices' => array_combine(PrayerTime::METHOD_CHOICES, PrayerTime::METHOD_CHOICES)
             ])
             ->add('fajrDegree', IntegerType::class, [
                 'required' => false,
