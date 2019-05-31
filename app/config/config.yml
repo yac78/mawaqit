@@ -43,8 +43,9 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
       supportEmail: "%supportEmail%"
-      supportTel1: "%supportTel1%"
-      supportTel2: "%supportTel2%"
+      supportTelFR: "%supportTelFR%"
+      supportTelDZ: "%supportTelDZ%"
+      supportTelROW: "%supportTelROW%"
       site: "%site%"
       version: "%version%"
     form_themes:

@@ -49,8 +49,9 @@ home:
       لديك أسئلة حول كيفية تجهيز مسجدك ببرنامجنا. اتصل بنا:
     contactUsText2: |
       <li><i class="fa fa-whatsapp"></i>  من التاسعة صباحا إلى التاسعة مساءا : على الواتساب كتابيا فقظ <br>
-      supportTel1  فرنسا <br>
-      supportTel2 باقي العالم
+      supportTelFR  فرنسا <br>
+      supportTelDZ  الجزائر <br>
+      supportTelROW باقي العالم
       </li>
       <li>عبر الإستمارة أدناه</li>
     contactUsFormValidation1: من فضلك ادخل اسمك

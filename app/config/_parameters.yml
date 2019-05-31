@@ -8,8 +8,9 @@ parameters:
     mailer_user: '%supportEmail%'
     no_reply_address: no-reply@mawaqit.net
     postmaster_address: postmaster@mawaqit.net
-    supportTel1: '+33651061498 / +33629111641'
-    supportTel2: '+33638159980'
+    supportTelFR: '+33651061498 / +33629111641'
+    supportTelDZ: '+213551720574 '
+    supportTelROW: '+33638159980'
     supportEmail: contact@mawaqit.net
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
     weather_api_endpoint: 'http://api.openweathermap.org/data/2.5/weather'
