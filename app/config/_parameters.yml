@@ -9,7 +9,7 @@ parameters:
     no_reply_address: no-reply@mawaqit.net
     postmaster_address: postmaster@mawaqit.net
     supportTelFR: '+33651061498 / +33629111641'
-    supportTelDZ: '+213551720574 / +213550282964 '
+    supportTelDZ: '+213551720574 / +213550282964'
     supportTelROW: '+33638159980'
     supportEmail: contact@mawaqit.net
     google_api_endpoint: 'https://maps.googleapis.com/maps/api'
