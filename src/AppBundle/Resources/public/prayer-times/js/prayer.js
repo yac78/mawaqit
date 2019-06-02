@@ -135,10 +135,6 @@ var prayer = {
             fixedIqama = null;
             prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
 
-            if (prayer.confData.fixedIqama[i] !== "") {
-                fixedIqama = prayer.confData.fixedIqama[i];
-            }
-
             month = dateTime.getCurrentMonth();
             day = dateTime.getCurrentDay();
 
@@ -149,13 +145,16 @@ var prayer = {
             } catch (e) {
             }
 
+            if (prayer.confData.fixedIqama[i] !== "") {
+                fixedIqama = prayer.confData.fixedIqama[i];
+            }
+
             if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     prayer.waitings[i] = Math.floor((Math.abs(iqamaTime - prayerTime) / 1000) / 60);
                 }
             }
-
         });
 
         var ishaDate = this.getCurrentDateForPrayerTime(this.getIshaTime());
@@ -889,10 +888,6 @@ var prayer = {
             prayerTimes = prayer.getTimes();
             prayerTime = prayer.getCurrentDateForPrayerTime(prayerTimes[i]);
 
-            if (prayer.confData.fixedIqama[i] !== "") {
-                fixedIqama = prayer.confData.fixedIqama[i];
-            }
-
             month = dateTime.getCurrentMonth();
             day = dateTime.getCurrentDay();
 
@@ -901,6 +896,10 @@ var prayer = {
                     fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
                 }
             } catch (e) {
+            }
+
+            if (prayer.confData.fixedIqama[i] !== "") {
+                fixedIqama = prayer.confData.fixedIqama[i];
             }
 
             if (fixedIqama) {
@@ -912,6 +911,15 @@ var prayer = {
 
             $('.prayers .wait').eq(i).html(wait);
         });
+
+        var ishaDate = this.getCurrentDateForPrayerTime(this.getIshaTime());
+        if (this.confData.maximumIshaTimeForNoWaiting != null && this.confData.maximumIshaTimeForNoWaiting.matchTime()) {
+            var maximumIshaTimeForNoWaitingDate = this.getCurrentDateForPrayerTime(this.confData.maximumIshaTimeForNoWaiting);
+            if (ishaDate.getHours() === 0 || ishaDate >= maximumIshaTimeForNoWaitingDate) {
+                $('.prayers .wait').eq(4).html("0'");
+            }
+        }
+
     },
     hideSpinner: function () {
         setTimeout(function () {

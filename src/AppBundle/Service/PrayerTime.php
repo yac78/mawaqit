@@ -282,6 +282,7 @@ class PrayerTime
             'latitude' => $mosque->getLatitude(),
             'longitude' => $mosque->getLongitude(),
             'hijriAdjustment' => $conf->getHijriAdjustment(),
+            'aidPrayerTime' => $conf->getAidTime(),
             'jumua' => $conf->isNoJumua() ? null : $conf->getJumuaTime(),
             'jumua2' => $conf->isNoJumua() ? null : $conf->getJumuaTime2(),
             'jumuaAsDuhr' => $conf->isJumuaAsDuhr(),
@@ -290,7 +291,6 @@ class PrayerTime
             'shuruq' => null,
             'times' => null,
             'fixedIqama' => $conf->getFixedIqama(),
-            'iqama' => $conf->getWaitingTimes(),
             'womenSpace' => $mosque->getWomenSpace(),
             'janazaPrayer' => $mosque->getJanazaPrayer(),
             'aidPrayer' => $mosque->getAidPrayer(),
@@ -326,6 +326,9 @@ class PrayerTime
         unset($times[1]);
 
         $result['times'] = array_values($times);
+
+        $result['iqama'] = $this->getIqama($mosque, $result['times']);
+
         return $result;
     }
 
@@ -335,6 +338,41 @@ class PrayerTime
         $month = $date->format('m') - 1;
         $day = (int)$date->format('d');
         return $calendar[$month][$day];
+    }
+
+    private function getIqama(Mosque $mosque, $prayerTimes)
+    {
+        $conf = $mosque->getConf();
+        $iqama = $conf->getWaitingTimes();
+        $fixedIqama = $conf->getFixedIqama();
+
+        if (is_array($conf->getIqamaCalendar())) {
+            $date = new \DateTime();
+            $month = $date->format('m') - 1;
+            $day = (int)$date->format('d');
+            $iqamaFromCalendar = array_values($conf->getIqamaCalendar()[$month][$day]);
+
+            foreach ($iqamaFromCalendar as $k => $v) {
+                if (!empty($v) && $v > $prayerTimes[$k]) {
+                    $iqama[$k] = $v;
+                }
+            }
+        }
+
+        foreach ($fixedIqama as $k => $v) {
+            if (!empty($v) && $v > $prayerTimes[$k]) {
+                $iqama[$k] = $v;
+            }
+        }
+
+        // special isha iqama fixation to 0
+        if ($ishaTimeForNoWaiting = $conf->getMaximumIshaTimeForNoWaiting() && strpos($prayerTimes[0], "00") !== 0) {
+            if ($prayerTimes[0] >= $ishaTimeForNoWaiting) {
+                $iqama[4] = 0;
+            }
+        }
+
+        return $iqama;
     }
 
     private function getMessages(Mosque $mosque)
