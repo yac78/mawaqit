@@ -80,7 +80,7 @@
                                     {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                                 </a>
                             </div>
-                            {% if mosque.isMosque %}
+                            {% if mosque.isMosque and isNotLocal() %}
                                 <div>
                                     <i class="fa fa-print"></i>
                                     <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank" title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
