@@ -255,7 +255,9 @@
                 <div>
                     <img src="{{ asset('bundles/app/prayer-times/img/appstore.svg') }}">
                     <img src="{{ asset('bundles/app/prayer-times/img/playstore.svg') }}">
-                    <div id="mosque-id">ID {{ mosque.id }}</div>
+                    {% if isNotLocal() %}
+                        <div id="mosque-id">ID {{ mosque.id }}</div>
+                    {% endif %}
                 </div>
             </div>
 
