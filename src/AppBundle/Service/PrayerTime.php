@@ -290,7 +290,7 @@ class PrayerTime
             'maximumIshaTimeForNoWaiting' => $conf->getMaximumIshaTimeForNoWaiting(),
             'shuruq' => null,
             'times' => null,
-            'fixedIqama' => $conf->getFixedIqama(),
+            'iqama' => $conf->getWaitingTimes(),
             'womenSpace' => $mosque->getWomenSpace(),
             'janazaPrayer' => $mosque->getJanazaPrayer(),
             'aidPrayer' => $mosque->getAidPrayer(),
@@ -327,7 +327,7 @@ class PrayerTime
 
         $result['times'] = array_values($times);
 
-        $result['iqama'] = $this->getIqama($mosque, $result['times']);
+        $result['fixedIqama'] = $this->getFixedIqama($mosque, $result['times']);
 
         return $result;
     }
@@ -340,11 +340,10 @@ class PrayerTime
         return $calendar[$month][$day];
     }
 
-    private function getIqama(Mosque $mosque, $prayerTimes)
+    private function getFixedIqama(Mosque $mosque, $prayerTimes)
     {
         $conf = $mosque->getConf();
-        $iqama = $conf->getWaitingTimes();
-        $fixedIqama = $conf->getFixedIqama();
+        $fixedIqama = ["", "", "", "", ""];
 
         if (is_array($conf->getIqamaCalendar())) {
             $date = new \DateTime();
@@ -354,25 +353,18 @@ class PrayerTime
 
             foreach ($iqamaFromCalendar as $k => $v) {
                 if (!empty($v) && $v > $prayerTimes[$k]) {
-                    $iqama[$k] = $v;
+                    $fixedIqama[$k] = $v;
                 }
             }
         }
 
-        foreach ($fixedIqama as $k => $v) {
+        foreach ($conf->getFixedIqama() as $k => $v) {
             if (!empty($v) && $v > $prayerTimes[$k]) {
-                $iqama[$k] = $v;
+                $fixedIqama[$k] = $v;
             }
         }
 
-        // special isha iqama fixation to 0
-        if ($ishaTimeForNoWaiting = $conf->getMaximumIshaTimeForNoWaiting() && strpos($prayerTimes[0], "00") !== 0) {
-            if ($prayerTimes[0] >= $ishaTimeForNoWaiting) {
-                $iqama[4] = 0;
-            }
-        }
-
-        return $iqama;
+        return $fixedIqama;
     }
 
     private function getMessages(Mosque $mosque)
