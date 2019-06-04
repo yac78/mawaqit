@@ -2,7 +2,7 @@
 
 namespace AppBundle\Service;
 
-use Doctrine\ORM\Query;
+use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManager;
 
 class UserService
@@ -48,12 +48,13 @@ class UserService
 
         $body = $this->twig->render("email_templates/communication.html.twig", ['content' => $data["content"]]);
 
-        $recipients = $this->em->createQueryBuilder()
-            ->from("AppBundle:User", "u")
-            ->select("u.email")
-            ->where("u.enabled = 1")
+        $mosques = $this->em->createQueryBuilder()
+            ->from("AppBundle:Mosque", "m")
+            ->select("m")
+            ->where("m.type = :type")
+            ->setParameter(":type", Mosque::TYPE_MOSQUE)
             ->getQuery()
-            ->getScalarResult();
+            ->getResult();
 
         $message = $this->mailer->createMessage();
 
@@ -61,8 +62,8 @@ class UserService
             ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
             ->setBody($body, 'text/html');
 
-        foreach ($recipients as $recepient) {
-            $message->setTo($recepient["email"]);
+        foreach ($mosques as $mosque) {
+            $message->setTo($mosque->getUser()->getEmail());
             $this->mailer->send($message);
         }
     }

@@ -28,7 +28,6 @@ class MessageRepository extends SortableRepository
             ->innerJoin("mes.mosque", "mos", Join::WITH, "mes.mosque = :mosqueId")
             ->where("mes.enabled = 1")
             ->andWhere("mes.content IS NOT NULL OR mes.image is NOT NULL")
-            ->andWhere("mes.content IS NOT NULL OR mes.image is NOT NULL")
             ->orderBy("mes.position", "ASC")
             ->setParameter(":mosqueId", $mosque->getId());
 
