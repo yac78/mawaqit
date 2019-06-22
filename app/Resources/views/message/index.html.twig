@@ -9,9 +9,7 @@
 
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#announcement">{{ 'announcements'|trans }}</a></li>
-        {% if mosque.isMosque %}
-            <li><a data-toggle="tab" href="#flashMessage">{{ 'flashMessage.label'|trans }}</a></li>
-        {% endif %}
+        <li><a data-toggle="tab" href="#flashMessage">{{ 'flashMessage.label'|trans }}</a></li>
     </ul>
 
     <div class="tab-content">
@@ -144,37 +142,34 @@
                 </form>
             </div>
         </div>
-
-        {% if mosque.isMosque %}
-            <div id="flashMessage" class="tab-pane fade">
-                <div class="col-md-6 mt-2">
-                    <p class="text-muted">{{ 'flashMessage.info'|trans|raw }}</p>
-                    {% if mosque.flashMessage and mosque.flashMessage.content %}
-                        <div class="alert alert-{{ mosque.flashMessage.expired ?  'danger' : 'success' }}">
-                            <p><strong>{{ mosque.flashMessage.content }}</strong></p><br>
-                            <p>{{ ( mosque.flashMessage.expired ? 'expired' : 'expire')|trans }} {{ mosque.flashMessage.expire|date }}</p>
-                        </div>
-                    {% else %}
-                        <br>
-                        <p class="alert alert-info">{{ 'flashMessage.no'|trans }}</p>
-                    {% endif %}
-
-                    <div class="row">
-                        <div class="col-xs-8">
-                            <a href="{{ path('flash_message_edit', {'mosque': mosque.id}) }}" class="btn btn-primary">
-                                <i class="fa fa-pencil"></i> {{ 'form.edit.action'|trans }}
-                            </a>
-                            <a href="{{ path('mosque_index') }}" class="btn btn-default"><i class="fa fa-caret-left"></i> {{ 'return'|trans }}</a>
-                        </div>
-                        {% if mosque.flashMessage and mosque.flashMessage.content %}
-                            <div class="col-xs-4 text-right">
-                                <a href="{{ path('flash_message_delete', {'mosque': mosque.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> {{ 'form.delete.action'|trans }}</a>
-                            </div>
-                        {% endif %}
+        <div id="flashMessage" class="tab-pane fade">
+            <div class="col-md-6 mt-2">
+                <p class="text-muted">{{ 'flashMessage.info'|trans|raw }}</p>
+                {% if mosque.flashMessage and mosque.flashMessage.content %}
+                    <div class="alert alert-{{ mosque.flashMessage.expired ?  'danger' : 'success' }}">
+                        <p><strong>{{ mosque.flashMessage.content }}</strong></p><br>
+                        <p>{{ ( mosque.flashMessage.expired ? 'expired' : 'expire')|trans }} {{ mosque.flashMessage.expire|date }}</p>
                     </div>
+                {% else %}
+                    <br>
+                    <p class="alert alert-info">{{ 'flashMessage.no'|trans }}</p>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <a href="{{ path('flash_message_edit', {'mosque': mosque.id}) }}" class="btn btn-primary">
+                            <i class="fa fa-pencil"></i> {{ 'form.edit.action'|trans }}
+                        </a>
+                        <a href="{{ path('mosque_index') }}" class="btn btn-default"><i class="fa fa-caret-left"></i> {{ 'return'|trans }}</a>
+                    </div>
+                    {% if mosque.flashMessage and mosque.flashMessage.content %}
+                        <div class="col-xs-4 text-right">
+                            <a href="{{ path('flash_message_delete', {'mosque': mosque.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> {{ 'form.delete.action'|trans }}</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 
     {% include 'partial/delete_modal.html.twig' with {path: 'message_delete'} %}

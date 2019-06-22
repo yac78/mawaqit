@@ -565,11 +565,16 @@ var prayer = {
             });
         },
         showBlackScreen: function () {
-            $(".main").fadeOut(500);
+            $(".main").fadeOut(500, function () {
+                $("#black-screen").fadeIn(500);
+            });
+
         },
         hideBlackScreen: function () {
-            $(".main").fadeIn(500, function () {
-                messageInfoSlider.get();
+            $("#black-screen").fadeOut(500, function () {
+                $(".main").fadeIn(500, function () {
+                    messageInfoSlider.get();
+                });
             });
         }
     },
