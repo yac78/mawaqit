@@ -71,12 +71,25 @@
                 </div>
                 <div id="prayerCalcul" class="panel-collapse collapse">
                     <div class="panel-body">
-
                         <div class="row">
+                            <div class="form-group col-md-4">
+                                <label class="control-label">{{ 'configuration.form.copyFromOtherMosque'|trans }}</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="predefined-calendar"
+                                       placeholder="{{ 'searchMosque'|trans }}"
+                                       data-remote="{{ path('mosque_serach_calendar') }}"
+                                       data-copy-path="{{ path('copy_conf', {'currentMosque': mosque.id, 'selectedMosque': '-id-'}) }}"
+                                >
+                            </div>
+                        </div>
+                        <div class="row">
+
+
                             <div class="col-md-4">
                                 {{ form_row(form.sourceCalcul) }}
                             </div>
-                            <div class="api calendarSource hidden">
+                            <div class="api hidden">
                                 <div class="col-md-4">
                                     {{ form_row(form.prayerMethod) }}
                                 </div>
@@ -97,7 +110,7 @@
                             </div>
                         </div>
 
-                        <div id="adjustedTimesPanel" class="calendarSource api hidden">
+                        <div id="adjustedTimesPanel" class="api hidden">
                             {{ form_label(form.adjustedTimes) }}
                             <div class="row">
                                 <div class="col-md-2">
@@ -118,76 +131,16 @@
                             </div>
                         </div>
 
-                        {{ form_label(form.fixedTimes) }}
-                        <div class="text-muted mb-1">
-                            <small>{{ 'configuration.form.fixedTimes.help'|trans }}</small>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.fajr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.zuhr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.asr) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.maghrib) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(form.fixedTimes.isha) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                {{ form_row(form.ishaFixation) }}
-                            </div>
-                        </div>
-
-
                         <div class="calendar hidden">
                             <h3>{{ 'configuration.form.calendar'|trans }}</h3>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="alert alert-info" role="alert">
-                                        <p>{{ 'configuration.form.load_predefined_calendar.1'|trans }}</p>
-                                        <div class="radio">
-                                            <label><input type="radio" name="calendarSource" value="list">{{ 'configuration.form.load_predefined_calendar.2'|trans }}</label>
-                                        </div>
-                                        <div class="radio">
-                                            <label><input type="radio" name="calendarSource" value="csv">{{ 'configuration.form.load_predefined_calendar.3'|trans }}</label>
-                                        </div>
-                                        {#<div class="radio">#}
-                                            {#<label><input type="radio" name="calendarSource" value="api">{{ 'configuration.form.load_predefined_calendar.4'|trans }}</label>#}
-                                        {#</div>#}
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row mb-2 calendarSource api hidden">
+                            <div class="row mb-2 api hidden">
                                 <div class="col-md-6">
                                     <a class="btn btn-primary" href="#" onclick="fillCalendarFromApi(event)">{{ 'form.load.action'|trans }}</a>
                                 </div>
                             </div>
 
-                            <div class="row calendarSource list hidden">
-                                <div class="form-group col-md-3">
-                                    <select class="form-control" id="predefined-calendar">
-                                        <option value="">{{ 'configuration.select_calendar'|trans }}</option>
-                                        {% for country, calendars in predefinedCalendars %}
-                                            <optgroup label="{{ country|country }}">
-                                                {% for calendar in calendars %}
-                                                    <option value="{{ calendar.id }}"
-                                                            data-remote="{{ path('copy_calendar', {'mosque': mosque.id, 'configuration': calendar.id}) }}">{{ calendar.label }}</option>
-                                                {% endfor %}
-                                            </optgroup>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row calendarSource csv hidden">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="alert alert-warning">
                                         <i class="fa fa-warning"></i> {{ 'info_dst_change'|trans|raw }}
@@ -273,6 +226,33 @@
                                     </div>
                                 </div>
                             {% endfor %}
+                        </div>
+                        <br>
+                        {{ form_label(form.fixedTimes) }}
+                        <div class="text-muted mb-1">
+                            <small>{{ 'configuration.form.fixedTimes.help'|trans }}</small>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.fajr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.zuhr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.asr) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.maghrib) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(form.fixedTimes.isha) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.ishaFixation) }}
+                            </div>
                         </div>
                     </div>
                 </div>

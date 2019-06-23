@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Entity\User;
 
@@ -122,16 +123,31 @@ class MosqueRepository extends \Doctrine\ORM\EntityRepository
             $qb = $this->getValidatedMosqueQb();
             foreach ($query as $key => $keyword) {
                 $qb->andwhere("m.name LIKE :keyword$key "
-                    . "OR m.associationName LIKE :keyword$key "
                     . "OR m.address LIKE :keyword$key "
                     . "OR m.city LIKE :keyword$key "
                     . "OR m.zipcode LIKE :keyword$key "
-                    . "OR m.country LIKE :keyword$key "
                 )->setParameter(":keyword$key", "%$keyword%");
             }
+            return $qb;
+        }
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    function searchMosquesWithCalendar($query)
+    {
+        if (!empty($query)) {
+            $qb = $this->publicSearch($query)
+                ->innerJoin("m.configuration", "c", "m.configuration_id = c.id")
+                ->select("m.id, CONCAT(m.name, ' - ', m.city, ' ', m.countryFullName) AS label")
+                ->orderBy("m.name", "ASC");
+
+            return $qb->getQuery()->getResult();
         }
 
-        return $qb;
+        return [];
     }
 
     /**

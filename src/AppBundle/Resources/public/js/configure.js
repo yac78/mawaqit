@@ -1,6 +1,26 @@
 $("#configuration_save").click(function () {
     $("form").submit();
-})
+});
+
+$("#predefined-calendar").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: $("#predefined-calendar").data("remote"),
+            dataType: "json",
+            data: {
+                query: request.term
+            },
+            success: function (data) {
+                response(data);
+            }
+        });
+    },
+    minLength: 2,
+    select: function (event, ui) {
+        window.location.href = $("#predefined-calendar").data("copyPath").replace("-id-", ui.item.id);;
+    }
+});
+
 
 /**
  * check and hilight imcompleted months
@@ -164,16 +184,6 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         $(panel).find(".alert-danger").removeClass("hidden");
     }
 }
-
-$("#predefined-calendar").change(function () {
-    window.location.href = $('option:selected', this).data('remote');
-});
-
-
-$("input[name='calendarSource']").change(function () {
-    $(".calendarSource").addClass("hidden");
-    $("." + $(this).val()).removeClass("hidden");
-});
 
 function handleErrorsDisplay() {
     $(".has-error").parents(".panel-collapse").collapse("show");

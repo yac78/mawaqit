@@ -146,7 +146,7 @@ home:
       </li>
     equipeYourMosque4: "Coût global du matériel : 220€ environ"
     equipeYourMosque5: Qu'Allah accepte vos œuvres et les notres
-    findMosque: Cherchez une mosquée mawaqit par ville, code postal, pays...
+    findMosque: Cherchez une mosquée mawaqit par nom, ville, code postal...
     install1:  "Veuillez suivre les étapes ci-dessous :"
     install2:  Télécharger l'image système pré configurée ici
     install3:  Vous devez être connecté pour télécharger l'image système
@@ -481,6 +481,7 @@ configuration:
             Attention: le calendrier de votre mosquée est incomplet
     form: 
         prayerCalcul: Calcul des horaires de prière
+        copyFromOtherMosque: Copier la configuration d'une autre mosquée
         load_predefined_calendar: 
             1: "Trois choix disponibles pour créer votre calendrier:"
             2: Depuis la liste des calendriers disponibles sur mawaqit
@@ -683,6 +684,7 @@ association: Association
 creation_date: Date de création
 date: Date
 search: Recherche
+searchMosque: Recherche par nom, ville, code postal...
 ar: Arabe
 fr: Français
 en: Anglais  

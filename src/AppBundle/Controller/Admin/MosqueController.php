@@ -10,12 +10,15 @@ use AppBundle\Form\MosqueSearchType;
 use AppBundle\Form\MosqueSyncType;
 use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
+use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\TransferException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -211,10 +214,9 @@ class MosqueController extends Controller
     /**
      * @Route("/clone/{id}", name="mosque_clone")
      */
-    public function cloneAction(Mosque $mosque)
+    public function cloneAction(Mosque $mosque, EntityManagerInterface $em)
     {
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
         $clonedMosque = clone $mosque;
         $clonedMosque->setId(null);
         $clonedMosque->setUser($user);
@@ -307,22 +309,19 @@ class MosqueController extends Controller
     }
 
     /**
-     * @param Mosque $mosque
-     * @param Configuration $configuration
-     * @Route("/copy-calendar/mosque/{mosque}/from-configure/{configuration}", name="copy_calendar")
+     * @Route("/copy-conf/mosque/{currentMosque}/from/{selectedMosque}", name="copy_conf")
      * @return Response
      */
-    public function copyCalendarAction(Mosque $mosque, Configuration $configuration)
+    public function copyConfAction(Mosque $currentMosque, Mosque $selectedMosque, EntityManagerInterface $em)
     {
-        $mosque->getConfiguration()
-            ->setCalendar($configuration->getCalendar())
-            ->setSourceCalcul(Configuration::SOURCE_CALENDAR);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($mosque);
+        $selectedConf = clone $selectedMosque->getConf();
+        $selectedConf->setId(null);
+        $currentMosque->setConfiguration($selectedConf);
+        $em->persist($currentMosque);
         $em->flush();
 
         return $this->redirectToRoute("mosque_configure", [
-            'id' => $mosque->getId()
+            'id' => $currentMosque->getId()
         ]);
     }
 

@@ -128,7 +128,7 @@ home:
       </li>
     equipeYourMosque4: "التكلفة الجملية للمعدات: 220 € تقريبًا"
     equipeYourMosque5: تقبل الله منا ومنكم صالح الأعمال
-    findMosque: ابحث عن مسجد مواقيت حسب المدينة أو الرمز البريدي أوالبلد...
+    findMosque: ابحث عن مسجد مواقيت حسب المدينة أو الرمز البريدي ...
     install1:  "يرجى اتباع الخطوات التالية:"
     install2:  قم بتحميل صورة النظام التي تمإعدادها مسبقًا هنا
     install3:  يجب تسجيل الدخول لتنزيل صورة النظام
@@ -374,6 +374,7 @@ configuration:
         download_csv_files: الرزنامة
         calendar_not_completed: يرجى الحذر ،فرزنامة مسجدك غير مكتملة
     form:
+        copyFromOtherMosque: إنسخ الإعدادات من مسجد آخر
         prayerCalcul: حساب أوقات الصلوات
         load_predefined_calendar:
           1: "ثلاثة خيارات متاحة لإنشاء التقويم الخاص بك:"
@@ -563,6 +564,7 @@ contact: جهة الإتصال
 association: الجمعية
 creation_date: تاريخ التثبيت
 search: بحث
+searchMosque: البحث عن طريق الاسم ، المدينة ، الرمز البريدي ...
 creation_date: التاريخ
 date: التاريخ
 ar: عربي

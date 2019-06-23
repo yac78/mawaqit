@@ -235,6 +235,7 @@ configuration:
         calendar_not_completed: |
             Be careful the calendar of your mosque is not completed yet
     form:
+        copyFromOtherMosque: Copy configuration from another mosque
         prayerCalcul: Calculation of prayer times
         load_predefined_calendar:
            1: "Three choices available to create your calendar :"
@@ -436,6 +437,7 @@ contact: Contact
 association: Association
 creation_date: Creation date
 search: Search
+searchMosque: Search by name, city, zipcode...
 ar: Arabic
 fr: French
 en: English

@@ -880,30 +880,6 @@ class Configuration
     }
 
     /**
-     * Set site
-     *
-     * @param string $site
-     *
-     * @return Configuration
-     */
-    public function setSite($site)
-    {
-        $this->site = $site;
-
-        return $this;
-    }
-
-    /**
-     * Get site
-     *
-     * @return string
-     */
-    public function getSite()
-    {
-        return $this->site;
-    }
-
-    /**
      * Set calendar
      *
      * @param array $calendar
