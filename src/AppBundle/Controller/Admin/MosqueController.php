@@ -64,6 +64,20 @@ class MosqueController extends Controller
         return $this->render('mosque/index.html.twig', $result);
     }
 
+
+    /**
+     * @Route("/ajax-search", name="mosque_search_calendar")
+     * @Method("GET")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function searchCalendarAction(Request $request, EntityManagerInterface $em)
+    {
+        $query = $request->query->get('query');
+        $result = $em->getRepository("AppBundle:Mosque")->searchMosquesWithCalendar($query);
+        return new JsonResponse($result);
+    }
+
     /**
      * Restet Sync flag
      * This is useful for raspberry env
