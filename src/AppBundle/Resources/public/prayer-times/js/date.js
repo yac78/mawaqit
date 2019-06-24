@@ -83,22 +83,19 @@ var dateTime = {
      * get current gregorian date
      * @returns {String}
      */
-    getCurrentDate: function (lang) {
+    getCurrentDate: function (locale) {
         var date = new Date();
         var options = {weekday: "long", year: "numeric", month: "short", day: "numeric"}
 
-        if (lang === 'ar') {
+        if (locale.startsWith("ar")) {
             options = {month: "short"};
-            return addZero(date.getDate())  + ' ' + date.toLocaleDateString(lang, options) + ' ' + date.getFullYear();
+            return addZero(date.getDate())  + ' ' + date.toLocaleDateString(locale, options) + ' ' + date.getFullYear();
         }
 
-        lang = lang + '-' + lang.toUpperCase();
-
         try {
-            return date.toLocaleDateString(lang, options).firstCapitalize();
+            return date.toLocaleDateString(locale, options).firstCapitalize();
         } catch (e) {
-            options.timeZone = "Europe/Paris";
-            return date.toLocaleDateString(lang, options).firstCapitalize();
+            return date.toLocaleDateString('fr-FR', options).firstCapitalize();
         }
 
     },

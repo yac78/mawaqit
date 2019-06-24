@@ -239,12 +239,6 @@ class Configuration
     private $iqamaDisplayTime = 30;
 
     /**
-     * @var string
-     * @Groups({"screen"})
-     */
-    private $site;
-
-    /**
      * @var array
      */
     private $calendar = [];

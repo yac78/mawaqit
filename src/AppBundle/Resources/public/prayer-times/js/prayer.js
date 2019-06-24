@@ -743,7 +743,7 @@ var prayer = {
      * set date
      */
     setDate: function () {
-        $(".gregorianDate").text(dateTime.getCurrentDate(lang));
+        $(".gregorianDate").text(dateTime.getCurrentDate(locale));
         this.setCurrentHijriDate();
     },
     /**

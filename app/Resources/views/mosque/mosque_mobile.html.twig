@@ -256,6 +256,7 @@
     var calendar = {{ calendar|json_encode|raw }};
     var confData = {{ confData|raw }};
     var lang = '{{ app.request.locale }}';
+    var locale = '{{ app.request.locale }}-{{ mosque.country }}';
     var prayerTimeIn10MinTitle = '{{ 'prayerTimeIn10MinTitle'|trans }}';
     var prayerTimeIn10MinBody = '{{ 'prayerTimeIn10MinBody'|trans }}';
 
