@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\FlashMessage;
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\FlashMessageType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,11 +64,14 @@ class FlashMessageController extends Controller
                 throw new AccessDeniedException;
             }
         }
+
         $mesage = $mosque->getFlashMessage();
-        $em->remove($mesage);
-        $mosque->setUpdated(new \DateTime());
-        $em->flush();
-        $this->addFlash('success', "form.delete.success");
+        if ($mesage instanceof FlashMessage) {
+            $em->remove($mesage);
+            $mosque->setUpdated(new \DateTime());
+            $em->flush();
+            $this->addFlash('success', "form.delete.success");
+        }
 
         return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId(), '_fragment' => 'flashMessage']);
     }
