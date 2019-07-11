@@ -160,6 +160,10 @@ csa_guzzle:
             config:
                 base_uri: '%api_base_url%/api/1.0.0/'
                 headers:
-                    Accept: application/json
+                    Accept: 'application/json'
                     Api-Access-Token: '%mawaqit_api_access_token%'
-    default_client: api
+    default_client: 'api'
+
+ewz_recaptcha:
+    public_key: '%google.recaptcha.public_key%'
+    private_key: '%google.recaptcha.private_key%'

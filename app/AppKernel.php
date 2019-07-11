@@ -23,6 +23,7 @@ class AppKernel extends Kernel {
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new AppBundle\AppBundle(),
         ];
 

@@ -67,6 +67,8 @@ class User extends BaseUser
      */
     private $mosques;
 
+    public $recaptcha;
+
     /**
      * Get id
      *
@@ -245,6 +247,21 @@ class User extends BaseUser
         $this->mosqueQuota = $mosqueQuota;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRecaptcha()
+    {
+        return $this->recaptcha;
+    }
+
+    /**
+     * @param mixed $recaptcha
+     */
+    public function setRecaptcha($recaptcha): void
+    {
+        $this->recaptcha = $recaptcha;
+    }
 
 }
 
