@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -67,6 +68,10 @@ class User extends BaseUser
      */
     private $mosques;
 
+    /**
+     * @var bool
+     * @RecaptchaTrue(groups={"Registration"})
+     */
     public $recaptcha;
 
     /**
