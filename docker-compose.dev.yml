@@ -7,7 +7,8 @@ services:
     restart: always
     tty: true
     links:
-      - db:mysql
+      - mawaqit_db
+      - mawaqit_maildev
     ports:
       - 80:80
     volumes:
@@ -24,8 +25,8 @@ services:
       # clock
       - /etc/localtime:/etc/localtime:ro
 
-  db:
-    container_name: db
+  mawaqit_db:
+    container_name: mawaqit_db
     restart: always
     image: mysql:5.6
     expose:
@@ -35,3 +36,12 @@ services:
     environment:
       MYSQL_DATABASE: mawaqit
       MYSQL_ROOT_PASSWORD: mawaqit
+
+  mawaqit_maildev:
+    container_name: mawaqit_maildev
+    restart: always
+    image: djfarrelly/maildev:latest
+    expose:
+      - 1080
+    ports:
+      - 1080:80

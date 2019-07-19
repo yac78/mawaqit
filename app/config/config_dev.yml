@@ -27,5 +27,8 @@ hautelook_alice:
     fixtures_path: 'Resources/fixtures/orm'
 
 swiftmailer:
-    disable_delivery: true
-
+    default_mailer: memory
+    mailers:
+        memory:
+            host: 'mawaqit_maildev'
+            port: 25
