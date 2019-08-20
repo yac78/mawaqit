@@ -14,7 +14,7 @@ var prayer = {
      * time to wait before hilight next prayer time  (in minutes)
      * @type Number
      */
-    nextPrayerHilightWait: 20,
+    nextPrayerHilightWait: 19,
     /**
      * prayer times
      * @type Array
