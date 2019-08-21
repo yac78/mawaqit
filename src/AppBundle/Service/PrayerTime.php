@@ -155,7 +155,7 @@ class PrayerTime
         $pt->tune(0, $adjustment[0], 0, $adjustment[1], $adjustment[2], $adjustment[3], 0, $adjustment[4]);
     }
 
-    private function applyDst(&$prayers, Mosque $mosque, \DateTime $date)
+    private function applyDst(&$times, Mosque $mosque, \DateTime $date)
     {
         $conf = $mosque->getConf();
         // dst disabled
@@ -177,11 +177,15 @@ class PrayerTime
             return;
         }
 
-        foreach ($prayers as $k => $prayer) {
+        foreach ($times as $k => $prayer) {
+            if(empty($prayer)){
+                continue;
+            }
+
             try {
-                $prayers[$k] = ((new \DateTime($prayer))->modify("+1 hour"))->format("H:i");
+                $times[$k] = ((new \DateTime($prayer))->modify("+1 hour"))->format("H:i");
             } catch (\Exception $e) {
-                $prayers[$k] = "ERROR";
+                $times[$k] = "ERROR";
                 $this->logger->error("Erreur de parsing heure de prière", [$e, $mosque->getId()]);
             }
         }
@@ -318,7 +322,7 @@ class PrayerTime
 
         if ($returnFullCalendar) {
             $result['calendar'] = $calendar;
-            $result['iqamaCalendar'] = $conf->getIqamaCalendar();
+            $result['iqamaCalendar'] = $this->getIqamaCalendar($mosque);
         }
 
         $times = $this->getPrayTimes($calendar);
@@ -330,6 +334,29 @@ class PrayerTime
         $result['fixedIqama'] = $this->getFixedIqama($mosque, $result['times']);
 
         return $result;
+    }
+
+    /**
+     * apply some changes on iqama calendar like (DST)
+     * @param Mosque $mosque
+     * @return array|null
+     */
+    private function getIqamaCalendar(Mosque $mosque)
+    {
+        $conf = $mosque->getConf();
+        $iqamaCalendar = $conf->getIqamaCalendar();
+        if (null !== $iqamaCalendar) {
+            foreach ($iqamaCalendar as $month => $days) {
+                foreach ($days as $day => $times) {
+                    $times = array_values($times);
+                    $date = new \DateTime(date('Y') . '-' . ($month + 1) . '-' . $day . " 12:00:00", new \DateTimezone($conf->getTimezoneName()));
+                    $this->applyDst($times, $mosque, $date);
+                    $iqamaCalendar[$month][$day] = $times;
+                }
+            }
+        }
+
+        return $iqamaCalendar;
     }
 
     private function getPrayTimes($calendar)
@@ -345,11 +372,12 @@ class PrayerTime
         $conf = $mosque->getConf();
         $fixedIqama = ["", "", "", "", ""];
 
-        if (is_array($conf->getIqamaCalendar())) {
+        $iqamaCalendar = $this->getIqamaCalendar($mosque);
+        if (is_array($iqamaCalendar)) {
             $date = new \DateTime();
             $month = $date->format('m') - 1;
             $day = (int)$date->format('d');
-            $iqamaFromCalendar = array_values($conf->getIqamaCalendar()[$month][$day]);
+            $iqamaFromCalendar = array_values($iqamaCalendar[$month][$day]);
 
             foreach ($iqamaFromCalendar as $k => $v) {
                 if (!empty($v) && $v > $prayerTimes[$k]) {

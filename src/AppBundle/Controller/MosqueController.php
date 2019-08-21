@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\MosqueSyncType;
+use function Couchbase\defaultDecoder;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -92,10 +93,11 @@ class MosqueController extends Controller
             $em->flush();
         }
 
+        $confData = $this->get('serializer')->normalize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]);
+
         return $this->render("mosque/mosque.html.twig", [
             'mosque' => $mosque,
-            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]),
-            'calendar' => $this->get('app.prayer_times')->getCalendar($mosque),
+            'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
             'languages' => $this->getParameter('languages'),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
@@ -127,10 +129,11 @@ class MosqueController extends Controller
             return $response;
         }
 
+        $confData = $this->get('serializer')->normalize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]);
+
         return $this->render("mosque/mosque_mobile.html.twig", [
             'mosque' => $mosque,
-            'confData' => $this->get('serializer')->serialize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]),
-            'calendar' => $this->get('app.prayer_times')->getCalendar($mosque),
+            'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
             'version' => $this->getParameter('version'),
             "supportEmail" => $this->getParameter("supportEmail"),
             "postmasterAddress" => $this->getParameter("postmaster_address"),

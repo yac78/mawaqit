@@ -94,7 +94,7 @@ var prayer = {
             month = dateTime.getTomorrowMonth();
             day = dateTime.getTomorrowDay();
         }
-        this.times = calendar[month][day];
+        this.times = prayer.confData.calendar[month][day];
 
     },
     /**
@@ -127,7 +127,7 @@ var prayer = {
             return prayer.waitings;
         }
 
-        prayer.waitings = this.confData.waitingTimes;
+        prayer.waitings = this.confData.iqama;
         var prayerTimes = prayer.getTimes();
 
         var prayerTime, iqamaTime, month, day, fixedIqama;
@@ -772,7 +772,7 @@ var prayer = {
             return this.getTimeByIndex(1);
         }
 
-        return this.confData.jumuaTime;
+        return this.confData.jumua;
     },
     /**
      * if current time is joumouaa
@@ -857,7 +857,7 @@ var prayer = {
     setSpecialTimes: function () {
         // jumua
         $(".joumouaa-id").html(prayer.formatTime(this.getJumuaTime()));
-        $(".joumouaa2-id").html(prayer.formatTime(prayer.confData.jumuaTime2));
+        $(".joumouaa2-id").html(prayer.formatTime(prayer.confData.jumua2));
 
         // if aid time enabled we set/show it
         $(".aid-id").html(prayer.formatTime(this.confData.aidTime));

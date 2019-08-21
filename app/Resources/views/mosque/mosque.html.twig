@@ -304,8 +304,7 @@
     var isMosque = {{ mosque.mosque|json_encode|raw }};
     var longitude = {{ mosque.longitude }};
     var latitude = {{ mosque.latitude }};
-    var confData = {{ confData|raw }};
-    var calendar = {{ calendar|json_encode|raw }};
+    var confData = {{ confData|json_encode|raw }};
     var lang = '{{ app.request.locale }}';
     var locale = '{{ app.request.locale }}-{{ mosque.country }}';
     var isLocal = {{ isLocal()|json_encode|raw }};

@@ -29,19 +29,16 @@ class Configuration
 
     /**
      * @var string
-     * @Groups({"screen"})
      */
     private $jumuaTime = "13:00";
 
     /**
      * @var string
-     * @Groups({"screen"})
      */
     private $jumuaTime2;
 
     /**
      * @var boolean
-     * @Groups({"screen"})
      */
     private $jumuaAsDuhr = false;
 
@@ -71,31 +68,26 @@ class Configuration
 
     /**
      * @var string
-     * @Groups({"screen"})
      */
     private $aidTime;
 
     /**
      * @var int
-     * @Groups({"screen"})
      */
     private $imsakNbMinBeforeFajr = 0;
 
     /**
      * @var string
-     * @Groups({"screen"})
      */
     private $maximumIshaTimeForNoWaiting;
 
     /**
      * @var array
-     * @Groups({"screen"})
      */
     private $waitingTimes = [10, 10, 10, 5, 10];
 
     /**
      * @var array
-     * @Groups({"screen"})
      */
     private $fixedIqama = ["", "", "", "", ""];
 
@@ -117,7 +109,6 @@ class Configuration
 
     /**
      * @var int
-     * @Groups({"screen"})
      */
     private $hijriAdjustment = 0;
 
