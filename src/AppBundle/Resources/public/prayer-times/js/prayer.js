@@ -942,7 +942,7 @@ var prayer = {
         });
     },
     /**
-     * Check if we are in praying moment (10 min before afhan and and 20 min after iqamah)
+     * Check if we are in praying moment (10 min before afhan and and 19 min after iqamah)
      */
     isPrayingMoment: function () {
         var isPrayingMoment = false;
@@ -951,7 +951,7 @@ var prayer = {
         $(prayer.getTimes()).each(function (i, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             beginDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-            endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 20);
+            endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 19);
             if (date > beginDateTime && date < endDateTime) {
                 isPrayingMoment = true;
                 return false;
