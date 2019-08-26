@@ -886,7 +886,7 @@ var prayer = {
             return;
         }
 
-        var wait, prayerTime, iqamaTime, fixedIqama, prayerTimes, month, day;
+        var prayerTime, iqamaTime, fixedIqama, prayerTimes, month, day;
         $.each(prayer.getWaitingTimes(), function (i, wait) {
             fixedIqama = null;
             wait = wait + "'";
@@ -911,6 +911,7 @@ var prayer = {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     wait = prayer.formatTime(fixedIqama);
+                    $(".prayers .wait").css({"font-size" : "9vh", "line-height" : "10rem"})
                 }
             }
 
