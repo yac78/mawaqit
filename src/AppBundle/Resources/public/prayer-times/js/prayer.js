@@ -138,18 +138,8 @@ var prayer = {
             month = dateTime.getCurrentMonth();
             day = dateTime.getCurrentDay();
 
-            try {
-                if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
-                    fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
-                }
-            } catch (e) {
-            }
-
             if (prayer.confData.fixedIqama[i] !== "") {
                 fixedIqama = prayer.confData.fixedIqama[i];
-            }
-
-            if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     prayer.waitings[i] = Math.floor((Math.abs(iqamaTime - prayerTime) / 1000) / 60);
@@ -896,22 +886,12 @@ var prayer = {
             month = dateTime.getCurrentMonth();
             day = dateTime.getCurrentDay();
 
-            try {
-                if (prayer.confData.iqamaCalendar[month][day][i + 1] !== "") {
-                    fixedIqama = prayer.confData.iqamaCalendar[month][day][i + 1];
-                }
-            } catch (e) {
-            }
-
             if (prayer.confData.fixedIqama[i] !== "") {
                 fixedIqama = prayer.confData.fixedIqama[i];
-            }
-
-            if (fixedIqama) {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     wait = prayer.formatTime(fixedIqama);
-                    $(".prayers .wait").css({"font-size" : "9vh", "line-height" : "10rem"})
+                    $(".prayers .wait").css({"font-size": "9vh", "line-height": "10rem"})
                 }
             }
 
