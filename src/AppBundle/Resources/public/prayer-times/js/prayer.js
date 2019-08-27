@@ -891,7 +891,9 @@ var prayer = {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     wait = prayer.formatTime(fixedIqama);
-                    $(".prayers .wait").css({"font-size": "9vh", "line-height": "10rem"})
+                    if(!isMobile){
+                        $(".prayers .wait").css({"font-size": "9vh", "line-height": "10rem"})
+                    }
                 }
             }
 
