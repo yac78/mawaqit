@@ -92,17 +92,9 @@ class MosqueController extends Controller
             }
         }
 
-//        $response = new JsonResponse();
-//        $response->setLastModified($mosque->getUpdated());
-//
-//        if ($response->isNotModified($request)) {
-//            return $response;
-//        }
-
         $calendar = $request->query->has('calendar');
         $result = $this->get('app.prayer_times')->prayTimes($mosque, $calendar);
         return new JsonResponse($result);
-//        return $response;
     }
 
 }
