@@ -18,15 +18,14 @@ var douaaSlider = {
             return;
         }
 
-        if (lang === "ar") {
-            $(".adhkar-after-prayer .fr").remove();
-        }
-
         var screenWidth = $(window).width();
-        $('.adhkar-after-prayer li').width(screenWidth);
-        var slideCount = $('.adhkar-after-prayer li').length;
+        var ul = $('.adhkar-after-prayer ul');
+        var li = ul.children('li');
+
+        li.width(screenWidth);
+        var slideCount = li.length;
         var sliderUlWidth = slideCount * screenWidth;
-        $('.adhkar-after-prayer ul').css({width: sliderUlWidth});
+        ul.css({width: sliderUlWidth});
         //save html slider
         this.sliderHtmlContent = $('.adhkar-after-prayer').html();
     },
@@ -41,22 +40,12 @@ var douaaSlider = {
         }
 
         if (prayer.confData.duaAfterPrayerEnabled) {
-
-            $("#black-screen, .main").fadeOut(500, function () {
-                $(".adhkar-after-prayer").fadeIn(500, function () {
-                   douaaSlider.setFontSize();
-                });
-            });
+            $("#black-screen, .main").hide();
+            $(".adhkar-after-prayer").show();
+            douaaSlider.setFontSize();
 
             var douaaInterval = setInterval(function () {
                 douaaSlider.moveRight();
-                // if (lang === "ar") {
-                //     douaaSlider.moveRight();
-                // }
-                //
-                // if (lang !== "ar") {
-                //     douaaSlider.moveLeft();
-                // }
             }, douaaSlider.oneDouaaShowingTime);
 
             setTimeout(function () {
@@ -88,23 +77,13 @@ var douaaSlider = {
     getTimeForShow: function () {
         return ($('.adhkar-after-prayer li').length * douaaSlider.oneDouaaShowingTime);
     },
+
     moveRight: function () {
         var screenWidth = $(window).width();
-        $('.adhkar-after-prayer ul').animate({
-            left: -screenWidth
-        }, 1000, function () {
-            $('.adhkar-after-prayer li:first-child').appendTo('.adhkar-after-prayer ul');
-            $('.adhkar-after-prayer ul').css('left', '');
-        });
-    },
-    moveLeft: function () {
-        var screenWidth = $(window).width();
-        $('.adhkar-after-prayer ul').animate({
-            left: +screenWidth
-        }, 1000, function () {
-            $('.adhkar-after-prayer li:last-child').prependTo('.adhkar-after-prayer ul');
-            $('.adhkar-after-prayer ul').css('left', '');
-        });
+        var ul = $('.adhkar-after-prayer ul');
+        ul.not(':animated').prepend($('li:last-child', ul))
+            .css({left: -screenWidth})
+            .animate({left: 0}, 1000);
     },
     setFontSize: function () {
         $('.slider li').each(function (i, slide) {
@@ -249,4 +228,4 @@ var flashMessage = {
         $("footer .textSlide").addClass("hidden");
         $("footer .info").removeClass("hidden");
     },
-}
+};
