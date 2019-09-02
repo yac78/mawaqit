@@ -146,18 +146,6 @@ class MosqueService
      * @param Mosque $mosque
      * @throws @see MailService
      */
-    public function suspend(Mosque $mosque)
-    {
-        $mosque->setStatus(Mosque::STATUS_SUSPENDED);
-        $this->em->persist($mosque);
-        $this->em->flush();
-        $this->mailService->mosqueSuspended($mosque);
-    }
-
-    /**
-     * @param Mosque $mosque
-     * @throws @see MailService
-     */
     public function check(Mosque $mosque)
     {
         $mosque->setStatus(Mosque::STATUS_CHECK);

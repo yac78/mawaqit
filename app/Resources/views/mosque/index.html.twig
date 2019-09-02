@@ -125,9 +125,13 @@
                             {% endif %}
                         {% else %}
                             <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
+                            {% if mosque.isSuspended %}
+                                <p><b>{{ 'reason'|trans }} : </b>{{ ('mosque.suspensionReason.' ~ mosque.reason)|trans }}</p>
+                            {% endif %}
                             {% if mosque.justificatory %}
                                 <i class="fa fa-download"></i> <a href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
                             {% endif %}
+
                         {% endif %}
                     </td>
                     {% if isNotLocal() %}

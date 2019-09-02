@@ -119,6 +119,11 @@ class Mosque
     private $status = self::STATUS_NEW;
 
     /**
+     * @var string
+     */
+    private $reason;
+
+    /**
      * @var boolean
      */
     private $addOnMap = true;
@@ -1053,6 +1058,11 @@ class Mosque
         return $this->status === self::STATUS_VALIDATED;
     }
 
+    public function isSuspended()
+    {
+        return $this->status === self::STATUS_SUSPENDED;
+    }
+
     public function statusClass()
     {
         if (!$this->isCalendarCompleted()) {
@@ -1298,5 +1308,20 @@ class Mosque
         $this->otherInfo = $otherInfo;
     }
 
+    /**
+     * @return string
+     */
+    public function getReason():? string
+    {
+        return $this->reason;
+    }
+
+    /**
+     * @param string $reason
+     */
+    public function setReason(string $reason): void
+    {
+        $this->reason = $reason;
+    }
 }
 

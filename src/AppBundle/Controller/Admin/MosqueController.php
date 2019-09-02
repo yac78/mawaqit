@@ -7,9 +7,11 @@ use AppBundle\Entity\Mosque;
 use AppBundle\Exception\GooglePositionException;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MosqueSearchType;
+use AppBundle\Form\MosqueSuspensionType;
 use AppBundle\Form\MosqueSyncType;
 use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
+use AppBundle\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
@@ -351,18 +353,37 @@ class MosqueController extends Controller
         return $this->redirectToRoute("mosque_index");
     }
 
-
     /**
      * @Route("/mosque/suspend/{id}", name="mosque_suspend")
+     * @Method({"GET", "POST"})
      * @param Mosque $mosque
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws @see MailService->mosqueSuspend
+     * @param Request $request
+     * @return Response
      */
-    public function suspendMosqueAction(Mosque $mosque)
+    public function suspendMosqueAction(Mosque $mosque, Request $request, MailService $mailService)
     {
-        $this->get('app.mosque_service')->suspend($mosque);
-        $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été suspendue');
-        return $this->redirectToRoute("mosque_index");
+
+        $user = $this->getUser();
+        if (!$user->isAdmin() && ($user !== $mosque->getUser() || !$mosque->isValidated())) {
+            throw new AccessDeniedException();
+        }
+
+        $form = $this->createForm(MosqueSuspensionType::class, $mosque);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $mailService->mosqueSuspended($mosque);
+            $this->addFlash('success', 'la mosquée ' . $mosque->getName() . ' a bien été suspendue');
+            return $this->redirectToRoute('mosque_index');
+        }
+
+        return $this->render('mosque/suspend.html.twig', [
+            'mosque' => $mosque,
+            'form' => $form->createView(),
+        ]);
+
     }
 
 

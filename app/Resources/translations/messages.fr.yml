@@ -300,7 +300,10 @@ mosque:
       DUPLICATED: |
            Il parait que votre mosquée est en double, nous avons besoin d'informations complémentaires afin de valider votre mosquée,
            veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
-
+    suspensionReason:
+      mosque_closed: Mosquée fermée
+      prayer_times_not_correct: Horaires non respéctés
+      other: Autre
     statuses:
       NEW: En attente de validation
       VALIDATED: Validée
@@ -834,6 +837,7 @@ yes: Oui
 no: Non
 warning: Attention
 order: Ordonner
+reason: Motif
 
 invocationAfterPrayer:
     title: (Al-Athkar) أذكار بعد الصلاة

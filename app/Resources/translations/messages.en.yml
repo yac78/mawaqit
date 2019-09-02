@@ -65,6 +65,10 @@ mosque:
       DUPLICATED: |
         It seems that your mosque is duplicated, we need additional information to validate your mosque,
         please contact us as soon as possible by replying to the email sent to you
+    suspensionReason:
+      mosque_closed: Mosque closed
+      prayer_times_not_correct: Prayer times incorrect
+      other: Other
     types:
         all: All
         mosque: Mosque
@@ -458,6 +462,7 @@ links: Links
 site: Website
 motif: Motif
 color: Color
+reason: Reason
 
 mosqueList:
     iframeCopyText: To display the widget below on your website just copy / paste this html-code

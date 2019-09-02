@@ -309,6 +309,11 @@ mosque:
         otherInfo:
             label: معلومات اخرى
             placeholder: "أوقات الافتتاح والإغلاق (200 حرف كحد أقصى)"
+    suspensionReason:
+      mosque_closed: إغلاق المسجد
+      prayer_times_not_correct: أوقات الصلاة غير صحيحة
+      other: أخر
+
 message:
     display_messages_in_screen_1: يمكنك عرض هذه الرسائل على شاشة مخصصة ، ما عليك سوى استبدال عنوان URL الخاص بالصلوات بهذا
     display_messages_in_screen_2: يقوم البرنامج بالتحقق من التغييرات كل 5 دقائق ، إذا قمت بإضافة أو حذف رسالة ، سيتم تحديث الشاشة تلقائيًا.
@@ -590,6 +595,7 @@ show: أنظر
 links: الرابط
 site: موقع الأنترنيت
 csv_file_exemple: هذا مثال لملف سي اس في CSV لمواقيت مدينة باريس
+reason: السبب
 
 mosqueList:
     widgetForYourSite: ويجات على موقعكم
