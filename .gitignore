@@ -24,3 +24,4 @@ docker-compose.yml
 /web/robots.txt
 /.idea/
 /docker/data/
+/nbproject
