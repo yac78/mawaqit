@@ -637,7 +637,7 @@ configuration:
             label: Temps de défilement par annonce (en seconde)
             title: Cela concerne que l'écran dédié aux annonces, le temps est fixé à 30 secondes sur l'écran des horaires
         footer:
-            label: Info de la mosquée
+            label: Pieds de l'écran
         showNextAdhanCountdown:
             label: Compte à rebours du prochain adhân
         timeDisplayFormat:
@@ -781,7 +781,7 @@ add: Ajouter
 title: Titre
 content: Contenu
 subject: Sujet
-developed_by: MAWAQIT - Développé par Binary Consulting SAS
+developed_by: MAWAQIT - Développé par ARCHILOG SAS
 next_prayer: Adhân dans
 last_login: dernière connexion
 alarm: Essalatu khayrun mina ennawm

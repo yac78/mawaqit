@@ -520,7 +520,7 @@ configuration:
         ishaFixation:
             label: تحديد العشاء بالنسبة للمغرب
         footer:
-            label: معلومات المسجد
+            label: أسفل الشاشة
         iqamaEnabled:
             label: مفعّل
         calendar_explication: |

@@ -392,7 +392,7 @@ configuration:
             label: Display time of a message/announcement (in seconds)
             title: This concerns only the screen dedicated to messages and announcements
         footer:
-            label: Mosque info
+            label: Footer
         showNextAdhanCountdown:
             label: Next adhan countdown
         timeDisplayFormat:
@@ -528,7 +528,7 @@ delete_element_question: Are you sure you want to validate the deletion?
 add: Add
 title: Title
 content: Content
-developed_by: MAWAQIT - Developed by Binary Consulting SAS
+developed_by: MAWAQIT - Developed by ARCHILOG SAS
 next_prayer: Athan in
 last_login: Last log in
 alarm: Alarm

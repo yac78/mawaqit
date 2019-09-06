@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
@@ -57,8 +56,8 @@ class MosqueController extends Controller
         }
 
         return $this->forward("AppBundle:Mosque:mosque", [
-            "slug" => $mosque->getSlug(),
-            "_locale" => $locale
+                "slug" => $mosque->getSlug(),
+                "_locale" => $locale
         ]);
     }
 
@@ -96,14 +95,14 @@ class MosqueController extends Controller
         $confData = $this->get('serializer')->normalize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]);
 
         return $this->render("mosque/mosque.html.twig", [
-            'mosque' => $mosque,
-            'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
-            'languages' => $this->getParameter('languages'),
-            'version' => $this->getParameter('version'),
-            "supportEmail" => $this->getParameter("supportEmail"),
-            "postmasterAddress" => $this->getParameter("postmaster_address"),
-            "mawaqitApiAccessToken" => $this->getParameter("mawaqit_api_access_token"),
-            'form' => $this->createForm(MosqueSyncType::class)->createView()
+                'mosque' => $mosque,
+                'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
+                'languages' => $this->getParameter('languages'),
+                'version' => $this->getParameter('version'),
+                "supportEmail" => $this->getParameter("supportEmail"),
+                "postmasterAddress" => $this->getParameter("postmaster_address"),
+                "mawaqitApiAccessToken" => $this->getParameter("mawaqit_api_access_token"),
+                'form' => $this->createForm(MosqueSyncType::class)->createView()
         ]);
     }
 
@@ -132,13 +131,13 @@ class MosqueController extends Controller
         $confData = $this->get('serializer')->normalize($mosque->getConfiguration(), 'json', ["groups" => ["screen"]]);
 
         return $this->render("mosque/mosque_mobile.html.twig", [
-            'mosque' => $mosque,
-            'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
-            'version' => $this->getParameter('version'),
-            "supportEmail" => $this->getParameter("supportEmail"),
-            "postmasterAddress" => $this->getParameter("postmaster_address"),
-            'messages' => $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true)
-        ], $response);
+                'mosque' => $mosque,
+                'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
+                'version' => $this->getParameter('version'),
+                "supportEmail" => $this->getParameter("supportEmail"),
+                "postmasterAddress" => $this->getParameter("postmaster_address"),
+                'messages' => $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true)
+                ], $response);
     }
 
     /**
@@ -151,8 +150,8 @@ class MosqueController extends Controller
     public function mosqueWidgetAction(Mosque $mosque)
     {
         return $this->render("mosque/widget.html.twig", [
-            'mawaqitApiAccessToken' => $this->getParameter("mawaqit_api_access_token"),
-            'mosque' => $mosque
+                'mawaqitApiAccessToken' => $this->getParameter("mawaqit_api_access_token"),
+                'mosque' => $mosque
         ]);
     }
 
@@ -180,5 +179,4 @@ class MosqueController extends Controller
     {
         return new JsonResponse($this->get("app.weather_service")->getWeather($mosque));
     }
-
 }
