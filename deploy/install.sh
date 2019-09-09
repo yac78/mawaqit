@@ -43,6 +43,10 @@ docker exec $dockerContainer bin/console assetic:dump -e $env --no-debug
 # Migrate DB
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e $env
 
+# cache
+docker exec $dockerContainer bin/console cache-clear -e $env
+docker exec $dockerContainer bin/console cache-warmup -e $env
+
 # Restart php
 docker exec $dockerContainer kill -USR2 1
 

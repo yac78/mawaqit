@@ -83,7 +83,11 @@ body {
 .joumouaa, .custom-time {
     margin: 50px auto;
     font-size: 6vh;
-    width: 75%;
+}
+
+.joumouaa .prayer{
+    width: 80%;
+    margin: auto;
 }
 
 .joumouaa2-id {
