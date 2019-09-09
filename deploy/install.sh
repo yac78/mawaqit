@@ -44,8 +44,8 @@ docker exec $dockerContainer bin/console assetic:dump -e $env --no-debug
 docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e $env
 
 # cache
-docker exec $dockerContainer bin/console cache-clear -e $env
-docker exec $dockerContainer bin/console cache-warmup -e $env
+docker exec $dockerContainer bin/console c:c -e $env --no-debug --no-warmup
+docker exec $dockerContainer bin/console c:w -e $env --no-debug
 
 # Restart php
 docker exec $dockerContainer kill -USR2 1
