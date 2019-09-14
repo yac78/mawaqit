@@ -6,9 +6,10 @@ use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MessageType;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use DateTime;use Doctrine\ORM\EntityManagerInterface;
+use Exception;use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -83,7 +84,7 @@ class MessageController extends Controller
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param Mosque $mosque
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function createAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
     {
@@ -119,7 +120,7 @@ class MessageController extends Controller
      * @param EntityManagerInterface $em
      * @param Mosque $mosque
      * @param Message $message
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function editAction(Request $request, EntityManagerInterface $em, Mosque $mosque, Message $message)
     {
@@ -136,7 +137,7 @@ class MessageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mosque->setUpdated(new \DateTime());
+            $mosque->setUpdated(new DateTime());
             $em->flush();
             $this->addFlash('success', "form.edit.success");
 
@@ -154,7 +155,7 @@ class MessageController extends Controller
      * @Route("/message/{id}/delete", name="message_delete")
      * @param EntityManagerInterface $em
      * @param Message $message
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteAction(EntityManagerInterface $em, Message $message)
     {
@@ -164,7 +165,7 @@ class MessageController extends Controller
         }
 
         $mosque = $message->getMosque();
-        $mosque->setUpdated(new \DateTime());
+        $mosque->setUpdated(new DateTime());
         $em->remove($message);
         $em->flush();
         $this->addFlash('success', "form.delete.success");
@@ -192,26 +193,32 @@ class MessageController extends Controller
 
 
     /**
-     * @param Request $request
-     * @param Mosque $mosque
      * @Route("/mosque/{mosque}/message-bulk-change-status", name="message_bulk_change_status")
      * @Method("POST")
-     * @return Response
+     * @param Request $request
+     * @param Mosque $mosque
+     * @param EntityManagerInterface $em
+     * @return mixed
+     * @throws Exception
      */
-    public function bulkChangeStatusAction(Request $request, Mosque $mosque)
+    public function bulkChangeStatusAction(Request $request, Mosque $mosque,  EntityManagerInterface $em)
     {
         $messages = $request->request->get('status');
-        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('AppBundle:Message');
-
+        $validator = $this->get('validator');
         foreach ($messages as $id => $status) {
             $message = $repo->find($id);
             if($message instanceof Message){
                 $message->setEnabled((bool)$status);
+                $errors = $validator->validate($message);
+                if (count($errors) > 0) {
+                    $this->addFlash('danger', $errors[0]->getMessage());
+                    return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
+                }
             }
         }
 
-        $mosque->setUpdated(new \DateTime());
+        $mosque->setUpdated(new DateTime());
         $em->flush();
 
         return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
