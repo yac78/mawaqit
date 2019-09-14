@@ -16,14 +16,13 @@ class MessageValidator extends ConstraintValidator
          * @var $message \AppBundle\Entity\Message
          */
 
-        if ($message->getMosque()->getMessages()->count() >= self::MAX_MESSAGE) {
+        if ($message->getMosque()->getMessages()->count() > self::MAX_MESSAGE) {
             $this->context->buildViolation($constraint->messageMaxReached)->addViolation();
             return;
         }
 
-        if ($message->isEnabled() && $message->getMosque()->getNbOfEnabledMessages() >= self::MAX_EANBLED_MESSAGE) {
+        if ($message->isEnabled() && $message->getMosque()->getNbOfEnabledMessages() > self::MAX_EANBLED_MESSAGE) {
             $this->context->buildViolation($constraint->messageMaxEnabledReached)->addViolation();
-
         }
     }
 }
