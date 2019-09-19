@@ -2,9 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\ORM\NonUniqueResultException;use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Swift_Message;use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,13 +14,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class DefaultController extends Controller
 {
     /**
-     * @Route("{page}", name="homepage")
+     * @Route("", name="homepage")
      * @Cache(public=true, maxage="86400")
-     * @param integer $page
+     * @param Request $request
      * @return Response
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function indexAction($page = 1)
+    public function indexAction(Request $request)
     {
         if ($this->get('app.request_service')->isLocal()) {
             throw new NotFoundHttpException();
@@ -29,7 +29,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $mosqueRepo = $em->getRepository("AppBundle:Mosque");
         $paginator = $this->get('knp_paginator');
-        $mosquesWithImage = $paginator->paginate($mosqueRepo->getMosquesWithImageQb(), 1, 9 * $page);
+        $nbPerPage = $request->query->getInt('page', 1) * 9;
+        $mosquesWithImage = $paginator->paginate($mosqueRepo->getMosquesWithImageQb(), 1, $nbPerPage);
         $mosquesForMap = $mosqueRepo->getAllMosquesForMap();
         $totalMosquesCount = $mosqueRepo->getCount();
 
@@ -94,7 +95,7 @@ class DefaultController extends Controller
             . "Tél: $phone<br><br>"
             . "Message:<br>$message";
 
-        $message = \Swift_Message::newInstance()
+        $message = Swift_Message::newInstance()
             ->setSubject($emailSubject)
             ->setFrom($emailAddress)
             ->setTo($to)
