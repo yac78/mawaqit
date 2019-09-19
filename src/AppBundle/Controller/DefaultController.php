@@ -14,22 +14,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class DefaultController extends Controller
 {
     /**
-     * @Route("", name="homepage")
+     * @Route("{page}", name="homepage")
      * @Cache(public=true, maxage="86400")
-     * @param Request $request
+     * @param integer $page
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function indexAction(Request $request)
+    public function indexAction($page = 1)
     {
         if ($this->get('app.request_service')->isLocal()) {
             throw new NotFoundHttpException();
         }
 
-        $mosqueNb = $request->query->get("mosque_nb", 6);
         $em = $this->getDoctrine()->getManager();
         $mosqueRepo = $em->getRepository("AppBundle:Mosque");
-        $mosquesWithImage = $mosqueRepo->getMosquesWithImage($mosqueNb);
+        $paginator = $this->get('knp_paginator');
+        $mosquesWithImage = $paginator->paginate($mosqueRepo->getMosquesWithImageQb(), 1, 9 * $page);
         $mosquesForMap = $mosqueRepo->getAllMosquesForMap();
         $totalMosquesCount = $mosqueRepo->getCount();
 

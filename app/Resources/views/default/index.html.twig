@@ -274,7 +274,7 @@
                     {% endfor %}
                 </div>
                 {% if app.request.get('mosque_nb') != 'all' %}
-                    <a href="{{ path("homepage", {'mosque_nb':'all'}) }}#mosquees" class="page-scroll btn btn-xl">{{ 'home.button.viewPlus'|trans }}</a>
+                    <a href="{{ path("homepage", {'page':  app.request.get('page') + 1 }) }}#mosquees" class="page-scroll btn btn-xl">{{ 'home.button.viewPlus'|trans }}</a>
                 {% endif %}
             </div>
         </section>
