@@ -10,6 +10,7 @@ services:
       - mawaqit_db
       - mawaqit_maildev
     ports:
+      - 8101:80
       - 80:80
     volumes:
       # symfony code

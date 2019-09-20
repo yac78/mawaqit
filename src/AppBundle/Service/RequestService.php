@@ -24,6 +24,6 @@ class RequestService
      */
     public function isLocal()
     {
-        return in_array($this->request->getHost(), ['mawaqit.local', 'localhost']);
+        return in_array($this->request->getHost(), ['mawaqit.local', 'localhost']) && $this->request->getPort() === 80;
     }
 }

@@ -1,15 +1,13 @@
-# Prayer times for mosques ###
+# MAWAQIT
+
+## Install the project
+### Requirements 
+* Docker and docker-compose must be installed on your computer or server
+* The 8101 port must be free
+
+### Installation
+1. git clone the project `git clone git@github.com:ibrahim-zehhaf/mawaqit.git` 
+2. Run install.sh `cd mawaqit && ./install.sh`
+
 
 Plase visite our website [https://mawaqit.net]((https://mawaqit.net)) for more information.
-
-![alt tag](https://mawaqit.net/bundles/app/agency/img/software/1.jpg)
-
-![alt tag](https://mawaqit.net/bundles/app/agency/img/software/5.jpg)
-
-![alt tag](https://mawaqit.net/bundles/app/agency/img/software/9.jpg)
-
-![alt tag](https://mawaqit.net/bundles/app/agency/img/software/13.jpg)
-
-![alt tag](https://mawaqit.net/bundles/app/agency/img/software/16.png)
-
-![alt tag](https://mawaqit.net/bundles/app/agency/img/software/18.png)
