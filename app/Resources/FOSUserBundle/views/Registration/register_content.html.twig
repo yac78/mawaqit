@@ -5,9 +5,10 @@
         <h3>{{ 'registration.registration'|trans({}, 'messages') }}</h3><br>
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
         {{ form_row(form.email) }}
+        <div class="alert alert-warning">{{ 'registration.please_enter_right_email'|trans({}, 'messages')  }}</div>
         {{ form_row(form.username) }}
         {{ form_row(form.plainPassword.first, {'attr': {'placeholder': 'registration.password_rule'|trans({}, 'messages') }} ) }}
-        {{ form_row(form.plainPassword.second, {'attr': {'placeholder': 'registration.password_rule'|trans({}, 'messages') }} ) }}
+        {{ form_row(form.plainPassword.second)}}
         {{ form_row(form.tou) }}
         {{ form_row(form.recaptcha)}}
         <div class="mt-3">

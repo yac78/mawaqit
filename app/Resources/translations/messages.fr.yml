@@ -271,6 +271,7 @@ registration:
         label: J'accepte et je m'engage à respecter <a href="#" id="terms-of-use">les conditions générales d'utilisation</a>
     registration: Inscription
     password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
+    please_enter_right_email: Veuillez entrer une adresse mail que vous consultez régulièrement
 
 tou:
   label: J'accepte
