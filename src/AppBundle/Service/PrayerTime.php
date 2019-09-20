@@ -377,13 +377,16 @@ class PrayerTime
             $date = new \DateTime();
             $month = $date->format('m') - 1;
             $day = (int)$date->format('d');
-            $iqamaFromCalendar = array_values($iqamaCalendar[$month][$day]);
 
-            foreach ($iqamaFromCalendar as $k => $v) {
-                if (!empty($v) && $v > $prayerTimes[$k]) {
-                    $fixedIqama[$k] = $v;
+             if (isset($iqamaCalendar[$month][$day])){
+                $iqamaFromCalendar = array_values($iqamaCalendar[$month][$day]);
+
+                foreach ($iqamaFromCalendar as $k => $v) {
+                    if (!empty($v) && $v > $prayerTimes[$k]) {
+                        $fixedIqama[$k] = $v;
+                    }
                 }
-            }
+             }
         }
 
         foreach ($conf->getFixedIqama() as $k => $v) {

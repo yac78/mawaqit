@@ -1,4 +1,4 @@
-#AppBundle\Entity\Parameters:
-#    hijri_adjustment:
-#        key: hijri_adjustment
-#        value: 0
+AppBundle\Entity\Parameters:
+    hijri_adjustment:
+        key: hijri_adjustment
+        value: 0
