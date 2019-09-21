@@ -42,7 +42,7 @@ services:
     image: composer:1.9.0
     volumes:
       - ./:/app
-    command: install -n
+    command: install -o -n --no-dev
 
   maildev:
     restart: always

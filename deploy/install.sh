@@ -37,7 +37,6 @@ docker-compose exec $dockerContainer sed -i "s/version: .*/version: $version/" a
 
 # Install vendors and assets
 docker-compose exec $dockerContainer sh -c "SYMFONY_ENV=$env composer install -o -n --no-dev"
-docker-compose exec $dockerContainer bin/console assets:install -e $env --no-debug
 docker-compose exec $dockerContainer bin/console assetic:dump -e $env --no-debug
 
 # Migrate DB
