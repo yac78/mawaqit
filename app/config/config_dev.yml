@@ -30,5 +30,5 @@ swiftmailer:
     default_mailer: memory
     mailers:
         memory:
-            host: 'mawaqit_maildev'
+            host: 'maildev'
             port: 25

@@ -2,4 +2,8 @@ imports:
     - { resource: config_prod.yml }
 
 swiftmailer:
-    disable_delivery: true
+    default_mailer: memory
+    mailers:
+        memory:
+            host: 'maildev'
+            port: 25

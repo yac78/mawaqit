@@ -3,7 +3,6 @@ version: "3.1"
 services:
   php-fpm:
     build: docker/php-fpm
-    container_name: mawaqit_php
     restart: always
     environment:
       APP_ENV: dev
@@ -18,7 +17,6 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: mawaqit_nginx
     restart: always
     working_dir: /application
     links:
@@ -32,7 +30,6 @@ services:
 
   mysql:
     image: mysql:5.6
-    container_name: mawaqit_mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mawaqit
@@ -48,7 +45,6 @@ services:
     command: install -n
 
   maildev:
-    container_name: mawaqit_maildev
     restart: always
     image: djfarrelly/maildev:1.1.0
     ports:

@@ -16,7 +16,7 @@ security:
 
     firewalls:
         local:
-            host: ^(mawaqit.local|localhost:80)$
+            host: ^mawaqit.local$
             security: false
         api:
             stateless: true
