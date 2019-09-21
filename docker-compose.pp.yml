@@ -2,6 +2,7 @@ version: "3.1"
 
 services:
   php-fpm:
+    container_name: mawaqit_php
     build: docker/php-fpm
     restart: always
     tty: true
@@ -17,6 +18,7 @@ services:
       - ~/.ssh:/root/.ssh
 
   nginx:
+    container_name: mawaqit_nginx
     image: nginx:alpine
     restart: always
     working_dir: /application
@@ -30,6 +32,7 @@ services:
       - 443:443
 
   mysql:
+    container_name: mawaqit_mysql
     image: mysql:5.6
     restart: always
     volumes:
@@ -45,6 +48,7 @@ services:
     command: install -o -n --no-dev
 
   maildev:
+    container_name: mawaqit_maildev
     restart: always
     image: djfarrelly/maildev:1.1.0
     ports:
