@@ -892,7 +892,7 @@ var prayer = {
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     wait = prayer.formatTime(fixedIqama);
                     if(!isMobile){
-                        $(".prayers .wait").css({"font-size": "9vh", "line-height": "10rem"})
+                        $(".prayers .wait, .prayers .time").css({"font-size": "8vh", "line-height": "8rem"})
                     }
                 }
             }
@@ -934,7 +934,7 @@ var prayer = {
         $(prayer.getTimes()).each(function (i, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
             beginDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-            endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 19);
+            endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 11);
             if (date > beginDateTime && date < endDateTime) {
                 isPrayingMoment = true;
                 return false;
