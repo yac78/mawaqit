@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-ln -s docker-compose.dev.yml docker-compose.yml
-
+ln -sf docker-compose.dev.yml docker-compose.yml
+sudo rm -rf var/logs/* var/cache/* var/sessions/*
 docker-compose kill && docker-compose rm -f && docker-compose up -d --build
-docker-compose exec mawaqit composer install -n
-docker-compose exec mawaqit chmod 777 -R var/logs var/cache var/sessions
-sleep 5
-docker-compose exec mawaqit bin/console d:s:u -f
-docker-compose exec mawaqit bin/console h:f:l -n
+docker-compose exec php-fpm  chmod 777 -R var/logs var/cache var/sessions
+sleep 10
+docker-compose exec php-fpm bin/console d:s:u -f
+docker-compose exec php-fpm bin/console h:f:l -n
 
 echo "------------------------------------------"
-echo "Install OK, Go to http://localhost:8101"
+echo "Install OK"
+echo "Site: http://localhost:8101"
+echo "Maildev: http://localhost:8103"
 echo "------------------------------------------"
-
