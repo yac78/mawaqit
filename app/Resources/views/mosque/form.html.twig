@@ -103,14 +103,12 @@
                             {{ form_row(form.file1) }}
                         </div>
                     {% endif %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <div class="block-image col-md-4">
-                            {{ form_row(form.file2) }}
-                        </div>
-                        <div class="block-image col-md-4">
-                            {{ form_row(form.file3) }}
-                        </div>
-                    {% endif %}
+                    <div class="block-image col-md-4">
+                        {{ form_row(form.file2) }}
+                    </div>
+                    <div class="block-image col-md-4">
+                        {{ form_row(form.file3) }}
+                    </div>
 
                     {% if mosque is defined and not is_granted('ROLE_ADMIN') %}
                         {% if mosque.image1 %}
