@@ -7,7 +7,6 @@ parameters:
     mailer_password: ~
     secret: theSecret
     version: 3.0.0
-    maintenance_header: ''
 
     # Google API
     google_api_key: ''
