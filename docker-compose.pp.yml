@@ -20,7 +20,7 @@ services:
     working_dir: /application
     volumes:
       - .:/application
-      - ./docker/nginx/pp.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/prod.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
       - 443:443
