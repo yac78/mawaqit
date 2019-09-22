@@ -5,7 +5,7 @@ env=$1
 tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
-dockerContainer=php-fpm
+dockerContainer=mawaqit_php
 
 cd $repoDir
 
