@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    {% include "partial/favicon.html.twig" %}
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <title>Manintenance | Mawaqit</title>
 </head>
     <body>
@@ -13,16 +13,17 @@
             <h2>Mawaqit s'améliore pour vous apporter toujours le meilleur</h2>
         </div>
 
-        <script type="text/javascript" src="{{ asset('bundles/app/jquery/js/jquery-1.12.4.min.js') }}"></script>
         <script>
             setInterval(function () {
-                $.ajax({
-                    url: window.location.href,
-                    success: function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET',  window.location.href);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
                         location.reload();
                     }
-                });
-            }, 60000);
+                };
+                xhr.send();
+            }, 5000);
         </script>
     </body>
 </html>
