@@ -243,9 +243,11 @@ class MosqueType extends AbstractType
                 ]
             ])
             ->add('file2', ImageType::class, [
+                'allow_delete'=> $isAdmin,
                 'label' => 'mosque.form.file2.label'
             ])
             ->add('file3', ImageType::class, [
+                'allow_delete'=> $isAdmin,
                 'label' => 'mosque.form.file3.label'
             ])
             ->add('otherInfo', TextareaType::class, [
