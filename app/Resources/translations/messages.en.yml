@@ -69,6 +69,7 @@ mosque:
     suspensionReason:
       mosque_closed: Mosque closed
       prayer_times_not_correct: Prayer times incorrect
+      missing_photo: The photo of screen is missing
       other: Other
     types:
         all: All
@@ -160,7 +161,7 @@ mosque_search:
     department:
       placeholder: Department
     country:
-      placeholder: Countrye
+      placeholder: Country
     type:
       placeholder: Type
     status:

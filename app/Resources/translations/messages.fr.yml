@@ -304,6 +304,7 @@ mosque:
     suspensionReason:
       mosque_closed: Mosquée fermée
       prayer_times_not_correct: Horaires non respéctés
+      missing_photo: Il manque la photo de l'écran
       other: Autre
     statuses:
       NEW: En attente de validation

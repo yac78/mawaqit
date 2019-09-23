@@ -315,6 +315,7 @@ mosque:
     suspensionReason:
       mosque_closed: إغلاق المسجد
       prayer_times_not_correct: أوقات الصلاة غير صحيحة
+      missing_photo: صورة الشاشة غير متوفرة
       other: أخر
 
 message:
