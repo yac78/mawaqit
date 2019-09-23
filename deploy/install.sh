@@ -10,7 +10,9 @@ dockerContainer=mawaqit_php
 cd $repoDir
 
 # maintenance
-touch $repoDir/docker/data/maintenance
+if [ "$env" == "prod" ]; then
+    touch $repoDir/docker/data/maintenance
+fi
 
 if [ "$env" == "prod" ]; then
     # Sync DB if prod deploy
