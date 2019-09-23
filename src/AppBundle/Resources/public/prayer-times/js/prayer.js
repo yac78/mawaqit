@@ -11,11 +11,6 @@
 
 var prayer = {
     /**
-     * time to wait before hilight next prayer time  (in minutes)
-     * @type Number
-     */
-    nextPrayerHilightWait: 19,
-    /**
      * prayer times
      * @type Array
      */
@@ -41,12 +36,13 @@ var prayer = {
     loadData: function () {
         this.loadTimes();
 
-        // if current time > ichaa time + this.nextPrayerHilightWait minutes we load tomorrow times
+        // if current time > ichaa time + nextPrayerHilightWait minutes we load tomorrow times
         var date = new Date();
         if (date.getHours() !== 0) {
             var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIshaTime());
             if (ichaaDateTime.getHours() !== 0) {
-                ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + this.nextPrayerHilightWait);
+                let ishaPrayerWaiting =  prayer.getWaitingByIndex(4) + 5;
+                ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + ishaPrayerWaiting);
                 if (date > ichaaDateTime) {
                     this.loadTimes(true);
                 }
@@ -625,8 +621,8 @@ var prayer = {
         var times = this.getTimes();
         $.each(times, function (index, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
-            // adding 15 minute
-            prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.nextPrayerHilightWait);
+            let prayerWaiting =  prayer.getWaitingByIndex(index) + 5;
+            prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayerWaiting);
             if (prayerDateTime.getHours() !== 0 && date > prayerDateTime) {
                 index++;
                 if (index === 5) {
@@ -663,16 +659,19 @@ var prayer = {
         if (nextTimeIndex === 5) {
             nextTimeIndex = 0;
         }
+
+        let prayerWaiting =  prayer.getWaitingByIndex(currentTimeIndex) + 5;
+
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
             prayer.nextPrayerCountdown();
-            // if ichaa we load tomorrow times
+            // if ichaa we load tomorrow times after iqama
             var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
                 prayer.loadTimes(true);
                 prayer.setTimes(true);
             }
-        }, prayer.nextPrayerHilightWait * prayer.oneMinute);
+        }, prayerWaiting * prayer.oneMinute);
     },
     duaAfterAdhan: {
         showAdhanDua: function () {
