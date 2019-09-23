@@ -9,10 +9,12 @@ use AppBundle\Entity\Mosque;
 use Meezaan\PrayerTimes\Method;
 use Psr\Log\LoggerInterface;
 use Meezaan\PrayerTimes\PrayerTimes;
+use function Couchbase\defaultDecoder;
 
 class PrayerTime
 {
 
+    private static $calendar = null;
     /**
      * @var LoggerInterface
      */
@@ -77,6 +79,11 @@ class PrayerTime
 
     function getCalendar(Mosque $mosque)
     {
+
+        if(self::$calendar !== null){
+            return self::$calendar;
+        }
+
         $conf = $mosque->getConfiguration();
 
         if ($conf->isCalendar()) {
@@ -287,7 +294,7 @@ class PrayerTime
             'longitude' => $mosque->getLongitude(),
             'hijriAdjustment' => $conf->getHijriAdjustment(),
             'aidPrayerTime' => $conf->getAidTime(),
-            'jumua' => $conf->isNoJumua() ? null : $conf->getJumuaTime(),
+            'jumua' => $conf->isNoJumua() ? null : $this->getJumua($mosque),
             'jumua2' => $conf->isNoJumua() ? null : $conf->getJumuaTime2(),
             'jumuaAsDuhr' => $conf->isJumuaAsDuhr(),
             'imsakNbMinBeforeFajr' => $conf->getImsakNbMinBeforeFajr(),
@@ -359,9 +366,12 @@ class PrayerTime
         return $iqamaCalendar;
     }
 
-    private function getPrayTimes($calendar)
+    private function getPrayTimes($calendar, $date = null)
     {
-        $date = new \DateTime();
+        if($date === null){
+            $date = new \DateTime();
+        }
+
         $month = $date->format('m') - 1;
         $day = (int)$date->format('d');
         return $calendar[$month][$day];
@@ -417,5 +427,20 @@ class PrayerTime
             }
         }
         return $messages;
+    }
+
+    private function getJumua(Mosque $mosque){
+        $conf = $mosque->getConf();
+        if ($conf->isJumuaAsDuhr()) {
+            $date = new \DateTime();
+            if($date->format("N") !== "5"){
+                $date->modify('next friday');
+            }
+            $calendar = $this->getCalendar($mosque);
+            $times = $this->getPrayTimes($calendar, $date);
+            return $times[2];
+        }
+
+        return $conf->getJumuaTime();
     }
 }

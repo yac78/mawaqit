@@ -756,11 +756,6 @@ var prayer = {
      * @returns {String}
      */
     getJumuaTime: function () {
-        if (this.confData.jumuaAsDuhr === true) {
-            // return duhr
-            return this.getTimeByIndex(1);
-        }
-
         return this.confData.jumua;
     },
     /**
