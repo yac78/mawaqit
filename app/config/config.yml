@@ -79,7 +79,8 @@ swiftmailer:
         ssl:
           verify_peer: false
           verify_peer_name: false
-      transport: 'smtp'
+      transport: smtp
+      encryption: tls
       host: '%mailer_host%'
       port: '%mailer_port%'
       username: '%mailer_user%'
@@ -89,9 +90,10 @@ swiftmailer:
     file:
       stream-options:
         ssl:
-          verify_peer: false
-          verify_peer_name: false
-      transport: 'smtp'
+        verify_peer: false
+        verify_peer_name: false
+      transport: smtp
+      encryption: tls
       host: '%mailer_host%'
       port: '%mailer_port%'
       username: '%mailer_user%'
