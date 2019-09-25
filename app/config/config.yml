@@ -1,170 +1,176 @@
 imports:
-    - { resource: parameters.yml }
-    - { resource: _parameters.yml }
-    - { resource: security.yml }
-    - { resource: services.yml }
+  - { resource: parameters.yml }
+  - { resource: _parameters.yml }
+  - { resource: security.yml }
+  - { resource: services.yml }
 
 framework:
-    translator: { fallbacks: [en, fr] }
-    secret: '%secret%'
-    router:
-        resource: '%kernel.root_dir%/config/routing.yml'
-        strict_requirements: ~
-    form: ~
-    csrf_protection: ~
-    validation: { enable_annotations: true }
-    serializer: { enable_annotations: true }
-    templating:
-        engines: ['twig']
-    default_locale: '%locale%'
-    trusted_hosts: ~
-    trusted_proxies: ~
-    session:
-        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id:  session.handler.native_file
-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
-    fragments: ~
-    http_method_override: true
-    assets: ~
-    php_errors:
-        log: true
-        
+  translator: { fallbacks: [en, fr] }
+  secret: '%secret%'
+  router:
+    resource: '%kernel.root_dir%/config/routing.yml'
+    strict_requirements: ~
+  form: ~
+  csrf_protection: ~
+  validation: { enable_annotations: true }
+  serializer: { enable_annotations: true }
+  templating:
+    engines: ['twig']
+  default_locale: '%locale%'
+  trusted_hosts: ~
+  trusted_proxies: ~
+  session:
+    # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+    handler_id:  session.handler.native_file
+    save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+  fragments: ~
+  http_method_override: true
+  assets: ~
+  php_errors:
+    log: true
+
 assetic:
-    debug:          '%kernel.debug%'
-    use_controller: '%kernel.debug%'
-    filters:
-        cssrewrite: ~        
-    bundles:
-        - AppBundle        
+  debug:          '%kernel.debug%'
+  use_controller: '%kernel.debug%'
+  filters:
+    cssrewrite: ~
+  bundles:
+    - AppBundle
 
 # Twig Configuration
 twig:
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
-    globals:
-      supportEmail: "%supportEmail%"
-      supportTelFR: "%supportTelFR%"
-      supportTelDZ: "%supportTelDZ%"
-      supportTelROW: "%supportTelROW%"
-      site: "%site%"
-      version: "%version%"
-    form_themes:
-        - 'form/themes.html.twig'
-        - 'VichUploaderBundle:Form:fields.html.twig'
+  debug: '%kernel.debug%'
+  strict_variables: '%kernel.debug%'
+  globals:
+    supportEmail: "%support_email%"
+    supportTelFR: "%supportTelFR%"
+    supportTelDZ: "%supportTelDZ%"
+    supportTelROW: "%supportTelROW%"
+    site: "%site%"
+    version: "%version%"
+  form_themes:
+    - 'form/themes.html.twig'
+    - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
-    dbal:
-        types:
-            uuid:  Ramsey\Uuid\Doctrine\UuidType
-        driver: pdo_mysql
-        host: '%database_host%'
-        port: '%database_port%'
-        dbname: '%database_name%'
-        user: '%database_user%'
-        password: '%database_password%'
-        charset: UTF8
-        server_version: '5.6'
-    orm:
-        auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+  dbal:
+    types:
+      uuid:  Ramsey\Uuid\Doctrine\UuidType
+    driver: pdo_mysql
+    host: '%database_host%'
+    port: '%database_port%'
+    dbname: '%database_name%'
+    user: '%database_user%'
+    password: '%database_password%'
+    charset: UTF8
+    server_version: '5.6'
+  orm:
+    auto_generate_proxy_classes: '%kernel.debug%'
+    naming_strategy: doctrine.orm.naming_strategy.underscore
+    auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
-    default_mailer: memory
-    mailers:
-        memory:
-            transport: '%mailer_transport%'
-            host: '%mailer_host%'
-            port: '%mailer_port%'
-            username: '%mailer_user%'
-            password: '%mailer_password%'
-            sender_address: '%supportEmail%'
-            spool:
-                type: memory
-        file:
-            transport: '%mailer_transport%'
-            host: '%mailer_host%'
-            port: '%mailer_port%'
-            username: '%mailer_user%'
-            password: '%mailer_password%'
-            sender_address: '%supportEmail%'
-            spool:
-                type: file
-                path: '%mailer_spool_dir%'
+  default_mailer: memory
+  mailers:
+    memory:
+      stream-options:
+        ssl:
+          verify_peer: false
+          verify_peer_name: false
+      transport: 'smtp'
+      host: '%mailer_host%'
+      port: '%mailer_port%'
+      username: '%mailer_user%'
+      password: '%mailer_password%'
+      spool:
+        type: memory
+    file:
+      stream-options:
+        ssl:
+          verify_peer: false
+          verify_peer_name: false
+      transport: 'smtp'
+      host: '%mailer_host%'
+      port: '%mailer_port%'
+      username: '%mailer_user%'
+      password: '%mailer_password%'
+      spool:
+        type: file
+        path: '%mailer_spool_dir%'
 
 fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: AppBundle\Entity\User
-    from_email:
-        address: '%no_reply_address%'
-        sender_name: '%name%'
-    registration:
-        form:
-            type: AppBundle\Form\RegistrationType
-            validation_groups: [Registration, appChangePassword]
-        confirmation:
-            enabled: true
-    change_password:
-        form:
-            validation_groups: [appChangePassword]
-    resetting: ~
+  db_driver: orm
+  firewall_name: main
+  user_class: AppBundle\Entity\User
+  from_email:
+    address: '%no_reply_address%'
+    sender_name: '%name%'
+  registration:
+    form:
+      type: AppBundle\Form\RegistrationType
+      validation_groups: [Registration, appChangePassword]
+    confirmation:
+      enabled: true
+  change_password:
+    form:
+      validation_groups: [appChangePassword]
+  resetting: ~
 
 vich_uploader:
-    db_driver: orm
-    mappings:
-        file:
-            uri_prefix: /upload
-            upload_destination: '%kernel.root_dir%/../web/upload'
-            namer:  vich_uploader.namer_uniqid
-            inject_on_load:     false
-            delete_on_update:   true
-            delete_on_remove:   true
+  db_driver: orm
+  mappings:
+    file:
+      uri_prefix: /upload
+      upload_destination: '%kernel.root_dir%/../web/upload'
+      namer:  vich_uploader.namer_uniqid
+      inject_on_load:     false
+      delete_on_update:   true
+      delete_on_remove:   true
 
 knp_paginator:
-    page_range: 5
-    default_options:
-        page_name: page
-        distinct: true
-    template:
-        pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
-        
+  page_range: 5
+  default_options:
+    page_name: page
+    distinct: true
+  template:
+    pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
+
 mobile_detect: ~
 
 jms_i18n_routing:
-    default_locale: "%locale%"
-    locales: "%languages%"
-    strategy: prefix
+  default_locale: "%locale%"
+  locales: "%languages%"
+  strategy: prefix
 
 stfalcon_tinymce:
   tinymce_jquery: true
   theme:
-      simple:
-          height: 400
-          fontsize_formats: "100% 120% 140% 160% 180% 200% 250% 300% 400%"
-          plugins:
-            - "advlist autolink autosave link image lists charmap preview hr"
-            - "visualblocks visualchars code insertdatetime nonbreaking media"
-            - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern"
-          toolbar1: "undo redo | removeformat formatselect fontselect fontsizeselect forecolor backcolor | bold italic underline"
-          toolbar2: "alignleft aligncenter alignright alignjustify | outdent indent | bullist numlist | link unlink image insertdatetime table hr charmap | code preview"
+    simple:
+      height: 400
+      fontsize_formats: "100% 120% 140% 160% 180% 200% 250% 300% 400%"
+      plugins:
+        - "advlist autolink autosave link image lists charmap preview hr"
+        - "visualblocks visualchars code insertdatetime nonbreaking media"
+        - "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern"
+      toolbar1: "undo redo | removeformat formatselect fontselect fontsizeselect forecolor backcolor | bold italic underline"
+      toolbar2: "alignleft aligncenter alignright alignjustify | outdent indent | bullist numlist | link unlink image insertdatetime table hr charmap | code preview"
 
 
 csa_guzzle:
-    profiler: '%kernel.debug%'
-    logger: true
-    clients:
-        api:
-            config:
-                base_uri: '%api_base_url%/api/1.0.0/'
-                headers:
-                    Accept: 'application/json'
-                    Api-Access-Token: '%mawaqit_api_access_token%'
-    default_client: 'api'
+  profiler: '%kernel.debug%'
+  logger: true
+  clients:
+    api:
+      config:
+        base_uri: '%api_base_url%/api/1.0.0/'
+        headers:
+          Accept: 'application/json'
+          Api-Access-Token: '%mawaqit_api_access_token%'
+  default_client: 'api'
 
 ewz_recaptcha:
-    public_key: '%google.recaptcha.public_key%'
-    private_key: '%google.recaptcha.private_key%'
-    locale_from_request: true
+  public_key: '%google.recaptcha.public_key%'
+  private_key: '%google.recaptcha.private_key%'
+  locale_from_request: true

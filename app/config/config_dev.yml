@@ -1,34 +1,51 @@
 imports:
-    - { resource: config.yml }
+  - { resource: config.yml }
 
 framework:
-    router:
-        resource: '%kernel.root_dir%/config/routing_dev.yml'
-        strict_requirements: true
-    profiler: { only_exceptions: false }
+  router:
+    resource: '%kernel.root_dir%/config/routing_dev.yml'
+    strict_requirements: true
+  profiler: { only_exceptions: false }
 
 web_profiler:
-    toolbar: true
-    intercept_redirects: false
+  toolbar: true
+  intercept_redirects: false
 
 monolog:
-    handlers:
-        main:
-            type: fingers_crossed
-            action_level: error
-            max_files: 1
-            channels: [!event, !php, !security]
-            handler: stream
-        stream:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            
+  handlers:
+    main:
+      type: fingers_crossed
+      action_level: error
+      max_files: 1
+      channels: [!event, !php, !security]
+      handler: stream
+    stream:
+      type: stream
+      path: "%kernel.logs_dir%/%kernel.environment%.log"
+
 hautelook_alice:
-    fixtures_path: 'Resources/fixtures/orm'
+  fixtures_path: 'Resources/fixtures/orm'
+
+#swiftmailer:
+#  default_mailer: memory
+#  mailers:
+#    memory:
+#      host: mawaqit_maildev
+#      port: 25
 
 swiftmailer:
-    default_mailer: memory
-    mailers:
-        memory:
-            host: mawaqit_maildev
-            port: 25
+  default_mailer: memory
+  mailers:
+    memory:
+      stream-options:
+        ssl:
+          verify_peer: false
+          verify_peer_name: false
+      transport: smtp
+      encryption: tls
+      host: "%mailer_host%"
+      port: "%mailer_port%"
+      username: "%mailer_user%"
+      password: "%mailer_password%"
+      spool:
+        type: memory

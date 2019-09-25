@@ -99,7 +99,7 @@ class MosqueController extends Controller
                 'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
                 'languages' => $this->getParameter('languages'),
                 'version' => $this->getParameter('version'),
-                "supportEmail" => $this->getParameter("supportEmail"),
+                "support_email" => $this->getParameter("support_email"),
                 "postmasterAddress" => $this->getParameter("postmaster_address"),
                 "mawaqitApiAccessToken" => $this->getParameter("mawaqit_api_access_token"),
                 'form' => $this->createForm(MosqueSyncType::class)->createView()
@@ -134,7 +134,7 @@ class MosqueController extends Controller
                 'mosque' => $mosque,
                 'confData' => array_merge($confData, $this->get('app.prayer_times')->prayTimes($mosque, true)),
                 'version' => $this->getParameter('version'),
-                "supportEmail" => $this->getParameter("supportEmail"),
+                "support_email" => $this->getParameter("support_email"),
                 "postmasterAddress" => $this->getParameter("postmaster_address"),
                 'messages' => $em->getRepository("AppBundle:Message")->getMessagesByMosque($mosque, null, true)
                 ], $response);

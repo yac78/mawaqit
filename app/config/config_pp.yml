@@ -1,9 +1,26 @@
 imports:
-    - { resource: config_prod.yml }
+  - { resource: config_prod.yml }
+
+#swiftmailer:
+#  default_mailer: memory
+#  mailers:
+#    memory:
+#      host: mawaqit_maildev
+#      port: 25
 
 swiftmailer:
-    default_mailer: memory
-    mailers:
-        memory:
-            host: mawaqit_maildev
-            port: 25
+  default_mailer: memory
+  mailers:
+    memory:
+      stream-options:
+        ssl:
+          verify_peer: false
+          verify_peer_name: false
+      transport: smtp
+      encryption: tls
+      host: "%mailer_host%"
+      port: "%mailer_port%"
+      username: "%mailer_user%"
+      password: "%mailer_password%"
+      spool:
+        type: memory

@@ -87,7 +87,7 @@ class DefaultController extends Controller
         $phone = strip_tags(htmlspecialchars($params['phone']));
         $message = strip_tags(htmlspecialchars($params['message']));
 
-        $to = $this->getParameter('supportEmail');
+        $to = $this->getParameter('support_email');
         $emailSubject = "Contact depuis le site web";
         $emailBody = "Email envoyé depuis le site internet.<br><br>"
             . "Voici le détail:<br><br>Nom: $name<br><br>"

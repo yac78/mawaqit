@@ -64,7 +64,7 @@ services:
         arguments:
             - "@swiftmailer.mailer"
             - "@twig"
-            - {"%supportEmail%" : "%name%"}
+            - {"%support_email%" : "%name%"}
             - {"%no_reply_address%" : "%name%"}
             - {"%postmaster_address%" : "%name%"}
 
@@ -74,7 +74,7 @@ services:
             - "@swiftmailer.mailer.file"
             - "@doctrine.orm.entity_manager"
             - "@twig"
-            - ["%supportEmail%", "%name%"]
+            - ["%support_email%", "%name%"]
 
     app.tools_service:
         class: AppBundle\Service\ToolsService

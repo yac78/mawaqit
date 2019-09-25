@@ -1,27 +1,27 @@
 imports:
-    - { resource: config.yml }
+  - { resource: config.yml }
 
 framework:
-    assets:
-        version: %version%
+  assets:
+    version: %version%
 
 monolog:
-    handlers:
-        main:
-            type: fingers_crossed
-            action_level: error
-            channels: [!event, !php, !doctrine]
-            handler:  file
-            excluded_404s:
-              - ^/
-        file:
-            type:  rotating_file
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
-            max_files: 10
-        slack:
-            type: slack
-            token: '%slack_token%'
-            bot_name:  '%slack_bot%'
-            channel: '%slack_channel%'
-            icon_emoji: ':depressed:'
-            level: critical
+  handlers:
+    main:
+      type: fingers_crossed
+      action_level: error
+      channels: [!event, !php, !doctrine]
+      handler:  file
+      excluded_404s:
+        - ^/
+    file:
+      type:  rotating_file
+      path: '%kernel.logs_dir%/%kernel.environment%.log'
+      max_files: 10
+    slack:
+      type: slack
+      token: '%slack_token%'
+      bot_name:  '%slack_bot%'
+      channel: '%slack_channel%'
+      icon_emoji: ':depressed:'
+      level: critical

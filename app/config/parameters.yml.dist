@@ -4,6 +4,9 @@ parameters:
     database_name: mawaqit
     database_user: root
     database_password: ~
+    mailer_host:  ~
+    mailer_port: ~
+    mailer_user: ~
     mailer_password: ~
     secret: theSecret
     version: 3.0.0
