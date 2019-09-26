@@ -84,6 +84,18 @@ class MosqueType extends AbstractType
                         return $this->em->getRepository("AppBundle:User")->find($id);
                     }
                 ));
+
+            $builder->add('status', ChoiceType::class, [
+                'constraints' => new Choice(["choices" => Mosque::STATUSES]),
+                'choices' => array_combine([
+                    "mosque.statuses.NEW",
+                    "mosque.statuses.CHECK",
+                    "mosque.statuses.VALIDATED",
+                    "mosque.statuses.SUSPENDED",
+                    "mosque.statuses.DUPLICATED",
+                    "mosque.statuses.SCREEN_PHOTO_ADDED",
+                ], Mosque::STATUSES)
+            ]);
         }
 
         $isAdmin = $this->securityChecker->isGranted('ROLE_ADMIN');
@@ -152,8 +164,12 @@ class MosqueType extends AbstractType
                     'placeholder' => 'mosque.form.address.placeholder',
                 ]
             ])
-            ->add('latitude', NumberType::class)
-            ->add('longitude', NumberType::class)
+            ->add('latitude', NumberType::class, [
+                'disabled' => $disabled,
+            ])
+            ->add('longitude', NumberType::class, [
+                'disabled' => $disabled,
+            ])
             ->add('city', null, [
                 'label' => 'city',
                 'disabled' => $disabled,

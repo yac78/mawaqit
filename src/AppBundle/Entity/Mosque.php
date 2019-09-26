@@ -14,13 +14,14 @@ class Mosque
     const STATUS_SUSPENDED = "SUSPENDED";
     const STATUS_CHECK = "CHECK";
     const STATUS_DUPLICATED = "DUPLICATED";
+    const STATUS_SCREEN_PHOTO_ADDED = "SCREEN_PHOTO_ADDED";
     const TYPE_MOSQUE = "mosque";
     const TYPE_HOME = "home";
     const TYPES = [
         self::TYPE_MOSQUE, self::TYPE_HOME
     ];
     const STATUSES = [
-        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED, self::STATUS_SUSPENDED, self::STATUS_DUPLICATED
+        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED, self::STATUS_SUSPENDED, self::STATUS_DUPLICATED, self::STATUS_SCREEN_PHOTO_ADDED
     ];
     /**
      * @Groups({"search"})

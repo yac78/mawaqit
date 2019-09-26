@@ -66,6 +66,8 @@ mosque:
       DUPLICATED: |
         It seems that your mosque is duplicated, we need additional information to validate your mosque,
         please contact us as soon as possible by replying to the email sent to you
+      SCREEN_PHOTO_ADDED: |
+        We are processing to check the photo of the mawaqit screen
     suspensionReason:
       mosque_closed: Mosque closed
       prayer_times_not_correct: Prayer times incorrect
@@ -80,6 +82,7 @@ mosque:
       VALIDATED: Validated
       CHECK: Checking in progress
       DUPLICATED: Duplicated
+      SCREEN_PHOTO_ADDED: Checking screen photo
     add_new: Add
     add: Adding a new mosque
     name: Name

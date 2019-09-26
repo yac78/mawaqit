@@ -25,6 +25,7 @@
             {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
+                {{ form_row(form.status) }}
                 {{ form_row(form.user) }}
                 <div class="{{ isLocal() ? 'hidden' : '' }}">
                     {{ form_row(form.user_complete, {'attr' : {'data-remote': path('users_search_ajax') } }) }}
@@ -53,7 +54,7 @@
         </div>
 
         <div class="mosque-block hidden">
-            {% if mosque is defined %}
+            {% if mosque is defined and is_granted('ROLE_ADMIN') %}
                 <div class="{{ isLocal() ? 'hidden' }}">
                     {{ form_row(form.latitude) }}
                     {{ form_row(form.longitude) }}

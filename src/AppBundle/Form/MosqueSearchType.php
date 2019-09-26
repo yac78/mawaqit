@@ -54,7 +54,7 @@ class MosqueSearchType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'label' => false,
-                'constraints' => new Choice(["choices" => Mosque::TYPES]),
+                'constraints' => new Choice(["choices" => array_merge(["ALL"], Mosque::TYPES)]),
                 'placeholder' => 'mosque_search.form.type.placeholder',
                 'choices' => [
                     "mosque.types.all" => "ALL",
@@ -72,6 +72,7 @@ class MosqueSearchType extends AbstractType
                     "mosque.statuses.VALIDATED",
                     "mosque.statuses.SUSPENDED",
                     "mosque.statuses.DUPLICATED",
+                    "mosque.statuses.SCREEN_PHOTO_ADDED",
                 ], Mosque::STATUSES)
             ])
             ->add('sourceCalcul', ChoiceType::class, [
@@ -87,8 +88,6 @@ class MosqueSearchType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'class' => 'btn btn-default ml-1 fa fa-search',
-                    'style' => 'padding:0.9rem',
-
                 ]
             ]);
 
@@ -99,7 +98,7 @@ class MosqueSearchType extends AbstractType
     {
         $resolver->setDefaults(array(
             'attr' => [
-                'class' => 'navbar-form'
+                'class' => 'form-inline'
             ],
             'allow_extra_fields' => true,
             'csrf_protection' => false,

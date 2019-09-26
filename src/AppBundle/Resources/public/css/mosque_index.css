@@ -64,11 +64,11 @@ iframe{
 }
 
 .check {
-    background-color: #c7e5fd;
+    background-color: #c7e5fd !important;
 }
 
 .duplicated {
-    background-color: #daae9b;
+    background-color: #daae9b !important;
 }
 
 .new {
@@ -76,7 +76,11 @@ iframe{
 }
 
 .suspended {
-    background-color: #cccccc;
+    background-color: #cccccc !important;
+}
+
+.screen_photo_added {
+    background-color: #c3b5cc !important;
 }
 
 .calendarIncompleted {
