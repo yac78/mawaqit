@@ -74,7 +74,7 @@ services:
             - "@swiftmailer.mailer.file"
             - "@doctrine.orm.entity_manager"
             - "@twig"
-            - ["%supportEmail%", "%name%"]
+            - ["%no_reply_address%", "%name%"]
 
     app.tools_service:
         class: AppBundle\Service\ToolsService
@@ -126,6 +126,13 @@ services:
             - "@doctrine.orm.entity_manager"
         tags:
             - { name: 'console.command', command: 'app:clean-mosques' }
+
+    app.mosque_screen_photo_reminder:
+        class: AppBundle\Command\MosqueScreenPhotoReminderCommand
+        arguments:
+            - "@app.user_service"
+        tags:
+            - { name: 'console.command' }
 
     # Twig extension
     app.twig.country_extension:

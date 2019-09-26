@@ -7,3 +7,6 @@ swiftmailer:
         memory:
             host: mawaqit_maildev
             port: 25
+        file:
+            host: mawaqit_maildev
+            port: 25

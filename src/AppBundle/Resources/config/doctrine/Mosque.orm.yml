@@ -76,6 +76,9 @@ AppBundle\Entity\Mosque:
         image3:
             type: string
             nullable: true
+        emailScreenPhotoReminder:
+            type: smallint
+            nullable: true
         locale:
             type: string
             length: 10
