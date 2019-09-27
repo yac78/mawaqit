@@ -14,6 +14,9 @@ class VichImageHandling
 
     public function resizeImage(Event $event)
     {
+        /**
+         * @var $object Mosque
+         */
         $object = $event->getObject();
 
         if ($object instanceof Mosque && $event->getMapping()->getFileNamePropertyName() === 'justificatory') {
@@ -31,7 +34,7 @@ class VichImageHandling
             }
         }
 
-        if ($object instanceof Mosque && $event->getMapping()->getFileNamePropertyName() === "image3") {
+        if ($object instanceof Mosque && $object->getId() && $event->getMapping()->getFileNamePropertyName() === "image3") {
             $object->setStatus(Mosque::STATUS_SCREEN_PHOTO_ADDED);
         }
     }
