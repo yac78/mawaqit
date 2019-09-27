@@ -43,9 +43,9 @@ twig:
   strict_variables: '%kernel.debug%'
   globals:
     supportEmail: "%support_email%"
-    supportTelFR: "%supportTelFR%"
-    supportTelDZ: "%supportTelDZ%"
-    supportTelROW: "%supportTelROW%"
+    supportTelFR: "%support_tel_fr%"
+    supportTelDZ: "%support_tel_dz%"
+    supportTelROW: "%support_tel_row%"
     site: "%site%"
     version: "%version%"
   form_themes:
@@ -81,7 +81,7 @@ swiftmailer:
           verify_peer_name: false
       transport: smtp
       encryption: tls
-      host: '%mailer_host%'
+      host: '%mailer_host_memory%'
       port: '%mailer_port%'
       username: '%mailer_user%'
       password: '%mailer_password%'
@@ -90,11 +90,11 @@ swiftmailer:
     file:
       stream-options:
         ssl:
-        verify_peer: false
-        verify_peer_name: false
+          verify_peer: false
+          verify_peer_name: false
       transport: smtp
       encryption: tls
-      host: '%mailer_host%'
+      host: '%mailer_host_file%'
       port: '%mailer_port%'
       username: '%mailer_user%'
       password: '%mailer_password%'

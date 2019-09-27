@@ -916,7 +916,7 @@ class Mosque
     }
     public function isValidated()
     {
-        return $this->status === self::STATUS_VALIDATED;
+        return in_array($this->status, [self::STATUS_VALIDATED, self::STATUS_SCREEN_PHOTO_ADDED]);
     }
     public function isSuspended()
     {
