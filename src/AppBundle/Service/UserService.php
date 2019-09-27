@@ -89,7 +89,7 @@ class UserService
                 $this->mailer->send($message);
             }
             if ($mosque->getEmailScreenPhotoReminder() > 3) {
-                $mosque->suspend("missing_photo");
+                $this->em->remove($mosque);
             }
         }
 
