@@ -26,9 +26,12 @@ monolog:
 hautelook_alice:
   fixtures_path: 'Resources/fixtures/orm'
 
-#swiftmailer:
-#  default_mailer: memory
-#  mailers:
-#    memory:
-#      host: mawaqit_maildev
-#      port: 25
+swiftmailer:
+    default_mailer: memory
+    mailers:
+        memory:
+            host: mawaqit_maildev
+            port: 25
+        file:
+            host: mawaqit_maildev
+            port: 25

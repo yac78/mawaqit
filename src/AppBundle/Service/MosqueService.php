@@ -137,7 +137,6 @@ class MosqueService
         $this->vichUploadHandler->remove($mosque, 'justificatoryFile');
         $mosque->setJustificatoryFile(null);
         $mosque->setJustificatory(null);
-        $this->em->persist($mosque);
         $this->em->flush();
         $this->mailService->mosqueValidated($mosque);
     }

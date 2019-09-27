@@ -301,6 +301,8 @@ mosque:
       DUPLICATED: |
            Il parait que votre mosquée est en double, nous avons besoin d'informations complémentaires afin de valider votre mosquée,
            veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
+      SCREEN_PHOTO_ADDED: |
+           Nous procédons à la vérification de la photo de l'écran mawaqit
     suspensionReason:
       mosque_closed: Mosquée fermée
       prayer_times_not_correct: Horaires non respéctés
@@ -312,6 +314,7 @@ mosque:
       CHECK: En cours de vérification
       SUSPENDED: Suspendue
       DUPLICATED: Doublon
+      SCREEN_PHOTO_ADDED: Vérification photo d'écran
     add_new: Ajouter une mosquée
     add: Ajouter une installation
     name: Nom
@@ -324,6 +327,8 @@ mosque:
     update_hijri_date:
         success: La date hégirienne a été mise à jour pour toutes les mosquées
     form:
+        status:
+            label : Statut
         type:
             label : Type
             placeholder : Choisir un type d'installation

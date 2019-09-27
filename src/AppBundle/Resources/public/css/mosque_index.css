@@ -4,7 +4,6 @@
     height: 32px;
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    border-radius: 25px;
     border: 1px solid #ccc;
     width: 100%;
     border-radius: 4px 25px 25px 4px;
@@ -64,11 +63,11 @@ iframe{
 }
 
 .check {
-    background-color: #c7e5fd;
+    background-color: #c7e5fd !important;
 }
 
 .duplicated {
-    background-color: #daae9b;
+    background-color: #daae9b !important;
 }
 
 .new {
@@ -76,7 +75,11 @@ iframe{
 }
 
 .suspended {
-    background-color: #cccccc;
+    background-color: #cccccc !important;
+}
+
+.screen_photo_added {
+    background-color: #c3b5cc !important;
 }
 
 .calendarIncompleted {
@@ -89,7 +92,7 @@ iframe{
 }
 
 .fa-map-marker.mobile {
-    bottom: 0px;
+    bottom: 0;
     right: 15px;
     top: unset;
 }

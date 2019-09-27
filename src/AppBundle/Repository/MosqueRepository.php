@@ -3,7 +3,11 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Mosque;
-use AppBundle\Entity\User;use DateTime;use Doctrine\ORM\EntityRepository;use Doctrine\ORM\NonUniqueResultException;use Doctrine\ORM\QueryBuilder;
+use AppBundle\Entity\User;
+use DateTime;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * MosqueRepository
@@ -260,6 +264,23 @@ class MosqueRepository extends EntityRepository
             ->andWhere("m.updated < :date")
             ->setParameter(":status", [Mosque::STATUS_VALIDATED, Mosque::STATUS_SUSPENDED])
             ->setParameter(":date", new DateTime("-30 day "))
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * Get mosques without screen photo to remind them
+     * @return mixed
+     * @throws \Exception
+     */
+
+    function getMosquesWithoutScreenPhoto()
+    {
+        return $this->getValidatedMosqueQb()
+            ->andWhere("m.image3 IS NULL")
+            ->andWhere("m.created > :date")
+            ->andWhere("m.emailScreenPhotoReminder IS NULL OR m.emailScreenPhotoReminder <= 3")
+            ->setParameter(":date", new DateTime("2019-10-05"))
             ->getQuery()
             ->execute();
     }

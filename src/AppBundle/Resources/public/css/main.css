@@ -173,3 +173,7 @@ body {
 .form-control{
     padding: 3px 12px;
 }
+
+.form-inline > * {
+    margin:5px 3px;
+}

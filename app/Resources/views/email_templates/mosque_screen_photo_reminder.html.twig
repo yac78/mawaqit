@@ -1,0 +1,45 @@
+{% extends 'email_templates/layout.html.twig' %}
+{% block content %}
+    <div>
+        <p>Essalamu alaykum</p>
+
+        <p>
+            Rappel {{ mosque.emailScreenPhotoReminder }}/3 <br>
+            Vous avez récemment ajouté la mosquée "<b>{{ mosque.title }}</b>" sur {{ site }}.<br>
+            Sauf erreur de notre part vous n'avez toujours pas ajouté la photo de l'écran mawaqit de votre mosquée. <br>
+            Pour rappel, vous disposez d'un mois pour ajouter la photo, passé ce délai, la mosquée sera automatiquement
+            supprimée.
+        </p>
+
+        <hr>
+
+        <p>
+            Reminder {{ mosque.emailScreenPhotoReminder }}/3 <br>
+            You have recently added the mosque "<b>{{ mosque.title }}</b>" on {{ site }}.<br>
+            Unless we made a mistake, you still have not added the photo of the mawaqit screen of your mosque.
+            As a reminder, you have one month to add the photo, after this time the mosque will be automatically
+            removed.
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="ar">
+        <p>
+            السلام عليكم ورحمة الله وبركاته
+        </p>
+
+        <p>
+            تذكير
+            3/{{ mosque.emailScreenPhotoReminder }} <br>
+            لقد قمت مؤخرًا بإضافة المسجد
+            "<b>{{ mosque.title }}</b>"
+            على
+            {{ site }}
+            <br>
+            إذا لم نخطئ ، ما زلت لم تقم بإضافة صورة شاشة المسجد.
+            للتذكير ، لديك شهر واحد منذ البداية لإضافة الصورة ، بعد هذا الوقت سيتم حذف المسجد أتوماتيكيا.
+        </p>
+    </div>
+
+{% endblock %}

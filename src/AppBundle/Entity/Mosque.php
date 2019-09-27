@@ -1,12 +1,9 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Mosque
  */
@@ -17,80 +14,65 @@ class Mosque
     const STATUS_SUSPENDED = "SUSPENDED";
     const STATUS_CHECK = "CHECK";
     const STATUS_DUPLICATED = "DUPLICATED";
-
+    const STATUS_SCREEN_PHOTO_ADDED = "SCREEN_PHOTO_ADDED";
     const TYPE_MOSQUE = "mosque";
     const TYPE_HOME = "home";
-
     const TYPES = [
         self::TYPE_MOSQUE, self::TYPE_HOME
     ];
-
     const STATUSES = [
-        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED, self::STATUS_SUSPENDED, self::STATUS_DUPLICATED
+        self::STATUS_NEW, self::STATUS_CHECK, self::STATUS_VALIDATED, self::STATUS_SUSPENDED, self::STATUS_DUPLICATED, self::STATUS_SCREEN_PHOTO_ADDED
     ];
-
     /**
      * @Groups({"search"})
      * @var int
      */
     private $id;
-
     /**
      * @Groups({"search"})
      * @var string
      */
     private $name;
-
     /**
      * @var string
      */
     private $type = "mosque";
-
     /**
      * @var string
      */
     private $slug;
-
     /**
      * @var string
      */
     private $address;
-
     /**
      * @var string
      */
     private $city;
-
     /**
      * @var string
      */
     private $zipcode;
-
     /**
      * @var string
      */
     private $country;
-
     /**
      * @var float
      */
     private $latitude;
-
     /**
      * @var float
      */
     private $longitude;
-
     /**
      * @var string
      */
     private $countryFullName;
-
     /**
      * @var string
      */
     private $associationName;
-
     /**
      * @Groups({"search"})
      * @var string
@@ -100,54 +82,44 @@ class Mosque
      * @var string
      */
     private $rib;
-
     /**
      * @Groups({"search"})
      * @var string
      */
     private $email;
-
     /**
      * @Groups({"search"})
      * @var string
      */
     private $site;
-
     /**
      * @var string
      */
     private $status = self::STATUS_NEW;
-
     /**
      * @var string
      */
     private $reason;
-
     /**
      * @var boolean
      */
     private $addOnMap = true;
-
     /**
      * @var File
      */
     private $justificatoryFile;
-
     /**
      * @var File
      */
     private $file1;
-
     /**
      * @var File
      */
     private $file2;
-
     /**
      * @var File
      */
     private $file3;
-
     /**
      * @var string
      */
@@ -156,48 +128,39 @@ class Mosque
      * @var string
      */
     private $image1;
-
     /**
      * @var string
      */
     private $image2;
-
     /**
      * @var string
      */
     private $image3;
-
     /**
      * The choosen locale (language fr, ar, en, ...)
      * @var string
      */
     private $locale = 'fr';
-
     /**
      * @var \DateTime
      */
     private $created;
-
     /**
      * @var \DateTime
      */
     private $updated;
-
     /**
      * @var User
      */
     private $user;
-
     /**
      * @var Configuration
      */
     private $configuration;
-
     /**
      * @var ArrayCollection[Message]
      */
     private $messages;
-
     /**
      * @var FlashMessage
      */
@@ -206,7 +169,6 @@ class Mosque
      * @var boolean|null
      */
     private $isCalendarCompleted = null;
-
     /**
      * @var boolean|null
      */
@@ -248,18 +210,20 @@ class Mosque
      * @Assert\Length(max="200")
      */
     private $otherInfo;
-
     /**
      * @var boolean|null
      */
     private $synchronized;
+    /**
+     * @var int|null
+     */
+    private $emailScreenPhotoReminder;
 
     public function __construct()
     {
         $this->messages = new ArrayCollection();
         $this->configuration = new Configuration();
     }
-
     /**
      * Get id
      *
@@ -269,12 +233,10 @@ class Mosque
     {
         return $this->id;
     }
-
     public function setId($id)
     {
         $this->id = $id;
     }
-
     /**
      * Set name
      *
@@ -285,10 +247,8 @@ class Mosque
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -298,7 +258,6 @@ class Mosque
     {
         return $this->name;
     }
-
     /**
      * Set name
      *
@@ -309,10 +268,8 @@ class Mosque
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -322,7 +279,6 @@ class Mosque
     {
         return $this->slug;
     }
-
     /**
      * Set address
      *
@@ -333,10 +289,8 @@ class Mosque
     public function setAddress($address)
     {
         $this->address = $address;
-
         return $this;
     }
-
     /**
      * Get address
      *
@@ -346,7 +300,6 @@ class Mosque
     {
         return $this->address;
     }
-
     /**
      * Set city
      *
@@ -361,12 +314,9 @@ class Mosque
         foreach ($cityParts as $key => $part) {
             $transformedCity[$key] = ucfirst(strtolower($part));
         }
-
         $this->city = implode("-", $transformedCity);
-
         return $this;
     }
-
     /**
      * Get city
      *
@@ -376,7 +326,6 @@ class Mosque
     {
         return $this->city;
     }
-
     /**
      * Set country
      *
@@ -387,10 +336,8 @@ class Mosque
     public function setCountry($country)
     {
         $this->country = $country;
-
         return $this;
     }
-
     /**
      * Get country
      *
@@ -400,7 +347,6 @@ class Mosque
     {
         return $this->country;
     }
-
     /**
      * @return string
      */
@@ -408,7 +354,6 @@ class Mosque
     {
         return $this->countryFullName;
     }
-
     /**
      * @param string $countryFullName
      * @return Mosque
@@ -418,7 +363,6 @@ class Mosque
         $this->countryFullName = $countryFullName;
         return $this;
     }
-
     /**
      * Set associationName
      *
@@ -429,10 +373,8 @@ class Mosque
     public function setAssociationName($associationName)
     {
         $this->associationName = $associationName;
-
         return $this;
     }
-
     /**
      * Get associationName
      *
@@ -442,7 +384,6 @@ class Mosque
     {
         return $this->associationName;
     }
-
     /**
      * Set phone
      *
@@ -453,10 +394,8 @@ class Mosque
     public function setPhone($phone)
     {
         $this->phone = $phone;
-
         return $this;
     }
-
     /**
      * Get phone
      *
@@ -466,7 +405,6 @@ class Mosque
     {
         return $this->phone;
     }
-
     /**
      * Set site
      *
@@ -477,10 +415,8 @@ class Mosque
     public function setSite($site)
     {
         $this->site = $site;
-
         return $this;
     }
-
     /**
      * Get site
      *
@@ -490,7 +426,6 @@ class Mosque
     {
         return $this->site;
     }
-
     /**
      * Set zipcode
      *
@@ -501,10 +436,8 @@ class Mosque
     public function setZipcode($zipcode)
     {
         $this->zipcode = $zipcode;
-
         return $this;
     }
-
     /**
      * Get zipcode
      *
@@ -514,7 +447,6 @@ class Mosque
     {
         return $this->zipcode;
     }
-
     /**
      * Set rib
      *
@@ -525,10 +457,8 @@ class Mosque
     public function setRib($rib)
     {
         $this->rib = $rib;
-
         return $this;
     }
-
     /**
      * Get rib
      *
@@ -538,7 +468,6 @@ class Mosque
     {
         return $this->rib;
     }
-
     /**
      * Set email
      *
@@ -549,10 +478,8 @@ class Mosque
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * Get email
      *
@@ -562,7 +489,6 @@ class Mosque
     {
         return $this->email;
     }
-
     /**
      * Set created
      *
@@ -573,10 +499,8 @@ class Mosque
     public function setCreated($created)
     {
         $this->created = $created;
-
         return $this;
     }
-
     /**
      * Get created
      *
@@ -586,7 +510,6 @@ class Mosque
     {
         return $this->created;
     }
-
     /**
      * Set updated
      *
@@ -597,10 +520,8 @@ class Mosque
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-
         return $this;
     }
-
     /**
      * Get updated
      *
@@ -615,7 +536,6 @@ class Mosque
         }
         return $configurationUpdated;
     }
-
     /**
      * Get city + zipcode
      * @Groups({"search"})
@@ -625,27 +545,22 @@ class Mosque
     {
         return ($this->address ? $this->address . ' ' : '') . $this->zipcode . ' ' . $this->city . ' ' . $this->getCountryFullName();
     }
-
     function getUser()
     {
         return $this->user;
     }
-
     function setUser(User $user)
     {
         $this->user = $user;
     }
-
     function getConfiguration()
     {
         return $this->configuration;
     }
-
     function setConfiguration(Configuration $configuration)
     {
         $this->configuration = $configuration;
     }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
      *
@@ -654,16 +569,13 @@ class Mosque
     public function setJustificatoryFile(File $file = null)
     {
         $this->justificatoryFile = $file;
-
         if ($file) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updated = new \DateTime();
         }
-
         return $this;
     }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
@@ -672,16 +584,13 @@ class Mosque
     public function setFile1(File $image = null)
     {
         $this->file1 = $image;
-
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updated = new \DateTime();
         }
-
         return $this;
     }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
@@ -690,16 +599,13 @@ class Mosque
     public function setFile2(File $image = null)
     {
         $this->file2 = $image;
-
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updated = new \DateTime();
         }
-
         return $this;
     }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
@@ -708,16 +614,13 @@ class Mosque
     public function setFile3(File $image = null)
     {
         $this->file3 = $image;
-
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updated = new \DateTime();
         }
-
         return $this;
     }
-
     /**
      * @return File|null
      */
@@ -725,7 +628,6 @@ class Mosque
     {
         return $this->justificatoryFile;
     }
-
     /**
      * @return string
      */
@@ -733,7 +635,6 @@ class Mosque
     {
         return $this->justificatory;
     }
-
     /**
      * @param string $justificatory
      * @return $this
@@ -743,7 +644,6 @@ class Mosque
         $this->justificatory = $justificatory;
         return $this;
     }
-
     /**
      * @return File|null
      */
@@ -751,7 +651,6 @@ class Mosque
     {
         return $this->file1;
     }
-
     /**
      * @return File|null
      */
@@ -759,7 +658,6 @@ class Mosque
     {
         return $this->file2;
     }
-
     /**
      * @return File|null
      */
@@ -767,7 +665,6 @@ class Mosque
     {
         return $this->file3;
     }
-
     /**
      * @param string $imageName
      *
@@ -776,10 +673,8 @@ class Mosque
     public function setImage1($imageName)
     {
         $this->image1 = $imageName;
-
         return $this;
     }
-
     /**
      * @param string $imageName
      *
@@ -788,10 +683,8 @@ class Mosque
     public function setImage2($imageName)
     {
         $this->image2 = $imageName;
-
         return $this;
     }
-
     /**
      * @param string $imageName
      *
@@ -800,10 +693,8 @@ class Mosque
     public function setImage3($imageName)
     {
         $this->image3 = $imageName;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -811,7 +702,6 @@ class Mosque
     {
         return $this->image1;
     }
-
     /**
      * @return string|null
      */
@@ -819,7 +709,6 @@ class Mosque
     {
         return $this->image2;
     }
-
     /**
      * @return string|null
      */
@@ -827,12 +716,10 @@ class Mosque
     {
         return $this->image3;
     }
-
     public function getMessages()
     {
         return $this->messages;
     }
-
     public function getNbOfEnabledMessages()
     {
         $nb = 0;
@@ -843,19 +730,16 @@ class Mosque
         }
         return $nb;
     }
-
     public function addMessage(Message $message)
     {
         $this->messages->add($message);
         $message->setMosque($this);
         $this->setUpdated(new \DateTime());
     }
-
     public function clearMessages()
     {
         $this->messages = null;
     }
-
     /**
      * True if calendar is completed
      * @return boolean
@@ -881,7 +765,6 @@ class Mosque
         }
         return $this->isCalendarCompleted;
     }
-
     /**
      * get GPS coordinates
      * @return array
@@ -893,7 +776,6 @@ class Mosque
             "lon" => $this->getLongitude()
         ];
     }
-
     /**
      * Get the title to display on top of screen
      * @return string
@@ -903,15 +785,12 @@ class Mosque
         if ($this->isHome()) {
             return 'homeTitle';
         }
-
         $name = $this->getName();
         if (strpos(strtolower($name), strtolower($this->getCity())) === false) {
             $name .= " - " . $this->getCity();
         }
-
         return $name;
     }
-
     /**
      * @return bool
      */
@@ -919,7 +798,6 @@ class Mosque
     {
         return $this->addOnMap;
     }
-
     /**
      * @param bool $addOnMap
      */
@@ -927,12 +805,10 @@ class Mosque
     {
         $this->addOnMap = $addOnMap;
     }
-
     public function getTypes()
     {
         return self::TYPES;
     }
-
     /**
      * Set type
      *
@@ -943,10 +819,8 @@ class Mosque
     public function setType($type)
     {
         $this->type = $type;
-
         return $this;
     }
-
     /**
      * Get type
      *
@@ -956,7 +830,6 @@ class Mosque
     {
         return $this->type;
     }
-
     public function resetToHome()
     {
         $this->addOnMap = false;
@@ -968,7 +841,6 @@ class Mosque
         $this->rib = null;
         $this->status = Mosque::STATUS_VALIDATED;
     }
-
     /**
      * @Groups({"search"})
      * @return float
@@ -977,7 +849,6 @@ class Mosque
     {
         return $this->longitude;
     }
-
     /**
      * @Groups({"search"})
      * @return float
@@ -986,7 +857,6 @@ class Mosque
     {
         return $this->latitude;
     }
-
     /**
      * @param float $latitude
      */
@@ -994,7 +864,6 @@ class Mosque
     {
         $this->latitude = $latitude;
     }
-
     /**
      * @param float $longitude
      */
@@ -1002,7 +871,6 @@ class Mosque
     {
         $this->longitude = $longitude;
     }
-
     /**
      * @Groups({"search"})
      * @return string
@@ -1012,10 +880,8 @@ class Mosque
         if (empty($this->image1)) {
             return 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg';
         }
-
         return "https://mawaqit.net/upload/" . $this->image1;
     }
-
     /**
      * @Groups({"search"})
      * @return string
@@ -1024,17 +890,14 @@ class Mosque
     {
         return "https://mawaqit.net/ar/" . $this->slug;
     }
-
     public function isHome()
     {
         return $this->type === self::TYPE_HOME;
     }
-
     public function isMosque()
     {
         return $this->type === self::TYPE_MOSQUE;
     }
-
     /**
      * @return string
      */
@@ -1042,7 +905,6 @@ class Mosque
     {
         return $this->status;
     }
-
     /**
      * @param string $status
      * @return Mosque
@@ -1052,17 +914,14 @@ class Mosque
         $this->status = $status;
         return $this;
     }
-
     public function isValidated()
     {
         return $this->status === self::STATUS_VALIDATED;
     }
-
     public function isSuspended()
     {
         return $this->status === self::STATUS_SUSPENDED;
     }
-
     public function statusClass()
     {
         if (!$this->isCalendarCompleted()) {
@@ -1070,7 +929,6 @@ class Mosque
         }
         return strtolower($this->status);
     }
-
     /**
      * @return string
      */
@@ -1078,7 +936,6 @@ class Mosque
     {
         return $this->locale;
     }
-
     /**
      * @param string $locale
      */
@@ -1086,7 +943,6 @@ class Mosque
     {
         $this->locale = $locale;
     }
-
     /**
      * @return bool|null
      */
@@ -1094,7 +950,6 @@ class Mosque
     {
         return $this->womenSpace;
     }
-
     /**
      * @param bool|null $womenSpace
      * @return Mosque
@@ -1104,7 +959,6 @@ class Mosque
         $this->womenSpace = $womenSpace;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1112,7 +966,6 @@ class Mosque
     {
         return $this->janazaPrayer;
     }
-
     /**
      * @param bool|null $janazaPrayer
      * @return Mosque
@@ -1122,7 +975,6 @@ class Mosque
         $this->janazaPrayer = $janazaPrayer;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1130,7 +982,6 @@ class Mosque
     {
         return $this->childrenCourses;
     }
-
     /**
      * @param bool|null $childrenCourses
      * @return Mosque
@@ -1140,7 +991,6 @@ class Mosque
         $this->childrenCourses = $childrenCourses;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1148,7 +998,6 @@ class Mosque
     {
         return $this->adultCourses;
     }
-
     /**
      * @param bool|null $adultCourses
      * @return Mosque
@@ -1158,7 +1007,6 @@ class Mosque
         $this->adultCourses = $adultCourses;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1166,7 +1014,6 @@ class Mosque
     {
         return $this->ramadanMeal;
     }
-
     /**
      * @param bool|null $ramadanMeal
      * @return Mosque
@@ -1176,7 +1023,6 @@ class Mosque
         $this->ramadanMeal = $ramadanMeal;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1184,7 +1030,6 @@ class Mosque
     {
         return $this->handicapAccessibility;
     }
-
     /**
      * @param bool|null $handicapAccessibility
      * @return Mosque
@@ -1194,7 +1039,6 @@ class Mosque
         $this->handicapAccessibility = $handicapAccessibility;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1202,7 +1046,6 @@ class Mosque
     {
         return $this->ablutions;
     }
-
     /**
      * @param bool|null $ablutions
      * @return Mosque
@@ -1212,7 +1055,6 @@ class Mosque
         $this->ablutions = $ablutions;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1220,7 +1062,6 @@ class Mosque
     {
         return $this->parking;
     }
-
     /**
      * @param bool|null $parking
      * @return Mosque
@@ -1230,7 +1071,6 @@ class Mosque
         $this->parking = $parking;
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -1238,7 +1078,6 @@ class Mosque
     {
         return $this->aidPrayer;
     }
-
     /**
      * @param bool|null $aidPrayer
      * @return Mosque
@@ -1248,12 +1087,10 @@ class Mosque
         $this->aidPrayer = $aidPrayer;
         return $this;
     }
-
     public function showUsefullInfo()
     {
         return $this->parking !== null;
     }
-
     /**
      * @return FlashMessage|null
      */
@@ -1261,7 +1098,6 @@ class Mosque
     {
         return $this->flashMessage;
     }
-
     /**
      * @param FlashMessage $flashMessage
      */
@@ -1270,7 +1106,6 @@ class Mosque
         $this->flashMessage = $flashMessage;
         $this->setUpdated(new \DateTime());
     }
-
     /**
      * @return bool|null
      */
@@ -1278,7 +1113,6 @@ class Mosque
     {
         return $this->synchronized;
     }
-
     /**
      * @param bool|null $synchronized
      */
@@ -1286,12 +1120,10 @@ class Mosque
     {
         $this->synchronized = $synchronized;
     }
-
     public function getConf(): Configuration
     {
         return $this->configuration;
     }
-
     /**
      * @return string
      */
@@ -1299,7 +1131,6 @@ class Mosque
     {
         return $this->otherInfo;
     }
-
     /**
      * @param string $otherInfo
      */
@@ -1307,7 +1138,6 @@ class Mosque
     {
         $this->otherInfo = $otherInfo;
     }
-
     /**
      * @return string
      */
@@ -1315,7 +1145,6 @@ class Mosque
     {
         return $this->reason;
     }
-
     /**
      * @param string $reason
      */
@@ -1323,5 +1152,35 @@ class Mosque
     {
         $this->reason = $reason;
     }
-}
 
+    /**
+     * @return int|null
+     */
+    public function getEmailScreenPhotoReminder():? int
+    {
+        return $this->emailScreenPhotoReminder;
+    }
+
+    /**
+     * @param int|null $emailScreenPhotoReminder
+     *
+     * @return Mosque
+     */
+    public function setEmailScreenPhotoReminder(int $emailScreenPhotoReminder): Mosque
+    {
+        $this->emailScreenPhotoReminder = $emailScreenPhotoReminder;
+        return $this;
+    }
+
+    public function incrementEmailScreenPhotoReminder()
+    {
+        $this->emailScreenPhotoReminder++;
+    }
+
+    public function suspend($reaseon)
+    {
+        $this->status = self::STATUS_SUSPENDED;
+        $this->reason = $reaseon;
+    }
+
+}
