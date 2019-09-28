@@ -26,7 +26,8 @@
 
         <div class="col-md-1 mt-2 text-right">
             {% if isNotLocal() %}
-                <a href="{{ path('mosque_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'add'|trans }}</a>
+                <a href="{{ path('mosque_create') }}" class="btn btn-primary"><i
+                            class="fa fa-plus"></i> {{ 'add'|trans }}</a>
             {% endif %}
         </div>
     </div>
@@ -37,8 +38,20 @@
         </div>
     {% endif %}
 
-    <div class="navigation text-right">
-        {{ knp_pagination_render(mosques) }}
+    <div class="row">
+        <div class="col-md-8">
+            {% for item in nbByStatus  if item.status != 'VALIDATED' %}
+                <a href="{{ path('mosque_index', {'status': item.status}) }}"><span
+                            class="badge {{ item.status|lower }} mt-1 mb-1"
+                            style="color: #000000">{{ ('mosque.statuses.' ~ item.status)|trans }}  <i class="badge"
+                                                                                                      style="background-color: #484848">{{ item.nb }}</i></span></a>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <div class="navigation text-right">
+                {{ knp_pagination_render(mosques) }}
+            </div>
+        </div>
     </div>
 
     <div class="hidden-xs hidden-sm">
@@ -68,7 +81,8 @@
                     {% if isNotLocal() %}
                         <td>
                             {{ mosque.id }} <br/><br/>
-                            <img src="{{ asset('bundles/app/img/'~ mosque.type ~ '.png') }}" title="{{ ('mosque.types.' ~ mosque.type ) | trans }}" width="32px">
+                            <img src="{{ asset('bundles/app/img/'~ mosque.type ~ '.png') }}"
+                                 title="{{ ('mosque.types.' ~ mosque.type ) | trans }}" width="32px">
                         </td>
                     {% endif %}
                     <td>
@@ -77,25 +91,32 @@
                             <div>
                                 <i class="fa fa-download"></i>
                                 <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                                    {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
+                                    {{ 'configuration.list.download_csv_files'|trans }}
+                                    ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                                 </a>
                             </div>
                             {% if mosque.isMosque and isNotLocal() %}
                                 <div>
                                     <i class="fa fa-print"></i>
-                                    <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank" title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
+                                    <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank"
+                                       title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
                                 </div>
                             {% endif %}
                         {% endif %}
-                        <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/></a>
+                        <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img
+                                    src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}"
+                                    width="120px" class="mt-1"/></a>
                     </td>
                     <td>{{ mosque.associationName }}</td>
                     <td style="position: relative">
-                        <div><i class="fa fa-map-marker" data-gps="{{ mosque.latitude ~ "," ~ mosque.longitude }}"></i> {{ mosque.address }}</div>
+                        <div><i class="fa fa-map-marker"
+                                data-gps="{{ mosque.latitude ~ "," ~ mosque.longitude }}"></i> {{ mosque.address }}
+                        </div>
                         <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
                         <div>{{ mosque.countryFullName }}</div>
                         {% if mosque.phone %}
-                            <div><span class="fa fa-phone">&nbsp;</span><a href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a></div>
+                            <div><span class="fa fa-phone">&nbsp;</span><a
+                                        href="tel:{{ mosque.phone }}">{{ mosque.phone }}</a></div>
                         {% endif %}
                         <div>
                             <span class="fa fa-envelope">&nbsp;</span>
@@ -107,15 +128,18 @@
                             <select class="form-control linkSelector" style="width: 50%">
                                 <option>{{ 'selectLanguage'|trans }}</option>
                                 {% for lang in languages %}
-                                    <option value="{{ lang }}" data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</option>
+                                    <option value="{{ lang }}"
+                                            data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</option>
                                 {% endfor %}
                             </select>
 
-                            <div class="mt-1 mb-1"><a class="hidden link" {{ isLocal() ? '' : 'target="_blank"' }} href=""></a></div>
+                            <div class="mt-1 mb-1"><a class="hidden link" {{ isLocal() ? '' : 'target="_blank"' }}
+                                                      href=""></a></div>
 
                             {% if mosque.isMosque and isNotLocal() %}
                                 <div>
-                                    {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button" data-url="{{ url('mosque_widget', {slug: mosque.slug}) }}">{{ 'show'|trans }}</a>
+                                    {{ 'mosqueList.widgetForYourSite'|trans }} <a class="iframe-button"
+                                                                                  data-url="{{ url('mosque_widget', {slug: mosque.slug}) }}">{{ 'show'|trans }}</a>
                                 </div>
                             {% endif %}
                             {% if not mosque.isCalendarCompleted %}
@@ -126,10 +150,12 @@
                         {% else %}
                             <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
                             {% if mosque.isSuspended %}
-                                <p><b>{{ 'reason'|trans }} : </b>{{ ('mosque.suspensionReason.' ~ mosque.reason)|trans }}</p>
+                                <p><b>{{ 'reason'|trans }}
+                                        : </b>{{ ('mosque.suspensionReason.' ~ mosque.reason)|trans }}</p>
                             {% endif %}
                             {% if mosque.justificatory %}
-                                <i class="fa fa-download"></i> <a href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
+                                <i class="fa fa-download"></i> <a
+                                    href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
                             {% endif %}
 
                         {% endif %}
@@ -141,7 +167,8 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <td>
                                 <a href="{{ path('user_edit', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a>
-                                <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}"> | {{ mosque.user.mosques|length }} </a>
+                                <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}">
+                                    | {{ mosque.user.mosques|length }} </a>
                             </td>
                         {% endif %}
                         <td>
@@ -193,14 +220,17 @@
                             <select class="form-control linkSelector" style="width: 60%">
                                 <option>{{ 'selectLanguage'|trans }}</option>
                                 {% for lang in languages %}
-                                    <option value="{{ lang }}" data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</option>
+                                    <option value="{{ lang }}"
+                                            data-link="{{ url("mosque", {slug: mosque.slug, _locale: lang}) }}">{{ lang|langTrans(app.request.locale)|capitalize }}</option>
                                 {% endfor %}
                             </select>
-                            <div class="mt-1 mb-1"><a class="hidden link" {{ isLocal() ? '' : 'target="_blank"' }} href=""></a></div>
+                            <div class="mt-1 mb-1"><a class="hidden link" {{ isLocal() ? '' : 'target="_blank"' }}
+                                                      href=""></a></div>
                         {% else %}
                             <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
                             {% if mosque.justificatory %}
-                                <i class="fa fa-download"></i> <a href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
+                                <i class="fa fa-download"></i> <a
+                                    href="{{ vich_uploader_asset(mosque, 'justificatoryFile') }}" target="_blank">Justificatif</a>
                             {% endif %}
                         {% endif %}
                     </div>
@@ -209,7 +239,8 @@
                         <div>
                             <strong>{{ 'user'|trans }}:</strong>
                             <a href="{{ path('user_edit', {id: mosque.user.id}) }}">{{ mosque.user.email }}</a>
-                            <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}"> ({{ mosque.user.mosques|length }})</a>
+                            <a href="{{ path('mosque_index', {userId: mosque.user.id}) }}">
+                                ({{ mosque.user.mosques|length }})</a>
                         </div>
                     {% endif %}
                     <div><strong>{{ 'creation_date'|trans }}:</strong> {{ mosque.created|date('d/m/Y H:i') }}</div>
@@ -218,7 +249,8 @@
                         <div>
                             <i class="fa fa-download"></i>
                             <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                                {{ 'configuration.list.download_csv_files'|trans }} ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
+                                {{ 'configuration.list.download_csv_files'|trans }}
+                                ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
                             </a>
                         </div>
                         {% if mosque.isMosque %}
@@ -234,7 +266,9 @@
                         </div>
                     {% endif %}
 
-                    <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/></a>
+                    <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img
+                                src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px"
+                                class="mt-1"/></a>
                 </div>
             </div>
         {% endfor %}

@@ -234,6 +234,19 @@ class MosqueRepository extends EntityRepository
     }
 
     /**
+     * get mosques grouped by status
+     * @return array
+     */
+    function getNumberByStatus()
+    {
+        return $this->createQueryBuilder("m")
+            ->select("count(m.id) as nb, m.status")
+            ->groupBy("m.status")
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @return array
      */
     function getCitiesByCountry($country)

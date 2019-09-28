@@ -175,5 +175,9 @@ body {
 }
 
 .form-inline > * {
-    margin:5px 3px;
+    margin: 3px 5px 3px 0 ;
+}
+
+.pagination {
+    margin: 5px 0;
 }

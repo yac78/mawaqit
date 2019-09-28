@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
+use AppBundle\Entity\User;
 use AppBundle\Exception\GooglePositionException;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MosqueSearchType;
@@ -41,12 +41,18 @@ class MosqueController extends Controller
     /**
      * @Route(name="mosque_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, EntityManagerInterface $em)
     {
-
+        /**
+         * @var User $user
+         */
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
+        $nbByStatus = [];
+        if($user->isAdmin())
+        {
+            $nbByStatus = $mosqueRepository->getNumberByStatus();
+        }
 
         $form = $this->createForm(MosqueSearchType::class, null, ['method' => 'GET']);
         $form->handleRequest($request);
@@ -60,6 +66,7 @@ class MosqueController extends Controller
         $result = [
             "form" => $form->createView(),
             "mosques" => $mosques,
+            "nbByStatus" => $nbByStatus,
             "languages" => $this->getParameter('languages')
         ];
 
