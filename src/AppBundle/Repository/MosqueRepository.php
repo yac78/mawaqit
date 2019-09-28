@@ -293,7 +293,7 @@ class MosqueRepository extends EntityRepository
             ->andWhere("m.image3 IS NULL")
             ->andWhere("m.created > :date")
             ->andWhere("m.emailScreenPhotoReminder IS NULL OR m.emailScreenPhotoReminder <= 3")
-            ->setParameter(":date", new DateTime("2019-09-27"))
+            ->setParameter(":date", new DateTime("2019-09-28"))
             ->getQuery()
             ->execute();
     }
