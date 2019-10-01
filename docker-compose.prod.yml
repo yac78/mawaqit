@@ -31,9 +31,8 @@ services:
     restart: always
     volumes:
       - /var/www/mawaqit/mysql:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: mawaqit
-      MYSQL_DATABASE: mawaqit
+    env_file:
+      - .env
 
   mawaqit_composer:
     image: composer:1.9.0

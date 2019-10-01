@@ -223,6 +223,7 @@ class Mosque
     {
         $this->messages = new ArrayCollection();
         $this->configuration = new Configuration();
+        $this->created = new \DateTime();
     }
     /**
      * Get id

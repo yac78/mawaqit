@@ -74,6 +74,11 @@ class User extends BaseUser
      */
     public $recaptcha;
 
+    public function __construct() {
+        $this->created = new \DateTime();
+        parent::__construct();
+    }
+
     /**
      * Get id
      *

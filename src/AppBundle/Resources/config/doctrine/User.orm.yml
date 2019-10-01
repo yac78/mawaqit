@@ -30,9 +30,6 @@ AppBundle\Entity\User:
         created:
             type: datetime
             nullable: true
-            gedmo:
-                timestampable:
-                    on: create
         updated:
             type: datetime
             nullable: true
