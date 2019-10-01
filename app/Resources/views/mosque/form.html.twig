@@ -25,7 +25,9 @@
             {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
-                {{ form_row(form.status) }}
+                <div class="{{ isLocal() ? 'hidden' : '' }}">
+                    {{ form_row(form.status) }}
+                </div>
                 {{ form_row(form.user) }}
                 <div class="{{ isLocal() ? 'hidden' : '' }}">
                     {{ form_row(form.user_complete, {'attr' : {'data-remote': path('users_search_ajax') } }) }}
