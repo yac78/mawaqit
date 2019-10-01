@@ -1,4 +1,3 @@
-.env
 /app/config/parameters.yml
 /build/
 /phpunit.xml
@@ -17,6 +16,7 @@
 /node_modules/
 /app/config/parameters.prod.yml
 docker-compose.yml
+.env
 /app/config/parameters.prod.vps.yml
 /web/bundles/
 /web/css/
