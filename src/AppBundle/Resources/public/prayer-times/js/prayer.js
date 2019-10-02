@@ -41,7 +41,7 @@ var prayer = {
         if (date.getHours() !== 0) {
             var ichaaDateTime = this.getCurrentDateForPrayerTime(this.getIshaTime());
             if (ichaaDateTime.getHours() !== 0) {
-                let ishaPrayerWaiting =  prayer.getWaitingByIndex(4) + 5;
+                let ishaPrayerWaiting = prayer.getWaitingByIndex(4) + 5;
                 ichaaDateTime.setMinutes(ichaaDateTime.getMinutes() + ishaPrayerWaiting);
                 if (date > ichaaDateTime) {
                     this.loadTimes(true);
@@ -63,11 +63,18 @@ var prayer = {
                 url: remote + "?lastUpdatedDate=" + lastUpdated,
                 success: function (resp) {
                     if (resp.hasBeenUpdated === true) {
-                        location.reload();
+                        // check if screen page is ok (http status = 200 )
+                        $.ajax({
+                            url: location.href,
+                            method: 'HEAD',
+                            success: function (resp) {
+                                location.reload();
+                            }
+                        });
                     }
                 }
             });
-        }, prayer.oneMinute * 3);
+        }, 3000);
     },
     /**
      * load prayer times
@@ -621,7 +628,7 @@ var prayer = {
         var times = this.getTimes();
         $.each(times, function (index, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
-            let prayerWaiting =  prayer.getWaitingByIndex(index) + 5;
+            let prayerWaiting = prayer.getWaitingByIndex(index) + 5;
             prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayerWaiting);
             if (prayerDateTime.getHours() !== 0 && date > prayerDateTime) {
                 index++;
@@ -660,7 +667,7 @@ var prayer = {
             nextTimeIndex = 0;
         }
 
-        let prayerWaiting =  prayer.getWaitingByIndex(currentTimeIndex) + 5;
+        let prayerWaiting = prayer.getWaitingByIndex(currentTimeIndex) + 5;
 
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
@@ -885,7 +892,7 @@ var prayer = {
                 iqamaTime = prayer.getCurrentDateForPrayerTime(fixedIqama);
                 if (iqamaTime.getTime() > prayerTime.getTime()) {
                     wait = prayer.formatTime(fixedIqama);
-                    if(!isMobile){
+                    if (!isMobile) {
                         $(".prayers .wait, .prayers .time").css({"font-size": "8vh", "line-height": "8rem"})
                     }
                 }
