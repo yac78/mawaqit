@@ -46,7 +46,6 @@ class MosqueRepository extends EntityRepository
                 )->setParameter(":word", "%" . trim($search["word"]) . "%");
             }
 
-
             if (!empty($search["id"])) {
                 $qb->andWhere("m.id = :id")
                     ->setParameter(":id", trim($search["id"]));
@@ -57,20 +56,9 @@ class MosqueRepository extends EntityRepository
                     ->setParameter(":status", $search["status"]);
             }
 
-            if (!empty($search["sourceCalcul"])) {
-                $qb->innerJoin("m.configuration", "c")
-                    ->andWhere("c.sourceCalcul = :sourceCalcul")
-                    ->setParameter(":sourceCalcul", $search["sourceCalcul"]);
-            }
-
             if (!empty($search["type"]) && $search["type"] !== 'ALL') {
                 $qb->andWhere("m.type = :type")
                     ->setParameter(":type", $search["type"]);
-            }
-
-            if (!empty($search["department"])) {
-                $qb->andWhere("m.zipcode LIKE :zipcode")
-                    ->setParameter(":zipcode", trim($search["department"]) . "%");
             }
 
             if (!empty($search["country"])) {

@@ -399,8 +399,6 @@ mosque_search:
       placeholder: ID
     word:
       placeholder: Recherche
-    department:
-      placeholder: Dépt
     country:
       placeholder: Pays
     city:
@@ -409,8 +407,6 @@ mosque_search:
       placeholder: Type
     status:
       placeholder: Statut
-    sourceCalcul:
-      placeholder: Source de calcul
 
 message:
     display_messages_in_screen_1: |
@@ -695,6 +691,7 @@ creation_date: Date de création
 date: Date
 search: Recherche
 searchMosque: Recherche par nom, ville, code postal...
+searchByKeyword: Recherche par mot clé
 ar: Arabe
 fr: Français
 en: Anglais  

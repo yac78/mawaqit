@@ -29,7 +29,7 @@ class MosqueSearchType extends AbstractType
             ->add('word', null, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'mosque_search.form.word.placeholder'
+                    'placeholder' => 'searchByKeyword'
                 ]
             ])
             ->add('type', ChoiceType::class, [
@@ -55,28 +55,11 @@ class MosqueSearchType extends AbstractType
                     "mosque.statuses.SCREEN_PHOTO_ADDED",
                 ], Mosque::STATUSES)
             ])
-            ->add('sourceCalcul', ChoiceType::class, [
-                'label' => false,
-                'constraints' => new Choice(["choices" => Configuration::SOURCE_CHOICES]),
-                'placeholder' => 'mosque_search.form.sourceCalcul.placeholder',
-                'choices' => array_combine([
-                    "Automatique",
-                    "Calendrier",
-                ], Configuration::SOURCE_CHOICES)
-            ])
             ->add('country', CountryType::class, [
                 'label' => false,
                 'placeholder' => 'mosque_search.form.country.placeholder',
                 'attr' => [
                     'data-remote' => '/cities/-country-'
-                ]
-            ])
-            ->add('department', null, [
-                'label' => false,
-                'attr' => [
-                    'class' => 'hidden',
-                    'style' => 'width: 80px',
-                    'placeholder' => 'mosque_search.form.department.placeholder'
                 ]
             ])
             ->add('city', ChoiceType::class, [

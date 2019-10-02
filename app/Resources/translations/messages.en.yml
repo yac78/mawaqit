@@ -447,6 +447,7 @@ association: Association
 creation_date: Creation date
 search: Search
 searchMosque: Search by name, city, zipcode...
+searchByKeyword: Search by keywords
 ar: Arabic
 fr: French
 en: English
