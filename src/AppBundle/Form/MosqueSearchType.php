@@ -32,25 +32,6 @@ class MosqueSearchType extends AbstractType
                     'placeholder' => 'mosque_search.form.word.placeholder'
                 ]
             ])
-            ->add('department', null, [
-                'label' => false,
-                'attr' => [
-                    'style' => 'width: 80px',
-                    'placeholder' => 'mosque_search.form.department.placeholder'
-                ]
-            ])
-            ->add('country', CountryType::class, [
-                'label' => false,
-                'placeholder' => 'mosque_search.form.country.placeholder',
-                'attr' => [
-                    'data-remote' => '/cities/-country-'
-                ]
-            ])
-            ->add('city', ChoiceType::class, [
-                'validation_groups' => false,
-                'label' => false,
-                'placeholder' => 'mosque_search.form.city.placeholder'
-            ])
             ->add('type', ChoiceType::class, [
                 'label' => false,
                 'constraints' => new Choice(["choices" => array_merge(["ALL"], Mosque::TYPES)]),
@@ -83,12 +64,34 @@ class MosqueSearchType extends AbstractType
                     "Calendrier",
                 ], Configuration::SOURCE_CHOICES)
             ])
+            ->add('country', CountryType::class, [
+                'label' => false,
+                'placeholder' => 'mosque_search.form.country.placeholder',
+                'attr' => [
+                    'data-remote' => '/cities/-country-'
+                ]
+            ])
+            ->add('department', null, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'hidden',
+                    'style' => 'width: 80px',
+                    'placeholder' => 'mosque_search.form.department.placeholder'
+                ]
+            ])
+            ->add('city', ChoiceType::class, [
+                'validation_groups' => false,
+                'label' => false,
+                'placeholder' => 'mosque_search.form.city.placeholder'
+            ])
             ->add('save', SubmitType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'btn btn-default ml-1 fa fa-search',
+                    'class' => 'btn btn-default fa fa-search',
+                    'style' => 'padding:0.9rem 2rem',
                 ]
-            ]);
+            ])
+            ;
 
         $builder->get('city')->resetViewTransformers();
     }
