@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    {% if isNotLocal() %}
+    {% if isNotLocal() and is_granted('ROLE_ADMIN')%}
         <div class="panel-group mt-1">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: #b7d4c8">
@@ -47,7 +47,6 @@
                 </div>
             </div>
         </div>
-
     {% endif %}
 
     <div class="row">
