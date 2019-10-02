@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-prodServer="51.77.203.203"
-ppServer="137.74.45.69"
-port="1983"
+prodServer=$MAWAQIT_PROD_IP
+ppServer=$MAWAQIT_PP_IP
+port=$MAWAQIT_PORT
 
 if [ $# -lt 1 ]; then
     echo "env is mandatory"
