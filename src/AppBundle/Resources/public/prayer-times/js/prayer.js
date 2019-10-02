@@ -74,7 +74,7 @@ var prayer = {
                     }
                 }
             });
-        }, 3000);
+        }, prayer.oneMinute * 3);
     },
     /**
      * load prayer times
