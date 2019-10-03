@@ -19,16 +19,14 @@ echo "@xset s noexpose" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 echo "@xset dpms 0 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
 
 # update config.txt
-echo "############### mawaqit conf  ################" >> /boot/config.txt
-echo "hdmi_force_hotplug=1" >> /boot/config.txt
-echo "disable_overscan=1" >> /boot/config.txt
-echo "hdmi_group=1" >> /boot/config.txt
-echo "hdmi_mode=16" >> /boot/config.txt
-echo "overscan_left=30" >> /boot/config.txt
-echo "overscan_right=30" >> /boot/config.txt
-echo "overscan_top=20" >> /boot/config.txt
-echo "overscan_bottom=20" >> /boot/config.txt
+echo "#mawaqit
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
+
+# Disable screensaver
+vi /etc/lightdm/lightdm.conf
+# modify this section
+# [SeatDefaults]
+# xserver-command=X -s 0 -dpms
 
 # install docker and other packages
 apt-get update && \
