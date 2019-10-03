@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Mawaqit Online
+Comment=Mawaqit from mawaqit.net
+Exec=/home/pi/mawaqit/raspberry/Desktop/Mawaqit-online
+Icon=/home/pi/mawaqit/web/apple-touch-icon.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=None;
