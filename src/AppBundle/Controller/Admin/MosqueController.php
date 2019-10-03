@@ -18,6 +18,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\TransferException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -235,6 +236,7 @@ class MosqueController extends Controller
     }
 
     /**
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/clone/{id}", name="mosque_clone")
      */
     public function cloneAction(Mosque $mosque, EntityManagerInterface $em)
