@@ -2,24 +2,19 @@
 set -e
 
 # add hosts
-echo "127.0.0.1       mawaqit.local" >> /etc/hosts
+sudo echo "127.0.0.1       mawaqit.local" >> /etc/hosts
 
 # fstab
-echo "tmpfs /tmp tmpfs defaults,noatime,nosuid,size=100m 0 0" >> /etc/fstab
-echo "tmpfs /home/pi/mawaqit/var/cache tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
-echo "tmpfs /home/pi/mawaqit/var/logs tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
-echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
-echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=50m 0 0" >> /etc/fstab
+sudo echo "tmpfs /tmp tmpfs defaults,noatime,nosuid,size=100m 0 0" >> /etc/fstab
+sudo echo "tmpfs /home/pi/mawaqit/var/cache tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
+sudo echo "tmpfs /home/pi/mawaqit/var/logs tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
+sudo echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fstab
+sudo echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=50m 0 0" >> /etc/fstab
 
 # config autostart
-echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxsession/LXDE-pi/autostart
-echo "@xset s 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
-echo "@xset s noblank" >> /home/pi/.config/lxsession/LXDE-pi/autostart
-echo "@xset s noexpose" >> /home/pi/.config/lxsession/LXDE-pi/autostart
-echo "@xset dpms 0 0 0" >> /home/pi/.config/lxsession/LXDE-pi/autostart
+sudo echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxpanel/LXDE-pi/config
 
 # update config.txt
-echo "#mawaqit
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 
 # Disable screensaver
@@ -42,9 +37,9 @@ wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/con
 wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/docker-ce-cli_18.09.7~3-0~debian-buster_armhf.deb
 wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/docker-ce_18.09.7~3-0~debian-buster_armhf.deb
 
-dpkg -i containerd.io_1.2.6-3_armhf.deb
-dpkg -i docker-ce-cli_18.09.7~3-0~debian-buster_armhf.deb
-dpkg -i docker-ce_18.09.7~3-0~debian-buster_armhf.deb
+sudo dpkg -i containerd.io_1.2.6-3_armhf.deb
+sudo dpkg -i docker-ce-cli_18.09.7~3-0~debian-buster_armhf.deb
+sudo dpkg -i docker-ce_18.09.7~3-0~debian-buster_armhf.deb
 sudo usermod pi -aG docker
 
 # install docker-compose
