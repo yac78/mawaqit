@@ -247,7 +247,6 @@ class MosqueController extends Controller
         $clonedMosque->setImage1(null);
         $clonedMosque->setImage2(null);
         $clonedMosque->setImage3(null);
-        $clonedMosque->setCreated(null);
         $clonedMosque->setUpdated(null);
         $clonedMosque->clearMessages();
         $clonedMosque->setFlashMessage(null);
