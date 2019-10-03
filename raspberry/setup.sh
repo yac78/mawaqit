@@ -50,7 +50,8 @@ dpkg -i docker-ce_18.09.7~3-0~debian-buster_armhf.deb
 sudo usermod pi -aG docker
 
 # install docker-compose
-
+sudo apt-get install -y python python-pip
+sudo pip install docker-compose
 
 # install teamviewer
 cd /tmp
