@@ -61,6 +61,7 @@ cp raspberry/Desktop/* /home/pi/Desktop
 mkdir /home/pi/mawaqit
 cd /home/pi/mawaqit
 git clone https://github.com/ibrahim-zehhaf/mawaqit.git .
+ln -s  docker-compose.raspberry.yml  docker-compose.yml
 mkdir web/upload
 chmod 777 web/upload
 #app/config/parameters.yml
