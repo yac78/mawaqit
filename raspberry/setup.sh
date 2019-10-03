@@ -43,7 +43,7 @@ sudo dpkg -i docker-ce_18.09.7~3-0~debian-buster_armhf.deb
 sudo usermod pi -aG docker
 
 # install docker-compose
-sudo apt-get install -y python python-pip
+sudo apt install -y python python-pip libffi-dev python-backports.ssl-match-hostname
 sudo pip install docker-compose
 
 # install teamviewer
