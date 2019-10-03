@@ -55,7 +55,7 @@ cp raspberry/Desktop/* /home/pi/Desktop
 mkdir /home/pi/mawaqit
 cd /home/pi/mawaqit
 git clone https://github.com/ibrahim-zehhaf/mawaqit.git .
-mkdir public/upload
+mkdir web/upload
 chmod 777 web/upload
 #app/config/parameters.yml
 bin/console assetic:dump --env=prod --no-debug
