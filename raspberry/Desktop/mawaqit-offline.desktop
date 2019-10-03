@@ -2,7 +2,7 @@
 Name=Mawaqit Offline
 Comment=Mawaqit from the raspberry without internet
 Exec=/home/pi/mawaqit/raspberry/Desktop/Mawaqit-offline
-Icon=/home/pi/Pictures/logo_2.png
+Icon=/home/pi/mawaqit/raspberry/Desktop/logo_2.png
 Terminal=false
 Type=Application
 Encoding=UTF-8
