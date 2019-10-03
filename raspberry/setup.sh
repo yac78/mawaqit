@@ -35,10 +35,22 @@ apt-get update && \
 apt-get install -y \
 vim \
 git \
-docker
+wget
+
 #unclutter \
 
+# install docker
+wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/containerd.io_1.2.6-3_armhf.deb
+wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/docker-ce-cli_18.09.7~3-0~debian-buster_armhf.deb
+wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/docker-ce_18.09.7~3-0~debian-buster_armhf.deb
+
+dpkg -i containerd.io_1.2.6-3_armhf.deb
+dpkg -i docker-ce-cli_18.09.7~3-0~debian-buster_armhf.deb
+dpkg -i docker-ce_18.09.7~3-0~debian-buster_armhf.deb
+sudo usermod pi -aG docker
+
 # install docker-compose
+
 
 # install teamviewer
 cd /tmp
