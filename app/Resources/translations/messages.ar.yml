@@ -318,6 +318,7 @@ mosque:
       mosque_closed: إغلاق المسجد
       prayer_times_not_correct: أوقات الصلاة غير صحيحة
       missing_photo: صورة الشاشة غير متوفرة
+      non_existing_mosque: المسجد غير موجود
       other: أخر
 
 message:

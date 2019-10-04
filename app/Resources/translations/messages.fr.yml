@@ -307,6 +307,7 @@ mosque:
       mosque_closed: Mosquée fermée
       prayer_times_not_correct: Horaires non respéctés
       missing_photo: Il manque la photo de l'écran
+      non_existing_mosque: La mosquée n'existe pas
       other: Autre
     statuses:
       NEW: En attente de validation

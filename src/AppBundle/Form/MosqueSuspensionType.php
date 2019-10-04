@@ -25,6 +25,7 @@ class MosqueSuspensionType extends AbstractType
                     'mosque.suspensionReason.mosque_closed' => 'mosque_closed',
                     'mosque.suspensionReason.prayer_times_not_correct' => 'prayer_times_not_correct',
                     'mosque.suspensionReason.missing_photo' => 'missing_photo',
+                    'mosque.suspensionReason.non_existing_mosque' => 'non_existing_mosque',
                     'mosque.suspensionReason.other' => 'other',
                 ],
                 'label' => 'Séléctionner une raison',

@@ -72,6 +72,7 @@ mosque:
       mosque_closed: Mosque closed
       prayer_times_not_correct: Prayer times incorrect
       missing_photo: The photo of screen is missing
+      non_existing_mosque: Non existing mosque
       other: Other
     types:
         all: All
