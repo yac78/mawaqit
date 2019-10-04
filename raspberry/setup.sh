@@ -12,7 +12,7 @@ sudo echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fs
 sudo echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=50m 0 0" >> /etc/fstab
 
 # config autostart
-sudo echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxpanel/LXDE-pi/config
+sudo echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
 # update config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
@@ -43,7 +43,7 @@ sudo dpkg -i docker-ce_18.09.7~3-0~debian-buster_armhf.deb
 sudo usermod pi -aG docker
 
 # install docker-compose
-sudo apt-get install -y python python-pip
+sudo apt install -y python python-pip libffi-dev python-backports.ssl-match-hostname
 sudo pip install docker-compose
 
 # install teamviewer
@@ -61,6 +61,7 @@ cp raspberry/Desktop/* /home/pi/Desktop
 mkdir /home/pi/mawaqit
 cd /home/pi/mawaqit
 git clone https://github.com/ibrahim-zehhaf/mawaqit.git .
+ln -s  docker-compose.raspberry.yml  docker-compose.yml
 mkdir web/upload
 chmod 777 web/upload
 #app/config/parameters.yml
