@@ -12,7 +12,7 @@ sudo echo "tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=50m 0 0" >> /etc/fs
 sudo echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=50m 0 0" >> /etc/fstab
 
 # config autostart
-sudo echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /home/pi/.config/lxpanel/LXDE-pi/config
+sudo echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
 # update config.txt
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
