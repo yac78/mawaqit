@@ -3,7 +3,7 @@ version: "3.1"
 services:
   mawaqit_php:
     container_name: mawaqit_php
-    build: docker/php-fpm
+    build: docker/php-fpm/raspberry
     restart: always
     environment:
       APP_ENV: raspberry
@@ -16,7 +16,7 @@ services:
 
   mawaqit_nginx:
     container_name: mawaqit_nginx
-    image: nginx:alpine
+    image: arm64v8/nginx:alpine
     restart: always
     working_dir: /application
     volumes:
@@ -40,7 +40,7 @@ services:
       MYSQL_DATABASE: mawaqit
 
   mawaqit_composer:
-    image: composer:1.9.0
+    image: arm64v8/composer:1.9.0
     volumes:
       - ./:/app
     command: install -o -n --no-dev
