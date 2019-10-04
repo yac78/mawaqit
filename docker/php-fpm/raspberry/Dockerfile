@@ -1,4 +1,4 @@
-FROM arm64v8/php:7.2-fpm
+FROM arm64v8/php:7.3-fpm
 WORKDIR "/application"
 
 ARG DEBIAN_FRONTEND=noninteractive
