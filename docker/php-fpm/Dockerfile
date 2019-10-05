@@ -1,15 +1,8 @@
-FROM arm32v6/php:7.3-fpm-alpine
-
+FROM phpdockerio/php73-fpm:latest
 WORKDIR "/application"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN docker-php-ext-install pdo_mysql
-
-RUN set -ex \
-    && apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS imagemagick-dev libtool \
-    && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
-    && pecl install imagick-3.4.3 \
-    && docker-php-ext-enable imagick \
-    && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
-    && apk del .phpize-deps
+RUN apt-get update \
+    && apt-get -y --no-install-recommends install git ssh php7.3-mysql php-imagick \
+    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
