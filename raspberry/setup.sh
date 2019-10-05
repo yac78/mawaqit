@@ -48,13 +48,12 @@ sudo pip install docker-compose
 cd /tmp
 wget http://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
 sudo dpkg -i teamviewer-host_armhf.deb
+sudo apt --fix-broken install
+echo "enable_tvout=1" >> /boot/config.txt
 
 # enable RTC 
 echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 cp raspberry/hwclock-set /lib/udev/hwclock-set
-
-# enable tvout for teamviewer
-echo "enable_tvout=1" >> /boot/config.txt
 
 # create files on Desktop
 cp raspberry/Desktop/* /home/pi/Desktop
