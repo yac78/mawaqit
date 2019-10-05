@@ -26,6 +26,7 @@ vi /etc/lightdm/lightdm.conf
 # install docker and other packages
 apt-get update && \
 apt-get install -y \
+ntp \
 vim \
 git \
 wget
