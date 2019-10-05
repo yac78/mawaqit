@@ -23,7 +23,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     sed -i "s/version: .*/version: $version/" app/config/parameters.yml
     sudo rm -rf /tmp/*
     sudo rm -rf var/cache/* var/logs/*
-    docker-compose run mawaqit_composer sh -c "export SYMFONY_ENV=raspberry && composer install -o -n --no-debug"
+    docker-compose run mawaqit_composer sh -c "export SYMFONY_ENV=raspberry && composer install -o -n --no-dev"
     sudo rm -rf var/cache/* var/logs/*
     docker-compose exec mawaqit_php bin/console assets:install --env=raspberry --no-debug
     docker-compose exec mawaqit_php bin/console assetic:dump --env=raspberry --no-debug
