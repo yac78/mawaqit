@@ -27,7 +27,7 @@ if [ "$currenttag" != "$latesttag" ]; then
     sudo rm -rf var/cache/* var/logs/*
     docker-compose exec mawaqit_php bin/console assets:install --env=raspberry --no-debug
     docker-compose exec mawaqit_php bin/console assetic:dump --env=raspberry --no-debug
-    docker-compose exec mawaqit_php bin/console doc:mig:mig -n --allow-no-migration
+    docker-compose exec mawaqit_php sh -c "export SYMFONY_ENV=raspberry && bin/console doc:mig:mig -n --allow-no-migration"
     sudo rm -rf var/cache/* var/logs/* 
 else
     echo "You are on the last version :)"
