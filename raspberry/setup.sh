@@ -14,9 +14,6 @@ sudo echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=50m 0 0" 
 # config autostart
 sudo echo "@sh /home/pi/mawaqit/raspberry/run.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
-# update config.txt
-echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
-
 # Disable screensaver
 vi /etc/lightdm/lightdm.conf
 # modify this section
@@ -53,6 +50,7 @@ wget http://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
 sudo dpkg -i teamviewer-host_armhf.deb
 
 # enable RTC 
+echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt
 cp raspberry/hwclock-set /lib/udev/hwclock-set
 
 # create files on Desktop
@@ -65,6 +63,4 @@ git clone https://github.com/ibrahim-zehhaf/mawaqit.git .
 ln -s  docker-compose.raspberry.yml  docker-compose.yml
 mkdir web/upload
 chmod 777 web/upload
-#app/config/parameters.yml
-bin/console assetic:dump --env=prod --no-debug
-bin/console d:m:ver -n --all --add
+docker-compose up -d --build
