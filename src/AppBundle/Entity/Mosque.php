@@ -1237,7 +1237,7 @@ class Mosque
     /**
      * @param string $reason
      */
-    public function setReason(string $reason): void
+    public function setReason(string $reason = null): void
     {
         $this->reason = $reason;
     }
@@ -1255,7 +1255,7 @@ class Mosque
      *
      * @return Mosque
      */
-    public function setEmailScreenPhotoReminder(int $emailScreenPhotoReminder): Mosque
+    public function setEmailScreenPhotoReminder(int $emailScreenPhotoReminder = null): Mosque
     {
         $this->emailScreenPhotoReminder = $emailScreenPhotoReminder;
         return $this;
