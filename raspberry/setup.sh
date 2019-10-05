@@ -58,6 +58,9 @@ cp raspberry/hwclock-set /lib/udev/hwclock-set
 # create files on Desktop
 cp raspberry/Desktop/* /home/pi/Desktop
 
+sudo crontab -e
+0 1 * * * apt -y --only-upgrade install teamviewer-host
+
 # install project
 mkdir /home/pi/mawaqit
 cd /home/pi/mawaqit

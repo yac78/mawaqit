@@ -105,19 +105,18 @@ home:
       fonctionnalités
       directement configurables depuis l'interface dédiée.
     feature8_2: |
-      <li>Choix entre calcul des horaires automatique par le logiciel ou lecture depuis des fichiers CSV</li>
-      <li>Choix de la langue</li>
+      <li>Choix entre calcul des horaires automatique et calendrier saisi manuellement</li>
+      <li>Choix entre plusieurs langues</li>
       <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
       <li>Fixation des horaires (exemple: fixer l'heure du `isha en hiver)</li>
       <li>Ajustement des temps d'attente entre adhan et iqama</li>
       <li>Compte à rebours avant iqama</li>
       <li>Ajustement des horaires</li>
       <li>Affichage d'annonces en texte ou image</li>
-      <li>Modification des textes affichés en haut et en bas de l'écran</li>
-      <li>Modification de la couleur de fond</li>
-      <li>Adhan du haram</li>
+      <li>Choix de couleurs et de thêmes</li>
+      <li>Adhan pour les installations de type domicile</li>
       <li>Affichage de la temprérature</li>
-      <li>Affichage du QR code pour faciliter la copie du lien internet</li>
+      <li>Extinction de l'écran pendant la prière et le prêche du jumua</li>
     equipedMosques1: |
        Grace à Allah notre système est installé dans <strong>totalMosquesCount</strong>
        mosquées et domiciles partout dans le monde
@@ -175,9 +174,7 @@ home:
             <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
             </li>
             <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
-            <li>Affichage de hadith du prophète "que la prière d'Allah et son salut soient sur lui"</li>
-            <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre
-                part
+            <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre part
             </li>
         </ul>
         <br>
@@ -224,8 +221,7 @@ home:
           <code>sudo date -s "%now%" && hwclock -w</code> <br><br>
       </p>
     install8: |
-      Pour plus d'informations téléchargez notre manuel d'utilisation <a target="_blank" href="/static/Mawaqit-mode-d-emploi.pdf">ICI</a>
-      et visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+      Pour plus d'informations visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
     install9: Vous rencontrez des diffucltés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
 
 

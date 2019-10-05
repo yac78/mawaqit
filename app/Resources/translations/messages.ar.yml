@@ -153,7 +153,6 @@ home:
             <li>التحكم عن بعد من هاتفك الذكي أو أي جهاز كمبيوتر أو لوحي</li>
             <li>نسخة متزامنة على جميع المحطات والأجهزة المحمولة واللوحية إلى جانب شاشة المسجد</li>
             <li>إرسال رسائل أو إعلانات إلى شاشة مسجدك من هاتفك الذكي أو جهاز الكمبيوتر الخاص بك</li>
-            <li>إظهار أحاديث النبي صلى الله عليه وسلم على الشاشة</li>
             <li>الحصول على التحديث الأخير للبرنامج تلقائيا دون أي تدخل من جهتك
             </li>
         </ul>
@@ -195,8 +194,7 @@ home:
           <code>sudo date -s "%now%" && hwclock -w</code> <br><br>
       </p>
     install8: |
-      لمزيد من المعلومات قم بتحميل دليل المستخدم  <a target="_blank" href="/static/Mawaqit-mode-d-emploi.pdf">هنا</a>
-      و زر قناتنا على <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+      لمزيد من المعلومات زر قناتنا على <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
     install9: إذا واجهتك أي صعوبات أرسل لنا رسالة من  <a href="#contact">هنا</a>
 
 
