@@ -88,7 +88,7 @@ class MosqueRepository extends EntityRepository
                 ->setParameter(":userId", $user->getId());
         }
 
-        $qb->orderBy("m.created", "DESC");
+        $qb->orderBy("m.id", "DESC");
 
         return $qb;
     }

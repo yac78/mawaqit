@@ -237,6 +237,20 @@ class Mosque
         $this->created = new \DateTime();
     }
 
+    public function __clone()
+    {
+        $this->id = null;
+        $this->slug = null;
+        $this->image1 = null;
+        $this->image2 = null;
+        $this->image3 = null;
+        $this->updated = null;
+        $this->created = new \DateTime();
+        $this->messages = null;
+        $this->flashMessage = null;
+        $this->configuration =  clone $this->configuration;
+    }
+
     /**
      * Get id
      * @return int

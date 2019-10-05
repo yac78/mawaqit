@@ -1,5 +1,5 @@
 parameters:
-    database_host: mawaqit_db
+    database_host: mawaqit_mysql
     database_port: null
     database_name: mawaqit
     database_user: root

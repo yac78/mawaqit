@@ -345,6 +345,11 @@ class Configuration
      */
     private $showNextAdhanCountdown = true;
 
+    public function __clone()
+    {
+        $this->setId(null);
+    }
+
     /**
      * Get id
      *

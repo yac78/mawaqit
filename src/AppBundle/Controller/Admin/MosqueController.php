@@ -243,18 +243,7 @@ class MosqueController extends Controller
     {
         $user = $this->getUser();
         $clonedMosque = clone $mosque;
-        $clonedMosque->setId(null);
         $clonedMosque->setUser($user);
-        $clonedMosque->setSlug(null);
-        $clonedMosque->setImage1(null);
-        $clonedMosque->setImage2(null);
-        $clonedMosque->setImage3(null);
-        $clonedMosque->setUpdated(null);
-        $clonedMosque->clearMessages();
-        $clonedMosque->setFlashMessage(null);
-        $clonedConfiguration = clone $clonedMosque->getConfiguration();
-        $clonedConfiguration->setId(null);
-        $clonedMosque->setConfiguration($clonedConfiguration);
         $em->persist($clonedMosque);
         $em->flush();
         $this->addFlash('success', "form.clone.success");
