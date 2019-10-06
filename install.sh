@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 ln -sf docker-compose.dev.yml docker-compose.yml
+mkdir -p var/logs/ var/cache/ var/sessions/
 sudo rm -rf var/logs/* var/cache/* var/sessions/*
 docker-compose kill && docker-compose rm -f && docker-compose up -d --build
 docker-compose exec mawaqit_php  chmod 777 -R var/logs var/cache var/sessions
