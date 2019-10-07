@@ -25,5 +25,5 @@ if [ "$currenttag" != "$latesttag" ]; then
     docker-compose exec mawaqit_php sh -c "export SYMFONY_ENV=raspberry; bin/console doc:mig:mig -n --allow-no-migration"
     docker-compose exec mawaqit_php rm -rf /tmp/* var/cache/* var/logs/*
 else
-    echo "You are on the last version :)"
+    echo "You are on the last version $latesttag :)"
 fi
