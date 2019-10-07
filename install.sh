@@ -7,7 +7,7 @@ docker-compose exec mawaqit_php bin/console d:s:u -f
 docker-compose exec mawaqit_php bin/console h:f:l -n
 
 mkdir -p var/logs/ var/cache/ var/sessions/
-sudo rm -rf var/logs/* var/cache/* var/sessions/*
+docker-compose exec mawaqit_php rm -rf var/logs/* var/cache/* var/sessions/*
 docker-compose exec mawaqit_php chmod -R 777 var/logs var/cache var/sessions
 
 echo "------------------------------------------"
