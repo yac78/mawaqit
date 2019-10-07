@@ -10,7 +10,7 @@ monolog:
     main:
       type: fingers_crossed
       action_level: error
-      channels: [!event, !php, !doctrine]
+      channels: [!event, !php]
       handler:  file
       excluded_404s:
         - ^/
@@ -18,10 +18,16 @@ monolog:
       type:  rotating_file
       path: '%kernel.logs_dir%/%kernel.environment%.log'
       max_files: 10
+
     slack:
+      type: fingers_crossed
+      action_level: critical
+      channels: [!event, !php, !doctrine, !security]
+      handler:  slack_handler
+    slack_handler:
       type: slack
       token: '%slack_token%'
       bot_name:  '%slack_bot%'
       channel: '%slack_channel%'
-      icon_emoji: ':depressed:'
-      level: critical
+      include_extra: true
+      level: debug
