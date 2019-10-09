@@ -304,7 +304,7 @@ class MosqueType extends AbstractType
             $mosque->getConfiguration()->setTimezoneName($position['timezone']);
         }
 
-        if ($mosque->getType() === "home") {
+        if ($mosque->getType() !== Mosque::TYPE_MOSQUE) {
             $mosque->resetToHome();
         }
     }
