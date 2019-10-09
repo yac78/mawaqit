@@ -20,12 +20,17 @@ $("#user_complete").autocomplete({
 
 function typeDisplayHandler() {
     $type = $("#type");
-    $(".mosque-block, .home-block").addClass("hidden");
+    $(".mosque-block, .other-block").addClass("hidden");
 
     if ($type.val()) {
-        $("." + $type.val() + "-block").removeClass("hidden");
+        let type = $type.val().toLowerCase();
+        if(type !== 'mosque'){
+            type = 'other';
+        }
 
-        if ($type.val() === 'home') {
+        $("." + type + "-block").removeClass("hidden");
+
+        if ($type.val() !== 'MOSQUE') {
             $("#address").removeAttr('required');
             $("#justificatoryFile_file").removeAttr('required');
             $("#file1_file").removeAttr('required');

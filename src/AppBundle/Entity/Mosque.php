@@ -18,11 +18,15 @@ class Mosque
     const STATUS_CHECK = "CHECK";
     const STATUS_DUPLICATED = "DUPLICATED";
     const STATUS_SCREEN_PHOTO_ADDED = "SCREEN_PHOTO_ADDED";
-    const TYPE_MOSQUE = "mosque";
-    const TYPE_HOME = "home";
+    const TYPE_MOSQUE = "MOSQUE";
+    const TYPE_HOME = "HOME";
+    const TYPE_SCHOOL = "SCHOOL";
+    const TYPE_STORE = "STORE";
     const TYPES = [
         self::TYPE_MOSQUE,
-        self::TYPE_HOME
+        self::TYPE_HOME,
+        self::TYPE_SCHOOL,
+        self::TYPE_STORE,
     ];
     const STATUSES = [
         self::STATUS_NEW,
@@ -772,19 +776,15 @@ class Mosque
      */
     function getTitle()
     {
-        if ($this->isHome()) {
-            return 'homeTitle';
+        if($this->getType() !== self::TYPE_MOSQUE){
+            return "mosque.title.{$this->getType()}";
         }
+
         $name = $this->getName();
         if (strpos(strtolower($name), strtolower($this->getCity())) === false) {
             $name .= " - " . $this->getCity();
         }
         return $name;
-    }
-
-    public function isHome()
-    {
-        return $this->type === self::TYPE_HOME;
     }
 
     /**
@@ -1278,7 +1278,7 @@ class Mosque
      */
     public function daysBeforeRemove()
     {
-        if ($this->isHome()) {
+        if (!$this->isMosque()) {
             return null;
         }
 

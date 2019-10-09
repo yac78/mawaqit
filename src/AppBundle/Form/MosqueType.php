@@ -109,8 +109,10 @@ class MosqueType extends AbstractType
             'placeholder' => 'mosque.form.type.placeholder',
             'disabled' => $disabled,
             'choices' => array_combine([
-                "mosque.types.mosque",
-                "mosque.types.home",
+                "mosque.types.MOSQUE",
+                "mosque.types.HOME",
+                "mosque.types.SCHOOL",
+                "mosque.types.STORE",
             ], Mosque::TYPES)
         ];
 
@@ -127,9 +129,7 @@ class MosqueType extends AbstractType
                 ]
             ])
             ->add('type', ChoiceType::class, $typeOptions)
-            ->add('slug', null, [
-                'label' => 'mosque.slug',
-            ])
+            ->add('slug')
             ->add('associationName', null, [
                 'label' => 'association_name',
                 'attr' => [

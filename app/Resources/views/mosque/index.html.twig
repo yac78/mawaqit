@@ -92,8 +92,7 @@
             {% if isNotLocal() %}
                 <td>
                     {{ mosque.id }} <br/><br/>
-                    <img src="{{ asset('bundles/app/img/'~ mosque.type ~ '.png') }}"
-                         title="{{ ('mosque.types.' ~ mosque.type ) | trans }}" width="32px">
+                    <i class="fas fa-{{ mosque.type|lower }}" style="font-size: 2rem"></i>
                 </td>
             {% endif %}
             <td>
