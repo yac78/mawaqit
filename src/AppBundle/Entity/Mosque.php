@@ -776,6 +776,10 @@ class Mosque
      */
     function getTitle()
     {
+        if($this->getType() !== self::TYPE_MOSQUE){
+            return "mosque.title.{$this->getType()}";
+        }
+
         $name = $this->getName();
         if (strpos(strtolower($name), strtolower($this->getCity())) === false) {
             $name .= " - " . $this->getCity();

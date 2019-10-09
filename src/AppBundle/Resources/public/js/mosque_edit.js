@@ -20,10 +20,15 @@ $("#user_complete").autocomplete({
 
 function typeDisplayHandler() {
     $type = $("#type");
-    $(".mosque-block, .home-block").addClass("hidden");
+    $(".mosque-block, .other-block").addClass("hidden");
 
     if ($type.val()) {
-        $("." + $type.val() + "-block").removeClass("hidden");
+        let type = $type.val().toLowerCase();
+        if(type !== 'mosque'){
+            type = 'other';
+        }
+
+        $("." + type + "-block").removeClass("hidden");
 
         if ($type.val() !== 'MOSQUE') {
             $("#address").removeAttr('required');

@@ -273,6 +273,10 @@ tou:
   label: J'accepte
 
 mosque:
+    title:
+      HOME: Mawaqit %city% - Domicile
+      SCHOOL: Mawaqit %city% - École
+      STORE: Mawaqit %city% - Magasin
     typeExplanation:  |
         Attention L'installation de type "Domicile" n'est pas destinée aux mosquées, elle est limitée à un usage privé à domicile
         <ul>

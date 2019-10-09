@@ -36,12 +36,12 @@
         {% endif %}
 
         {{ form_row(form.type) }}
-        <div class="alert alert-info alert-dismissable mt-1 home-block hidden" role="alert">
+        <div class="alert alert-info alert-dismissable mt-1 other-block hidden" role="alert">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <div><i class="fa fa-info-circle"></i> {{ 'mosque.typeExplanation'|trans|raw }}</div>
         </div>
 
-        <div class="mosque-block home-block hidden">
+        <div class="mosque-block other-block hidden">
             {{ form_row(form.name) }}
         </div>
 
@@ -49,7 +49,7 @@
             {{ form_row(form.address) }}
         </div>
 
-        <div class="mosque-block home-block hidden">
+        <div class="mosque-block other-block hidden">
             {{ form_row(form.city) }}
             {{ form_row(form.zipcode) }}
             {{ form_row(form.country) }}

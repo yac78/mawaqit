@@ -40,8 +40,8 @@ class MosqueSearchType extends AbstractType
                     "mosque.types.all" => "ALL",
                     "mosque.types.MOSQUE" => Mosque::TYPE_MOSQUE,
                     "mosque.types.HOME" => Mosque::TYPE_HOME,
+                    "mosque.types.SCHOOL" => Mosque::TYPE_SCHOOL,
                     "mosque.types.STORE" => Mosque::TYPE_STORE,
-                    "mosque.types.SCHOOL" => Mosque::TYPE_SCHOOL
                 ]
             ])
             ->add('status', ChoiceType::class, [
