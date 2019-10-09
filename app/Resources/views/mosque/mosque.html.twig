@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 {% endif %}
-                <div class="header">{{ mosque.isMosque ? mosque.title : mosque.title|trans({'%city%': mosque.city}) }}</div>
+                <div class="header">{{ mosque.isMosque ? mosque.title : 'Mawaqit ' ~ mosque.city ~ ' - ' ~ ('mosque.types.' ~ mosque.type)|trans}) }}</div>
 
                 <!-- Adhan flash -->
                 <div class="main-iqama-countdown hidden">

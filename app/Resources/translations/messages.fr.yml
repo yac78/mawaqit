@@ -283,8 +283,10 @@ mosque:
         </ul>
     types:
         all: Tout
-        mosque: Mosquée
-        home: Domicile
+        MOSQUE: Mosquée
+        HOME: Domicile
+        SCHOOL: École
+        STORE: Magasin
     statuses_message:
       NEW: |
           Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
@@ -887,6 +889,7 @@ iqama_in: Al-Iqâmah dans
 
 change_statuses: Activation/Désactivation multiple
 homeTitle: Mawaqit %city% - Domicile
+
 select_a_value: Séléctionnez une valeur
 announcements: Annonces
 expired: Expiré le

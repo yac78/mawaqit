@@ -47,7 +47,7 @@ class MosqueController extends Controller
      */
     public function dataAction(Mosque $mosque)
     {
-        if ($mosque->isHome()) {
+        if (!$mosque->isMosque()) {
             throw new NotFoundHttpException();
         }
 
@@ -77,7 +77,7 @@ class MosqueController extends Controller
     public function prayTimesAction(Request $request, Mosque $mosque)
     {
 
-        if ($mosque->isHome()) {
+        if (!$mosque->isMosque()) {
             throw new NotFoundHttpException();
         }
 
