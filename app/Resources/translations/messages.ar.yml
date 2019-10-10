@@ -235,13 +235,13 @@ mosque:
   title:
     HOME: مواقيت %city% - منزل
     SCHOOL: مواقيت %city% - مدرسة
-    STORE: مواقيت %city% - دُكّان
+    STORE: مواقيت %city% - محل تجاري
   types:
     all: الكل
     MOSQUE: مسجد
     HOME: منزل
     SCHOOL: مدرسة
-    STORE: دُكّان
+    STORE: محل تجاري
   statuses_message:
     NEW: |
       تمت إضافة المسجد الخاص بك، وسيقوم فريق الموقع بالتفعيل بعد التحري،
