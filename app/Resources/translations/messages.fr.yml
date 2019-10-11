@@ -65,13 +65,13 @@ home:
     contactUsFormPlaceholder4: Message *
     legalNotice: Mentions légales
     project1: |
-        La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau
-        éléctronique. Ces horloges ne répondent
-        malheureusement pas aux besoins de plus en plus variés et exigents de nos mosquées.
-        Les horloges digitales sont généralement dotées d’un réglage manuel
-        (à faire tous les jours), ou d’un réglage automatique avec donc des horaires parfois inexacts
-        et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
-        De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
+      La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau
+      éléctronique. Ces horloges ne répondent
+      malheureusement pas aux besoins de plus en plus variés et exigents de nos mosquées.
+      Les horloges digitales sont généralement dotées d’un réglage manuel
+      (à faire tous les jours), ou d’un réglage automatique avec donc des horaires parfois inexacts
+      et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
+      De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
     project2: |
       Avec l’aide d’Allah le Tout Puissant, nous nous sommes donc lancés dans le développement d’un
       logiciel pour améliorer et simplifier l’affichage des horaires de prière. <br>
@@ -84,18 +84,18 @@ home:
       <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST
       STRICTEMENT INTERDITE, veuillez respecter notre choix.
     howItWorks1: |
-        Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
-        ordinateur, le Raspberry Pi 3 ou par n'importe quel autre appareil pouvant lancer un navigateur
-        internet,
-        tel que : ordinateur, Apple TV, Android TV...
-        En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
-        code javascript.
+      Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
+      ordinateur, le Raspberry Pi 3 ou par n'importe quel autre appareil pouvant lancer un navigateur
+      internet,
+      tel que : ordinateur, Apple TV, Android TV...
+      En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
+      code javascript.
     feature2: Lorsqu’il est l'heure du adhan ou de la iqama, l'écran se met à clignoter.
     feature3: Entre chaque adhan et iqama, ainsi qu'à la fin de chaque prière, des rappels et invocations sont affichés.
     feature4: Avant et après chaque prière, si configurées depuis l'espace utilisateur les annonces défileront sur l'écran.
     feature5: |
-        Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
-        prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes
+      Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
+      prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes
     feature6: |
       Afin de faciliter aux fidèles la consultation des horaires de prière de leur mosquées,
       nous créons un site internet adatapté aux mobiles et tablettes pour chaque installation.
@@ -118,8 +118,8 @@ home:
       <li>Affichage de la temprérature</li>
       <li>Extinction de l'écran pendant la prière et le prêche du jumua</li>
     equipedMosques1: |
-       Grace à Allah notre système est installé dans <strong>totalMosquesCount</strong>
-       mosquées et domiciles partout dans le monde
+      Grace à Allah notre système est installé dans <strong>totalMosquesCount</strong>
+      mosquées et domiciles partout dans le monde
     equipedMosques2: |
       Mawaqit vous propose les horaires de prière exactes, telles qu'elles sont pratiquées par les mosquées, <br>
       cherchez une mosquée et consultez ses horaires de prière.
@@ -150,37 +150,37 @@ home:
     install2:  Télécharger l'image système pré configurée ici
     install3:  Vous devez être connecté pour télécharger l'image système
     install4: |
-        <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
-        <li>Téléchargez le logiciel Etcher ici
-            <i class="fa fa-hand-o-right"></i>
-            <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
-            ordinateur
-        </li>
-        <li>
-            Flashez l'image système mawaqit.zip sur la carte micro sd avec Etcher<br><br>
-        </li>
+      <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
+      <li>Téléchargez le logiciel Etcher ici
+          <i class="fa fa-hand-o-right"></i>
+          <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
+          ordinateur
+      </li>
+      <li>
+          Flashez l'image système mawaqit.zip sur la carte micro sd avec Etcher<br><br>
+      </li>
     install5:  Dernière étape
     install6: |
-        <p>
-          Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
-        </p>
-        <p>
-            <strong>OPTION 1. Vous avez une connexion internet (WIFI ou Ethernet) ? </strong>
-            Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> elle bénéficie des avantages
-            suivants
-        </p>
-        <ul>
-            <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
-            <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
-            </li>
-            <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
-            <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre part
-            </li>
-        </ul>
-        <br>
-        <p>
-            <strong>Suivez les étapes ci-dessous : </strong>
-        </p>
+      <p>
+        Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
+      </p>
+      <p>
+          <strong>OPTION 1. Vous avez une connexion internet (WIFI ou Ethernet) ? </strong>
+          Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> elle bénéficie des avantages
+          suivants
+      </p>
+      <ul>
+          <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
+          <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
+          </li>
+          <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
+          <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre part
+          </li>
+      </ul>
+      <br>
+      <p>
+          <strong>Suivez les étapes ci-dessous : </strong>
+      </p>
     install7: |
       <ol>
         <li>Inscrivez-vous <a target="_blank" href="%registerUrl%">ici</a>
@@ -226,175 +226,176 @@ home:
 
 
 form:
-    label:
-        delete: Supprimer ?
-    mandatory_field:  Champ obligatoire
-    create:
-        success:  L'ajout a été réalisé avec succès.
-    edit:
-        success:  L'édition a été réalisée avec succès.
-        action: Éditer
-    sync:
-        action: Synchroniser avec la mosquée en ligne
-    delete:
-        success:  La suppression a été réalisée avec succès.
-        action: Supprimer
-    clone:
-        success:  Le clonage a été réalisé avec succès.
-        action: Clonner
-    validate:
-        action: Valider
-    check:
-        action: Vérifier
-    duplicated:
-        action: En double
-    suspend:
-        action: Suspendre
-    configure:
-        action: Configurer
-        geocode_error: |
-                Impossible de géolocaliser votre mosquée. Veuillez vérifier 
-                <ul>
-                    <li>L'orthographe de votre adresse postale ("%address%") </li>
-                    <li>Votre connexion internet (elle est nécessaire pour géolocaliser la mosquée)</li>
-                </ul>
-    load:
-        action: Charger
+  label:
+    delete: Supprimer ?
+  mandatory_field:  Champ obligatoire
+  create:
+    success:  L'ajout a été réalisé avec succès.
+  edit:
+    success:  L'édition a été réalisée avec succès.
+    action: Éditer
+  sync:
+    action: Synchroniser avec la mosquée en ligne
+  delete:
+    success:  La suppression a été réalisée avec succès.
+    action: Supprimer
+  clone:
+    success:  Le clonage a été réalisé avec succès.
+    action: Clonner
+  validate:
+    action: Valider
+  check:
+    action: Vérifier
+  duplicated:
+    action: En double
+  suspend:
+    action: Suspendre
+  configure:
+    action: Configurer
+    geocode_error: |
+      Impossible de géolocaliser votre mosquée. Veuillez vérifier
+      <ul>
+          <li>L'orthographe de votre adresse postale ("%address%") </li>
+          <li>Votre connexion internet (elle est nécessaire pour géolocaliser la mosquée)</li>
+      </ul>
+  load:
+    action: Charger
 
 registration:
-    form:
-      tou:
-        label: J'accepte et je m'engage à respecter <a href="#" id="terms-of-use">les conditions générales d'utilisation</a>
-    registration: Inscription
-    password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
-    please_enter_right_email: Veuillez entrer une adresse mail que vous consultez régulièrement
+  form:
+    tou:
+      label: J'accepte et je m'engage à respecter <a href="#" id="terms-of-use">les conditions générales d'utilisation</a>
+  registration: Inscription
+  password_rule: 8 caractères minimum, dont 1 majuscule, 1 minuscule et 1 nombre
+  please_enter_right_email: Veuillez entrer une adresse mail que vous consultez régulièrement
 
 tou:
   label: J'accepte
 
 mosque:
-    title:
-      HOME: Mawaqit %city% - Domicile
-      SCHOOL: Mawaqit %city% - École
-      STORE: Mawaqit %city% - Magasin
-    typeExplanation:  |
-        Attention L'installation de type "Domicile" n'est pas destinée aux mosquées, elle est limitée à un usage privé à domicile
-        <ul>
-        <li>Pas d'assistance en cas de problème</li>
-        <li>Pas de référencement sur internet</li>
-        <li>Elle n'apparaitra pas sur la carte google mawaqit et dans les résultats de recherche de mosquées</li>
-        <li>La mention domicile apparaitra systématqieuemnt sur l'écran mawaqit</li>
-        </ul>
-    types:
-        all: Tout
-        MOSQUE: Mosquée
-        HOME: Domicile
-        SCHOOL: École
-        STORE: Magasin
-    statuses_message:
-      NEW: |
-          Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
-          cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
-      CHECK: |
-           Nous avons besoin d'informations complémentaires afin de valider votre mosquée,
-           veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
-      SUSPENDED: |
-           Nous avons suspendu votre mosquée, veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
-      DUPLICATED: |
-           Il parait que votre mosquée est en double, nous avons besoin d'informations complémentaires afin de valider votre mosquée,
-           veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
-      SCREEN_PHOTO_ADDED: |
-           Nous procédons à la vérification de la photo de l'écran mawaqit
-    suspensionReason:
-      mosque_closed: Mosquée fermée
-      prayer_times_not_correct: Horaires non respéctés
-      missing_photo: Il manque la photo de l'écran
-      non_existing_mosque: La mosquée n'existe pas
-      other: Autre
-    statuses:
-      NEW: En attente de validation
-      VALIDATED: Validée
-      CHECK: En cours de vérification
-      SUSPENDED: Suspendue
-      DUPLICATED: Doublon
-      SCREEN_PHOTO_ADDED: Vérification photo d'écran
-    add_new: Ajouter une mosquée
-    add: Ajouter une installation
-    name: Nom
-    refresh: | 
-                Recharger la page de l'écran à distance. 
-                En cas de soucis particulier (écran figé ou bug graphique) vous pouvez forcer le rechargement de l'écran.
-    force_update_all:
-        action: Lancer le rechargement
-        success: Toutes les mosquées ont bien été forcées de se mettre à jour
-    update_hijri_date:
-        success: La date hégirienne a été mise à jour pour toutes les mosquées
-    form:
-        status:
-            label : Statut
-        type:
-            label : Type
-            placeholder : Choisir un type d'installation
-        name:
-            placeholder : Ex. Mosquée Essunna, Mon domicile
-        slug:
-            label : Changez l'url du site
-        city:
-            placeholder: La ville de la mosquée (Sert à calculer la position géographique)
-        country:
-            placeholder: Choissiez un pays
-        longitude:
-            label : Corriger la position gps (longitude)
-        latitude:
-            label : Corriger la position gps (latitude)
-        address:
-            help: |
-              Il est fortement recommandé de saisir l'adresse postale afin de faciliter aux fidèles la localisation de votre mosquée. <br/>
-              L'adresse est obligatoire dans le cas uo vous choisissez de faire apparaitre votre mosquée dans la carte google mawaqit.net
-            placeholder: Ex. 5 rue de Paris
-        zipcode:
-            placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
-        rib: 
-            placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
-        addOnMap:
-            label: Ajouter sur la carte google
-        justificatoryFile:
-            label: Un document justificatif (.pdf .jpg .png .doc .ppt)
-            help: |
-              Ajouter un document justifiant l'existance de la mosquée (une facture d'éléctricité/eau/téléphone ou autre) cela facilite à mawaqit la validation de votre mosquée rapidement
-        file1:
-            label: Une photo de la mosquée
-            help: Ajoutez une photo de la mosquée de bonne qualité au format paysage
-        file2:
-            label: Une photo intérieur de la mosquée
-        file3:
-            label: Une photo de l'écran mawaqit
-        womenSpace:
-            label: Espace pour femmes
-        janazaPrayer:
-            label: Salât al-Janaza
-        aidPrayer:
-            label: Salât al-Aïd
-        childrenCourses:
-            label: Cours pour enfants
-        adultCourses:
-            label: Cours pour adultes
-        ramadanMeal:
-            label: Iftar Ramadan
-        handicapAccessibility:
-            label: Accès handicapés
-        ablutions:
-            label: Salle d'ablutions
-        parking:
-            label: Parking
-        otherInfo:
-            label: Autres info
-            placeholder: "Ex: Horaires d'ouverture et fermeture (200 caractères max)"
-    alert:
-        slugChange: |
-            Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry
-            et l'accès des fidèles à vos horaires de prière.
-            Pensez à mettre à jour votre raspberry et informer les fidèles de la mosquée.
+  title:
+    HOME: Mawaqit %city% - Domicile
+    SCHOOL: Mawaqit %city% - École
+    STORE: Mawaqit %city% - Magasin
+  typeExplanation:  |
+    Attention: ce type d'installation n'est pas destiné aux mosquées, il est limité à un usage privé
+    <ul>
+    <li>Pas d'assistance en cas de problème</li>
+    <li>Pas de référencement sur internet</li>
+    <li>N'apparaitra pas sur la carte google mawaqit et dans les résultats de recherche de mosquées</li>
+    <li>Un titre spécifique apparaît systématiquement sur l'écran mawaqit</li>
+    </ul>
+  types:
+    all: Tout
+    MOSQUE: Mosquée
+    HOME: Domicile
+    SCHOOL: École
+    STORE: Magasin
+  statuses_message:
+    NEW: |
+      Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
+      cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
+    CHECK: |
+      Nous avons besoin d'informations complémentaires afin de valider votre mosquée,
+      veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
+    SUSPENDED: |
+      Nous avons suspendu votre mosquée, veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
+    DUPLICATED: |
+      Il parait que votre mosquée est en double, nous avons besoin d'informations complémentaires afin de valider votre mosquée,
+      veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
+    SCREEN_PHOTO_ADDED: |
+      Nous procédons à la vérification de la photo de l'écran mawaqit
+  suspensionReason:
+    mosque_closed: Mosquée fermée
+    prayer_times_not_correct: Horaires non respéctés
+    missing_photo: Il manque la photo de l'écran
+    non_existing_mosque: La mosquée n'existe pas
+    other: Autre
+  statuses:
+    NEW: En attente de validation
+    VALIDATED: Validée
+    CHECK: En cours de vérification
+    SUSPENDED: Suspendue
+    DUPLICATED: Doublon
+    SCREEN_PHOTO_ADDED: Vérification photo d'écran
+  add_new: Ajouter une mosquée
+  add: Ajouter une installation
+  name: Nom
+  refresh: |
+    Recharger la page de l'écran à distance.
+    En cas de soucis particulier (écran figé ou bug graphique) vous pouvez forcer le rechargement de l'écran.
+  force_update_all:
+    action: Lancer le rechargement
+    success: Toutes les mosquées ont bien été forcées de se mettre à jour
+  update_hijri_date:
+    success: La date hégirienne a été mise à jour pour toutes les mosquées
+  form:
+    status:
+      label: Statut
+    type:
+      label: Type
+      placeholder: Choisir un type d'installation
+    name:
+      placeholder: Ex. Mosquée Essunna, Mon domicile
+    slug:
+      label: Changez l'url du site
+    city:
+      placeholder: La ville de la mosquée (Sert à calculer la position géographique)
+    country:
+      placeholder: Choissiez un pays
+    longitude:
+      label: Corriger la position gps (longitude)
+    latitude:
+      label: Corriger la position gps (latitude)
+    address:
+      help: |
+        Il est fortement recommandé de saisir l'adresse postale afin de faciliter aux fidèles la localisation de votre mosquée. <br/>
+        L'adresse est obligatoire dans le cas uo vous choisissez de faire apparaitre votre mosquée dans la carte google mawaqit.net
+      placeholder: Ex. 5 rue de Paris
+    zipcode:
+      placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
+    rib:
+      placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+    addOnMap:
+      label: Ajouter sur la carte google
+    justificatoryFile:
+      label: Un document justificatif (.pdf .jpg .png .doc .ppt)
+      help: |
+        Ajouter un document justifiant l'existance de la mosquée (une facture d'éléctricité/eau/téléphone) cela facilite à mawaqit la validation de votre mosquée rapidement
+    file1:
+      label: Une photo extérieur de la mosquée
+      help: Ajoutez une photo de la mosquée de bonne qualité au format paysage
+    file2:
+      label: Une photo intérieur de la mosquée
+    file3:
+      label: Une photo de l'écran mawaqit
+      help: La photo doit être prise dans la mosquée avec un plan large au format paysage
+    womenSpace:
+      label: Espace pour femmes
+    janazaPrayer:
+      label: Salât al-Janaza
+    aidPrayer:
+      label: Salât al-Aïd
+    childrenCourses:
+      label: Cours pour enfants
+    adultCourses:
+      label: Cours pour adultes
+    ramadanMeal:
+      label: Iftar Ramadan
+    handicapAccessibility:
+      label: Accès handicapés
+    ablutions:
+      label: Salle d'ablutions
+    parking:
+      label: Parking
+    otherInfo:
+      label: Autres info
+      placeholder: "Ex: Horaires d'ouverture et fermeture (200 caractères max)"
+  alert:
+    slugChange: |
+      Attention ! la modification de l'url du site impactera le lancement du logiciel dans le raspberry
+      et l'accès des fidèles à vos horaires de prière.
+      Pensez à mettre à jour votre raspberry et informer les fidèles de la mosquée.
 
 mosque_search:
   form:
@@ -412,262 +413,262 @@ mosque_search:
       placeholder: Statut
 
 message:
-    display_messages_in_screen_1: |
-      Vous pouvez afficher ces annonces dans un écran dédié,
-      il suffit de remplacer l'url des horaires par celle-ci
-    display_messages_in_screen_2: |
-      Le logiciel vérifie les changements toutes les 5 mins,
-      si vous ajoutez ou supprimez une annonce, l'écran se mettra à jour automatiquement.
-    mosque: Gestion des annonces de "%mosque%"
-    add: Ajout d'une annonce
-    edit: Édition de l'annonce %title%
-    manage: Gérer les annonces
-    info: |
-      Les annonces sont des messages de type texte ou image qui défilent sur l'écran ou s'affichent sous forme de notification dans la version mobile de mawaqit.<br>
-      Vous avez la possibilité d'ajouter jusqu'à 20 annonces dont <b>8 activées</b> à la fois.
+  display_messages_in_screen_1: |
+    Vous pouvez afficher ces annonces dans un écran dédié,
+    il suffit de remplacer l'url des horaires par celle-ci
+  display_messages_in_screen_2: |
+    Le logiciel vérifie les changements toutes les 5 mins,
+    si vous ajoutez ou supprimez une annonce, l'écran se mettra à jour automatiquement.
+  mosque: Gestion des annonces de "%mosque%"
+  add: Ajout d'une annonce
+  edit: Édition de l'annonce %title%
+  manage: Gérer les annonces
+  info: |
+    Les annonces sont des messages de type texte ou image qui défilent sur l'écran ou s'affichent sous forme de notification dans la version mobile de mawaqit.<br>
+    Vous avez la possibilité d'ajouter jusqu'à 20 annonces dont <b>8 activées</b> à la fois.
 
-    form:
-        title:
-            label: Titre
-            placeholder : Ex. Cours de coran
-        content:
-            label: Contenu
-            placeholder : 200 caractères maximum
-        delay: 
-            label : Délai d'affichage (minutes)
-        image:
-            label : Image
-            title : Elle sera affichée à la place du texte. Pour un meilleur affichage chargez que des images au format paysage
-        enabled:
-            label : Activé
-            title : Activer/désactiver le message de tous les écrans (écran mawaqit, écran dédié aux messages et écran mobile)
-        mobile:
-            label : Afficher sur mobile
-            title : Votre message sera affiché sur la version mobile de mawaqit sous forme de notification
-        desktop:
-            label : Afficher sur l'écran principal
-            title : Votre message sera affiché sur l'écran mawaqit principal de la mosquée.
+  form:
+    title:
+      label: Titre
+      placeholder: Ex. Cours de coran
+    content:
+      label: Contenu
+      placeholder: 200 caractères maximum
+    delay:
+      label: Délai d'affichage (minutes)
+    image:
+      label: Image
+      title: Elle sera affichée à la place du texte. Pour un meilleur affichage chargez que des images au format paysage
+    enabled:
+      label: Activé
+      title: Activer/désactiver le message de tous les écrans (écran mawaqit, écran dédié aux messages et écran mobile)
+    mobile:
+      label: Afficher sur mobile
+      title: Votre message sera affiché sur la version mobile de mawaqit sous forme de notification
+    desktop:
+      label: Afficher sur l'écran principal
+      title: Votre message sera affiché sur l'écran mawaqit principal de la mosquée.
 
 flashMessage:
-    no: Aucun message
-    label: Message flash
-    info: |
-      Le message flash est un message éphémère, il est utilisé en général pour informer vos fidèles d'un événement important
-    form:
-        ltr: Gauche vers droite
-        rtl: Droite vers gauche
-        content:
-            label: Contenu
-            placeholder : 160 caractères maximum
-        orientation:
-            label: Orientation
-        color:
-            label: Couleur
-        expire:
-            label : Date d'expiration
-            title : Le message ne sera plus affiché au-delà de la date choisie
+  no: Aucun message
+  label: Message flash
+  info: |
+    Le message flash est un message éphémère, il est utilisé en général pour informer vos fidèles d'un événement important
+  form:
+    ltr: Gauche vers droite
+    rtl: Droite vers gauche
+    content:
+      label: Contenu
+      placeholder: 160 caractères maximum
+    orientation:
+      label: Orientation
+    color:
+      label: Couleur
+    expire:
+      label: Date d'expiration
+      title: Le message ne sera plus affiché au-delà de la date choisie
 
 faq:
-    add: Ajout d'une nouvelle Faq
-    edit: Édition de la faq %question%
-    form:
-        question:
-            label: Question
-        answer:
-            label: Réponse
-        enabled:
-            label : Publiée
+  add: Ajout d'une nouvelle Faq
+  edit: Édition de la faq %question%
+  form:
+    question:
+      label: Question
+    answer:
+      label: Réponse
+    enabled:
+      label: Publiée
 
 configuration:
-    iqamaCalendar:
-      label: Par calendrier
-    iqamaFixed: Simple
-    select_calendar: Séléctionner un calendrier
-    title: Configuration des horaires
-    list:
-        download_csv_files: Calendrier
-        calendar_not_completed: |
-            Attention: le calendrier de votre mosquée est incomplet
-    form: 
-        prayerCalcul: Calcul des horaires de prière
-        copyFromOtherMosque: Copier la configuration d'une autre mosquée
-        load_predefined_calendar: 
-            1: "Trois choix disponibles pour créer votre calendrier:"
-            2: Depuis la liste des calendriers disponibles sur mawaqit
-            3: Depuis un fichier CSV (par mois)
-            4: À partir de la méthode de calcul séléctionnée ci-dessus
+  iqamaCalendar:
+    label: Par calendrier
+  iqamaFixed: Simple
+  select_calendar: Séléctionner un calendrier
+  title: Configuration des horaires
+  list:
+    download_csv_files: Calendrier
+    calendar_not_completed: |
+      Attention: le calendrier de votre mosquée est incomplet
+  form:
+    prayerCalcul: Calcul des horaires de prière
+    copyFromOtherMosque: Copier la configuration d'une autre mosquée
+    load_predefined_calendar:
+      1: "Trois choix disponibles pour créer votre calendrier:"
+      2: Depuis la liste des calendriers disponibles sur mawaqit
+      3: Depuis un fichier CSV (par mois)
+      4: À partir de la méthode de calcul séléctionnée ci-dessus
 
-        fill_calendar:
-            success: Les horaires du mois ont été remplis avec succès.
-            error: Les horaires du mois n'ont pas pu être remplis correctement.
-        time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant hh:mm"
-        fill_calendar_from_csv: Pré-remplir depuis un fichier csv
-        calendar: Calendrier des horaires
-        lang: La langue d'affichage de l'écran 
-        sourceCalcul: 
-            label: Source de calcul des horaires
-        prayerMethod: 
-            label: Méthode de calcul
-            placeholder: Veuillez choisir une méthode de calcul
-        asrMethod:
-            label: "Méthode de calcul du `Asr"
-            Standard: Standard (Shafi`i, Maliki, Hanbali)
-            Hanafi: Hanafi
-        highLatsMethod:
-            label: "Calcul pour les hautes latitudes"
-            AngleBased: Basé sur l'angle choisi
-            NightMiddle: 1/2 ème de la nuit
-            OneSeventh: 1/7 ème de la nuit
-        jumuaTime:
-            label: Heure du jumu`a
-            title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été
-        jumuaTime2:
-            label: 2ème Jumu'à
-            title: "Si votre mosquée fait une deuxième jumu`a saisissez une valeur"
-        jumuaAsDuhr:
-            label: L'heure du jumu'a pareil que Dhuhr
-        noJumua:
-            label: Pas de jumu`a dans cette mosquée
-        jumuaDhikrReminderEnabled:
-            label: Afficher un rappel pendant jumu`a
-            title: Si cette case est cochée un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
-        jumuaBlackScreenEnabled:
-            label: Afficher un écran noir pendant jumu`a
-        jumuaTimeout:
-            label: Durée approximative du jumu`a (prêche + prière)
-        aidTime:
-            label: Heure de salât El-Aïd
-            title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq 2 ou 3 jours avant l'évènement
-        adjustedTimes: 
-            label: Ajustement manuel des horaires
-        maximumIshaTimeForNoWaiting:
-            label: Heure du `isha (iqâmah tout de suite après adhân)
-            title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhân
-        imsakNbMinBeforeFajr: 
-            label: Afficher l'imsak (nombre de minute avant fajr)
-            title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souhaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
-        waitingTimes: 
-            label: Temps d'attente entre adhân et iqâmah
-        fixedTimes: 
-            label: Fixation des horaires
-            help: "Exemple: fixer `isha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
-        fixedIqama:
-            label: Fixation de l'iqama
-            help: "Vous pouvez fixer l'heure de l'iqama pour chaque prière, par exemple: fixer iqama du `isha à 20:00 quelque soit l'heure de la prière"
-        duaAfterPrayerShowTimes:
-            label: Durée estimée de chaque prière (en minute)
-            help: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour accomplir une prière
-        hijriAdjustment: 
-            label: Ajustement de la date hégire
-        timezoneName:
-            label: Fuseau horaire
-            title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
-        ishaFixation:
-            label: Fixation du `Isha par rapport au Maghreb
-            title: Appliquer un interval fixe entre maghrib et isha quelque soit la méthode de calcul
-        dst: 
-            label: Changement d'heure d'été
-            title: |
-                Si votre pays applique le changement d'heure d'été, activez cette option.
-                Mettez auto si votre mosquée est en France, le changement d'heure s'effectuera
-                le dernier dimanche du mois de mars et octobre
-        dstSummerDate:
-            label: Date de changement d'été
-            title: |
-                Séléctionnez la date à laquelle le changement d'heure d'été prendra effet dans l'année en cours, par défaut c'est le dernier dimanche du mois de mars
-        dstWinterDate:
-            label: Date de changement d'hiver
-            title: |
-                Séléctionnez la date à laquelle le changement d'heure d'hiver prendra effet dans l'année en cours, par défaut c'est le dernier dimanche du mois d'octobre
-        iqamaDisplayTime: 
-            label: Temps d'affichage du signal iqâmah (en secondes)
-        hijriDateEnabled: 
-            label: Date hégirienne
-        duaAfterAzanEnabled: 
-            label: Du`aa après adhân
-        duaAfterPrayerEnabled: 
-            label: Invocations après salat
-        azanBip: 
-            label: Bip quand c'est l'heure du adhân
-        azanVoiceEnabled:
-            label: Adhân audio (Adhân du Haram)
-            title: A l'heure de la prière l'adhân du haram sera lancé.
-        wakeAzanVoice:
-            label: Choisir l'adhân du réveil
-            haram: Adhan du haram
-            algeria: Adhan algérien
-            quds: Adhan d'al-aqsa
-            egypt: Adhan égyptien
-        iqamaBip:
-            label:  Bip quand c'est l'heure de l'iqâmah
-        iqamaFullScreenCountdown:
-            label:  Compte à rebours en plein écran
-        wakeForFajrTime:
-            label:  Réveil avant fajr (minute)
-            title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
-        blackScreenWhenPraying: 
-            label:  Écran noir pendant la prière
-            title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Durée estimée de chaque prière (en minute)"
-        randomHadithEnabled: 
-            label: Afficher aléatoirement un hadith toute les 5 min
-            title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
-        randomHadithIntervalDisabling:
-            label: "Désactiver les hadiths entre :"
-            title: "Vous pouvez désactiver les hadiths entre 2 prières pour les dourous par exemple"
-        temperatureEnabled: 
-            label:  Température
-            title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
-        backgroundColor: 
-            label: Couleur de fond
-        theme:
-            label: Thème
-        fajrDegree: 
-            label: Degré du fajr
-            placeholder: Ex. 18
-        ishaDegree: 
-            label: Degré du `isha
-            placeholder: Ex. 15
-        hadithLang: 
-            label: Langue des hadiths
-        calendar_explication: |
-            Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une virgule ou un point-virgule.<br><br>
-            Le fichier CSV doit respécter le format suivant : <br><br>
-            Day,Fajr,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
-            01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
-            02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
-            03,06:49,08:44,12:56,14:49,17:10,18:49 <br>
-            04,06:49,08:44,12:57,14:50,17:11,18:50 <br>
-            05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
-            ...            
-        timeToDisplayMessage: 
-            label: Temps de défilement par annonce (en seconde)
-            title: Cela concerne que l'écran dédié aux annonces, le temps est fixé à 30 secondes sur l'écran des horaires
-        footer:
-            label: Pieds de l'écran
-        showNextAdhanCountdown:
-            label: Compte à rebours du prochain adhân
-        timeDisplayFormat:
-            label: Format de l'heure
-        temperatureUnit:
-            label: Unité de la température
-        backgroundType:
-            label: Fon d'écran
-        iqamaEnabled:
-            label: Activée
-            title: |
-              La désactivation de l'iqama entraine l'arrêt de tout le système autour d'elle
-              ( affichage des temps d'attente entre adhan et iqama, affichage du signal iqama,
-              affichage des invocations post prière ...)
+    fill_calendar:
+      success: Les horaires du mois ont été remplis avec succès.
+      error: Les horaires du mois n'ont pas pu être remplis correctement.
+    time_invalid: "La valeur saisie est invalide, elle doit réspecter le format suivant hh:mm"
+    fill_calendar_from_csv: Pré-remplir depuis un fichier csv
+    calendar: Calendrier des horaires
+    lang: La langue d'affichage de l'écran
+    sourceCalcul:
+      label: Source de calcul des horaires
+    prayerMethod:
+      label: Méthode de calcul
+      placeholder: Veuillez choisir une méthode de calcul
+    asrMethod:
+      label: "Méthode de calcul du `Asr"
+      Standard: Standard (Shafi`i, Maliki, Hanbali)
+      Hanafi: Hanafi
+    highLatsMethod:
+      label: "Calcul pour les hautes latitudes"
+      AngleBased: Basé sur l'angle choisi
+      NightMiddle: 1/2 ème de la nuit
+      OneSeventh: 1/7 ème de la nuit
+    jumuaTime:
+      label: Heure du jumu`a
+      title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été
+    jumuaTime2:
+      label: 2ème Jumu'à
+      title: "Si votre mosquée fait une deuxième jumu`a saisissez une valeur"
+    jumuaAsDuhr:
+      label: L'heure du jumu'a pareil que Dhuhr
+    noJumua:
+      label: Pas de jumu`a dans cette mosquée
+    jumuaDhikrReminderEnabled:
+      label: Afficher un rappel pendant jumu`a
+      title: Si cette case est cochée un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche
+    jumuaBlackScreenEnabled:
+      label: Afficher un écran noir pendant jumu`a
+    jumuaTimeout:
+      label: Durée approximative du jumu`a (prêche + prière)
+    aidTime:
+      label: Heure de salât El-Aïd
+      title: Si cette valeur est renseignée elle remplacera l'heure du Shurûq 2 ou 3 jours avant l'évènement
+    adjustedTimes:
+      label: Ajustement manuel des horaires
+    maximumIshaTimeForNoWaiting:
+      label: Heure du `isha (iqâmah tout de suite après adhân)
+      title: Si cette valeur est renseignée le temps d'attente entre adhân et iqâmah sera automatiquement remplacé par un 0, afin d'indiquer aux fidèles que la prière du `isha se fera tout de suite après adhân
+    imsakNbMinBeforeFajr:
+      label: Afficher l'imsak (nombre de minute avant fajr)
+      title: Ce champ permet d'indiquer l'heure du imsak, mettez ici le nombre de minutes souhaitées, par exemple si fajr est à 04:00 et que vous mettiez 30 min l'heure du imsak affichée sera 03:30. Mettez 0 si vous ne souhaitez pas l'afficher
+    waitingTimes:
+      label: Temps d'attente entre adhân et iqâmah
+    fixedTimes:
+      label: Fixation des horaires
+      help: "Exemple: fixer `isha en hiver à 19:00, tant que l'heure est en dessous de la valeur saisie, c'est cette dernière qui sera prise en compte"
+    fixedIqama:
+      label: Fixation de l'iqama
+      help: "Vous pouvez fixer l'heure de l'iqama pour chaque prière, par exemple: fixer iqama du `isha à 20:00 quelque soit l'heure de la prière"
+    duaAfterPrayerShowTimes:
+      label: Durée estimée de chaque prière (en minute)
+      help: Ces valeurs sont à titre estimatif, c'est la durée que met l'imam pour accomplir une prière
+    hijriAdjustment:
+      label: Ajustement de la date hégire
+    timezoneName:
+      label: Fuseau horaire
+      title: Si vous constatez un décalage d'heure dans le calcul des horaires de prière, ajustez-le ici
+    ishaFixation:
+      label: Fixation du `Isha par rapport au Maghreb
+      title: Appliquer un interval fixe entre maghrib et isha quelque soit la méthode de calcul
+    dst:
+      label: Changement d'heure d'été
+      title: |
+        Si votre pays applique le changement d'heure d'été, activez cette option.
+        Mettez auto si votre mosquée est en France, le changement d'heure s'effectuera
+        le dernier dimanche du mois de mars et octobre
+    dstSummerDate:
+      label: Date de changement d'été
+      title: |
+        Séléctionnez la date à laquelle le changement d'heure d'été prendra effet dans l'année en cours, par défaut c'est le dernier dimanche du mois de mars
+    dstWinterDate:
+      label: Date de changement d'hiver
+      title: |
+        Séléctionnez la date à laquelle le changement d'heure d'hiver prendra effet dans l'année en cours, par défaut c'est le dernier dimanche du mois d'octobre
+    iqamaDisplayTime:
+      label: Temps d'affichage du signal iqâmah (en secondes)
+    hijriDateEnabled:
+      label: Date hégirienne
+    duaAfterAzanEnabled:
+      label: Du`aa après adhân
+    duaAfterPrayerEnabled:
+      label: Invocations après salat
+    azanBip:
+      label: Bip quand c'est l'heure du adhân
+    azanVoiceEnabled:
+      label: Adhân audio (Adhân du Haram)
+      title: A l'heure de la prière l'adhân du haram sera lancé.
+    wakeAzanVoice:
+      label: Choisir l'adhân du réveil
+      haram: Adhan du haram
+      algeria: Adhan algérien
+      quds: Adhan d'al-aqsa
+      egypt: Adhan égyptien
+    iqamaBip:
+      label:  Bip quand c'est l'heure de l'iqâmah
+    iqamaFullScreenCountdown:
+      label:  Compte à rebours en plein écran
+    wakeForFajrTime:
+      label:  Réveil avant fajr (minute)
+      title: Si vous souhaitez être réveillé avant fajr avec un premier adhân, mettez ici le nombre de minute avant fajr. Laissez vide sinon.
+    blackScreenWhenPraying:
+      label:  Écran noir pendant la prière
+      title: Dès la fin du signal iqamâh, un écran noir sera observé jusqu'à la fin de la prière, cela dépend des valeurs saisies dans les champs "Durée estimée de chaque prière (en minute)"
+    randomHadithEnabled:
+      label: Afficher aléatoirement un hadith toute les 5 min
+      title: Les hadiths sont extraits du célèbre livre "Ryiad essalahine" de l'imam Ennawawi rahimahu Allah
+    randomHadithIntervalDisabling:
+      label: "Désactiver les hadiths entre :"
+      title: "Vous pouvez désactiver les hadiths entre 2 prières pour les dourous par exemple"
+    temperatureEnabled:
+      label:  Température
+      title:  La température affichée est celle de la ville à l'extérieur et pas à l'intérieur de la mosquée
+    backgroundColor:
+      label: Couleur de fond
+    theme:
+      label: Thème
+    fajrDegree:
+      label: Degré du fajr
+      placeholder: Ex. 18
+    ishaDegree:
+      label: Degré du `isha
+      placeholder: Ex. 15
+    hadithLang:
+      label: Langue des hadiths
+    calendar_explication: |
+      Un fichier CSV est un fichier texte en forme de lignes et de colonnes. Une ligne est formée de plusieurs valeurs séparées par une virgule ou un point-virgule.<br><br>
+      Le fichier CSV doit respécter le format suivant : <br><br>
+      Day,Fajr,Shuruk,Duhr,`Asr,Maghrib,`Isha <br>
+      01,06:49,08:44,12:55,14:47,17:08,18:47 <br>
+      02,06:49,08:44,12:56,14:48,17:09,18:48 <br>
+      03,06:49,08:44,12:56,14:49,17:10,18:49 <br>
+      04,06:49,08:44,12:57,14:50,17:11,18:50 <br>
+      05,06:49,08:44,12:57,14:51,17:12,18:51 <br>
+      ...
+    timeToDisplayMessage:
+      label: Temps de défilement par annonce (en seconde)
+      title: Cela concerne que l'écran dédié aux annonces, le temps est fixé à 30 secondes sur l'écran des horaires
+    footer:
+      label: Pieds de l'écran
+    showNextAdhanCountdown:
+      label: Compte à rebours du prochain adhân
+    timeDisplayFormat:
+      label: Format de l'heure
+    temperatureUnit:
+      label: Unité de la température
+    backgroundType:
+      label: Fon d'écran
+    iqamaEnabled:
+      label: Activée
+      title: |
+        La désactivation de l'iqama entraine l'arrêt de tout le système autour d'elle
+        ( affichage des temps d'attente entre adhan et iqama, affichage du signal iqama,
+        affichage des invocations post prière ...)
 
 security:
-    login:
-        info:
-            title: 3 étapes pour créer votre écran Mawaqit
-            step1: Inscrivez-vous
-            step2: Ajoutez et configurez votre mosquée
-            step3: Mettez le lien généré dans un navigateur internet (Raspberry, Ordinateur, Box android...)
+  login:
+    info:
+      title: 3 étapes pour créer votre écran Mawaqit
+      step1: Inscrivez-vous
+      step2: Ajoutez et configurez votre mosquée
+      step3: Mettez le lien généré dans un navigateur internet (Raspberry, Ordinateur, Box android...)
 
-admin_title: Mawaqit - administration        
+admin_title: Mawaqit - administration
 site_title: Mawaqit
 full_screen: Plen écran
 
@@ -697,7 +698,7 @@ searchMosque: Recherche par nom, ville, code postal...
 searchByKeyword: Recherche par mot clé
 ar: Arabe
 fr: Français
-en: Anglais  
+en: Anglais
 tr: Turque
 de: Allemand
 nl: Néerlandais
@@ -721,19 +722,19 @@ motif: Motif
 color: Couleur
 
 mosqueList:
-    iframeCopyText: Pour afficher le widget ci-dessous dans votre site il suffit de copier/coller ce code html
-    iframeAddTitle: Ajouter le widget à votre site
-    widgetForYourSite: Widget pour votre site internet
-    alertRemoveMosque: |
-      J%days% avant la suppression de votre mosquée pour le motif suivant: Absence de la photo de l'écran mawaqit prise dans la mosquée
-    csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
-    qrcodeTitle: A afficher dans un endroit accessible au fidèles
-    
+  iframeCopyText: Pour afficher le widget ci-dessous dans votre site il suffit de copier/coller ce code html
+  iframeAddTitle: Ajouter le widget à votre site
+  widgetForYourSite: Widget pour votre site internet
+  alertRemoveMosque: |
+    J%days% avant la suppression de votre mosquée pour le motif suivant: Absence de la photo de l'écran mawaqit prise dans la mosquée
+  csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
+  qrcodeTitle: A afficher dans un endroit accessible au fidèles
+
 email:
-    text: Adresse mail
-    send:        
-        action: Envoyer un mail
-        success: Email envoyé avec succès
+  text: Adresse mail
+  send:
+    action: Envoyer un mail
+    success: Email envoyé avec succès
 
 incorrectsInfos:
   title:  Horaires ou informations incorrects ? alertez-nous
@@ -748,7 +749,7 @@ zuhr-asr: "Dhuhr et `Asr"
 asr-maghrib: "`Asr et Maghrib"
 maghrib-isha: "Maghrib et `Isha"
 
-        
+
 ISNA: "Société Islamique d'Amérique du Nord (Fajr 15°, `Isha 15°)"
 ALGERIA: "Ministère des affaires religieuses et des wakfs Algérien (Fajr 18°, `Isha 17°)"
 MOROCCO: "Ministère des wakfs et affaires islamiques Marocain (Fajr 18°, `Isha 17°)"
@@ -808,15 +809,15 @@ october: Octobre
 november: Novembre
 december: Décembre
 
-month_0 : Janvier
-month_1 : Février
-month_2 : Mars
-month_3 : Avril
-month_4 : Mai
-month_5 : Juin
-month_6 : Juillet
-month_7 : Août
-month_8 : Septembre
+month_0: Janvier
+month_1: Février
+month_2: Mars
+month_3: Avril
+month_4: Mai
+month_5: Juin
+month_6: Juillet
+month_7: Août
+month_8: Septembre
 month_9: Octobre
 month_10: Novembre
 month_11: Décembre
@@ -831,10 +832,10 @@ prayer_mobile_site: "Mawaqit sur mobile <a href='%site%'>%site%</a>"
 mawaqitOnMobile: Les horaires de prière sur mobile
 association_info: "%name% - Tél. %phone%"
 info_dst_change: |
-    ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
-    vos horaires en heure d'hiver sur toute l'année. Le logiciel s'occupera du passage à l'heure d'été en fonction de vos choix dans les paramètres
-    régionnaux. <br>
-    Les horaires doivent être au format 24h exemple 22:00 et non pas 10:00.
+  ATTENTION! le calendrier doit être saisi sans tenir compte du changement d'heure d'été, vous devez donc saisir
+  vos horaires en heure d'hiver sur toute l'année. Le logiciel s'occupera du passage à l'heure d'été en fonction de vos choix dans les paramètres
+  régionnaux. <br>
+  Les horaires doivent être au format 24h exemple 22:00 et non pas 10:00.
 other_settings: Autres réglages
 home_settings: Utilisation à domicile
 theme_settings: Thème
@@ -849,25 +850,25 @@ order: Ordonner
 reason: Motif
 
 invocationAfterPrayer:
-    title: (Al-Athkar) أذكار بعد الصلاة
+  title: (Al-Athkar) أذكار بعد الصلاة
 
 duaAfterAthan:
-    title: Invocation après l'adhân
-    text: |
-        Ô Allah, Maître de cet appel parfait et de la prière que l'on va accomplir, donne à Mohammed le pouvoir d'intercéder 
-        (le Jour du Jugement) et la place d'honneur [au Paradis], et ressuscite-le dans la position louable que Tu lui as promise
-        
+  title: Invocation après l'adhân
+  text: |
+    Ô Allah, Maître de cet appel parfait et de la prière que l'on va accomplir, donne à Mohammed le pouvoir d'intercéder
+    (le Jour du Jugement) et la place d'honneur [au Paradis], et ressuscite-le dans la position louable que Tu lui as promise
+
 duaBetweenAthanAndIqama:
-    text: |
-        Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit :
-        Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées
+  text: |
+    Selon Anas Ibn Mâlik, le Prophète (sallallahu ‘alayhi wa sallam) a dit :
+    Les invocations entre l'Adhân et l’Iqâmah ne sont pas rejetées
 
 jumuaReminder:
-    text: |
-        Le Prophète (que la prière d'Allah et son salut soient sur lui) a dit
-        "Celui qui fait les ablutions parfaitement puis se rend au jumu'a puis écoute et se tait,
-        il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
-        et celui qui touche des cailloux a certes fait une futilité"
+  text: |
+    Le Prophète (que la prière d'Allah et son salut soient sur lui) a dit
+    "Celui qui fait les ablutions parfaitement puis se rend au jumu'a puis écoute et se tait,
+    il lui est pardonné ce qu'il y a entre ce moment et le vendredi suivant et trois jours en plus
+    et celui qui touche des cailloux a certes fait une futilité"
 
 selectLanguage: Sélectionner une langue
 language: Langue

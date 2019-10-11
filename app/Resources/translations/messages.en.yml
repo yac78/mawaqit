@@ -51,12 +51,12 @@ mosque:
     SCHOOL: Mawaqit %city% - School
     STORE: Mawaqit %city% - Store
   typeExplanation: |
-    Warning : The "Home" type installation is not intended for mosques, it is limited to private use at home
+    Warning : This type of installation is not intended for mosques, it is limited to private use
     <ul>
       <li>No help in case of problems</li>
       <li>No SEO on the internet</li>
       <li>It will not appear on the mawaqit google map and in mosque search results</li>
-      <li>The word "home" will appear systematically on the mawaqit screen</li>
+      <li>A specific title always appears on the mawaqit screen</li>
     </ul>
   statuses_message:
     NEW: |
@@ -88,6 +88,7 @@ mosque:
     NEW: Waiting for validation
     VALIDATED: Validated
     CHECK: Checking in progress
+    SUSPENDED: Suspended
     DUPLICATED: Duplicated
     SCREEN_PHOTO_ADDED: Checking screen photo
   add_new: Add
@@ -102,7 +103,7 @@ mosque:
   form:
     type:
       label: Type
-      placeholder : Select a type
+      placeholder: Select a type
     name:
       placeholder: "Ex. Essunna mosque, My home"
     slug:
@@ -135,6 +136,7 @@ mosque:
       label: An interior photo of the mosque
     file3:
       label: A photo of the mawaqit screen
+      help: The photo must be taken in the mosque with a wide shot in landscape format
     womenSpace:
       label: Space for women
     janazaPrayer:

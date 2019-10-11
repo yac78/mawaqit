@@ -8,12 +8,12 @@ use AppBundle\Service\GoogleService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,19 +31,16 @@ class MosqueType extends AbstractType
 {
 
     /**
-     *
      * @var AuthorizationChecker
      */
     private $securityChecker;
 
     /**
-     *
      * @var EntityManager
      */
     private $em;
 
     /**
-     *
      * @var GoogleService
      */
     private $googleService;
@@ -258,12 +255,16 @@ class MosqueType extends AbstractType
                 ]
             ])
             ->add('file2', ImageType::class, [
-                'allow_delete'=> $isAdmin,
+                'allow_delete' => $isAdmin,
                 'label' => 'mosque.form.file2.label'
             ])
             ->add('file3', ImageType::class, [
-                'allow_delete'=> $isAdmin,
-                'label' => 'mosque.form.file3.label'
+                'allow_delete' => $isAdmin,
+                'label' => 'mosque.form.file3.label',
+                'attr' => [
+                    'class' => 'form-control',
+                    'help' => 'mosque.form.file3.help',
+                ]
             ])
             ->add('otherInfo', TextareaType::class, [
                 'required' => false,
@@ -285,6 +286,7 @@ class MosqueType extends AbstractType
 
     /**
      * @param FormEvent $event
+     *
      * @throws \AppBundle\Exception\GooglePositionException
      */
     public function onPostSetData(FormEvent $event)
