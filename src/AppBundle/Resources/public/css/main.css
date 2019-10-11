@@ -4,12 +4,12 @@ body {
 }
 
 .main {
-    padding: 60px 10px;
+    padding: 50px 10px;
 }
 
 @media (min-width: 768px) {
     .main {
-        padding: 100px 50px;
+        padding: 80px 40px;
     }
 }
 
