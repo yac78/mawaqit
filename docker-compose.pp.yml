@@ -12,7 +12,6 @@ services:
       - .:/application
       - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
       - ~/.ssh:/root/.ssh
-      # clock
       - /etc/localtime:/etc/localtime:ro
   mawaqit_nginx:
     container_name: mawaqit_nginx
@@ -24,7 +23,6 @@ services:
       - ./docker/nginx/prod.conf:/etc/nginx/conf.d/default.conf
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/data/logs/nginx:/var/log/nginx
-      # clock
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 80:80
@@ -36,7 +34,6 @@ services:
     restart: always
     volumes:
       - /var/www/mawaqit/mysql:/var/lib/mysql
-      # clock
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
