@@ -72,7 +72,7 @@ class MosqueController extends Controller
     public function mosqueAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
     {
 
-        if (!$mosque->isValidated()) {
+        if (!$mosque->isAccessible()) {
             throw new NotFoundHttpException();
         }
 

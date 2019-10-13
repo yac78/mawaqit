@@ -252,7 +252,7 @@ class Mosque
         $this->created = new \DateTime();
         $this->messages = null;
         $this->flashMessage = null;
-        $this->configuration =  clone $this->configuration;
+        $this->configuration = clone $this->configuration;
     }
 
     /**
@@ -776,7 +776,7 @@ class Mosque
      */
     function getTitle()
     {
-        if($this->getType() !== self::TYPE_MOSQUE){
+        if ($this->getType() !== self::TYPE_MOSQUE) {
             return "mosque.title.{$this->getType()}";
         }
 
@@ -785,6 +785,28 @@ class Mosque
             $name .= " - " . $this->getCity();
         }
         return $name;
+    }
+
+    /**
+     * Get type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Mosque
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
     }
 
     /**
@@ -857,28 +879,6 @@ class Mosque
         return self::TYPES;
     }
 
-    /**
-     * Get type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Mosque
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
     public function resetToHome()
     {
         $this->addOnMap = false;
@@ -912,11 +912,6 @@ class Mosque
         return "https://mawaqit.net/ar/" . $this->slug;
     }
 
-    public function isMosque()
-    {
-        return $this->type === self::TYPE_MOSQUE;
-    }
-
     /**
      * @return string
      */
@@ -944,6 +939,11 @@ class Mosque
     public function isSuspended()
     {
         return $this->status === self::STATUS_SUSPENDED;
+    }
+
+    public function isAccessible()
+    {
+        return in_array($this->status, [self::STATUS_VALIDATED, self::STATUS_SCREEN_PHOTO_ADDED]);
     }
 
     public function statusClass()
@@ -1300,6 +1300,11 @@ class Mosque
         }
 
         return $days;
+    }
+
+    public function isMosque()
+    {
+        return $this->type === self::TYPE_MOSQUE;
     }
 
     /**
