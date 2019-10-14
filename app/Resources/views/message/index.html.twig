@@ -78,13 +78,13 @@
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
-                                    <span class="fa fa-{{ message.desktop ? 'check' : 'close' }}"></span>
+                                    <span class="fas fa-{{ message.desktop ? 'check-square' : 'times-circle' }}"></span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="fa fa-{{ message.mobile ? 'check' : 'close' }}"></span>
+                                    <span class="fas fa-{{ message.mobile ? 'check-square' : 'times-circle' }}"></span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="fa fa-{{ message.image ? 'check' : 'close' }}"></span>
+                                    <span class="fas fa-{{ message.image ? 'check-square' : 'times-circle' }}"></span>
                                 </td>
                                 <td>
                                     <div class="btn-action">
@@ -108,9 +108,9 @@
                         <div class="row" style="border-bottom: 1px solid #ccc; padding: 10px 0; ">
                             <div class="col-xs-5">
                                 <div><strong>{{ message.title }}</strong></div>
-                                <div>{{ 'message.form.desktop.label'|trans }} <span class="fa fa-{{ message.desktop ? 'check' : 'close' }}"></span></div>
-                                <div>{{ 'message.form.mobile.label'|trans }} <span class="fa fa-{{ message.mobile ? 'check' : 'close' }}"></span></div>
-                                <div>{{ 'message.form.image.label'|trans }} <span class="fa fa-{{ message.image ? 'check' : 'close' }}"></span></div>
+                                <div>{{ 'message.form.desktop.label'|trans }} <span class="fas fa-{{ message.desktop ? 'check-square' : 'times-circle' }}"></span></div>
+                                <div>{{ 'message.form.mobile.label'|trans }} <span class="fas fa-{{ message.mobile ? 'check-square' : 'times-circle' }}"></span></div>
+                                <div>{{ 'message.form.image.label'|trans }} <span class="fas fa-{{ message.image ? 'check-square' : 'times-circle' }}"></span></div>
                                 <div>
                                     {{ 'message.form.enabled.label'|trans }}
                                     <input type='hidden' value='0' name='status[{{ message.id }}]'>

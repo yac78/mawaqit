@@ -51,7 +51,7 @@ class Mosque
     /**
      * @var string
      */
-    private $type = "mosque";
+    private $type = "MOSQUE";
     /**
      * @var string
      */

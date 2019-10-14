@@ -48,7 +48,7 @@ home:
     contactUsText1: |
       Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel. Contactez nous :
     contactUsText2: |
-      <li><i class="fa fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>
+      <li><i class="fab fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>
         <p style="padding-left:20px">
           France supportTelFR <br>
           Algérie supportTelDZ <br>

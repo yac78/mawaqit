@@ -52,7 +52,7 @@
                     <td>{% if user.apiQuota %} {{ user.apiCallNumber }} / {{ user.apiQuota }} {% endif %}</td>
                     <td>{{ user.apiUseDescription|nl2br }}</td>
                     <td class="text-center">
-                        <span class="fa fa-{{ user.enabled ? 'check' : 'close' }}"></span>
+                        <span class="fa fa-{{ user.enabled ? 'check-square' : 'times-circle' }}"></span>
                     </td>
                     <td>{{ user.created|date('d/m/Y H:i') }}</td>
                     <td>
@@ -88,7 +88,7 @@
                         </div>
                     {% endif %}
                     <div>
-                        <b>{{ 'enabled'|trans }} ? </b><span class="fa fa-{{ user.enabled ? 'check' : 'close' }}"></span>
+                        <b>{{ 'enabled'|trans }} ? </b><span class="fa fa-{{ user.enabled ? 'check-square' : 'times-circle' }}"></span>
                     </div>
                     <div>
                         <b>Date d'inscription :</b> {{ user.created|date('d/m/Y H:i') }}

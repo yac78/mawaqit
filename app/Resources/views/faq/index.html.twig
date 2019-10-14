@@ -36,11 +36,11 @@
                     <td>{{ faq.question }}</td>
                     <td>{{ faq.answer|raw }}</td>
                     <td class="text-center">
-                        <span class="fa fa-{{ faq.enabled ? 'check' : 'close' }}"></span>
+                        <span class="fas fa-{{ faq.enabled ? 'check-square' : 'times-circle' }}"></span>
                     </td>
-                    <td>
+                    <td class="text-right">
                         <div class="btn-action">
-                            <a href="{{ path('faq_edit', {id: faq.id}) }}" class="btn btn-primary" title="{{ 'form.edit.action'|trans }}"><span class="fa fa-pencil"></span></a><br>
+                            <a href="{{ path('faq_edit', {id: faq.id}) }}" class="btn btn-primary" title="{{ 'form.edit.action'|trans }}"><i class="fas fa-edit"></i></a><br>
                         </div>
                         {% include 'partial/delete_button.html.twig' with {entity: faq} %}
                     </td>
@@ -59,7 +59,7 @@
                 <div id="{{ faq.id }}" class="panel-collapse collapse">
                     <div class="panel-body">
                         {{ faq.answer|raw }}
-                        <a href="{{ path('faq_edit', {id: faq.id}) }}" class="btn btn-primary btn-action" title="{{ 'form.edit.action'|trans }}"><span class="fa fa-pencil"></span></a><br>
+                        <a href="{{ path('faq_edit', {id: faq.id}) }}" class="btn btn-primary btn-action" title="{{ 'form.edit.action'|trans }}"><i class="fas fa-edit"></i></a><br>
                         {% include 'partial/delete_button.html.twig' with {entity: faq} %}
                     </div>
                 </div>
