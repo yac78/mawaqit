@@ -26,9 +26,8 @@ apt-get install -y \
 ntp \
 vim \
 git \
-wget
-
-#unclutter \
+wget \
+unclutter
 
 # install docker
 wget https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/containerd.io_1.2.6-3_armhf.deb
@@ -59,7 +58,7 @@ cp raspberry/hwclock-set /lib/udev/hwclock-set
 cp raspberry/Desktop/* /home/pi/Desktop
 
 sudo crontab -e
-0 1 * * * apt -y --only-upgrade install teamviewer-host
+0 1 * * * apt update && apt -y --only-upgrade install teamviewer-host
 
 # install project
 mkdir /home/pi/mawaqit
