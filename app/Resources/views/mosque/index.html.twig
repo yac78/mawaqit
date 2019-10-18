@@ -151,8 +151,9 @@
                         </div>
                     {% endif %}
                     {% if not mosque.isCalendarCompleted %}
-                        <div>
-                            <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
+                        <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                             style="padding: 5px">
+                            <i class="fas fa-exclamation-triangle"></i>  {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                         </div>
                     {% endif %}
                     {% if isNotLocal() and mosque.daysBeforeRemove is not null %}
@@ -242,12 +243,6 @@
                         </select>
                         <div class="mt-1 mb-1"><a class="hidden link" {{ isLocal() ? '' : 'target="_blank"' }}
                                                   href=""></a></div>
-                        {% if mosque.daysBeforeRemove is not null %}
-                            <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }}"
-                                 style="padding: 5px">
-                                <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove}) }}
-                            </div>
-                        {% endif %}
                     {% else %}
                         <p>{{ ('mosque.statuses_message.' ~  mosque.status)|trans }}</p>
                         {% if mosque.justificatory %}
@@ -282,9 +277,16 @@
                         </div>
                     {% endif %}
                 {% endif %}
-                {% if not mosque.isCalendarCompleted %}
-                    <div>
-                        <span class="glyphicon glyphicon-alert"></span> {{ 'configuration.list.calendar_not_completed'|trans|raw }}
+                {% if mosque.isValidated and mosque.daysBeforeRemove is not null %}
+                    <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                         style="padding: 5px">
+                        <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove}) }}
+                    </div>
+                {% endif %}
+                {% if mosque.isValidated and not mosque.isCalendarCompleted %}
+                    <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                         style="padding: 5px">
+                        <i class="fas fa-exclamation-triangle"></i>  {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                     </div>
                 {% endif %}
 

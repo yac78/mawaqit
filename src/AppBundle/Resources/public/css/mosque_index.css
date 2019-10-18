@@ -82,10 +82,6 @@ iframe{
     background-color: #c3b5cc !important;
 }
 
-.calendarIncompleted {
-    background-color: #fff2cf;
-}
-
 .fa-map-marker {
     font-size: 150%;
     cursor: pointer

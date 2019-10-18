@@ -1,10 +1,10 @@
 {% if is_granted('ROLE_ADMIN') or mosque.isValidated %}
     <div class="btn-group">
-        <button type="button" class="btn btn-warning dropdown-toggle dropdown-menu-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="hidden-xs">Actions</span> <i class="fa fa-bars"></i>
             <span class="sr-only">Toggle Dropdown</span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right">
+        <ul class="dropdown-menu dropdown-menu-{{ app.request.locale == 'ar' ? 'left' : 'right' }}">
             <li><a href="{{ path('mosque_edit', {id: mosque.id}) }}"><i class="fas fa-pen-square"></i> {{ 'form.edit.action'|trans }}</a></li>
             <li><a href="{{ path('mosque_configure', {id: mosque.id}) }}"><i class="fas fa-cog"></i> {{ 'form.configure.action'|trans }}</a></li>
             {% if isLocal() %}

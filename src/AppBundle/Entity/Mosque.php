@@ -948,9 +948,6 @@ class Mosque
 
     public function statusClass()
     {
-        if (!$this->isCalendarCompleted()) {
-            return 'calendarIncompleted';
-        }
         return strtolower($this->status);
     }
 
