@@ -150,16 +150,16 @@
                                                                           data-url="{{ url('mosque_widget', {slug: mosque.slug}) }}">{{ 'show'|trans }}</a>
                         </div>
                     {% endif %}
-                    {% if not mosque.isCalendarCompleted %}
-                        <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                    {% if isNotLocal() and mosque.daysBeforeRemove is not null %}
+                        <div class="alert alert-{{ mosque.daysBeforeRemove > 15 ? 'warning' : 'danger' }} mt-1"
                              style="padding: 5px">
-                            <i class="fas fa-exclamation-triangle"></i>  {{ 'configuration.list.calendar_not_completed'|trans|raw }}
+                            <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove})|raw}}
                         </div>
                     {% endif %}
-                    {% if isNotLocal() and mosque.daysBeforeRemove is not null %}
-                        <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                    {% if not mosque.isCalendarCompleted %}
+                        <div class="alert alert-warning mt-1"
                              style="padding: 5px">
-                            <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove}) }}
+                            <i class="fas fa-exclamation-triangle"></i>  {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                         </div>
                     {% endif %}
 
@@ -278,13 +278,13 @@
                     {% endif %}
                 {% endif %}
                 {% if mosque.isValidated and mosque.daysBeforeRemove is not null %}
-                    <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                    <div class="alert alert-{{ mosque.daysBeforeRemove > 15 ? 'warning' : 'danger' }} mt-1"
                          style="padding: 5px">
-                        <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove}) }}
+                        <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove})|raw }}
                     </div>
                 {% endif %}
                 {% if mosque.isValidated and not mosque.isCalendarCompleted %}
-                    <div class="alert alert-{{ mosque.daysBeforeRemove < -10 ? 'warning' : 'danger' }} mt-1"
+                    <div class="alert alert-warning mt-1"
                          style="padding: 5px">
                         <i class="fas fa-exclamation-triangle"></i>  {{ 'configuration.list.calendar_not_completed'|trans|raw }}
                     </div>

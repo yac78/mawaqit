@@ -485,7 +485,7 @@ mosqueList:
   iframeAddTitle: Add the widget to your website
   widgetForYourSite: Widget for your website
   alertRemoveMosque: |
-    D%days% before the removal of your mosque for the following reason: Missing the mawaqit screen photo taken in the mosque
+    You have <b>%days%</b> days left to provide the photo of the mawaqit screen taken in the mosque, after this time the mosque will be automatically deleted.
   csvFileExemple: Here is an example of csv files of all months for Paris UOIF prayer times
   qrcodeTitle: To post in a place accessible to the faithful
 

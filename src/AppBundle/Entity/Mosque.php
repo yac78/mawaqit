@@ -1290,11 +1290,7 @@ class Mosque
         $deadline = clone $this->getCreated();
         $deadline->modify("+60 days");
         $interval = $deadline->diff(new \DateTime());
-        $days = (int)$interval->format('%R%a');
-
-        if ($days > 0) {
-            return 0;
-        }
+        $days = (int)$interval->format('%a');
 
         return $days;
     }
