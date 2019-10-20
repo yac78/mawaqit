@@ -77,7 +77,6 @@ class ConfigurationType extends AbstractType
             ->add('jumuaTime', null, [
                 'constraints' => new Regex(['pattern' => $timePattern]),
                 'attr' => [
-                    'help' => $this->translator->trans('configuration.form.jumuaTime.title'),
                     'placeholder' => 'hh:mm'
                 ]
             ])
@@ -91,7 +90,7 @@ class ConfigurationType extends AbstractType
             ->add('jumuaAsDuhr', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('noJumua', CheckboxType::class, [
+            ->add('jumua', CheckboxType::class, [
                 'required' => false,
             ])
             ->add('jumuaDhikrReminderEnabled', CheckboxType::class, [

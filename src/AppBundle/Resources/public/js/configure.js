@@ -203,11 +203,11 @@ $("#configuration_jumuaAsDuhr").bind("change", function (event) {
 /**
  * No jumua checkbox handling
  */
-$("#configuration_noJumua").bind("change", function (event) {
+$("#configuration_jumua").bind("change", function (event) {
     if ($(this).is(":checked")) {
-        $(".jumua-bloc").hide();
-    } else {
         $(".jumua-bloc").show();
+    } else {
+        $(".jumua-bloc").hide();
     }
 });
 
@@ -252,7 +252,7 @@ $("." + $("#configuration_sourceCalcul").val()).removeClass("hidden");
 
 $("#configuration_prayerMethod").trigger("change");
 $("#configuration_jumuaAsDuhr").trigger("change");
-$("#configuration_noJumua").trigger("change");
+$("#configuration_jumua").trigger("change");
 $("#configuration_randomHadithEnabled").trigger("change");
 $(".jumuaTimeoutHandler input").trigger("change");
 

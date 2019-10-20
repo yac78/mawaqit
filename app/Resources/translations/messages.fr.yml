@@ -521,14 +521,13 @@ configuration:
       OneSeventh: 1/7 ème de la nuit
     jumuaTime:
       label: Heure du jumu`a
-      title: Si cette valeur est renseignée, elle sera affichée sur l'écran sinon par défaut 13:00 en hiver et 14:00 en été
     jumuaTime2:
       label: 2ème Jumu'à
       title: "Si votre mosquée fait une deuxième jumu`a saisissez une valeur"
     jumuaAsDuhr:
       label: L'heure du jumu'a pareil que Dhuhr
-    noJumua:
-      label: Pas de jumu`a dans cette mosquée
+    jumua:
+      label: Jumu`a
     jumuaDhikrReminderEnabled:
       label: Afficher un rappel pendant jumu`a
       title: Si cette case est cochée un hadith du prophête "`Alayhi essalam" sera affiché pendant toute la durée du jumu`a, ce hadith rappelle aux fidèles le bon comportement à adopter pendant le prêche

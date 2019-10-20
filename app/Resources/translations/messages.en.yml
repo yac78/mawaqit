@@ -291,8 +291,8 @@ configuration:
       title: "If your mosque dos a second jumu`a please fill this field"
     jumuaAsDuhr:
       label: The time of jumu'a like Dhuhr
-    noJumua:
-      label: No jumu`a in this mosque
+    jumua:
+      label: Jumu`a
     jumuaDhikrReminderEnabled:
       label: Show a reminder during jumu`a
       title: If this box is checked a hadith of the prophet \"`Alayhi essalam\" will be displayed throughout the duration of the jumu`a, this hadith reminds the faithful the good behavior to adopt during the preaching

@@ -147,7 +147,7 @@
 
     <div class="extra-prayers">
         <div class="joumouaa">
-            {% if not mosque.configuration.noJumua %}
+            {% if mosque.configuration.jumua %}
                 <div class="name">{{ 'jumua'|trans }}</div>
                 <div class="time joumouaa-id"></div>
                 {% if mosque.configuration.jumuaTime2 is not null %}
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="col-xs-6">
-                        <div><span class="fa fa-{{ not mosque.configuration.noJumua ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'jumuaPrayer'|trans }}</div>
+                        <div><span class="fa fa-{{ mosque.configuration.jumua ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'jumuaPrayer'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.janazaPrayer ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.janazaPrayer.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.aidPrayer ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.aidPrayer.label'|trans }}</div>
                         <div><span class="fa fa-{{ mosque.ramadanMeal ? 'check-circle text-success' :  'times-circle text-danger' }}"></span> {{ 'mosque.form.ramadanMeal.label'|trans }}</div>

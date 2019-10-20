@@ -17,7 +17,7 @@ AppBundle\Entity\Configuration:
             nullable: true
         jumuaAsDuhr:
             type: boolean             
-        noJumua:
+        jumua:
             type: boolean             
         jumuaDhikrReminderEnabled:
             type: boolean             

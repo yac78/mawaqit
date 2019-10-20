@@ -46,7 +46,7 @@ class Configuration
      * @var boolean
      * @Groups({"screen"})
      */
-    private $noJumua = false;
+    private $jumua = true;
 
     /**
      * @var boolean
@@ -1010,14 +1010,14 @@ class Configuration
         $this->backgroundColor = $backgroundColor;
     }
 
-    function isNoJumua()
+    function hasJumua()
     {
-        return $this->noJumua;
+        return $this->jumua;
     }
 
-    function setNoJumua($noJumua)
+    function setJumua($jumua)
     {
-        $this->noJumua = $noJumua;
+        $this->jumua = $jumua;
     }
 
     function isJumuaDhikrReminderEnabled()

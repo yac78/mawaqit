@@ -29,7 +29,7 @@ class ConfigurationValidator extends ConstraintValidator
         }
 
         // validate jumua
-        if (!$value->isNoJumua() && empty($value->getJumuaTime())) {
+        if ($value->hasJumua() && empty($value->getJumuaTime())) {
             $this->context->buildViolation($constraint->m3)->addViolation();
         }
 

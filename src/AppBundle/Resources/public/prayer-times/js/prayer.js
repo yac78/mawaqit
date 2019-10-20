@@ -517,7 +517,7 @@ var prayer = {
          * init cron
          */
         init: function () {
-            if (prayer.confData.noJumua === false) {
+            if (prayer.confData.jumua) {
                 setInterval(function () {
                     var date = new Date();
                     if (date.getDay() === 5) {
@@ -772,7 +772,7 @@ var prayer = {
      */
     isJumua: function (currentPrayerIndex) {
         var date = new Date();
-        return prayer.confData.noJumua === false && date.getDay() === 5 && currentPrayerIndex === 1;
+        return prayer.confData.jumua && date.getDay() === 5 && currentPrayerIndex === 1;
     },
     /**
      * check if jumua moment
@@ -781,7 +781,7 @@ var prayer = {
     isJumuaMoment: function () {
         var date = new Date();
 
-        if (prayer.confData.noJumua) {
+        if (!prayer.confData.jumua) {
             return false;
         }
 

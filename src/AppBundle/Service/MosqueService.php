@@ -30,8 +30,12 @@ class MosqueService
      */
     private $mailService;
 
-    public function __construct(EntityManagerInterface $em, SerializerInterface $serializer, AbstractHandler $vichUploadHandler, MailService $mailService)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        SerializerInterface $serializer,
+        AbstractHandler $vichUploadHandler,
+        MailService $mailService
+    ) {
         $this->em = $em;
         $this->serializer = $serializer;
         $this->vichUploadHandler = $vichUploadHandler;
@@ -70,45 +74,50 @@ class MosqueService
      * @param $query
      * @param $lat
      * @param $lon
+     *
      * @return mixed
      * @throws \Doctrine\DBAL\DBALException
      */
     public function searchApi($query, $lat, $lon)
     {
-        if (empty($query) && empty($lat) && empty($lon)) {
+        if (empty($query) && (empty($lat) || empty($lon))) {
             return [];
         }
 
-        $q = "SELECT id, name, phone, email, site, 
-                      CONCAT(COALESCE(address, ''), ' ', zipcode,' ', city, ' ', country_full_name) as localisation,  
-                      longitude , latitude, 
-                      if(image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', image1)) as image,  
-                      CONCAT('https://mawaqit.net/fr/', slug) as url,                         
-                      women_space AS womenSpace, 
-                      janaza_prayer AS janazaPrayer, 
-                      aid_prayer AS aidPrayer, 
-                      children_courses AS childrenCourses, 
-                      adult_courses AS adultCourses, 
-                      ramadan_meal AS ramadanMeal, 
-                      handicap_accessibility AS handicapAccessibility, 
-                      ablutions, 
-                      parking";
+        $q = "SELECT m.id, m.name, m.phone, m.email, m.site, 
+                      CONCAT(COALESCE(m.address, ''), ' ', m.zipcode,' ', m.city, ' ', m.country_full_name) as localisation,  
+                      m.longitude , m.latitude, 
+                      if(m.image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', m.image1)) as image,  
+                      CONCAT('https://mawaqit.net/fr/', m.slug) as url,
+                      IF(c.jumua, c.jumua_time, null) as jumua,                         
+                      IF(c.jumua, c.jumua_time2, null) as jumua2,                         
+                      m.women_space AS womenSpace, 
+                      m.janaza_prayer AS janazaPrayer, 
+                      m.aid_prayer AS aidPrayer, 
+                      m.children_courses AS childrenCourses, 
+                      m.adult_courses AS adultCourses, 
+                      m.ramadan_meal AS ramadanMeal, 
+                      m.handicap_accessibility AS handicapAccessibility, 
+                      m.ablutions, 
+                      m.parking";
 
-        if ($lon !== null && $lat !== null) {
-            $q .= ",ROUND(get_distance_metres($lat, $lon, latitude, longitude) ,0) AS proximity
-                            FROM mosque 
-                            WHERE status = 'VALIDATED' AND type = 'mosque' 
-                            HAVING proximity < 10000 ORDER BY proximity ASC  LIMIT 10";
-        } else if ($query) {
+        if (!empty($lon) && !empty($lat)) {
+            $q .= " ,ROUND(get_distance_metres(:lat, :lon, m.latitude, m.longitude) ,0) AS proximity
+                            FROM mosque m  
+                            INNER JOIN configuration c on m.configuration_id = c.id 
+                            WHERE m.status = 'VALIDATED' AND m.type = 'mosque' 
+                            HAVING proximity < 10000 ORDER BY proximity ASC LIMIT 10";
+        } elseif ($query) {
             $query = preg_split("/\s+/", trim($query));
-            $q .= " FROM mosque WHERE status = 'VALIDATED' AND type = 'mosque'";
+            $q .= " FROM mosque m";
+            $q .= " INNER JOIN configuration c on m.configuration_id = c.id";
+            $q .= " WHERE m.status = 'VALIDATED' AND m.type = 'mosque'";
             foreach ($query as $key => $keyword) {
-                $q .= " AND (name LIKE :keyword$key 
-                OR association_name LIKE :keyword$key 
-                OR address LIKE :keyword$key 
-                OR city LIKE :keyword$key 
-                OR zipcode LIKE :keyword$key 
-                OR country LIKE :keyword$key)";
+                $q .= " AND (m.name LIKE :keyword$key 
+                OR m.association_name LIKE :keyword$key 
+                OR m.address LIKE :keyword$key 
+                OR m.city LIKE :keyword$key 
+                OR m.zipcode LIKE :keyword$key)";
             }
         }
 
@@ -117,9 +126,11 @@ class MosqueService
         if ($lon !== null && $lat !== null) {
             $stmt->bindValue(":lat", $lat);
             $stmt->bindValue(":lon", $lon);
-        } else if ($query) {
-            foreach ($query as $key => $keyword) {
-                $stmt->bindValue(":keyword$key", "%$keyword%");
+        } else {
+            if ($query) {
+                foreach ($query as $key => $keyword) {
+                    $stmt->bindValue(":keyword$key", "%$keyword%");
+                }
             }
         }
 
@@ -129,10 +140,13 @@ class MosqueService
 
     /**
      * @param Mosque $mosque
+     *
      * @throws @see MailService
      */
-    public function validate(Mosque $mosque)
-    {
+    public
+    function validate(
+        Mosque $mosque
+    ) {
         $mosque->setStatus(Mosque::STATUS_VALIDATED);
         $this->vichUploadHandler->remove($mosque, 'justificatoryFile');
         $mosque->setJustificatoryFile(null);
@@ -143,10 +157,13 @@ class MosqueService
 
     /**
      * @param Mosque $mosque
+     *
      * @throws @see MailService
      */
-    public function check(Mosque $mosque)
-    {
+    public
+    function check(
+        Mosque $mosque
+    ) {
         $mosque->setStatus(Mosque::STATUS_CHECK);
         $this->em->persist($mosque);
         $this->em->flush();
@@ -155,10 +172,13 @@ class MosqueService
 
     /**
      * @param Mosque $mosque
+     *
      * @throws @see MailService
      */
-    public function duplicated(Mosque $mosque)
-    {
+    public
+    function duplicated(
+        Mosque $mosque
+    ) {
         $mosque->setStatus(Mosque::STATUS_DUPLICATED);
         $this->em->persist($mosque);
         $this->em->flush();
