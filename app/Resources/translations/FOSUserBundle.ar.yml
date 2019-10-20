@@ -1,0 +1,28 @@
+registration:
+  email:
+    message: |
+      <div style="direction: rtl">
+      السلام عليكم %username%!
+
+      لتفعيل حسابك يرجى إتباع الرابط التالي <a href="%confirmationUrl%">%confirmationUrl%</a>
+
+      الرابط يمكن إستخدامه مرة واحدة فقط لتفعيل حسابك
+
+      شكرا،
+      فريق مواقيت.
+      </div>
+
+resetting:
+  email:
+    message: |
+      <div style="direction: rtl">
+      السلام عليكم %username%!
+
+      لإعادة ضبط كلمة المرور يرجى إتباع الرابط التالي <a href="%confirmationUrl%">%confirmationUrl%</a>
+
+      شكرا،
+      فريق مواقيت.
+      </div>
+
+layout:
+  forgot_password: نسيت كلمة المرور ؟

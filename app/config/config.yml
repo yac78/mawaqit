@@ -103,6 +103,8 @@ swiftmailer:
         path: '%mailer_spool_dir%'
 
 fos_user:
+  service:
+    mailer: fos_user.mailer.twig_swift
   db_driver: orm
   firewall_name: main
   user_class: AppBundle\Entity\User

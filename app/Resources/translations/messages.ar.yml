@@ -228,7 +228,7 @@ registration:
     tou:
       label: أوافق وأرضى <a href="#" id="terms-of-use">بشروط الاستخدام</a>
   registration: التسجيل
-  password_rule: أقلها 8 أحرف منها حرف صغير،حرف كبير ورقم
+  password_rule: أقلها 8 أحرف منها حرف صغير ، حرف كبير ورقم
   please_enter_right_email: يرجى إدخال عنوان بريد إلكتروني تزوره بانتظام
 
 mosque:
@@ -559,12 +559,6 @@ configuration:
 
 security:
   login:
-    info:
-      title: ثلاثة مراحل لإضافة وإدخال بيانات مسجدك
-      step1: التسجيل
-      step2: أضف وأتمم بيانات مسجدك
-      step3: الرجاء وضع الرابط المتولد تلقائيا في متصفح أنترنيت , راس بيري,حاسوب, جهاز أندرويد
-
     authenticate_you: عرف بنفسك
 
 admin_title: مواقيت - الإدارة
@@ -683,9 +677,6 @@ salam: %name%' السلام عليكم
 user: المستخدم
 active: مفعل؟
 delete_element_question: هل تريد فعلا القيام بعملية الحذف؟
-forgot_password: نسيت كلمة المرور؟
-resetting_password: تحديث كلمة المرور
-changing_password: تغيير كلمة المرور
 add: إضافة
 title: العنوان
 content: المحتوى

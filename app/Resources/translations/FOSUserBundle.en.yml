@@ -3,8 +3,8 @@ registration:
         message: |
             Essalamu alaykum %username%!
 
-            To finish activating your account - please visit %confirmationUrl%
-            
+            To finish activating your account - please visit <a href="%confirmationUrl%">%confirmationUrl%</a>
+
             This link can only be used once to validate your account.
 
             Regards,
@@ -12,15 +12,13 @@ registration:
 
 resetting:
     email:
-        subject: 'Reset Password'
         message: |
             Essalamu alaykum %username%!
 
-            To reset your password - please visit %confirmationUrl%
+            To reset your password - please visit <a href="%confirmationUrl%">%confirmationUrl%</a>
 
             Regards,
             Mawaqit.net Team.
 
-# Global strings
 layout:
     forgot_password: 'Forgot your password ?'

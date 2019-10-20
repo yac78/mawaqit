@@ -423,14 +423,6 @@ configuration:
         (display of waiting times between adhan and iqama, display of iqama signal,
         display of post prayer invocations ...)
 
-security:
-  login:
-    info:
-      title: 3 steps to create your Mawaqit screen
-      step1: Sign up
-      step2: Add and configure your mosque
-      step3: Put the generated link on your browser (Raspberry, Computer, Android box...)
-
 admin_title: Mawaqit - administration
 site_title: Mawaqit
 full_screen: Full screen

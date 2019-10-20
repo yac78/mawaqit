@@ -659,14 +659,6 @@ configuration:
         ( affichage des temps d'attente entre adhan et iqama, affichage du signal iqama,
         affichage des invocations post prière ...)
 
-security:
-  login:
-    info:
-      title: 3 étapes pour créer votre écran Mawaqit
-      step1: Inscrivez-vous
-      step2: Ajoutez et configurez votre mosquée
-      step3: Mettez le lien généré dans un navigateur internet (Raspberry, Ordinateur, Box android...)
-
 admin_title: Mawaqit - administration
 site_title: Mawaqit
 full_screen: Plen écran
@@ -785,7 +777,6 @@ user: Utilisateur
 active: Activé
 actions: Actions
 delete_element_question: Êtes-vous sûr de vouloir valider la suppression ?
-forgot_password: Mot de passe oublié ?
 add: Ajouter
 title: Titre
 content: Contenu
