@@ -51,25 +51,37 @@ class UserService
 
         $body = $this->twig->render("email_templates/communication.html.twig", ['content' => $data["content"]]);
 
-        $mosques = $this->em->createQueryBuilder()
+        $result = $this->em->createQueryBuilder()
             ->from("AppBundle:Mosque", "m")
-            ->select("m")
-            ->where("m.type = :type")
-            ->setParameter(":type", Mosque::TYPE_MOSQUE)
+            ->innerJoin("m.user", "u")
+            ->select("u.email")
+            ->distinct()
             ->getQuery()
-            ->getResult();
+            ->getScalarResult();
+
+        $emails = array_column($result, "email");
 
         $message = $this->mailer->createMessage();
-
         $message->setSubject($subject)
+            ->setTo($this->emailFrom[0])
             ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
             ->setBody($body, 'text/html');
 
-        /**
-         * @var $mosque Mosque
-         */
-        foreach ($mosques as $mosque) {
-            $message->setTo($mosque->getUser()->getEmail());
+        $tmp = [];
+        $i = 0;
+        foreach ($emails as $email) {
+            $i++;
+            $tmp[] = $email;
+            if ($i === 100) {
+                $message->setBcc($tmp);
+                $this->mailer->send($message);
+                $i = 0;
+                $tmp = [];
+            }
+        }
+
+        if (!empty($tmp)) {
+            $message->setBcc($tmp);
             $this->mailer->send($message);
         }
     }
