@@ -9,7 +9,7 @@ i=0
 while ! wget -q --spider --timeout=2 $url; do
   sleep 1
   ((i+=1))
-  if (( $i == 5 )); then
+  if (( $i == 10 )); then
     url=http://mawaqit.local/mosquee
     break;
   fi 
