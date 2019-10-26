@@ -6,10 +6,10 @@ if [ -f ~/Desktop/online_site.txt ]; then
 fi
 
 i=0
-while ! wget -q --spider --timeout=2 $url; do
-  sleep 1
+while ! wget -q --spider --timeout=1 $url; do
+  sleep 2
   ((i+=1))
-  if (( $i == 10 )); then
+  if (( $i == 5 )); then
     url=http://mawaqit.local/mosquee
     break;
   fi 
