@@ -946,6 +946,11 @@ class Mosque
         return in_array($this->status, [self::STATUS_VALIDATED, self::STATUS_SCREEN_PHOTO_ADDED]);
     }
 
+    public function hasScreenPhotoAdded()
+    {
+        return $this->status === self::STATUS_SCREEN_PHOTO_ADDED;
+    }
+
     public function statusClass()
     {
         return strtolower($this->status);

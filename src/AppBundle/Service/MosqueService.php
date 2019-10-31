@@ -143,10 +143,8 @@ class MosqueService
      *
      * @throws @see MailService
      */
-    public
-    function validate(
-        Mosque $mosque
-    ) {
+    public function validate(Mosque $mosque)
+    {
         $mosque->setStatus(Mosque::STATUS_VALIDATED);
         $this->vichUploadHandler->remove($mosque, 'justificatoryFile');
         $mosque->setJustificatoryFile(null);
@@ -160,12 +158,9 @@ class MosqueService
      *
      * @throws @see MailService
      */
-    public
-    function check(
-        Mosque $mosque
-    ) {
+    public function check(Mosque $mosque)
+    {
         $mosque->setStatus(Mosque::STATUS_CHECK);
-        $this->em->persist($mosque);
         $this->em->flush();
         $this->mailService->checkMosque($mosque);
     }
@@ -175,14 +170,24 @@ class MosqueService
      *
      * @throws @see MailService
      */
-    public
-    function duplicated(
-        Mosque $mosque
-    ) {
+    public function duplicated(Mosque $mosque)
+    {
         $mosque->setStatus(Mosque::STATUS_DUPLICATED);
-        $this->em->persist($mosque);
         $this->em->flush();
         $this->mailService->duplicatedMosque($mosque);
+    }
+
+    /**
+     * @param Mosque $mosque
+     *
+     * @throws @see MailService
+     */
+    public function rejectScreenPhoto(Mosque $mosque)
+    {
+        $mosque->setStatus(Mosque::STATUS_VALIDATED);
+        $mosque->setImage3(null);
+        $this->em->flush();
+        $this->mailService->rejectScreenPhoto($mosque);
     }
 
 }

@@ -21,12 +21,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
@@ -50,8 +50,7 @@ class MosqueController extends Controller
         $user = $this->getUser();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
         $nbByStatus = [];
-        if($user->isAdmin())
-        {
+        if ($user->isAdmin()) {
             $nbByStatus = $mosqueRepository->getNumberByStatus();
         }
 
@@ -79,6 +78,7 @@ class MosqueController extends Controller
      * @Route("/ajax-search", name="mosque_search_calendar")
      * @Method("GET")
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function searchCalendarAction(Request $request, EntityManagerInterface $em)
@@ -122,8 +122,10 @@ class MosqueController extends Controller
                 try {
                     $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
                     $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
-                    $serializer = new Serializer([new DateTimeNormalizer(), new ArrayDenormalizer(), $normalizer], [new JsonEncoder()]);
-                    $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json', ['object_to_populate' => $mosque]);
+                    $serializer = new Serializer([new DateTimeNormalizer(), new ArrayDenormalizer(), $normalizer],
+                        [new JsonEncoder()]);
+                    $serializer->deserialize($res->getBody()->getContents(), Mosque::class, 'json',
+                        ['object_to_populate' => $mosque]);
                     $mosque->setSynchronized(true);
                 } catch (ConnectException $e) {
                     $this->addFlash("danger", "mosqueScreen.noInternetConnection");
@@ -303,7 +305,8 @@ class MosqueController extends Controller
         $zipFilePath = $this->get("app.prayer_times")->getFilesFromCalendar($mosque);
         if (is_file($zipFilePath)) {
             $zipFileName = $mosque->getSlug() . ".zip";
-            $response = new BinaryFileResponse($zipFilePath, 200, ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
+            $response = new BinaryFileResponse($zipFilePath, 200,
+                ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
             $response->deleteFileAfterSend(true);
             return $response;
         }
@@ -341,6 +344,7 @@ class MosqueController extends Controller
     /**
      * @Route("/mosque/validate/{id}", name="mosque_validate")
      * @param Mosque $mosque
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function validateMosqueAction(Mosque $mosque)
@@ -353,8 +357,9 @@ class MosqueController extends Controller
     /**
      * @Route("/mosque/suspend/{id}", name="mosque_suspend")
      * @Method({"GET", "POST"})
-     * @param Mosque $mosque
+     * @param Mosque  $mosque
      * @param Request $request
+     *
      * @return Response
      */
     public function suspendMosqueAction(Mosque $mosque, Request $request, MailService $mailService)
@@ -387,27 +392,57 @@ class MosqueController extends Controller
     /**
      * @Route("/mosque/check/{id}", name="mosque_check")
      * @param Mosque $mosque
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws @see  MailService->checkMosque
      */
     public function checkMosqueAction(Mosque $mosque)
     {
         $this->get('app.mosque_service')->check($mosque);
-        $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
+        $this->addFlash('success',
+            'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
     }
 
     /**
      * @Route("/mosque/duplicated/{id}", name="mosque_duplicated")
      * @param Mosque $mosque
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws @see  MailService->duplicatedMosque
      */
     public function duplicatedMosqueAction(Mosque $mosque)
     {
         $this->get('app.mosque_service')->duplicated($mosque);
-        $this->addFlash('success', 'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
+        $this->addFlash('success',
+            'Le mail de vérification pour la mosquée ' . $mosque->getName() . ' a bien été envoyé');
         return $this->redirectToRoute("mosque_index");
     }
 
+    /**
+     * @Route("/mosque/reject-photo/{id}", name="mosque_reject_screen_photo")
+     * @param Mosque $mosque
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws @see  MailService->rejectScreenPhoto
+     */
+    public function rejectScreenPhotoAction(Mosque $mosque)
+    {
+        $this->get('app.mosque_service')->rejectScreenPhoto($mosque);
+        $this->addFlash('success',
+            'La photo de l\'écran pour la mosquée ' . $mosque->getName() . ' a bien été supprimée');
+        return $this->redirectToRoute("mosque_index");
+    }
+
+    /**
+     * @Route("/mosque/accept-photo/{id}", name="mosque_accept_screen_photo")
+     * @param Mosque $mosque
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function acceptScreenPhotoAction(Mosque $mosque, EntityManagerInterface $em)
+    {
+        $mosque->setStatus(Mosque::STATUS_VALIDATED);
+        $em->flush();
+        return $this->redirectToRoute("mosque_index");
+    }
 }

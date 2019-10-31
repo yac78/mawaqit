@@ -21,6 +21,12 @@
             {% if isNotLocal() and is_granted('ROLE_ADMIN') %}
                 <li class="check"><a href="{{ path('mosque_check', {id: mosque.id}) }}"><i class="fas fa-exclamation-circle"></i> {{ 'form.check.action'|trans }}</a></li>
                 <li class="duplicated"><a href="{{ path('mosque_duplicated', {id: mosque.id}) }}"><i class="fas fa-check-double"></i> {{ 'form.duplicated.action'|trans }}</a></li>
+                {% if mosque.screenPhotoAdded %}
+                    <li class="screen_photo_added"><a href="{{ path('mosque_reject_screen_photo', {id: mosque.id}) }}"><i class="fas fa-ban"></i> {{ 'form.photo_reject.action'|trans }}</a></li>
+                {% endif %}
+                {% if mosque.screenPhotoAdded %}
+                    <li class="screen_photo_added"><a href="{{ path('mosque_accept_screen_photo', {id: mosque.id}) }}"><i class="fas fa-check"></i> {{ 'form.photo_accept.action'|trans }}</a></li>
+                {% endif %}
                 <li class="suspended"><a href="{{ path('mosque_suspend', {id: mosque.id}) }}"><i class="fas fa-pause"></i> {{ 'form.suspend.action'|trans }}</a></li>
                 {% if not mosque.isValidated %}
                     <li class="alert-success"><a href="{{ path('mosque_validate', {id: mosque.id}) }}"><i class="fas fa-check-circle"></i> {{ 'form.validate.action'|trans }}</a></li>

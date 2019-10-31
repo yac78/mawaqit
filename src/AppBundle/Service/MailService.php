@@ -32,8 +32,13 @@ class MailService
      */
     private $postmasterEmail;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, $contactEmail, $doNotReplyEmail, $postmasterEmail)
-    {
+    public function __construct(
+        \Swift_Mailer $mailer,
+        \Twig_Environment $twig,
+        $contactEmail,
+        $doNotReplyEmail,
+        $postmasterEmail
+    ) {
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->contactEmail = $contactEmail; // contact@mawaqit.net
@@ -43,7 +48,9 @@ class MailService
 
     /**
      * Send email when mosque created
+     *
      * @param Mosque $mosque
+     *
      * @throws @see sendEmail
      */
     function mosqueCreated(Mosque $mosque)
@@ -53,56 +60,12 @@ class MailService
     }
 
     /**
-     * Send email when mosque has been validated by admin
-     * @param Mosque $mosque
-     * @throws @see sendEmail
-     */
-    function mosqueValidated(Mosque $mosque)
-    {
-        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | a été validée / has been validated";
-        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->doNotReplyEmail, 'validated');
-    }
-
-
-    /**
-     * Send email when mosque has been suspended by admin
-     * @param Mosque $mosque
-     * @throws @see sendEmail
-     */
-    function mosqueSuspended(Mosque $mosque)
-    {
-        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | a été suspendue / has been suspended";
-        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'suspended');
-    }
-
-    /**
-     * Send email to user to check information of the mosque
-     * @param Mosque $mosque
-     * @throws @see sendEmail
-     */
-    function checkMosque(Mosque $mosque)
-    {
-        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | Nous avons besoin d'informations / We need informations";
-        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'check');
-    }
-
-    /**
-     * Send email to user to check information of the mosque when duplicated
-     * @param Mosque $mosque
-     * @throws @see sendEmail
-     */
-    function duplicatedMosque(Mosque $mosque)
-    {
-        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | est en double sur Mawaqit / is duplicated on Mawaqit";
-        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'duplicated');
-    }
-
-    /**
      * @param $title
      * @param $mosque
      * @param $to
      * @param $from
      * @param $status
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -116,6 +79,71 @@ class MailService
             ->setTo($to)
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
+    }
+
+    /**
+     * Send email when mosque has been validated by admin
+     *
+     * @param Mosque $mosque
+     *
+     * @throws @see sendEmail
+     */
+    function mosqueValidated(Mosque $mosque)
+    {
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | a été validée / has been validated";
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->doNotReplyEmail, 'validated');
+    }
+
+    /**
+     * Send email when mosque has been suspended by admin
+     *
+     * @param Mosque $mosque
+     *
+     * @throws @see sendEmail
+     */
+    function mosqueSuspended(Mosque $mosque)
+    {
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | a été suspendue / has been suspended";
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'suspended');
+    }
+
+    /**
+     * Send email to user to check information of the mosque
+     *
+     * @param Mosque $mosque
+     *
+     * @throws @see sendEmail
+     */
+    function checkMosque(Mosque $mosque)
+    {
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | Nous avons besoin d'informations / We need informations";
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'check');
+    }
+
+    /**
+     * Send email to user to check information of the mosque when duplicated
+     *
+     * @param Mosque $mosque
+     *
+     * @throws @see sendEmail
+     */
+    function duplicatedMosque(Mosque $mosque)
+    {
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | est en double sur Mawaqit / is duplicated on Mawaqit";
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'duplicated');
+    }
+
+    /**
+     * Send email to user to inform him that his photo is deleted
+     *
+     * @param Mosque $mosque
+     *
+     * @throws @see sendEmail
+     */
+    function rejectScreenPhoto(Mosque $mosque)
+    {
+        $title = $mosque->getTitle() . " (ID " . $mosque->getId() . ") | Screen photo";
+        $this->sendEmail($mosque, $title, $mosque->getUser()->getEmail(), $this->postmasterEmail, 'screen_photo_rejected');
     }
 
 }

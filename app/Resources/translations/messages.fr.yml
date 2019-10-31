@@ -248,6 +248,10 @@ form:
     action: Vérifier
   duplicated:
     action: En double
+  photo_reject:
+    action: Rejeter la photo
+  photo_accept:
+    action: Accepter la photo
   suspend:
     action: Suspendre
   configure:
