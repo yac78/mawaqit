@@ -30,10 +30,9 @@ home:
     feature3: Affichage de rappels et invocations
     feature4: Affichage d'annonces en texte ou images
     feature5: Affichage de hadiths
-    feature6: Une version adaptée aux mobiles et tablettes
+    feature6: Une application mobile sur iOs et Android
     feature7: Pilotez l'écran depuis votre smartphone
     feature8: Entièrement configurable
-    feedback: Avis de nos utilisateurs
     equipedMosques: Quelques mosquées équipées
     equipeYourMosque: équipez votre mosquée
     faq: FAQ
@@ -96,10 +95,6 @@ home:
     feature5: |
       Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
       prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes
-    feature6: |
-      Afin de faciliter aux fidèles la consultation des horaires de prière de leur mosquées,
-      nous créons un site internet adatapté aux mobiles et tablettes pour chaque installation.
-      Exemples: <a target="_blank" href="%url%">%url%</a>
     feature8_1: |
       Nous avons essayé de pousser la configuration du logiciel au maximum. Voici quelques exemples de
       fonctionnalités
@@ -128,14 +123,9 @@ home:
     equipeYourMosque1: "Pour participer à ce projet et ainsi équiper votre mosquée c'est très simple :"
     equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire
     equipeYourMosque3: |
-      <li>Un écran plat, idéalement 80 cm ou plus.</li>
-      <li>Un kit Raspberry PI 3, prix 60€ environ
-          <a target="_blank"
-             href="https://www.amazon.fr/UCreate-Raspberry-Pi-Desktop-Starter/dp/B07BNQ2TWW/ref=sr_1_10?s=computers&ie=UTF8&qid=1529182406&sr=1-10&keywords=un%2Braspberry%2Bpi%2B3">
-             chez amazon
-          </a>
-      </li>
-      <li>Un support mural pour la TV entre 10 et 15€</li>
+      <li>Un kit Raspberry PI 3 ou 4 que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
+      <li>Un écran plat, idéalement 80 cm ou plus</li>
+      <li>Un support mural pour la TV</li>
       <li>Un cable HDMI + Une multiprise</li>
       <li>Si vous ne disposez pas d'une connexion internet
           <a target="_blank"
@@ -143,7 +133,6 @@ home:
              une horloge RTC
           </a>
       </li>
-    equipeYourMosque4: "Coût global du matériel : 220€ environ"
     equipeYourMosque5: Qu'Allah accepte vos œuvres et les notres
     findMosque: Cherchez une mosquée mawaqit par nom, ville, code postal...
     install1:  "Veuillez suivre les étapes ci-dessous :"
