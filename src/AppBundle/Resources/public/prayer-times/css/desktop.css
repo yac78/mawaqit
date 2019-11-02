@@ -124,7 +124,7 @@ body {
 }
 
 small {
-    font-size: 3vh;
+    font-size: 4vh !important;
     padding-left: 8px;
 }
 

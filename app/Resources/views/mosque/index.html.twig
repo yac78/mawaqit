@@ -205,8 +205,6 @@
     {% for mosque in mosques %}
         <div class="row {{ mosque.statusClass }}" style="padding: 10px 0; border-bottom: solid #ccc 1px">
             <div class="col-xs-12" style="position: relative">
-                <i class="fa fas fa-map-marker-alt mobile" data-gps="{{ mosque.latitude ~ "," ~ mosque.longitude }}"></i>
-
                 <div class="row">
                     <div class="col-xs-10">
                         <h4><strong>{{ mosque.name }}</strong>
@@ -219,7 +217,7 @@
                 </div>
 
                 <div>{{ mosque.associationName }}</div>
-                <div>{{ mosque.address }}</div>
+                <div><i class="fa fas fa-map-marker-alt mobile" data-gps="{{ mosque.latitude ~ "," ~ mosque.longitude }}"></i> {{ mosque.address }}</div>
                 <div>{{ mosque.city }} {{ mosque.zipcode }}</div>
                 <div>{{ mosque.countryFullName }} </div>
                 {% if mosque.phone %}

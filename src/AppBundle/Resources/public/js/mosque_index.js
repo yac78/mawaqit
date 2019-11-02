@@ -31,7 +31,7 @@ $("#country").change(function (e) {
 });
 
 
-$('.fa-map-marker').click(function (e) {
+$('.fa-map-marker-alt').click(function (e) {
     var $url = "https://maps.google.com/maps?daddr=";
     var $platform = navigator.platform;
 
