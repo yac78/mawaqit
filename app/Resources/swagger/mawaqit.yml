@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: |
-      Our API needs authentication by token, please feel free to contact us by email to obtain your access token.<br>
+      Our API  need authentication by token, please feel free to contact us by email to obtain your access token.<br> 
       <strong>NB: We authorise our API only for non commercial use.</strong>
   version: 1.0.0
   title: Mawaqit
@@ -72,11 +72,11 @@ paths:
           type: string
           required: false          
           description: if this parameter is present, the full year calendar of prayer times is returned
-        - in: header
-          name: If-Modified-Since
+        - in: query
+          name: updatedAt
           type: string
           required: false          
-          description: if this parameter is present, that means the call is for checking updates, if no upadates then no body will returned and the http status will be 304
+          description: if this parameter is present, the api will check updates, if no upadates then no body will returned and the http status will be 304
       responses:
         200:
           description: The result
