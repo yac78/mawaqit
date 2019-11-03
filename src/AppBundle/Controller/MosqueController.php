@@ -117,7 +117,7 @@ class MosqueController extends Controller
      */
     public function mosqueMobileAction(EntityManagerInterface $em, Request $request, Mosque $mosque)
     {
-        if (!$mosque->isValidated()) {
+        if (!$mosque->isAccessible()) {
             throw new NotFoundHttpException();
         }
 
