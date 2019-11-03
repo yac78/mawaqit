@@ -8,11 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 
 
 class UuidTokenAuthenticator implements SimplePreAuthenticatorInterface, AuthenticationFailureHandlerInterface
@@ -49,12 +50,14 @@ class UuidTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
     {
         $apiAccessToken = $token->getCredentials();
 
-        $user = $userProvider->loadUserByUsername($apiAccessToken);
+        try {
+            $user = $userProvider->loadUserByUsername($apiAccessToken);
+        } catch (UsernameNotFoundException $e) {
+            throw new AccessDeniedHttpException(sprintf('No user found for token "%s".', $apiAccessToken));
+        }
 
         if (!$user instanceof UserInterface) {
-            throw new AccessDeniedHttpException(
-                sprintf('No user found for token "%s".', $apiAccessToken)
-            );
+            throw new AccessDeniedHttpException(sprintf('No user found for token "%s".', $apiAccessToken));
         }
 
         if (!$user->isEnabled()) {
@@ -71,16 +74,17 @@ class UuidTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
         );
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
-    {
-        throw $exception;
-    }
-
     private function checkQuota(User $user)
     {
         if ($user->getApiCallNumber() >= $user->getApiQuota()) {
-            throw new AccessDeniedHttpException(sprintf('You have reached your quota %s of %s allowed', $user->getApiCallNumber(), $user->getApiQuota()));
+            throw new AccessDeniedHttpException(sprintf('You have reached your quota %s of %s allowed',
+                $user->getApiCallNumber(), $user->getApiQuota()));
         }
+    }
+
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    {
+        throw $exception;
     }
 
 }
