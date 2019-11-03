@@ -760,7 +760,7 @@ jumua: 'Jumu`a'
 jumuaPrayer: 'Salat al-Jumu`a'
 aid: 'Salât al-Aïd'
 imsak: Imsak
-iqama: Al-Iqâmah
+iqama: Iqama
 azan: Al-Adhân
 
 power-off-phones: Éteignez vos portables SVP !
@@ -873,7 +873,7 @@ usefulInfos: Informations utiles
 terms_of_use:
   title: Conditions générales d'utilisation
 
-iqama_in: Al-Iqâmah dans
+iqama_in: Al-Iqama dans
 
 change_statuses: Activation/Désactivation multiple
 homeTitle: Mawaqit %city% - Domicile

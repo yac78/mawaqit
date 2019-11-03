@@ -526,7 +526,7 @@ jumua: 'Jumu`a'
 jumuaPrayer: 'Salât al-Jumu`a'
 aid: 'Salât al-Aïd'
 imsak: Imsak
-iqama: Al-Iqâmah
+iqama: Iqama
 azan: Al-Adhân
 
 power-off-phones: Please turn off your mobile phones !
@@ -633,7 +633,7 @@ VALIDATED: Validated
 status: Status
 usefulInfos: Useful information
 
-iqama_in: Al-Iqamah in
+iqama_in: Al-Iqama in
 
 change_statuses: Bulk Enable/Disable
 homeTitle: Mawaqit %city% - Home

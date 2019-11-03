@@ -657,7 +657,7 @@ var prayer = {
         $(".prayers > div").eq(prayerIndex).addClass("prayer-hilighted");
     },
     /**
-     * 10 minute after current iqama we hilight the next prayer time
+     * at iqama we hilight the next prayer time
      * @param {int} currentTimeIndex
      */
     setNextTimeHilight: function (currentTimeIndex) {
@@ -667,7 +667,7 @@ var prayer = {
             nextTimeIndex = 0;
         }
 
-        let prayerWaiting = prayer.getWaitingByIndex(currentTimeIndex) + 5;
+        let prayerWaiting = prayer.getWaitingByIndex(currentTimeIndex) ;
 
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
