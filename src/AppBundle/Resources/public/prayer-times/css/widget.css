@@ -2,6 +2,7 @@ body {
     color: #FFFFFF;
     overflow: hidden;
     background-size: cover;
+    height: 100vh;
 }
 
 .widget {
