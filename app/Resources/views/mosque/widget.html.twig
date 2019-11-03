@@ -25,8 +25,13 @@
         {% if mosque.conf.backgroundType == 'color' %}
             background-color: {{ mosque.conf.backgroundColor }};
         {% endif %}
+
         {% if mosque.conf.backgroundType == 'motif' %}
-            background-image: url('/bundles/app/prayer-times/img/background-{{ mosque.conf.backgroundMotif }}.jpg');
+            {% if mosque.conf.backgroundMotif == '0' and mosque.image1 %}
+                background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.4)), url('{{ vich_uploader_asset(mosque, 'file1') }}');
+            {% else %}
+                background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.4)), url('/bundles/app/prayer-times/img/background-{{ mosque.conf.backgroundMotif }}.jpg');
+            {% endif %}
         {% endif %}
         }
     </style>
