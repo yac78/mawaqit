@@ -667,7 +667,7 @@ var prayer = {
             nextTimeIndex = 0;
         }
 
-        let prayerWaiting = prayer.getWaitingByIndex(currentTimeIndex) ;
+        let prayerWaiting = prayer.getWaitingByIndex(currentTimeIndex) + 5;
 
         setTimeout(function () {
             prayer.hilightByIndex(nextTimeIndex);
