@@ -9,8 +9,8 @@ use Vich\UploaderBundle\Event\Event;
 class VichImageHandling
 {
 
-    const IMAGE_WIDTH = 1280;
-    const IMAGE_HEIGHT = 840;
+    const IMAGE_WIDTH = 1920;
+    const IMAGE_HEIGHT = 1080;
 
     public function resizeImage(Event $event)
     {

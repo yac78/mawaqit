@@ -20,6 +20,11 @@ class ImageType extends AbstractType {
             'attr' =>  ['class' => 'form-control'],
             'constraints' => new Image([
                 "allowPortrait" => false,
+                "allowSquare" => false,
+                "minRatio" => 1.3,
+                "maxRatio" => 2,
+                "minHeight" => 720,
+                "minWidth" => 1280,
                 "maxSize" => "10M"
             ])
         ]);

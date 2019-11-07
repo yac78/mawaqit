@@ -84,7 +84,7 @@ home:
       STRICTEMENT INTERDITE, veuillez respecter notre choix.
     howItWorks1: |
       Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
-      ordinateur, le Raspberry Pi 3 ou par n'importe quel autre appareil pouvant lancer un navigateur
+      ordinateur, le Raspberry Pi ou par n'importe quel autre appareil pouvant lancer un navigateur
       internet,
       tel que : ordinateur, Apple TV, Android TV...
       En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
@@ -123,7 +123,11 @@ home:
     equipeYourMosque1: "Pour participer à ce projet et ainsi équiper votre mosquée c'est très simple :"
     equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire
     equipeYourMosque3: |
-      <li>Un kit Raspberry PI 3 ou 4 que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
+      <li>Un kit
+        <a target="_blank" href="https://www.amazon.fr/ABOX-Raspberry-Derni%C3%A8re-Alimentation-Interrupteur/dp/B07DC37YSS/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kit+raspberry+pi">Raspberry PI 3</a>
+        ou
+        <a target="_blank" href="https://www.amazon.fr/LABISTS-Alimentation-Interrupteur-Ventilateur-Dissipateur/dp/B07YTRRBV6/ref=sr_1_11?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kit+raspberry+pi+4">4</a>
+        que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
       <li>Un écran plat, idéalement 80 cm ou plus</li>
       <li>Un support mural pour la TV</li>
       <li>Un cable HDMI + Une multiprise</li>
