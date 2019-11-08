@@ -8,23 +8,34 @@
         {% include "partial/favicon.html.twig" %}
 
         {% stylesheets
-        "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
-        "bundles/app/css/fonts.css"
-        "bundles/app/prayer-times/css/main.css"
-        "bundles/app/prayer-times/css/desktop.css"
-        "bundles/app/prayer-times/css/slider.css"
-        "bundles/app/weather/weather-icons.min.css"
-        filter="cssrewrite" %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        <link href="{{ asset('bundles/app/prayer-times/css/themes/' ~ mosque.conf.theme ~ '.css') }}" type="text/css" rel="stylesheet"/>
+            "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
+            "bundles/app/css/fonts.css"
+            "bundles/app/prayer-times/css/main.css"
+            "bundles/app/prayer-times/css/desktop.css"
+            "bundles/app/prayer-times/css/slider.css"
+            "bundles/app/weather/weather-icons.min.css"
+            filter="cssrewrite" %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+            <link href="{{ asset('bundles/app/prayer-times/css/themes/' ~ mosque.conf.theme ~ '.css') }}" type="text/css" rel="stylesheet"/>
+        {% endstylesheets %}
+
         {% if app.request.locale == 'ar' %}
             {% stylesheets
                 "bundles/app/bootstrap-3.3.7/css/bootstrap-rtl.min.css"
-                filter="cssrewrite" %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+                filter="cssrewrite"
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
             {% endstylesheets %}
         {% endif %}
-        {% endstylesheets %}
+
+        {% if isLocal() and not mosque.synchronized %}
+            {% stylesheets
+                "bundles/app/keyboard/keyboard.css"
+                filter="cssrewrite"
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+            {% endstylesheets %}
+        {% endif %}
 
         <style>
             body {
@@ -324,22 +335,31 @@
         </script>
 
         {% javascripts
-    '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
-    '@AppBundle/Resources/public/jquery/js/jquery-qrcode-0.14.0.min.js'
-    '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
-    '@AppBundle/Resources/public/js/tools.js'
-    '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
-    '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
-    '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
-    '@AppBundle/Resources/public/prayer-times/js/date.js'
-    '@AppBundle/Resources/public/prayer-times/js/prayer.js'
-    '@AppBundle/Resources/public/prayer-times/js/sliders.js'
-    '@AppBundle/Resources/public/prayer-times/js/randomHadith.js'
-    '@AppBundle/Resources/public/prayer-times/js/weather.js'
-    '@AppBundle/Resources/public/prayer-times/js/main.js'
-    '@AppBundle/Resources/public/prayer-times/js/common.js'
-    '@AppBundle/Resources/public/prayer-times/js/fullscreen.js' %}
-        <script src="{{ asset_url }}"></script>
+            '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
+            '@AppBundle/Resources/public/jquery/js/jquery-qrcode-0.14.0.min.js'
+            '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
+            '@AppBundle/Resources/public/js/tools.js'
+            '@AppBundle/Resources/public/prayer-times/js/vendor/jquery.countdown.min.js'
+            '@AppBundle/Resources/public/prayer-times/js/vendor/hijriDate.js'
+            '@AppBundle/Resources/public/prayer-times/js/vendor/PrayTimes.js'
+            '@AppBundle/Resources/public/prayer-times/js/date.js'
+            '@AppBundle/Resources/public/prayer-times/js/prayer.js'
+            '@AppBundle/Resources/public/prayer-times/js/sliders.js'
+            '@AppBundle/Resources/public/prayer-times/js/randomHadith.js'
+            '@AppBundle/Resources/public/prayer-times/js/weather.js'
+            '@AppBundle/Resources/public/prayer-times/js/main.js'
+            '@AppBundle/Resources/public/prayer-times/js/common.js'
+            '@AppBundle/Resources/public/prayer-times/js/fullscreen.js'
+        %}
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
+        {% if isLocal() and not mosque.synchronized %}
+            {% javascripts
+                '@AppBundle/Resources/public/keyboard/keyboard.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endif %}
     </body>
 </html>

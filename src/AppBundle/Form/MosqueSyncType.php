@@ -17,7 +17,8 @@ class MosqueSyncType extends AbstractType
                 'required' => false,
                 'label' => "mosqueScreen.fillId",
                 'attr' => [
-                    'style' => "width: 200px"
+                    'style' => "width: 200px",
+                    'class' => 'keyboardInput'
                 ]
             ]);
 
