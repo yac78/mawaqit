@@ -71,21 +71,22 @@
                 </div>
                 <div id="prayerCalcul" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label class="control-label">{{ 'configuration.form.copyFromOtherMosque'|trans }}</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="predefined-calendar"
-                                       placeholder="{{ 'searchMosque'|trans }}"
-                                       data-remote="{{ path('mosque_search_calendar') }}"
-                                       data-copy-path="{{ path('copy_conf', {'currentMosque': mosque.id, 'selectedMosque': '-id-'}) }}"
-                                >
+                        {% if isNotLocal() %}
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">{{ 'configuration.form.copyFromOtherMosque'|trans }}</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="predefined-calendar"
+                                           placeholder="{{ 'searchMosque'|trans }}"
+                                           data-remote="{{ path('mosque_search_calendar') }}"
+                                           data-copy-path="{{ path('copy_conf', {'currentMosque': mosque.id, 'selectedMosque': '-id-'}) }}"
+                                    >
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
+
                         <div class="row">
-
-
                             <div class="col-md-4">
                                 {{ form_row(form.sourceCalcul) }}
                             </div>
