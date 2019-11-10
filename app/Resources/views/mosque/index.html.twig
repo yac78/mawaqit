@@ -52,10 +52,12 @@
 <div class="row">
     <div class="col-md-8">
         {% for item in nbByStatus  if item.status != 'VALIDATED' %}
-            <a href="{{ path('mosque_index', {'status': item.status}) }}"><span
-                        class="badge {{ item.status|lower }} mt-1 mb-1"
-                        style="color: #000000">{{ ('mosque.statuses.' ~ item.status)|trans }}  <i class="badge"
-                                                                                                  style="background-color: #484848">{{ item.nb }}</i></span></a>
+            <a href="{{ path('mosque_index', {'status': item.status}) }}">
+                <span class="badge {{ item.status|lower }} mt-1 mb-1" style="color: #000000">
+                    {{ ('mosque.statuses.' ~ item.status)|trans }}
+                    <i class="badge" style="background-color: #484848">{{ item.nb }}</i>
+                </span>
+            </a>
         {% endfor %}
     </div>
     <div class="col-md-4">
@@ -69,11 +71,8 @@
     <table class="table table-inverse">
         <thead>
         <tr class="warning">
-            {% if isNotLocal() %}
-                <th>{{ 'ID' }}</th>
-            {% endif %}
-            <th width="10%">{{ 'name'|trans }}</th>
-            <th>{{ 'association'|trans }}</th>
+            {% if isNotLocal() %}<th>{{ 'ID' }}</th>{% endif %}
+            <th width="20%">{{ 'name'|trans }}</th>
             <th width="15%">{{ 'contact'|trans }}</th>
             <th width="30%">{{ 'prayer_sites'|trans }}</th>
             {% if isNotLocal() %}
@@ -111,11 +110,13 @@
                            title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
                     </div>
                 {% endif %}
-                <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img
-                            src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}"
-                            width="120px" class="mt-1"/></a>
+                <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
+                    <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="120px" class="mt-1"/>
+                </a>
+                <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank">
+                    <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" width="120px" class="mt-1"/>
+                </a>
             </td>
-            <td>{{ mosque.associationName }}</td>
             <td style="position: relative">
                 <div><i class="fas fa-map-marker-alt"
                         data-gps="{{ mosque.latitude ~ "," ~ mosque.longitude }}"></i> {{ mosque.address }}
