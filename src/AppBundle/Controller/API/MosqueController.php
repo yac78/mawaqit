@@ -47,7 +47,7 @@ class MosqueController extends Controller
      */
     public function dataAction(Mosque $mosque)
     {
-        if (!$mosque->isMosque()) {
+        if (!$mosque->isValidated()) {
             throw new NotFoundHttpException();
         }
 
