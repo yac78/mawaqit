@@ -80,8 +80,8 @@ body {
     padding: 0 10px;
 }
 
-.ampm {
-    font-size: 4vh !important;
+small {
+    font-size: 4vh;
     margin-left: 5px;
 }
 

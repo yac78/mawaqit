@@ -151,7 +151,7 @@ var dateTime = {
         if (seconds) {
             strTime += ':' + seconds;
         }
-        strTime += '<span class="ampm">' + ampm + '</span>';
+        strTime += '<small>' + ampm + '</small>';
         return strTime;
     }
 };
