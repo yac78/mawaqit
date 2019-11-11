@@ -81,7 +81,7 @@ body {
 }
 
 .ampm {
-    font-size:  4vh;
+    font-size: 4vh !important;
     margin-left: 5px;
 }
 
