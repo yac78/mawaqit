@@ -363,7 +363,7 @@ var prayer = {
         countdown: function (currentPrayerIndex) {
             var time = prayer.getTimeByIndex(currentPrayerIndex);
             var currentElem = $(".wait").eq(currentPrayerIndex);
-            var waitingText = currentElem.text();
+            var waitingCentent = currentElem.html();
             var prayerTimeDate = prayer.getCurrentDateForPrayerTime(time);
             var prayerTimePlusWaiting = prayerTimeDate.setMinutes(prayerTimeDate.getMinutes() + prayer.getWaitingByIndex(currentPrayerIndex));
             var countdown;
@@ -378,7 +378,7 @@ var prayer = {
                     $(this).text(countdown);
                 }
             }).on('finish.countdown', function () {
-                $(currentElem).text(waitingText);
+                $(currentElem).html(waitingCentent);
             });
         }
     },
