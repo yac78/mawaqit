@@ -147,11 +147,11 @@ var dateTime = {
         var ampm = hours >= 12 ? 'pm' : 'am';
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
-        var strTime = addZero(hours) + ':' + minutes;
+        var strTime = hours + ':' + minutes;
         if (seconds) {
             strTime += ':' + seconds;
         }
-        strTime += '<small>' + ampm + '</small>';
+        strTime += '<span class="ampm">' + ampm + '</span>';
         return strTime;
     }
 };
