@@ -163,7 +163,6 @@ class MosqueController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $mosque->setUser($this->getUser());
-            $mosque->setCountryFullName($this->get('app.tools_service')->getCountryNameByCode($mosque->getCountry()));
             $hijriAdjutment = $em->getRepository('AppBundle:Parameters')->findOneBy(['key' => 'hijri_adjustment']);
             $mosque->getConfiguration()->setHijriAdjustment((int)$hijriAdjutment->getValue());
             $em->persist($mosque);

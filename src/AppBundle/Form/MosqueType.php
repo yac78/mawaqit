@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Mosque;
 use AppBundle\Entity\User;
 use AppBundle\Service\GoogleService;
+use AppBundle\Service\ToolsService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -294,6 +295,7 @@ class MosqueType extends AbstractType
         $oldMosque = null;
         /** @var Mosque $mosque */
         $mosque = $event->getData();
+        $mosque->setCountryFullName(ToolsService::getCountryNameByCode($mosque->getCountry()));
 
         if ($mosque->getId()) {
             $oldMosque = $this->em->getUnitOfWork()->getOriginalEntityData($mosque);
