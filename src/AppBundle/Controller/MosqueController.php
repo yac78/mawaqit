@@ -17,7 +17,6 @@ class MosqueController extends Controller
 {
 
     /**
-     * @deprecated
      * @Route("/mosque/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|tr"})
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
      * @param Mosque $mosque
@@ -25,11 +24,10 @@ class MosqueController extends Controller
      */
     public function mosqueDeprected1Action(Mosque $mosque)
     {
-        return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
+        return $this->redirectToRoute("mosque", ["slug" => $mosque->getSlug()], Response::HTTP_MOVED_PERMANENTLY);
     }
 
     /**
-     * @deprecated
      * @Route("/{slug}/{_locale}", options={"i18n"="false"}, requirements={"_locale"= "en|fr|ar|tr"})
      * @param Mosque $mosque
      * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
@@ -37,7 +35,7 @@ class MosqueController extends Controller
      */
     public function mosqueDeprected2Action(Mosque $mosque)
     {
-        return $this->forward("AppBundle:Mosque:mosque", ["slug" => $mosque->getSlug()]);
+        return $this->redirectToRoute("mosque", ["slug" => $mosque->getSlug()], Response::HTTP_MOVED_PERMANENTLY);
     }
 
     /**
