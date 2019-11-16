@@ -53,6 +53,7 @@ security:
         - { path: /admin/tools, role: ROLE_ADMIN }
         - { path: /admin/stats, role: ROLE_ADMIN }
         - { path: /admin/faq, role: ROLE_ADMIN }
+        - { path: /admin/test, role: ROLE_ADMIN }
         - { path: /admin/mosque/clone, role: ROLE_ADMIN }
         - { path: /admin/mosque/check, role: ROLE_ADMIN }
         - { path: /admin/mosque/validate, role: ROLE_ADMIN }

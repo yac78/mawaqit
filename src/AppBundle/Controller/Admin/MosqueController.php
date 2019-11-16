@@ -237,7 +237,6 @@ class MosqueController extends Controller
     }
 
     /**
-     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/clone/{id}", name="mosque_clone")
      */
     public function cloneAction(Mosque $mosque, EntityManagerInterface $em)
@@ -386,7 +385,6 @@ class MosqueController extends Controller
         ]);
 
     }
-
 
     /**
      * @Route("/mosque/check/{id}", name="mosque_check")
