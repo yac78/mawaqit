@@ -49,6 +49,7 @@ mosque:
   title:
     HOME: Mawaqit %city% - Home
     SCHOOL: Mawaqit %city% - School
+    ASSOCIATION: Mawaqit %city% - Association
     STORE: Mawaqit %city% - Store
   typeExplanation: |
     Warning : This type of installation is not intended for mosques, it is limited to private use
@@ -84,6 +85,7 @@ mosque:
     HOME: Home
     SCHOOL: School
     STORE: Store
+    ASSOCIATION: Association
   statuses:
     NEW: Waiting for validation
     VALIDATED: Validated
@@ -92,7 +94,7 @@ mosque:
     DUPLICATED: Duplicated
     SCREEN_PHOTO_ADDED: Checking screen photo
   add_new: Add
-  add: Adding a new mosque
+  add: Adding a new mawaqit
   name: Name
   refresh: |
     Reload the screen page remotely.

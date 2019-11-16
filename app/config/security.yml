@@ -57,6 +57,9 @@ security:
         - { path: /admin/mosque/check, role: ROLE_ADMIN }
         - { path: /admin/mosque/validate, role: ROLE_ADMIN }
         - { path: /admin/mosque/suspend, role: ROLE_ADMIN }
+        - { path: /admin/mosque/duplicated, role: ROLE_ADMIN }
+        - { path: /admin/mosque/reject-photo, role: ROLE_ADMIN }
+        - { path: /admin/mosque/accept-photo, role: ROLE_ADMIN }
         # ROLE_USER for all rest of /admin routes
         - { path: /admin, role: ROLE_USER }
         - { path: /api, role: ROLE_USER }

@@ -71,22 +71,18 @@ home:
       (à faire tous les jours), ou d’un réglage automatique avec donc des horaires parfois inexacts
       et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
       De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
-    project2: |
       Avec l’aide d’Allah le Tout Puissant, nous nous sommes donc lancés dans le développement d’un
       logiciel pour améliorer et simplifier l’affichage des horaires de prière. <br>
-      Après plusieurs mois de travail et de tests effectués dans différentes mosquées, nous sommes
-      parvenus, grâce à Allah, à sortir une version stable et précise.
-      <br><br>
       Notre solution est un WAQF fi sabili Allah et donc gratuite. Le code est open source, il est
       accessible sur github à l'adresse  suivante
       <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a><br>
       <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST
-      STRICTEMENT INTERDITE, veuillez respecter notre choix.
+      STRICTEMENT INTERDITE, VEUILLEZ RESPECTER NOTRE CHOIX.
     howItWorks1: |
       Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
       ordinateur, le Raspberry Pi ou par n'importe quel autre appareil pouvant lancer un navigateur
       internet,
-      tel que : ordinateur, Apple TV, Android TV...
+      tel que : Ordinateur, Apple TV, Android TV...
       En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
       code javascript.
     feature2: Lorsqu’il est l'heure du adhan ou de la iqama, l'écran se met à clignoter.
@@ -273,6 +269,7 @@ mosque:
   title:
     HOME: Mawaqit %city% - Domicile
     SCHOOL: Mawaqit %city% - École
+    ASSOCIATION: Mawaqit %city% - Association
     STORE: Mawaqit %city% - Magasin
   typeExplanation:  |
     Attention: ce type d'installation n'est pas destiné aux mosquées, il est limité à un usage privé
@@ -288,6 +285,7 @@ mosque:
     HOME: Domicile
     SCHOOL: École
     STORE: Magasin
+    ASSOCIATION: Association
   statuses_message:
     NEW: |
       Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
@@ -316,7 +314,7 @@ mosque:
     DUPLICATED: Doublon
     SCREEN_PHOTO_ADDED: Vérification photo d'écran
   add_new: Ajouter une mosquée
-  add: Ajouter une installation
+  add: Ajouter un nouveau mawaqit
   name: Nom
   refresh: |
     Recharger la page de l'écran à distance.

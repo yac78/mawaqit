@@ -110,6 +110,7 @@ class MosqueType extends AbstractType
                 "mosque.types.MOSQUE",
                 "mosque.types.HOME",
                 "mosque.types.SCHOOL",
+                "mosque.types.ASSOCIATION",
                 "mosque.types.STORE",
             ], Mosque::TYPES)
         ];

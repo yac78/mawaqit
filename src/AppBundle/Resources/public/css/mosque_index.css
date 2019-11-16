@@ -92,3 +92,7 @@ iframe{
     right: 15px;
     top: unset;
 }
+
+.fa-association:before {
+    content: "\f0c0";
+}

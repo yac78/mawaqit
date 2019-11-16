@@ -41,6 +41,7 @@ class MosqueSearchType extends AbstractType
                     "mosque.types.MOSQUE" => Mosque::TYPE_MOSQUE,
                     "mosque.types.HOME" => Mosque::TYPE_HOME,
                     "mosque.types.SCHOOL" => Mosque::TYPE_SCHOOL,
+                    "mosque.types.ASSOCIATION" => Mosque::TYPE_ASSOCIATION,
                     "mosque.types.STORE" => Mosque::TYPE_STORE,
                 ]
             ])

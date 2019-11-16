@@ -22,10 +22,12 @@ class Mosque
     const TYPE_HOME = "HOME";
     const TYPE_SCHOOL = "SCHOOL";
     const TYPE_STORE = "STORE";
+    const TYPE_ASSOCIATION = "ASSOCIATION ";
     const TYPES = [
         self::TYPE_MOSQUE,
         self::TYPE_HOME,
         self::TYPE_SCHOOL,
+        self::TYPE_ASSOCIATION,
         self::TYPE_STORE,
     ];
     const STATUSES = [
