@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/admin/test", options={"i18n"="false"})
+ * @Route("/backoffice/admin/test", options={"i18n"="false"})
  */
 class TestController extends Controller
 {

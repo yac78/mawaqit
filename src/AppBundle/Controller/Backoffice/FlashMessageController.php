@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\FlashMessage;
 use AppBundle\Entity\Mosque;
@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * @Route("/admin")
+ * @Route("/backoffice")
  */
 class FlashMessageController extends Controller
 {

@@ -105,8 +105,9 @@ class UserService
                 $message->setTo($mosque->getUser()->getEmail());
                 $this->mailer->send($message);
             }
+
             if ($mosque->getEmailScreenPhotoReminder() > 3) {
-                $this->em->remove($mosque);
+                $mosque->suspend(Mosque::SUSPENSION_REASON_MISSING_PHOTO);
             }
         }
 

@@ -45,22 +45,11 @@ security:
 
     access_control:
         # IS_AUTHENTICATED_ANONYMOUSLY
-        - { path: /admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        # ROLE_ADMIN
-        - { path: /admin/user, role: ROLE_ADMIN }
-        - { path: /admin/tools, role: ROLE_ADMIN }
-        - { path: /admin/stats, role: ROLE_ADMIN }
-        - { path: /admin/faq, role: ROLE_ADMIN }
-        - { path: /admin/test, role: ROLE_ADMIN }
-        - { path: /admin/mosque/clone, role: ROLE_ADMIN }
-        - { path: /admin/mosque/check, role: ROLE_ADMIN }
-        - { path: /admin/mosque/validate, role: ROLE_ADMIN }
-        - { path: /admin/mosque/suspend, role: ROLE_ADMIN }
-        - { path: /admin/mosque/duplicated, role: ROLE_ADMIN }
-        - { path: /admin/mosque/reject-photo, role: ROLE_ADMIN }
-        - { path: /admin/mosque/accept-photo, role: ROLE_ADMIN }
-        # ROLE_USER for all rest of /admin routes
-        - { path: /admin, role: ROLE_USER }
+        - { path: /backoffice/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /backoffice/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /backoffice/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: /backoffice/admin, role: ROLE_ADMIN }
+
+        - { path: /backoffice, role: ROLE_USER }
         - { path: /api, role: ROLE_USER }

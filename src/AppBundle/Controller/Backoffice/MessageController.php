@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
@@ -17,7 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
- * @Route("/admin")
+ * @Route("/backoffice")
  */
 class MessageController extends Controller
 {

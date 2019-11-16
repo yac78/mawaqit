@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\Faq;
 use AppBundle\Form\FaqType;
@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
- * @Route("/admin/faq")
+ * @Route("/backoffice/admin/faq")
  */
 class FaqController extends Controller
 {

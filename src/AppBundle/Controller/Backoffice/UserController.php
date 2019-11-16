@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\EmailType;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("/admin/user")
+ * @Route("/backoffice/admin/user")
  */
 class UserController extends Controller
 {

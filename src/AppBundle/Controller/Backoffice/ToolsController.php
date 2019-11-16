@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\HijriAdjustmentType;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/admin/tools")
+ * @Route("/backoffice/admin/tools")
  */
 class ToolsController extends Controller
 {

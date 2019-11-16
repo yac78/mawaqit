@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Form\TermsOfUseType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/admin/cgu")
+ * @Route("/backoffice/cgu")
  */
 class TermsOfUseController extends Controller
 {

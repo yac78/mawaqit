@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Backoffice;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/admin/stats")
+ * @Route("/backoffice/admin/stats")
  */
 class StatsController extends Controller
 {

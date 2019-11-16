@@ -39,6 +39,12 @@ class Mosque
         self::STATUS_SCREEN_PHOTO_ADDED
     ];
 
+    const SUSPENSION_REASON_MOSQUE_CLOSED = "mosque_closed";
+    const SUSPENSION_REASON_MOSQUE_PRAYER_TIMES_INCORRECT = "prayer_times_not_correct";
+    const SUSPENSION_REASON_MISSING_PHOTO = "missing_photo";
+    const SUSPENSION_REASON_MOSQUE_NOT_EXIST = "non_existing_mosque";
+    const SUSPENSION_REASON_OTHER = "other";
+
     const STARTDATE_CHECKING_PHOTO = "2019-09-28";
     /**
      * @Groups({"search"})
