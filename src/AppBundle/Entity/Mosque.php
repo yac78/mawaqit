@@ -260,6 +260,8 @@ class Mosque
         $this->created = new \DateTime();
         $this->messages = null;
         $this->flashMessage = null;
+        $this->emailScreenPhotoReminder = null;
+        $this->reason = null;
         $this->configuration = clone $this->configuration;
     }
 
