@@ -270,7 +270,6 @@ class MosqueController extends Controller
 
         return $this->render('mosque/configure.html.twig', [
             'months' => Calendar::MONTHS,
-            'predefinedCalendars' => $this->get("app.mosque_service")->getCalendarList(),
             'mosque' => $mosque,
             'form' => $form->createView()
         ]);

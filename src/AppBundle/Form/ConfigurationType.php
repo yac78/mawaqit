@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -406,18 +405,19 @@ class ConfigurationType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary',
                 ]
-            ]);
+            ])
 
-        $builder->get('waitingTimes')
-            ->addModelTransformer(new PrayerTransformer(IntegerType::class));
-        $builder->get('adjustedTimes')
-            ->addModelTransformer(new PrayerTransformer(IntegerType::class));
-        $builder->get('fixedTimes')
-            ->addModelTransformer(new PrayerTransformer(TimeType::class));
-        $builder->get('fixedIqama')
-            ->addModelTransformer(new PrayerTransformer(TimeType::class));
-        $builder->get('duaAfterPrayerShowTimes')
-            ->addModelTransformer(new PrayerTransformer(IntegerType::class));
+            /*->addEventListener(FormEvents::SUBMIT, array($this, 'onPostSetData'))*/
+        ;
+
+        /*$builder->get('calendar')->addModelTransformer(new JsonTransformer());
+        $builder->get('iqamaCalendar')->addModelTransformer(new JsonTransformer());*/
+
+        $builder->get('waitingTimes')->addModelTransformer(new PrayerTransformer());
+        $builder->get('adjustedTimes')->addModelTransformer(new PrayerTransformer());
+        $builder->get('fixedTimes')->addModelTransformer(new PrayerTransformer());
+        $builder->get('fixedIqama')->addModelTransformer(new PrayerTransformer());
+        $builder->get('duaAfterPrayerShowTimes')->addModelTransformer(new PrayerTransformer());
     }
 
     /**
