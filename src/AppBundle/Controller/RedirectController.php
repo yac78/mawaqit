@@ -46,4 +46,13 @@ class RedirectController extends Controller
     {
         return $this->redirectToRoute("mosque_index", [], Response::HTTP_MOVED_PERMANENTLY);
     }
+
+    /**
+     * @Route("/admin/login")
+     * @return Response
+     */
+    public function loginredirectAction()
+    {
+        return $this->redirectToRoute("fos_user_security_login", [], Response::HTTP_MOVED_PERMANENTLY);
+    }
 }

@@ -43,16 +43,16 @@ class MosqueService
     }
 
     /**
-     * @param $query
+     * @param $word
      * @param $lat
      * @param $lon
      *
      * @return mixed
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function searchApi($query, $lat, $lon)
+    public function searchApi($word, $lat, $lon)
     {
-        if (empty($query) && (empty($lat) || empty($lon))) {
+        if (strlen($word) < 3 && (empty($lat) || empty($lon))) {
             return [];
         }
 
@@ -79,12 +79,13 @@ class MosqueService
                             INNER JOIN configuration c on m.configuration_id = c.id 
                             WHERE m.status = 'VALIDATED' AND m.type = 'mosque' 
                             HAVING proximity < 10000 ORDER BY proximity ASC LIMIT 10";
-        } elseif ($query) {
-            $query = preg_split("/\s+/", trim($query));
+
+        } elseif ($word) {
+            $word = preg_split("/\s+/", trim($word));
             $q .= " FROM mosque m";
             $q .= " INNER JOIN configuration c on m.configuration_id = c.id";
             $q .= " WHERE m.status = 'VALIDATED' AND m.type = 'mosque'";
-            foreach ($query as $key => $keyword) {
+            foreach ($word as $key => $keyword) {
                 $q .= " AND (m.name LIKE :keyword$key 
                 OR m.association_name LIKE :keyword$key 
                 OR m.address LIKE :keyword$key 
@@ -95,14 +96,12 @@ class MosqueService
 
         $stmt = $this->em->getConnection()->prepare($q);
 
-        if ($lon !== null && $lat !== null) {
+        if (!empty($lon) && !empty($lat)) {
             $stmt->bindValue(":lat", $lat);
             $stmt->bindValue(":lon", $lon);
-        } else {
-            if ($query) {
-                foreach ($query as $key => $keyword) {
-                    $stmt->bindValue(":keyword$key", "%$keyword%");
-                }
+        } elseif ($word) {
+            foreach ($word as $key => $keyword) {
+                $stmt->bindValue(":keyword$key", "%$keyword%");
             }
         }
 

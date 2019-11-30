@@ -254,7 +254,7 @@ class MosqueRepository extends EntityRepository
     }
 
     /**
-     * Remove not validated mosques if no response after 15 days
+     * Remove not validated mosques if no response after 30 days
      * @return integer
      */
     function removeNotValidated()
