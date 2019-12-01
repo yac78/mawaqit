@@ -32,9 +32,9 @@ class MosqueScreenPhotoReminderCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->userService->remindUserToUploadScreenPhoto();
+        $suspendedCount = $this->userService->remindUserToUploadScreenPhoto();
 
-        $output->writeln("Reminder OK");
+        $output->writeln("$suspendedCount suspended at " . (new \DateTime())->format("Y-m-d H:i:s"));
     }
 
 }

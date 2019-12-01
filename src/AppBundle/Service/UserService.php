@@ -95,6 +95,7 @@ class UserService
         /**
          * @var Mosque $mosque
          */
+        $suspendedCount = 0;
         foreach ($mosques as $mosque) {
             $mosque->incrementEmailScreenPhotoReminder();
             if ($mosque->getEmailScreenPhotoReminder() <= 3) {
@@ -107,10 +108,12 @@ class UserService
             }
 
             if ($mosque->getEmailScreenPhotoReminder() > 3) {
+                $suspendedCount++;
                 $mosque->suspend(Mosque::SUSPENSION_REASON_MISSING_PHOTO);
             }
         }
 
         $this->em->flush();
+        return $suspendedCount;
     }
 }
