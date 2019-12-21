@@ -29,7 +29,7 @@ class VichImageHandling
             $filePath = $destinationDir . '/' . $fileName;
             if (file_exists($filePath)) {
                 $image = new \Imagick($filePath);
-                $image->scaleimage(self::IMAGE_WIDTH, self::IMAGE_HEIGHT);
+                $this->cropImage($image);
                 $image->writeimage();
             }
         }
@@ -39,4 +39,14 @@ class VichImageHandling
         }
     }
 
+    private function cropImage(\Imagick &$image){
+        $w = $image->getImageWidth();
+        $h = $image->getImageHeight();
+
+        if ($h > self::IMAGE_HEIGHT || $w > self::IMAGE_WIDTH) {
+            $image->cropImage(self::IMAGE_WIDTH, self::IMAGE_HEIGHT, ($w - self::IMAGE_WIDTH) / 2, ($h - self::IMAGE_HEIGHT) / 2);
+        } else {
+            $image->scaleimage(self::IMAGE_WIDTH, self::IMAGE_HEIGHT);
+        }
+    }
 }

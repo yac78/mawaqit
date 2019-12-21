@@ -21,8 +21,6 @@ class ImageType extends AbstractType {
             'constraints' => new Image([
                 "allowPortrait" => false,
                 "allowSquare" => false,
-                "minRatio" => 1.3,
-                "maxRatio" => 2,
                 "minHeight" => 540,
                 "minWidth" => 960,
                 "maxSize" => "10M"
