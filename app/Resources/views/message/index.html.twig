@@ -72,7 +72,9 @@
                                 <td>{{ message.title }}</td>
                                 <td>
                                     {% if message.image %}
-                                        <img src="{{ vich_uploader_asset(message, 'file') }}" alt="" width="100px" height="70px"/>
+                                        <a href="{{ vich_uploader_asset(message, 'file') }}" target="_blank">
+                                            <img src="{{ vich_uploader_asset(message, 'file') }}" alt="" width="100px" height="70px"/>
+                                        </a>
                                     {% else %}
                                         {{ message.content|raw }}
                                     {% endif %}
