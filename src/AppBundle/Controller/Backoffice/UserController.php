@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("/backoffice/admin/user")
+ * @Route("/backoffice/superadmin/user")
  */
 class UserController extends Controller
 {

@@ -120,16 +120,16 @@ home:
     equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire
     equipeYourMosque3: |
       <li>Un kit
-        <a target="_blank" href="https://www.amazon.fr/ABOX-Raspberry-Derni%C3%A8re-Alimentation-Interrupteur/dp/B07DC37YSS/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kit+raspberry+pi">Raspberry PI 3</a>
+        <a target="_blank" href="raspbery_3_link">Raspberry PI 3</a>
         ou
-        <a target="_blank" href="https://www.amazon.fr/LABISTS-Alimentation-Interrupteur-Ventilateur-Dissipateur/dp/B07YTRRBV6/ref=sr_1_11?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kit+raspberry+pi+4">4</a>
+        <a target="_blank" href="raspbery_4_link">4</a>
         que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
       <li>Un écran plat, idéalement 80 cm ou plus</li>
       <li>Un support mural pour la TV</li>
       <li>Un cable HDMI + Une multiprise</li>
       <li>Si vous ne disposez pas d'une connexion internet
           <a target="_blank"
-             href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+             href="rtc_link">
              une horloge RTC
           </a>
       </li>
@@ -463,16 +463,6 @@ flashMessage:
       label: Date d'expiration
       title: Le message ne sera plus affiché au-delà de la date choisie
 
-faq:
-  add: Ajout d'une nouvelle Faq
-  edit: Édition de la faq %question%
-  form:
-    question:
-      label: Question
-    answer:
-      label: Réponse
-    enabled:
-      label: Publiée
 
 configuration:
   iqamaCalendar:

@@ -34,7 +34,7 @@ class TermsOfUse
 
         $token = $this->tokenStorage->getToken();
 
-        if (strpos($uri, '/admin/cgu') === false
+        if (strpos($uri, '/backoffice/cgu') === false
             && $token instanceOf TokenInterface
             && ($user = $token->getUser()) instanceOf User
             && $user->isTou() === false) {

@@ -9,7 +9,7 @@
                 <p>{{ 'home.text.equipeYourMosque1'|trans }}</p>
                 <h4 class="section-heading">{{ 'home.text.equipeYourMosque2'|trans }}</h4>
                 <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
-                    {{ 'home.text.equipeYourMosque3'|trans|raw }}
+                    {{ 'home.text.equipeYourMosque3'|trans({'raspbery_3_link': raspbery_3_link, 'raspbery_4_link': raspbery_4_link, 'rtc_link': rtc_link})|raw }}
                 </ul>
                 <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br>
                 <h4 class="section-heading">{{ 'home.text.equipeYourMosque5'|trans }}</h4>
@@ -29,7 +29,7 @@
                         {{ 'home.text.install2'|trans }}
                         <strong>
                             {% if app.user %}
-                                <a target="_blank" href="https://drive.google.com/uc?id=1wizKgyY6sMzSEI2ZWbaW1831Q7iaJ1V-">
+                                <a target="_blank" href="{{ system_image_link }}">
                                     mawaqit.gz
                                 </a>
                             {% else %}

@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Outils d'administration</h1>
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <a href="{{ "admin" }}"> Accès super admin</a>
+        <a href="{{ path("easyadmin") }}"> Accès super admin</a>
     {% endif %}
 
     {% include 'partial/flash_msg.html.twig' %}
@@ -17,8 +17,11 @@
         </div>
         <div class="col-md-2 mt-3"></div>
         <div class="col-md-5 mt-3">
-            <h3>Forcer le rechargement</h3>
-            <a href="{{ path('mosque_force_update_all') }}" class="btn btn-primary">{{ 'mosque.force_update_all.action'|trans }}</a>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h3>Forcer le rechargement</h3>
+                <a href="{{ path('mosque_force_update_all') }}"
+                   class="btn btn-primary">{{ 'mosque.force_update_all.action'|trans }}</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

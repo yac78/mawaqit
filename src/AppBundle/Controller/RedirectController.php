@@ -2,16 +2,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
-use AppBundle\Form\MosqueSyncType;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class RedirectController extends Controller
 {
@@ -51,7 +45,7 @@ class RedirectController extends Controller
      * @Route("/admin/login")
      * @return Response
      */
-    public function loginredirectAction()
+    public function loginRedirectAction()
     {
         return $this->redirectToRoute("fos_user_security_login", [], Response::HTTP_MOVED_PERMANENTLY);
     }

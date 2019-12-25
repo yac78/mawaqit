@@ -2,14 +2,18 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\ORM\NonUniqueResultException;use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\Parameters;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Swift_Message;use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Swift_Message;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class DefaultController extends Controller
 {
@@ -17,6 +21,7 @@ class DefaultController extends Controller
      * @Route("", name="homepage")
      * @Cache(public=true, maxage="86400")
      * @param Request $request
+     *
      * @return Response
      * @throws NonUniqueResultException
      */
@@ -49,12 +54,24 @@ class DefaultController extends Controller
     /**
      * @Route("/manual", name="manual")
      */
-    public function manualAction()
+    public function manualAction(EntityManagerInterface $em)
     {
         if ($this->get('app.request_service')->isLocal()) {
             throw new NotFoundHttpException();
         }
-        return $this->render('default/manual.html.twig');
+
+        $parametersRepo = $em->getRepository(Parameters::class);
+        $systemImageLink = $parametersRepo->findOneBy(["key" => "system_image_link"]);
+        $raspbery3Link = $parametersRepo->findOneBy(["key" => "raspbery_3_link"]);
+        $raspbery4Link = $parametersRepo->findOneBy(["key" => "raspbery_4_link"]);
+        $rtcLink = $parametersRepo->findOneBy(["key" => "rtc_link"]);
+
+        return $this->render('default/manual.html.twig', [
+            "system_image_link" => $systemImageLink instanceof Parameters ? $systemImageLink->getValue() : "#",
+            "raspbery_3_link" => $raspbery3Link instanceof Parameters ? $raspbery3Link->getValue() : "#",
+            "raspbery_4_link" => $raspbery4Link instanceof Parameters ? $raspbery4Link->getValue() : "#",
+            "rtc_link" => $rtcLink instanceof Parameters ? $rtcLink->getValue() : "#",
+        ]);
     }
 
     /**
@@ -108,8 +125,10 @@ class DefaultController extends Controller
 
     /**
      * get users by search term
+     *
      * @param Request $request
      * @Route("/search-ajax", name="public_mosque_search_ajax")
+     *
      * @return JsonResponse
      */
     public function searchAjaxAction(Request $request)
@@ -130,8 +149,10 @@ class DefaultController extends Controller
 
     /**
      * get cities by country
+     *
      * @param $country
      * @Route("/cities/{country}", name="cities_country_ajax", options={"i18n"="false"})
+     *
      * @return JsonResponse
      */
     public function citiesByCountryAjaxAction($country)

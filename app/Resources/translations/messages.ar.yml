@@ -108,16 +108,16 @@ home:
     equipeYourMosque2: عليك بشراء المعدات أدناه واتباع إجراءات التثبيت، يمكننا مساعدتك عن بعد إذا كان ذلك ضروريا
     equipeYourMosque3: |
       <li>
-       <a target="_blank" href="https://www.amazon.fr/ABOX-Raspberry-Derni%C3%A8re-Alimentation-Interrupteur/dp/B07DC37YSS/ref=sr_1_3?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kit+raspberry+pi">راسبيري بي 3</a>
+       <a target="_blank" href="raspbery_3_link">راسبيري بي 3</a>
         أو
-        <a target="_blank" href="https://www.amazon.fr/LABISTS-Alimentation-Interrupteur-Ventilateur-Dissipateur/dp/B07YTRRBV6/ref=sr_1_11?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kit+raspberry+pi+4">4</a>
+        <a target="_blank" href="raspbery_4_link">4</a>
         ، يمكنك العثور عليه على الأنترنت (أمازون ، ألي إكسبرس ...)
       </li>
       <li>شاشة تلفاز . 80 سم أو أكثر</li>
       <li>مثبت حائطي لشاشة التلفاز</li>
       <li>كابل HDMI + شريط الطاقة</li>
       <li>
-         <a target="_blank" href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+         <a target="_blank" href="rtc_link">
             ساعة RTC
          </a>
        إذا لم يكن لديك اتصال بالإنترنت

@@ -27,10 +27,11 @@
                     <li><a href="{{ path('mosque_index') }}"><i class="fas fa-mosque"></i>&nbsp;{{ 'my_mosques'|trans }}</a></li>
                 {% endif %}
 
+                {% if is_granted('ROLE_SUPER_ADMIN') and  isNotLocal() %}
+                    <li><a href="{{ path('user_index') }}"><i class="fa fa-users"></i>&nbsp;{{ 'users'|trans }}</a></li>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') and  isNotLocal() %}
-                        <li><a href="{{ path('user_index') }}"><i class="fa fa-users"></i>&nbsp;{{ 'users'|trans }}</a></li>
                         <li><a href="{{ path('stats') }}"><i class="fas fa-chart-pie"></i></i>&nbsp;{{ 'stats'|trans }}</a></li>
-                        <li><a href="{{ path('faq') }}"><i class="fa fa-question-circle"></i>&nbsp;Faq</a></li>
                         <li><a href="{{ path('admin_index') }}"><i class="fa fa-cogs"></i>&nbsp;Administration</a></li>
                 {% endif %}
                 <li class="dropdown">
