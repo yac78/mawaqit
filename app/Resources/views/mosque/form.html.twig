@@ -111,13 +111,6 @@
                         </div>
                     {% endif %}
 
-                    {% if mosque is defined and not is_granted('ROLE_ADMIN') %}
-                        {% if mosque.image1 %}
-                            <div class="block-image col-md-8">
-                                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}"/>
-                            </div>
-                        {% endif %}
-                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') or mosque is not defined %}
                         <div class="block-image col-md-4">
                             {{ form_row(form.file2) }}
