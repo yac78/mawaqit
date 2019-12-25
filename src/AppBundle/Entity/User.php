@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,6 +11,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -272,6 +274,17 @@ class User extends BaseUser
     public function setRecaptcha($recaptcha): void
     {
         $this->recaptcha = $recaptcha;
+    }
+
+    /**
+     * @ORM\PostUpdate()
+     */
+    public function postUpdate()
+    {
+        die('ok');
+        if (null !== $this->getApiQuota() && null === $this->getApiAccessToken()) {
+            $this->setApiAccessToken(Uuid::uuid4());
+        }
     }
 
 }
