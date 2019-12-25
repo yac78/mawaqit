@@ -29,8 +29,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $mosqueRepo = $em->getRepository("AppBundle:Mosque");
         $paginator = $this->get('knp_paginator');
-        $nbPerPage = $request->query->getInt('page', 1) * 9;
-        $mosquesWithImage = $paginator->paginate($mosqueRepo->getMosquesWithImageQb(), 1, $nbPerPage);
+        $page = $request->query->getInt('page', 1);
+        $page = $page > 0 ? $page : 1;
+        $mosquesWithImage = $paginator->paginate($mosqueRepo->getMosquesWithImageQb(), 1, $page * 9);
         $mosquesForMap = $mosqueRepo->getAllMosquesForMap();
         $totalMosquesCount = $mosqueRepo->getCount();
 
@@ -39,6 +40,7 @@ class DefaultController extends Controller
             "mosquesWithImage" => $mosquesWithImage,
             "mosquesForMap" => $mosquesForMap,
             "mosqueNumberByCountry" => $mosqueRepo->getNumberByCountry(),
+            "nextPage" => ++$page,
             "faqs" => $em->getRepository('AppBundle:Faq')->getPublicFaq()
         ]);
     }

@@ -246,9 +246,8 @@
                         </div>
                     {% endfor %}
                 </div>
-                {% if app.request.get('mosque_nb') != 'all' %}
-                    <a href="{{ path("homepage", {'page': app.request.get('page') ? app.request.get('page') + 1 : 2}) }}#mosquees" class="page-scroll btn btn-xl">{{ 'home.button.viewPlus'|trans }}</a>
-                {% endif %}
+                <a href="{{ path("homepage", {'page': nextPage }) }}#mosquees" class="page-scroll btn btn-xl">{{ 'home.button.viewPlus'|trans }}</a>
+
             </div>
         </section>
 
