@@ -358,12 +358,12 @@ mosque:
       help: |
         Ajouter un document justifiant l'existance de la mosquée (une facture d'éléctricité/eau/téléphone) cela facilite à mawaqit la validation de votre mosquée rapidement
     file1:
-      label: Une photo extérieur de la mosquée
-      help: Ajoutez une photo de la mosquée de bonne qualité au format paysage
+      label: Photo extérieur de la mosquée
+      help: Photo de bonne qualité au format paysage (800x450 px minimum)
     file2:
-      label: Une photo intérieur de la mosquée
+      label: Photo intérieur de la mosquée
     file3:
-      label: Une photo de l'écran mawaqit
+      label: Photo de l'écran mawaqit
       help: La photo doit être prise dans la mosquée avec un plan large au format paysage
     womenSpace:
       label: Espace pour femmes

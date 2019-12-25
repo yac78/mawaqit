@@ -98,29 +98,29 @@
         <div class="mosque-block hidden">
             <div class="col-md-6 ">
                 <div class="row">
-                    {% if is_granted('ROLE_ADMIN') or mosque is not defined or not mosque.validated %}
-                        <div class="block-image col-md-12">
-                            {{ form_row(form.justificatoryFile) }}
+                    {% if is_granted('ROLE_ADMIN') or mosque is not defined %}
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    {{ form_row(form.justificatoryFile) }}
+                                </div>
+                            </div>
                         </div>
                         <div class="block-image col-md-4">
                             {{ form_row(form.file1) }}
                         </div>
                     {% endif %}
 
-                    {% if mosque is defined and not is_granted('ROLE_ADMIN') %}
-                        {% if mosque.image1 %}
-                            <div class="block-image col-md-8">
-                                <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}"/>
-                            </div>
-                        {% endif %}
+                    {% if is_granted('ROLE_ADMIN') or mosque is not defined %}
+                        <div class="block-image col-md-4">
+                            {{ form_row(form.file2) }}
+                        </div>
                     {% endif %}
-
-                    <div class="block-image col-md-4">
-                        {{ form_row(form.file2) }}
-                    </div>
-                    <div class="block-image col-md-4">
-                        {{ form_row(form.file3) }}
-                    </div>
+                    {% if is_granted('ROLE_ADMIN') or mosque is defined %}
+                        <div class="block-image col-md-4">
+                            {{ form_row(form.file3) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
