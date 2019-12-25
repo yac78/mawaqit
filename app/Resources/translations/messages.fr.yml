@@ -120,9 +120,9 @@ home:
     equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire
     equipeYourMosque3: |
       <li>Un kit
-        <a target="_blank" href="raspbery_3_link">Raspberry PI 3</a>
+        <a target="_blank" href="raspberry_3_link">Raspberry PI 3</a>
         ou
-        <a target="_blank" href="raspbery_4_link">4</a>
+        <a target="_blank" href="raspberry_4_link">4</a>
         que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
       <li>Un écran plat, idéalement 80 cm ou plus</li>
       <li>Un support mural pour la TV</li>

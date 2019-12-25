@@ -62,14 +62,14 @@ class DefaultController extends Controller
 
         $parametersRepo = $em->getRepository(Parameters::class);
         $systemImageLink = $parametersRepo->findOneBy(["key" => "system_image_link"]);
-        $raspbery3Link = $parametersRepo->findOneBy(["key" => "raspbery_3_link"]);
-        $raspbery4Link = $parametersRepo->findOneBy(["key" => "raspbery_4_link"]);
+        $raspberry3Link = $parametersRepo->findOneBy(["key" => "raspberry_3_link"]);
+        $raspberry4Link = $parametersRepo->findOneBy(["key" => "raspberry_4_link"]);
         $rtcLink = $parametersRepo->findOneBy(["key" => "rtc_link"]);
 
         return $this->render('default/manual.html.twig', [
             "system_image_link" => $systemImageLink instanceof Parameters ? $systemImageLink->getValue() : "#",
-            "raspbery_3_link" => $raspbery3Link instanceof Parameters ? $raspbery3Link->getValue() : "#",
-            "raspbery_4_link" => $raspbery4Link instanceof Parameters ? $raspbery4Link->getValue() : "#",
+            "raspberry_3_link" => $raspberry3Link instanceof Parameters ? $raspberry3Link->getValue() : "#",
+            "raspberry_4_link" => $raspberry4Link instanceof Parameters ? $raspberry4Link->getValue() : "#",
             "rtc_link" => $rtcLink instanceof Parameters ? $rtcLink->getValue() : "#",
         ]);
     }
