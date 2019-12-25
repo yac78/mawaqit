@@ -123,7 +123,7 @@ class Faq
     /**
      * @return int
      */
-    public function getPosition(): int
+    public function getPosition(): ?int
     {
         return $this->position;
     }

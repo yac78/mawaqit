@@ -2,6 +2,7 @@ easy_admin:
   entities:
     User:
       class: AppBundle\Entity\User
+      disabled_actions: [new]
       list:
         fields: [id, email, enabled, roles, mosqueQuota, apiAccessToken, apiCallNumber, apiQuota, apiUseDescription, created, lastLogin]
       form:

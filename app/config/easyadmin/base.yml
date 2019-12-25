@@ -1,11 +1,14 @@
 easy_admin:
   site_name: Mawaqit
   design:
+    brand_color: '#448531'
     menu:
       - { entity: User, label: Utilisateurs, icon: user, default: true }
       - { entity: Faq, icon: question}
       - { entity: Parameters, label: Paramètres, icon: cog}
-    brand_color: '#448531'
+      - { label: Retour au backoffice, route: 'mosque_index' }
+    form_theme:
+      - "easyadmin/form.html.twig"
   formats:
     date:     d/m/Y
     time:     H:i

@@ -7,5 +7,5 @@ easy_admin:
       form:
         fields:
           - question
-          - { property: answer, type: 'fos_ckeditor'}
+          - { property: answer, css_class: 'tinymce'}
           - position
