@@ -133,7 +133,7 @@ mosque:
         Add a document justifying the existence of the mosque (an electricity/water/telephone bill or other) this makes it easy for us to validate your mosque quickly
     file1:
       label: A picture of the mosque
-      help: Add a photo of the mosque of good quality in landscape format
+      help: A photo of good quality in landscape format (800x450 px minimum)
     file2:
       label: An interior photo of the mosque
     file3:
