@@ -4,7 +4,12 @@ easy_admin:
       class: AppBundle\Entity\User
       disabled_actions: [new]
       list:
-        fields: [id, email, enabled, roles, mosqueQuota, apiAccessToken, apiCallNumber, apiQuota, apiUseDescription, created, lastLogin]
+        actions:
+          - { name: 'show', icon: 'eye', label: false }
+          - { name: 'edit', icon: 'pencil', label: false }
+          - { name: 'delete', icon: 'trash', label: false }
+        collapse_actions: true
+        fields: [id, email, enabled, roles, mosqueQuota, apiCallNumber, apiQuota, apiUseDescription, created, lastLogin]
       form:
         fields:
           - id

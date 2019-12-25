@@ -7,6 +7,7 @@
     {% if is_granted('ROLE_SUPER_ADMIN') %}
         <div><a href="{{ path("easyadmin") }}">Accès super admin</a></div>
         <div><a href="{{ path("users_send_email") }}">Envoyer un mail à tous les utilisateurs</a></div>
+        <div><a href="{{ path("mosque_force_update_all") }}">Raffraichir toutes les mosquées</a></div>
     {% endif %}
 
     {% include 'partial/flash_msg.html.twig' %}
@@ -17,12 +18,5 @@
             {{ form(hijriForm) }}
         </div>
         <div class="col-md-2 mt-3"></div>
-        <div class="col-md-5 mt-3">
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
-                <h3>Forcer le rechargement</h3>
-                <a href="{{ path('mosque_force_update_all') }}"
-                   class="btn btn-primary">{{ 'mosque.force_update_all.action'|trans }}</a>
-            {% endif %}
-        </div>
     </div>
 {% endblock %}

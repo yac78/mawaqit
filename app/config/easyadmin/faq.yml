@@ -4,6 +4,10 @@ easy_admin:
       class: AppBundle\Entity\Faq
       list:
         sort: ['position', 'ASC']
+        actions:
+          - { name: 'show', icon: 'eye', label: false }
+          - { name: 'edit', icon: 'pencil', label: false }
+          - { name: 'delete', icon: 'trash', label: false }
       form:
         fields:
           - question

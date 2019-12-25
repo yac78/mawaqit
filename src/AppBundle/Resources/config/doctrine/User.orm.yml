@@ -2,6 +2,8 @@ AppBundle\Entity\User:
     type: entity
     table: user
     repositoryClass: AppBundle\Repository\UserRepository
+    lifecycleCallbacks:
+      preUpdate: [attributeApiAccessToken]
     id:
         id:
             type: integer

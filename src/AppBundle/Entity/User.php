@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +11,6 @@ use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
- * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -180,7 +179,7 @@ class User extends BaseUser
      */
     public function getApiAccessToken()
     {
-        return (string)$this->apiAccessToken;
+        return $this->apiAccessToken;
     }
 
     /**
@@ -276,14 +275,12 @@ class User extends BaseUser
         $this->recaptcha = $recaptcha;
     }
 
-    /**
-     * @ORM\PostUpdate()
-     */
-    public function postUpdate()
+    public function attributeApiAccessToken(PreUpdateEventArgs $event)
     {
-        die('ok');
-        if (null !== $this->getApiQuota() && null === $this->getApiAccessToken()) {
-            $this->setApiAccessToken(Uuid::uuid4());
+        if ($event->hasChangedField('apiQuota')) {
+            if (null !== $this->getApiQuota() && null === $this->getApiAccessToken()) {
+                $this->setApiAccessToken(Uuid::uuid4());
+            }
         }
     }
 

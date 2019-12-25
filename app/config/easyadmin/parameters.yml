@@ -2,3 +2,8 @@ easy_admin:
   entities:
     Parameters:
       class: AppBundle\Entity\Parameters
+      list:
+        actions:
+          - { name: 'show', icon: 'eye', label: false }
+          - { name: 'edit', icon: 'pencil', label: false }
+          - { name: 'delete', icon: 'trash', label: false }
