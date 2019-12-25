@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\PersistentCollection;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -25,7 +26,7 @@ class User extends BaseUser
 
     /**
      * @Assert\Uuid()
-     * @var string
+     * @var Uuid
      */
     private $apiAccessToken;
 
@@ -149,7 +150,7 @@ class User extends BaseUser
     /**
      * @return PersistentCollection
      */
-    public function getMosques(): PersistentCollection
+    public function getMosques(): ?PersistentCollection
     {
         return $this->mosques;
     }
@@ -177,7 +178,7 @@ class User extends BaseUser
      */
     public function getApiAccessToken()
     {
-        return $this->apiAccessToken;
+        return (string)$this->apiAccessToken;
     }
 
     /**

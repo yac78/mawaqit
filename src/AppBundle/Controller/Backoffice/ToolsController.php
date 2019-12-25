@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/backoffice/admin/tools")
+ * @Route("/backoffice/tools")
  */
 class ToolsController extends Controller
 {

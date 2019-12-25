@@ -1,0 +1,16 @@
+easy_admin:
+  entities:
+    User:
+      class: AppBundle\Entity\User
+      list:
+        fields: [id, email, enabled, roles, mosqueQuota, apiAccessToken, apiCallNumber, apiQuota, apiUseDescription, created, lastLogin]
+      form:
+        fields:
+          - id
+          - email
+          - enabled
+          - { property: roles, type: choice, type_options: { multiple: true, choices: { ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN, ROLE_ADMIN: ROLE_ADMIN, ROLE_USER: ROLE_USER } } }
+          - apiAccessToken
+          - apiCallNumber
+          - apiQuota
+          - apiUseDescription

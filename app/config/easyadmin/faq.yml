@@ -1,0 +1,11 @@
+easy_admin:
+  entities:
+    Faq:
+      class: AppBundle\Entity\Faq
+      list:
+        sort: ['position', 'ASC']
+      form:
+        fields:
+          - question
+          - { property: answer, type: 'fos_ckeditor'}
+          - position

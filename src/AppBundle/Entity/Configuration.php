@@ -19,7 +19,13 @@ class Configuration
         self::SOURCE_CALENDAR
     ];
     const HADITH_LANG = [
-        "ar", "en", "fr", "tr", "en-ar", "fr-ar", "tr-ar"
+        "ar",
+        "en",
+        "fr",
+        "tr",
+        "en-ar",
+        "fr-ar",
+        "tr-ar"
     ];
 
     /**
@@ -345,6 +351,49 @@ class Configuration
      */
     private $showNextAdhanCountdown = true;
 
+    public static function getHadithLangs()
+    {
+        return self::HADITH_LANG;
+    }
+
+    public static function getHighLatsChoices()
+    {
+        return PrayerTime::HIGH_LATS_CHOICES;
+    }
+
+    public static function getAsrMethodChoices()
+    {
+        return PrayerTime::ASR_METHOD_CHOICES;
+    }
+
+    public function __toString()
+    {
+        return $this->getSourceCalcul();
+    }
+
+    /**
+     * Get sourceCalcul
+     * @return string
+     */
+    public function getSourceCalcul()
+    {
+        return $this->sourceCalcul;
+    }
+
+    /**
+     * Set sourceCalcul
+     *
+     * @param string $sourceCalcul
+     *
+     * @return Configuration
+     */
+    public function setSourceCalcul($sourceCalcul)
+    {
+        $this->sourceCalcul = $sourceCalcul;
+
+        return $this;
+    }
+
     public function __clone()
     {
         $this->setId(null);
@@ -352,7 +401,6 @@ class Configuration
 
     /**
      * Get id
-     *
      * @return int
      */
     public function getId()
@@ -360,10 +408,18 @@ class Configuration
         return $this->id;
     }
 
-
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * Get jumuaTime
+     * @return string
+     */
+    public function getJumuaTime()
+    {
+        return $this->jumuaTime;
     }
 
     /**
@@ -378,16 +434,6 @@ class Configuration
         $this->jumuaTime = $jumuaTime;
 
         return $this;
-    }
-
-    /**
-     * Get jumuaTime
-     *
-     * @return string
-     */
-    public function getJumuaTime()
-    {
-        return $this->jumuaTime;
     }
 
     /**
@@ -406,7 +452,6 @@ class Configuration
         $this->jumuaTime2 = $jumuaTime2;
     }
 
-
     function isJumuaAsDuhr()
     {
         return $this->jumuaAsDuhr;
@@ -415,6 +460,15 @@ class Configuration
     function setJumuaAsDuhr($jumuaAsDuhr)
     {
         $this->jumuaAsDuhr = $jumuaAsDuhr;
+    }
+
+    /**
+     * Get aidTime
+     * @return string
+     */
+    public function getAidTime()
+    {
+        return $this->aidTime;
     }
 
     /**
@@ -432,13 +486,12 @@ class Configuration
     }
 
     /**
-     * Get aidTime
-     *
-     * @return string
+     * Get imsakNbMinBeforeFajr
+     * @return int
      */
-    public function getAidTime()
+    public function getImsakNbMinBeforeFajr()
     {
-        return $this->aidTime;
+        return $this->imsakNbMinBeforeFajr;
     }
 
     /**
@@ -456,13 +509,12 @@ class Configuration
     }
 
     /**
-     * Get imsakNbMinBeforeFajr
-     *
-     * @return int
+     * Get maximumIshaTimeForNoWaiting
+     * @return \DateTime
      */
-    public function getImsakNbMinBeforeFajr()
+    public function getMaximumIshaTimeForNoWaiting()
     {
-        return $this->imsakNbMinBeforeFajr;
+        return $this->maximumIshaTimeForNoWaiting;
     }
 
     /**
@@ -480,13 +532,14 @@ class Configuration
     }
 
     /**
-     * Get maximumIshaTimeForNoWaiting
-     *
-     * @return \DateTime
+     * Get waitingTimes
+     * @return array
      */
-    public function getMaximumIshaTimeForNoWaiting()
+    public function getWaitingTimes()
     {
-        return $this->maximumIshaTimeForNoWaiting;
+        return array_map(function ($value) {
+            return (int)$value;
+        }, $this->waitingTimes);
     }
 
     /**
@@ -504,15 +557,12 @@ class Configuration
     }
 
     /**
-     * Get waitingTimes
-     *
+     * Get adjustedTimes
      * @return array
      */
-    public function getWaitingTimes()
+    public function getAdjustedTimes()
     {
-        return array_map(function ($value) {
-            return (int)$value;
-        }, $this->waitingTimes);
+        return $this->adjustedTimes;
     }
 
     /**
@@ -530,13 +580,12 @@ class Configuration
     }
 
     /**
-     * Get adjustedTimes
-     *
+     * Get fixedTimes
      * @return array
      */
-    public function getAdjustedTimes()
+    public function getFixedTimes()
     {
-        return $this->adjustedTimes;
+        return $this->fixedTimes;
     }
 
     /**
@@ -551,16 +600,6 @@ class Configuration
         $this->fixedTimes = $fixedTimes;
 
         return $this;
-    }
-
-    /**
-     * Get fixedTimes
-     *
-     * @return array
-     */
-    public function getFixedTimes()
-    {
-        return $this->fixedTimes;
     }
 
     /**
@@ -580,6 +619,15 @@ class Configuration
     }
 
     /**
+     * Get duaAfterPrayerShowTimes
+     * @return array
+     */
+    public function getDuaAfterPrayerShowTimes()
+    {
+        return $this->duaAfterPrayerShowTimes;
+    }
+
+    /**
      * Set duaAfterPrayerShowTimes
      *
      * @param array $duaAfterPrayerShowTimes
@@ -594,13 +642,12 @@ class Configuration
     }
 
     /**
-     * Get duaAfterPrayerShowTimes
-     *
-     * @return array
+     * Get hijriAdjustment
+     * @return int
      */
-    public function getDuaAfterPrayerShowTimes()
+    public function getHijriAdjustment()
     {
-        return $this->duaAfterPrayerShowTimes;
+        return $this->hijriAdjustment;
     }
 
     /**
@@ -618,13 +665,12 @@ class Configuration
     }
 
     /**
-     * Get hijriAdjustment
-     *
-     * @return int
+     * Get hijriDateEnabled
+     * @return bool
      */
-    public function getHijriAdjustment()
+    public function getHijriDateEnabled()
     {
-        return $this->hijriAdjustment;
+        return $this->hijriDateEnabled;
     }
 
     /**
@@ -642,13 +688,12 @@ class Configuration
     }
 
     /**
-     * Get hijriDateEnabled
-     *
+     * Get duaAfterAzanEnabled
      * @return bool
      */
-    public function getHijriDateEnabled()
+    public function getDuaAfterAzanEnabled()
     {
-        return $this->hijriDateEnabled;
+        return $this->duaAfterAzanEnabled;
     }
 
     /**
@@ -666,13 +711,12 @@ class Configuration
     }
 
     /**
-     * Get duaAfterAzanEnabled
-     *
+     * Get douaaAfterPrayerEnabled
      * @return bool
      */
-    public function getDuaAfterAzanEnabled()
+    public function getDuaAfterPrayerEnabled()
     {
-        return $this->duaAfterAzanEnabled;
+        return $this->duaAfterPrayerEnabled;
     }
 
     /**
@@ -690,13 +734,12 @@ class Configuration
     }
 
     /**
-     * Get douaaAfterPrayerEnabled
-     *
+     * Get urlQrCodeEnabled
      * @return bool
      */
-    public function getDuaAfterPrayerEnabled()
+    public function getUrlQrCodeEnabled()
     {
-        return $this->duaAfterPrayerEnabled;
+        return $this->urlQrCodeEnabled;
     }
 
     /**
@@ -709,54 +752,6 @@ class Configuration
     public function setUrlQrCodeEnabled($urlQrCodeEnabled)
     {
         $this->urlQrCodeEnabled = $urlQrCodeEnabled;
-
-        return $this;
-    }
-
-    /**
-     * Get urlQrCodeEnabled
-     *
-     * @return bool
-     */
-    public function getUrlQrCodeEnabled()
-    {
-        return $this->urlQrCodeEnabled;
-    }
-
-    /**
-     * Set sourceCalcul
-     *
-     * @param string $sourceCalcul
-     *
-     * @return Configuration
-     */
-    public function setSourceCalcul($sourceCalcul)
-    {
-        $this->sourceCalcul = $sourceCalcul;
-
-        return $this;
-    }
-
-    /**
-     * Get sourceCalcul
-     *
-     * @return string
-     */
-    public function getSourceCalcul()
-    {
-        return $this->sourceCalcul;
-    }
-
-    /**
-     * Set prayerMethod
-     *
-     * @param string $prayerMethod
-     *
-     * @return Configuration
-     */
-    public function setPrayerMethod($prayerMethod)
-    {
-        $this->prayerMethod = $prayerMethod;
 
         return $this;
     }
@@ -789,12 +784,34 @@ class Configuration
 
     /**
      * Get prayerMethod
-     *
      * @return string
      */
     public function getPrayerMethod()
     {
         return $this->prayerMethod;
+    }
+
+    /**
+     * Set prayerMethod
+     *
+     * @param string $prayerMethod
+     *
+     * @return Configuration
+     */
+    public function setPrayerMethod($prayerMethod)
+    {
+        $this->prayerMethod = $prayerMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get fajrDegree
+     * @return int
+     */
+    public function getFajrDegree()
+    {
+        return $this->fajrDegree;
     }
 
     /**
@@ -812,13 +829,12 @@ class Configuration
     }
 
     /**
-     * Get fajrDegree
-     *
+     * Get ishaDegree
      * @return int
      */
-    public function getFajrDegree()
+    public function getIshaDegree()
     {
-        return $this->fajrDegree;
+        return $this->ishaDegree;
     }
 
     /**
@@ -836,13 +852,12 @@ class Configuration
     }
 
     /**
-     * Get ishaDegree
-     *
+     * Get iqamaDisplayTime
      * @return int
      */
-    public function getIshaDegree()
+    public function getIqamaDisplayTime()
     {
-        return $this->ishaDegree;
+        return $this->iqamaDisplayTime;
     }
 
     /**
@@ -860,13 +875,12 @@ class Configuration
     }
 
     /**
-     * Get iqamaDisplayTime
-     *
-     * @return int
+     * Get calendar
+     * @return array
      */
-    public function getIqamaDisplayTime()
+    public function getCalendar(): array
     {
-        return $this->iqamaDisplayTime;
+        return $this->calendar;
     }
 
     /**
@@ -881,16 +895,6 @@ class Configuration
         $this->calendar = $calendar;
 
         return $this;
-    }
-
-    /**
-     * Get calendar
-     *
-     * @return array
-     */
-    public function getCalendar(): array
-    {
-        return $this->calendar;
     }
 
     /**
@@ -910,6 +914,15 @@ class Configuration
     }
 
     /**
+     * Get created
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
      * Set created
      *
      * @param \DateTime $created
@@ -924,13 +937,12 @@ class Configuration
     }
 
     /**
-     * Get created
-     *
+     * Get updated
      * @return \DateTime
      */
-    public function getCreated()
+    public function getUpdated()
     {
-        return $this->created;
+        return $this->updated;
     }
 
     /**
@@ -947,29 +959,19 @@ class Configuration
         return $this;
     }
 
-    /**
-     * Get updated
-     *
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
     function getAzanBip()
     {
         return $this->azanBip;
     }
 
-    function getIqamaBip()
-    {
-        return $this->iqamaBip;
-    }
-
     function setAzanBip($azanBip)
     {
         $this->azanBip = $azanBip;
+    }
+
+    function getIqamaBip()
+    {
+        return $this->iqamaBip;
     }
 
     function setIqamaBip($iqamaBip)
@@ -1025,14 +1027,14 @@ class Configuration
         return $this->jumuaDhikrReminderEnabled;
     }
 
-    function getJumuaTimeout()
-    {
-        return $this->jumuaTimeout;
-    }
-
     function setJumuaDhikrReminderEnabled($jumuaDhikrReminderEnabled)
     {
         $this->jumuaDhikrReminderEnabled = $jumuaDhikrReminderEnabled;
+    }
+
+    function getJumuaTimeout()
+    {
+        return $this->jumuaTimeout;
     }
 
     function setJumuaTimeout($jumuaTimeout)
@@ -1116,11 +1118,6 @@ class Configuration
         $this->hadithLang = $hadithLang;
     }
 
-    public static function getHadithLangs()
-    {
-        return self::HADITH_LANG;
-    }
-
     function getTimeToDisplayMessage()
     {
         return $this->timeToDisplayMessage;
@@ -1141,6 +1138,7 @@ class Configuration
 
     /**
      * @param bool $iqamaEnabled
+     *
      * @return Configuration
      */
     public function setIqamaEnabled($iqamaEnabled)
@@ -1175,6 +1173,7 @@ class Configuration
 
     /**
      * @param string $ishaFixation
+     *
      * @return Configuration
      */
     public function setIshaFixation($ishaFixation)
@@ -1193,6 +1192,7 @@ class Configuration
 
     /**
      * @param mixed $dstSummerDate
+     *
      * @return Configuration
      */
     public function setDstSummerDate($dstSummerDate)
@@ -1204,13 +1204,14 @@ class Configuration
     /**
      * @return mixed
      */
-    public function getDstWinterDate():?\DateTime
+    public function getDstWinterDate(): ?\DateTime
     {
         return $this->dstWinterDate;
     }
 
     /**
      * @param mixed $dstWinterDate
+     *
      * @return Configuration
      */
     public function setDstWinterDate($dstWinterDate)
@@ -1229,6 +1230,7 @@ class Configuration
 
     /**
      * @param string $wakeAzanVoice
+     *
      * @return Configuration
      */
     public function setWakeAzanVoice($wakeAzanVoice)
@@ -1247,6 +1249,7 @@ class Configuration
 
     /**
      * @param bool $footer
+     *
      * @return Configuration
      */
     public function setFooter($footer)
@@ -1281,6 +1284,7 @@ class Configuration
 
     /**
      * @param bool $showNextAdhanCountdown
+     *
      * @return Configuration
      */
     public function setShowNextAdhanCountdown($showNextAdhanCountdown)
@@ -1299,6 +1303,7 @@ class Configuration
 
     /**
      * @param string $backgroundType
+     *
      * @return Configuration
      */
     public function setBackgroundType($backgroundType)
@@ -1317,6 +1322,7 @@ class Configuration
 
     /**
      * @param string $backgroundMotif
+     *
      * @return Configuration
      */
     public function setBackgroundMotif(string $backgroundMotif): Configuration
@@ -1335,6 +1341,7 @@ class Configuration
 
     /**
      * @param string $asrMethod
+     *
      * @return Configuration
      */
     public function setAsrMethod(string $asrMethod): Configuration
@@ -1353,22 +1360,13 @@ class Configuration
 
     /**
      * @param string $highLatsMethod
+     *
      * @return Configuration
      */
     public function setHighLatsMethod($highLatsMethod): Configuration
     {
         $this->highLatsMethod = $highLatsMethod;
         return $this;
-    }
-
-    public static function getHighLatsChoices()
-    {
-        return PrayerTime::HIGH_LATS_CHOICES;
-    }
-
-    public static function getAsrMethodChoices()
-    {
-        return PrayerTime::ASR_METHOD_CHOICES;
     }
 
     /**
@@ -1381,6 +1379,7 @@ class Configuration
 
     /**
      * @param bool $iqamaFullScreenCountdown
+     *
      * @return Configuration
      */
     public function setIqamaFullScreenCountdown(bool $iqamaFullScreenCountdown): Configuration

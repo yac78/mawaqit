@@ -68,14 +68,18 @@ class Message
      */
     private $mosque;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function __toString()
     {
-        return $this->id;
+        return $this->getTitle() ? $this->getTitle() : "Message";
+    }
+
+    /**
+     * Get title
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -93,13 +97,21 @@ class Message
     }
 
     /**
-     * Get title
-     *
+     * Get id
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get content
      * @return string
      */
-    public function getTitle()
+    public function getContent()
     {
-        return $this->title;
+        return $this->content;
     }
 
     /**
@@ -118,16 +130,6 @@ class Message
         return $this;
     }
 
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
     function isEnabled()
     {
         return $this->enabled;
@@ -139,7 +141,16 @@ class Message
     }
 
     /**
+     * @return File|null
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
      * @param File|null $image
+     *
      * @return $this
      * @throws \Exception
      */
@@ -155,11 +166,11 @@ class Message
     }
 
     /**
-     * @return File|null
+     * @return string|null
      */
-    public function getFile()
+    public function getImage()
     {
-        return $this->file;
+        return $this->image;
     }
 
     /**
@@ -172,14 +183,6 @@ class Message
         $this->image = $imageName;
 
         return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     function getMosque(): Mosque
@@ -202,6 +205,7 @@ class Message
 
     /**
      * @param int $position
+     *
      * @return self
      */
     public function setPosition($position)
@@ -220,6 +224,7 @@ class Message
 
     /**
      * @param bool $mobile
+     *
      * @return Message
      */
     public function setMobile(bool $mobile): Message

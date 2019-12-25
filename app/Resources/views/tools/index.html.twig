@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Outils d'administration</h1>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a href="{{ "admin" }}"> Accès super admin</a>
+    {% endif %}
 
     {% include 'partial/flash_msg.html.twig' %}
 

@@ -265,6 +265,99 @@ class Mosque
         $this->configuration = clone $this->configuration;
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    /**
+     * Get the title to display on top of screen
+     * @return string
+     */
+    function getTitle()
+    {
+        if ($this->getType() !== self::TYPE_MOSQUE) {
+            return "mosque.title.{$this->getType()}";
+        }
+
+        $name = $this->getName();
+        if (strpos(strtolower($name), strtolower($this->getCity())) === false) {
+            $name .= " - " . $this->getCity();
+        }
+        return $name;
+    }
+
+    /**
+     * Get type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Mosque
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * Get name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Mosque
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get city
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Mosque
+     */
+    public function setCity($city)
+    {
+        $transformedCity = [];
+        $cityParts = preg_split('/\s+|\-+/', $city);
+        foreach ($cityParts as $key => $part) {
+            $transformedCity[$key] = ucfirst(strtolower($part));
+        }
+        $this->city = implode("-", $transformedCity);
+        return $this;
+    }
+
     /**
      * Get id
      * @return int
@@ -778,94 +871,6 @@ class Mosque
     public function setLongitude(float $longitude): void
     {
         $this->longitude = $longitude;
-    }
-
-    /**
-     * Get the title to display on top of screen
-     * @return string
-     */
-    function getTitle()
-    {
-        if ($this->getType() !== self::TYPE_MOSQUE) {
-            return "mosque.title.{$this->getType()}";
-        }
-
-        $name = $this->getName();
-        if (strpos(strtolower($name), strtolower($this->getCity())) === false) {
-            $name .= " - " . $this->getCity();
-        }
-        return $name;
-    }
-
-    /**
-     * Get type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Mosque
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * Get name
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Mosque
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * Get city
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     *
-     * @return Mosque
-     */
-    public function setCity($city)
-    {
-        $transformedCity = [];
-        $cityParts = preg_split('/\s+|\-+/', $city);
-        foreach ($cityParts as $key => $part) {
-            $transformedCity[$key] = ucfirst(strtolower($part));
-        }
-        $this->city = implode("-", $transformedCity);
-        return $this;
     }
 
     /**

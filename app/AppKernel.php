@@ -24,6 +24,8 @@ class AppKernel extends Kernel {
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new FOS\CKEditorBundle\FOSCKEditorBundle(),
             new AppBundle\AppBundle(),
         ];
 

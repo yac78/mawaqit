@@ -30,7 +30,6 @@ class Parameters
 
     /**
      * Get id
-     *
      * @return int
      */
     public function getId()
@@ -73,7 +72,7 @@ class Parameters
     /**
      * @return string
      */
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }

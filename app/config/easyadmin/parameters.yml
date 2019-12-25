@@ -1,0 +1,4 @@
+easy_admin:
+  entities:
+    Parameters:
+      class: AppBundle\Entity\Parameters
