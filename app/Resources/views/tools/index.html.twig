@@ -3,6 +3,8 @@
 {% block title 'Administration' %}
 
 {% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
+
     <h1>Outils d'administration</h1>
     {% if is_granted('ROLE_SUPER_ADMIN') %}
         <div><a href="{{ path("easyadmin") }}">Accès super admin</a></div>
@@ -10,7 +12,6 @@
         <div><a href="{{ path("mosque_force_update_all") }}">Raffraichir toutes les mosquées</a></div>
     {% endif %}
 
-    {% include 'partial/flash_msg.html.twig' %}
 
     <div class="row">
         <div class="col-md-5 mt-3">
