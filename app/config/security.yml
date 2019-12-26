@@ -52,7 +52,7 @@ security:
 
         - { path: /backoffice/admin/stats, role: ROLE_ADMIN }
         - { path: /backoffice/admin/clone, role: ROLE_ADMIN }
-        -
+
         - { path: /backoffice/admin, role: ROLE_SUPER_ADMIN }
 
         - { path: /backoffice, role: ROLE_USER }
