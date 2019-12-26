@@ -50,6 +50,9 @@ security:
         - { path: /backoffice/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /backoffice/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
+        - { path: /backoffice/admin/stats, role: ROLE_ADMIN }
+        - { path: /backoffice/admin/clone, role: ROLE_ADMIN }
+        -
         - { path: /backoffice/admin, role: ROLE_SUPER_ADMIN }
 
         - { path: /backoffice, role: ROLE_USER }
