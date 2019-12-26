@@ -31,7 +31,7 @@ class MessageController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin()) {
+        if (!$this->isGranted("ROLE_ADMIN")) {
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }
@@ -55,7 +55,7 @@ class MessageController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+        if (!$this->isGranted("ROLE_ADMIN") && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
         $em = $this->getDoctrine()->getManager();
@@ -90,7 +90,7 @@ class MessageController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin()) {
+        if (!$this->isGranted("ROLE_ADMIN")) {
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }
@@ -126,7 +126,7 @@ class MessageController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin()) {
+        if (!$this->isGranted("ROLE_ADMIN")) {
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }
@@ -160,7 +160,7 @@ class MessageController extends Controller
     public function deleteAction(EntityManagerInterface $em, Message $message)
     {
         $user = $this->getUser();
-        if (!$user->isAdmin() && $user !== $message->getMosque()->getUser()) {
+        if (!$this->isGranted("ROLE_ADMIN") && $user !== $message->getMosque()->getUser()) {
             throw new AccessDeniedException;
         }
 

@@ -26,9 +26,10 @@ class MosqueRepository extends EntityRepository
     /**
      * @param User $user
      * @param array|null $search
+     * @param bool $isAdmin
      * @return QueryBuilder
      */
-    function search(User $user, $search)
+    function search(User $user, $search, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder("m")
             ->leftJoin("m.user", "u", "m.user_id = u.id");
@@ -83,7 +84,7 @@ class MosqueRepository extends EntityRepository
                 ->setParameter(":type", "mosque");
         }
 
-        if (!$user->isAdmin()) {
+        if (!$isAdmin) {
             $qb->andWhere("u.id = :userId")
                 ->setParameter(":userId", $user->getId());
         }

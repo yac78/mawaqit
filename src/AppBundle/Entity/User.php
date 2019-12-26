@@ -140,15 +140,6 @@ class User extends BaseUser
     }
 
     /**
-     *
-     * @return boolean
-     */
-    function isAdmin()
-    {
-        return $this->hasRole("ROLE_ADMIN");
-    }
-
-    /**
      * @return PersistentCollection
      */
     public function getMosques(): ?PersistentCollection

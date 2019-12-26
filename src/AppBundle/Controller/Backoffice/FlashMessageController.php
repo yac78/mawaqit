@@ -26,7 +26,7 @@ class FlashMessageController extends Controller
     public function editAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
     {
         $user = $this->getUser();
-        if (!$user->isAdmin()) {
+        if (!$this->isGranted("ROLE_ADMIN")) {
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }
@@ -59,7 +59,7 @@ class FlashMessageController extends Controller
     public function deleteAction(EntityManagerInterface $em, Mosque $mosque)
     {
         $user = $this->getUser();
-        if (!$user->isAdmin()) {
+        if (!$this->isGranted("ROLE_ADMIN")) {
             if ($user !== $mosque->getUser()) {
                 throw new AccessDeniedException;
             }

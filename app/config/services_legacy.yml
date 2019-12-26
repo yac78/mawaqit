@@ -212,6 +212,6 @@ services:
     # Validators
     app.validator.mosque:
         class: AppBundle\Validator\Constraints\MosqueValidator
-        arguments: ['@security.token_storage']
+        arguments: ['@security.token_storage', '@security.authorization_checker']
         tags:
             - { name: validator.constraint_validator }

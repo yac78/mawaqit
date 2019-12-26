@@ -57,11 +57,6 @@ class MosqueAdminController extends Controller
     public function suspendMosqueAction(Mosque $mosque, Request $request, MailService $mailService)
     {
 
-        $user = $this->getUser();
-        if (!$user->isAdmin() && ($user !== $mosque->getUser() || !$mosque->isValidated())) {
-            throw new AccessDeniedException();
-        }
-
         $form = $this->createForm(MosqueSuspensionType::class, $mosque);
         $form->handleRequest($request);
 

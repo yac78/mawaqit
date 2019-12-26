@@ -47,7 +47,8 @@ class MosqueController extends Controller
         $user = $this->getUser();
         $mosqueRepository = $em->getRepository("AppBundle:Mosque");
         $nbByStatus = [];
-        if ($user->isAdmin()) {
+        $isAdmin = $this->isGranted("ROLE_ADMIN");
+        if ($isAdmin) {
             $nbByStatus = $mosqueRepository->getNumberByStatus();
         }
 
@@ -55,7 +56,7 @@ class MosqueController extends Controller
         $form->handleRequest($request);
 
         $filter = array_merge($request->query->all(), (array)$form->getData());
-        $qb = $mosqueRepository->search($user, $filter);
+        $qb = $mosqueRepository->search($user, $filter, $isAdmin);
 
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
@@ -187,7 +188,7 @@ class MosqueController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin() && ($user !== $mosque->getUser() || !$mosque->isValidated())) {
+        if (!$this->isGranted("ROLE_ADMIN") && ($user !== $mosque->getUser() || !$mosque->isValidated())) {
             throw new AccessDeniedException();
         }
 
@@ -221,7 +222,7 @@ class MosqueController extends Controller
     public function deleteAction(Mosque $mosque)
     {
         $user = $this->getUser();
-        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+        if (!$this->isGranted("ROLE_ADMIN") && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
 
@@ -251,7 +252,7 @@ class MosqueController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$user->isAdmin() && $user !== $mosque->getUser()) {
+        if (!$this->isGranted("ROLE_ADMIN") && $user !== $mosque->getUser()) {
             throw new AccessDeniedException;
         }
         $em = $this->getDoctrine()->getManager();

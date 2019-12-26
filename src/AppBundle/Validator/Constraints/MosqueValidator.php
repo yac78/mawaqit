@@ -5,6 +5,7 @@ namespace AppBundle\Validator\Constraints;
 use AppBundle\Entity\Mosque;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -16,9 +17,15 @@ class MosqueValidator extends ConstraintValidator
      */
     private $tokenStorage;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    /**
+     * @var AuthorizationChecker
+     */
+    private $authorizationChecker;
+
+    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationChecker $authorizationChecker)
     {
         $this->tokenStorage = $tokenStorage;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     const MAX_DEFAULT_MOSQUE_QUOTA = 10;
@@ -40,12 +47,12 @@ class MosqueValidator extends ConstraintValidator
             $quota = $user->getMosqueQuota();
         }
 
-        if (!$user->isAdmin() && $user->getMosques()->count() >= $quota) {
+        if (!$this->authorizationChecker->isGranted("ROLE_ADMIN") && $user->getMosques()->count() >= $quota) {
             $this->context->buildViolation($constraint->maxReachedMsg)->addViolation();
         }
 
         // validate justificatory
-        if (!$user->isAdmin() && $mosque->isMosque() && !$mosque->isValidated()) {
+        if (!$this->authorizationChecker->isGranted("ROLE_ADMIN") && $mosque->isMosque() && !$mosque->isValidated()) {
             if (!$mosque->getJustificatoryfile()) {
                 $this->context->buildViolation($constraint->justificatoryMandatory)->addViolation();
             }
