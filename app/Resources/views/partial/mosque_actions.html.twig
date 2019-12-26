@@ -18,7 +18,7 @@
                 <li><a href="#" data-url="{{ path('mosque_refresh', {id: mosque.id}) }}" class="btn-refresh" title="{{ 'mosque.refresh'|trans }}"><i class="fas fa-sync"></i> {{ 'refresh'|trans }} </a></li>
             {% endif %}
 
-            {% if isNotLocal() and is_granted('ROLE_ADMIN') %}
+            {% if isNotLocal() and is_granted('ROLE_SUPER_ADMIN') %}
                 <li class="check"><a href="{{ path('mosque_check', {id: mosque.id}) }}"><i class="fas fa-exclamation-circle"></i> {{ 'form.check.action'|trans }}</a></li>
                 <li class="duplicated"><a href="{{ path('mosque_duplicated', {id: mosque.id}) }}"><i class="fas fa-check-double"></i> {{ 'form.duplicated.action'|trans }}</a></li>
                 {% if mosque.screenPhotoAdded %}
