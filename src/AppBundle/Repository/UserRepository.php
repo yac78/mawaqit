@@ -30,7 +30,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if (!empty($filter["admin"])) {
-            $qb->andWhere("u.roles LIKE '%ROLE_ADMIN%'");
+            $qb->andWhere("u.roles LIKE '%_ADMIN%'");
         }
 
         if (isset($filter["disabled"]) && $filter["disabled"] === true) {

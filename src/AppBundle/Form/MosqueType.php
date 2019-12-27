@@ -61,7 +61,7 @@ class MosqueType extends AbstractType
          */
         $mosque = $builder->getData();
         $user = $mosque->getUser();
-        if ($user instanceof User && $this->securityChecker->isGranted('ROLE_ADMIN')) {
+        if ($user instanceof User && $this->securityChecker->isGranted('ROLE_SUPER_ADMIN')) {
             $builder
                 ->add('user', HiddenType::class, [
                     'required' => true,

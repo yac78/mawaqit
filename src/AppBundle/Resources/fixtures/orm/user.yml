@@ -5,6 +5,6 @@ AppBundle\Entity\User:
         email: local\@local.com
         enabled: true
         tou: true
-        roles: [ROLE_ADMIN]
+        roles: [ROLE_SUPER_ADMIN]
         apiAccessToken: 348698e3-4e96-4d22-9086-33406959b5e8
         apiQuota: 1000000
