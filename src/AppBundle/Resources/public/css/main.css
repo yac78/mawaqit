@@ -150,9 +150,9 @@ body {
 
 .version {
     position: fixed;
-    bottom: 5px;
+    bottom: 0;
     right: 5px;
-    color: #3c3c3c;
+    color: #3c3c3c66;
 }
 
 .checkbox label .toggle, .checkbox-inline .toggle {
