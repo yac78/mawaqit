@@ -181,3 +181,14 @@ body {
 .pagination {
     margin: 5px 0;
 }
+
+.rtl .fb_dialog {
+    left: 10pt !important;
+    bottom: 10pt !important;
+    right: auto !important;
+}
+
+.rtl #fb-root iframe {
+    left: 9pt !important;
+    right: auto !important;
+}
