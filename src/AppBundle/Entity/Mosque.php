@@ -961,6 +961,14 @@ class Mosque
         return in_array($this->status, [self::STATUS_VALIDATED, self::STATUS_SCREEN_PHOTO_ADDED]);
     }
 
+    public function isConfigurationAllowed()
+    {
+        return in_array($this->status, [
+            self::STATUS_VALIDATED,
+            self::STATUS_SUSPENDED
+        ]);
+    }
+
     public function hasScreenPhotoAdded()
     {
         return $this->status === self::STATUS_SCREEN_PHOTO_ADDED;

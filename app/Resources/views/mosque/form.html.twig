@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-            {% if mosque is defined and is_granted('ROLE_ADMIN') and isNotLocal() %}
+            {% if mosque is defined and is_granted('ROLE_ADMIN') %}
                 <div class="col-md-6">
                     <h4>Cliquez pour corriger la position GPS</h4>
                     <div id="map" style="width: 100%; height: 500px"></div>
