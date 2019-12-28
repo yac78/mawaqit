@@ -356,7 +356,7 @@ mosque:
     justificatoryFile:
       label: Un document justificatif (.pdf .jpg .png .doc .ppt)
       help: |
-        Ajouter un document justifiant l'existance de la mosquée (une facture d'éléctricité/eau/téléphone) cela facilite à mawaqit la validation de votre mosquée rapidement
+        Ajouter un document justifiant l'existance de la mosquée (une facture d'éléctricité / eau / téléphone) cela facilite à mawaqit la validation de votre mosquée rapidement
     file1:
       label: Photo extérieur de la mosquée
       help: Photo de bonne qualité au format paysage (800x450 px minimum)
