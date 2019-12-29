@@ -56,6 +56,7 @@ class MosqueSearchType extends AbstractType
                     "mosque.statuses.SUSPENDED",
                     "mosque.statuses.DUPLICATED",
                     "mosque.statuses.SCREEN_PHOTO_ADDED",
+                    "mosque.statuses.WATCHED",
                 ], Mosque::STATUSES)
             ])
             ->add('country', CountryType::class, [

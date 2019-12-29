@@ -309,6 +309,7 @@ mosque:
   statuses:
     NEW: En attente de validation
     VALIDATED: Validée
+    WATCHED: Surveillée
     CHECK: En cours de vérification
     SUSPENDED: Suspendue
     DUPLICATED: Doublon

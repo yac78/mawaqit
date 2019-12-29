@@ -19,6 +19,7 @@ class Mosque
     const STATUS_CHECK = "CHECK";
     const STATUS_DUPLICATED = "DUPLICATED";
     const STATUS_SCREEN_PHOTO_ADDED = "SCREEN_PHOTO_ADDED";
+    const STATUS_WATCHED = "WATCHED";
     const TYPE_MOSQUE = "MOSQUE";
     const TYPE_HOME = "HOME";
     const TYPE_SCHOOL = "SCHOOL";
@@ -37,7 +38,8 @@ class Mosque
         self::STATUS_VALIDATED,
         self::STATUS_SUSPENDED,
         self::STATUS_DUPLICATED,
-        self::STATUS_SCREEN_PHOTO_ADDED
+        self::STATUS_SCREEN_PHOTO_ADDED,
+        self::STATUS_WATCHED
     ];
 
     const SUSPENSION_REASON_MOSQUE_CLOSED = "mosque_closed";
@@ -984,11 +986,6 @@ class Mosque
         return $this;
     }
 
-    public function isValidated()
-    {
-        return $this->status === self::STATUS_VALIDATED;
-    }
-
     public function isSuspended()
     {
         return $this->status === self::STATUS_SUSPENDED;
@@ -996,14 +993,30 @@ class Mosque
 
     public function isAccessible()
     {
-        return in_array($this->status, [self::STATUS_VALIDATED, self::STATUS_SCREEN_PHOTO_ADDED]);
+        if ($this->isValidated()) {
+            return true;
+        }
+
+        return in_array($this->status, [
+            self::STATUS_SCREEN_PHOTO_ADDED,
+        ]);
+    }
+
+    public function isValidated()
+    {
+        return in_array($this->status, [
+            self::STATUS_VALIDATED,
+            self::STATUS_WATCHED,
+        ]);
     }
 
     public function isConfigurationAllowed()
     {
+        if ($this->isValidated()) {
+            return true;
+        }
         return in_array($this->status, [
-            self::STATUS_VALIDATED,
-            self::STATUS_SUSPENDED
+            self::STATUS_SUSPENDED,
         ]);
     }
 
