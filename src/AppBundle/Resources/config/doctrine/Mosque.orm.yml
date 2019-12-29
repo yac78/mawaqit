@@ -147,9 +147,15 @@ AppBundle\Entity\Mosque:
                 onDelete: 'SET NULL'
     oneToMany:
         messages:
+            orphanRemoval: true
             cascade:
                 - persist
             targetEntity: AppBundle\Entity\Message
             mappedBy: mosque
-            joinColumn:
-                onDelete: CASCADE
+
+        comments:
+            orphanRemoval: true
+            cascade:
+                - persist
+            targetEntity: AppBundle\Entity\Comment
+            mappedBy: mosque

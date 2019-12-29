@@ -1,7 +1,7 @@
 {% use '@EasyAdmin/form/bootstrap_3_layout.html.twig' %}
 
 {% block textarea_widget -%}
-    {% if form.vars.easyadmin is defined and form.vars.easyadmin.field.css_class == 'tinymce' %}
+    {% if form.vars.easyadmin.field.css_class is defined and form.vars.easyadmin.field.css_class == 'tinymce' %}
         {% set attr = attr|merge({class: (attr.class|default('') ~ ' tinymce')|trim}) %}
         {{- parent() -}}
         {{ tinymce_init() }}

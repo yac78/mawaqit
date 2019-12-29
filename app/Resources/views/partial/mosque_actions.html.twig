@@ -14,7 +14,7 @@
             {% if isLocal() %}
                 <li><a href="{{ path('mosque_reset_sync', {id: mosque.id}) }}"><i class="fas fa-sync"></i> {{ 'form.sync.action'|trans }}</a></li>
             {% endif %}
-            <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><i class="fas fa-comment-dots"></i> {{ 'message.manage'|trans }}</a></li>
+            <li><a href="{{ path('message_index', {mosque: mosque.id}) }}"><i class="fas fa-envelope"></i> {{ 'message.manage'|trans }}</a></li>
             {% if isNotLocal() %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ path('mosque_clone', {id: mosque.id}) }}"><i class="fas fa-copy"></i> {{ 'form.clone.action'|trans }}</a></li>
@@ -23,6 +23,7 @@
             {% endif %}
 
             {% if isNotLocal() and is_granted('ROLE_SUPER_ADMIN') %}
+                <li><a href="{{ path('easyadmin', {entity: "Mosque", id: mosque.id, action: "edit"}) }}"><i class="fas fa-comment"></i> Commentaires</a></li>
                 <li class="check"><a href="{{ path('mosque_check', {id: mosque.id}) }}"><i class="fas fa-exclamation-circle"></i> {{ 'form.check.action'|trans }}</a></li>
                 <li class="duplicated"><a href="{{ path('mosque_duplicated', {id: mosque.id}) }}"><i class="fas fa-check-double"></i> {{ 'form.duplicated.action'|trans }}</a></li>
                 {% if mosque.screenPhotoAdded %}

@@ -13,6 +13,7 @@ easy_admin:
       form:
         fields:
           - id
+          - username
           - email
           - enabled
           - { property: roles, type: choice, type_options: { multiple: true, choices: { ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN, ROLE_ADMIN: ROLE_ADMIN, ROLE_USER: ROLE_USER } } }

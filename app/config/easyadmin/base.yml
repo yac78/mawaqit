@@ -3,7 +3,8 @@ easy_admin:
   design:
     brand_color: '#448531'
     menu:
-      - { entity: User, label: Utilisateurs, icon: user, default: true }
+      - { entity: Mosque, label: Mosquées, icon: building, default: true }
+      - { entity: User, label: Utilisateurs, icon: user }
       - { entity: Faq, icon: question}
       - { entity: Parameters, label: Paramètres, icon: cog}
       - { label: Retour au backoffice, route: 'mosque_index' }

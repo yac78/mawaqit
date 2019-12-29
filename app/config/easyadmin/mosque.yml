@@ -1,0 +1,34 @@
+easy_admin:
+  entities:
+    Mosque:
+      class: AppBundle\Entity\Mosque
+      disabled_actions: [new]
+      list:
+        actions:
+          - { name: 'show', icon: 'eye', label: false }
+          - { name: 'edit', icon: 'comment', label: false }
+          - { name: 'delete', icon: 'trash', label: false }
+        fields:
+          - id
+          - title
+          - localisation
+          - status
+          - emailScreenPhotoReminder
+          - updated
+          - created
+
+      form:
+        fields:
+#          - { type: tab, label: info, icon: info}
+#          - id
+#          - name
+
+          - { type: tab, label: Commentaires, icon: comment}
+          - property: comments
+            type: collection
+            type_options:
+              label: false
+              entry_type: AppBundle\Form\CommentType
+              allow_delete: true
+              allow_add: true
+              by_reference: false
