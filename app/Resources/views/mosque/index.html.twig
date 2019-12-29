@@ -254,6 +254,9 @@
                     {% endif %}
                 </div>
                 <div><strong>{{ 'status'|trans }}:</strong> {{ ('mosque.statuses.' ~  mosque.status)|trans }}</div>
+                {% if mosque.isSuspended %}
+                    <div><b>{{ 'reason'|trans }} : </b>{{ ('mosque.suspensionReason.' ~ mosque.reason)|trans }}</div>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <div>
                         <strong>{{ 'user'|trans }}:</strong>
