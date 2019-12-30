@@ -200,14 +200,14 @@ home:
           de garder l'heure correctement réglée
           quand il est éteint.<br>
           Il est donc conseillé d'équiper le raspberry
-          <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+          <a href="rtc_link">
               d'une horloge RTC
           </a>
           si vous ne comptez pas le connecter à internet, cela évitera la
           perte de l'heure système en cas de coupure de courant.
           Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans
           LXTerminal<br>
-          <code>sudo date -s "%now%" && hwclock -w</code> <br><br>
+          <code>sudo date -s "%now%" && sudo hwclock -w</code> <br><br>
       </p>
     install8: |
       Pour plus d'informations visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>

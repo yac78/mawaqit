@@ -28,7 +28,6 @@
         "doctrine/orm": "^2.5",
         "easycorp/easyadmin-bundle": "^1.17",
         "excelwebzone/recaptcha-bundle": "^1.5",
-        "friendsofsymfony/ckeditor-bundle": "^2.1",
         "friendsofsymfony/user-bundle": "~2.0",
         "gedmo/doctrine-extensions": "^2.4",
         "incenteev/composer-parameter-handler": "^2.1",

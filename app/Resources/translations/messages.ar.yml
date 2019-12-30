@@ -184,12 +184,12 @@ home:
           <strong>هام :</strong>
           لا يحتوي الراسبيري على ساعة RTC (مكون إلكتروني مع بطارية) تحافظ على الوقت بشكل صحيح عند إيقاف تشغيله.<br>
           ولذلك فمن المستحسن تجهيز الراسبيري
-          <a href="https://www.amazon.fr/Horloge-pr%C3%A9cision-DS3231-RTC-Compatible-Raspberry/dp/B01F6MJZGQ/ref=sr_1_4?ie=UTF8&qid=1508527126&sr=8-4&keywords=rtc+ds3231">
+          <a href="rtc_link">
               بساعة RTC
           </a>
           إذا كنت لا تنوي توصيله بالإنترنت ، فهذا سوف يتجنب فقدان وقت النظام في حالة إنقطاع التيار الكهربائي. فقط قم بتوصيله كما هو موضح أدناه ثم اكتب الأوامر التالية في LXTerminal
           <br>
-          <code>sudo date -s "%now%" && hwclock -w</code> <br><br>
+          <code>sudo date -s "%now%" && sudo hwclock -w</code> <br><br>
       </p>
     install8: |
       لمزيد من المعلومات زر قناتنا على <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
