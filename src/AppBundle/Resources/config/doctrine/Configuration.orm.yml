@@ -104,10 +104,14 @@ AppBundle\Entity\Configuration:
             type: string
             length: 50
         fajrDegree:
-            type: smallint
+            type: decimal
+            precision: 4
+            scale: 2
             nullable: true
         ishaDegree:
-            type: smallint
+            type: decimal
+            precision: 4
+            scale: 2
             nullable: true
         wakeForFajrTime:
             type: smallint

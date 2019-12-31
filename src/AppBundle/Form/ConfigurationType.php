@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
@@ -270,16 +271,18 @@ class ConfigurationType extends AbstractType
             ->add('prayerMethod', ChoiceType::class, [
                 'choices' => array_combine(PrayerTime::METHOD_CHOICES, PrayerTime::METHOD_CHOICES)
             ])
-            ->add('fajrDegree', IntegerType::class, [
+            ->add('fajrDegree', NumberType::class, [
+                'scale' => 2,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'configuration.form.fajrDegree.placeholder'
+                    'placeholder' => 'configuration.form.fajrDegree.placeholder',
                 ]
             ])
-            ->add('ishaDegree', IntegerType::class, [
+            ->add('ishaDegree', NumberType::class, [
+                'scale' => 2,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'configuration.form.ishaDegree.placeholder'
+                    'placeholder' => 'configuration.form.ishaDegree.placeholder',
                 ]
             ])
             ->add('iqamaDisplayTime', IntegerType::class, [
