@@ -10,7 +10,7 @@ easy_admin:
           - { name: 'delete', icon: 'trash', label: false }
         fields:
           - id
-          - title
+          - name
           - localisation
           - status
           - emailScreenPhotoReminder

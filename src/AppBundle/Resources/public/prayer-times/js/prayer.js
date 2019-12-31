@@ -682,6 +682,10 @@ var prayer = {
     },
     duaAfterAdhan: {
         showAdhanDua: function () {
+            if (!prayer.isMosque && prayer.confData.azanVoiceEnabled === true ){
+                prayer.playSound("duaa-after-adhan.mp3");
+            }
+
             prayer.switchLayer('main', 'adhan', true);
         },
         hideAdhanDua: function () {
