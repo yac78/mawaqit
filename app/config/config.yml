@@ -179,5 +179,3 @@ ewz_recaptcha:
   public_key: '%google.recaptcha.public_key%'
   private_key: '%google.recaptcha.private_key%'
   locale_from_request: true
-
-fos_ck_editor: ~
