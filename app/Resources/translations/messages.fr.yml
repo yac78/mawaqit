@@ -703,7 +703,7 @@ mosqueList:
   iframeAddTitle: Ajouter le widget à votre site
   widgetForYourSite: Widget pour votre site internet
   alertRemoveMosque: |
-    Il vous reste <b>%days%</b> jours pour fournir la photo de l'écran mawaqit prise dans la mosquée, passé ce délai la mosquée sera automatiquement supprimée.
+    Il vous reste <b>%days%</b> jours pour fournir la photo de l'écran mawaqit prise dans la mosquée, passé ce délai la mosquée sera automatiquement suspendue.
   csvFileExemple: Voici un exemple de fichiers csv de tous les mois pour les horaires de Paris UOIF
   qrcodeTitle: A afficher dans un endroit accessible au fidèles
 
