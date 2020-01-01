@@ -24,6 +24,7 @@
 
             {% if isNotLocal() and is_granted('ROLE_SUPER_ADMIN') %}
                 <li><a href="{{ path('easyadmin', {entity: "Mosque", id: mosque.id, action: "edit"}) }}"><i class="fas fa-comment"></i> Commentaires</a></li>
+                <li><a href="{{ path('mosque_watch', {id: mosque.id}) }}"><i class="fas fa-eye"></i> Surveiller</a></li>
                 <li class="check"><a href="{{ path('mosque_check', {id: mosque.id}) }}"><i class="fas fa-exclamation-circle"></i> {{ 'form.check.action'|trans }}</a></li>
                 <li class="duplicated"><a href="{{ path('mosque_duplicated', {id: mosque.id}) }}"><i class="fas fa-check-double"></i> {{ 'form.duplicated.action'|trans }}</a></li>
                 {% if mosque.screenPhotoAdded %}

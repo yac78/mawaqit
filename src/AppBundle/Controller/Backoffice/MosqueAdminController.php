@@ -11,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/backoffice/admin/mosque")
@@ -71,6 +70,25 @@ class MosqueAdminController extends Controller
         return $this->render('mosque/suspend.html.twig', [
             'mosque' => $mosque,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/watch/{id}", name="mosque_watch")
+     * @Method({"GET"})
+     * @param Mosque  $mosque
+     *
+     * @return Response
+     */
+    public function watchMosqueAction(Mosque $mosque, EntityManagerInterface $em)
+    {
+        $mosque->setStatus(Mosque::STATUS_WATCHED);
+        $em->flush();
+
+        return $this->redirectToRoute("easyadmin", [
+            "id" => $mosque->getId(),
+            "entity" => "Mosque",
+            "action" => "edit"
         ]);
     }
 
