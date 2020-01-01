@@ -24,6 +24,10 @@ class RequestService
      */
     public function isLocal()
     {
+        if(!$this->request){
+            return true;
+        }
+        
         return $this->request->getHost() === 'mawaqit.local';
     }
 }
