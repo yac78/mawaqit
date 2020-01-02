@@ -53,9 +53,9 @@
                         <i class="fa fa-globe"></i>&nbsp;{{ 'language'|trans }} <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">{{ 'fr'|trans }}</a></li>
-                        <li><a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">{{ 'en'|trans }}</a></li>
-                        <li><a href="{{ path(app.request.attributes.get('_route'), {_locale: 'ar'}) }}">{{ 'ar'|trans }}</a></li>
+                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}">{{ 'fr'|trans }}</a></li>
+                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'}))  }}">{{ 'en'|trans }}</a></li>
+                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'ar'}))  }}">{{ 'ar'|trans }}</a></li>
                     </ul>
                 </li>
             </ul>
