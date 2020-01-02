@@ -47,21 +47,12 @@ home:
     contactUsText1: |
       Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel. Contactez nous :
     contactUsText2: |
-      <li><i class="fab fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>
-        <p style="padding-left:20px">
+      <i class="fab fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>
+        <p>
           France supportTelFR <br>
           Algérie supportTelDZ <br>
-          Reste du monde supportTelROW</li>
+          Reste du monde supportTelROW
         </p>
-      <li>Via le formulaire ci-dessous</li>
-    contactUsFormValidation1: Veuillez saisir votre nom.
-    contactUsFormValidation2: Veuillez saisir votre adresse.
-    contactUsFormValidation3: Veuillez saisir votre numéro de téléphone.
-    contactUsFormValidation4: Veuillez saisir votre message.
-    contactUsFormPlaceholder1: Nom *
-    contactUsFormPlaceholder2: Email *
-    contactUsFormPlaceholder3: Téléphone *
-    contactUsFormPlaceholder4: Message *
     legalNotice: Mentions légales
     project1: |
       La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau
@@ -133,30 +124,30 @@ home:
              une horloge RTC
           </a>
       </li>
-    equipeYourMosque5: Qu'Allah accepte vos œuvres et les notres
     findMosque: Cherchez une mosquée mawaqit par nom, ville, code postal...
-    install1:  "Veuillez suivre les étapes ci-dessous :"
-    install2:  Télécharger l'image système pré configurée ici
+    install_sub_title:  Veuillez suivre les étapes ci-dessous
+    install1_1:  Inscrivez-vous <a href="registerUrl" target="_blank">ici</a>
+    install1_2:  |
+      Ajoutez la mosquée depuis votre espace utilisateur, munissez-vous d'un justificatif de domicialiation de la mosquée
+      (comme une facture d'éléctricité, pas besoin pour les domiciles et autres types d'installation)
+    install2:  Téléchargez l'image système pré configurée ici
     install3:  Vous devez être connecté pour télécharger l'image système
     install4: |
-      <li>Brancher la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
+      <li>Branchez la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
       <li>Téléchargez le logiciel Etcher ici
           <i class="fa fa-hand-o-right"></i>
           <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
           ordinateur
       </li>
       <li>
-          Flashez l'image système mawaqit.gz sur la carte micro sd avec Etcher<br><br>
+          Flashez l'image système <b>mawaqit.gz</b> sur la carte micro sd avec Etcher<br><br>
       </li>
-    install5:  Dernière étape
     install6: |
       <p>
-        Maintenant que vous avez installé l'image système sur la carte mémoire vous avez deux possibiltés: <br><br>
+        Bravo ! vous avez installé l'image système sur la carte mémoire de votre raspberry, vous avez maintenant deux options: <br><br>
       </p>
       <p>
-          <strong>OPTION 1. Vous avez une connexion internet (WIFI ou Ethernet) ? </strong>
-          Utilisez la version connectée <strong>(RECOMMANDÉE)</strong> elle bénéficie des avantages
-          suivants
+          <strong>OPTION 1 (RECOMMANDÉE). </strong> Utilisez la version connectée elle bénéficie des avantages suivants
       </p>
       <ul>
           <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
@@ -172,28 +163,21 @@ home:
       </p>
     install7: |
       <ol>
-        <li>Inscrivez-vous <a target="_blank" href="%registerUrl%">ici</a>
-        </li>
-        <li>Identifiez-vous puis ajoutez et configurez votre mosquée, un lien internet sera généré à la
-            fin de cette étape
-        </li>
         <li>Démarez le raspberry et branchez un clavier et une souris usb</li>
         <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
         <li>
             Ouvrez le fichier <code>online_site.txt</code> présent sur le bureau et remplacez son
-            contenu
-            par le lien généré dans votre compte,
-            exemple: <br>
+            contenu par le lien généré dans votre compte, exemple: <br>
             <code>mosqueUrl<br></code>
         </li>
         <li>Sauvegardez et quittez</li>
         <li>Lancez Mawaqit depuis le bureau</li>
-        <li>Au lancement le raspberry vérifie si une connexion internet est disponible,
+        <li>Au lancement, le raspberry vérifie si une connexion internet est disponible,
             dans ce cas il lance la version en ligne, sinon il bascule sur la version offline
         </li>
       </ol>
-
-      <p><strong>OPTION 2. Vous n'avez pas de connexion internet, lancer la version offline : </strong>
+      <br>
+      <p><strong>OPTION 2. Lancez la version offline : </strong>
           Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
           <strong>Important :</strong>
           Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
@@ -205,7 +189,7 @@ home:
           </a>
           si vous ne comptez pas le connecter à internet, cela évitera la
           perte de l'heure système en cas de coupure de courant.
-          Il suffit de la brancher comme illustré ci-dessous et taper les commandes suivantes dans
+          Il suffit de la brancher comme illustré ci-dessous et taper la commande suivante dans
           LXTerminal<br>
           <code>sudo date -s "%now%" && sudo hwclock -w</code> <br><br>
       </p>
