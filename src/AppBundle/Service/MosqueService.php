@@ -73,9 +73,11 @@ class MosqueService
                       m.ablutions, 
                       m.parking";
 
-        $statuses = implode(',', array_map(function ($v) {
+        $statuses = array_map(function ($v) {
             return "'$v'";
-        }, Mosque::ACCESSIBLE_STATUSES));
+        }, Mosque::ACCESSIBLE_STATUSES);
+
+        $statuses = implode(',', $statuses);
 
         if (!empty($lon) && !empty($lat)) {
             $q .= " ,ROUND(get_distance_metres(:lat, :lon, m.latitude, m.longitude) ,0) AS proximity

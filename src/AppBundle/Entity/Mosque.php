@@ -999,9 +999,7 @@ class Mosque
 
     public function isAccessible()
     {
-        return in_array($this->status, [
-            self::ACCESSIBLE_STATUSES,
-        ]);
+        return in_array($this->status,self::ACCESSIBLE_STATUSES);
     }
 
     public function isValidated()
