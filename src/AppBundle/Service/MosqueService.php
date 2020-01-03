@@ -73,18 +73,22 @@ class MosqueService
                       m.ablutions, 
                       m.parking";
 
+        $statuses = implode(',', array_map(function ($v) {
+            return "'$v'";
+        }, Mosque::ACCESSIBLE_STATUSES));
+
         if (!empty($lon) && !empty($lat)) {
             $q .= " ,ROUND(get_distance_metres(:lat, :lon, m.latitude, m.longitude) ,0) AS proximity
                             FROM mosque m  
                             INNER JOIN configuration c on m.configuration_id = c.id 
-                            WHERE m.status = 'VALIDATED' AND m.type = 'mosque' 
+                            WHERE m.status IN ($statuses) AND m.type = 'mosque' 
                             HAVING proximity < 10000 ORDER BY proximity ASC LIMIT 10";
 
         } elseif ($word) {
             $word = preg_split("/\s+/", trim($word));
             $q .= " FROM mosque m";
             $q .= " INNER JOIN configuration c on m.configuration_id = c.id";
-            $q .= " WHERE m.status = 'VALIDATED' AND m.type = 'mosque'";
+            $q .= " WHERE m.status IN ($statuses) AND m.type = 'mosque'";
             foreach ($word as $key => $keyword) {
                 $q .= " AND (m.name LIKE :keyword$key 
                 OR m.association_name LIKE :keyword$key 

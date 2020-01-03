@@ -42,6 +42,12 @@ class Mosque
         self::STATUS_WATCHED
     ];
 
+    const ACCESSIBLE_STATUSES = [
+        self::STATUS_VALIDATED,
+        self::STATUS_SCREEN_PHOTO_ADDED,
+        self::STATUS_WATCHED
+    ];
+
     const SUSPENSION_REASON_MOSQUE_CLOSED = "mosque_closed";
     const SUSPENSION_REASON_MOSQUE_PRAYER_TIMES_INCORRECT = "prayer_times_not_correct";
     const SUSPENSION_REASON_MISSING_PHOTO = "missing_photo";
@@ -993,12 +999,8 @@ class Mosque
 
     public function isAccessible()
     {
-        if ($this->isValidated()) {
-            return true;
-        }
-
         return in_array($this->status, [
-            self::STATUS_SCREEN_PHOTO_ADDED,
+            self::ACCESSIBLE_STATUSES,
         ]);
     }
 

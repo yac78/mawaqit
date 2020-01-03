@@ -94,13 +94,12 @@ class MosqueRepository extends EntityRepository
         return $qb;
     }
 
-
     private function getValidatedMosqueQb()
     {
         return $this->createQueryBuilder("m")
             ->where("m.type = 'mosque'")
-            ->andWhere("m.status = :status")
-            ->setParameter(':status', Mosque::STATUS_VALIDATED);
+            ->andWhere("m.status IN (:status)")
+            ->setParameter(':status', Mosque::ACCESSIBLE_STATUSES);
     }
 
 
@@ -256,15 +255,16 @@ class MosqueRepository extends EntityRepository
 
     /**
      * Remove not validated mosques if no response after 30 days
-     * @return integer
+     * @return mixed
+     * @throws \Exception
      */
     function removeNotValidated()
     {
         return $this->createQueryBuilder("m")
             ->delete()
             ->where("m.status NOT IN (:status)")
-            ->andWhere("m.updated < :date")
-            ->setParameter(":status", [Mosque::STATUS_VALIDATED, Mosque::STATUS_SUSPENDED])
+            ->andWhere("m.created < :date")
+            ->setParameter(":status", array_merge(Mosque::ACCESSIBLE_STATUSES, [Mosque::STATUS_SUSPENDED]))
             ->setParameter(":date", new DateTime("-30 day "))
             ->getQuery()
             ->execute();
