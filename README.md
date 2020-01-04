@@ -2,12 +2,12 @@
 
 ## Install the project
 ### Requirements 
-* Docker and docker-compose must be installed on your computer or server
-* The 10001 port must be free
+* make, docker and docker-compose must be installed on your computer or server
+* The 10001, 10002, 10003 ports must be free
 
 ### Installation
 1. git clone the project `git clone git@github.com:ibrahim-zehhaf/mawaqit.git` 
-2. `cd mawaqit && ./install.sh`
+2. `cd mawaqit && make install`
 
 
 Plase visite our website [https://mawaqit.net]((https://mawaqit.net)) for more information.

@@ -1,7 +1,7 @@
 version: "3.1"
 
 services:
-  mawaqit_php:
+  php:
     container_name: mawaqit_php
     build: docker/php-fpm
     restart: always
@@ -14,7 +14,7 @@ services:
       - ~/.ssh:/root/.ssh
       - /etc/localtime:/etc/localtime:ro
 
-  mawaqit_nginx:
+  nginx:
     container_name: mawaqit_nginx
     image: nginx:alpine
     restart: always
@@ -28,7 +28,7 @@ services:
     ports:
       - 10001:80
 
-  mawaqit_mysql:
+  db:
     container_name: mawaqit_mysql
     image: mysql:5.6
     restart: always
@@ -40,13 +40,13 @@ services:
     ports:
       - 10002:3306
 
-  mawaqit_composer:
+  composer:
     image: composer:1.9.0
     volumes:
       - ./:/app
     command: install -n
 
-  mawaqit_maildev:
+  maildev:
     container_name: mawaqit_maildev
     restart: always
     image: djfarrelly/maildev:1.1.0

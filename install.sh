@@ -2,20 +2,19 @@
 
 ln -sf docker-compose.dev.yml docker-compose.yml
 docker-compose down && docker-compose up -d --build
-
-docker-compose exec mawaqit_php mkdir -p var/logs var/cache var/sessions
-docker-compose exec mawaqit_php rm -rf var/logs/* var/cache/* var/sessions/*
-docker-compose exec mawaqit_php chmod -R 777 var/logs var/cache var/sessions
+docker-compose exec php composer install -n
+docker-compose exec -d php kill -USR2 1
+docker-compose exec php chmod -R 777 var/logs var/cache var/sessions web/upload
 
 echo ""
 echo "Waiting for database..."
 
-while ! docker-compose exec mawaqit_mysql mysqladmin ping -h"127.0.0.1" --silent; do
+while ! docker-compose exec db mysqladmin ping -h"127.0.0.1" --silent; do
     sleep 1
 done
 
-docker-compose exec mawaqit_php bin/console d:s:u -f
-docker-compose exec mawaqit_php bin/console h:f:l -n
+docker-compose exec php bin/console d:s:u -f
+docker-compose exec php bin/console h:f:l -n
 
 echo "------------------------------------------"
 echo "Mawaqit is up"
