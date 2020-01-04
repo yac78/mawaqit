@@ -32,7 +32,7 @@ echo "Creating symlinks"
 docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$target robots.txt)"
 
 echo "Set version"
-version=`git symbolic-ref -q --short HEAD`@`git rev-parse --short    HEAD`
+version=`git symbolic-ref -q --short HEAD`@`git rev-parse --short HEAD`
 if [ "$target" == "prod" ]; then
     version=$tag
 fi
