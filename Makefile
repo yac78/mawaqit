@@ -8,7 +8,7 @@ down:
     docker-compose down
 
 up:
-    docker-compose down && docker-compose up -d
+    docker-compose down && docker-compose up -d --build
 
 restart:
     docker-compose restart
