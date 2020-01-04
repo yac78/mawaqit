@@ -4,6 +4,9 @@ PATH  := node_modules/.bin:bin/:$(PATH)
 install:
     ./install.sh
 
+stop:
+    docker-compose stop
+
 down:
     docker-compose down
 
