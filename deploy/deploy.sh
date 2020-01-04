@@ -6,14 +6,14 @@ ppServer=$MAWAQIT_PP_IP
 port=$MAWAQIT_PORT
 
 if [ $# -lt 1 ]; then
-    echo "env is mandatory"
+    echo "target is mandatory"
     exit;
 fi
 
-env=$1
+target=$1
 
-if [ "$env" != "pp" ] && [ "$env" != "prod" ] ; then
-    echo "wrong env $env"
+if [ "$target" != "pp" ] && [ "$target" != "prod" ] ; then
+    echo "wrong target $target"
     exit
 fi
 
@@ -30,9 +30,9 @@ git push origin $currentBranch
 
 server=$ppServer
 
-if [ "$env" == "prod" ]; then
+if [ "$target" == "prod" ]; then
     server=$prodServer
-    echo -n "Are you sur you want to deploy $tag to $env ? (y/n)"
+    echo -n "Are you sur you want to deploy $tag to $target ? (y/n)"
     read answer
 else
     tag=$currentBranch
@@ -42,10 +42,10 @@ fi
 if echo "$answer" | grep -iq "^y" ;then
 
     # If prod then create tag
-    if [ "$env" == "prod" ]; then
+    if [ "$target" == "prod" ]; then
         git tag $tag -m "new release $tag" || true
         git push origin $tag
     fi
 
-    ssh -p $port mawaqit@$server 'bash -s' < deploy/install.sh $env $tag
+    ssh -p $port mawaqit@$server 'bash -s' < deploy/install.sh $tag
 fi

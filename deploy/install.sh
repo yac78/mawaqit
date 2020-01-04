@@ -1,15 +1,15 @@
 #!/bin/bash
 set -e
 
-env=$1
+target=$1
 tag=$2
 baseDir=/var/www/mawaqit
 repoDir=$baseDir/repo
-dockerContainer=php
+dockerContainer=mawaqit_php
 
 cd $repoDir
 
-if [ "$env" == "prod" ]; then
+if [ "$target" == "prod" ]; then
     # Sync DB if prod deploy
     echo "Sync DB"
     $baseDir/tools/dbSync.sh
@@ -17,43 +17,44 @@ fi
 
 
 # maintenance
-if [ "$env" == "prod" ]; then
+if [ "$target" == "prod" ]; then
     touch $repoDir/docker/data/maintenance
     docker exec mawaqit_nginx nginx -s reload
 fi
 
-docker-compose exec $dockerContainer git fetch && git checkout $tag
+docker exec $dockerContainer git fetch && git checkout $tag
 
-if [ "$env" == "pp" ]; then
-    docker-compose exec $dockerContainer git pull origin $tag
+if [ "$target" == "pp" ]; then
+    docker exec $dockerContainer git pull origin $tag
 fi
 
 echo "Creating symlinks"
-docker-compose exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$env robots.txt)"
+docker exec $dockerContainer sh -c "(cd web && ln -snf robots.txt.$target robots.txt)"
 
 echo "Set version"
 version=`git symbolic-ref -q --short HEAD`@`git rev-parse --short    HEAD`
-if [ "$env" == "prod" ]; then
+if [ "$target" == "prod" ]; then
     version=$tag
 fi
 
-docker-compose exec $dockerContainer sed -i "s/version: .*/version: $version/" app/config/parameters.yml
+docker exec $dockerContainer sed -i "s/version: .*/version: $version/" app/config/parameters.yml
 
 # Install vendors and assets
-docker-compose exec $dockerContainer sh -c "SYMFONY_ENV=$env composer install -o -n --no-dev"
-docker-compose exec $dockerContainer bin/console assetic:dump -e $env --no-debug
+docker exec $dockerContainer sh -c "SYMFONY_ENV=prod composer install -o -n --no-dev"
+docker exec $dockerContainer bin/console assets:install -e prod --no-debug
+docker exec $dockerContainer bin/console assetic:dump -e prod --no-debug
 
 # Migrate DB
-docker-compose exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e $env
+docker exec $dockerContainer bin/console doc:mig:mig -n --allow-no-migration -e prod
 
 # cache
-docker-compose exec $dockerContainer bin/console c:c -e $env --no-debug --no-warmup
-docker-compose exec $dockerContainer bin/console c:w -e $env --no-debug
+docker exec $dockerContainer bin/console c:c -e prod --no-debug --no-warmup
+docker exec $dockerContainer bin/console c:w -e prod --no-debug
 
 # Restart php
-docker-compose exec $dockerContainer kill -USR2 1
+docker exec $dockerContainer kill -USR2 1
 
 echo ""
 echo "####################################################"
-echo "$env has been successfully upgraded to $tag ;)"
+echo "$target has been successfully upgraded to $tag ;)"
 echo "####################################################"
