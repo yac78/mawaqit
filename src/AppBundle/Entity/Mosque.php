@@ -999,15 +999,7 @@ class Mosque
 
     public function isAccessible()
     {
-        return in_array($this->status,self::ACCESSIBLE_STATUSES);
-    }
-
-    public function isValidated()
-    {
-        return in_array($this->status, [
-            self::STATUS_VALIDATED,
-            self::STATUS_WATCHED,
-        ]);
+        return in_array($this->status, self::ACCESSIBLE_STATUSES);
     }
 
     public function isConfigurationAllowed()
@@ -1017,6 +1009,14 @@ class Mosque
         }
         return in_array($this->status, [
             self::STATUS_SUSPENDED,
+        ]);
+    }
+
+    public function isValidated()
+    {
+        return in_array($this->status, [
+            self::STATUS_VALIDATED,
+            self::STATUS_WATCHED,
         ]);
     }
 
@@ -1366,12 +1366,24 @@ class Mosque
             return null;
         }
 
-        $deadline = clone $this->getCreated();
-        $deadline->modify("+60 days");
-        $interval = $deadline->diff(new \DateTime());
-        $days = (int)$interval->format('%a');
+        $deadline = clone $this->created;
+        $createdDay = (int)$this->created->format("d");
+        if ($createdDay < 15) {
+            $deadline->modify("last day of next month");
+        }
+        if ($createdDay >= 15) {
+            // special case, to prevent 28 and 29 february bug
+            if ((int)$deadline->format('m') === 12 && $createdDay >= 28) {
+                $deadline->setDate($deadline->format('Y'), $deadline->format('m'), 28);
+            }
 
-        return $days;
+            $deadline->modify("+2 months");
+            $deadline->setDate($deadline->format('Y'), $deadline->format('m'), 15);
+        }
+
+        $interval = $deadline->diff(new \DateTime());
+
+        return (int)$interval->format('%a');
     }
 
     public function isMosque()

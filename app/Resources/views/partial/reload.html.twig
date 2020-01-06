@@ -1,0 +1,14 @@
+{% if app.environment == 'prod' %}
+<script>
+    setInterval(function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', window.location.href);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send();
+    }, 10000);
+</script>
+{% endif %}
