@@ -1002,13 +1002,14 @@ class Mosque
         return in_array($this->status, self::ACCESSIBLE_STATUSES);
     }
 
-    public function isConfigurationAllowed()
+    public function isActionsAllowed()
     {
         if ($this->isValidated()) {
             return true;
         }
         return in_array($this->status, [
             self::STATUS_SUSPENDED,
+            self::STATUS_NEW,
         ]);
     }
 
@@ -1018,6 +1019,11 @@ class Mosque
             self::STATUS_VALIDATED,
             self::STATUS_WATCHED,
         ]);
+    }
+
+    public function isNew()
+    {
+        return $this->status === self::STATUS_NEW;
     }
 
     public function hasScreenPhotoAdded()
