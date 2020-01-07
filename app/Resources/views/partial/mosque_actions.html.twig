@@ -10,7 +10,7 @@
                 <li><a href="{{ path('mosque_edit', {id: mosque.id}) }}"><i class="fas fa-pen-square"></i> {{ 'form.edit.action'|trans }}</a></li>
             {% endif %}
 
-            {% if is_granted('ROLE_ADMIN') or mosque.validated %}
+            {% if is_granted('ROLE_ADMIN') or mosque.configurationAllowed %}
                 <li><a href="{{ path('mosque_configure', {id: mosque.id}) }}"><i class="fas fa-cog"></i> {{ 'form.configure.action'|trans }}</a></li>
                 {% if isLocal() %}
                     <li><a href="{{ path('mosque_reset_sync', {id: mosque.id}) }}"><i class="fas fa-sync"></i> {{ 'form.sync.action'|trans }}</a></li>

@@ -1002,6 +1002,16 @@ class Mosque
         return in_array($this->status, self::ACCESSIBLE_STATUSES);
     }
 
+    public function isConfigurationAllowed()
+    {
+        if ($this->isValidated()) {
+            return true;
+        }
+        return in_array($this->status, [
+            self::STATUS_SUSPENDED
+        ]);
+    }
+
     public function isActionsAllowed()
     {
         if ($this->isValidated()) {
