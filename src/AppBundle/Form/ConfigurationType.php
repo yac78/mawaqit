@@ -384,7 +384,7 @@ class ConfigurationType extends AbstractType
                 ]
             ])
             ->add('backgroundMotif', ChoiceType::class, [
-                'choices' => range(0, 20),
+                'choices' => range(-1, 20),
                 'constraints' => [
                     new NotBlank(),
                 ]

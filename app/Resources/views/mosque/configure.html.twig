@@ -565,8 +565,16 @@
                                     </label>
                                 </div>
                             {% endif %}
+                            {% if mosque.image2 %}
+                                <div class="col-md-3">
+                                    <label>
+                                        <input type="radio" name="configuration[backgroundMotif]" value="-1" {{ form.vars.value.backgroundMotif == "-1" ? 'checked' : '' }} />
+                                        <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" class="background-choice"/>
+                                    </label>
+                                </div>
+                            {% endif %}
 
-                            {% for i in 1..18 %}
+                            {% for i in 1..20 %}
                                 <div class="col-md-3">
                                     <label>
                                         <input type="radio" name="configuration[backgroundMotif]" value="{{ i }}" {{ form.vars.value.backgroundMotif == i ? 'checked' : '' }} />
