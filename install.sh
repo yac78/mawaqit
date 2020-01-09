@@ -2,7 +2,7 @@
 
 ln -sf docker-compose.dev.yml docker-compose.yml
 docker-compose kill && docker-compose up -d --build
-docker-compose exec php composer install -n
+docker-compose exec php -u 1001 composer install -n
 docker-compose exec php chown -R www-data var web/upload
 
 echo ""
