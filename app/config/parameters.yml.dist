@@ -1,14 +1,4 @@
 parameters:
-    database_host: mawaqit_mysql
-    database_port: null
-    database_name: mawaqit
-    database_user: root
-    database_password: ~
-    mailer_host_memory:  mawaqit_maildev
-    mailer_host_file:  %mailer_host_memory%
-    mailer_port: 25
-    mailer_user: ~
-    mailer_password: ~
     secret: theSecret
     version: 3.0.0
     postmaster_address: 'exemple@exemple.com'
@@ -16,6 +6,24 @@ parameters:
     support_tel_dz: '0033600000000'
     support_tel_row: '0033600000000'
     support_email: 'exemple@exemple.com'
+
+    # Database
+    database_host: db
+    database_port: null
+    database_name: mawaqit
+    database_user: root
+    database_password: mawaqit
+
+    # Mawaqit API
+    mawaqit_api_access_token: '348698e3-4e96-4d22-9086-33406959b5e8'
+
+    # Mailer
+    mailer_host_memory:  maildev
+    mailer_host_file:  %mailer_host_memory%
+    mailer_port: 25
+    mailer_user: ~
+    mailer_password: ~
+    mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'
 
     # Google API
     google_api_key: ''
@@ -25,7 +33,5 @@ parameters:
     # Weather API
     weather_api_key: ''
 
-    # Mawaqit API
-    mawaqit_api_access_token: ''
-    slack_token: 'fake-token'
-    mailer_spool_dir: '%kernel.cache_dir%/swiftmailer/spool'
+    # Slack
+    slack_token: 'fake-slack-token'
