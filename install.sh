@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 ln -sf docker-compose.dev.yml docker-compose.yml
-docker-compose down && docker-compose up -d --build
+docker-compose kill && docker-compose up -d --build
 docker-compose exec php composer install -n
-docker-compose exec -d php kill -USR2 1
 docker-compose exec php chmod -R 777 var/logs var/cache var/sessions web/upload
 
 echo ""
