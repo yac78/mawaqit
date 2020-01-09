@@ -14,15 +14,12 @@
 !var/SymfonyRequirements.php
 /vendor/
 /node_modules/
-/app/config/parameters.prod.yml
 docker-compose.yml
 .env
-/app/config/parameters.prod.vps.yml
 /web/bundles/
 /web/css/
 /web/js/
 /web/upload/*
+!web/upload/.gitkeep
 /web/robots.txt
-/.idea/
 /docker/data/
-/nbproject
