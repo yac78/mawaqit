@@ -175,7 +175,9 @@ class MosqueService
     public function rejectScreenPhoto(Mosque $mosque)
     {
         $mosque->setStatus(Mosque::STATUS_VALIDATED);
+        $this->vichUploadHandler->remove($mosque, 'file3');
         $mosque->setImage3(null);
+        $mosque->setFile3(null);
         $this->em->flush();
         $this->mailService->rejectScreenPhoto($mosque);
     }
