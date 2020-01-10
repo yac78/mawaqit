@@ -88,6 +88,7 @@ services:
             - "@serializer"
             - "@vich_uploader.upload_handler"
             - "@app.mail_service"
+            - "@app.prayer_times"
 
     app.user_repository:
         class: Doctrine\ORM\EntityRepository

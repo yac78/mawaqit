@@ -429,8 +429,13 @@ class PrayerTime
         return $messages;
     }
 
-    private function getJumua(Mosque $mosque){
+    public function getJumua(Mosque $mosque){
         $conf = $mosque->getConf();
+
+        if(!$conf->hasJumua()){
+            return null;
+        }
+
         if ($conf->isJumuaAsDuhr()) {
             $date = new \DateTime();
             if($date->format("N") !== "5"){

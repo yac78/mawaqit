@@ -17,7 +17,13 @@ $.ajax({
         $('.shuruq .time').text(mosque.shuruq);
 
         // jumua
-        $('.jumua .time').text(mosque.jumua);
+        if(mosque.jumua) {
+            $('.jumua .time').text(mosque.jumua);
+        }
+
+        if(!mosque.jumua){
+            $('.jumua').css("visibility", "hidden");
+        }
 
         // times
         $.each(mosque.times, function (i, time) {

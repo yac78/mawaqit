@@ -30,16 +30,23 @@ class MosqueService
      */
     private $mailService;
 
+    /**
+     * @var PrayerTime
+     */
+    private $prayerTime;
+
     public function __construct(
         EntityManagerInterface $em,
         SerializerInterface $serializer,
         AbstractHandler $vichUploadHandler,
-        MailService $mailService
+        MailService $mailService,
+        PrayerTime $prayerTime
     ) {
         $this->em = $em;
         $this->serializer = $serializer;
         $this->vichUploadHandler = $vichUploadHandler;
         $this->mailService = $mailService;
+        $this->prayerTime = $prayerTime;
     }
 
     /**
@@ -112,7 +119,13 @@ class MosqueService
         }
 
         $stmt->execute();
-        return $stmt->fetchAll();
+        $mosques = $stmt->fetchAll();
+        foreach ($mosques as $key => $value){
+            $mosque = $this->em->getRepository(Mosque::class)->find((int)$value["id"]);
+            $mosques[$key]["jumua"] = $this->prayerTime->getJumua($mosque);
+        }
+
+        return $mosques;
     }
 
     /**
