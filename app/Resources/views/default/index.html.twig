@@ -237,8 +237,8 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img src="{{ vich_uploader_asset(mosque, 'file1') }}"
-                                     class="img-responsive mosque-image"
+                                <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('small_370x210') }}"
+                                     class="img-responsive"
                                      alt="{{ mosque.name }}"/>
                             </a>
                             <div class="portfolio-caption">
@@ -269,12 +269,14 @@
                             <div class="modal-body">
                                 <h2>{{ mosque.title }} {{ mosque.country|country }}</h2>
                                 <p class="item-intro text-muted">{{ mosque.associationName }}</p>
-                                <img src="{{ vich_uploader_asset(mosque, 'file1') }}"
-                                     class="img-responsive  img-centered" alt="{{ mosque.title }}"/>
-                                <img class="img-responsive img-centered"
-                                     src="{{ vich_uploader_asset(mosque, 'file2') }}">
-                                <img class="img-responsive img-centered"
-                                     src="{{ vich_uploader_asset(mosque, 'file3') }}">
+                                <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('small_370x210')}}" class="img-responsive  img-centered" alt="{{ mosque.title }}"/>
+
+                                {% if mosque.image2 is not null %}
+                                    <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('small_370x210') }}">
+                                {% endif %}
+                                {% if mosque.image3 is not null %}
+                                    <img class="img-responsive img-centered" src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('small_370x210') }}">
+                                {% endif %}
 
                                 <ul class="list-inline">
                                     <li>{{ 'home.text.addingDate'|trans }}: {{ mosque.created|date("d/m/Y") }}</li>

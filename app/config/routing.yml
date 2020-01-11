@@ -10,3 +10,6 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /backoffice/admin
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

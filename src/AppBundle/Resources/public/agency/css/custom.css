@@ -26,11 +26,6 @@ section#contact :-ms-input-placeholder {
     color: #444;
 }
 
-.mosque-image{
-    width: 400px;
-    height: 220px;
-}
-
 .img-responsive{
     display: inline;
 }

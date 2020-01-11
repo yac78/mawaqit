@@ -111,18 +111,24 @@
                                    title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
                             </div>
                         {% endif %}
-                        <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
-                            <img src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="100px"
-                                 class="mt-1"/>
-                        </a>
-                        <a href="{{ vich_uploader_asset(mosque, 'file2') }}" target="_blank">
-                            <img src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" width="100px"
-                                 class="mt-1"/>
-                        </a>
-                        <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank">
-                            <img src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" width="100px"
-                                 class="mt-1"/>
-                        </a>
+
+                        {% if mosque.image1 is not null %}
+                            <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
+                                <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56')}}" alt="{{ mosque.title }}" class="mt-1"/>
+                            </a>
+                        {% endif %}
+
+                        {% if mosque.image2 is not null %}
+                            <a href="{{ vich_uploader_asset(mosque, 'file2') }}" target="_blank">
+                                <img src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file2 }}" class="mt-1"/>
+                            </a>
+                        {% endif %}
+
+                        {% if mosque.image3 is not null %}
+                            <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank">
+                                <img src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file3 }}" class="mt-1"/>
+                            </a>
+                        {% endif %}
                     </td>
                     <td style="position: relative">
                         <div><i class="fas fa-map-marker-alt"
@@ -312,15 +318,24 @@
                         </div>
                     {% endif %}
 
-                    <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank"><img
-                                src="{{ vich_uploader_asset(mosque, 'file1') }}" alt="{{ mosque.file1 }}" width="100px"
-                                class="mt-1"/></a>
-                    <a href="{{ vich_uploader_asset(mosque, 'file2') }}" target="_blank"><img
-                                src="{{ vich_uploader_asset(mosque, 'file2') }}" alt="{{ mosque.file2 }}" width="100px"
-                                class="mt-1"/></a>
-                    <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank"><img
-                                src="{{ vich_uploader_asset(mosque, 'file3') }}" alt="{{ mosque.file3 }}" width="100px"
-                                class="mt-1"/></a>
+                    {% if mosque.image1 is not null %}
+                        <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
+                            <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56')}}" alt="{{ mosque.title }}" class="mt-1"/>
+                        </a>
+                    {% endif %}
+
+                    {% if mosque.image2 is not null %}
+                        <a href="{{ vich_uploader_asset(mosque, 'file2') }}" target="_blank">
+                            <img src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file2 }}" class="mt-1"/>
+                        </a>
+                    {% endif %}
+
+                    {% if mosque.image3 is not null %}
+                        <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank">
+                            <img src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file3 }}" class="mt-1"/>
+                        </a>
+                    {% endif %}
+
                 </div>
             </div>
         {% endfor %}

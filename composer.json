@@ -33,6 +33,7 @@
         "incenteev/composer-parameter-handler": "^2.1",
         "jms/i18n-routing-bundle": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
+        "liip/imagine-bundle": "^2.3",
         "meezaan/prayer-times": "^1.0",
         "ramsey/uuid-doctrine": "^1.5",
         "sensio/distribution-bundle": "^5.0",

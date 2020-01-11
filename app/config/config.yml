@@ -179,3 +179,19 @@ ewz_recaptcha:
   public_key: '%google.recaptcha.public_key%'
   private_key: '%google.recaptcha.private_key%'
   locale_from_request: true
+
+liip_imagine:
+  driver: imagick
+  resolvers:
+    default:
+      web_path:
+        cache_prefix: upload
+  filter_sets:
+    thumb_100x56:
+      quality: 75
+      filters:
+        thumbnail: { size: [100, 56], mode: outbound }
+    small_370x210:
+      quality: 75
+      filters:
+        thumbnail: { size: [370, 210], mode: outbound }

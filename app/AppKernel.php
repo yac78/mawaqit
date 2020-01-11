@@ -25,6 +25,7 @@ class AppKernel extends Kernel {
             new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new AppBundle\AppBundle(),
         ];
 
