@@ -42,11 +42,6 @@ class MessageType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'required' => false,
-                'constraints' => [
-                    new Length([
-                        'max' => 1000
-                    ])
-                ],
                 'attr' => [
                     'class' => "tinymce keyboardInput",
                     'placeholder' => 'message.form.content.placeholder'
