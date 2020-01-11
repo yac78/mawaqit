@@ -128,6 +128,13 @@ services:
         tags:
             - { name: 'console.command', command: 'app:clean-mosques' }
 
+    app.clean_photos_command:
+        class: AppBundle\Command\CleanPhotoCommand
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: 'console.command', command: 'app:clean-photo' }
+
     app.mosque_screen_photo_reminder:
         class: AppBundle\Command\MosqueScreenPhotoReminderCommand
         arguments:
