@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Mosque;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Swift_Mailer;
 use Twig\Environment;
@@ -52,10 +53,8 @@ class UserService
         $body = $this->twig->render("email_templates/communication.html.twig", ['content' => $data["content"]]);
 
         $result = $this->em->createQueryBuilder()
-            ->from("AppBundle:Mosque", "m")
-            ->innerJoin("m.user", "u")
+            ->from(User::class, "u")
             ->select("u.email")
-            ->distinct()
             ->getQuery()
             ->getScalarResult();
 
@@ -69,7 +68,13 @@ class UserService
 
         $tmp = [];
         $i = 0;
+        $patternProvider = new \Swift_Mime_Grammar();
         foreach ($emails as $email) {
+
+            if (!preg_match('/^'.$patternProvider->getDefinition('addr-spec').'$/D', $email)) {
+                continue;
+            }
+
             $i++;
             $tmp[] = $email;
             if ($i === 100) {
