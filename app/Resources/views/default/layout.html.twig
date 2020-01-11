@@ -130,6 +130,11 @@
     <div class="container">
         <h2 class="section-heading">{{ 'home.menu.contactUs'|trans }}</h2>
         <div style="font-weight: bold; font-size: 150%; color: #adf222">
+            <p>{{ 'home.text.contactUsText0'|trans({
+                    'manual_link': path('manual'),
+                    'youtube_link': 'https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/videos',
+                    'faq_link': path('homepage') ~ '#faq'
+                })|raw }}</p>
             <p>{{ 'home.text.contactUsText1'|trans }}</p>
             <p>{{ 'home.text.contactUsText2'|trans({'supportTelFR': supportTelFR, 'supportTelDZ': supportTelDZ, 'supportTelROW': supportTelROW})|raw }}</p>
         </div>
@@ -146,7 +151,7 @@
                 <ul class="list-inline social-buttons">
                     <li><a target="_blank" href="https://twitter.com/MawaqitTeam"><i class="fab fa-twitter"></i></a></li>
                     <li><a target="_blank" href="https://www.facebook.com/Mawaqit-878834798944718/"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/"><i class="fab fa-youtube"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/videos"><i class="fab fa-youtube"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-3">

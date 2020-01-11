@@ -20,8 +20,9 @@ home:
   title:
     header1: |
       "Certes la prière a été prescrite pour les croyants dans des temps déterminés" [sourat An-Niça’/103]
-    header2: équipez votre mosquée ou domicile d'une horloge de prière connectée et intelligente
-    header3: Notre solution est un waqf (gratuite)
+    header2: horloge de prière connectée et intelligente
+    header2_2: mosquée | domicile | association | école | magasin
+    header3: Notre solution est un waqf (gratuite) toute commercialisation est strictement interdite
     header4: Le matériel est à votre charge
     howItWorks: Comment ça fonctionne ?
     feature: Quelles sont les fonctionnalités principales du logiciel ?
@@ -44,8 +45,11 @@ home:
     viewPlus: Voir plus
 
   text:
+    contactUsText0: |
+      AVANT de nous contacter, veuillez suivre attentivement le manuel <a href="manual_link">ici</a>
+      et visiter notre <a href="faq_link">FAQ</a> ainsi que notre chaine <a href="youtube_link" target="_blank">Youtube</a>
     contactUsText1: |
-      Vous avez des questions sur la démarche à suivre pour équiper votre mosquée avec notre logiciel. Contactez nous :
+      Vous avez des questions sur la démarche à suivre. Contactez nous :
     contactUsText2: |
       <i class="fab fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>
         <p>
