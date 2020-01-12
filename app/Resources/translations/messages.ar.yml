@@ -89,8 +89,8 @@ home:
       <li>تغيير لون الخلفية</li>
       <li>منبه وقتي الأذان والإقامة</li>
       <li>سماع اذان الحرم للبيوت</li>
-      <li>عرض درجة الحرارة الخارجية للمدينة</li>
-      <li>عرض رمز كيري لتسهيل نسخ رابط الويب</li>
+      <li>عرض حالة الجو</li>
+      <li>إطفاء الشاشة أوتوماتيكيا أثناء الصلاة و خطبة الجمعة</li>
     equipedMosques1: |
       بفضل الله تم إعتماد نظامنا في totalMosquesCount مسجدا وبيتا في جميع أنحاء العالم
     equipedMosques2: |
@@ -294,7 +294,12 @@ mosque:
     latitude:
       label: تصحيح موقع GPS (خط العرض)
     rib:
-      placeholder: إذا تم تحديده مسبقا ،فإنه سيظهر في أسفل الشاشة. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+      placeholder: IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+      help: المعلومات البنكية للتبرعات
+    paymentWebsite :
+      label: موقع الدفع عبر الإنترنت
+      placeholder: https://paypal.me/mosquee-essunna
+      help: رابط لموقع الدفع الإلكتروني للتبرعات
     justificatoryFile:
       label: وثيقة داعمة (.pdf .jpg .png .doc .ppt)
       help: |
@@ -306,7 +311,7 @@ mosque:
       label: صورة المسجد من الداخل
     file3:
       label: صورة شاشة مواقيت
-      help: يجب التقاط الصورة في المسجد مع لقطة واسعة في شكل أفقي
+      help: يجب التقاط الصورة في المسجد في شكل أفقي يمكننا فيها رؤية شيء من المسجد كالمحراب أو المنبر
     womenSpace:
       label: مكان للنساء
     janazaPrayer:

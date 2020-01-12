@@ -54,6 +54,10 @@ AppBundle\Entity\Mosque:
             type: string
             length: 1024
             nullable: true
+        paymentWebsite:
+            type: string
+            length: 1024
+            nullable: true
         site:
             type: string
             nullable: true

@@ -115,6 +115,10 @@ class Mosque
      */
     private $rib;
     /**
+     * @var string
+     */
+    private $paymentWebsite;
+    /**
      * @Groups({"search"})
      * @var string
      */
@@ -560,6 +564,25 @@ class Mosque
     public function setRib($rib)
     {
         $this->rib = $rib;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentWebsite(): ?string
+    {
+        return $this->paymentWebsite;
+    }
+
+    /**
+     * @param string $paymentWebsite
+     *
+     * @return Mosque
+     */
+    public function setPaymentWebsite(?string $paymentWebsite): Mosque
+    {
+        $this->paymentWebsite = $paymentWebsite;
         return $this;
     }
 

@@ -101,8 +101,8 @@ home:
       <li>Affichage d'annonces en texte ou image</li>
       <li>Choix de couleurs et de thêmes</li>
       <li>Adhan pour les installations de type domicile</li>
-      <li>Affichage de la temprérature</li>
-      <li>Extinction de l'écran pendant la prière et le prêche du jumua</li>
+      <li>Affichage de la météo</li>
+      <li>Extinction de l'écran automatiquement pendant la prière et le prêche du jumua</li>
     equipedMosques1: |
       Grace à Allah notre système est installé dans <strong>totalMosquesCount</strong>
       mosquées et domiciles partout dans le monde
@@ -339,7 +339,12 @@ mosque:
     zipcode:
       placeholder: Le code postal de la mosquée (Sert à calculer la position géographique)
     rib:
-      placeholder: Si renseigné il sera affiché en bas de l'écran Ex. IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+      placeholder: IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
+      help: RIB de la mosquée pour les dons
+    paymentWebsite :
+      label: Site de paiement en ligne
+      placeholder: https://paypal.me/mosquee-essunna
+      help: Lien vers le site de paiement en ligne de lamosquée pour les dons
     addOnMap:
       label: Ajouter sur la carte google
     justificatoryFile:
@@ -353,7 +358,9 @@ mosque:
       label: Photo intérieur de la mosquée
     file3:
       label: Photo de l'écran mawaqit
-      help: La photo doit être prise dans la mosquée avec un plan large au format paysage
+      help: |
+        La photo doit être prise dans la mosquée avec un plan large au format paysage,
+        sur laquelle on peut identifier une partie de la mosquée, comme le minbar ou le mihrab
     womenSpace:
       label: Espace pour femmes
     janazaPrayer:

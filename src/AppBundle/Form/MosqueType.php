@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -192,6 +193,16 @@ class MosqueType extends AbstractType
                 'label' => 'rib',
                 'attr' => [
                     'placeholder' => 'mosque.form.rib.placeholder',
+                    'help' => 'mosque.form.rib.help',
+                    'class' => 'keyboardInput',
+                ]
+            ])
+            ->add('paymentWebsite', UrlType::class, [
+                'required' => false,
+                'label' => 'mosque.form.paymentWebsite.label',
+                'attr' => [
+                    'placeholder' => 'mosque.form.paymentWebsite.placeholder',
+                    'help' => 'mosque.form.paymentWebsite.help',
                     'class' => 'keyboardInput',
                 ]
             ])

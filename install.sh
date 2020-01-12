@@ -3,7 +3,7 @@
 ln -sf docker-compose.dev.yml docker-compose.yml
 docker-compose kill && docker-compose up -d --build
 docker-compose exec php composer install -n
-docker-compose exec php chown -R www-data var web/upload
+docker-compose exec php chmod 777 -R var/cache var/logs var/sessions web/upload
 
 echo ""
 echo "Waiting for database..."

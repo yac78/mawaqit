@@ -162,20 +162,20 @@ body {
 
 
 .checkbox label {
-     padding-left: 0px !important;
-     padding-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .toggle-off {
     left: 55%;
 }
 
-.form-control{
+.form-control {
     padding: 3px 12px;
 }
 
 .form-inline > * {
-    margin: 3px 5px 3px 0 ;
+    margin: 3px 5px 3px 0;
 }
 
 .pagination {
@@ -191,4 +191,20 @@ body {
 .rtl #fb-root iframe {
     left: 9pt !important;
     right: auto !important;
+}
+
+.form-group {
+    position: relative;
+}
+
+.keyboardInputInitiator {
+    position: absolute;
+    top: 26px;
+    right: 5px;
+}
+
+body.rtl .keyboardInputInitiator {
+    top: 26px;
+    left: 5px;
+    right: auto;
 }

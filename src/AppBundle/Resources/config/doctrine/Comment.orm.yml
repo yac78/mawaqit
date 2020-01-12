@@ -16,11 +16,9 @@ AppBundle\Entity\Comment:
         user:
             targetEntity: AppBundle\Entity\User
             joinColumn:
-                nullable: false
                 onDelete: CASCADE
         mosque:
             targetEntity: AppBundle\Entity\Mosque
             inversedBy: comments
             joinColumn:
-                nullable: false
                 onDelete: CASCADE
