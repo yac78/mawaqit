@@ -6,7 +6,7 @@ services:
     build: docker/php-fpm
     restart: always
     environment:
-      APP_ENV: pp
+      APP_ENV: prod
       COMPOSER_HOME: /application/docker/data/composer
     working_dir: /application
     volumes:
