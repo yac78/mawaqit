@@ -38,8 +38,6 @@ class FlashMessage
     private $updated;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\GreaterThan("now")
      * @var \DateTime
      */
     private $expire;
@@ -96,7 +94,7 @@ class FlashMessage
     /**
      * @return \DateTime
      */
-    public function getExpire()
+    public function getExpire():?\DateTime
     {
         return $this->expire;
     }
@@ -105,7 +103,7 @@ class FlashMessage
      * @param \DateTime $expire
      * @return FlashMessage
      */
-    public function setExpire(\DateTime $expire): FlashMessage
+    public function setExpire(?\DateTime $expire): FlashMessage
     {
         $this->expire = $expire;
         return $this;
@@ -116,11 +114,7 @@ class FlashMessage
      */
     public function isExpired()
     {
-        return $this->expire < new \DateTime();
-//        $expire = clone  $this->expire;
-//        $timezoneName = timezone_name_from_abbr("", $this->mosque->getConf()->getTimezone() * 3600, false);
-//        $expire->setTimezone(new \DateTimeZone($timezoneName));
-//        return $expire < new \DateTime("now", new \DateTimeZone($timezoneName));
+        return $this->expire instanceof \DateTime && $this->expire < new \DateTime();
     }
 
     /**

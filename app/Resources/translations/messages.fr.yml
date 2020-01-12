@@ -457,8 +457,7 @@ flashMessage:
       label: Couleur
     expire:
       label: Date d'expiration
-      title: Le message ne sera plus affiché au-delà de la date choisie
-
+      title: Le message ne sera plus affiché au-delà de la date choisie, si vous laissez vide, il n'expirera jamais
 
 configuration:
   iqamaCalendar:
