@@ -144,8 +144,8 @@ mosque:
     file3:
       label: A photo of the mawaqit screen
       help: |
-        The photo must be taken in the mosque with a wide shot in landscape format,
-        on which we can identify a part of the mosque, like the minbar or the mihrab
+        The photo must be taken in the mosque in landscape format, we must be able to identify the name and the city
+        on the screen as well as part of the mosque, such as the minbar or the mihrab
     womenSpace:
       label: Space for women
     janazaPrayer:

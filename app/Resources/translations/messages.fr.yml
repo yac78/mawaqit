@@ -359,8 +359,8 @@ mosque:
     file3:
       label: Photo de l'écran mawaqit
       help: |
-        La photo doit être prise dans la mosquée avec un plan large au format paysage,
-        sur laquelle on peut identifier une partie de la mosquée, comme le minbar ou le mihrab
+        La photo doit être prise dans la mosquée au format paysage, on doit pouvoir identifier le nom et la ville sur
+        l'écran ainsi qu'une partie de la mosquée, comme le minbar ou le mihrab
     womenSpace:
       label: Espace pour femmes
     janazaPrayer:

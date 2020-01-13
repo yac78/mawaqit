@@ -19,7 +19,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("", name="homepage")
-     * @Cache(public=true, maxage="86400")
+     * @Cache(public=true, maxage="86400", smaxage="86400", expires="+86400 sec")
      * @param Request $request
      *
      * @return Response
@@ -76,7 +76,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("legal-notice", name="legal_notice")
-     * @Cache(public=true, maxage="86400")
+     * @Cache(public=true, maxage="86400", smaxage="86400", expires="+86400 sec")
      */
     public function legalNoticeAction()
     {

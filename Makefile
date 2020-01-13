@@ -37,3 +37,6 @@ mig: ## Create diff migration and migrate
 
 cc: ## Symfony cache clear
     docker-compose exec php bash -c "bin/console c:c --no-warmup && bin/console c:w"
+
+cp_prod_db:
+    gunzip < /media/ibrahim/DATA/Mawaqit/DB/mawaqit.sql.gz | mysql -u root -pmawaqit -h 127.0.0.1 -P 10002 mawaqit
