@@ -25,8 +25,10 @@ class Mosque
     const TYPE_SCHOOL = "SCHOOL";
     const TYPE_STORE = "STORE";
     const TYPE_ASSOCIATION = "ASSOCIATION";
+    const TYPE_MUSALLA = "MUSALLA";
     const TYPES = [
         self::TYPE_MOSQUE,
+        self::TYPE_MUSALLA,
         self::TYPE_HOME,
         self::TYPE_SCHOOL,
         self::TYPE_ASSOCIATION,
@@ -1469,6 +1471,15 @@ class Mosque
     {
         $this->created = $created;
         return $this;
+    }
+
+    public function getIcon()
+    {
+        if($this->type === self::TYPE_MUSALLA){
+            return 'pray';
+        }
+
+        return strtolower($this->type);
     }
 
 }

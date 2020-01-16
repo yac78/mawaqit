@@ -92,7 +92,7 @@
                     {% if isNotLocal() %}
                         <td>
                             {{ mosque.id }} <br/><br/>
-                            <i class="fas fa-{{ mosque.type|lower }}" style="font-size: 2rem"></i>
+                            <i class="fas fa-{{ mosque.icon }}" style="font-size: 2rem" title="{{ ('mosque.types.' ~ mosque.type)|trans }}"></i>
                         </td>
                     {% endif %}
                     <td>

@@ -50,13 +50,15 @@ mosque:
     HOME: Mawaqit %city% - Home
     SCHOOL: Mawaqit %city% - School
     ASSOCIATION: Mawaqit %city% - Association
+    MUSALLA: Mawaqit %city% - Musalla
     STORE: Mawaqit %city% - Store
   typeExplanation: |
-    Warning : This type of installation is not intended for mosques, it is limited to private use
+    Warning : This type of installation is not intended for mosques, it is limited to a restricted use
     <ul>
       <li>No help in case of problems</li>
       <li>No SEO on the internet</li>
-      <li>It will not appear on the mawaqit google map and in mosque search results</li>
+      <li>Will not appear in the mawaqit mobile app (Android and iPhone)</li>
+      <li>will not appear on the mawaqit google map and in mosque search results</li>
       <li>A specific title always appears on the mawaqit screen</li>
     </ul>
   statuses_message:
@@ -86,6 +88,7 @@ mosque:
     SCHOOL: School
     STORE: Store
     ASSOCIATION: Association
+    MUSALLA: Musalla
   statuses:
     NEW: Waiting for validation
     VALIDATED: Validated

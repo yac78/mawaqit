@@ -110,6 +110,7 @@ class MosqueType extends AbstractType
             'disabled' => $disabled,
             'choices' => array_combine([
                 "mosque.types.MOSQUE",
+                "mosque.types.MUSALLA",
                 "mosque.types.HOME",
                 "mosque.types.SCHOOL",
                 "mosque.types.ASSOCIATION",

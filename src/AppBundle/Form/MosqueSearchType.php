@@ -39,6 +39,7 @@ class MosqueSearchType extends AbstractType
                 'choices' => [
                     "mosque.types.all" => "ALL",
                     "mosque.types.MOSQUE" => Mosque::TYPE_MOSQUE,
+                    "mosque.types.MUSALLA" => Mosque::TYPE_MUSALLA,
                     "mosque.types.HOME" => Mosque::TYPE_HOME,
                     "mosque.types.SCHOOL" => Mosque::TYPE_SCHOOL,
                     "mosque.types.ASSOCIATION" => Mosque::TYPE_ASSOCIATION,

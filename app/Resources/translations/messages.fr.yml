@@ -258,12 +258,14 @@ mosque:
     HOME: Mawaqit %city% - Domicile
     SCHOOL: Mawaqit %city% - École
     ASSOCIATION: Mawaqit %city% - Association
+    MUSALLA: Mawaqit %city% - Salle de prière
     STORE: Mawaqit %city% - Magasin
   typeExplanation:  |
-    Attention: ce type d'installation n'est pas destiné aux mosquées, il est limité à un usage privé
+    Attention: ce type d'installation n'est pas destiné aux mosquées, il est limité à un usage restreint
     <ul>
     <li>Pas d'assistance en cas de problème</li>
     <li>Pas de référencement sur internet</li>
+    <li>N'apparaitra pas dans l'application mobile mawaqit (Android et iPhone)</li>
     <li>N'apparaitra pas sur la carte google mawaqit et dans les résultats de recherche de mosquées</li>
     <li>Un titre spécifique apparaît systématiquement sur l'écran mawaqit</li>
     </ul>
@@ -274,6 +276,7 @@ mosque:
     SCHOOL: École
     STORE: Magasin
     ASSOCIATION: Association
+    MUSALLA: Salle de prière
   statuses_message:
     NEW: |
       Votre mosquée a bien été ajoutée, l'équipe mawaqit procedera à sa validation après quelques vérifications,
