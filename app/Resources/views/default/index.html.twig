@@ -259,29 +259,29 @@
     {% endjavascripts %}
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-{#    <script>#}
+    <script>
 
-{#        var map = L.map('map').setView([48, 3], 2);#}
-{#        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);#}
+        var map = L.map('map').setView([48, 3], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-{#        var mosquesForMap = {{ mosquesForMap|json_encode|raw }};#}
-{#        $.each(mosquesForMap, function (i, mosque) {#}
+        var mosquesForMap = {{ mosquesForMap|json_encode|raw }};
+        $.each(mosquesForMap, function (i, mosque) {
 
-{#            var popup = '<div>' +#}
-{#                '<h4> ' + mosque.name + ' </h4>' +#}
-{#                '<p> ' +#}
-{#                mosque.address + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +#}
-{#                '</p>' +#}
-{#                '<p> ' +#}
-{#                '<a target="_blank" href="' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '">' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '</a>' +#}
-{#                '</p>' +#}
-{#                '</div>';#}
+            var popup = '<div>' +
+                '<h4> ' + mosque.name + ' </h4>' +
+                '<p> ' +
+                mosque.address + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +
+                '</p>' +
+                '<p> ' +
+                '<a target="_blank" href="' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '">' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '</a>' +
+                '</p>' +
+                '</div>';
 
-{#            marker = new L.marker([mosque.lat, mosque.lng])#}
-{#                .bindPopup(popup)#}
-{#                .addTo(map);#}
-{#        });#}
+            marker = new L.marker([mosque.lat, mosque.lng])
+                .bindPopup(popup)
+                .addTo(map);
+        });
 
-{#    </script>#}
+    </script>
 
 {% endblock %}
