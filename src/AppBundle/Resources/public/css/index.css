@@ -19,6 +19,13 @@
     font-size: 10rem;
 }
 
-/*.screen .flex-control-nav {*/
-/*    bottom: -100px;*/
-/*}*/
+.screen .flex-control-nav {
+    bottom: -100px;
+}
+
+.screen {
+    background-image: url('/bundles/app/agency/img/tv-border.png');
+    padding: 6px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

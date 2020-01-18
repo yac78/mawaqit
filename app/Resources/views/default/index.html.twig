@@ -88,12 +88,14 @@
             <div class="container">
                 <div class="row mt-4">
                     <div class="col-md-offset-2 col-md-8">
-                        <div class="flexslider screen" {#style="background-image: url('{{ asset('bundles/app/agency/img/tv-border.png') }}')"#}>
+                        <div class="screen">
+                        <div class="flexslider">
                             <ul class="slides">
                             {% for i in 1..9  %}
                                 <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
                             {% endfor %}
                             </ul>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -108,10 +110,10 @@
                         </a>
                     </div>
 
-                    <div class="col-md-offset-4 col-md-4">
+                    <div class="col-md-offset-4 col-md-4 mt-3">
                         <div class="flexslider">
                             <ul class="slides">
-                                {% for i in 10..16  %}
+                                {% for i in 10..15  %}
                                     <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
                                 {% endfor %}
                             </ul>
