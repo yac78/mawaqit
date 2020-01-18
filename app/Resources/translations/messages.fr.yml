@@ -24,17 +24,18 @@ home:
     header2_2: mosquée | domicile | association | école | magasin
     header3: Notre solution est un waqf (gratuite) toute commercialisation est strictement interdite
     header4: Le matériel est à votre charge
-    howItWorks: Comment ça fonctionne ?
-    feature: Quelles sont les fonctionnalités principales du logiciel ?
-    feature1: Affichage des horaires de prière en plusieurs langues
-    feature2: Signal visuel du adhân et Iqâma
-    feature3: Affichage de rappels et invocations
-    feature4: Affichage d'annonces en texte ou images
-    feature5: Affichage de hadiths
-    feature6: Une application mobile sur iOs et Android
-    feature7: Pilotez l'écran depuis votre smartphone
-    feature8: Entièrement configurable
-    equipedMosques: Quelques mosquées équipées
+
+    feature1: Horaires de prière
+    feature2: Adhan et Iqama
+    feature3: Rappels et invocations
+    feature4: Annonces et actualités
+    feature5: Thèmes et couleurs
+    feature6: Météo
+    feature7: Options
+    feature8: Controle à distance
+    feature9: Application mobile
+
+    equipedMosques: Quelques chiffres
     equipeYourMosque: équipez votre mosquée
     faq: FAQ
     install: Installez
@@ -73,36 +74,21 @@ home:
       <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a><br>
       <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST
       STRICTEMENT INTERDITE, VEUILLEZ RESPECTER NOTRE CHOIX.
-    howItWorks1: |
-      Notre logiciel est développé en JavaScript un langage web très connu, exécuté par un mini
-      ordinateur, le Raspberry Pi ou par n'importe quel autre appareil pouvant lancer un navigateur
-      internet,
-      tel que : Ordinateur, Apple TV, Android TV...
-      En effet le logiciel est une simple page internet et toute l'intelligence est concentrée dans du
-      code javascript.
-    feature2: Lorsqu’il est l'heure du adhan ou de la iqama, l'écran se met à clignoter.
-    feature3: Entre chaque adhan et iqama, ainsi qu'à la fin de chaque prière, des rappels et invocations sont affichés.
-    feature4: Avant et après chaque prière, si configurées depuis l'espace utilisateur les annonces défileront sur l'écran.
-    feature5: |
-      Afin de rendre l'écran encore plus utile, le logiciel permet un affichage aléatoire d'un hadith du
-      prophète "que la prière d'Allah et son salut soient sur lui", toutes les 5 minutes
-    feature8_1: |
-      Nous avons essayé de pousser la configuration du logiciel au maximum. Voici quelques exemples de
-      fonctionnalités
-      directement configurables depuis l'interface dédiée.
-    feature8_2: |
-      <li>Choix entre calcul des horaires automatique et calendrier saisi manuellement</li>
-      <li>Choix entre plusieurs langues</li>
-      <li>Affichage de l'heure de l'aïd à l’approche de l’évènement</li>
-      <li>Fixation des horaires (exemple: fixer l'heure du `isha en hiver)</li>
-      <li>Ajustement des temps d'attente entre adhan et iqama</li>
-      <li>Compte à rebours avant iqama</li>
-      <li>Ajustement des horaires</li>
-      <li>Affichage d'annonces en texte ou image</li>
-      <li>Choix de couleurs et de thêmes</li>
-      <li>Adhan pour les installations de type domicile</li>
-      <li>Affichage de la météo</li>
-      <li>Extinction de l'écran automatiquement pendant la prière et le prêche du jumua</li>
+
+    feature1: Affichage des horaires de prière en plusieurs langues. 2 choix de calcul, automatique ou par calendrier annuel
+    feature2: Un signal visuel et sonor pour annoncer l'adhan et l'iqama
+    feature3: |
+      Entre l'adhan et iqama, et après chaque prière, des rappels et invocations sont affichés.
+      Un hadith du prophète "que la prière d'Allah et son salut soient sur lui" est également affiché toutes les 5 min
+    feature4: |
+      Communiquez avec les fidèles de votre mosquée à travers les annonces et message flash,
+      à la mosquée et partout ailleurs via l'application mobile
+    feature5: Multiples choix de couleurs, de thèmes et de fonds d'écran
+    feature6: Affichage de la météo de la ville
+    feature7: Multiples options, tel que l'extinction de l'écran pendant la prière et le prêche du jumu`a
+    feature8: Pilotez l'écran depuis votre ordinateur, smartphone ou tablette 7j/7 24h/24
+    feature9: Une application mobile sur iPhone et Android (Trouvez une mosquée proche, iténaire, notifcation de prière, infos utiles... etc.)
+
     equipedMosques1: |
       Grace à Allah notre système est installé dans <strong>totalMosquesCount</strong>
       mosquées et domiciles partout dans le monde

@@ -13,3 +13,8 @@
 .center-placeholder:-ms-input-placeholder {
     text-align: center;
 }
+
+.feature-icon{
+    color: #196827;
+    font-size: 10rem;
+}
