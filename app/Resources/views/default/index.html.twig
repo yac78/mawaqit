@@ -71,7 +71,6 @@
                         <h3>{{ 'home.title.feature7'|trans }}</h3>
                         <p>{{ 'home.text.feature7'|trans }}</p>
                     </div>
-
                     <div class="col-md-4 mt-4">
                         <i class="fas fa-wifi feature-icon"></i>
                         <h3>{{ 'home.title.feature8'|trans }}</h3>
@@ -89,56 +88,17 @@
             <div class="container">
                 <div class="row mt-4">
                     <div class="col-md-offset-2 col-md-8">
-                        <div class="flexslider">
+                        <div class="flexslider screen" {#style="background-image: url('{{ asset('bundles/app/agency/img/tv-border.png') }}')"#}>
                             <ul class="slides">
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/1.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/2.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/3.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/4.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/5.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/6.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/7.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/8.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/9.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/10.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/11.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/12.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/13.jpg') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/14.jpg') }}"/>
-                                </li>
+                            {% for i in 1..9  %}
+                                <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
+                            {% endfor %}
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mt-4">
+                <div class="row" style="margin-top: 150px">
                     <div>
                         <a href="https://apps.apple.com/us/app/mawaqit/id1460522683" target="_blank">
                             <img src="{{ asset('bundles/app/prayer-times/img/appstore.svg') }}">
@@ -151,27 +111,9 @@
                     <div class="col-md-offset-4 col-md-4">
                         <div class="flexslider">
                             <ul class="slides">
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/15.png') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/16.png') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/16-1.png') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/16-2.png') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/17.png') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/18.png') }}"/>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('bundles/app/agency/img/software/19.png') }}"/>
-                                </li>
+                                {% for i in 10..16  %}
+                                    <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -317,29 +259,29 @@
     {% endjavascripts %}
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-    <script>
+{#    <script>#}
 
-        var map = L.map('map').setView([48, 3], 2);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+{#        var map = L.map('map').setView([48, 3], 2);#}
+{#        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);#}
 
-        var mosquesForMap = {{ mosquesForMap|json_encode|raw }};
-        $.each(mosquesForMap, function (i, mosque) {
+{#        var mosquesForMap = {{ mosquesForMap|json_encode|raw }};#}
+{#        $.each(mosquesForMap, function (i, mosque) {#}
 
-            var popup = '<div>' +
-                '<h4> ' + mosque.name + ' </h4>' +
-                '<p> ' +
-                mosque.address + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +
-                '</p>' +
-                '<p> ' +
-                '<a target="_blank" href="' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '">' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '</a>' +
-                '</p>' +
-                '</div>';
+{#            var popup = '<div>' +#}
+{#                '<h4> ' + mosque.name + ' </h4>' +#}
+{#                '<p> ' +#}
+{#                mosque.address + ' ' + mosque.zipcode + ' ' + mosque.city + ' ' + mosque.countryFullName +#}
+{#                '</p>' +#}
+{#                '<p> ' +#}
+{#                '<a target="_blank" href="' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '">' + 'https://mawaqit.net/{{ app.request.locale }}/' + mosque.slug + '</a>' +#}
+{#                '</p>' +#}
+{#                '</div>';#}
 
-            marker = new L.marker([mosque.lat, mosque.lng])
-                .bindPopup(popup)
-                .addTo(map);
-        });
+{#            marker = new L.marker([mosque.lat, mosque.lng])#}
+{#                .bindPopup(popup)#}
+{#                .addTo(map);#}
+{#        });#}
 
-    </script>
+{#    </script>#}
 
 {% endblock %}

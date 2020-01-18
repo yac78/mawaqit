@@ -6,7 +6,7 @@ ARCHILOG custom css
 }
 
 header {
-    background-image: url('../img/mosque.jpg');
+    background-image: url('../img/main-image.png');
 }
 
 section#contact ::-webkit-input-placeholder {
@@ -113,10 +113,6 @@ header .intro-text .intro-subheading {
 
 a, code {
     overflow-wrap: break-word;
-}
-
-.slides li{
-    padding: 0 3px !important;
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
