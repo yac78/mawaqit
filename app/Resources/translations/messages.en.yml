@@ -241,7 +241,7 @@ flashMessage:
       label: Color
     expire:
       label: Expiration date
-      title: The message will not be displayed beyond the chosen date
+      title: The message will no longer be displayed beyond the chosen date, if you leave it blank, it will never expire
 
 configuration:
   iqamaCalendar:

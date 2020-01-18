@@ -73,11 +73,3 @@
         </label>
     {%- endif -%}
 {%- endblock checkbox_radio_label %}
-
-
-{% block form_widget_simple -%}
-    {% if type is defined and type in ['date', 'time'] %}
-        {%- set attr = attr|merge({style: 'width:auto; display:inline'}) -%}
-    {% endif %}
-    {{- parent() -}}
-{%- endblock form_widget_simple %}

@@ -150,7 +150,7 @@
                 {% if mosque.flashMessage and mosque.flashMessage.content %}
                     <div class="alert alert-{{ mosque.flashMessage.expired ?  'danger' : 'success' }}">
                         <p><strong>{{ mosque.flashMessage.content }}</strong></p><br>
-                        <p>{{ ( mosque.flashMessage.expired ? 'expired' : 'expire')|trans }} {{ mosque.flashMessage.expire|date }}</p>
+                        <p>{{ ( mosque.flashMessage.expired ? ('expired'|trans) ~ ' ' ~ mosque.flashMessage.expire|date  : '') }} </p>
                     </div>
                 {% else %}
                     <br>

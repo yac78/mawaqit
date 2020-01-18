@@ -321,7 +321,7 @@ class PrayerTime
         if ($flashMessage instanceof FlashMessage && $flashMessage->isAvailable()) {
             $result['flash'] = [
                 'content' => $flashMessage->getContent(),
-                'expire' => $flashMessage->getExpire()->getTimestamp()
+                'expire' => $flashMessage->getExpire() instanceof \DateTime ? $flashMessage->getExpire()->getTimestamp() : null,
             ];
         }
 
