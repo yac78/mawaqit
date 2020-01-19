@@ -34,7 +34,7 @@ class MosqueScreenPhotoReminderCommand extends Command
     {
         $suspendedCount = $this->userService->remindUserToUploadScreenPhoto();
 
-        $output->writeln("$suspendedCount suspended at " . (new \DateTime())->format("Y-m-d H:i:s"));
+        $output->writeln("$suspendedCount mosques suspended at " . (new \DateTime())->format("Y-m-d H:i:s"));
     }
 
 }

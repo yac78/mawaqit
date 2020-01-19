@@ -97,8 +97,9 @@ class MosqueRepository extends EntityRepository
     private function getValidatedMosqueQb()
     {
         return $this->createQueryBuilder("m")
-            ->where("m.type = 'mosque'")
+            ->where("m.type = :type")
             ->andWhere("m.status IN (:status)")
+            ->setParameter(':type', Mosque::TYPE_MOSQUE)
             ->setParameter(':status', Mosque::ACCESSIBLE_STATUSES);
     }
 
@@ -281,7 +282,6 @@ class MosqueRepository extends EntityRepository
         return $this->getValidatedMosqueQb()
             ->andWhere("m.image3 IS NULL")
             ->andWhere("m.created > :date")
-            ->andWhere("m.emailScreenPhotoReminder IS NULL OR m.emailScreenPhotoReminder <= 3")
             ->setParameter(":date", new DateTime(Mosque::STARTDATE_CHECKING_PHOTO))
             ->getQuery()
             ->execute();

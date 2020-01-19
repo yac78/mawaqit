@@ -47,17 +47,20 @@ home:
 
   text:
     contactUsText0: |
-      AVANT de nous contacter, veuillez suivre attentivement le manuel <a href="manual_link">ici</a>
+      AVANT de nous contacter, veuillez suivre attentivement le manuel d'installation <a href="manual_link">ici</a>
       et visiter notre <a href="faq_link">FAQ</a> ainsi que notre chaine <a href="youtube_link" target="_blank">Youtube</a>
     contactUsText1: |
-      Vous avez des questions sur la démarche à suivre. Contactez nous :
-    contactUsText2: |
-      <i class="fab fa-whatsapp"></i> Par message WhatsApp uniquement : du Lundi au Samedi entre 9h et 20h<br>
-        <p>
-          France supportTelFR <br>
-          Algérie supportTelDZ <br>
-          Reste du monde supportTelROW
-        </p>
+      <ul>
+        <li> <i class="fab fa-facebook-messenger"></i> Par Facebook messenger en cliquant sur l'icone en bas</li>
+      <li>
+        <i class="fab fa-whatsapp"></i> Par WhatsApp (message uniquement, aucun appel ne sera traité)<br>
+          <p>
+            France supportTelFR <br>
+            Algérie supportTelDZ <br>
+            Reste du monde supportTelROW
+          </p>
+        </li>
+      </ul>
     legalNotice: Mentions légales
     project1: |
       La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau
