@@ -4,12 +4,13 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\FlashMessage;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FlashMessageType extends AbstractType
@@ -50,6 +51,20 @@ class FlashMessageType extends AbstractType
                     'class' => 'btn btn-primary',
                 ]
             ]);
+
+        // Work arround to fix a sf bug, it is shifting one day from expire date
+        $builder->get('expire')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($expire) {
+                    return $expire;
+                },
+                function (?\DateTime $expire) {
+                    if ($expire instanceof \DateTime) {
+                        return $expire->modify("+1 day");
+                    }
+                    return $expire;
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
