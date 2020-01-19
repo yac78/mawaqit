@@ -91,7 +91,7 @@ class MosqueService
                             FROM mosque m  
                             INNER JOIN configuration c on m.configuration_id = c.id 
                             WHERE m.status IN ($statuses) AND m.type = 'mosque' 
-                            HAVING proximity < 10000 ORDER BY proximity ASC LIMIT 10";
+                            HAVING proximity < 20000 ORDER BY proximity ASC LIMIT 20";
 
         } elseif ($word) {
             $word = preg_split("/\s+/", trim($word));
