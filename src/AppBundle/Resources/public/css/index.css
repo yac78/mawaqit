@@ -16,16 +16,16 @@
 
 .feature-icon{
     color: #196827;
-    font-size: 10rem;
+    font-size: 7rem;
 }
 
 .screen .flex-control-nav {
-    bottom: -100px;
+    bottom: -70px;
 }
 
 .screen {
     background-image: url('/bundles/app/agency/img/tv-border.png');
-    padding: 6px;
+    padding: 5px;
     background-size: contain;
     background-repeat: no-repeat;
 }
