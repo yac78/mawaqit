@@ -1,19 +1,19 @@
 form:
-    mosque:
-      address_mandatory: L'adresse postale est obligatoire pour les mosquées.
-      max_reached: Vous avez atteint le nombre maximum d'installation autorisé.
-      justificatoryMandatory: Le justificatif est obligatoire
-      mainImageMandatory: La photo de la mosquée est obligatoire
-    configuration:
-        mandatory: Ce champ est obligatoire
-        custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
-        dst_dates_mandatory: Les dates de changement d'heure sont obligatoires
-        jumua_mandatory: Vous devez saisir l'heure du jumua
-        calendar_not_valid: Queslques valeurs du calendrier ne sont pas valides
-    registration:
-        wrong_password_message: Le mot de passe doit contenir 8 caractères minimum, dont une majuscule, une minuscule et un nombre
-    message:
-      max_enabled_reached: |
-        Vous avez atteint le nombre maximum autorisé d'annonces activées (8 Max),
-        pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes.
-      max_reached: Vous avez atteint le nombre maximum d'annonces autorisé (20 Max).
+  mosque:
+    address_mandatory: L'adresse postale est obligatoire pour les mosquées.
+    max_reached: Vous avez atteint le nombre maximum d'installation, veuillez nous contacter par mail contact@mawaqit.net pour débloquer votre quota.
+    justificatoryMandatory: Le justificatif est obligatoire
+    mainImageMandatory: La photo de la mosquée est obligatoire
+  configuration:
+    mandatory: Ce champ est obligatoire
+    custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
+    dst_dates_mandatory: Les dates de changement d'heure sont obligatoires
+    jumua_mandatory: Vous devez saisir l'heure du jumua
+    calendar_not_valid: Queslques valeurs du calendrier ne sont pas valides
+  registration:
+    wrong_password_message: Le mot de passe doit contenir 8 caractères minimum, dont une majuscule, une minuscule et un nombre
+  message:
+    max_enabled_reached: |
+      Vous avez atteint le nombre maximum de 8 annonces activées,
+      pour pouvoir ajouter d'autres annonces veuillez supprimer ou désactiver les anciennes.
+    max_reached: Vous avez atteint le nombre maximum de 20 annonces autorisées.

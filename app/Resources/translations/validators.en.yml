@@ -1,20 +1,20 @@
 form:
-    mosque:
-      address_mandatory: The address is mandatory for mosques.
-      max_reached: You have reached the maximum allowed number of installation.
-      justificatoryMandatory: The supporting document is mandatory
-      mainImageMandatory: The mosque picture is mandatory
-    configuration:
-        mandatory: Ce champ est obligatoire
-        custom_prayer_method: Les champs "Degré du fajr" et "Degré du `isha" doivent être renseignés
-        dst_dates_mandatory: Dst dates are mandatory
-        jumua_mandatory: You must fill jumua time
-        calendar_not_valid: Some entries of the calendar are not valid
-    registration:
-        wrong_password_message: Le mot de passe doit contenir 8 caractères minimum, dont une majuscule, une minuscule et un nombre
-    message:
-        max_enabled_reached: |
-           You have reached the maximum allowed number of activated messages (8 Max),
-           to be able to add more messages please remove or disable old ones.
-        max_reached: |
-           You have reached the maximum allowed number of messages (20 Max).
+  mosque:
+    address_mandatory: The address is mandatory for mosques.
+    max_reached: You have reached the maximum number of installations, please contact us by email contact@mawaqit.net to unlock your quota.
+    justificatoryMandatory: The supporting document is mandatory
+    mainImageMandatory: The mosque picture is mandatory
+  configuration:
+    mandatory: This field is required
+    custom_prayer_method: The fields "Degree of fajr" and "Degree of `isha" must be completed
+    dst_dates_mandatory: Dst dates are mandatory
+    jumua_mandatory: You must fill jumua time
+    calendar_not_valid: Some entries of the calendar are not valid
+  registration:
+    wrong_password_message: The password must contain at least 8 characters, including a capital letter, a small letter and a number
+  message:
+    max_enabled_reached: |
+      You have reached the maximum number of 8 activated messages,
+      to be able to add other messages please delete or deactivate the old ones.
+    max_reached: |
+      You have reached the maximum number of 20 messages allowed.

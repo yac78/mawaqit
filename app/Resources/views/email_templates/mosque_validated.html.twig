@@ -5,11 +5,14 @@
             Essalamu alaykum
         </p>
         <p>
-            Bonne nouvelle, votre mosquée "<strong>{{ mosque.title }}</strong>" vient d'être validée par l'équipe mawaqit.
-            Vous pouvez dès maintenant la configurer ici <a href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
+            Bonne nouvelle, votre mosquée "<strong>{{ mosque.title }}</strong>" vient d'être validée par l'équipe
+            mawaqit.
+            Vous pouvez dès maintenant la configurer ici <a
+                    href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
         </p>
         <p style="font-weight: bold; color: #843534">
-            Vous disposez de 2 mois à partir d'aujourd'hui pour ajouter la photo de l'écran mawaqit prise dans la mosquée.
+            Vous disposez de {{ mosque.daysBeforeRemove }} jours pour ajouter la photo de l'écran mawaqit prise dans la
+            mosquée.
             Passé ce délai sans la photo de l'écran, votre mosquée sera suspendue.
         </p>
         <p>
@@ -26,11 +29,12 @@
         </p>
         <hr>
         <p>
-            Good news, your mosque "<strong>{{ mosque.title }}</strong>" has been validated by the mawaqit team , you can now configure it
+            Good news, your mosque "<strong>{{ mosque.title }}</strong>" has been validated by the mawaqit team , you
+            can now configure it
             on <a href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
         </p>
         <p style="font-weight: bold; color: #843534">
-            You have 2 months from today to add the photo of the mosque mawaqit screen.
+            You have {{ mosque.daysBeforeRemove }} days to add the photo of the mosque mawaqit screen.
             After this time, without the picture of the screen your mosque will be suspended.
         </p>
         <p>
@@ -52,22 +56,24 @@
             السلام عليكم ورحمة الله وبركاته
         </p>
         <p>
-            بشرى سارة، تم تفعيل مسجدك من طرف فريق مواقيت، يمكنك ضبط الإعدادات هنا <a href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
+            بشرى سارة، تم تفعيل مسجدك من طرف فريق مواقيت، يمكنك ضبط الإعدادات هنا <a
+                    href="{{ url('mosque_index') }}">{{ url('mosque_index') }}</a>
         </p>
         <p style="font-weight: bold; color: #843534">
-            نرجو منكم إضافة صورة شاشة مواقيت لمسجدكم خلال شهرين إنطلاقا من اليوم٠
+            نرجو منكم إضافة صورة شاشة مواقيت لمسجدكم خلال
+            {{ mosque.daysBeforeRemove }}
+            يوما .
             بعد نهاية هذه المدة و دون رد من طرفكم سوف يتم تعطيل المسجد٠
         </p>
         <p>
-            لأي أسئلة، يرجى زيارة الأسئلة الشائعة وقناتنا على اليوتوب <a href="{{ url('homepage') }}#faq">FAQ</a> / <a
-                    href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+            لأي أسئلة ، يرجى زيارة الأسئلة الشائعة <a href="{{ url('homepage') }}#faq">FAQ</a>
+            وقناتنا على اليوتوب <a href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
         </p>
         <p>
             <strong>هام : </strong>تابعنا على الفايسبوك و التويتر ، الرابط موجود أسفل هذا البريد الإلكتروني. لا نتواصل
             إلا عبر هتين الشبكتين</p>
         <p>
-            يمكنك أيضًا الاتصال بنا من خلال رسالة الواتساب فقط على
-            <br/> {% include "partial/whatsapp_number.html.twig" %}
+            يمكنك أيضًا الاتصال بنا من خلال رسالة الواتساب فقط على {% include "partial/whatsapp_number.html.twig" %}
         </p>
     </div>
 

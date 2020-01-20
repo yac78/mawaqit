@@ -55,9 +55,10 @@ home:
       <li>
         <i class="fab fa-whatsapp"></i> Par WhatsApp (message uniquement, aucun appel ne sera traité)<br>
           <p>
-            France supportTelFR <br>
-            Algérie supportTelDZ <br>
-            Reste du monde supportTelROW
+            France : supportTelFR <br>
+            Algérie : supportTelDZ <br>
+            Maroc : supportTelROW <br>
+            Autres pays : supportTelROW
           </p>
         </li>
       </ul>
