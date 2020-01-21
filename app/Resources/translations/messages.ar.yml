@@ -59,7 +59,7 @@ home:
         <li>
           <i class="fab fa-whatsapp"></i>
         على الواتساب (كتابيا فقظ ، لن يتم الرد على المكالمات الهاتفية)
-          <p>
+          <div>
             فرنسا : supportTelFR
             <br>
             الجزائر : supportTelDZ
@@ -67,7 +67,7 @@ home:
             المغرب : supportTelROW
             <br>
             باقي الدول : supportTelROW
-          </p>
+          </div>
         </li>
       </ul>
 

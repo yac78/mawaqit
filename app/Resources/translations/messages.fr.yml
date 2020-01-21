@@ -54,12 +54,12 @@ home:
         <li> <i class="fab fa-facebook-messenger"></i> Par Facebook messenger en cliquant sur l'icone en bas</li>
       <li>
         <i class="fab fa-whatsapp"></i> Par WhatsApp (message uniquement, aucun appel ne sera traité)<br>
-          <p>
+          <div>
             France : supportTelFR <br>
             Algérie : supportTelDZ <br>
             Maroc : supportTelROW <br>
             Autres pays : supportTelROW
-          </p>
+          </div>
         </li>
       </ul>
     legalNotice: Mentions légales
