@@ -844,6 +844,29 @@ class Mosque
         return $this->messages;
     }
 
+    public function getEnabledMessages($desktop = null, $mobile = null)
+    {
+
+        $messages = [];
+
+        foreach ($this->messages as $message) {
+            if (!$message->isEnabled()) {
+                continue;
+            }
+
+            if (true === $mobile && !$message->isMobile()) {
+                continue;
+            }
+
+            if (true === $desktop && !$message->isDesktop()) {
+                continue;
+            }
+            $messages[] = $message;
+
+        }
+        return $messages;
+    }
+
     public function getNbOfEnabledMessages()
     {
         $nb = 0;
@@ -1475,7 +1498,7 @@ class Mosque
 
     public function getIcon()
     {
-        if($this->type === self::TYPE_MUSALLA){
+        if ($this->type === self::TYPE_MUSALLA) {
             return 'pray';
         }
 

@@ -4,9 +4,7 @@
  */
 var messageInfoSlider = {
     slider: $("#slider"),
-    timeToDisplayMessage: 30,
     interval: null,
-    ajaxJsonHashCode: '',
     /**
      *  run message slider
      */
@@ -26,44 +24,11 @@ var messageInfoSlider = {
             if (nbSlides > 1) {
                 messageInfoSlider.moveRight();
             }
-        }, messageInfoSlider.timeToDisplayMessage * 1000);
+        }, timeToDisplayMessage * 1000);
     },
     /**
      * Get message from server
      */
-    get: function () {
-        $.ajax({
-            dataType: "json",
-            url: messageInfoSlider.slider.data("remote"),
-            success: function (data) {
-                var dataHashCode = JSON.stringify(data).hashCode();
-                if (data.messages.length > 0 && dataHashCode !== messageInfoSlider.ajaxJsonHashCode) {
-                    messageInfoSlider.timeToDisplayMessage = data.timeToDisplayMessage;
-                    var slide;
-                    messageInfoSlider.ajaxJsonHashCode = dataHashCode;
-                    var items = [];
-                    $.each(data.messages, function (i, message) {
-                        slide = '<li>';
-                        if (message.image) {
-                            slide += '<img src="/upload/' + message.image + '"/>';
-                        } else {
-                            if (message.title) {
-                                slide += '<div class="title">' + message.title + '</div>';
-                            }
-                            if (message.content) {
-                                slide += '<div class="content">' + message.content + '</div>';
-                            }
-                        }
-                        slide += '</li>';
-                        items.push(slide);
-
-                    });
-                    messageInfoSlider.slider.html("<ul>" + items.join("") + "</ul>");
-                    messageInfoSlider.run();
-                }
-            }
-        });
-    },
     moveRight: function () {
         var screenWidth = $(window).width();
         $('#slider ul').animate({
@@ -84,11 +49,22 @@ var messageInfoSlider = {
     }
 };
 
-messageInfoSlider.get();
+messageInfoSlider.run();
 
-/**
- * Check for new slides every 5 min
- */
 setInterval(function () {
-    messageInfoSlider.get();
-}, 5 * 60 * 1000);
+    $.ajax({
+        url:  $("#slider").data("remote") + "?lastUpdatedDate=" + lastUpdated,
+        success: function (resp) {
+            if (resp.hasBeenUpdated === true) {
+                // check if screen page is ok (http status = 200 )
+                $.ajax({
+                    url: location.href,
+                    method: 'HEAD',
+                    success: function (resp) {
+                        location.reload();
+                    }
+                });
+            }
+        }
+    });
+}, 3 * 60000);

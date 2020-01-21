@@ -151,6 +151,7 @@ AppBundle\Entity\Mosque:
                 onDelete: 'SET NULL'
     oneToMany:
         messages:
+            orderBy: { position : 'ASC' }
             orphanRemoval: true
             cascade:
                 - persist

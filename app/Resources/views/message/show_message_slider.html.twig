@@ -23,7 +23,27 @@
 <div id="full-screen" title="{{ 'full_screen'|trans }}">
     <i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i>
 </div>
-<div id="slider" data-remote="{{ path('ajax_get_messages', {id: mosque.id}) }}"></div>
+
+<div id="slider" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
+    <ul>
+        {% for message in mosque.enabledMessages(true) %}
+            <li>
+                {% if message.image %}
+                    <img src="{{ vich_uploader_asset(message, 'file') }}"/>
+                {% elseif message.content %}
+                    {% if message.title %}
+                        <div class="title"> {{ message.title }} </div>
+                    {% endif %}
+                    <div class="content"> {{ message.content|raw }} </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    var lastUpdated = {{ mosque.updated.timestamp }};
+    var timeToDisplayMessage = {{ mosque.configuration.timeToDisplayMessage }};
+</script>
 
 {% javascripts
     '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'

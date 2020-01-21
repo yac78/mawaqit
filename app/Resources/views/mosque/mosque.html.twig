@@ -56,9 +56,24 @@
         </div>
 
         <!-- message info slider -->
-        <div class="message-slider slider ltr display-none" data-remote="{{ path('ajax_get_messages', {id: mosque.id, main_screen: true}) }}">
+        <div class="message-slider slider ltr display-none">
             <div class="currentTimeShort"></div>
-            <div class="messageContent"></div>
+            <div class="messageContent">
+                <ul>
+                    {% for message in mosque.enabledMessages(true) %}
+                        <li>
+                            {% if message.image %}
+                                <img src="{{ vich_uploader_asset(message, 'file') }}"/>
+                            {% elseif message.content %}
+                                {% if message.title %}
+                                    <div class="title"> {{ message.title }} </div>
+                                {% endif %}
+                                <div class="content"> {{ message.content|raw }} </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
 
         {% include 'partial/dua-after-adhan.html.twig' %}

@@ -56,7 +56,7 @@ var douaaSlider = {
 
                 // show messages if exist after 10 sec after duaa
                 setTimeout(function () {
-                    messageInfoSlider.get();
+                    messageInfoSlider.run();
                 }, 10 * prayer.oneSecond);
 
             }, douaaSlider.getTimeForShow());
@@ -66,7 +66,7 @@ var douaaSlider = {
             });
             setTimeout(function () {
                 // no douaa, show messages if exist after 2 min after prayer
-                messageInfoSlider.get();
+                messageInfoSlider.run();
             }, 2 * prayer.oneMinute);
         }
     },
@@ -117,7 +117,7 @@ var messageInfoSlider = {
             }
 
             if (messageInfoSlider.messageInfoIsShowing === false) {
-                messageInfoSlider.get();
+                messageInfoSlider.run();
             }
         }, prayer.oneMinute * 9);
     },
@@ -125,6 +125,9 @@ var messageInfoSlider = {
      *  run message slider
      */
     run: function () {
+        if (!$(".main").is(":visible")) {
+            return;
+        }
         var screenWidth = $(window).width();
         var nbSlides = $('.message-slider li').length;
 
@@ -155,48 +158,7 @@ var messageInfoSlider = {
             messageInfoSlider.messageInfoIsShowing = false;
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
     },
-    /**
-     * Get message from server
-     */
-    get: function () {
-        if ($(".main").is(":visible")) {
-            $.ajax({
-                dataType: "json",
-                url: $(".message-slider").data("remote"),
-                success: function (data) {
-                    if (data.messages.length > 0) {
-                        var slide;
-                        var items = [];
-                        $.each(data.messages, function (i, message) {
-                            slide = '<li>';
-                            if (message.image) {
-                                slide += '<img src="/upload/' + message.image + '"/>';
-                            } else {
-                                if (message.title) {
-                                    slide += '<div class="title">' + message.title + '</div>';
-                                }
-                                if (message.content) {
-                                    slide += '<div class="content">' + message.content + '</div>';
-                                }
-                            }
-                            slide += '</li>';
-                            items.push(slide);
-                        });
-                        $(".message-slider .messageContent").html("<ul>" + items.join("") + "</ul>");
-                        messageInfoSlider.run();
-                    }
-                },
-                /**
-                 * If error show offline existing message
-                 */
-                error: function () {
-                    if ($(".message-slider li").length > 0) {
-                        messageInfoSlider.run();
-                    }
-                },
-            });
-        }
-    },
+
     moveRight: function () {
         var screenWidth = $(window).width();
         $('.message-slider ul').animate({

@@ -50,7 +50,7 @@ var prayer = {
         }
     },
     /**
-     * check for update every 1 minute
+     * check for update every 2 minute
      */
     initUpdateConfData: function () {
         if (typeof isLocal !== 'undefined' && isLocal) {
@@ -74,7 +74,7 @@ var prayer = {
                     }
                 }
             });
-        }, prayer.oneMinute * 3);
+         }, prayer.oneMinute * 2);
     },
     /**
      * load prayer times

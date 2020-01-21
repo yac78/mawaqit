@@ -6,15 +6,17 @@ use AppBundle\Entity\Message;
 use AppBundle\Entity\Mosque;
 use AppBundle\Form\ConfigurationType;
 use AppBundle\Form\MessageType;
-use DateTime;use Doctrine\ORM\EntityManagerInterface;
-use Exception;use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * @Route("/backoffice")
@@ -25,6 +27,7 @@ class MessageController extends Controller
     /**
      * @Route("/mosque/{mosque}/message", name="message_index")
      * @param Mosque $mosque
+     *
      * @return Response
      */
     public function indexAction(Mosque $mosque)
@@ -81,9 +84,10 @@ class MessageController extends Controller
 
     /**
      * @Route("/mosque/{mosque}/message/create", name="message_create")
-     * @param Request $request
+     * @param Request                $request
      * @param EntityManagerInterface $em
-     * @param Mosque $mosque
+     * @param Mosque                 $mosque
+     *
      * @return RedirectResponse|Response
      */
     public function createAction(Request $request, EntityManagerInterface $em, Mosque $mosque)
@@ -116,10 +120,11 @@ class MessageController extends Controller
 
     /**
      * @Route("/mosque/{mosque}/message/{message}/edit", name="message_edit")
-     * @param Request $request
+     * @param Request                $request
      * @param EntityManagerInterface $em
-     * @param Mosque $mosque
-     * @param Message $message
+     * @param Mosque                 $mosque
+     * @param Message                $message
+     *
      * @return RedirectResponse|Response
      */
     public function editAction(Request $request, EntityManagerInterface $em, Mosque $mosque, Message $message)
@@ -154,7 +159,8 @@ class MessageController extends Controller
     /**
      * @Route("/message/{id}/delete", name="message_delete")
      * @param EntityManagerInterface $em
-     * @param Message $message
+     * @param Message                $message
+     *
      * @return RedirectResponse
      */
     public function deleteAction(EntityManagerInterface $em, Message $message)
@@ -175,9 +181,11 @@ class MessageController extends Controller
 
     /**
      * Resorts an item using it's doctrine sortable property
+     *
      * @param Request $request
      * @Route("/message/sort", name="message_sort")
      * @Method("PUT")
+     *
      * @return JsonResponse
      */
     public function sortAction(Request $request)
@@ -195,32 +203,34 @@ class MessageController extends Controller
     /**
      * @Route("/mosque/{mosque}/message-bulk-change-status", name="message_bulk_change_status")
      * @Method("POST")
-     * @param Request $request
-     * @param Mosque $mosque
+     * @param Request                $request
+     * @param Mosque                 $mosque
      * @param EntityManagerInterface $em
+     *
      * @return mixed
      * @throws Exception
      */
-    public function bulkChangeStatusAction(Request $request, Mosque $mosque,  EntityManagerInterface $em)
+    public function bulkChangeStatusAction(Request $request, Mosque $mosque, EntityManagerInterface $em)
     {
         $messages = $request->request->get('status');
-        $repo = $em->getRepository('AppBundle:Message');
-        $validator = $this->get('validator');
-        foreach ($messages as $id => $status) {
-            $message = $repo->find($id);
-            if($message instanceof Message){
-                $message->setEnabled((bool)$status);
-                $errors = $validator->validate($message);
-                if (count($errors) > 0) {
-                    $this->addFlash('danger', $errors[0]->getMessage());
-                    return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
+        if (is_array($messages)) {
+            $repo = $em->getRepository('AppBundle:Message');
+            $validator = $this->get('validator');
+            foreach ($messages as $id => $status) {
+                $message = $repo->find($id);
+                if ($message instanceof Message) {
+                    $message->setEnabled((bool)$status);
+                    $errors = $validator->validate($message);
+                    if (count($errors) > 0) {
+                        $this->addFlash('danger', $errors[0]->getMessage());
+                        return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
+                    }
                 }
             }
+
+            $mosque->setUpdated(new DateTime());
+            $em->flush();
         }
-
-        $mosque->setUpdated(new DateTime());
-        $em->flush();
-
         return $this->redirectToRoute('message_index', ['mosque' => $mosque->getId()]);
     }
 }
