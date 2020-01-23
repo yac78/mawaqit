@@ -128,8 +128,13 @@ var messageInfoSlider = {
         if (!$(".main").is(":visible")) {
             return;
         }
-        var screenWidth = $(window).width();
         var nbSlides = $('.message-slider li').length;
+
+        if (nbSlides === 0) {
+            return;
+        }
+
+        var screenWidth = $(window).width();
 
         $('.message-slider li').width(screenWidth);
 
