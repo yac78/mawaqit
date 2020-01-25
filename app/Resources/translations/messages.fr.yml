@@ -11,7 +11,7 @@ home:
   menu:
     main: Menu
     project: Le projet
-    mosques: Mosquées équipées
+    mosques: Quelques chiffres
     equipYourMosque: équipez votre mosquée
     install: installez
     faq: faq
@@ -35,7 +35,7 @@ home:
     feature8: Controle à distance
     feature9: Application mobile
 
-    equipedMosques: Quelques chiffres
+    numbers: Quelques chiffres
     equipeYourMosque: équipez votre mosquée
     faq: FAQ
     install: Installez
@@ -46,6 +46,13 @@ home:
     viewPlus: Voir plus
 
   text:
+    numbers:
+      1: Mosquées et domiciles
+      2: Pays
+      3: Utilisateurs actifs sur iPhone et Android
+      4: Visiteurs uniques du site par jours
+      5: Requêtes sur le site par jour
+      6: Note sur les stores et facebook
     contactUsText0: |
       Nous sommes tous des bénévoles et nous travaillons fi sabili Allah sans aucune rémunération, soyez patient
       si vous ne recevez pas une réponse immédiate à vos questions

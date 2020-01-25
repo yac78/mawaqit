@@ -29,3 +29,8 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.odometer {
+    font-size: 3rem;
+    direction: ltr !important;
+}

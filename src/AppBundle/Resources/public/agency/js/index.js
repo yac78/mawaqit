@@ -26,3 +26,17 @@ $("#find-mosque").autocomplete({
         window.open('https://mawaqit.net/fr/' + ui.item.slug, '_blank');
     }
 });
+
+
+function isInView(elem) {
+    return $(elem).offset().top - $(window).scrollTop() < $(elem).height();
+}
+
+$(window).scroll(function () {
+    if (isInView('.odometer-parent'))
+        setTimeout(function () {
+            $(".odometer").each(function (i, elem) {
+                $(elem).text($(elem).data("count"));
+            });
+        }, 1000);
+});

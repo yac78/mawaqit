@@ -9,6 +9,8 @@
     {% endstylesheets %}
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+    <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
+
 {% endblock %}
 
  {% block textHeader %}
@@ -89,13 +91,13 @@
                 <div class="row mt-4">
                     <div class="col-md-offset-2 col-md-8">
                         <div class="screen">
-                        <div class="flexslider">
-                            <ul class="slides">
-                            {% for i in 1..9  %}
-                                <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
-                            {% endfor %}
-                            </ul>
-                        </div>
+                            <div class="flexslider">
+                                <ul class="slides">
+                                    {% for i in 1..9 %}
+                                        <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,7 +115,7 @@
                     <div class="col-md-offset-4 col-md-4 mt-3">
                         <div class="flexslider">
                             <ul class="slides">
-                                {% for i in 10..15  %}
+                                {% for i in 10..15 %}
                                     <li><img src="{{ asset('bundles/app/agency/img/software/'~i~'.png') }}"/></li>
                                 {% endfor %}
                             </ul>
@@ -126,17 +128,40 @@
         <!-- Mosquées équipées Grid Section -->
         <section id="mosquees">
             <div class="container">
-                <h2 class="section-heading">{{ 'home.title.equipedMosques'|trans }}</h2>
-                <p class="section-subheading text-muted">
-                    {{ 'home.text.equipedMosques1'|trans({'totalMosquesCount': totalMosquesCount})|raw }}
-                </p>
+                <h2 class="section-heading">{{ 'home.title.numbers'|trans }}</h2>
+                <div class="row mt-3 mb-3 odometer-parent">
+                    <div class="col-md-4 mt-2">
+                        <div class="odometer" data-count="{{ totalMosquesCount }}"></div>
+                        <div class="h3">{{ 'home.text.numbers.1'|trans }}</div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="odometer" data-count="{{ mosqueNumberByCountry|length }}"></div>
+                        <div class="h3">{{ 'home.text.numbers.2'|trans }}</div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="odometer" data-count="120000"></div>
+                        <div class="h3">{{ 'home.text.numbers.3'|trans }}</div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="odometer" data-count="95000"></div>
+                        <div class="h3">{{ 'home.text.numbers.4'|trans }}</div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="odometer" data-count="2000000"></div>
+                        <div class="h3">{{ 'home.text.numbers.5'|trans }}</div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="odometer" data-count="4.8"></div>
+                        <div class="h3">{{ 'home.text.numbers.6'|trans }}</div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="">
                             {% for item in mosqueNumberByCountry %}
                                 <button class="btn btn-success mt-1">
-                                    {{ item.country|country|upper }} <span class="badge">{{ item.nb }}</span>
+                                    {{ item.country|country(app.request.locale)|upper }} <span class="badge">{{ item.nb }}</span>
                                 </button>
                             {% endfor %}
                         </div>
@@ -261,6 +286,8 @@
     {% endjavascripts %}
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+
     <script>
 
         var map = L.map('map').setView([48, 3], 2);
@@ -279,9 +306,9 @@
                 '</p>' +
                 '</div>';
 
-            marker = new L.marker([mosque.lat, mosque.lng])
-                .bindPopup(popup)
-                .addTo(map);
+             marker = new L.marker([mosque.lat, mosque.lng])
+                 .bindPopup(popup)
+                 .addTo(map);
         });
 
     </script>
