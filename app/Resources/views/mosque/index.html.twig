@@ -92,7 +92,8 @@
                     {% if isNotLocal() %}
                         <td>
                             {{ mosque.id }} <br/><br/>
-                            <i class="fas fa-{{ mosque.icon }}" style="font-size: 2rem" title="{{ ('mosque.types.' ~ mosque.type)|trans }}"></i>
+                            <i class="fas fa-{{ mosque.icon }}" style="font-size: 2rem"
+                               title="{{ ('mosque.types.' ~ mosque.type)|trans }}"></i>
                         </td>
                     {% endif %}
                     <td>
@@ -114,19 +115,22 @@
 
                         {% if mosque.image1 is not null %}
                             <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
-                                <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56')}}" alt="{{ mosque.title }}" class="mt-1"/>
+                                <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56') }}"
+                                     alt="{{ mosque.title }}" class="mt-1"/>
                             </a>
                         {% endif %}
 
                         {% if mosque.image2 is not null %}
                             <a href="{{ vich_uploader_asset(mosque, 'file2') }}" target="_blank">
-                                <img src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file2 }}" class="mt-1"/>
+                                <img src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('thumb_100x56') }}"
+                                     alt="{{ mosque.file2 }}" class="mt-1"/>
                             </a>
                         {% endif %}
 
                         {% if mosque.image3 is not null %}
                             <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank">
-                                <img src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file3 }}" class="mt-1"/>
+                                <img src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('thumb_100x56') }}"
+                                     alt="{{ mosque.file3 }}" class="mt-1"/>
                             </a>
                         {% endif %}
                     </td>
@@ -167,7 +171,12 @@
                             {% if isNotLocal() and mosque.daysBeforeRemove is not null %}
                                 <div class="alert alert-{{ mosque.daysBeforeRemove > 15 ? 'warning' : 'danger' }} mt-1"
                                      style="padding: 5px">
-                                    <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove})|raw }}
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    {% if mosque.daysBeforeRemove >= 0 %}
+                                        {{ ( 'mosqueList.alertRemoveMosque' )|trans({'%days%' :  mosque.daysBeforeRemove})|raw }}
+                                    {% else %}
+                                        {{ ( 'mosqueList.alertRemoveMosqueSupp' )|trans|raw }}
+                                    {% endif %}
                                 </div>
                             {% endif %}
                             {% if not mosque.isCalendarCompleted %}
@@ -308,7 +317,12 @@
                     {% if mosque.isValidated and mosque.daysBeforeRemove is not null %}
                         <div class="alert alert-{{ mosque.daysBeforeRemove > 15 ? 'warning' : 'danger' }} mt-1"
                              style="padding: 5px">
-                            <i class="fas fa-exclamation-triangle"></i> {{ 'mosqueList.alertRemoveMosque'|trans({'%days%' :  mosque.daysBeforeRemove})|raw }}
+                            <i class="fas fa-exclamation-triangle"></i>
+                            {% if mosque.daysBeforeRemove >= 0 %}
+                                {{ ( 'mosqueList.alertRemoveMosque' )|trans({'%days%' :  mosque.daysBeforeRemove})|raw }}
+                            {% else %}
+                                {{ ( 'mosqueList.alertRemoveMosqueSupp' )|trans|raw }}
+                            {% endif %}
                         </div>
                     {% endif %}
                     {% if mosque.isValidated and not mosque.isCalendarCompleted %}
@@ -320,19 +334,22 @@
 
                     {% if mosque.image1 is not null %}
                         <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
-                            <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56')}}" alt="{{ mosque.title }}" class="mt-1"/>
+                            <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56') }}"
+                                 alt="{{ mosque.title }}" class="mt-1"/>
                         </a>
                     {% endif %}
 
                     {% if mosque.image2 is not null %}
                         <a href="{{ vich_uploader_asset(mosque, 'file2') }}" target="_blank">
-                            <img src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file2 }}" class="mt-1"/>
+                            <img src="{{ vich_uploader_asset(mosque, 'file2') | imagine_filter('thumb_100x56') }}"
+                                 alt="{{ mosque.file2 }}" class="mt-1"/>
                         </a>
                     {% endif %}
 
                     {% if mosque.image3 is not null %}
                         <a href="{{ vich_uploader_asset(mosque, 'file3') }}" target="_blank">
-                            <img src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('thumb_100x56') }}" alt="{{ mosque.file3 }}" class="mt-1"/>
+                            <img src="{{ vich_uploader_asset(mosque, 'file3') | imagine_filter('thumb_100x56') }}"
+                                 alt="{{ mosque.file3 }}" class="mt-1"/>
                         </a>
                     {% endif %}
 

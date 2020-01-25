@@ -1445,9 +1445,16 @@ class Mosque
             $deadline->setDate($deadline->format('Y'), $deadline->format('m'), 15);
         }
 
-        $interval = $deadline->diff(new \DateTime());
+        $now = new \DateTime();
+        $interval = $deadline->diff($now);
 
-        return (int)$interval->format('%a');
+        $days = (int)$interval->format('%a');
+
+        if($deadline < $now){
+            $days = -$days;
+        }
+
+        return $days;
     }
 
     public function isMosque()

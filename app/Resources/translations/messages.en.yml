@@ -478,6 +478,10 @@ mosqueList:
   widgetForYourSite: Widget for your website
   alertRemoveMosque: |
     You have <b>%days%</b> days left to provide the photo of the mawaqit screen taken in the mosque, after this time the mosque will be automatically deleted.
+  alertRemoveMosqueSupp: |
+    You have exceeded the time limit for providing us with the photo of the mawaqit screen taken in
+    the mosque, you have been given an additional deadline. Your mosque will be permanently suspended if the photo
+    still not available in the coming days
   csvFileExemple: Here is an example of csv files of all months for Paris UOIF prayer times
   qrcodeTitle: To post in a place accessible to the faithful
 
