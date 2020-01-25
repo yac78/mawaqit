@@ -86,7 +86,7 @@ var douaaSlider = {
             .animate({left: 0}, 1000);
     },
     setFontSize: function () {
-        $('.slider li').each(function (i, slide) {
+        $('.slider li > div').each(function (i, slide) {
             fixFontSize(slide, 180);
         });
     }

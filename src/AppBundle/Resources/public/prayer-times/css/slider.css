@@ -1,5 +1,9 @@
-.slider .title{ 
-    margin:  20px 0;
+.slider .title {
+    margin: 20px 0;
+}
+
+.slider .ar {
+    line-height: 160%;
 }
 
 .slider ul {
@@ -10,20 +14,22 @@
 }
 
 .slider li {
-    display: block;
     float: left;
     margin: auto;
     word-break: break-word;
+    height: 85vh;
+    display: flex;
+    align-items: center;
 }
 
 .adhkar-after-prayer .title {
     color: yellowgreen;
     font-size: 700%;
     padding: 20px 0;
-    height: 180px;
+    height: 15vh;
 }
 
-.message-slider .currentTimeShort{
+.message-slider .currentTimeShort {
     position: fixed;
     font-size: 7vh;
     top: 10px;
