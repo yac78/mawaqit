@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\API;
 
 use AppBundle\Entity\Mosque;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +16,6 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * @Route("/api/1.0.0/mosque", options={"i18n"="false"})
@@ -26,6 +26,7 @@ class MosqueController extends Controller
      * @Route("/search")
      * @Method("GET")
      * @param Request $request
+     *
      * @return JsonResponse
      * @throws \Doctrine\DBAL\DBALException
      */
@@ -42,7 +43,9 @@ class MosqueController extends Controller
      * Get all data of mosque
      * @Route("/{id}")
      * @Method("GET")
+     *
      * @param Mosque $mosque
+     *
      * @return Response
      */
     public function dataAction(Mosque $mosque)
@@ -52,8 +55,34 @@ class MosqueController extends Controller
         }
 
         $normalizer = new ObjectNormalizer();
-        $normalizer->setIgnoredAttributes(['user', 'id', 'created', 'updated', 'messages', 'image1', 'image2', 'image3', 'localisation', 'justificatory',
-            'nbOfEnabledMessages', 'calendarCompleted', 'gpsCoordinates', 'title', 'types', 'synchronized', 'slug', 'locale', 'flashMessage', 'status']);
+        $normalizer->setIgnoredAttributes([
+            'user',
+            'id',
+            'created',
+            'updated',
+            'image1',
+            'image2',
+            'image3',
+            'localisation',
+            'justificatory',
+            "conf",
+            "enabledMessages",
+            "comments",
+            'nbOfEnabledMessages',
+            'calendarCompleted',
+            'gpsCoordinates',
+            'title',
+            'types',
+            'synchronized',
+            'slug',
+            'locale',
+            'status',
+            'url',
+            'configurationAllowed',
+            'actionsAllowed',
+            'flashMessage',
+            'messages',
+        ]);
 
         $normalizer->setCircularReferenceHandler(function ($mosque) {
             return $mosque->getId();
@@ -70,8 +99,10 @@ class MosqueController extends Controller
      * @Route("/{mosque}/prayer-times")
      * @Cache(public=true, maxage="300", smaxage="300", expires="+300 sec")
      * @Method("GET")
+     *
      * @param Request $request
-     * @param Mosque $mosque
+     * @param Mosque  $mosque
+     *
      * @return Response
      */
     public function prayTimesAction(Request $request, Mosque $mosque)
