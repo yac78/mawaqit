@@ -37,6 +37,7 @@ mig: ## Create diff migration and migrate
 
 cc: ## Symfony cache clear
     docker-compose exec php bash -c "bin/console c:c --no-warmup && bin/console c:w"
+    docker-compose exec php chmod 777 -R var/cache
 
 db_prod_dev:
     scp -P 1983 mawaqit@${MAWAQIT_PROD_IP}:/var/www/mawaqit/mysql/mawaqit.sql.gz /media/ibrahim/DATA/Mawaqit/DB

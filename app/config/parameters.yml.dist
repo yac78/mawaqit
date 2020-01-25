@@ -2,9 +2,6 @@ parameters:
     secret: theSecret
     version: 3.0.0
     postmaster_address: 'exemple@exemple.com'
-    support_tel_fr: '0033600000000'
-    support_tel_dz: '0033600000000'
-    support_tel_row: '0033600000000'
     support_email: 'exemple@exemple.com'
 
     # Database

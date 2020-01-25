@@ -88,24 +88,32 @@
                     <a class="page-scroll" href="{{ path('homepage') }}#faq">{{ 'home.menu.faq'|trans }}</a>
                 </li>
                 <li>
-                    <a class="page-scroll" target="_blank" href="https://app.swaggerhub.com/apis/ibra/Mawaqit/1.0.0">api</a>
+                    <a class="page-scroll" target="_blank"
+                       href="https://app.swaggerhub.com/apis/ibra/Mawaqit/1.0.0">api</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="{{ path('homepage') }}#contact">{{ 'home.menu.contactUs'|trans }}</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-globe"></i>&nbsp;{{ 'language'|trans }}<span  class="caret"></span>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="fa fa-globe"></i>&nbsp;{{ 'language'|trans }}<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">{{ 'fr'|trans }}</a></li>
-                        <li><a href="{{ path(app.request.attributes.get('_route'), {_locale: 'ar'}) }}">{{ 'ar'|trans }}</a></li>
+                        <li>
+                            <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">{{ 'fr'|trans }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'ar'}) }}">{{ 'ar'|trans }}</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ path("fos_user_registration_register") }}"><i class="fa fa-user"></i>&nbsp;{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                    <a href="{{ path("fos_user_registration_register") }}"><i
+                                class="fa fa-user"></i>&nbsp;{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
                 <li>
-                    <a href="{{ path("fos_user_security_login") }}"><i class="fa fa-sign-in-alt"></i>&nbsp;{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    <a href="{{ path("fos_user_security_login") }}"><i
+                                class="fa fa-sign-in-alt"></i>&nbsp;{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 </li>
             </ul>
         </div>
@@ -129,13 +137,55 @@
 <section id="contact">
     <div class="container">
         <h2 class="section-heading">{{ 'home.menu.contactUs'|trans }}</h2>
-        <div style="font-weight: bold; font-size: 150%; color: #adf222">
-            <p>{{ 'home.text.contactUsText0'|trans({
-                    'manual_link': path('manual'),
-                    'youtube_link': 'https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/videos',
-                    'faq_link': path('homepage') ~ '#faq'
-                })|raw }}</p>
-            <p>{{ 'home.text.contactUsText1'|trans({'supportTelFR': supportTelFR, 'supportTelDZ': supportTelDZ, 'supportTelROW': supportTelROW})|raw }}</p>
+        <div style="font-weight: bold; font-size: 1.5rem; color: #adf222">
+            <ul>
+                <li>
+                    {{ 'home.text.contactUsText0'|trans }}
+                </li>
+                <li>
+                    {{ 'home.text.contactUsText1'|trans({
+                        'manual_link': path('manual'),
+                        'youtube_link': 'https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/videos',
+                        'faq_link': path('homepage') ~ '#faq'
+                    })|raw }}
+                </li>
+                <li>
+                    {{ 'home.text.contactUsText2'|trans }}
+                    <ol>
+                        <li>
+                            <i class="fab fa-whatsapp"></i> {{ 'home.text.contactUsText3'|trans }}<br>
+                            <div class="row">
+                                <div class="col-md-4 form-group mt-1">
+                                    <select id="whatsapp-select" class="form-control">
+                                        <option value="">{{ 'home.text.contactUsSelectNumber'|trans }}</option>
+                                        <optgroup label="{{ 'FR'|country(app.request.locale) }}">
+                                            <option value="0033651061498">Mohammed</option>
+                                            <option value="0033651061498">Ibrahim</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'DZ'|country(app.request.locale) }}">
+                                            <option value="00213551720574">Mohammed</option>
+                                            <option value="00213559702939">Nabil</option>
+                                            <option value="00213559510662">Abd Elhak</option>
+                                            <option value="00213771365933">Djamel</option>
+                                            <option value="00213550282964">Mustapaha</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'MA'|country(app.request.locale) }}">
+                                            <option value="0033638159980">Yassine</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'home.text.contactUsOtherCountry'|trans }}">
+                                            <option value="0033638159980">Yassine</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <div><a href="" id="whatsapp-phone"></a></div>
+                        </li>
+                        <li class="mt-2">
+                            <i class="fab fa-facebook-messenger"></i> {{ 'home.text.contactUsText4'|trans }}
+                        </li>
+                    </ol>
+                </li>
+            </ul>
         </div>
     </div>
 </section>
@@ -148,16 +198,20 @@
             </div>
             <div class="col-md-3">
                 <ul class="list-inline social-buttons">
-                    <li><a target="_blank" href="https://twitter.com/MawaqitTeam"><i class="fab fa-twitter"></i></a></li>
-                    <li><a target="_blank" href="https://www.facebook.com/Mawaqit-878834798944718/"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/videos"><i class="fab fa-youtube"></i></a></li>
+                    <li><a target="_blank" href="https://twitter.com/MawaqitTeam"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li><a target="_blank" href="https://www.facebook.com/Mawaqit-878834798944718/"><i
+                                    class="fab fa-facebook-f"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/videos"><i
+                                    class="fab fa-youtube"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-3">
                 <a href="{{ path('legal_notice') }}">{{ 'home.text.legalNotice'|trans }}</a>
             </div>
             <div class="col-md-3">
-                Developped with phpstorm by <a target="_blank" href="https://www.jetbrains.com/?from=mawaqit"><img width="80px" src="{{ asset("bundles/app/agency/img/jetbrains-variant-4.svg") }}"></img></a>
+                Developped with phpstorm by <a target="_blank" href="https://www.jetbrains.com/?from=mawaqit"><img
+                            width="80px" src="{{ asset("bundles/app/agency/img/jetbrains-variant-4.svg") }}"></img></a>
             </div>
         </div>
     </div>
@@ -168,7 +222,6 @@
     '@AppBundle/Resources/public/jquery/js/jquery-ui.min.js'
     '@AppBundle/Resources/public/bootstrap-3.3.7/js/bootstrap.min.js'
     '@AppBundle/Resources/public/agency/js/jqBootstrapValidation.js'
-    '@AppBundle/Resources/public/agency/js/contact_me.js'
     '@AppBundle/Resources/public/agency/js/agency.min.js'
     '@AppBundle/Resources/public/js/terms_of_use.js'
     '@AppBundle/Resources/public/agency/js/custom.js' %}

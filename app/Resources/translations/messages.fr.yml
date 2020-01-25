@@ -47,21 +47,20 @@ home:
 
   text:
     contactUsText0: |
-      AVANT de nous contacter, veuillez suivre attentivement le manuel d'installation <a href="manual_link">ici</a>
-      et visiter notre <a href="faq_link">FAQ</a> ainsi que notre chaine <a href="youtube_link" target="_blank">Youtube</a>
+      Nous sommes tous des bénévoles et nous travaillons fi sabili Allah sans aucune rémunération, soyez patient
+      si vous ne recevez pas une réponse immédiate à vos questions
     contactUsText1: |
-      <ul>
-        <li> <i class="fab fa-facebook-messenger"></i> Par Facebook messenger en cliquant sur l'icone en bas</li>
-      <li>
-        <i class="fab fa-whatsapp"></i> Par WhatsApp (message uniquement, aucun appel ne sera traité)<br>
-          <div>
-            France : supportTelFR <br>
-            Algérie : supportTelDZ <br>
-            Maroc : supportTelROW <br>
-            Autres pays : supportTelROW
-          </div>
-        </li>
-      </ul>
+      🙏&nbsp;AVANT de nous contacter, veuillez suivre attentivement le manuel d'installation <a href="manual_link">ici</a>
+      et visiter notre <a href="faq_link">FAQ</a> ainsi que notre chaine <a href="youtube_link" target="_blank">Youtube</a>
+    contactUsText2: |
+      Si vous ne trouvez pas réponse à vos questions, vous pouvez nous contacter par :
+    contactUsText3: |
+      WhatsApp (message uniquement, AUCUN appel ne sera traité)
+    contactUsText4: |
+      Facebook messenger en cliquant sur l'icone en bas
+    contactUsOtherCountry: Autre pays
+    contactUsSelectNumber: Selectionnez
+
     legalNotice: Mentions légales
     project1: |
       La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau

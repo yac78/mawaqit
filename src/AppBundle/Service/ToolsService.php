@@ -130,9 +130,9 @@ class ToolsService
         return $time;
     }
 
-    public static function getCountryNameByCode($countryCode)
+    public static function getCountryNameByCode($countryCode, $locale)
     {
-        return Intl::getRegionBundle()->getCountryName($countryCode);
+        return Intl::getRegionBundle()->getCountryName($countryCode, $locale);
     }
 
 }

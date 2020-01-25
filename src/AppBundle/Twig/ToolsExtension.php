@@ -26,9 +26,9 @@ class ToolsExtension extends \Twig_Extension
         ];
     }
 
-    public function countryFilter($countryCode)
+    public function countryFilter($countryCode, $locale = null)
     {
-        return $this->toolsService->getCountryNameByCode($countryCode);
+        return $this->toolsService->getCountryNameByCode($countryCode, $locale);
     }
 
     public function langTrans($code, $locale)
