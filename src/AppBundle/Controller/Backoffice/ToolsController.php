@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Backoffice;
 
 use AppBundle\Entity\Mosque;
+use AppBundle\Form\DstDatesType;
 use AppBundle\Form\HijriAdjustmentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,10 +22,12 @@ class ToolsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $parameter = $em->getRepository("AppBundle:Parameters")->findOneBy(['key' => 'hijri_adjustment']);
-        $form = $this->createForm(HijriAdjustmentType::class, null, ['action' => $this->generateUrl('update_hijri_date')]);
-        $form->get('hijriAdjustment')->setData($parameter->getValue());
+        $formHijriDate = $this->createForm(HijriAdjustmentType::class, null, ['action' => $this->generateUrl('update_hijri_date')]);
+        $formDstDates = $this->createForm(DstDatesType::class, null, ['action' => $this->generateUrl('update_dst_date')]);
+        $formHijriDate->get('hijriAdjustment')->setData($parameter->getValue());
         return $this->render('tools/index.html.twig', [
-            'hijriForm' => $form->createView()
+            'hijriForm' => $formHijriDate->createView(),
+            'dstForm' => $formDstDates->createView()
         ]);
     }
 
@@ -66,6 +69,24 @@ class ToolsController extends Controller
             $em->flush();
 
             $this->addFlash('success', "mosque.update_hijri_date.success");
+            return $this->redirectToRoute('admin_index');
+        }
+    }
+
+    /**
+     * Update dst date for mosques of a country
+     *
+     * @Route("/update-dst-date", name="update_dst_date")
+     */
+    public function updateDstDateAction(Request $request)
+    {
+        $form = $this->createForm(DstDatesType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->getRepository("AppBundle:Configuration")->updateDstDates($form->getData());
+            $this->addFlash('success', "Mise à jour effectuée avec succès");
             return $this->redirectToRoute('admin_index');
         }
     }
