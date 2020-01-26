@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Mosque;
 use AppBundle\Entity\Parameters;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Yaml\Yaml;
 
 class DefaultController extends Controller
 {
@@ -21,30 +23,36 @@ class DefaultController extends Controller
      * @Route("", name="homepage")
      * @Cache(public=true, maxage="86400", smaxage="86400", expires="+86400 sec")
      * @param Request $request
+     * @param EntityManagerInterface $em
      *
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, EntityManagerInterface $em)
     {
         if ($this->get('app.request_service')->isLocal()) {
             throw new NotFoundHttpException();
         }
 
-        $em = $this->getDoctrine()->getManager();
         $mosqueRepo = $em->getRepository("AppBundle:Mosque");
         $paginator = $this->get('knp_paginator');
         $page = $request->query->getInt('page', 1);
         $page = $page > 0 ? $page : 1;
         $mosquesWithImage = $paginator->paginate($mosqueRepo->getMosquesWithImageQb(), 1, $page * 9);
-        $mosquesForMap = $mosqueRepo->getAllMosquesForMap();
         $totalMosquesCount = $mosqueRepo->getCount();
+        $mosqueNumberByCountry = $mosqueRepo->getNumberByCountry();
+        $countries = Yaml::parseFile($this->getParameter("kernel.root_dir") . "/Resources/yaml/countries.yml");
+        foreach ($mosqueNumberByCountry as $key => $value) {
+            $mosqueNumberByCountry[$key]["coordinates"] = null;
+            if (isset($countries[$value['country']])) {
+                $mosqueNumberByCountry[$key]["coordinates"] = $countries[$value['country']];
+            }
+        }
 
         return $this->render('default/index.html.twig', [
             "totalMosquesCount" => $totalMosquesCount,
             "mosquesWithImage" => $mosquesWithImage,
-            "mosquesForMap" => $mosquesForMap,
-            "mosqueNumberByCountry" => $mosqueRepo->getNumberByCountry(),
+            "mosqueNumberByCountry" => $mosqueNumberByCountry,
             "nextPage" => ++$page,
             "faqs" => $em->getRepository('AppBundle:Faq')->getPublicFaq()
         ]);
@@ -160,6 +168,19 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $cities = $em->getRepository("AppBundle:Mosque")->getCitiesByCountry($country);
         return new JsonResponse($cities);
+    }
+
+    /**
+     * @Route("/map/mosques/{countryCode}", name="mosques_map_ajax", options={"i18n"="false"})
+     * @param string                 $countryCode
+     * @param EntityManagerInterface $em
+     *
+     * @return JsonResponse
+     */
+    public function getMosquesForMapAction($countryCode, EntityManagerInterface $em)
+    {
+        $mosquesForMap = $em->getRepository(Mosque::class)->getMosquesForMap($countryCode);
+        return new JsonResponse($mosquesForMap);
     }
 
 }

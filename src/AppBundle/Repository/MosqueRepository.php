@@ -193,14 +193,16 @@ class MosqueRepository extends EntityRepository
      * get mosques information for google map
      * @return array
      */
-    function getAllMosquesForMap()
+    function getMosquesForMap($countryCode)
     {
         return $this->getValidatedMosqueQb()
-            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.countryFullName,  m.longitude as lng, m.latitude as lat")
+            ->select("m.slug, m.name, m.address, m.city, m.zipcode, m.countryFullName, m.longitude as lng, m.latitude as lat")
             ->andWhere("m.addOnMap = 1")
-            ->andWhere("m.type = 'mosque'")
+            ->andWhere("m.type = 'MOSQUE'")
             ->andWhere("m.latitude is not null")
             ->andWhere("m.longitude is not null")
+            ->andWhere("m.country =  :country")
+            ->setParameter(":country", $countryCode)
             ->getQuery()
             ->getArrayResult();
     }
@@ -215,6 +217,7 @@ class MosqueRepository extends EntityRepository
         return $this->createQueryBuilder("m")
             ->select("count(m.id) as nb, m.country")
             ->where("m.status = :status")
+            ->andWhere("m.type = 'MOSQUE'")
             ->orderBy("nb", "DESC")
             ->groupBy("m.country")
             ->getQuery()
