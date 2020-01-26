@@ -299,6 +299,7 @@
         <script>
             var map = L.map('map', {
                 scrollWheelZoom: false,
+                center: [28.033886, 1.659626],
                 zoom: 5,
             });
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
@@ -335,7 +336,9 @@
                 });
             }
 
-            $(".country:eq(1)").click();
+            $(function() {
+                $(".country:eq(1)").click();
+            });
         </script>
     {% endjavascripts %}
 
