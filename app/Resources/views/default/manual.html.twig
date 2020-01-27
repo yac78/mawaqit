@@ -6,22 +6,25 @@
         <section>
             <div class="container">
                 <h2 class="section-heading">{{ 'home.title.equipeYourMosque'|trans }}</h2>
-                <p>{{ 'home.text.equipeYourMosque1'|trans }}</p>
-                <h4 class="section-heading">{{ 'home.text.equipeYourMosque2'|trans }}</h4>
+                <h4 class="section-heading mb-3">{{ 'home.text.equipeYourMosque2'|trans }}</h4>
                 <ul class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     {{ 'home.text.equipeYourMosque3'|trans({'raspberry_3_link': raspberry_3_link, 'raspberry_4_link': raspberry_4_link, 'rtc_link': rtc_link})|raw }}
                 </ul>
-                <img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br>
+                <div class="row mt-3">
+                    <div class="col-md-4 col-md-offset-1"><img class="img-responsive" src="{{ asset('bundles/app/agency/img/screen.png') }}" alt=""><br></div>
+                    <div class="col-md-2" style="font-size: 8rem">+</div>
+                    <div class="col-md-4"><img class="img-responsive" src="{{ asset('bundles/app/agency/img/raspberry-kit.png') }}" alt=""><br></div>
+                </div>
+
             </div>
         </section>
 
         <!-- Section Comment istaller l'application -->
         <section class="bg-light-gray">
             <div class="container">
-                <h2 class="section-heading">{{ 'home.title.install'|trans }}</h2>
-                <p>
+                <h3>
                     {{ 'home.text.install_sub_title'|trans }}
-                </p>
+                </h3>
                 <br>
                 <ol class="text-muted text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}">
                     <li>{{ 'home.text.install1_1'|trans({"registerUrl": path("fos_user_registration_register")})|raw }}</li>

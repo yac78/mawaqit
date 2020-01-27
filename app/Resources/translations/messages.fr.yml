@@ -12,8 +12,7 @@ home:
     main: Menu
     project: Le projet
     mosques: Quelques chiffres
-    equipYourMosque: équipez votre mosquée
-    install: installez
+    equipYourMosque: installer
     faq: faq
     contactUs: contactez-nous
 
@@ -38,9 +37,8 @@ home:
     numbers: Quelques chiffres
     mosques: Mosquées
     mosquesSub: Cliquez sur un pays pour voir les mosquées
-    equipeYourMosque: équipez votre mosquée
+    equipeYourMosque: Installer
     faq: FAQ
-    install: Installez
 
   button:
     discover: Découvrir
@@ -109,17 +107,16 @@ home:
       cherchez une mosquée et consultez ses horaires de prière.
     viewPrayTimes: Consultez les horaires
     addingDate: Date d'ajout
-    equipeYourMosque1: "Pour participer à ce projet et ainsi équiper votre mosquée c'est très simple :"
-    equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation, nous pouvons vous assister à distance si nécessaire
+    equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation
     equipeYourMosque3: |
       <li>Un kit
         <a target="_blank" href="raspberry_3_link">Raspberry PI 3</a>
         ou
         <a target="_blank" href="raspberry_4_link">4</a>
         que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
-      <li>Un écran plat, idéalement 80 cm ou plus</li>
+      <li>Un écran TV</li>
       <li>Un support mural pour la TV</li>
-      <li>Un cable HDMI + Une multiprise</li>
+      <li>Un cable HDMI</li>
       <li>Si vous ne disposez pas d'une connexion internet
           <a target="_blank"
              href="rtc_link">
@@ -127,7 +124,7 @@ home:
           </a>
       </li>
     findMosque: Cherchez une mosquée mawaqit par nom, ville, code postal...
-    install_sub_title:  Veuillez suivre les étapes ci-dessous
+    install_sub_title:  étapes
     install1_1:  Inscrivez-vous <a href="registerUrl" target="_blank">ici</a>
     install1_2:  |
       Ajoutez la mosquée depuis votre espace utilisateur, munissez-vous d'un justificatif de domicialiation de la mosquée
@@ -149,7 +146,7 @@ home:
         Bravo ! vous avez installé l'image système sur la carte mémoire de votre raspberry, vous avez maintenant deux options: <br><br>
       </p>
       <p>
-          <strong>OPTION 1 (RECOMMANDÉE). </strong> Utilisez la version connectée elle bénéficie des avantages suivants
+          <strong>OPTION 1 (Recommandé): </strong> Utilisez la version connectée elle bénéficie des avantages suivants
       </p>
       <ul>
           <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
@@ -160,7 +157,7 @@ home:
           </li>
       </ul>
       <br>
-      <p>
+      <p style="margin-left: 2rem">
           <strong>Suivez les étapes ci-dessous : </strong>
       </p>
     install7: |
@@ -179,8 +176,8 @@ home:
         </li>
       </ol>
       <br>
-      <p><strong>OPTION 2. Lancez la version offline : </strong>
-          Il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
+      <p><strong>OPTION 2: </strong>
+           Utilisez la version offline, il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
           <strong>Important :</strong>
           Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
           de garder l'heure correctement réglée
