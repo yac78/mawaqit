@@ -44,7 +44,7 @@ var messageInfoSlider = {
             if ($slide.find("img").length > 0) {
                 return true;
             }
-            fixFontSize(slide);
+            fixFontSize(slide, 100);
         });
     }
 };
@@ -53,7 +53,7 @@ messageInfoSlider.run();
 
 setInterval(function () {
     $.ajax({
-        url:  $("#slider").data("remote") + "?lastUpdatedDate=" + lastUpdated,
+        url: $("#slider").data("remote") + "?lastUpdatedDate=" + lastUpdated,
         success: function (resp) {
             if (resp.hasBeenUpdated === true) {
                 // check if screen page is ok (http status = 200 )
@@ -68,3 +68,12 @@ setInterval(function () {
         }
     });
 }, 3 * 60000);
+
+setInterval(function () {
+    let date = new Date();
+    let time = addZero(date.getHours()) + ':' + addZero(date.getMinutes());
+    let options = {weekday: "short", year: "2-digit", month: "2-digit", day: "2-digit"};
+    let stringDate = date.toLocaleDateString('fr-FR', options).firstCapitalize();
+    $(".date").text(stringDate);
+    $(".time").text(time);
+}, 1000);
