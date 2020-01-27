@@ -39,12 +39,12 @@ var messageInfoSlider = {
         });
     },
     setFontSize: function () {
-        $('#slider li').each(function (i, slide) {
+        $('#slider li > div').each(function (i, slide) {
             var $slide = $(slide);
             if ($slide.find("img").length > 0) {
                 return true;
             }
-            fixFontSize(slide, 20);
+            fixFontSize(slide);
         });
     }
 };

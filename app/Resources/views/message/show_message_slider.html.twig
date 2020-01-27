@@ -28,14 +28,16 @@
     <ul>
         {% for message in mosque.enabledMessages(true) %}
             <li>
-                {% if message.image %}
-                    <img src="{{ vich_uploader_asset(message, 'file') }}"/>
-                {% elseif message.content %}
-                    {% if message.title %}
-                        <div class="title"> {{ message.title }} </div>
+                <div>
+                    {% if message.image %}
+                        <img src="{{ vich_uploader_asset(message, 'file') }}"/>
+                    {% elseif message.content %}
+                        {% if message.title %}
+                            <div class="title"> {{ message.title }} </div>
+                        {% endif %}
+                        <div class="content"> {{ message.content|raw }} </div>
                     {% endif %}
-                    <div class="content"> {{ message.content|raw }} </div>
-                {% endif %}
+                </div>
             </li>
         {% endfor %}
     </ul>

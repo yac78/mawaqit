@@ -174,12 +174,12 @@ var messageInfoSlider = {
         });
     },
     setFontSize: function () {
-        $('.message-slider li').each(function (i, slide) {
+        $('.message-slider li > div').each(function (i, slide) {
             var $slide = $(slide);
             if ($slide.find("img").length > 0) {
                 return true;
             }
-            fixFontSize(slide, 20);
+            fixFontSize(slide);
         });
     }
 };
