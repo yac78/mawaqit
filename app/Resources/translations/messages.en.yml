@@ -7,6 +7,194 @@ mosqueScreen:
   noMosqueFound: No mosque found with this ID
   otherPb: A problem has been occured, please try later
 
+
+home:
+  menu:
+    main: Menu
+    project: The project
+    mosques: Some numbers
+    equipYourMosque: install
+    faq: faq
+    contactUs: contactez-us
+
+  title:
+    header1: |
+      "Certainly prayer was prescribed for believers in specific times" [sourat An-Niça’/103]
+    header2: smart and connected prayer clock
+    header2_2: mosque | home | association | school | store
+    header3: Our solution is a waqf (free) any marketing is strictly prohibited
+    header4: The equipment is your responsibility
+
+    feature1: Prayer times
+    feature2: Adhan and Iqama
+    feature3: Reminders and invocations
+    feature4: Announcements and news
+    feature5: Themes and colors
+    feature6: weather
+    feature7: Options
+    feature8: remote control
+    feature9: Mobile application
+
+    numbers: Some numbers
+    mosques: Mosques
+    mosquesSub: Click on a country to see the mosques
+    equipeYourMosque: Install
+    faq: FAQ
+
+  button:
+    discover: Discover
+    viewPlus: See more
+
+  text:
+    numbers:
+      1: Mosques and homes
+      2: Countries
+      3: Active users on iPhone and Android
+      4: Unique visitors to the site per day
+      5: Site requests per day
+      6: Note on stores and facebook
+    contactUsText0: |
+      We are all volunteers and we work fi sabili Allah without any remuneration, be patient
+      if you do not receive an immediate answer to your questions
+    contactUsText1: |
+      🙏&nbsp;BEFORE contacting us, please carefully follow the installation manual <a href="manual_link">here</a>
+      and visit our <a href="faq_link">FAQ</a> as well as our <a href="youtube_link" target="_blank">Youtube</a> channel
+    contactUsText2: |
+      If you cannot find an answer to your questions, you can contact us by:
+    contactUsText3: |
+      WhatsApp (message only, NO calls will be processed)
+    contactUsText4: |
+      Facebook messenger by clicking on the icon at the bottom
+    contactUsOtherCountry: Others countries
+    contactUsSelectNumber: Select
+
+    legalNotice: Legal Notice
+    project1: |
+        Most of our mosques are equipped today with digital clocks in the form of an electronic board.
+        Unfortunately these clocks do not respond to the increasingly varied and demanding needs of our mosques.
+        Digital clocks are usually equipped with manual adjustment
+        (to be done every day), or an automatic adjustment with sometimes inaccurate schedules
+        and not necessarily suited to the city in which the mosque is located.
+        In addition, their functionality is limited to the display of prayer times.
+        With the help of Allah the all mighty, we therefore embarked on the development of a
+        software to improve and simplify the presentation of prayer times. <br>
+        Our solution is a WAQF fi sabili Allah and therefore free. The code is open source, it is
+        accessible on github at the following link
+        <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a> <br>
+        <i style="font-weight: bold" class="fa fa-warning"></i> ANY USE FOR PURPOSE IS STRICTLY PROHIBITED, PLEASE RESPECT OUR CHOICE.
+
+    feature1: Affichage des horaires de prière en plusieurs langues. 2 choix de calcul, automatique ou par calendrier annuel
+    feature2: Un signal visuel et sonor pour annoncer l'adhan et l'iqama
+    feature3: |
+      Entre l'adhan et iqama, et après chaque prière, des rappels et invocations sont affichés.
+      Un hadith du prophète "que la prière d'Allah et son salut soient sur lui" est également affiché toutes les 5 min
+    feature4: |
+      Communiquez avec les fidèles de votre mosquée à travers les annonces et message flash,
+      à la mosquée et partout ailleurs via l'application mobile
+    feature5: Multiples choix de couleurs, de thèmes et de fonds d'écran
+    feature6: Affichage de la météo de la ville
+    feature7: Multiples options, tel que l'extinction de l'écran pendant la prière et le prêche du jumu`a
+    feature8: Pilotez l'écran depuis votre ordinateur, smartphone ou tablette 7j/7 24h/24
+    feature9: Une application mobile sur iPhone et Android (Trouvez une mosquée proche, iténaire, notifcation de prière, infos utiles... etc.)
+
+    equipedMosques1: |
+      Grace à Allah, la solution mawaqit a été adopté par <strong>totalMosquesCount</strong>
+      mosquées et domiciles partout dans le monde
+    equipedMosques2: |
+      Mawaqit vous propose les horaires de prière exactes, telles qu'elles sont pratiquées par les mosquées, <br>
+      cherchez une mosquée et consultez ses horaires de prière.
+    viewPrayTimes: Consultez les horaires
+    addingDate: Date d'ajout
+    equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation
+    equipeYourMosque3: |
+      <li>Un kit
+        <a target="_blank" href="raspberry_3_link">Raspberry PI 3</a>
+        ou
+        <a target="_blank" href="raspberry_4_link">4</a>
+        que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
+      <li>Un écran TV</li>
+      <li>Un support mural pour la TV</li>
+      <li>Un cable HDMI</li>
+      <li>Si vous ne disposez pas d'une connexion internet
+          <a target="_blank"
+             href="rtc_link">
+             une horloge RTC
+          </a>
+      </li>
+    findMosque: Cherchez une mosquée mawaqit par nom, ville, code postal...
+    install_sub_title:  étapes
+    install1_1:  Inscrivez-vous <a href="registerUrl" target="_blank">ici</a>
+    install1_2:  |
+      Ajoutez la mosquée depuis votre espace utilisateur, munissez-vous d'un justificatif de domicialiation de la mosquée
+      (comme une facture d'éléctricité, pas besoin pour les domiciles et autres types d'installation)
+    install2:  Téléchargez l'image système pré configurée ici
+    install3:  Vous devez être connecté pour télécharger l'image système
+    install4: |
+      <li>Branchez la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
+      <li>Téléchargez le logiciel Etcher ici
+          <i class="fa fa-hand-o-right"></i>
+          <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
+          ordinateur
+      </li>
+      <li>
+          Flashez l'image système <b>mawaqit.gz</b> sur la carte micro sd avec Etcher<br><br>
+      </li>
+    install6: |
+      <p>
+        Bravo ! vous avez installé l'image système sur la carte mémoire de votre raspberry, vous avez maintenant deux options: <br><br>
+      </p>
+      <p>
+          <strong>OPTION 1 (Recommandé): </strong> Utilisez la version connectée elle bénéficie des avantages suivants
+      </p>
+      <ul>
+          <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
+          <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
+          </li>
+          <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
+          <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre part
+          </li>
+      </ul>
+      <br>
+      <p style="margin-left: 2rem">
+          <strong>Suivez les étapes ci-dessous : </strong>
+      </p>
+    install7: |
+      <ol>
+        <li>Démarez le raspberry et branchez un clavier et une souris usb</li>
+        <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
+        <li>
+            Ouvrez le fichier <code>online_site.txt</code> présent sur le bureau et remplacez son
+            contenu par le lien généré dans votre compte, exemple: <br>
+            <code>mosqueUrl<br></code>
+        </li>
+        <li>Sauvegardez et quittez</li>
+        <li>Lancez Mawaqit depuis le bureau</li>
+        <li>Au lancement, le raspberry vérifie si une connexion internet est disponible,
+            dans ce cas il lance la version en ligne, sinon il bascule sur la version offline
+        </li>
+      </ol>
+      <br>
+      <p><strong>OPTION 2: </strong>
+           Utilisez la version offline, il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
+          <strong>Important :</strong>
+          Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
+          de garder l'heure correctement réglée
+          quand il est éteint.<br>
+          Il est donc conseillé d'équiper le raspberry
+          <a href="rtc_link">
+              d'une horloge RTC
+          </a>
+          si vous ne comptez pas le connecter à internet, cela évitera la
+          perte de l'heure système en cas de coupure de courant.
+          Il suffit de la brancher comme illustré ci-dessous et taper la commande suivante dans
+          LXTerminal<br>
+          <code>sudo date -s "%now%" && sudo hwclock -w</code> <br><br>
+      </p>
+    install8: |
+      Pour plus d'informations visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
+    install9: Vous rencontrez des diffucltés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
+
+
 form:
   label:
     delete: Delete ?

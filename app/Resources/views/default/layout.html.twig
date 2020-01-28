@@ -106,6 +106,9 @@
                         <li>
                             <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'ar'}) }}">{{ 'ar'|trans }}</a>
                         </li>
+                        <li>
+                            <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">{{ 'en'|trans }}</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -124,7 +127,16 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                {% block textHeader %}{% endblock %}
+                <div class="intro-lead-in">{{ 'home.title.header1'|trans }}</div>
+                <div class="intro-heading">{{ 'site_title'|trans }}</div>
+                <div class="intro-subheading">{{ 'home.title.header2'|trans }}</div>
+                <div class="intro-lead-in" style="font-size: 2rem">{{ 'home.title.header2_2'|trans }}</div>
+
+                <div class="text-center" style="color: #f9deaf; text-transform: uppercase; font-weight: bold; font-size: 1.5rem">
+                    <div>{{ 'home.title.header3'|trans }}</div>
+                    <div>{{ 'home.title.header4'|trans }}</div>
+                </div>
+                <a href="#projet" class="page-scroll btn btn-xl mt-2">{{ 'home.button.discover'|trans }}</a>
             </div>
         </div>
     </header>
