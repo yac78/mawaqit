@@ -97,7 +97,7 @@ home:
     feature6: Affichage de la météo de la ville
     feature7: Multiples options, tel que l'extinction de l'écran pendant la prière et le prêche du jumu`a
     feature8: Pilotez l'écran depuis votre ordinateur, smartphone ou tablette 7j/7 24h/24
-    feature9: Une application mobile sur iPhone et Android (Trouvez une mosquée proche, iténaire, notifcation de prière, infos utiles... etc.)
+    feature9: Une application mobile sur iPhone et Android (Trouvez une mosquée proche, itinéraire, notifcation de prière, infos utiles... etc.)
 
     equipedMosques1: |
       Grace à Allah, la solution mawaqit a été adopté par <strong>totalMosquesCount</strong>
@@ -162,7 +162,7 @@ home:
       </p>
     install7: |
       <ol>
-        <li>Démarez le raspberry et branchez un clavier et une souris usb</li>
+        <li>Démarrez le raspberry et branchez un clavier et une souris usb</li>
         <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
         <li>
             Ouvrez le fichier <code>online_site.txt</code> présent sur le bureau et remplacez son
@@ -194,7 +194,7 @@ home:
       </p>
     install8: |
       Pour plus d'informations visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
-    install9: Vous rencontrez des diffucltés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
+    install9: Vous rencontrez des difficultés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
 
 
 form:

@@ -70,129 +70,119 @@ home:
 
     legalNotice: Legal Notice
     project1: |
-        Most of our mosques are equipped today with digital clocks in the form of an electronic board.
-        Unfortunately these clocks do not respond to the increasingly varied and demanding needs of our mosques.
-        Digital clocks are usually equipped with manual adjustment
-        (to be done every day), or an automatic adjustment with sometimes inaccurate schedules
-        and not necessarily suited to the city in which the mosque is located.
-        In addition, their functionality is limited to the display of prayer times.
-        With the help of Allah the all mighty, we therefore embarked on the development of a
-        software to improve and simplify the presentation of prayer times. <br>
-        Our solution is a WAQF fi sabili Allah and therefore free. The code is open source, it is
-        accessible on github at the following link
-        <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a> <br>
-        <i style="font-weight: bold" class="fa fa-warning"></i> ANY USE FOR PURPOSE IS STRICTLY PROHIBITED, PLEASE RESPECT OUR CHOICE.
+        Today, most of our mosques are equipped with old digital clocks like an electronic board.
+        Unfortunately these clocks do not respond to the increasingly varied and demanding needs of our mosques
+        Digital clocks are usually configured every day or automatically with sometimes inaccurate schedules
+        and not necessarily suited to the city in which the mosque is located.
+        In addition, their functionality is limited to the display of prayer times.
+        With the help of Allah the all mighty, we have developed a software to improve and simplify the presentation of prayer times. <br>
+        Our solution is a WAQF fi sabili Allah and therefore free. The code is open source, it is
+        accessible on github at the following link
+        <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a> <br>
+        <i style="font-weight:bold" class="fa fa-warning"></i> ANY USE FOR PURPOSE IS STRICTLY PROHIBITED, PLEASE RESPECT OUR CHOICE.
 
-    feature1: Affichage des horaires de prière en plusieurs langues. 2 choix de calcul, automatique ou par calendrier annuel
-    feature2: Un signal visuel et sonor pour annoncer l'adhan et l'iqama
+    feature1: Display of prayer times in several languages. 2 choices of calculation, automatic or by annual calendar
+    feature2: A visual and sound signal to announce the adhan and the iqama
     feature3: |
-      Entre l'adhan et iqama, et après chaque prière, des rappels et invocations sont affichés.
-      Un hadith du prophète "que la prière d'Allah et son salut soient sur lui" est également affiché toutes les 5 min
+      Between the adhan and the iqama, and after each prayer, reminders and invocations are displayed.
+      A Prophet's Hadith "May Allah's Prayer and Salvation Be to Him" is also displayed every 5 min
     feature4: |
-      Communiquez avec les fidèles de votre mosquée à travers les annonces et message flash,
-      à la mosquée et partout ailleurs via l'application mobile
-    feature5: Multiples choix de couleurs, de thèmes et de fonds d'écran
-    feature6: Affichage de la météo de la ville
-    feature7: Multiples options, tel que l'extinction de l'écran pendant la prière et le prêche du jumu`a
-    feature8: Pilotez l'écran depuis votre ordinateur, smartphone ou tablette 7j/7 24h/24
-    feature9: Une application mobile sur iPhone et Android (Trouvez une mosquée proche, iténaire, notifcation de prière, infos utiles... etc.)
+      Communicate with the faithful of your mosque through announcements and flash messages,
+      at the mosque and everywhere else on the mobile app
+    feature5: Multiple choices of colors, themes and wallpapers
+    feature6: City weather display
+    feature7: Multiple options, such as turning off the screen during prayer and the jumu`a sermon
+    feature8: Control the screen from your computer, smartphone or tablet 24/7
+    feature9: A mobile application on iPhone and Android (Find a nearby mosque, route, prayer notification, useful info... etc.)
 
     equipedMosques1: |
-      Grace à Allah, la solution mawaqit a été adopté par <strong>totalMosquesCount</strong>
-      mosquées et domiciles partout dans le monde
+      Thanks to Allah, the mawaqit solution was adopted by <strong>totalMosquesCount</strong>
+      mosques and homes around the world
     equipedMosques2: |
-      Mawaqit vous propose les horaires de prière exactes, telles qu'elles sont pratiquées par les mosquées, <br>
-      cherchez une mosquée et consultez ses horaires de prière.
-    viewPrayTimes: Consultez les horaires
-    addingDate: Date d'ajout
-    equipeYourMosque2: Achetez le matériel ci-dessous et suivez la procédure d'installation
+      Mawaqit provides you with exact prayer times, as practiced by mosques, <br>
+      look for a mosque and check its prayer times.
+    viewPrayTimes: Consult the prayer times
+    addingDate: Date Added
+    equipeYourMosque2: Buy the hardware below and follow the installation procedure
     equipeYourMosque3: |
-      <li>Un kit
-        <a target="_blank" href="raspberry_3_link">Raspberry PI 3</a>
-        ou
-        <a target="_blank" href="raspberry_4_link">4</a>
-        que vous pouvez touver dans le commerce en ligne (amazon, aliexpress...)</li>
-      <li>Un écran TV</li>
-      <li>Un support mural pour la TV</li>
-      <li>Un cable HDMI</li>
-      <li>Si vous ne disposez pas d'une connexion internet
-          <a target="_blank"
-             href="rtc_link">
-             une horloge RTC
-          </a>
-      </li>
-    findMosque: Cherchez une mosquée mawaqit par nom, ville, code postal...
-    install_sub_title:  étapes
-    install1_1:  Inscrivez-vous <a href="registerUrl" target="_blank">ici</a>
+        <li>A kit
+          <a target="_blank" href="raspberry_3_link">Raspberry PI 3</a>
+          or
+          <a target="_blank" href="raspberry_4_link">4</a>
+          that you can find in online commerce (amazon, aliexpress ...)
+        </li>
+        <li>A TV screen</li>
+        <li>A wall mount for TV</li>
+        <li>An HDMI cable</li>
+        <li>If you do not have an internet connection <a target = "_ blank" href = "rtc_link">a RTC clock</a></li>
+    findMosque: Search for a mawaqit mosque by name, city, postal code ...
+    install_sub_title:  steps
+    install1_1:  Sign-up <a href="registerUrl" target="_blank">here</a>
     install1_2:  |
-      Ajoutez la mosquée depuis votre espace utilisateur, munissez-vous d'un justificatif de domicialiation de la mosquée
-      (comme une facture d'éléctricité, pas besoin pour les domiciles et autres types d'installation)
-    install2:  Téléchargez l'image système pré configurée ici
-    install3:  Vous devez être connecté pour télécharger l'image système
+      Add the mosque on our account, have a proof of domiciliation of the mosque
+      (like an electric bill, no need for homes and other types of installation)
+    install2:  Download the pre-configured system image here
+    install3:  You must be logged in to download the system image
     install4: |
-      <li>Branchez la carte micro SD sur votre ordinateur via le port dédié ou sur un lecteur USB de carte SD</li>
-      <li>Téléchargez le logiciel Etcher ici
+      <li>Connect the micro SD card to your computer through the dedicated port or to a USB SD card reader</li>
+      <li>Download the Etcher software here
           <i class="fa fa-hand-o-right"></i>
-          <a href="https://etcher.io" target="_blank">https://etcher.io</a> puis installez-le sur votre
-          ordinateur
+          <a href="https://etcher.io" target="_blank">https://etcher.io</a> then install it on your computer
       </li>
       <li>
-          Flashez l'image système <b>mawaqit.gz</b> sur la carte micro sd avec Etcher<br><br>
+          Flash the <b>mawaqit.gz</b> system image on the micro sd card with Etcher<br><br>
       </li>
     install6: |
       <p>
-        Bravo ! vous avez installé l'image système sur la carte mémoire de votre raspberry, vous avez maintenant deux options: <br><br>
+        Well done ! you installed the system image on the memory card of your raspberry, you now have two options:<br><br>
       </p>
       <p>
-          <strong>OPTION 1 (Recommandé): </strong> Utilisez la version connectée elle bénéficie des avantages suivants
+          <strong>OPTION 1 (Recommanded): </strong> Use the connected version, it has the following advantages
       </p>
       <ul>
-          <li>Pilotage à distance depuis votre smartphone ou n'importe quel ordinateur et tablette</li>
-          <li>Une version synchronisée sur tous les terminaux, mobiles, tablettes et écrans de la mosquée
-          </li>
-          <li>Envoyez des messages et annonces sur l'écran depuis votre smartphone ou ordinateur</li>
-          <li>Vous bénéficiez des dernières mises à jour automatiquement sans aucune manipulation de votre part
-          </li>
+          <li>Remote control from your smartphone or any computer and tablet</li>
+          <li>A synchronized version on all the terminals, mobiles, tablets and screens of the mosque</li>
+          <li>Send messages and announcements on the screen from your smartphone or computer</li>
+          <li>You benefit from the latest updates automatically without any manipulation</li>
       </ul>
       <br>
       <p style="margin-left: 2rem">
-          <strong>Suivez les étapes ci-dessous : </strong>
+          <strong>Follow the steps below : </strong>
       </p>
     install7: |
       <ol>
-        <li>Démarez le raspberry et branchez un clavier et une souris usb</li>
-        <li>Connectez-le à internet (WIFI ou câble Ethernet)</li>
+        <li>Start the raspberry and connect a usb keyboard and mouse</li>
+        <li>Connect it to the internet (WIFI or Ethernet cable)</li>
         <li>
-            Ouvrez le fichier <code>online_site.txt</code> présent sur le bureau et remplacez son
-            contenu par le lien généré dans votre compte, exemple: <br>
+            Open the file <code>online_site.txt</code> present on the desktop and replace its content with the link
+            generated in your account, example: <br>
             <code>mosqueUrl<br></code>
         </li>
-        <li>Sauvegardez et quittez</li>
-        <li>Lancez Mawaqit depuis le bureau</li>
-        <li>Au lancement, le raspberry vérifie si une connexion internet est disponible,
-            dans ce cas il lance la version en ligne, sinon il bascule sur la version offline
+        <li>Save and exit</li>
+        <li>Launch Mawaqit from the desktop</li>
+        <li>
+          At launch, the raspberry check if an internet connection is available,
+          in this case it launches the online version, otherwise it switches to the offline version
         </li>
       </ol>
       <br>
       <p><strong>OPTION 2: </strong>
-           Utilisez la version offline, il suffit de brancher le raspberry sur l'écran, le logiciel se lancera tout seul. <br>
+          Use the offline version, just plug the raspberry on the screen, the software will launch itself.<br>
           <strong>Important :</strong>
-          Le Raspberry ne dispose pas d'horloge RTC (un composant éléctronique doté d'une pile) qui permet
-          de garder l'heure correctement réglée
-          quand il est éteint.<br>
-          Il est donc conseillé d'équiper le raspberry
+          The Raspberry does not have an RTC clock (an electronic component with a battery) which allows
+          keeping the time correctly set when it is off.<br>
+          So it is advisable to equip the raspberry
           <a href="rtc_link">
-              d'une horloge RTC
+              with RTC
           </a>
-          si vous ne comptez pas le connecter à internet, cela évitera la
-          perte de l'heure système en cas de coupure de courant.
-          Il suffit de la brancher comme illustré ci-dessous et taper la commande suivante dans
-          LXTerminal<br>
+          if you do not plane to connect it to the internet, this will avoid
+          loss of system time in the event of a power failure.
+          Just plug it in as illustrated below and type the following command in LXTerminal<br>
           <code>sudo date -s "%now%" && sudo hwclock -w</code> <br><br>
       </p>
     install8: |
-      Pour plus d'informations visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
-    install9: Vous rencontrez des diffucltés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
+      For more information visit our <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a> channel
+    install9: Are you encountering difficulties ? send us a message <a href="#contact">it's this way</a>
 
 
 form:
