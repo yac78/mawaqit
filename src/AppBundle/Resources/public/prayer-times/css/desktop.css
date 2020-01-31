@@ -391,18 +391,5 @@ footer .info {
 
 .textSlide {
     height: 13vh;
-}
-
-.textSlide p {
     font-size: 7vh;
-    line-height: 2;
-    -moz-animation: textSlide 40s linear infinite;
-    -webkit-animation: textSlide 40s linear infinite;
-    animation: textSlide 40s linear infinite;
-}
-
-.textSlide-rtl p {
-    -moz-animation: textSlide-rtl 40s linear infinite;
-    -webkit-animation: textSlide-rtl 40s linear infinite;
-    animation: textSlide-rtl 40s linear infinite;
 }

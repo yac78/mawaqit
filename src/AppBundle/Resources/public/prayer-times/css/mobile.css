@@ -330,3 +330,8 @@ small {
 .joumouaa2-id {
     font-size: 120%;
 }
+
+.textSlide {
+    height: 4vh;
+    font-size: 2vh;
+}

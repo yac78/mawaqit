@@ -68,8 +68,7 @@ body {
     align-items: center;
 }
 
-.textSlide p {
-    font-size: 6vh;
+.textSlide > div {
     position: absolute;
     /* Starting position */
     -moz-transform:translateX(100%);
@@ -81,7 +80,7 @@ body {
     animation: textSlide 40s linear infinite;
 }
 
-.textSlide-rtl p {
+.textSlide-rtl  > div {
     -moz-animation: textSlide-rtl 40s linear infinite;
     -webkit-animation: textSlide-rtl 40s linear infinite;
     animation: textSlide-rtl 40s linear infinite;
