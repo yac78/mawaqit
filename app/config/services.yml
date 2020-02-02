@@ -16,3 +16,9 @@ services:
             - "@security.token_storage"
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+
+    app.twig.intl_extension:
+        public: false
+        class:  Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

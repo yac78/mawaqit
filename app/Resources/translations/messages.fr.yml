@@ -196,7 +196,6 @@ home:
       Pour plus d'informations visitez notre chaîne <a target="_blank" href="https://www.youtube.com/channel/UCK0bHMvAlVL8NvyofiMulUw/">YouTube</a>
     install9: Vous rencontrez des difficultés ? envoyez-nous un message <a href="#contact">c'est par ici</a>
 
-
 form:
   label:
     delete: Supprimer ?
@@ -464,7 +463,8 @@ configuration:
   select_calendar: Séléctionner un calendrier
   title: Configuration des horaires
   list:
-    download_csv_files: Calendrier
+    download_csv_files: Calendrier CSV
+    download_pdf_files: Calendrier PDF
     calendar_not_completed: |
       Attention: le calendrier de votre mosquée est incomplet
   form:
@@ -782,6 +782,14 @@ october: Octobre
 november: Novembre
 december: Décembre
 
+monday: Lundi
+tuesday: Mardi
+wednesday: Mercredi
+thursday: Jeudi
+friday: Vendredi
+saturday: Samedi
+sunday: Dimanche
+
 month_0: Janvier
 month_1: Février
 month_2: Mars
@@ -877,3 +885,7 @@ searchOtherMosque: Chercher une autre mosquée
 
 prayerTimeIn10MinTitle: "Al-Adhan dans 10 min"
 prayerTimeIn10MinBody: "Tu as encore 10 min pour aller à la mosquée et prier en groupe inshAllah"
+
+help_the_mosque: Aidez la mosquée
+by_bank_transfer: Par virement
+by_credit_card: Par carte bancaire

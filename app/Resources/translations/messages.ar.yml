@@ -405,7 +405,8 @@ configuration:
   iqamaFixed: عادي
   title: ضبط مواقيت الصلاة
   list:
-    download_csv_files: الرزنامة
+    download_csv_files: CSV الرزنامة
+    download_pdf_files: PDF الرزنامة
     calendar_not_completed: يرجى الحذر ،فرزنامة مسجدك غير مكتملة
   form:
     copyFromOtherMosque: إنسخ الإعدادات من مسجد آخر
@@ -421,7 +422,7 @@ configuration:
       error:  لم يتم إدخال أوقات الشهر بنجاح
     time_invalid:  القيمة المدخلة لا تتوافق   مع الصيغة التالية hh:mm
     fill_calendar_from_csv:  ملء من خلال ملف CSV
-    calendar: رزنامة المواقيت
+    calendar: رزنامة مواقيت
     lang:  اللغة التي ستظهر على الشاشة
     sourceCalcul:
       label: مصدر حساب المواقيت
@@ -704,6 +705,14 @@ october: أكتوبر
 november: نوفمبر
 december: ديسمبر
 
+monday: الإثنين
+tuesday: الثلاثاء
+wednesday: الأربعاء
+thursday: الخميس
+friday: الجمعة
+saturday: السبت
+sunday: الأحد
+
 month_0: جانفي
 month_1: فيفري
 month_2: مارس
@@ -766,3 +775,7 @@ searchOtherMosque: إبحث عن مسجد آخر
 
 prayerTimeIn10MinTitle: "الأذان بعد عشر دقائق"
 prayerTimeIn10MinBody: "لا يزال لديك 10 دقائق للذهاب إلى المسجد و تصلي مع الجماعة إن شاء الله"
+
+help_the_mosque: ساعد المسجد
+by_bank_transfer: عبر التحويل البنكي
+by_credit_card: عبر بطاقة الائتمان

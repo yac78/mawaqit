@@ -428,7 +428,8 @@ configuration:
   select_calendar: Select a calendar
   title: Prayer times configuration
   list:
-    download_csv_files: Calendar
+    download_csv_files: CSV Calendar
+    download_pdf_files: PDF Calendar
     calendar_not_completed: |
       Be careful the calendar of your mosque is not completed yet
   form:
@@ -828,3 +829,7 @@ searchOtherMosque: Look for an other mosque
 
 prayerTimeIn10MinTitle: "Al-Adhan in 10 min"
 prayerTimeIn10MinBody: "You still have 10 minutes to go to mosque and pray in group inshAllah"
+
+help_the_mosque: Help the mosque
+by_bank_transfer: By bank transfer
+by_credit_card: By credit card

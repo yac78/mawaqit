@@ -277,24 +277,6 @@ class MosqueController extends Controller
     }
 
     /**
-     * @Route("/getCsvFiles/{id}", name="mosque_csv_files")
-     */
-    public function getCsvFilesAction(Mosque $mosque)
-    {
-
-        $zipFilePath = $this->get("app.prayer_times")->getFilesFromCalendar($mosque);
-        if (is_file($zipFilePath)) {
-            $zipFileName = $mosque->getSlug() . ".zip";
-            $response = new BinaryFileResponse($zipFilePath, 200,
-                ['Content-Disposition' => 'attachment; filename="' . $zipFileName . '"']);
-            $response->deleteFileAfterSend(true);
-            return $response;
-        }
-
-        return new Response("An error has occured ", Response::HTTP_INTERNAL_SERVER_ERROR);
-    }
-
-    /**
      * @Route("/qrcode/{id}", name="mosque_qr_code")
      */
     public function qrCodeAction(Mosque $mosque)

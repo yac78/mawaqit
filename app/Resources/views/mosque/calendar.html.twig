@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    {% set locale =  app.request.locale %}
+    {% if locale == 'ar' %}
+        <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
+    {% endif %}
+
+    <style>
+        @page {
+            margin: 20px 60px;
+        }
+
+        @font-face {
+            font-family: 'Kufi';
+            font-style: normal;
+            font-weight: 400;
+            src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.eot);
+            src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'),
+            url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.woff2) format('woff2'),
+            url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.woff) format('woff'),
+            url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.ttf) format('truetype');
+        }
+
+        body {
+            font-family: 'Kufi', Helvetica, sans-serif;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        footer {
+            margin: 20px 5px 0;
+        }
+
+        header {
+            position: relative;
+        }
+
+        table {
+            margin: auto;
+            width: 100%;
+        }
+
+        table, td, th {
+            border: 1px #484848 dotted;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #35561e;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .page {
+            page-break-after: always;
+            background-image: url("https://img.freepik.com/vector-gratis/fondo-abstracto-moderno-blanco-azul_111397-34.jpg?size=626&ext=jpg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: 50% 100%;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            width: 48px;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+{% for month,days in calendar %}
+    <div class="page">
+        <header>
+            <img class="logo left" src="https://mawaqit.net/android-chrome-192x192.jpg"/>
+            <img class="logo right" src="https://mawaqit.net/android-chrome-192x192.jpg"/>
+            <h2>{{ mosque.title }}</h2>
+            <h4>{{ 'calendar_times'|trans }} <b>{{ "now"|date("Y") }}</b></h4>
+            {% if  mosque.conf.jumuaTime %}
+                <p>{{ 'jumua'|trans }} {{ mosque.conf.jumuaTime }} {{ mosque.conf.jumuaTime2 ? ' / ' ~ mosque.conf.jumuaTime2 : '' }}</p>
+            {% endif %}
+        </header>
+
+        <main>
+            <table class="table-responsive">
+                <thead>
+                <tr>
+                    <td style="text-align: {{ locale == 'ar' ? 'right' : 'left' }};">{{ "date"|trans }}</td>
+                    <td style="text-align: {{ locale == 'ar' ? 'right' : 'left' }};">{{ "day"|trans }}</td>
+                    <td>{{ "fajr"|trans }}</td>
+                    <td>{{ "shuruk"|trans }}</td>
+                    <td>{{ "zuhr"|trans }}</td>
+                    <td>{{ "asr"|trans }}</td>
+                    <td>{{ "maghrib"|trans }}</td>
+                    <td>{{ "isha"|trans }}</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for day,prayers in days %}
+                    {% set theDate = "now"|date("Y") ~ "-"~ (month+1) ~"-"~day %}
+                    <tr style="{{ theDate|date("N") == 5 ? 'background-color: #93EEAA' : '' }}">
+                        <td style="text-align: {{ locale == 'ar' ? 'right' : 'left' }};">
+                            {{ theDate|date('d') }}&nbsp;
+                            {{ theDate|date('F')|lower|trans }}
+                        </td>
+                        <td style="text-align: {{ locale == 'ar' ? 'right' : 'left' }};">
+                            {{ theDate|date('l')|lower|trans|capitalize }}
+                        </td>
+                        {% for prayer in prayers %}
+                            <td>{{ prayer }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </main>
+
+        <footer>
+            {% if mosque.associationName %}
+                <div>{{ mosque.associationName }}</div>
+            {% endif %}
+            <div>{{ mosque.localisation }}</div>
+            {% if mosque.email %}
+                <span>{{ mosque.email }}</span>
+            {% endif %}
+            {% if mosque.phone %}
+                - <span>{{ mosque.phone }}</span>
+            {% endif %}
+            {% if mosque.rib or mosque.paymentWebsite %}
+                <div>
+                    {{ 'help_the_mosque'|trans }}
+                    {% if mosque.rib %}
+                        <span> {{ 'by_bank_transfer'|trans }} {{ mosque.rib }}</span>
+                    {% endif %}
+                    {% if mosque.rib %}
+                        | <span> {{ 'by_credit_card'|trans }} {{ mosque.paymentWebsite }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div style="margin: 10px">Powred by {{ site }}</div>
+        </footer>
+    </div>
+{% endfor %}
+</body>
+</html>
