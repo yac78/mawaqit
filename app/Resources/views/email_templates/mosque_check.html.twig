@@ -2,30 +2,36 @@
 {% block content %}
     <div>
         <p>
-            Essalamu alaykum wa rahmatu allahi wa barakatuh<br/><br/>
-            Vous avez récemment ajouté la mosquée "<strong>{{ mosque.title }}</strong>" située au {{ mosque.localisation }} <br/>
-            Après vérification, nous constatons que les informations que vous avez saisi ne nous permettent pas de valider la mosquée<br/>
+            Essalamu alaykum wa rahmatu allahi wa barakatuh
         </p>
         <p>
-            Pourriez-vous nous préciser s'il s'agit d'une installation à domicile ou d'une vraie mosquée,
-            auquel cas nous vous invitons à nous fournir
-            une facture d'électricité/eau/téléphone sur laquelle figure l'adresse exacte de la mosquée
-            ou une autorisation écrite par le responsable avec cachet de l'association<br/><br/>
-            Sans réponse de votre part dans un délai de deux semaines, la mosquée sera automatiquement supprimée.<br/><br/>
-            Barak Allahu fikum et merci pour votre compréhension <br/>
+            Vous avez récemment ajouté la mosquée "<b>{{ mosque.title }}</b>" située
+            au {{ mosque.localisation }}
         </p>
+        <p>
+            Après vérification, nous constatons que les informations que vous avez saisi ne nous permettent pas de
+            valider la mosquée<br/>
+        </p>
+        <p>
+            Veuillez nous contacter au plus vite par message whatsapp au <b>0033612972467</b> (indiquez l'id
+            <b>{{ mosque.id }}</b> de votre mosquée)
+        </p>
+        <br/>
         <hr>
         <p>
-             Essalamu alaykum wa rahmatu allahi wa barakatuh <br/> <br/>
-             You recently added the "<strong>{{ mosque.title }}</strong>" mosque located at {{ mosque.localisation }}<br/>
-             After checking, we find that the information you entered does not allow us to validate the mosque
-         </p>
-        <p>Could you please tell us if it is a home installation or a real mosque, in which case we invite you to give us
-            an electricity / water / telephone bill showing the exact address of the mosque
-            or an authorization written by the person in charge with stamp of the association<br/><br/>
-            If you do not answer within 2 weeks, the mosque will be automatically deleted.<br/><br/>
-            Barak Allahu fik and thank you for your understanding <br/>
+            Essalamu alaykum wa rahmatu allahi wa barakatuh
         </p>
+        <p>
+            You recently added the "<strong>{{ mosque.title }}</strong>" mosque located at {{ mosque.localisation }}
+        </p>
+        <p>
+            After checking, we find that the information you entered does not allow us to validate the mosque
+        </p>
+        <p>
+            Please contact us as soon as possible by whatsapp message at <b>0033612972467</b> (indicate the id
+            <b>{{ mosque.id }}</b> of your mosque)
+        </p>
+        <br/>
     </div>
     <hr>
     <div class="ar">
@@ -33,18 +39,19 @@
             السلام عليكم ورحمة الله وبركاته
         </p>
         <p>
-            بعد التثبت من عنوان مسجدك ، تبين لنا أنه لا يوجد مسجد في هذا العنوان
+            لقد قمت مؤخرًا بإضافة المسجد
+            <strong> {{ mosque.title }} </strong>
+            المتواجد ب
+            {{ mosque.localisation }}
         </p>
         <p>
-            لذا الرجاء مدنا
-            في هذه الحالة بفاتورة كهرباء / ماء / هاتف توضح العنوان الصحيح للمسجد
-             أو بإذن خطي مختوما من مسؤول المسجد يعبر فيه عن رغبته وموافقته على تنصيب برنامج مواقيت على شاشة المسجد
+            بعد التحقق ، تبين أن المعلومات التي أدخلتها لا تسمح لنا بالتثبت من صحة المسجد
         </p>
         <p>
-            إذا لم يصلنا رد في غضون أسبوعين، يتم حذف المسجد تلقائيا.
-        </p>
-        <p>
-            باراك الله فيك ونشكرك على تفهمك
+            يرجى الاتصال بنا في أقرب وقت ممكن عن طريق الواتساب على الرقم
+            <b>0033612972467</b>
+            عرِّف بِ id مسجدك
+            <b>{{ mosque.id }}</b>
         </p>
     </div>
 {% endblock %}
