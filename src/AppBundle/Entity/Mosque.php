@@ -58,12 +58,12 @@ class Mosque
 
     const STARTDATE_CHECKING_PHOTO = "2019-09-28";
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @var int
      */
     private $id;
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @var string
      */
     private $name;
@@ -104,11 +104,12 @@ class Mosque
      */
     private $countryFullName;
     /**
+     * @Groups({"elastica"})
      * @var string
      */
     private $associationName;
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @var string
      */
     private $phone;
@@ -117,16 +118,17 @@ class Mosque
      */
     private $rib;
     /**
+     * @Groups({"elastica"})
      * @var string
      */
     private $paymentWebsite;
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @var string
      */
     private $email;
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @var string
      */
     private $site;
@@ -212,42 +214,52 @@ class Mosque
      */
     private $isCalendarCompleted = null;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $womenSpace;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $janazaPrayer;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $aidPrayer;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $childrenCourses;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $adultCourses;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $ramadanMeal;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $handicapAccessibility;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $ablutions;
     /**
+     * @Groups({"elastica"})
      * @var boolean|null
      */
     private $parking;
     /**
+     * @Groups({"elastica"})
      * @var string
      * @Assert\Length(max="200")
      */
@@ -289,6 +301,19 @@ class Mosque
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * for elastic geo point
+     * @Groups({"elastica"})
+     * @return array
+     */
+    function getLocation()
+    {
+        return [
+            "lon" => $this->longitude,
+            "lat" => $this->latitude,
+        ];
     }
 
     /**
@@ -640,6 +665,7 @@ class Mosque
     /**
      * Get city + zipcode
      * @Groups({"search"})
+     * @Groups({"elastica"})
      * @return string
      */
     public function getLocalisation()
@@ -1001,7 +1027,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @return string
      */
     public function getImage()
@@ -1013,7 +1039,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
+     * @Groups({"search", "elastica"})
      * @return string
      */
     public function getUrl()
@@ -1450,7 +1476,7 @@ class Mosque
 
         $days = (int)$interval->format('%a');
 
-        if($deadline < $now){
+        if ($deadline < $now) {
             $days = -$days;
         }
 
@@ -1510,6 +1536,24 @@ class Mosque
         }
 
         return strtolower($this->type);
+    }
+
+    /**
+     * @Groups({"elastica"})
+     * @return string
+     */
+    function getJumua()
+    {
+        return $this->getConf()->getJumuaTime();
+    }
+
+    /**
+     * @Groups({"elastica"})
+     * @return string
+     */
+    function getJumua2()
+    {
+        return $this->getConf()->getJumuaTime2();
     }
 
 }

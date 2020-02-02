@@ -26,6 +26,7 @@ class AppKernel extends Kernel {
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
             new AppBundle\AppBundle(),
         ];
 
