@@ -7,9 +7,9 @@
 
     <h1 class="mb-2">Outils d'administration</h1>
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <a class="btn btn-primary" href="{{ path("easyadmin") }}">Accès super admin</a>
-        <a class="btn btn-success" href="{{ path("users_send_email") }}">Envoyer un mail</a>
-        <a class="btn btn-danger" href="{{ path("mosque_force_update_all") }}" onclick="return confirm('Tu es sûr ?');">Raffraichir toutes les mosquées</a>
+        <a class="btn btn-primary mt-1" href="{{ path("easyadmin") }}">Accès super admin</a>
+        <a class="btn btn-success mt-1" href="{{ path("users_send_email") }}">Envoyer un mail</a>
+        <a class="btn btn-danger mt-1" href="{{ path("mosque_force_update_all") }}" onclick="return confirm('Tu es sûr ?');">Raffraichir toutes les mosquées</a>
     {% endif %}
 
     <div class="row mt-3">
@@ -17,6 +17,7 @@
             <h3>Modifier les dates du changement d'heure</h3>
             {{ form(dstForm) }}
         </div>
+        <hr class="hidden-lg hidden-md mt-4">
         <div class="col-md-offset-1 col-md-4">
             <h3>Ajuster la date hégirienne</h3>
             {{ form(hijriForm) }}

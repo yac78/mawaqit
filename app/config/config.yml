@@ -6,7 +6,7 @@ imports:
   - { resource: easyadmin/ }
 
 framework:
-  translator: { fallbacks: [en, fr] }
+  translator: { fallbacks: [en] }
   secret: '%secret%'
   router:
     resource: '%kernel.root_dir%/config/routing.yml'
@@ -170,6 +170,11 @@ csa_guzzle:
         headers:
           Accept: 'application/json'
           Api-Access-Token: '%mawaqit_api_access_token%'
+    pdfshift:
+      config:
+        base_uri: 'https://api.pdfshift.io/v2/'
+        headers:
+          Authorization: 'Basic %pdfshift_api_token%'
   default_client: 'api'
 
 ewz_recaptcha:

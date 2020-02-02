@@ -32,3 +32,6 @@ parameters:
 
     # Slack
     slack_token: 'fake-slack-token'
+
+    # pdfshift
+    pdfshift_api_token: 'fake-pdfshift-token'

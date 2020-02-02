@@ -98,20 +98,6 @@
                     {% endif %}
                     <td>
                         {{ mosque.name }}<br/>
-                        {% if mosque.isValidated and mosque.isMosque and isNotLocal() %}
-                            <div>
-                                <i class="fa fa-download"></i>
-                                <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                                    {{ 'configuration.list.download_csv_files'|trans }}
-                                    ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
-                                </a>
-                            </div>
-                            <div>
-                                <i class="fa fa-print"></i>
-                                <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank"
-                                   title=" {{ 'mosqueList.qrcodeTitle'|trans }}">Qr Code</a>
-                            </div>
-                        {% endif %}
 
                         {% if mosque.image1 is not null %}
                             <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
@@ -299,21 +285,7 @@
                     {% endif %}
                     <div><strong>{{ 'creation_date'|trans }}:</strong> {{ mosque.created|date('d/m/Y H:i') }}</div>
                     <div><strong>{{ 'type'|trans }} :</strong> {{ ('mosque.types.' ~ mosque.type ) | trans }}</div>
-                    {% if mosque.isValidated %}
-                        <div>
-                            <i class="fa fa-download"></i>
-                            <a href="{{ path('mosque_csv_files', {id: mosque.id}) }}">
-                                {{ 'configuration.list.download_csv_files'|trans }}
-                                ({{ mosque.configuration.isApi ? 'Auto' : 'Man' }})
-                            </a>
-                        </div>
-                        {% if mosque.isMosque %}
-                            <div>
-                                <i class="fa fa-print"></i>
-                                <a href="{{ path('mosque_qr_code', {id: mosque.id}) }}" target="_blank">Qr Code</a>
-                            </div>
-                        {% endif %}
-                    {% endif %}
+
                     {% if mosque.isValidated and mosque.daysBeforeRemove is not null %}
                         <div class="alert alert-{{ mosque.daysBeforeRemove > 15 ? 'warning' : 'danger' }} mt-1"
                              style="padding: 5px">
