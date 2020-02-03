@@ -294,6 +294,7 @@ class MosqueController extends Controller
     {
         $selectedConf = clone $selectedMosque->getConf();
         $selectedConf->setId(null);
+        $selectedConf->setBackgroundMotif("1");
         $currentMosque->setConfiguration($selectedConf);
         $em->persist($currentMosque);
         $em->flush();
