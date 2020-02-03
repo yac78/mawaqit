@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -62,6 +64,12 @@ class Mosque
      * @var int
      */
     private $id;
+
+    /**
+     * @Groups({"elastica"})
+     * @var UuidInterface
+     */
+    protected $uuid;
     /**
      * @Groups({"search", "elastica"})
      * @var string
@@ -278,6 +286,7 @@ class Mosque
         $this->messages = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->configuration = new Configuration();
+        $this->uuid = Uuid::uuid4();
         $this->created = new \DateTime();
     }
 
@@ -416,6 +425,25 @@ class Mosque
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return UuidInterface
+     */
+    public function getUuid(): ?UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @param UuidInterface $uuid
+     *
+     * @return Mosque
+     */
+    public function setUuid(UuidInterface $uuid): Mosque
+    {
+        $this->uuid = $uuid;
+        return $this;
     }
 
     /**

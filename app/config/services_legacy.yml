@@ -142,6 +142,13 @@ services:
         tags:
             - { name: 'console.command' }
 
+    app.init_uuid_mosque:
+        class: AppBundle\Command\initUuidMosqueCommand
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: 'console.command' }
+
     # Twig extension
     app.twig.country_extension:
         class: AppBundle\Twig\ToolsExtension

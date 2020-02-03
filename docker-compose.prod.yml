@@ -39,3 +39,12 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
+
+  elasticsearch:
+    image: elasticsearch:6.8.6
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - xpack.security.enabled=false
+    volumes:
+      - ./docker/data/es:/usr/share/elasticsearch/data

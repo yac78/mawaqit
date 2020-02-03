@@ -1,166 +1,170 @@
 AppBundle\Entity\Mosque:
-    type: entity
-    table: null
-    repositoryClass: AppBundle\Repository\MosqueRepository
+  type: entity
+  table: null
+  repositoryClass: AppBundle\Repository\MosqueRepository
+  id:
     id:
-        id:
-            type: integer
-            id: true
-            generator:
-                strategy: AUTO
-    fields:
-        type:
-            type: string
-        name:
-            type: string
-            length: 1024
-        associationName:
-            type: string
-            length: 255
-            nullable: true
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    uuid:
+      type: uuid
+      unique: true
+      nullable: false
+    type:
+      type: string
+    name:
+      type: string
+      length: 1024
+    associationName:
+      type: string
+      length: 255
+      nullable: true
+    slug:
+      type: string
+      length: 255
+      unique: true
+      gedmo:
         slug:
-            type: string
-            length: 255
-            unique: true
-            gedmo:
-                slug:
-                  updatable: false
-                  fields:
-                    - name
-                    - city    
-        phone:
-            type: string
-            nullable: true
-        email:
-            type: string
-            nullable: true
-        address:
-            type: string
-            length: 1024
-            nullable: true
-        city:
-            type: string
-        country:
-            type: string
-        countryFullName:
-            type: string
-        zipcode:
-            type: string
-        latitude:
-            type: float
-        longitude:
-            type: float
-        rib:
-            type: string
-            length: 1024
-            nullable: true
-        paymentWebsite:
-            type: string
-            length: 1024
-            nullable: true
-        site:
-            type: string
-            nullable: true
-        status:
-            type: string
-        reason:
-            type: string
-            nullable: true
-        addOnMap:
-            type: boolean
-        justificatory:
-            type: string
-            nullable: true
-        image1:
-            type: string
-            nullable: true
-        image2:
-            type: string
-            nullable: true
-        image3:
-            type: string
-            nullable: true
-        emailScreenPhotoReminder:
-            type: smallint
-            nullable: true
-        locale:
-            type: string
-            length: 10
-            nullable: true
-        womenSpace:
-            type: boolean
-            nullable: true
-        janazaPrayer:
-            type: boolean
-            nullable: true
-        aidPrayer:
-            type: boolean
-            nullable: true
-        childrenCourses:
-            type: boolean
-            nullable: true
-        adultCourses:
-            type: boolean
-            nullable: true
-        ramadanMeal:
-            type: boolean
-            nullable: true
-        handicapAccessibility:
-            type: boolean
-            nullable: true
-        ablutions:
-            type: boolean
-            nullable: true
-        parking:
-            type: boolean
-            nullable: true
-        otherInfo:
-            type: string
-            nullable: true
-        synchronized:
-            type: boolean
-            nullable: true
-        created:
-            type: datetime
-        updated:
-            type: datetime
-            nullable: true
-            gedmo:
-                timestampable:
-                    on: update
-    manyToOne:
-        user:
-            targetEntity: AppBundle\Entity\User
-            inversedBy: mosques
-            joinColumn:
-                onDelete: CASCADE
-    oneToOne:
-        configuration:
-            targetEntity: AppBundle\Entity\Configuration
-            orphanRemoval: true
-            cascade:
-                - persist
-            joinColumn:
-                onDelete: CASCADE
-        flashMessage:
-            targetEntity: AppBundle\Entity\FlashMessage
-            orphanRemoval: true
-            cascade:
-                - persist
-            joinColumn:
-                onDelete: 'SET NULL'
-    oneToMany:
-        messages:
-            orderBy: { position : 'ASC' }
-            orphanRemoval: true
-            cascade:
-                - persist
-            targetEntity: AppBundle\Entity\Message
-            mappedBy: mosque
+          updatable: false
+          fields:
+            - name
+            - city
+    phone:
+      type: string
+      nullable: true
+    email:
+      type: string
+      nullable: true
+    address:
+      type: string
+      length: 1024
+      nullable: true
+    city:
+      type: string
+    country:
+      type: string
+    countryFullName:
+      type: string
+    zipcode:
+      type: string
+    latitude:
+      type: float
+    longitude:
+      type: float
+    rib:
+      type: string
+      length: 1024
+      nullable: true
+    paymentWebsite:
+      type: string
+      length: 1024
+      nullable: true
+    site:
+      type: string
+      nullable: true
+    status:
+      type: string
+    reason:
+      type: string
+      nullable: true
+    addOnMap:
+      type: boolean
+    justificatory:
+      type: string
+      nullable: true
+    image1:
+      type: string
+      nullable: true
+    image2:
+      type: string
+      nullable: true
+    image3:
+      type: string
+      nullable: true
+    emailScreenPhotoReminder:
+      type: smallint
+      nullable: true
+    locale:
+      type: string
+      length: 10
+      nullable: true
+    womenSpace:
+      type: boolean
+      nullable: true
+    janazaPrayer:
+      type: boolean
+      nullable: true
+    aidPrayer:
+      type: boolean
+      nullable: true
+    childrenCourses:
+      type: boolean
+      nullable: true
+    adultCourses:
+      type: boolean
+      nullable: true
+    ramadanMeal:
+      type: boolean
+      nullable: true
+    handicapAccessibility:
+      type: boolean
+      nullable: true
+    ablutions:
+      type: boolean
+      nullable: true
+    parking:
+      type: boolean
+      nullable: true
+    otherInfo:
+      type: string
+      nullable: true
+    synchronized:
+      type: boolean
+      nullable: true
+    created:
+      type: datetime
+    updated:
+      type: datetime
+      nullable: true
+      gedmo:
+        timestampable:
+          on: update
+  manyToOne:
+    user:
+      targetEntity: AppBundle\Entity\User
+      inversedBy: mosques
+      joinColumn:
+        onDelete: CASCADE
+  oneToOne:
+    configuration:
+      targetEntity: AppBundle\Entity\Configuration
+      orphanRemoval: true
+      cascade:
+        - persist
+      joinColumn:
+        onDelete: CASCADE
+    flashMessage:
+      targetEntity: AppBundle\Entity\FlashMessage
+      orphanRemoval: true
+      cascade:
+        - persist
+      joinColumn:
+        onDelete: 'SET NULL'
+  oneToMany:
+    messages:
+      orderBy: { position: 'ASC' }
+      orphanRemoval: true
+      cascade:
+        - persist
+      targetEntity: AppBundle\Entity\Message
+      mappedBy: mosque
 
-        comments:
-            orphanRemoval: true
-            cascade:
-                - persist
-            targetEntity: AppBundle\Entity\Comment
-            mappedBy: mosque
+    comments:
+      orphanRemoval: true
+      cascade:
+        - persist
+      targetEntity: AppBundle\Entity\Comment
+      mappedBy: mosque
