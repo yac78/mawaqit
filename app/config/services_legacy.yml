@@ -89,6 +89,7 @@ services:
             - "@vich_uploader.upload_handler"
             - "@app.mail_service"
             - "@app.prayer_times"
+            - "@fos_elastica.finder.app.mosque"
 
     app.user_repository:
         class: Doctrine\ORM\EntityRepository

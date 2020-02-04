@@ -4,6 +4,10 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
+use Elastica\Query;
+use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
+use Pagerfanta\Exception\OutOfRangeCurrentPageException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Vich\UploaderBundle\Handler\AbstractHandler;
 
@@ -35,94 +39,75 @@ class MosqueService
      */
     private $prayerTime;
 
+    /**
+     * @var PrayerTime
+     */
+    private $finder;
+
     public function __construct(
         EntityManagerInterface $em,
         SerializerInterface $serializer,
         AbstractHandler $vichUploadHandler,
         MailService $mailService,
-        PrayerTime $prayerTime
+        PrayerTime $prayerTime,
+        PaginatedFinderInterface $finder
     ) {
         $this->em = $em;
         $this->serializer = $serializer;
         $this->vichUploadHandler = $vichUploadHandler;
         $this->mailService = $mailService;
         $this->prayerTime = $prayerTime;
+        $this->finder = $finder;
     }
 
     /**
      * @param $word
      * @param $lat
      * @param $lon
+     * @param $page
      *
      * @return mixed
-     * @throws \Doctrine\DBAL\DBALException
      */
-    public function searchApi($word, $lat, $lon)
+    public function searchApi($word, $lat, $lon, $page)
     {
         if (strlen($word) < 3 && (empty($lat) || empty($lon))) {
             return [];
         }
 
-        $q = "SELECT m.id, m.name, m.phone, m.email, m.site, 
-                      CONCAT(COALESCE(m.address, ''), ' ', m.zipcode,' ', m.city, ' ', m.country_full_name) as localisation,  
-                      m.longitude , m.latitude, 
-                      if(m.image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', m.image1)) as image,  
-                      CONCAT('https://mawaqit.net/fr/', m.slug) as url,
-                      IF(c.jumua, c.jumua_time, null) as jumua,                         
-                      IF(c.jumua, c.jumua_time2, null) as jumua2,                         
-                      m.women_space AS womenSpace, 
-                      m.janaza_prayer AS janazaPrayer, 
-                      m.aid_prayer AS aidPrayer, 
-                      m.children_courses AS childrenCourses, 
-                      m.adult_courses AS adultCourses, 
-                      m.ramadan_meal AS ramadanMeal, 
-                      m.handicap_accessibility AS handicapAccessibility, 
-                      m.ablutions, 
-                      m.parking";
+        $query = new Query();
 
-        $statuses = array_map(function ($v) {
-            return "'$v'";
-        }, Mosque::ACCESSIBLE_STATUSES);
-
-        $statuses = implode(',', $statuses);
-
-        if (!empty($lon) && !empty($lat)) {
-            $q .= " ,ROUND(get_distance_metres(:lat, :lon, m.latitude, m.longitude) ,0) AS proximity
-                            FROM mosque m  
-                            INNER JOIN configuration c on m.configuration_id = c.id 
-                            WHERE m.status IN ($statuses) AND m.type = 'mosque' 
-                            HAVING proximity < 20000 ORDER BY proximity ASC LIMIT 20";
-
-        } elseif ($word) {
-            $word = preg_split("/\s+/", trim($word));
-            $q .= " FROM mosque m";
-            $q .= " INNER JOIN configuration c on m.configuration_id = c.id";
-            $q .= " WHERE m.status IN ($statuses) AND m.type = 'mosque'";
-            foreach ($word as $key => $keyword) {
-                $q .= " AND (m.name LIKE :keyword$key 
-                OR m.association_name LIKE :keyword$key 
-                OR m.address LIKE :keyword$key 
-                OR m.city LIKE :keyword$key 
-                OR m.zipcode LIKE :keyword$key)";
-            }
+        if (!empty($word)) {
+            $query->setRawQuery([
+                "query" => [
+                    "query_string" => [
+                        "query" => "*$word*"
+                    ]
+                ]
+            ]);
         }
 
-        $stmt = $this->em->getConnection()->prepare($q);
-
-        if (!empty($lon) && !empty($lat)) {
-            $stmt->bindValue(":lat", $lat);
-            $stmt->bindValue(":lon", $lon);
-        } elseif ($word) {
-            foreach ($word as $key => $keyword) {
-                $stmt->bindValue(":keyword$key", "%$keyword%");
-            }
+        if (!empty($lat) && !empty($lon)) {
+            $query->setRawQuery([
+                'sort' => [
+                    '_geo_distance' => [
+                        'location' => [
+                            'lat' => $lat,
+                            'lon' => $lon
+                        ],
+                        'order' => 'asc',
+                        'distance_type' => 'arc',
+                        'ignore_unmapped' => true
+                    ]
+                ]
+            ]);
         }
 
-        $stmt->execute();
-        $mosques = $stmt->fetchAll();
-        foreach ($mosques as $key => $value){
-            $mosque = $this->em->getRepository(Mosque::class)->find((int)$value["id"]);
-            $mosques[$key]["jumua"] = $this->prayerTime->getJumua($mosque);
+        $mosques = $this->finder->findPaginated($query);
+
+        try {
+            $mosques->setCurrentPage($page);
+        } catch (OutOfRangeCurrentPageException $e) {
+            throw new NotFoundHttpException();
         }
 
         return $mosques;
