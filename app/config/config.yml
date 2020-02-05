@@ -175,6 +175,9 @@ csa_guzzle:
         base_uri: 'https://api.pdfshift.io/v2/'
         headers:
           Authorization: 'Basic %pdfshift_api_token%'
+    elastic:
+      config:
+        base_uri: 'http://elasticsearch:9200'
   default_client: 'api'
 
 ewz_recaptcha:
@@ -208,12 +211,12 @@ fos_elastica:
         mosque:
           properties:
             location: {type: geo_point}
-          indexable_callback: 'isMosque'
+          indexable_callback: 'isElasticIndexable'
           persistence:
             driver: orm
             model: AppBundle\Entity\Mosque
             provider: ~
             finder: ~
           serializer:
-            groups: [elastica]
+            groups: [elastic]
 

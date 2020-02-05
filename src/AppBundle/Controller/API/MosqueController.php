@@ -31,15 +31,12 @@ class MosqueController extends Controller
      */
     public function searchAction(Request $request)
     {
-        $page = (int)$request->query->get('page', 1);
+        $word = $request->query->get('word');
         $lat = $request->query->get('lat');
         $lon = $request->query->get('lon');
-        $word = $request->query->get('word');
-
-        $mosques = $this->get('app.mosque_service')->searchApi($word, $lat, $lon, $page);
-
-        $requests = $this->get('serializer')->serialize($mosques, 'json', ["groups" => ["elastica"]]);
-        return new Response($requests, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+        $page = (int)$request->query->get('page', 1);
+        $mosques = $this->get('app.mosque_service')->search($word, $lat, $lon, $page);
+        return new JsonResponse($mosques);
     }
 
     /**

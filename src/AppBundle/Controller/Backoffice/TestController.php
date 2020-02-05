@@ -15,10 +15,11 @@ class TestController extends Controller
 {
 
     /**
-     * @Route("")
+     * @Route("/{id}")
      */
-    public function testAction(EntityManagerInterface $em)
+    public function testAction(EntityManagerInterface $em, Mosque $mosque)
     {
+        $this->get("app.mosque_service")->index($mosque);
         return new Response('ok', 200);
     }
 

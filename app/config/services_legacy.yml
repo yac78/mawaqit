@@ -89,7 +89,7 @@ services:
             - "@vich_uploader.upload_handler"
             - "@app.mail_service"
             - "@app.prayer_times"
-            - "@fos_elastica.finder.app.mosque"
+            - "@csa_guzzle.client.elastic"
 
     app.user_repository:
         class: Doctrine\ORM\EntityRepository
@@ -147,6 +147,15 @@ services:
         class: AppBundle\Command\initUuidMosqueCommand
         arguments:
             - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: 'console.command' }
+
+    app.elastic_mosque_populate:
+        class: AppBundle\Command\ElasticMosquePopulateCommand
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@knp_paginator"
+            - "@app.mosque_service"
         tags:
             - { name: 'console.command' }
 

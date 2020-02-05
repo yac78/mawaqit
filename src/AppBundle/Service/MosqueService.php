@@ -4,15 +4,15 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
-use Elastica\Query;
-use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
-use Pagerfanta\Exception\OutOfRangeCurrentPageException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use GuzzleHttp\Client;
 use Symfony\Component\Serializer\SerializerInterface;
 use Vich\UploaderBundle\Handler\AbstractHandler;
 
 class MosqueService
 {
+
+    const ELASTIC_INDEX = "app";
+    const ELASTIC_TYPE = "mosque";
 
     /**
      * @var EntityManagerInterface
@@ -40,9 +40,9 @@ class MosqueService
     private $prayerTime;
 
     /**
-     * @var PrayerTime
+     * @var Client
      */
-    private $finder;
+    private $elasticClient;
 
     public function __construct(
         EntityManagerInterface $em,
@@ -50,14 +50,14 @@ class MosqueService
         AbstractHandler $vichUploadHandler,
         MailService $mailService,
         PrayerTime $prayerTime,
-        PaginatedFinderInterface $finder
+        Client $elasticClient
     ) {
         $this->em = $em;
         $this->serializer = $serializer;
         $this->vichUploadHandler = $vichUploadHandler;
         $this->mailService = $mailService;
         $this->prayerTime = $prayerTime;
-        $this->finder = $finder;
+        $this->elasticClient = $elasticClient;
     }
 
     /**
@@ -68,50 +68,106 @@ class MosqueService
      *
      * @return mixed
      */
-    public function searchApi($word, $lat, $lon, $page)
+    public function search($word, $lat, $lon, $page)
     {
-        if (strlen($word) < 3 && (empty($lat) || empty($lon))) {
+        if (strlen($word) < 2 && (empty($lat) || empty($lon))) {
             return [];
         }
 
-        $query = new Query();
-
         if (!empty($word)) {
-            $query->setRawQuery([
+
+            $query = [
                 "query" => [
-                    "query_string" => [
-                        "query" => "*$word*"
+                    "multi_match" => [
+                        "query" => $word,
+                        "fields" => ["name", "associationName", "localisation"],
+                        "operator" => "and",
                     ]
                 ]
-            ]);
+            ];
         }
 
         if (!empty($lat) && !empty($lon)) {
-            $query->setRawQuery([
+            $query = [
                 'sort' => [
                     '_geo_distance' => [
-                        'location' => [
-                            'lat' => $lat,
-                            'lon' => $lon
-                        ],
-                        'order' => 'asc',
-                        'distance_type' => 'arc',
-                        'ignore_unmapped' => true
+                        'location' => [$lat, $lon]
                     ]
                 ]
-            ]);
+            ];
         }
 
-        $mosques = $this->finder->findPaginated($query);
+        $query["size"] = 10;
+        $query["from"] = ($page - 1) * 10;
 
         try {
-            $mosques->setCurrentPage($page);
-        } catch (OutOfRangeCurrentPageException $e) {
-            throw new NotFoundHttpException();
+            $uri = sprintf("%s/%s/_search", self::ELASTIC_INDEX, self::ELASTIC_TYPE);
+            $mosques = $this->elasticClient->get($uri, [
+                "json" => $query
+            ]);
+
+            $mosques = json_decode($mosques->getBody()->getContents());
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            return [];
         }
 
-        return $mosques;
+        $result = [];
+        foreach ($mosques->hits->hits as $hit) {
+            $mosque = $hit->_source;
+            unset($mosque->location);
+            if (isset($hit->sort)) {
+                $mosque->proximity = (int)$hit->sort[0];
+            }
+            $result[] = $mosque;
+        }
+
+        return $result;
     }
+
+    public function elasticDropIndex()
+    {
+        try {
+            $this->elasticClient->delete(self::ELASTIC_INDEX);
+        } catch (\Exception $e) {
+
+        }
+    }
+
+    public function elasticPopulate(Mosque $mosque)
+    {
+        if (!$mosque->isElasticIndexable()) {
+            return;
+        }
+
+        $mosque = $this->serializer->normalize($mosque, 'json', ["groups" => ["elastic"]]);
+
+        $uri = sprintf("%s/%s/%s", self::ELASTIC_INDEX, self::ELASTIC_TYPE, $mosque["id"]);
+        $this->elasticClient->post($uri, [
+            "json" => $mosque
+        ]);
+    }
+
+
+//    public function elasticBulkPopulate(Array $mosques)
+//    {
+//        $payload = [];
+//        foreach ($mosques as $mosque){
+//            if (!$mosque->isElasticIndexable()) {
+//                continue;
+//            }
+//
+//            $payload[] = $this->serializer->normalize($mosque, 'json', ["groups" => ["elastic"]]);
+//        }
+//
+//
+//
+//
+//        $uri = sprintf("%s/_bulk", self::ELASTIC_INDEX );
+//        $this->elasticClient->post($uri, [
+//            "json" => $mosque
+//        ]);
+//    }
 
     /**
      * @param Mosque $mosque

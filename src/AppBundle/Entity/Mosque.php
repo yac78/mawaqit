@@ -60,18 +60,18 @@ class Mosque
 
     const STARTDATE_CHECKING_PHOTO = "2019-09-28";
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({"elastic"})
      * @var int
      */
     private $id;
 
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var UuidInterface
      */
     protected $uuid;
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({ "elastic"})
      * @var string
      */
     private $name;
@@ -100,10 +100,12 @@ class Mosque
      */
     private $country;
     /**
+     * @Groups({"elastic"})
      * @var float
      */
     private $latitude;
     /**
+     * @Groups({"elastic"})
      * @var float
      */
     private $longitude;
@@ -112,12 +114,12 @@ class Mosque
      */
     private $countryFullName;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $associationName;
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $phone;
@@ -126,17 +128,17 @@ class Mosque
      */
     private $rib;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $paymentWebsite;
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $email;
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $site;
@@ -222,52 +224,52 @@ class Mosque
      */
     private $isCalendarCompleted = null;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $womenSpace;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $janazaPrayer;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $aidPrayer;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $childrenCourses;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $adultCourses;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $ramadanMeal;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $handicapAccessibility;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $ablutions;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $parking;
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @var string
      * @Assert\Length(max="200")
      */
@@ -314,7 +316,7 @@ class Mosque
 
     /**
      * for elastic geo point
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @return array
      */
     function getLocation()
@@ -691,9 +693,8 @@ class Mosque
     }
 
     /**
-     * Get city + zipcode
-     * @Groups({"search"})
-     * @Groups({"elastica"})
+     * Get full address
+     * @Groups({"elastic"})
      * @return string
      */
     public function getLocalisation()
@@ -988,7 +989,6 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
      * @return float
      */
     public function getLatitude()
@@ -1005,7 +1005,6 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
      * @return float
      */
     public function getLongitude()
@@ -1055,7 +1054,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({"elastic"})
      * @return string
      */
     public function getImage()
@@ -1067,7 +1066,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"search", "elastica"})
+     * @Groups({"elastic"})
      * @return string
      */
     public function getUrl()
@@ -1516,6 +1515,11 @@ class Mosque
         return $this->type === self::TYPE_MOSQUE;
     }
 
+    public function isElasticIndexable()
+    {
+        return $this->isMosque() && $this->isValidated();
+    }
+
     /**
      * @return string|null
      */
@@ -1567,7 +1571,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @return string
      */
     function getJumua()
@@ -1576,7 +1580,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"elastica"})
+     * @Groups({"elastic"})
      * @return string
      */
     function getJumua2()
