@@ -5,6 +5,7 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Vich\UploaderBundle\Handler\AbstractHandler;
 
@@ -44,13 +45,19 @@ class MosqueService
      */
     private $elasticClient;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         EntityManagerInterface $em,
         SerializerInterface $serializer,
         AbstractHandler $vichUploadHandler,
         MailService $mailService,
         PrayerTime $prayerTime,
-        Client $elasticClient
+        Client $elasticClient,
+        LoggerInterface $logger
     ) {
         $this->em = $em;
         $this->serializer = $serializer;
@@ -58,6 +65,7 @@ class MosqueService
         $this->mailService = $mailService;
         $this->prayerTime = $prayerTime;
         $this->elasticClient = $elasticClient;
+        $this->logger = $logger;
     }
 
     /**
@@ -91,7 +99,7 @@ class MosqueService
             $query = [
                 'sort' => [
                     '_geo_distance' => [
-                        'location' => [$lat, $lon]
+                        'location' => ["$lat,$lon"]
                     ]
                 ]
             ];
@@ -108,7 +116,7 @@ class MosqueService
 
             $mosques = json_decode($mosques->getBody()->getContents());
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            $this->logger->error("Elastic: query KO on $uri", [$query, $e->getTrace()]);
             return [];
         }
 
@@ -130,7 +138,29 @@ class MosqueService
         try {
             $this->elasticClient->delete(self::ELASTIC_INDEX);
         } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't drop index " . self::ELASTIC_INDEX, [$e->getTrace()]);
+        }
+    }
 
+    public function setElasticLocationMapping()
+    {
+        try {
+            $this->elasticClient->put(self::ELASTIC_INDEX, [
+                "json" => [
+                    "mappings" => [
+                        self::ELASTIC_TYPE => [
+                            "properties" => [
+                                "location" => [
+                                    "type" => "geo_point"
+                                ]
+                            ]
+
+                        ]
+                    ]
+                ]
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: set mapping on index " . self::ELASTIC_INDEX, [$e->getTrace()]);
         }
     }
 
@@ -146,28 +176,40 @@ class MosqueService
         $this->elasticClient->post($uri, [
             "json" => $mosque
         ]);
+
+        try {
+            $this->elasticClient->post($uri, [
+                "json" => $mosque
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't post on $uri", [$mosque, $e->getTrace()]);
+        }
     }
 
 
-//    public function elasticBulkPopulate(Array $mosques)
-//    {
-//        $payload = [];
-//        foreach ($mosques as $mosque){
-//            if (!$mosque->isElasticIndexable()) {
-//                continue;
-//            }
-//
-//            $payload[] = $this->serializer->normalize($mosque, 'json', ["groups" => ["elastic"]]);
-//        }
-//
-//
-//
-//
-//        $uri = sprintf("%s/_bulk", self::ELASTIC_INDEX );
-//        $this->elasticClient->post($uri, [
-//            "json" => $mosque
-//        ]);
-//    }
+    public function elasticBulkPopulate(\Iterator $mosques)
+    {
+        $payload = [];
+
+        foreach ($mosques as $mosque) {
+            if (!$mosque->isElasticIndexable()) {
+                continue;
+            }
+
+            $payload[] = json_encode(["index" => ["_index" => self::ELASTIC_INDEX, "_type" => self::ELASTIC_TYPE]]);
+            $payload[] = $this->serializer->serialize($mosque, 'json', ["groups" => ["elastic"]]);
+        }
+
+        try {
+            $this->elasticClient->post("_bulk", [
+                "body" => implode("\n", $payload) . "\n",
+                "headers" => ["content-type" => "application/json"],
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't bulk insert");
+        }
+
+    }
 
     /**
      * @param Mosque $mosque

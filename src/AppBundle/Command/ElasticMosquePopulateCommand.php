@@ -53,15 +53,18 @@ class ElasticMosquePopulateCommand extends Command
             ->setParameter(":status", Mosque::STATUS_VALIDATED);
 
         $this->mosqueService->elasticDropIndex();
-        $pagination = $this->paginator->paginate($query);
+        $this->mosqueService->setElasticLocationMapping();
+
+        $limit = 50;
+        $pagination = $this->paginator->paginate($query,1, $limit);
         $progressBar = new ProgressBar($output, $pagination->getTotalItemCount());
         for ($page = 1; $page <= $pagination->getPageCount(); $page++) {
-            $mosques = $this->paginator->paginate($query, $page);
-            foreach ($mosques as $key => $mosque) {
-                $this->mosqueService->elasticPopulate($mosque);
-                $progressBar->advance();
-            }
+            $mosques = $this->paginator->paginate($query, $page, $limit);
+            $this->mosqueService->elasticBulkPopulate($mosques);
+            $progressBar->advance(count($mosques));
         }
+
         $progressBar->finish();
+        $output->write("\n");
     }
 }

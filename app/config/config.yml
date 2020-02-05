@@ -201,22 +201,3 @@ liip_imagine:
       filters:
         thumbnail: { size: [370, 210], mode: outbound }
 
-fos_elastica:
-  serializer: ~
-  clients:
-    default: { host: elasticsearch, port: 9200 }
-  indexes:
-    app:
-      types:
-        mosque:
-          properties:
-            location: {type: geo_point}
-          indexable_callback: 'isElasticIndexable'
-          persistence:
-            driver: orm
-            model: AppBundle\Entity\Mosque
-            provider: ~
-            finder: ~
-          serializer:
-            groups: [elastic]
-

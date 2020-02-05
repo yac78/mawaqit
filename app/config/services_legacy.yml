@@ -90,6 +90,7 @@ services:
             - "@app.mail_service"
             - "@app.prayer_times"
             - "@csa_guzzle.client.elastic"
+            - "@logger"
 
     app.user_repository:
         class: Doctrine\ORM\EntityRepository
