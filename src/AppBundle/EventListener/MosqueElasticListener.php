@@ -2,12 +2,12 @@
 
 namespace AppBundle\EventListener;
 
-
 use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\MosqueService;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Events;
 
 class MosqueElasticListener implements EventSubscriber
@@ -17,9 +17,15 @@ class MosqueElasticListener implements EventSubscriber
      */
     private $mosqueService;
 
-    public function __construct(MosqueService $mosqueService)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    public function __construct(MosqueService $mosqueService, EntityManagerInterface $em)
     {
         $this->mosqueService = $mosqueService;
+        $this->em = $em;
     }
 
     public function getSubscribedEvents()
@@ -45,14 +51,18 @@ class MosqueElasticListener implements EventSubscriber
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof Mosque || $entity instanceof Configuration) {
+        if (!$entity instanceof Mosque && !$entity instanceof Configuration) {
             return;
         }
 
-        $mosque = $entity;
-
         if ($entity instanceof Configuration) {
-            $entity = $entity->getMos;
+            $entity = $this->em->getRepository(Mosque::class)->findOneBy([
+                'configuration' => $entity
+            ]);
+
+            if (!$entity instanceof Mosque) {
+                return;
+            }
         }
 
         $this->mosqueService->elasticCreate($entity);

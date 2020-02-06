@@ -20,6 +20,7 @@ services:
     AppBundle\EventListener\MosqueElasticListener:
         arguments:
             - "@app.mosque_service"
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: 'doctrine.event_subscriber' }
 
