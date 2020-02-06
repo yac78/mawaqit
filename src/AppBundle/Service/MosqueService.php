@@ -142,6 +142,43 @@ class MosqueService
         }
     }
 
+
+    public function elasticCreate(Mosque $mosque)
+    {
+        if (!$mosque->isElasticIndexable()) {
+            return;
+        }
+
+        $mosque = $this->serializer->normalize($mosque, 'json', ["groups" => ["elastic"]]);
+
+        $uri = sprintf("%s/%s/%s", self::ELASTIC_INDEX, self::ELASTIC_TYPE, $mosque["id"]);
+        $this->elasticClient->post($uri, [
+            "json" => $mosque
+        ]);
+
+        try {
+            $this->elasticClient->post($uri, [
+                "json" => $mosque
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't post on $uri", [$mosque, $e->getTrace()]);
+        }
+    }
+
+    public function elasticDelete(Mosque $mosque)
+    {
+        if (!$mosque->isElasticIndexable()) {
+            return;
+        }
+
+        try {
+            $uri = sprintf("%s/%s/%s", self::ELASTIC_INDEX, self::ELASTIC_TYPE, $mosque->getId());
+            $this->elasticClient->delete($uri);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't delete $uri", [$e->getTrace()]);
+        }
+    }
+
     public function setElasticLocationMapping()
     {
         try {
@@ -164,29 +201,6 @@ class MosqueService
         }
     }
 
-    public function elasticPopulate(Mosque $mosque)
-    {
-        if (!$mosque->isElasticIndexable()) {
-            return;
-        }
-
-        $mosque = $this->serializer->normalize($mosque, 'json', ["groups" => ["elastic"]]);
-
-        $uri = sprintf("%s/%s/%s", self::ELASTIC_INDEX, self::ELASTIC_TYPE, $mosque["id"]);
-        $this->elasticClient->post($uri, [
-            "json" => $mosque
-        ]);
-
-        try {
-            $this->elasticClient->post($uri, [
-                "json" => $mosque
-            ]);
-        } catch (\Exception $e) {
-            $this->logger->error("Elastic: Can't post on $uri", [$mosque, $e->getTrace()]);
-        }
-    }
-
-
     public function elasticBulkPopulate(\Iterator $mosques)
     {
         $payload = [];
@@ -196,7 +210,13 @@ class MosqueService
                 continue;
             }
 
-            $payload[] = json_encode(["index" => ["_index" => self::ELASTIC_INDEX, "_type" => self::ELASTIC_TYPE]]);
+            $payload[] = json_encode([
+                "index" => [
+                    "_index" => self::ELASTIC_INDEX,
+                    "_type" => self::ELASTIC_TYPE,
+                    "_id" => $mosque->getId()
+                ]
+            ]);
             $payload[] = $this->serializer->serialize($mosque, 'json', ["groups" => ["elastic"]]);
         }
 

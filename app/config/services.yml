@@ -17,6 +17,12 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
+    AppBundle\EventListener\MosqueElasticListener:
+        arguments:
+            - "@app.mosque_service"
+        tags:
+            - { name: 'doctrine.event_subscriber' }
+
     app.twig.intl_extension:
         public: false
         class:  Twig_Extensions_Extension_Intl
