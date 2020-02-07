@@ -32,6 +32,7 @@ class initUuidMosqueCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        ini_set("memory_limit", 1024);
         $mosques = $this->em->getRepository(Mosque::class)->findAll();
         foreach ($mosques as $key => $mosque) {
             if ($mosque->getUuid() instanceof UuidInterface)
