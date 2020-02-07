@@ -35,7 +35,7 @@ class MosqueController extends Controller
         $lat = $request->query->get('lat');
         $lon = $request->query->get('lon');
         $page = (int)$request->query->get('page', 1);
-        $mosques = $this->get('app.mosque_service')->search($word, $lat, $lon, $page);
+        $mosques = $this->get('app.mosque_service')->searchV1($word, $lat, $lon, $page);
         return new JsonResponse($mosques);
     }
 

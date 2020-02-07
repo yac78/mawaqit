@@ -69,14 +69,16 @@ class MosqueService
     }
 
     /**
-     * @param $word
-     * @param $lat
-     * @param $lon
-     * @param $page
+     * @param string $word
+     * @param string $lat
+     * @param string $lon
+     * @param int    $page
+     * @param int    $size
+     * @param bool   $stringify
      *
-     * @return mixed
+     * @return array
      */
-    public function search($word, $lat, $lon, $page)
+    public function search($word, $lat, $lon, int $page, int $size = 20, bool $stringify = false)
     {
         if (strlen($word) < 2 && (empty($lat) || empty($lon))) {
             return [];
@@ -105,8 +107,8 @@ class MosqueService
             ];
         }
 
-        $query["size"] = 10;
-        $query["from"] = ($page - 1) * 10;
+        $query["size"] = $size;
+        $query["from"] = ($page - 1) * $size;
 
         try {
             $uri = sprintf("%s/%s/_search", self::ELASTIC_INDEX, self::ELASTIC_TYPE);
@@ -114,23 +116,38 @@ class MosqueService
                 "json" => $query
             ]);
 
-            $mosques = json_decode($mosques->getBody()->getContents());
+            $mosques = json_decode($mosques->getBody()->getContents(), true);
         } catch (\Exception $e) {
             $this->logger->error("Elastic: query KO on $uri", [$query, $e->getTrace()]);
             return [];
         }
 
         $result = [];
-        foreach ($mosques->hits->hits as $hit) {
-            $mosque = $hit->_source;
-            unset($mosque->location);
-            if (isset($hit->sort)) {
-                $mosque->proximity = (int)$hit->sort[0];
+        foreach ($mosques["hits"]["hits"] as $hit) {
+            $mosque = $hit["_source"];
+            unset($mosque["location"]);
+            if (isset($hit["sort"])) {
+                $mosque["proximity"] = (int)$hit["sort"][0];
             }
+
+            if ($stringify) {
+                $this->stringify($mosque);
+            }
+
             $result[] = $mosque;
         }
 
         return $result;
+    }
+
+    public function searchV1($word, $lat, $lon, $page)
+    {
+        return $this->search($word, $lat, $lon, $page, 20, true);
+    }
+
+    public function searchV2($word, $lat, $lon, $page)
+    {
+        return $this->search($word, $lat, $lon, $page, 10);
     }
 
     public function elasticDropIndex()
@@ -141,7 +158,6 @@ class MosqueService
             $this->logger->error("Elastic: Can't drop index " . self::ELASTIC_INDEX, [$e->getTrace()]);
         }
     }
-
 
     public function elasticCreate(Mosque $mosque)
     {
@@ -283,6 +299,24 @@ class MosqueService
         $mosque->setFile3(null);
         $this->em->flush();
         $this->mailService->rejectScreenPhoto($mosque);
+    }
+
+    private function stringify(&$mosque)
+    {
+        foreach ($mosque as $k => $v)
+        {
+            if (is_null($v))
+            {
+                continue;
+            }
+            if (is_bool($v))
+            {
+                $mosque[$k] = $v === true ? "1" : "0";
+                continue;
+            }
+
+            settype($mosque[$k], "string");
+        }
     }
 
 }
