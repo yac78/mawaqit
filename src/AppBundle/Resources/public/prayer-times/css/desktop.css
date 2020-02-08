@@ -324,33 +324,6 @@ footer .info {
     color: #3498db;
 }
 
-@-webkit-keyframes slide {
-    0% {
-        left: 180%;
-    }
-    100% {
-        left: -180%;
-    }
-}
-
-@-moz-keyframes slide {
-    0% {
-        left: 180%;
-    }
-    100% {
-        left: -180%;
-    }
-}
-
-@keyframes slide {
-    0% {
-        left: 180%;
-    }
-    100% {
-        left: -180%;
-    }
-}
-
 .full-moon {
     width: 60px;
     height: 60px;
@@ -387,9 +360,4 @@ footer .info {
 
 .top-buttons a {
     color: #777777;
-}
-
-.textSlide {
-    height: 13vh;
-    font-size: 7vh;
 }

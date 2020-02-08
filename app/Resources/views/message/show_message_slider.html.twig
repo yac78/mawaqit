@@ -11,7 +11,7 @@
     {% stylesheets
         "bundles/app/css/fonts.css"
         "bundles/app/bootstrap-3.3.7/css/bootstrap.min.css"
-        "bundles/app/prayer-times/css/main.css"
+        "bundles/app/css/message_flash.css"
         "bundles/app/css/full_message_slider.css"
         filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
@@ -52,13 +52,13 @@
     </div>
     {% if mosque.flashMessage and mosque.flashMessage.available %}
         <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
-            <p class="{{ mosque.flashMessage.orientation }}"
+            <div class="{{ mosque.flashMessage.orientation }}"
                style="color:{{ mosque.flashMessage.color }};
                        width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
                        --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
             >
                 {{ mosque.flashMessage.content }}
-            </p>
+            </div>
         </div>
     {% endif %}
 </footer>

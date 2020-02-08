@@ -20,6 +20,7 @@
         "bundles/app/css/fonts.css"
         "bundles/app/font-awesome/css/all.min.css"
         "bundles/app/prayer-times/css/main.css"
+        "bundles/app/css/message_flash.css"
         "bundles/app/prayer-times/css/mobile.css"
         "bundles/app/prayer-times/css/notif.css"
         filter="cssrewrite" %}
@@ -88,7 +89,7 @@
         <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
             <div class="{{ mosque.flashMessage.orientation }}"
                style="color:{{ mosque.flashMessage.color }};
-                      width: {{ (mosque.flashMessage.content|length/120)*1600 }}px;
+                      width: {{ (mosque.flashMessage.content|length/120)*1100 }}px;
                       --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*100) }}%;"
              >
                 {{ mosque.flashMessage.content }}
