@@ -24,7 +24,7 @@ class RequestService
      */
     public function isLocal()
     {
-        if(!$this->request){
+        if(!$this->request instanceof Request){
             return true;
         }
         
