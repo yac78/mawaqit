@@ -88,10 +88,10 @@ class MosqueService
 
             $query = [
                 "query" => [
-                    "multi_match" => [
-                        "query" => $word,
-                        "fields" => ["name", "associationName", "localisation"],
-                        "operator" => "and",
+                    "query_string" => [
+                        "query" => "*$word*",
+                        "fields" => ["name^3", "localisation^2", "associationName"],
+                        "default_operator" => "OR"
                     ]
                 ]
             ];
@@ -303,14 +303,11 @@ class MosqueService
 
     private function stringify(&$mosque)
     {
-        foreach ($mosque as $k => $v)
-        {
-            if (is_null($v))
-            {
+        foreach ($mosque as $k => $v) {
+            if (is_null($v)) {
                 continue;
             }
-            if (is_bool($v))
-            {
+            if (is_bool($v)) {
                 $mosque[$k] = $v === true ? "1" : "0";
                 continue;
             }
