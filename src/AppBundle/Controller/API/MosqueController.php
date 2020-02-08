@@ -27,16 +27,16 @@ class MosqueController extends Controller
      * @Method("GET")
      * @param Request $request
      *
-     * @return JsonResponse
-     * @throws \Doctrine\DBAL\DBALException
+     * @return Response
      */
     public function searchAction(Request $request)
     {
         $word = $request->query->get('word');
         $lat = $request->query->get('lat');
         $lon = $request->query->get('lon');
-        $result = $this->get('app.mosque_service')->searchApi($word, $lat, $lon);
-        return new JsonResponse($result);
+        $page = (int)$request->query->get('page', 1);
+        $mosques = $this->get('app.mosque_service')->searchV1($word, $lat, $lon, $page);
+        return new JsonResponse($mosques);
     }
 
     /**

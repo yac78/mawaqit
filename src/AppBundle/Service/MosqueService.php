@@ -4,11 +4,16 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Mosque;
 use Doctrine\ORM\EntityManagerInterface;
+use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Vich\UploaderBundle\Handler\AbstractHandler;
 
 class MosqueService
 {
+
+    const ELASTIC_INDEX = "app";
+    const ELASTIC_TYPE = "mosque";
 
     /**
      * @var EntityManagerInterface
@@ -35,97 +40,211 @@ class MosqueService
      */
     private $prayerTime;
 
+    /**
+     * @var Client
+     */
+    private $elasticClient;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         EntityManagerInterface $em,
         SerializerInterface $serializer,
         AbstractHandler $vichUploadHandler,
         MailService $mailService,
-        PrayerTime $prayerTime
+        PrayerTime $prayerTime,
+        Client $elasticClient,
+        LoggerInterface $logger
     ) {
         $this->em = $em;
         $this->serializer = $serializer;
         $this->vichUploadHandler = $vichUploadHandler;
         $this->mailService = $mailService;
         $this->prayerTime = $prayerTime;
+        $this->elasticClient = $elasticClient;
+        $this->logger = $logger;
     }
 
     /**
-     * @param $word
-     * @param $lat
-     * @param $lon
+     * @param string $word
+     * @param string $lat
+     * @param string $lon
+     * @param int    $page
+     * @param int    $size
+     * @param bool   $stringify
      *
-     * @return mixed
-     * @throws \Doctrine\DBAL\DBALException
+     * @return array
      */
-    public function searchApi($word, $lat, $lon)
+    public function search($word, $lat, $lon, int $page, int $size = 20, bool $stringify = false)
     {
-        if (strlen($word) < 3 && (empty($lat) || empty($lon))) {
+        if (strlen($word) < 2 && (empty($lat) || empty($lon))) {
             return [];
         }
 
-        $q = "SELECT m.id, m.name, m.phone, m.email, m.site, 
-                      CONCAT(COALESCE(m.address, ''), ' ', m.zipcode,' ', m.city, ' ', m.country_full_name) as localisation,  
-                      m.longitude , m.latitude, 
-                      if(m.image1 is null, 'https://mawaqit.net/bundles/app/prayer-times/img/default.jpg', CONCAT('https://mawaqit.net/upload/', m.image1)) as image,  
-                      CONCAT('https://mawaqit.net/fr/', m.slug) as url,
-                      IF(c.jumua, c.jumua_time, null) as jumua,                         
-                      IF(c.jumua, c.jumua_time2, null) as jumua2,                         
-                      m.women_space AS womenSpace, 
-                      m.janaza_prayer AS janazaPrayer, 
-                      m.aid_prayer AS aidPrayer, 
-                      m.children_courses AS childrenCourses, 
-                      m.adult_courses AS adultCourses, 
-                      m.ramadan_meal AS ramadanMeal, 
-                      m.handicap_accessibility AS handicapAccessibility, 
-                      m.ablutions, 
-                      m.parking";
+        if (!empty($word)) {
 
-        $statuses = array_map(function ($v) {
-            return "'$v'";
-        }, Mosque::ACCESSIBLE_STATUSES);
+            $query = [
+                "query" => [
+                    "multi_match" => [
+                        "query" => $word,
+                        "fields" => ["name", "associationName", "localisation"],
+                        "operator" => "and",
+                    ]
+                ]
+            ];
+        }
 
-        $statuses = implode(',', $statuses);
+        if (!empty($lat) && !empty($lon)) {
+            $query = [
+                'sort' => [
+                    '_geo_distance' => [
+                        'location' => ["$lat,$lon"]
+                    ]
+                ]
+            ];
+        }
 
-        if (!empty($lon) && !empty($lat)) {
-            $q .= " ,ROUND(get_distance_metres(:lat, :lon, m.latitude, m.longitude) ,0) AS proximity
-                            FROM mosque m  
-                            INNER JOIN configuration c on m.configuration_id = c.id 
-                            WHERE m.status IN ($statuses) AND m.type = 'mosque' 
-                            HAVING proximity < 20000 ORDER BY proximity ASC LIMIT 20";
+        $query["size"] = $size;
+        $query["from"] = ($page - 1) * $size;
 
-        } elseif ($word) {
-            $word = preg_split("/\s+/", trim($word));
-            $q .= " FROM mosque m";
-            $q .= " INNER JOIN configuration c on m.configuration_id = c.id";
-            $q .= " WHERE m.status IN ($statuses) AND m.type = 'mosque'";
-            foreach ($word as $key => $keyword) {
-                $q .= " AND (m.name LIKE :keyword$key 
-                OR m.association_name LIKE :keyword$key 
-                OR m.address LIKE :keyword$key 
-                OR m.city LIKE :keyword$key 
-                OR m.zipcode LIKE :keyword$key)";
+        try {
+            $uri = sprintf("%s/%s/_search", self::ELASTIC_INDEX, self::ELASTIC_TYPE);
+            $mosques = $this->elasticClient->get($uri, [
+                "json" => $query
+            ]);
+
+            $mosques = json_decode($mosques->getBody()->getContents(), true);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: query KO on $uri", [$query, $e->getTrace()]);
+            return [];
+        }
+
+        $result = [];
+        foreach ($mosques["hits"]["hits"] as $hit) {
+            $mosque = $hit["_source"];
+            unset($mosque["location"]);
+            if (isset($hit["sort"])) {
+                $mosque["proximity"] = (int)$hit["sort"][0];
             }
-        }
 
-        $stmt = $this->em->getConnection()->prepare($q);
-
-        if (!empty($lon) && !empty($lat)) {
-            $stmt->bindValue(":lat", $lat);
-            $stmt->bindValue(":lon", $lon);
-        } elseif ($word) {
-            foreach ($word as $key => $keyword) {
-                $stmt->bindValue(":keyword$key", "%$keyword%");
+            if ($stringify) {
+                $this->stringify($mosque);
             }
+
+            $result[] = $mosque;
         }
 
-        $stmt->execute();
-        $mosques = $stmt->fetchAll();
-        foreach ($mosques as $key => $value){
-            $mosque = $this->em->getRepository(Mosque::class)->find((int)$value["id"]);
-            $mosques[$key]["jumua"] = $this->prayerTime->getJumua($mosque);
+        return $result;
+    }
+
+    public function searchV1($word, $lat, $lon, $page)
+    {
+        return $this->search($word, $lat, $lon, $page, 20, true);
+    }
+
+    public function searchV2($word, $lat, $lon, $page)
+    {
+        return $this->search($word, $lat, $lon, $page, 10);
+    }
+
+    public function elasticDropIndex()
+    {
+        try {
+            $this->elasticClient->delete(self::ELASTIC_INDEX);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't drop index " . self::ELASTIC_INDEX, [$e->getTrace()]);
+        }
+    }
+
+    public function elasticCreate(Mosque $mosque)
+    {
+        if (!$mosque->isElasticIndexable()) {
+            return;
         }
 
-        return $mosques;
+        $mosque = $this->serializer->normalize($mosque, 'json', ["groups" => ["elastic"]]);
+
+        $uri = sprintf("%s/%s/%s", self::ELASTIC_INDEX, self::ELASTIC_TYPE, $mosque["id"]);
+        $this->elasticClient->post($uri, [
+            "json" => $mosque
+        ]);
+
+        try {
+            $this->elasticClient->post($uri, [
+                "json" => $mosque
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't post on $uri", [$mosque, $e->getTrace()]);
+        }
+    }
+
+    public function elasticDelete(Mosque $mosque)
+    {
+        if (!$mosque->isElasticIndexable()) {
+            return;
+        }
+
+        try {
+            $uri = sprintf("%s/%s/%s", self::ELASTIC_INDEX, self::ELASTIC_TYPE, $mosque->getId());
+            $this->elasticClient->delete($uri);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't delete $uri", [$e->getTrace()]);
+        }
+    }
+
+    public function setElasticLocationMapping()
+    {
+        try {
+            $this->elasticClient->put(self::ELASTIC_INDEX, [
+                "json" => [
+                    "mappings" => [
+                        self::ELASTIC_TYPE => [
+                            "properties" => [
+                                "location" => [
+                                    "type" => "geo_point"
+                                ]
+                            ]
+
+                        ]
+                    ]
+                ]
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: set mapping on index " . self::ELASTIC_INDEX, [$e->getTrace()]);
+        }
+    }
+
+    public function elasticBulkPopulate(\Iterator $mosques)
+    {
+        $payload = [];
+
+        foreach ($mosques as $mosque) {
+            if (!$mosque->isElasticIndexable()) {
+                continue;
+            }
+
+            $payload[] = json_encode([
+                "index" => [
+                    "_index" => self::ELASTIC_INDEX,
+                    "_type" => self::ELASTIC_TYPE,
+                    "_id" => $mosque->getId()
+                ]
+            ]);
+            $payload[] = $this->serializer->serialize($mosque, 'json', ["groups" => ["elastic"]]);
+        }
+
+        try {
+            $this->elasticClient->post("_bulk", [
+                "body" => implode("\n", $payload) . "\n",
+                "headers" => ["content-type" => "application/json"],
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: Can't bulk insert");
+        }
+
     }
 
     /**
@@ -180,6 +299,24 @@ class MosqueService
         $mosque->setFile3(null);
         $this->em->flush();
         $this->mailService->rejectScreenPhoto($mosque);
+    }
+
+    private function stringify(&$mosque)
+    {
+        foreach ($mosque as $k => $v)
+        {
+            if (is_null($v))
+            {
+                continue;
+            }
+            if (is_bool($v))
+            {
+                $mosque[$k] = $v === true ? "1" : "0";
+                continue;
+            }
+
+            settype($mosque[$k], "string");
+        }
     }
 
 }

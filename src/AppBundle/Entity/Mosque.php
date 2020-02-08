@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -58,12 +60,18 @@ class Mosque
 
     const STARTDATE_CHECKING_PHOTO = "2019-09-28";
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
      * @var int
      */
     private $id;
+
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
+     * @var UuidInterface
+     */
+    protected $uuid;
+    /**
+     * @Groups({ "elastic"})
      * @var string
      */
     private $name;
@@ -92,10 +100,12 @@ class Mosque
      */
     private $country;
     /**
+     * @Groups({"elastic"})
      * @var float
      */
     private $latitude;
     /**
+     * @Groups({"elastic"})
      * @var float
      */
     private $longitude;
@@ -104,11 +114,12 @@ class Mosque
      */
     private $countryFullName;
     /**
+     * @Groups({"elastic"})
      * @var string
      */
     private $associationName;
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $phone;
@@ -117,16 +128,17 @@ class Mosque
      */
     private $rib;
     /**
+     * @Groups({"elastic"})
      * @var string
      */
     private $paymentWebsite;
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $email;
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
      * @var string
      */
     private $site;
@@ -212,42 +224,52 @@ class Mosque
      */
     private $isCalendarCompleted = null;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $womenSpace;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $janazaPrayer;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $aidPrayer;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $childrenCourses;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $adultCourses;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $ramadanMeal;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $handicapAccessibility;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $ablutions;
     /**
+     * @Groups({"elastic"})
      * @var boolean|null
      */
     private $parking;
     /**
+     * @Groups({"elastic"})
      * @var string
      * @Assert\Length(max="200")
      */
@@ -266,6 +288,7 @@ class Mosque
         $this->messages = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->configuration = new Configuration();
+        $this->uuid = Uuid::uuid4();
         $this->created = new \DateTime();
     }
 
@@ -289,6 +312,19 @@ class Mosque
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * for elastic geo point
+     * @Groups({"elastic"})
+     * @return array
+     */
+    function getLocation()
+    {
+        return [
+            "lon" => $this->longitude,
+            "lat" => $this->latitude,
+        ];
     }
 
     /**
@@ -391,6 +427,25 @@ class Mosque
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return UuidInterface
+     */
+    public function getUuid(): ?UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @param UuidInterface $uuid
+     *
+     * @return Mosque
+     */
+    public function setUuid(UuidInterface $uuid): Mosque
+    {
+        $this->uuid = $uuid;
+        return $this;
     }
 
     /**
@@ -638,8 +693,8 @@ class Mosque
     }
 
     /**
-     * Get city + zipcode
-     * @Groups({"search"})
+     * Get full address
+     * @Groups({"elastic"})
      * @return string
      */
     public function getLocalisation()
@@ -934,7 +989,6 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
      * @return float
      */
     public function getLatitude()
@@ -951,7 +1005,6 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
      * @return float
      */
     public function getLongitude()
@@ -1001,7 +1054,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
      * @return string
      */
     public function getImage()
@@ -1013,7 +1066,7 @@ class Mosque
     }
 
     /**
-     * @Groups({"search"})
+     * @Groups({"elastic"})
      * @return string
      */
     public function getUrl()
@@ -1450,7 +1503,7 @@ class Mosque
 
         $days = (int)$interval->format('%a');
 
-        if($deadline < $now){
+        if ($deadline < $now) {
             $days = -$days;
         }
 
@@ -1460,6 +1513,11 @@ class Mosque
     public function isMosque()
     {
         return $this->type === self::TYPE_MOSQUE;
+    }
+
+    public function isElasticIndexable()
+    {
+        return $this->isMosque() && $this->isValidated();
     }
 
     /**
@@ -1510,6 +1568,24 @@ class Mosque
         }
 
         return strtolower($this->type);
+    }
+
+    /**
+     * @Groups({"elastic"})
+     * @return string
+     */
+    function getJumua()
+    {
+        return $this->getConf()->getJumuaTime();
+    }
+
+    /**
+     * @Groups({"elastic"})
+     * @return string
+     */
+    function getJumua2()
+    {
+        return $this->getConf()->getJumuaTime2();
     }
 
 }

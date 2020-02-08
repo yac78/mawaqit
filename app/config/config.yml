@@ -175,6 +175,9 @@ csa_guzzle:
         base_uri: 'https://api.pdfshift.io/v2/'
         headers:
           Authorization: 'Basic %pdfshift_api_token%'
+    elastic:
+      config:
+        base_uri: 'http://elasticsearch:9200'
   default_client: 'api'
 
 ewz_recaptcha:
@@ -197,3 +200,4 @@ liip_imagine:
       quality: 75
       filters:
         thumbnail: { size: [370, 210], mode: outbound }
+
