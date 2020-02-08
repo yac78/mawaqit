@@ -296,6 +296,7 @@ class Mosque
     {
         $this->id = null;
         $this->slug = null;
+        $this->uuid = Uuid::uuid4();
         $this->image1 = null;
         $this->image2 = null;
         $this->image3 = null;
