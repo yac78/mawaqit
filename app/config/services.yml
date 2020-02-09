@@ -21,6 +21,7 @@ services:
         arguments:
             - "@app.mosque_service"
             - "@doctrine.orm.entity_manager"
+            - "@app.request_service"
         tags:
             - { name: 'doctrine.event_subscriber' }
 

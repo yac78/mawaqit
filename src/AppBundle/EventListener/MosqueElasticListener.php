@@ -5,6 +5,7 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\Configuration;
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\MosqueService;
+use AppBundle\Service\RequestService;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,10 +23,19 @@ class MosqueElasticListener implements EventSubscriber
      */
     private $em;
 
-    public function __construct(MosqueService $mosqueService, EntityManagerInterface $em)
-    {
+    /**
+     * @var RequestService
+     */
+    private $requestService;
+
+    public function __construct(
+        MosqueService $mosqueService,
+        EntityManagerInterface $em,
+        RequestService $requestService
+    ) {
         $this->mosqueService = $mosqueService;
         $this->em = $em;
+        $this->requestService = $requestService;
     }
 
     public function getSubscribedEvents()
@@ -38,6 +48,10 @@ class MosqueElasticListener implements EventSubscriber
 
     public function preRemove(LifecycleEventArgs $args)
     {
+        if ($this->requestService->isLocal()) {
+            return;
+        }
+
         $entity = $args->getObject();
 
         if (!$entity instanceof Mosque) {
@@ -49,6 +63,10 @@ class MosqueElasticListener implements EventSubscriber
 
     public function preUpdate(LifecycleEventArgs $args)
     {
+        if ($this->requestService->isLocal()) {
+            return;
+        }
+
         $entity = $args->getObject();
 
         if (!$entity instanceof Mosque && !$entity instanceof Configuration) {

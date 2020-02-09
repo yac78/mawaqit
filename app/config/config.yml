@@ -177,7 +177,7 @@ csa_guzzle:
           Authorization: 'Basic %pdfshift_api_token%'
     elastic:
       config:
-        base_uri: 'http://elasticsearch:9200'
+        base_uri: '%app_elasticsearch_url%'
   default_client: 'api'
 
 ewz_recaptcha:
