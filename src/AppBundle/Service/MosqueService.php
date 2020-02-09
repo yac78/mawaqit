@@ -195,11 +195,22 @@ class MosqueService
         }
     }
 
-    public function setElasticLocationMapping()
+    public function initElasticIndex()
     {
         try {
             $this->elasticClient->put(self::ELASTIC_INDEX, [
                 "json" => [
+                    "settings" => [
+                        "analysis" => [
+                            "analyzer" => [
+                                "default" => [
+                                    "tokenizer" => "standard",
+                                    "filter" => ["lowercase", "asciifolding"],
+                                ]
+                            ]
+                        ]
+
+                    ],
                     "mappings" => [
                         self::ELASTIC_TYPE => [
                             "properties" => [
@@ -207,7 +218,6 @@ class MosqueService
                                     "type" => "geo_point"
                                 ]
                             ]
-
                         ]
                     ]
                 ]
