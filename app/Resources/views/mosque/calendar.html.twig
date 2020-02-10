@@ -145,7 +145,7 @@
                     {% if mosque.rib %}
                         <span> {{ 'by_bank_transfer'|trans }} {{ mosque.rib }}</span>
                     {% endif %}
-                    {% if mosque.rib %}
+                    {% if mosque.paymentWebsite %}
                         | <span> {{ 'by_credit_card'|trans }} {{ mosque.paymentWebsite }}</span>
                     {% endif %}
                 </div>
