@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\PrayerTime;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -29,19 +31,41 @@ class CalendarController extends Controller
     /**
      * @Route("/{id}/pdf", name="calendar_pdf")
      */
-    public function calendarPdfAction(Mosque $mosque)
+    public function calendarPdfAction(Mosque $mosque, LoggerInterface $logger)
     {
-        $response = $this->get("csa_guzzle.client.pdfshift")->post("convert", [
-            'form_params' => [
-                "source" => $this->generateUrl("calendar", ["id" => $mosque->getId()],
-                    UrlGeneratorInterface::ABSOLUTE_URL)
-            ]
-        ]);
-        $fileName = $mosque->getTitle() . ".pdf";
-        return new Response($response->getBody(), Response::HTTP_OK, [
+
+        $fileName = $mosque->getSlug() . ".pdf";
+        $cachedFile = $this->getParameter("kernel.root_dir") . "/../docker/data/calendar/$fileName";
+        $mosqueUpdated = $mosque->getUpdated()->format("Y-m-d");
+        $headers = [
             'Content-Disposition' => 'inline; filename="' . $fileName . '"',
             'Content-Type' => 'application/pdf'
-        ]);
+        ];
+
+        // if the file is previously saved we serve it
+        if (is_file($cachedFile)) {
+            $fileDate = date("Y-m-d", filemtime($cachedFile));
+            if ($mosqueUpdated < $fileDate) {
+                return new BinaryFileResponse($cachedFile, Response::HTTP_OK, $headers);
+            }
+        }
+
+        try {
+            $response = $this->get("csa_guzzle.client.pdfshift")->post("convert", [
+                'form_params' => [
+                    "source" => $this->generateUrl("calendar", ["id" => $mosque->getId()],
+                        UrlGeneratorInterface::ABSOLUTE_URL)
+                ]
+            ]);
+
+            file_put_contents($cachedFile, $response->getBody()->getContents());
+
+            return new Response($response->getBody(), Response::HTTP_OK, $headers);
+        } catch (\Exception $e) {
+            $logger->error($e->getMessage());
+        }
+
+        throw new NotFoundHttpException();
     }
 
     /**

@@ -80,6 +80,7 @@ class MosqueService
      */
     public function search($word, $lat, $lon, int $page, int $size = 20, bool $stringify = false)
     {
+        $word = trim($word);
         if (strlen($word) < 2 && (empty($lat) || empty($lon))) {
             return [];
         }
@@ -223,7 +224,7 @@ class MosqueService
                 ]
             ]);
         } catch (\Exception $e) {
-            $this->logger->error("Elastic: set mapping on index " . self::ELASTIC_INDEX, [$e->getTrace()]);
+            $this->logger->error("Elastic: init index " . self::ELASTIC_INDEX, [$e->getTrace()]);
         }
     }
 
