@@ -11,6 +11,7 @@ home:
   menu:
     main: Menu
     project: Le projet
+    concept: Le concept
     mosques: Quelques chiffres
     equipYourMosque: installer
     faq: faq
@@ -69,21 +70,25 @@ home:
     contactUsSelectNumber: Selectionnez
 
     legalNotice: Mentions légales
-    project1: |
-      La plupart de nos mosquées sont aujourd'hui équipées d’horloges digitales en forme de tableau
-      éléctronique. Ces horloges ne répondent
-      malheureusement pas aux besoins de plus en plus variés et exigents de nos mosquées.
-      Les horloges digitales sont généralement dotées d’un réglage manuel
-      (à faire tous les jours), ou d’un réglage automatique avec donc des horaires parfois inexacts
-      et pas forcément adapatés à la ville dans laquelle se situe la mosquée .
-      De plus leurs fonctionalités se limitent à l'affichage des horaires de prière.
-      Avec l’aide d’Allah le Tout Puissant, nous nous sommes donc lancés dans le développement d’un
-      logiciel pour améliorer et simplifier l’affichage des horaires de prière. <br>
-      Notre solution est un WAQF fi sabili Allah et donc gratuite. Le code est open source, il est
-      accessible sur github à l'adresse  suivante
-      <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a><br>
-      <i style="font-weight: bold" class="fa fa-warning"></i> TOUTE UTILISATION A BUT LUCRATIF EST
-      STRICTEMENT INTERDITE, VEUILLEZ RESPECTER NOTRE CHOIX.
+    project: |
+      L'idée de Mawaqit est née d'une frustration : lorsque nous avons observé comment sont gérés les horaires de prière dans nos
+      mosquées depuis des années, voir nos papas régler manuelement des vieux horloges ou tableaux éléctroniques qui ne répondent
+      plus aux besoins variés et modernes de nos mosquées.
+      Nous avons donc décidé avec l’aide d’Allah de s'attaquer à cette frustration et de créer le service dont nous aurions rêvé. <br>
+      Notre solution est un WAQF fi sabili Allah et donc gratuite. Le code est open source et accessible sur github.<br>
+      <span style="color: orange">TOUTE UTILISATION A BUT LUCRATIF EST STRICTEMENT INTERDITE, VEUILLEZ RESPECTER NOTRE CHOIX.</span>
+
+    concept: |
+      Mawaqit vous offre une nouvelle façon de suivre et gérer les horaires de prière, en effet nous proposons
+      un système de bout en bout qui offre aux responsables de mosquées un outils en ligne disponible 24/24h leur permetant
+      de gérer les horaires, l'actualité et plein d'autres fonctionnalités.
+      Les fidèles, eux, bénificient d'une application mobile qui leur permet de consulter les horaires exactes
+      et non approximatives de leur mosquée préférée, ainsi que l'actualité et autres fonctionalités tel que la
+      recherche de mosquée par géolocalisation.
+      Nous avons fait de la fiabilité et la qualité nos valeurs principales.
+      Notre ambition est claire : construire le meilleur service pour nos mosquées grâce à la technologie et au design.
+      Toute mosquée ajoutée sur notre système passe par une modération approfondie. Nous suspendons toute mosquée qui ne respecte pas nos règles afin de préserver un service fiable
+      pour la communauté.
 
     feature1: Affichage des horaires de prière en plusieurs langues. 2 choix de calcul, automatique ou par calendrier annuel
     feature2: Un signal visuel et sonor pour annoncer l'adhan et l'iqama
@@ -338,7 +343,7 @@ mosque:
     rib:
       placeholder: IBAN FR76 0000 0000 0000 0000 0000 000 / BIC SOGREP74
       help: RIB de la mosquée pour les dons
-    paymentWebsite :
+    paymentWebsite:
       label: Site de paiement en ligne
       placeholder: https://paypal.me/mosquee-essunna
       help: Lien vers le site de paiement en ligne de lamosquée pour les dons

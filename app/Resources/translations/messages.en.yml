@@ -12,6 +12,7 @@ home:
   menu:
     main: Menu
     project: The project
+    concept: The concept
     mosques: Some numbers
     equipYourMosque: install
     faq: faq
@@ -69,17 +70,25 @@ home:
     contactUsSelectNumber: Select
 
     legalNotice: Legal Notice
-    project1: |
-        Today, most of our mosques are equipped with old digital clocks like an electronic board.
-        Unfortunately these clocks do not respond to the increasingly varied and demanding needs of our mosques
-        Digital clocks are usually configured every day or automatically with sometimes inaccurate schedules
-        and not necessarily suited to the city in which the mosque is located.
-        In addition, their functionality is limited to the display of prayer times.
-        With the help of Allah the all mighty, we have developed a software to improve and simplify the presentation of prayer times. <br>
-        Our solution is a WAQF fi sabili Allah and therefore free. The code is open source, it is
-        accessible on github at the following link
-        <a target="_blank" href="https://github.com/ibrahim-zehhaf/mawaqit">https://github.com/ibrahim-zehhaf/mawaqit</a> <br>
-        <i style="font-weight:bold" class="fa fa-warning"></i> ANY USE FOR PURPOSE IS STRICTLY PROHIBITED, PLEASE RESPECT OUR CHOICE.
+    project: |
+      The idea of Mawaqit was born out of frustration: when we observed how prayer times are managed in our
+      mosques for years, see our dads manually adjust old clocks or electronic boards that do not respond
+      more to the varied and modern needs of our mosques.
+      So we decided with the help of Allah to tackle this frustration and create the service we would have dreamed of. <br>
+      Our solution is a WAQF fi sabili Allah and therefore free. The code is open source and accessible on github. <br>
+      <span style="color: orange">ANY LUCRATIVE USE IS STRICTLY PROHIBITED, PLEASE RESPECT OUR CHOICE.</span>
+
+    concept: |
+      Mawaqit offers you a new way to track and manage prayer times, indeed we offer
+      an end-to-end system that provides mosque managers with an online tool available 24/24h allowing them
+      manage schedules, news and many other features.
+      The faithful benefit from a mobile application which allows them to consult the exact timetables
+      and not approximate of their favorite mosque, as well as news and other features such as the
+      search for mosque by geolocation.
+      We have made reliability and quality our main values.
+      Our ambition is clear: to build the best service for our mosques through technology and design.
+      Any mosque added to our system requires extensive moderation. We suspend any mosque that does not respect our rules
+      in order to maintain a reliable service for the community.
 
     feature1: Display of prayer times in several languages. 2 choices of calculation, automatic or by annual calendar
     feature2: A visual and sound signal to announce the adhan and the iqama
