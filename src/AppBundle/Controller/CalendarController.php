@@ -36,7 +36,7 @@ class CalendarController extends Controller
 
         $fileName = $mosque->getSlug() . ".pdf";
         $cachedFile = $this->getParameter("kernel.root_dir") . "/../docker/data/calendar/$fileName";
-        $mosqueUpdated = $mosque->getUpdated()->format("Y-m-d");
+        $mosqueUpdated = $mosque->getUpdated()->format("Ymdhi");
         $headers = [
             'Content-Disposition' => 'inline; filename="' . $fileName . '"',
             'Content-Type' => 'application/pdf'
@@ -44,7 +44,7 @@ class CalendarController extends Controller
 
         // if the file is previously saved we serve it
         if (is_file($cachedFile)) {
-            $fileDate = date("Y-m-d", filemtime($cachedFile));
+            $fileDate = date("Ymdhi", filemtime($cachedFile));
             if ($mosqueUpdated < $fileDate) {
                 return new BinaryFileResponse($cachedFile, Response::HTTP_OK, $headers);
             }
