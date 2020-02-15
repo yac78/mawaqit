@@ -5,6 +5,7 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Mosque;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Swift_Mailer;
 use Twig\Environment;
 
@@ -31,63 +32,89 @@ class UserService
      */
     private $twig;
 
-    public function __construct(Swift_Mailer $mailer, EntityManager $em, Environment $twig, $emailFrom)
-    {
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    public function __construct(
+        Swift_Mailer $mailer,
+        EntityManager $em,
+        Environment $twig,
+        PaginatorInterface $paginator,
+        $emailFrom
+    ) {
         $this->mailer = $mailer;
         $this->em = $em;
         $this->emailFrom = $emailFrom;
         $this->twig = $twig;
+        $this->paginator = $paginator;
     }
 
     /**
-     * @param $data
+     * @param array $data
      *
+     * @throws \Swift_RfcComplianceException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    function sendEmailToAllUsers($data)
+    function sendEmailToAllUsers(array $data)
     {
         $subject = $data["subject"];
 
         $body = $this->twig->render("email_templates/communication.html.twig", ['content' => $data["content"]]);
 
-        $result = $this->em->createQueryBuilder()
+        $query = $this->em->createQueryBuilder()
             ->from(User::class, "u")
-            ->select("u.email")
-            ->getQuery()
-            ->getScalarResult();
+            ->distinct(true)
+            ->select("u.email");
 
-        $emails = array_column($result, "email");
-
-        $message = $this->mailer->createMessage();
-        $message->setSubject($subject)
-            ->setTo($this->emailFrom[0])
-            ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
-            ->setBody($body, 'text/html');
-
-        $tmp = [];
-        $i = 0;
-        $patternProvider = new \Swift_Mime_Grammar();
-        foreach ($emails as $email) {
-
-            if (!preg_match('/^'.$patternProvider->getDefinition('addr-spec').'$/D', $email)) {
-                continue;
-            }
-
-            $i++;
-            $tmp[] = $email;
-            if ($i === 100) {
-                $message->setBcc($tmp);
-                $this->mailer->send($message);
-                $i = 0;
-                $tmp = [];
-            }
+        if ($data["isApiUser"] === true) {
+            $query->andWhere('u.apiAccessToken is not null');
         }
 
-        if (!empty($tmp)) {
-            $message->setBcc($tmp);
-            $this->mailer->send($message);
+        if ($data["country"] !== null || $data["hasMosque"] === true) {
+            $query->innerJoin('u.mosques', 'm');
+        }
+
+        if ($data["country"] !== null) {
+            $query->andWhere('m.country = :country')
+                ->setParameter(':country', $data["country"]);
+        }
+
+        if ($data["hasMosque"] === true) {
+            $query->andWhere('m.type = :type')
+                ->setParameter(':type', Mosque::TYPE_MOSQUE);
+        }
+
+        $offset = 1;
+        $pagination = $this->paginator->paginate($query, $offset, 100);
+
+        for ($offset = 1; $offset <= $pagination->getPageCount(); $offset++) {
+            $result = $this->paginator->paginate($query, $offset, 100)->getItems();
+            $emails = array_column($result, "email");
+
+            $message = $this->mailer->createMessage();
+            $message->setSubject($subject)
+                ->setTo($this->emailFrom[0])
+                ->setFrom([$this->emailFrom[0] => $this->emailFrom[1]])
+                ->setBody($body, 'text/html');
+
+            $patternProvider = new \Swift_Mime_Grammar();
+            $tmp = [];
+            foreach ($emails as $email) {
+                if (!preg_match('/^' . $patternProvider->getDefinition('addr-spec') . '$/D', $email)) {
+                    continue;
+                }
+                $tmp[] = $email;
+            }
+
+            if (!empty($tmp)) {
+                $message->setBcc($tmp);
+                $this->mailer->send($message);
+            }
+
         }
     }
 

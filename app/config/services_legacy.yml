@@ -74,6 +74,7 @@ services:
             - "@swiftmailer.mailer.file"
             - "@doctrine.orm.entity_manager"
             - "@twig"
+            - "@knp_paginator"
             - ["%no_reply_address%", "%name%"]
 
     app.tools_service:

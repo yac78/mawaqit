@@ -1,18 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% include 'partial/flash_msg.html.twig' %}
     <div class="col-md-8">
-        {% include 'partial/flash_msg.html.twig' %}
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_row(form._token) }}
-        {{ form_row(form.subject) }}
-        {{ form_row(form.content) }}
-        <br>
-        {{ form_widget(form.send) }}
-        {{ form_end(form) }}
+        {{ form(form) }}
     </div>
-
     {{ tinymce_init() }}
-
 {% endblock %}

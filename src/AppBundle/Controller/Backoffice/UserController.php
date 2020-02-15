@@ -2,16 +2,11 @@
 
 namespace AppBundle\Controller\Backoffice;
 
-use AppBundle\Entity\User;
-use AppBundle\Form\EmailType;
-use AppBundle\Form\UserSearchType;
-use AppBundle\Form\UserType;
+use AppBundle\Form\UserEmailType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/backoffice/superadmin/user")
@@ -26,7 +21,7 @@ class UserController extends Controller
     public function sendEmailAction(Request $request)
     {
 
-        $form = $this->createForm(EmailType::class);
+        $form = $this->createForm(UserEmailType::class);
 
         $form->handleRequest($request);
 
