@@ -240,7 +240,7 @@ mosque:
     SCHOOL: مواقيت %city% - مدرسة
     STORE: مواقيت %city% - محل تجاري
     ASSOCIATION: مواقيت %city% - جمعية
-    MUSALLA:  مواقيت %city% - مصلّى
+    MUSALLA:  مواقيت %city% - قاعة الصلاة
   typeExplanation: |
     تحذير: هذا النوع من التثبيت ليس مخصصًا للمساجد ، بل يقتصر على استخدام محدود
       <ul>
