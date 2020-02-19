@@ -70,10 +70,7 @@ setInterval(function () {
 }, 3 * 60000);
 
 setInterval(function () {
-    let date = new Date();
-    let time = addZero(date.getHours()) + ':' + addZero(date.getMinutes());
-    let options = {weekday: "short", year: "2-digit", month: "2-digit", day: "2-digit"};
-    let stringDate = date.toLocaleDateString('fr-FR', options).firstCapitalize();
-    $(".date").text(stringDate);
-    $(".time").text(time);
+    let date = dateTime.getCurrentDate(locale, "short", "2-digit", "2-digit", "2-digit").firstCapitalize();
+    $(".date").text(date);
+    $(".time").text(dateTime.getCurrentTime());
 }, 1000);

@@ -5,8 +5,9 @@
     direction: ltr;
     display: flex;
     align-items: center;
-    height: 15vh;
+    height: 10vh;
     font-size: 6vh;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .textSlide > div {

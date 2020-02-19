@@ -255,57 +255,57 @@
             <div class="wait"></div>
         </div>
     </div>
+</div>
 
-    <!-- footer container -->
-    <footer>
-        {% if mosque.flashMessage and mosque.flashMessage.available %}
-            <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
-                <div class="{{ mosque.flashMessage.orientation }}"
-                   style="color:{{ mosque.flashMessage.color }};
-                           width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
-                           --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
-                >
-                    {{ mosque.flashMessage.content }}
-                </div>
+
+<!-- footer container -->
+<footer>
+    {% if mosque.flashMessage and mosque.flashMessage.available %}
+        <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
+            <div class="{{ mosque.flashMessage.orientation }}"
+                 style="color:{{ mosque.flashMessage.color }};
+                         width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
+                         --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
+            >
+                {{ mosque.flashMessage.content }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="info {{ mosque.flashMessage and mosque.flashMessage.available ? 'hidden' : '' }}">
+        {% if mosque.configuration.footer %}
+            <div class="assosciation">
+                {{ mosque.associationName }}
+                {% if mosque.phone %}
+                    &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
+                {% endif %}
+                &nbsp;&nbsp;{{ mosque.rib }}
             </div>
         {% endif %}
 
-        <div class="info {{ mosque.flashMessage and mosque.flashMessage.available ? 'hidden' : '' }}">
+        <div class="store">
             {% if mosque.configuration.footer %}
-                <div class="assosciation">
-                    {{ mosque.associationName }}
-                    {% if mosque.phone %}
-                        &nbsp;<i class="glyphicon glyphicon-phone"></i> {{ mosque.phone }}
-                    {% endif %}
-                    &nbsp;&nbsp;{{ mosque.rib }}
-                </div>
+                <div id="qrcode" data-url="{{ site }}/app/store-url"></div>
             {% endif %}
-
-            <div class="store">
+            <div>
                 {% if mosque.configuration.footer %}
-                    <div id="qrcode" data-url="{{ site }}/app/store-url"></div>
+                    <img src="{{ asset('bundles/app/prayer-times/img/appstore.svg') }}">
+                    <img src="{{ asset('bundles/app/prayer-times/img/playstore.svg') }}">
                 {% endif %}
-                <div>
-                    {% if mosque.configuration.footer %}
-                        <img src="{{ asset('bundles/app/prayer-times/img/appstore.svg') }}">
-                        <img src="{{ asset('bundles/app/prayer-times/img/playstore.svg') }}">
-                    {% endif %}
 
-                    <div id="mosque-id">{{ isLocal() ? 'Mawaqit' : 'ID ' ~ mosque.id }}</div>
-                </div>
+                <div id="mosque-id">{{ isLocal() ? 'Mawaqit' : 'ID ' ~ mosque.id }}</div>
             </div>
-
-            <div class="support">
-                <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a
-                        href="{{ site }}">{{ site }}</a>
-            </div>
-
-            <div class="version">v{{ version }}</div>
-
         </div>
-    </footer>
 
-</div>
+        <div class="support">
+            <span>{{ 'developed_by'|trans }}</span>&nbsp;&nbsp;<i class="glyphicon glyphicon-link"></i> <a
+                    href="{{ site }}">{{ site }}</a>
+        </div>
+
+        <div class="version">v{{ version }}</div>
+
+    </div>
+</footer>
 
 {% if isLocal() and not mosque.synchronized %}
     <div class="text-left modal show" id="sync-modal" role="dialog" style="color: #000000">

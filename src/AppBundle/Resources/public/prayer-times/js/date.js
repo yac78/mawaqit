@@ -83,13 +83,13 @@ var dateTime = {
      * get current gregorian date
      * @returns {String}
      */
-    getCurrentDate: function (locale) {
+    getCurrentDate: function (locale, weekday = "long", year = "numeric", month = "short", day = "numeric") {
         var date = new Date();
-        var options = {weekday: "long", year: "numeric", month: "short", day: "numeric"}
+        var options = {weekday: weekday, year: year, month: month, day: day};
 
         if (locale.startsWith("ar")) {
             options = {month: "short"};
-            return addZero(date.getDate())  + ' ' + date.toLocaleDateString(locale, options) + ' ' + date.getFullYear();
+            return addZero(date.getDate()) + ' ' + date.toLocaleDateString(locale, options) + ' ' + date.getFullYear();
         }
 
         try {

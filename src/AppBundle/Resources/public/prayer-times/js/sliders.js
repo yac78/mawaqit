@@ -185,14 +185,18 @@ var messageInfoSlider = {
 };
 
 var flashMessage = {
-    show: function () {
+    show: function (hideInfo = true) {
         if ($("footer .textSlide").length > 0) {
             $("footer .textSlide").removeClass("hidden");
-            $("footer .info").addClass("hidden");
+            if (hideInfo === true) {
+                $("footer .info").addClass("hidden");
+            }
         }
     },
-    hide: function () {
+    hide: function (showInfo = true) {
         $("footer .textSlide").addClass("hidden");
-        $("footer .info").removeClass("hidden");
+        if (showInfo === true) {
+            $("footer .info").removeClass("hidden");
+        }
     },
 };

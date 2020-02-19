@@ -74,7 +74,7 @@ var prayer = {
                     }
                 }
             });
-         }, prayer.oneMinute * 2);
+        }, prayer.oneMinute * 2);
     },
     /**
      * load prayer times
@@ -548,25 +548,28 @@ var prayer = {
             fixFontSize('.jumua-dhikr-reminder');
             $(".main").fadeOut(500, function () {
                 $(".jumua-dhikr-reminder").fadeIn(500);
+                flashMessage.hide(false);
             });
         },
         hideReminder: function () {
             $(".jumua-dhikr-reminder").fadeOut(500, function () {
                 $(".main").fadeIn(500, function () {
-                    messageInfoSlider.get();
+                    messageInfoSlider.run();
+                    flashMessage.show(false);
                 });
             });
         },
         showBlackScreen: function () {
             $(".main").fadeOut(500, function () {
                 $("#black-screen").fadeIn(500);
+                flashMessage.hide(false);
             });
-
         },
         hideBlackScreen: function () {
             $("#black-screen").fadeOut(500, function () {
                 $(".main").fadeIn(500, function () {
-                    messageInfoSlider.get();
+                    messageInfoSlider.run();
+                    flashMessage.show(false);
                 });
             });
         }
@@ -682,7 +685,7 @@ var prayer = {
     },
     duaAfterAdhan: {
         showAdhanDua: function () {
-            if (!prayer.isMosque && prayer.confData.azanVoiceEnabled === true ){
+            if (!prayer.isMosque && prayer.confData.azanVoiceEnabled === true) {
                 prayer.playSound("duaa-after-adhan.mp3");
             }
 

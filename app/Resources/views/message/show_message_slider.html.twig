@@ -65,11 +65,13 @@
 <script>
     var lastUpdated = {{ mosque.updated.timestamp }};
     var timeToDisplayMessage = {{ mosque.configuration.timeToDisplayMessage }};
+    var locale = '{{ app.request.locale }}-{{ mosque.country }}';
 </script>
 
 {% javascripts
     '@AppBundle/Resources/public/jquery/js/jquery-1.12.4.min.js'
     '@AppBundle/Resources/public/js/tools.js'
+    '@AppBundle/Resources/public/prayer-times/js/date.js'
     '@AppBundle/Resources/public/js/full_message_slider.js'
     '@AppBundle/Resources/public/prayer-times/js/fullscreen.js' %}
     <script src="{{ asset_url }}"></script>
