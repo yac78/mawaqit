@@ -40,7 +40,7 @@ var douaaSlider = {
         }
 
         if (prayer.confData.duaAfterPrayerEnabled) {
-            $("#black-screen, .main").hide();
+            $("#black-screen, .main, footer").hide();
             $(".adhkar-after-prayer").show();
             douaaSlider.setFontSize();
 
@@ -51,7 +51,7 @@ var douaaSlider = {
             setTimeout(function () {
                 clearInterval(douaaInterval);
                 $(".adhkar-after-prayer").fadeOut(500, function () {
-                    $(".main").fadeIn(500);
+                    $(".main, footer").fadeIn(500);
                 });
 
                 // show messages if exist after 10 sec after duaa
@@ -62,7 +62,7 @@ var douaaSlider = {
             }, douaaSlider.getTimeForShow());
         } else {
             $("#black-screen").fadeOut(500, function () {
-                $(".main").fadeIn(500);
+                $(".main, footer").fadeIn(500);
             });
             setTimeout(function () {
                 // no douaa, show messages if exist after 2 min after prayer
