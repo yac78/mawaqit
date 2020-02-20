@@ -57,7 +57,7 @@ var prayer = {
             return;
         }
 
-        var remote = $("#main").data("remote");
+        var remote = $(".main").data("remote");
         setInterval(function () {
             $.ajax({
                 url: remote + "?lastUpdatedDate=" + lastUpdated,
@@ -347,11 +347,11 @@ var prayer = {
             }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
         },
         stopFlashing: function (iqamaFlashInterval) {
-            $(".iqama, footer").fadeOut(500, function () {
+            $(".iqama").fadeOut(500, function () {
                 if (prayer.confData.blackScreenWhenPraying && !isMobile) {
                     $("#black-screen").fadeIn(500);
                 } else {
-                    $(".main, footer").fadeIn(500);
+                    $(".main").fadeIn(500);
                 }
             });
             clearInterval(iqamaFlashInterval);
@@ -546,30 +546,26 @@ var prayer = {
         },
         showReminder: function () {
             fixFontSize('.jumua-dhikr-reminder');
-            $(".main, footer").fadeOut(500, function () {
+            $(".main").fadeOut(500, function () {
                 $(".jumua-dhikr-reminder").fadeIn(500);
-                flashMessage.hide(false);
             });
         },
         hideReminder: function () {
             $(".jumua-dhikr-reminder").fadeOut(500, function () {
-                $(".main, footer").fadeIn(500, function () {
+                $(".main").fadeIn(500, function () {
                     messageInfoSlider.run();
-                    flashMessage.show(false);
                 });
             });
         },
         showBlackScreen: function () {
-            $(".main, footer").fadeOut(500, function () {
+            $(".main").fadeOut(500, function () {
                 $("#black-screen").fadeIn(500);
-                flashMessage.hide(false);
             });
         },
         hideBlackScreen: function () {
             $("#black-screen").fadeOut(500, function () {
-                $(".main, footer").fadeIn(500, function () {
+                $(".main").fadeIn(500, function () {
                     messageInfoSlider.run();
-                    flashMessage.show(false);
                 });
             });
         }

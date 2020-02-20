@@ -40,7 +40,7 @@ var douaaSlider = {
         }
 
         if (prayer.confData.duaAfterPrayerEnabled) {
-            $("#black-screen, .main, footer").hide();
+            $("#black-screen, .main").hide();
             $(".adhkar-after-prayer").show();
             douaaSlider.setFontSize();
 
@@ -51,7 +51,7 @@ var douaaSlider = {
             setTimeout(function () {
                 clearInterval(douaaInterval);
                 $(".adhkar-after-prayer").fadeOut(500, function () {
-                    $(".main, footer").fadeIn(500);
+                    $(".main").fadeIn(500);
                 });
 
                 // show messages if exist after 10 sec after duaa
@@ -62,7 +62,7 @@ var douaaSlider = {
             }, douaaSlider.getTimeForShow());
         } else {
             $("#black-screen").fadeOut(500, function () {
-                $(".main, footer").fadeIn(500);
+                $(".main").fadeIn(500);
             });
             setTimeout(function () {
                 // no douaa, show messages if exist after 2 min after prayer
@@ -125,7 +125,7 @@ var messageInfoSlider = {
      *  run message slider
      */
     run: function () {
-        if (!$(".main").is(":visible")) {
+        if (!$(".sub-main").is(":visible")) {
             return;
         }
         var nbSlides = $('.message-slider li').length;
@@ -144,7 +144,7 @@ var messageInfoSlider = {
         //save html slider
         messageInfoSlider.sliderHtmlContent = $('.message-slider .messageContent').html();
 
-        $(".main").fadeOut(500, function () {
+        $(".sub-main").fadeOut(500, function () {
             $(".message-slider").fadeIn(500);
             messageInfoSlider.setFontSize();
         });
@@ -158,7 +158,7 @@ var messageInfoSlider = {
         setTimeout(function () {
             clearInterval(interval);
             $(".message-slider").fadeOut(1000, function () {
-                $(".main").fadeIn(1000);
+                $(".sub-main").fadeIn(1000);
             });
             messageInfoSlider.messageInfoIsShowing = false;
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
@@ -185,18 +185,14 @@ var messageInfoSlider = {
 };
 
 var flashMessage = {
-    show: function (hideInfo = true) {
+    show: function () {
         if ($("footer .textSlide").length > 0) {
             $("footer .textSlide").removeClass("hidden");
-            if (hideInfo === true) {
-                $("footer .info").addClass("hidden");
-            }
+            $("footer .info").addClass("hidden");
         }
     },
-    hide: function (showInfo = true) {
+    hide: function () {
         $("footer .textSlide").addClass("hidden");
-        if (showInfo === true) {
-            $("footer .info").removeClass("hidden");
-        }
+        $("footer .info").removeClass("hidden");
     },
 };
