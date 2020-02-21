@@ -79,8 +79,6 @@ class MosqueController extends Controller
             'locale',
             'status',
             'url',
-            'configurationAllowed',
-            'actionsAllowed',
             'flashMessage',
             'messages',
         ]);

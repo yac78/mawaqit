@@ -52,7 +52,7 @@ class MosqueValidator extends ConstraintValidator
         }
 
         // validate justificatory
-        if (!$this->authorizationChecker->isGranted("ROLE_ADMIN") && $mosque->isMosque() && !$mosque->isValidated()) {
+        if (!$this->authorizationChecker->isGranted("ROLE_ADMIN") && $mosque->isMosque() && !$mosque->isEditAllowed()) {
             if (!$mosque->getJustificatoryfile()) {
                 $this->context->buildViolation($constraint->justificatoryMandatory)->addViolation();
             }

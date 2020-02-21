@@ -100,7 +100,7 @@ class MosqueType extends AbstractType
 
         $isAdmin = $this->securityChecker->isGranted('ROLE_ADMIN');
         $disabled = !$isAdmin && $mosque->isValidated();
-        $uploadRequired = !$isAdmin && $mosque->isMosque() && !$mosque->isValidated();
+        $uploadRequired = !$isAdmin && $mosque->isMosque() && !$mosque->isEditAllowed();
 
         $typeOptions = [
             'required' => true,
@@ -166,10 +166,10 @@ class MosqueType extends AbstractType
                 ]
             ])
             ->add('latitude', NumberType::class, [
-                'disabled' => $disabled,
+                'disabled' => $mosque->isEditAllowed(),
             ])
             ->add('longitude', NumberType::class, [
-                'disabled' => $disabled,
+                'disabled' => $mosque->isEditAllowed(),
             ])
             ->add('city', null, [
                 'label' => 'city',

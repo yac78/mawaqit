@@ -728,8 +728,8 @@ var prayer = {
         var time, timeWithoutSec;
         var timeEl = $(".currentTime");
         var timeShortEl = $(".currentTimeShort");
-        time = dateTime.getCurrentTime(true);
-        timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
+        time = dateTime.getCurrentTime();
+        timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime(false));
         timeEl.html(prayer.formatTime(time));
         timeShortEl.html(timeWithoutSec);
     },

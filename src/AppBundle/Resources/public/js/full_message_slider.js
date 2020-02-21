@@ -72,5 +72,12 @@ setInterval(function () {
 setInterval(function () {
     let date = dateTime.getCurrentDate(locale, "short", "2-digit", "2-digit", "2-digit").firstCapitalize();
     $(".date").text(date);
-    $(".time").text(dateTime.getCurrentTime());
+    $(".time").text(dateTime.getCurrentTime(false));
 }, 1000);
+
+setInterval(function () {
+    let date = new Date();
+    if (date.getHours() === 2) {
+        reloadIfConnected();
+    }
+}, 3600000);

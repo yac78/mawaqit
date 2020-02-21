@@ -6,6 +6,7 @@ use AppBundle\Entity\Mosque;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/messages")
@@ -19,6 +20,10 @@ class MessageController extends Controller
      */
     public function indexAction(Mosque $mosque)
     {
+        if (!$mosque->isAccessible()) {
+            throw new NotFoundHttpException();
+        }
+
         return $this->render("message/show_message_slider.html.twig", ['mosque' => $mosque]);
     }
 

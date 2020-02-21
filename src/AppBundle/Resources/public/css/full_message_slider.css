@@ -41,7 +41,7 @@ footer .datetime > div {
 }
 
 footer .datetime > div .time {
-    color: greenyellow;
+    color: #ffc10d;
     font-size: 5vh;
 }
 

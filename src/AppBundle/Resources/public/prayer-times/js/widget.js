@@ -1,7 +1,7 @@
 $(".date").text(dateTime.getCurrentDate(lang));
-$('.current-time').text(dateTime.getCurrentTime(true));
+$('.current-time').text(dateTime.getCurrentTime());
 setInterval(function () {
-    $('.current-time').text(dateTime.getCurrentTime(true));
+    $('.current-time').text(dateTime.getCurrentTime());
 }, 1000);
 
 const widget = $('.widget');

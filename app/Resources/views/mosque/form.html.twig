@@ -99,7 +99,7 @@
 
     <div class="col-md-6 mosque-block hidden">
         <div class="row">
-            {% if is_granted('ROLE_ADMIN') or mosque is not defined %}
+            {% if is_granted('ROLE_ADMIN') or mosque is not defined or mosque.isCheckingInProgress %}
                 {% if isNotLocal() %}
                     <div class="row">
                         <div class="col-md-12">
@@ -114,7 +114,7 @@
                 </div>
             {% endif %}
 
-            {% if is_granted('ROLE_ADMIN') or mosque is not defined %}
+            {% if is_granted('ROLE_ADMIN') or mosque is not defined or mosque.isCheckingInProgress %}
                 <div class="block-image col-md-4">
                     {{ form_row(form.file2) }}
                 </div>

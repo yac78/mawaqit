@@ -39,7 +39,7 @@ Date.prototype.dst = function () {
 /* ##### others ##### */
 /**
  * add zero to number if < to 10, ex : 1 becomes 01
- * @param {integer} value
+ * @param  value int
  * @returns {String}
  */
 function addZero(value) {

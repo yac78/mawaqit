@@ -59,18 +59,11 @@ var dateTime = {
     },
     /**
      * get current time in hh:ii format or hh:ii:ss format depends on withSeconds arg
-     * @param {bool} withSeconds
-     * @returns {String}
+     * @param  withSeconds bool
+     * @returns string
      */
-    getCurrentTime: function (withSeconds) {
+    getCurrentTime: function (withSeconds= true) {
         var date = new Date();
-
-        // var options = {hour: '2-digit', minute: '2-digit'};
-        // if(withSeconds){
-        //     options.second = '2-digit';
-        // }
-        //
-        // return date.toLocaleString('fr',  options);
 
         var second = addZero(date.getSeconds());
         var time = this.getCurrentHour() + ':' + this.getCurrentMinute();
@@ -81,7 +74,7 @@ var dateTime = {
     },
     /**
      * get current gregorian date
-     * @returns {String}
+     * @returns string
      */
     getCurrentDate: function (locale, weekday = "long", year = "numeric", month = "short", day = "numeric") {
         var date = new Date();

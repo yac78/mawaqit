@@ -61,15 +61,14 @@ class Mosque
     const STARTDATE_CHECKING_PHOTO = "2019-09-28";
     /**
      * @Groups({"elastic"})
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @Groups({"elastic"})
      * @var UuidInterface
      */
     protected $uuid;
+    /**
+     * @Groups({"elastic"})
+     * @var int
+     */
+    private $id;
     /**
      * @Groups({ "elastic"})
      * @var string
@@ -1104,6 +1103,19 @@ class Mosque
         return in_array($this->status, self::ACCESSIBLE_STATUSES);
     }
 
+    public function isValidated()
+    {
+        return in_array($this->status, [
+            self::STATUS_VALIDATED,
+            self::STATUS_WATCHED,
+        ]);
+    }
+
+    public function isCheckingInProgress()
+    {
+        return $this->status === self::STATUS_CHECK;
+    }
+
     public function isConfigurationAllowed()
     {
         if ($this->isValidated()) {
@@ -1120,16 +1132,20 @@ class Mosque
             return true;
         }
         return in_array($this->status, [
+            self::STATUS_CHECK,
             self::STATUS_SUSPENDED,
             self::STATUS_NEW,
         ]);
     }
 
-    public function isValidated()
+    public function isEditAllowed()
     {
+        if ($this->isValidated()) {
+            return true;
+        }
+
         return in_array($this->status, [
-            self::STATUS_VALIDATED,
-            self::STATUS_WATCHED,
+            self::STATUS_CHECK,
         ]);
     }
 

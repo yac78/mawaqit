@@ -188,7 +188,7 @@ class MosqueController extends Controller
     {
 
         $user = $this->getUser();
-        if (!$this->isGranted("ROLE_ADMIN") && ($user !== $mosque->getUser() || !$mosque->isValidated())) {
+        if (!$this->isGranted("ROLE_ADMIN") && ($user !== $mosque->getUser() || !$mosque->isEditAllowed())) {
             throw new AccessDeniedException();
         }
 
