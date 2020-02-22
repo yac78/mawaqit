@@ -385,7 +385,7 @@ var prayer = {
     /**
      * Check every minute if athan time is ok
      * if adhan time is ok we flash time
-     * after one minute we stop flashing and show adhan douaa
+     * after 2 minutes we stop flashing and show adhan douaa
      */
     adhan: {
         isFlashing: false,
@@ -521,7 +521,7 @@ var prayer = {
                 setInterval(function () {
                     var date = new Date();
                     if (date.getDay() === 5) {
-                        var currentTime = dateTime.getCurrentTime(false);
+                        var currentTime = dateTime.getCurrentTime();
                         // show reminder
                         if (currentTime === prayer.getJumuaTime()) {
 
@@ -728,8 +728,8 @@ var prayer = {
         var time, timeWithoutSec;
         var timeEl = $(".currentTime");
         var timeShortEl = $(".currentTimeShort");
-        time = dateTime.getCurrentTime();
-        timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime(false));
+        time = dateTime.getCurrentTime(true);
+        timeWithoutSec = prayer.formatTime(dateTime.getCurrentTime());
         timeEl.html(prayer.formatTime(time));
         timeShortEl.html(timeWithoutSec);
     },

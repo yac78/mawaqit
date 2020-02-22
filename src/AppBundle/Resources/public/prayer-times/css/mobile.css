@@ -1,5 +1,4 @@
 body {
-    padding: 10px 5px;
     line-height: 1.2;
     position: relative;
     background-size: cover;
@@ -64,6 +63,8 @@ body {
     display: flex;
     justify-content: space-between;
     line-height: 3vh;
+    width: 90%;
+    margin: auto;
 }
 
 .prayers > div > div{

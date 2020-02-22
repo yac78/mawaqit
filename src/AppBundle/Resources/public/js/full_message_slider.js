@@ -72,7 +72,7 @@ setInterval(function () {
 setInterval(function () {
     let date = dateTime.getCurrentDate(locale, "short", "2-digit", "2-digit", "2-digit").firstCapitalize();
     $(".date").text(date);
-    $(".time").text(dateTime.getCurrentTime(false));
+    $(".time").text(dateTime.getCurrentTime());
 }, 1000);
 
 setInterval(function () {

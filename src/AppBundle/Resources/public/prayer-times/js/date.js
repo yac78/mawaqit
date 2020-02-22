@@ -62,7 +62,7 @@ var dateTime = {
      * @param  withSeconds bool
      * @returns string
      */
-    getCurrentTime: function (withSeconds= true) {
+    getCurrentTime: function (withSeconds= false) {
         var date = new Date();
 
         var second = addZero(date.getSeconds());
