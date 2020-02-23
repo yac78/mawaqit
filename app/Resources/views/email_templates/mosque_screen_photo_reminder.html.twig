@@ -8,7 +8,7 @@
             Vous avez récemment ajouté la mosquée "<b>{{ mosque.title }}</b>" sur {{ site }}.<br>
             Sauf erreur de notre part vous n'avez toujours pas ajouté la photo de l'écran mawaqit de votre mosquée. <br>
             Pour rappel, il vous reste {{ mosque.daysBeforeRemove }} jours pour ajouter la photo, passé ce délai, la mosquée sera automatiquement
-            supprimée.
+            suspendue.
         </p>
 
         <hr>
@@ -18,7 +18,7 @@
             You have recently added the mosque "<b>{{ mosque.title }}</b>" on {{ site }}.<br>
             Unless we made a mistake, you still have not added the photo of the mawaqit screen of your mosque.
             As a reminder, you have {{ mosque.daysBeforeRemove }} days left to add the photo, after this time the mosque will be automatically
-            removed.
+            suspended.
         </p>
     </div>
 
@@ -28,7 +28,6 @@
         <p>
             السلام عليكم ورحمة الله وبركاته
         </p>
-
         <p>
             تذكير
             3/{{ mosque.emailScreenPhotoReminder }} <br>
@@ -41,7 +40,7 @@
             للتذكير ، بقي لك
             {{ mosque.daysBeforeRemove }}
             يوما
-            لإضافة الصورة ، بعد هذا الوقت سيتم حذف المسجد أتوماتيكيا.
+            لإضافة الصورة ، بعد هذا الوقت سيتم تعطيل المسجد أتوماتيكيا.
         </p>
     </div>
 
