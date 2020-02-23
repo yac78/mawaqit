@@ -57,26 +57,26 @@
 
 <!-- message info slider -->
 <div class="message-slider slider ltr display-none">
-
     <div class="currentTimeShort"></div>
     <div class="messageContent">
         <ul>
             {% for message in mosque.enabledMessages(true) %}
                 <li>
-                    <div>
-                        {% if message.image %}
-                            <img src="{{ vich_uploader_asset(message, 'file') }}"/>
-                        {% elseif message.content %}
-                            {% if message.title %}
-                                <div class="title"> {{ message.title }} </div>
-                            {% endif %}
-                            <div class="content"> {{ message.content|raw }} </div>
-                        {% endif %}
-                    </div>
+                    {% if message.image %}
+                        <img src="{{ vich_uploader_asset(message, 'file') }}"/>
+                    {% elseif message.content %}
+                        <div class="text">
+                            <div>
+                                {% if message.title %}
+                                    <div class="title"> {{ message.title }} </div>
+                                {% endif %}
+                                <div class="content"> {{ message.content|raw }} </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
-
     </div>
 </div>
 

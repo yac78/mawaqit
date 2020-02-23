@@ -29,16 +29,18 @@
     <ul>
         {% for message in mosque.enabledMessages(true) %}
             <li>
-                <div>
-                    {% if message.image %}
-                        <img src="{{ vich_uploader_asset(message, 'file') }}"/>
-                    {% elseif message.content %}
-                        {% if message.title %}
-                            <div class="title"> {{ message.title }} </div>
-                        {% endif %}
-                        <div class="content"> {{ message.content|raw }} </div>
-                    {% endif %}
-                </div>
+                {% if message.image %}
+                    <img src="{{ vich_uploader_asset(message, 'file') }}"/>
+                {% elseif message.content %}
+                    <div class="text">
+                        <div>
+                            {% if message.title %}
+                                <div class="title"> {{ message.title }} </div>
+                            {% endif %}
+                            <div class="content"> {{ message.content|raw }} </div>
+                        </div>
+                    </div>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
@@ -53,9 +55,9 @@
     {% if mosque.flashMessage and mosque.flashMessage.available %}
         <div class="textSlide {{ mosque.flashMessage.orientation == 'rtl' ? 'textSlide-rtl' }}">
             <div class="{{ mosque.flashMessage.orientation }}"
-               style="color:{{ mosque.flashMessage.color }};
-                       width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
-                       --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
+                 style="color:{{ mosque.flashMessage.color }};
+                         width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
+                         --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
             >
                 {{ mosque.flashMessage.content }}
             </div>

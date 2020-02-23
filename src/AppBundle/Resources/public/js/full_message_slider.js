@@ -39,7 +39,7 @@ var messageInfoSlider = {
         });
     },
     setFontSize: function () {
-        $('#slider li > div').each(function (i, slide) {
+        $('#slider li .text > div').each(function (i, slide) {
             var $slide = $(slide);
             if ($slide.find("img").length > 0) {
                 return true;
