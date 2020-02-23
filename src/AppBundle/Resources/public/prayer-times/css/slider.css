@@ -17,9 +17,7 @@
     float: left;
     margin: auto;
     word-break: break-word;
-    height: 85vh;
-    display: flex;
-    align-items: center;
+    height: 90vh;
 }
 
 .adhkar-after-prayer .title {
@@ -49,17 +47,15 @@
     color: #f0ad4e;
 }
 
-.message-slider li {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
 .slider img {
     width: 100%;
     height: 100vh;
 }
 
-.slider div {
+.slider li > div {
     width: 100%;
+}
+
+.slider .content {
+    padding: 5px;
 }

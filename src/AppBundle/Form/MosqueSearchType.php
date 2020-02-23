@@ -70,7 +70,6 @@ class MosqueSearchType extends AbstractType
             ->add('city', ChoiceType::class, [
                 'validation_groups' => false,
                 'label' => false,
-                'placeholder' => 'mosque_search.form.city.placeholder'
             ])
             ->add('save', SubmitType::class, [
                 'label' => false,
