@@ -19,6 +19,10 @@ security:
         local:
             host: ^mawaqit.local$
             security: false
+        http_basic:
+            pattern: /data
+            http_basic:
+                provider: fos_userbundle
         api:
             stateless: true
             pattern: ^/api

@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
@@ -41,12 +43,33 @@ class MosqueController extends Controller
 
     /**
      * Get all data of mosque
-     * @Route("/{id}")
+     * @Route("/{id}/data")
      * @Method("GET")
      *
      * @param Mosque $mosque
      *
      * @return Response
+     */
+    public function data2Action(Mosque $mosque)
+    {
+        if ($mosque->getUser() !== $this->getUser()) {
+            throw new HttpException(Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->forward("AppBundle:API\Mosque:data", [
+            "id" => $mosque->getId(),
+        ]);
+    }
+
+    /**
+     * Get all data of mosque
+     * @Route("/{id}", name="mosque_data")
+     * @Method("GET")
+     *
+     * @param Mosque $mosque
+     *
+     * @return Response
+     * @deprecated to be removed after uploding the new image system
      */
     public function dataAction(Mosque $mosque)
     {
@@ -66,6 +89,7 @@ class MosqueController extends Controller
             'image3',
             'localisation',
             'justificatory',
+            'location',
             "conf",
             "enabledMessages",
             "comments",

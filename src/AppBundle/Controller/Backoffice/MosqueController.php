@@ -12,13 +12,12 @@ use AppBundle\Form\MosqueType;
 use AppBundle\Service\Calendar;
 use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\TransferException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -118,7 +117,9 @@ class MosqueController extends Controller
 
             if ($request->request->has('validate')) {
                 try {
-                    $res = $client->get(sprintf("mosque/%s", $form->getData()['id']));
+                    $res = $client->get(sprintf("/api/1.0.0/mosque/%s/data", $form->getData()['id']),
+                        ['auth' => [$form->getData()['login'], $form->getData()['password']]]
+                    );
                     $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
                     $serializer = new Serializer([new DateTimeNormalizer(), new ArrayDenormalizer(), $normalizer],
                         [new JsonEncoder()]);
@@ -127,8 +128,16 @@ class MosqueController extends Controller
                     $mosque->setSynchronized(true);
                 } catch (ConnectException $e) {
                     $this->addFlash("danger", "mosqueScreen.noInternetConnection");
-                } catch (TransferException $e) {
-                    $this->addFlash("danger", "mosqueScreen.noMosqueFound");
+                } catch (ClientException $e) {
+                    if ($e->getResponse()->getStatusCode() === Response::HTTP_UNAUTHORIZED) {
+                        $this->addFlash("danger", "mosqueScreen.badCredentials");
+                    } elseif ($e->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN) {
+                        $this->addFlash("danger", "mosqueScreen.wrongMosque");
+                    } elseif ($e->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND) {
+                        $this->addFlash("danger", "mosqueScreen.noMosqueFound");
+                    } else {
+                        $this->addFlash("danger", "mosqueScreen.otherPb");
+                    }
                 } catch (\Exception $e) {
                     $this->addFlash("danger", "mosqueScreen.otherPb");
                 }

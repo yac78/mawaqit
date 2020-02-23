@@ -51,7 +51,7 @@ class CalendarController extends Controller
         }
 
         try {
-            $response = $this->get("csa_guzzle.client.pdfshift")->post("convert", [
+            $response = $this->get("csa_guzzle.client.pdfshift")->post("/v2/convert", [
                 'form_params' => [
                     "source" => $this->generateUrl("calendar", ["id" => $mosque->getId()],
                         UrlGeneratorInterface::ABSOLUTE_URL)

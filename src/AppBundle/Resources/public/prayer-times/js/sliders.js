@@ -145,7 +145,7 @@ var messageInfoSlider = {
         messageInfoSlider.sliderHtmlContent = $('.message-slider .messageContent').html();
 
         $(".sub-main").fadeOut(500, function () {
-            $(".message-slider").fadeIn(500);
+            $(".message-slider").fadeIn(0);
             messageInfoSlider.setFontSize();
         });
 
@@ -157,8 +157,8 @@ var messageInfoSlider = {
 
         setTimeout(function () {
             clearInterval(interval);
-            $(".message-slider").fadeOut(1000, function () {
-                $(".sub-main").fadeIn(1000);
+            $(".message-slider").fadeOut(0, function () {
+                $(".sub-main").fadeIn(500);
             });
             messageInfoSlider.messageInfoIsShowing = false;
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
@@ -179,7 +179,7 @@ var messageInfoSlider = {
             if ($slide.find("img").length > 0) {
                 return true;
             }
-            fixFontSize(slide);
+            fixFontSize(slide, 200);
         });
     }
 };

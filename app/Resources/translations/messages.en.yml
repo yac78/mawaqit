@@ -1,12 +1,20 @@
 mosqueScreen:
   syncYourMosque: Sync your mosque
   anInternetConnectionRequired: An internet connection is required
-  nb: This step allows you to recover data entered on mawaqit.net to your raspberry
-  fillId: Please enter the id of your online mosque
+  nb: |
+    This step allows you to recover data entered on mawaqit.net, if it's not done yet,
+    please add your mosque on mawaqit.net
+  fillId: ID of your online mosque
+  fillIdHelp: You can find it next to the name of the mosque by logging into your mawaqit.net account
   noInternetConnection: Please check you internet connection
   noMosqueFound: No mosque found with this ID
+  badCredentials: Login or password incorrect
+  wrongMosque: This ID does not correspond to a mosque linked to your account
   otherPb: A problem has been occured, please try later
-
+  login: Email login
+  loginHelp: Your connection email on mawaqit.net
+  password: Password
+  passwordHelp:  Your connection password on mawaqit.net
 
 home:
   menu:

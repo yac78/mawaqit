@@ -46,7 +46,7 @@ body {
     box-shadow: 0px 0px 31px 4px rgba(255, 255, 255, 0.7);
     background-color: rgba(0, 0, 0, 0.5);
     margin: auto;
-    width: 98%;
+    width: 99%;
     padding: 10px;
     display: -ms-flexbox;
     display: -moz-flex;
@@ -200,7 +200,7 @@ small {
     font-size: 20px;
     color: #adadad;
     position: fixed;
-    bottom: 10px;
+    bottom: 5px;
     right: 10px;
 }
 
@@ -212,7 +212,7 @@ small {
 .store {
     direction: ltr;
     position: fixed;
-    bottom: 10px;
+    bottom: 5px;
     left: 10px;
     display: flex;
     justify-content: space-between;
@@ -363,4 +363,24 @@ footer .info {
 
 .top-buttons a {
     color: #777777;
+}
+
+.form-group {
+    position: relative;
+}
+
+.keyboardInputInitiator {
+    position: absolute;
+    top: 24px;
+    right: 5px;
+}
+
+body.rtl .keyboardInputInitiator {
+    top: 26px;
+    left: 5px;
+    right: auto;
+}
+
+.modal{
+    z-index: 0;
 }

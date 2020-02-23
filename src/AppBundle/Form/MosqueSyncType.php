@@ -2,9 +2,10 @@
 
 namespace AppBundle\Form;
 
-
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,10 +15,24 @@ class MosqueSyncType extends AbstractType
     {
         $builder
             ->add('id', IntegerType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => "mosqueScreen.fillId",
                 'attr' => [
-                    'style' => "width: 200px",
+                    'help' => "mosqueScreen.fillIdHelp",
+                    'class' => 'keyboardInput'
+                ]
+            ])->add('login', EmailType::class, [
+                'required' => true,
+                'label' => "mosqueScreen.login",
+                'attr' => [
+                    'help' => "mosqueScreen.loginHelp",
+                    'class' => 'keyboardInput'
+                ]
+            ])->add('password', PasswordType::class, [
+                'required' => true,
+                'label' => "mosqueScreen.password",
+                'attr' => [
+                    'help' => "mosqueScreen.passwordHelp",
                     'class' => 'keyboardInput'
                 ]
             ]);
@@ -26,14 +41,6 @@ class MosqueSyncType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'allow_extra_fields' => true
-        ));
-    }
-
-    public function getBlockPrefix()
-    {
-        return '';
     }
 
 }

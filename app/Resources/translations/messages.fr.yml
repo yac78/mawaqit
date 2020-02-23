@@ -1,11 +1,20 @@
 mosqueScreen:
   syncYourMosque: Syncroniser votre mosquée
   anInternetConnectionRequired: Une connexion internet est requise
-  nb: Cette étape vous permet de récupérer les données saisies sur mawaqit.net vers votre raspberry
-  fillId: Veuillez saisir l'id de votre mosquée en ligne
+  nb: |
+    Cette étape vous permet de récupérer les données saisies sur mawaqit.net, si ce n'est pas encore fait,
+    merci d'ajouter votre mosquée sur le site mawaqit.net
+  fillId: ID de votre mosquée en ligne
+  fillIdHelp: Vous pouvez le retrouver à coté du nom de la mosquée en se connectant à votre compte mawaqit.net
   noInternetConnection: Veuillez vérifier votre connexion intenet
-  noMosqueFound: Aucune mosquée trouvée avec l'ID saisi
+  noMosqueFound: Aucune mosquée trouvée avec cet ID
+  badCredentials: Email ou mot de passe incorrecte
+  wrongMosque: Cet ID ne correspond pas à une mosquée liée à votre compte
   otherPb: Un problème est surevnu, veuillez réessayer plus tard
+  login: Email de connexion
+  loginHelp: Votre email de connexion sur mawaqit.net
+  password: Mot de passe
+  passwordHelp: Votre mot de passe de connexion sur mawaqit.net
 
 home:
   menu:

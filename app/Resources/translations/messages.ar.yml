@@ -1,11 +1,20 @@
-#mosqueScreen:
-#  syncYourMosque: مزامنة المسجد
-#  anInternetConnectionRequired: مطلوب اتصال بالإنترنت
-#  nb: هذه الخطوة تسمح لك باستعادة البيانات المدخلة على الموقع mawaqit.net إلى الراسبيري
-#  fillId: الرجاء إدخال ID المسجد الخاص بك على الإنترنت
-#  noInternetConnection: Veuillez vérifier votre connexion intenet
-#  noMosqueFound: Aucune mosquée trouvée avec l'id saisi
-#  otherPb: A problem has been occured, please try later
+mosqueScreen:
+  syncYourMosque: مزامنة المسجد
+  anInternetConnectionRequired: مطلوب اتصال بالإنترنت
+  nb: |
+    هذه الخطوة تسمح لك باستعادة البيانات المدخلة على الموقع mawaqit.net إذا لم يتم ذلك بعد ،
+    يرجى إضافة مسجدك على mawaqit.net
+  fillId: ID المسجد الخاص بك على الإنترنت
+  fillIdHelp: يمكنك العثور عليه بجوار اسم المسجد في حسابك على mawaqit.net
+  noInternetConnection: الرجاء التحقق من اتصالك بالانترنت
+  noMosqueFound: لم يتم العثور على مسجد بهذا المعرف
+  badCredentials: البريد الإلكتروني أو كلمة السر غير صحيحة
+  wrongMosque: هذا المعرف لا يتوافق مع مسجد مرتبط بحسابك
+  otherPb: حدثت مشكلة ، يرجى المحاولة لاحقًا
+  login: البريد الإلكتروني
+  loginHelp: بريدك الإلكتروني على mawaqit.net
+  password: كلمه السر
+  passwordHelp:  كلمة السر الخاصة بك على mawaqit.net
 
 home:
   menu:

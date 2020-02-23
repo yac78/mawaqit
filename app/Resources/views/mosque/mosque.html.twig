@@ -39,7 +39,7 @@
 
     {% include "partial/background_style.html.twig" %}
 </head>
-<body class="text-center">
+<body class="text-center {{ app.request.locale == 'ar' ? 'rtl' : '' }}">
 
 <div id="spinner"></div>
 
@@ -266,8 +266,7 @@
                 <div class="{{ mosque.flashMessage.orientation }}"
                      style="color:{{ mosque.flashMessage.color }};
                              width: {{ (mosque.flashMessage.content|length/120)*5000 }}px;
-                             --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;"
-                >
+                             --translatex:{{ (100 - (mosque.flashMessage.content|length/220)*120) }}%;">
                     {{ mosque.flashMessage.content }}
                 </div>
             </div>
@@ -310,7 +309,7 @@
 </div>
 
 {% if isLocal() and not mosque.synchronized %}
-    <div class="text-left modal show" id="sync-modal" role="dialog" style="color: #000000">
+    <div class="modal show text-{{ app.request.locale == 'ar' ? 'right' : 'left' }}" role="dialog" style="color: #000000">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form action="{{ path('mosque_sync', {id: mosque.id}) }}" method="post">
@@ -321,16 +320,13 @@
                         {% include 'partial/flash_msg.html.twig' %}
                         <h4 class="text-warning">{{ 'mosqueScreen.anInternetConnectionRequired'|trans }}</h4>
                         <p class="text-muted">{{ 'mosqueScreen.nb'|trans }}</p>
-                        <div class="form-group">
-                            {{ form_row(form.id) }}
-                            {{ form_widget(form._token) }}
+                        <div style="width: 400px">
+                            {{ form_widget(form) }}
                         </div>
                     </div>
                     <br>
                     <div class="modal-footer">
                         <button type="submit" name="validate" class="btn btn-primary">{{ 'validate'|trans }}</button>
-                        <button type="submit" name="later" class="btn btn-default"
-                                data-dismiss="modal">{{ 'later'|trans }}</button>
                     </div>
                 </form>
             </div>
