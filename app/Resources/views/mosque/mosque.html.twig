@@ -113,10 +113,11 @@
                 </div>
 
                 {% if isLocal() %}
-                    <div class="settings" title="{{ 'form.configure.action'|trans }}">
-                        <a href="{{ path('mosque_index', {id: mosque.id}) }}"> <i
-                                    class="glyphicon glyphicon-cog"></i></a>
-                    </div>
+                    {% if mosque.synchronized %}
+                        <div class="settings" title="{{ 'form.configure.action'|trans }}">
+                            <a href="{{ path('mosque_index', {id: mosque.id}) }}"> <i class="glyphicon glyphicon-cog"></i></a>
+                        </div>
+                    {% endif %}
 
                     <div class="languages">
                         <div class="btn-group">
