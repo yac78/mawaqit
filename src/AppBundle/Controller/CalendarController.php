@@ -4,12 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mosque;
 use AppBundle\Service\PrayerTime;
+use GuzzleHttp\Exception\ClientException;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -61,11 +61,19 @@ class CalendarController extends Controller
             file_put_contents($cachedFile, $response->getBody()->getContents());
 
             return new Response($response->getBody(), Response::HTTP_OK, $headers);
+        } catch (ClientException $e) {
+            if ($e->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN) {
+                $json = json_decode($e->getResponse()->getBody()->getContents());
+                if ($json->identifier === "A116") {
+                    $this->addFlash("danger", "PDF download quota exeeded, please retry tomorrow");
+                }
+            }
         } catch (\Exception $e) {
-            $logger->error($e->getMessage());
+            $this->addFlash("danger", "An error has occured, please retry later");
+            $logger->critical($e->getMessage());
         }
 
-        throw new NotFoundHttpException();
+        return $this->redirectToRoute("mosque_index");
     }
 
     /**
