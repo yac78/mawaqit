@@ -291,12 +291,12 @@ mosque:
       cela peut prendre quelques jours, vous receverez un mail vous infomant la validation de votre mosquée.
     CHECK: |
       Nous avons besoin d'informations complémentaires afin de valider votre mosquée,
-      veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
+      veuillez nous contacter au plus par WhatsApp au 0033612972467
     SUSPENDED: |
       Nous avons suspendu votre mosquée, veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
     DUPLICATED: |
       Il parait que votre mosquée est en double, nous avons besoin d'informations complémentaires afin de valider votre mosquée,
-      veuillez nous contacter au plus vite en répondant au mail qui vous a été envoyé
+      veuillez nous contacter au plus vite par WhatsApp au 0033612972467
     SCREEN_PHOTO_ADDED: |
       Nous procédons à la vérification de la photo de l'écran mawaqit
   suspensionReason:
