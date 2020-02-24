@@ -1,6 +1,7 @@
 swagger: '2.0'
 info:
   description: |
+      DEPRECTAED PLEASE USE THE 2.0 VERSION
       Our API  need authentication by token, please feel free to contact us by email to obtain your access token.<br> 
       <strong>NB: We authorise our API only for non commercial use.</strong>
   version: 1.0.0
