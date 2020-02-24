@@ -53,7 +53,8 @@ class MosqueController extends Controller
     public function prayTimesAction(Request $request, Mosque $mosque)
     {
         return $this->forward("AppBundle:API\MosqueV2:prayTimes", [
-            "uuid" => $mosque->getUuid()
+            "uuid" => $mosque->getUuid(),
+            "request" => $request,
         ]);
     }
 
