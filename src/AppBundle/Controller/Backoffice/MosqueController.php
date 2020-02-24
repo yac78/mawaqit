@@ -117,7 +117,7 @@ class MosqueController extends Controller
 
             if ($request->request->has('validate')) {
                 try {
-                    $res = $client->get(sprintf("/api/1.0.0/mosque/%s/data", $form->getData()['id']),
+                    $res = $client->get(sprintf("/api/2.0/mosque/%s/data", $form->getData()['id']),
                         ['auth' => [$form->getData()['login'], $form->getData()['password']]]
                     );
                     $normalizer = new ObjectNormalizer(null, null, null, new ReflectionExtractor());
