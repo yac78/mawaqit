@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
- * @Route("/api/1.0.0/hadith")
+ * @Route("/api/{version}/hadith", requirements={"version"="1.0.0|2.0"})
  */
 class HadithController extends Controller
 {

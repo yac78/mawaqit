@@ -10,8 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -20,12 +18,12 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * @Route("/api/1.0.0/mosque", options={"i18n"="false"})
+ * @Route("/api", options={"i18n"="false"})
  */
 class MosqueController extends Controller
 {
     /**
-     * @Route("/search")
+     * @Route("/1.0.0/mosque/search")
      * @Method("GET")
      * @param Request $request
      *
@@ -42,8 +40,26 @@ class MosqueController extends Controller
     }
 
     /**
+     * Get pray times and other info of the mosque by ID
+     * @Route("/1.0.0/mosque/{id}/prayer-times")
+     * @Cache(public=true, maxage="300", smaxage="300", expires="+300 sec")
+     * @Method("GET")
+     *
+     * @param Request $request
+     * @param Mosque  $mosque
+     *
+     * @return Response
+     */
+    public function prayTimesAction(Request $request, Mosque $mosque)
+    {
+        return $this->forward("AppBundle:API\MosqueV2:prayTimes", [
+            "uuid" => $mosque->getUuid()
+        ]);
+    }
+
+    /**
      * Get all data of mosque
-     * @Route("/{id}/data")
+     * @Route("/1.0.0/mosque/{id}/data")
      * @Method("GET")
      *
      * @param Mosque $mosque
@@ -63,7 +79,7 @@ class MosqueController extends Controller
 
     /**
      * Get all data of mosque
-     * @Route("/{id}", name="mosque_data")
+     * @Route("/1.0.0/mosque/{id}", name="mosque_data")
      * @Method("GET")
      *
      * @param Mosque $mosque
@@ -115,40 +131,6 @@ class MosqueController extends Controller
         $mosque->setSite($mosque->getUrl());
         $result = $serializer->serialize($mosque, 'json');
         return new Response($result, Response::HTTP_OK, ['Content-Type' => 'application/json']);
-    }
-
-    /**
-     * Get pray times and other info of the mosque by ID
-     * @Route("/{mosque}/prayer-times")
-     * @Cache(public=true, maxage="300", smaxage="300", expires="+300 sec")
-     * @Method("GET")
-     *
-     * @param Request $request
-     * @param Mosque  $mosque
-     *
-     * @return Response
-     */
-    public function prayTimesAction(Request $request, Mosque $mosque)
-    {
-
-        if (!$mosque->isMosque()) {
-            throw new NotFoundHttpException();
-        }
-
-        if ($request->query->has('updatedAt')) {
-            $updatedAt = $request->query->get('updatedAt');
-            if (!is_numeric($updatedAt)) {
-                throw new BadRequestHttpException();
-            }
-
-            if ($mosque->getUpdated()->getTimestamp() <= $updatedAt) {
-                return new Response(null, Response::HTTP_NOT_MODIFIED);
-            }
-        }
-
-        $calendar = $request->query->has('calendar');
-        $result = $this->get('app.prayer_times')->prayTimes($mosque, $calendar);
-        return new JsonResponse($result);
     }
 
 }
