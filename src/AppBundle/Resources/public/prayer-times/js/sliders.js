@@ -83,11 +83,11 @@ var douaaSlider = {
         var ul = $('.adhkar-after-prayer ul');
         ul.not(':animated').prepend($('li:last-child', ul))
             .css({left: -screenWidth})
-            .animate({left: 0}, 1000);
+            .animate({left: 0}, 2000);
     },
     setFontSize: function () {
-        $('.slider li > div').each(function (i, slide) {
-            fixFontSize(slide, 180);
+        $('.duaa li > div').each(function (i, slide) {
+            fixFontSize(slide, ".slider li");
         });
     }
 };
@@ -168,18 +168,14 @@ var messageInfoSlider = {
         var screenWidth = $(window).width();
         $('.message-slider ul').animate({
             left: -screenWidth
-        }, 1000, function () {
+        }, 2000, function () {
             $('.message-slider li:first-child').appendTo('.message-slider ul');
             $('.message-slider ul').css('left', '');
         });
     },
     setFontSize: function () {
-        $('.message-slider li .text > div').each(function (i, slide) {
-            var $slide = $(slide);
-            if ($slide.find("img").length > 0) {
-                return true;
-            }
-            fixFontSize(slide, 200);
+        $('.message-slider .text > div').each(function (i, slide) {
+            fixFontSize(slide, ".message-slider li");
         });
     }
 };

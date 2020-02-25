@@ -99,17 +99,14 @@ function exitFullscreen() {
 /**
  * Set font size to contain all screen
  * @param elem
+ * @param parent
  * @param marge
  */
-function fixFontSize(elem, marge) {
-    if(typeof marge === "undefined")
-    {
-        marge = 0;
-    }
-    var $body = $('body');
-    var $elem = $(elem);
+function fixFontSize(elem, parent = "body", marge = 30) {
+    let $parent = $(parent);
+    let $elem = $(elem);
     $elem.css('font-size', "100px");
-    while ($elem.height() > $body.height() - parseInt(marge)) {
+    while ($elem.height() > $parent.height() - parseInt(marge)) {
         $elem.css('font-size', (parseInt($elem.css('font-size')) - 5) + "px");
     }
 }

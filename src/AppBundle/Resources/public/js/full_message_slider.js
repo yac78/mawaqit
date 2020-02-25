@@ -33,18 +33,14 @@ var messageInfoSlider = {
         var screenWidth = $(window).width();
         $('#slider ul').animate({
             left: -screenWidth
-        }, 1000, function () {
+        }, 2000, function () {
             $('#slider li:first-child').appendTo('#slider ul');
             $('#slider ul').css('left', '');
         });
     },
     setFontSize: function () {
-        $('#slider li .text > div').each(function (i, slide) {
-            var $slide = $(slide);
-            if ($slide.find("img").length > 0) {
-                return true;
-            }
-            fixFontSize(slide, 100);
+        $('#slider .text > div').each(function (i, slide) {
+            fixFontSize(slide, "#slider .text",100);
         });
     }
 };
