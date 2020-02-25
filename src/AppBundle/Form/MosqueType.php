@@ -166,10 +166,10 @@ class MosqueType extends AbstractType
                 ]
             ])
             ->add('latitude', NumberType::class, [
-                'disabled' => $mosque->isEditAllowed(),
+                'disabled' => !$isAdmin && $mosque->isEditAllowed(),
             ])
             ->add('longitude', NumberType::class, [
-                'disabled' => $mosque->isEditAllowed(),
+                'disabled' => !$isAdmin && $mosque->isEditAllowed(),
             ])
             ->add('city', null, [
                 'label' => 'city',

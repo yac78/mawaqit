@@ -60,7 +60,7 @@ class MosqueController extends Controller
 
     /**
      * Get all data of mosque
-     * @Route("/2.0/mosque/{id}/data")
+     * @Route("/{version}/mosque/{id}/data", requirements={"version"="1.0.0|2.0"}, defaults={"version":"2.0"})
      * @Method("GET")
      *
      * @param Mosque $mosque
