@@ -40,7 +40,7 @@ var messageInfoSlider = {
     },
     setFontSize: function () {
         $('#slider .text > div').each(function (i, slide) {
-            fixFontSize(slide, "#slider .text",100);
+            fixFontSize(slide, 100);
         });
     }
 };

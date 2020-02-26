@@ -87,7 +87,7 @@ var douaaSlider = {
     },
     setFontSize: function () {
         $('.duaa li > div').each(function (i, slide) {
-            fixFontSize(slide, ".slider li");
+            fixFontSize(slide);
         });
     }
 };
@@ -175,7 +175,7 @@ var messageInfoSlider = {
     },
     setFontSize: function () {
         $('.message-slider .text > div').each(function (i, slide) {
-            fixFontSize(slide, ".message-slider li");
+            fixFontSize(slide);
         });
     }
 };
