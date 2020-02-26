@@ -27,7 +27,7 @@ services:
       - ./docker/data/logs/nginx:/var/log/nginx
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - 8080:80
+      - 2053:80
 
   mawaqit_mysql:
     container_name: mawaqit_mysql
