@@ -21,11 +21,14 @@
                 <div style="font-size: 200%">
                     {{ ('error' ~ status_code) |trans }}
                 </div>
+                <div style="font-size: 200%">
+                    {{ url(app.request.attributes.get('_route'), {}, true) }}
+                </div>
                 <div style="margin-top: 50px">
-                    <a href="{{ path('homepage') }}" class="btn btn-primary">
+                    <a href="{{ site }}" target="_blank" class="btn btn-primary">
                         <span class="glyphicon glyphicon-home"></span> {{ 'goHome'|trans }}
                     </a>
-                    <a href="{{ path('homepage') }}#contact" class="btn btn-default">
+                    <a href="{{ site }}#contact" target="_blank" class="btn btn-default">
                         <span class="glyphicon glyphicon-envelope"></span> {{ 'contactUs'|trans }}
                     </a>
                 </div>

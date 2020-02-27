@@ -8,12 +8,11 @@ var randomHadith = {
     init: function () {
         if (prayer.confData.randomHadithEnabled) {
             setInterval(function () {
-                if (randomHadith.isAllowed()) {
-                    randomHadith.get();
-                    setTimeout(function () {
-                        randomHadith.hide();
-                    }, prayer.oneSecond * 90);
-                }
+                randomHadith.get();
+                setTimeout(function () {
+                    randomHadith.hide();
+                }, prayer.oneSecond * 90);
+
             }, 4 * prayer.oneMinute);
         }
     },
@@ -50,6 +49,10 @@ var randomHadith = {
     get: function () {
         // start hadith after 5 seconds to bypass a display bug
         setTimeout(function () {
+            if (!randomHadith.isAllowed()) {
+                return;
+            }
+
             if ($(".main").is(":visible") && !messageInfoSlider.messageInfoIsShowing) {
                 var $randomHadithEl = $(".random-hadith");
                 $.ajax({
