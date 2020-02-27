@@ -22,7 +22,7 @@
                     {{ ('error' ~ status_code) |trans }}
                 </div>
                 <div style="font-size: 200%">
-                    {{ url(app.request.attributes.get('_route'), {}, true) }}
+                    {{ app.request.host }}/{{ app.request.basePath }}
                 </div>
                 <div style="margin-top: 50px">
                     <a href="{{ site }}" target="_blank" class="btn btn-primary">
