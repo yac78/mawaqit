@@ -9,13 +9,6 @@ dockerContainer=mawaqit_php
 
 cd $repoDir
 
-if [ "$target" == "prod" ]; then
-    # Sync DB if prod deploy
-    echo "Sync DB"
-    $baseDir/tools/dbSync.sh
-fi
-
-
 # maintenance
 if [ "$target" == "prod" ]; then
     touch $repoDir/docker/data/maintenance
