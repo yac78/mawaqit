@@ -61,7 +61,7 @@
     <div class="messageContent">
         <ul>
             {% for message in mosque.enabledMessages(true) %}
-                <li>
+                <li data-position="{{ message.position }}">
                     {% if message.image %}
                         <img src="{{ vich_uploader_asset(message, 'file') }}"/>
                     {% elseif message.content %}

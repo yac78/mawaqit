@@ -161,6 +161,12 @@ var messageInfoSlider = {
                 $(".sub-main").fadeIn(500);
             });
             messageInfoSlider.messageInfoIsShowing = false;
+
+            // sort message
+            $(".message-slider li").sort(function (a, b) {
+                return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
+            }).appendTo('.message-slider ul');
+
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
     },
 
