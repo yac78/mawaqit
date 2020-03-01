@@ -76,18 +76,18 @@ var randomHadith = {
     },
     show: function (callback) {
         prayer.nextPrayerCountdown();
-        $(".top-content").fadeOut(1000, function () {
+        $(".top-content").fadeOut(0, function () {
             $("footer").hide();
-            $(".random-hadith").fadeIn(300);
+            $(".random-hadith").fadeIn(500);
             if (typeof callback !== 'undefined') {
                 callback();
             }
         });
     },
     hide: function () {
-        $(".random-hadith").fadeOut(1000, function () {
+        $(".random-hadith").fadeOut(0, function () {
             $("footer").show();
-            $(".top-content").fadeIn(300);
+            $(".top-content").fadeIn(500);
         });
     },
     setFontSize: function () {

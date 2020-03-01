@@ -72,3 +72,7 @@ li .text {
     display: flex;
     align-items: center;
 }
+
+.duaa li > div {
+    font-size: 90px;
+}

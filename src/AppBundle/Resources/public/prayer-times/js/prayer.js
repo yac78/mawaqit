@@ -347,7 +347,7 @@ var prayer = {
             }, prayer.confData.duaAfterPrayerShowTimes[currentPrayerIndex] * prayer.oneMinute);
         },
         stopFlashing: function (iqamaFlashInterval) {
-            $(".iqama").fadeOut(500, function () {
+            $(".iqama").fadeOut(0, function () {
                 if (prayer.confData.blackScreenWhenPraying && !isMobile) {
                     $("#black-screen").fadeIn(500);
                 } else {
@@ -546,24 +546,24 @@ var prayer = {
         },
         showReminder: function () {
             fixFontSize('.jumua-dhikr-reminder');
-            $(".main").fadeOut(500, function () {
+            $(".main").fadeOut(0, function () {
                 $(".jumua-dhikr-reminder").fadeIn(500);
             });
         },
         hideReminder: function () {
-            $(".jumua-dhikr-reminder").fadeOut(500, function () {
+            $(".jumua-dhikr-reminder").fadeOut(0, function () {
                 $(".main").fadeIn(500, function () {
                     messageInfoSlider.run();
                 });
             });
         },
         showBlackScreen: function () {
-            $(".main").fadeOut(500, function () {
+            $(".main").fadeOut(0, function () {
                 $("#black-screen").fadeIn(500);
             });
         },
         hideBlackScreen: function () {
-            $("#black-screen").fadeOut(500, function () {
+            $("#black-screen").fadeOut(0, function () {
                 $(".main").fadeIn(500, function () {
                     messageInfoSlider.run();
                 });
@@ -601,7 +601,7 @@ var prayer = {
         if (correctFontSize === true) {
             fixFontSize('.' + layerToShow);
         }
-        $('.' + layerToHide).fadeOut(500, function () {
+        $('.' + layerToHide).fadeOut(0, function () {
             $('.' + layerToShow).fadeIn(500);
         });
     },
@@ -915,7 +915,7 @@ var prayer = {
     },
     hideSpinner: function () {
         setTimeout(function () {
-            $("#spinner").fadeOut(500, function () {
+            $("#spinner").fadeOut(0, function () {
                 $(".main").fadeIn(100);
             });
         }, 1500);

@@ -50,7 +50,7 @@ var douaaSlider = {
 
             setTimeout(function () {
                 clearInterval(douaaInterval);
-                $(".adhkar-after-prayer").fadeOut(500, function () {
+                $(".adhkar-after-prayer").fadeOut(0, function () {
                     $(".main").fadeIn(500);
                 });
 
@@ -61,7 +61,7 @@ var douaaSlider = {
 
             }, douaaSlider.getTimeForShow());
         } else {
-            $("#black-screen").fadeOut(500, function () {
+            $("#black-screen").fadeOut(0, function () {
                 $(".main").fadeIn(500);
             });
             setTimeout(function () {
@@ -83,7 +83,7 @@ var douaaSlider = {
         var ul = $('.adhkar-after-prayer ul');
         ul.not(':animated').prepend($('li:last-child', ul))
             .css({left: -screenWidth})
-            .animate({left: 0}, 2000);
+            .animate({left: 0}, 200);
     },
     setFontSize: function () {
         $('.duaa li > div').each(function (i, slide) {
@@ -144,11 +144,9 @@ var messageInfoSlider = {
         //save html slider
         messageInfoSlider.sliderHtmlContent = $('.message-slider .messageContent').html();
 
-        $(".sub-main").fadeOut(500, function () {
-            $(".message-slider").fadeIn(0);
-            messageInfoSlider.setFontSize();
-        });
-
+        $(".sub-main").hide();
+        $(".message-slider").show();
+        messageInfoSlider.setFontSize();
         messageInfoSlider.messageInfoIsShowing = true;
 
         var interval = setInterval(function () {
@@ -164,7 +162,7 @@ var messageInfoSlider = {
 
             // sort message
             $(".message-slider li").sort(function (a, b) {
-                return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
+                return ($(a).data('position')) < ($(b).data('position')) ? -1 : 1;
             }).appendTo('.message-slider ul');
 
         }, (nbSlides * prayer.confData.timeToDisplayMessage * 1000) - 1000);
@@ -174,7 +172,7 @@ var messageInfoSlider = {
         var screenWidth = $(window).width();
         $('.message-slider ul').animate({
             left: -screenWidth
-        }, 2000, function () {
+        }, 200, function () {
             $('.message-slider li:first-child').appendTo('.message-slider ul');
             $('.message-slider ul').css('left', '');
         });

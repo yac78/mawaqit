@@ -21,7 +21,7 @@ String.prototype.hashCode = function () {
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
-}
+};
 
 
 /* ##### time ##### */
@@ -29,11 +29,11 @@ Date.prototype.stdTimezoneOffset = function () {
     var jan = new Date(this.getFullYear(), 0, 1);
     var jul = new Date(this.getFullYear(), 6, 1);
     return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
-}
+};
 
 Date.prototype.dst = function () {
     return this.getTimezoneOffset() < this.stdTimezoneOffset();
-}
+};
 
 
 /* ##### others ##### */
@@ -55,6 +55,7 @@ function addZero(value) {
 function reloadIfConnected() {
     $.ajax({
         url: window.location.href,
+        method: 'HEAD',
         success: function () {
             location.reload();
         }
@@ -99,13 +100,12 @@ function exitFullscreen() {
 /**
  * Set font size to contain all screen
  * @param elem
- * @param parent
  * @param marge
  */
 function fixFontSize(elem, marge = 30) {
     let $elem = $(elem);
     let $parent = $elem.parent();
-    $elem.css('font-size', "100px");
+    $elem.css('font-size', "90px");
     while ($elem.height() > $parent.height() - parseInt(marge)) {
         $elem.css('font-size', (parseInt($elem.css('font-size')) - 5) + "px");
     }

@@ -1,10 +1,10 @@
 /* global prayer */
 
 prayer.hideSpinner =  function () {
-    $("#spinner").fadeOut(500, function () {
+    $("#spinner").fadeOut(0, function () {
         $(".main").fadeIn(500);
     });
-}
+};
 
 if(!prayer.confData.iqamaEnabled){
     $(".wait").css("visibility","hidden");

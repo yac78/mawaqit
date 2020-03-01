@@ -85,6 +85,10 @@ li .text {
     align-items: center;
 }
 
+li .text > div {
+    font-size: 90px;
+}
+
 .title {
     color: #f0ad4e;
 }

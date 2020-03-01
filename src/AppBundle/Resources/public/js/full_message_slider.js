@@ -33,7 +33,7 @@ var messageInfoSlider = {
         var screenWidth = $(window).width();
         $('#slider ul').animate({
             left: -screenWidth
-        }, 2000, function () {
+        }, 200, function () {
             $('#slider li:first-child').appendTo('#slider ul');
             $('#slider ul').css('left', '');
         });
@@ -52,14 +52,7 @@ setInterval(function () {
         url: $("#slider").data("remote") + "?lastUpdatedDate=" + lastUpdated,
         success: function (resp) {
             if (resp.hasBeenUpdated === true) {
-                // check if screen page is ok (http status = 200 )
-                $.ajax({
-                    url: location.href,
-                    method: 'HEAD',
-                    success: function (resp) {
-                        location.reload();
-                    }
-                });
+                reloadIfConnected();
             }
         }
     });
