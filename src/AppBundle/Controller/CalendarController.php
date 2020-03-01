@@ -34,9 +34,10 @@ class CalendarController extends Controller
     public function calendarPdfAction(Mosque $mosque, LoggerInterface $logger)
     {
 
-        $fileName = $mosque->getSlug() . ".pdf";
+        $md5 = md5(json_encode($mosque->getConf()->getCalendar()));
+        $fileName = $mosque->getSlug() . "-$md5.pdf";
         $cachedFile = $this->getParameter("kernel.root_dir") . "/../docker/data/calendar/$fileName";
-        $mosqueUpdated = $mosque->getUpdated()->format("Ymdhi");
+
         $headers = [
             'Content-Disposition' => 'inline; filename="' . $fileName . '"',
             'Content-Type' => 'application/pdf'
@@ -44,8 +45,7 @@ class CalendarController extends Controller
 
         // if the file is previously saved we serve it
         if (is_file($cachedFile)) {
-            $fileDate = date("Ymdhi", filemtime($cachedFile));
-            if ($mosqueUpdated < $fileDate) {
+            if ($fileName === basename($cachedFile)) {
                 return new BinaryFileResponse($cachedFile, Response::HTTP_OK, $headers);
             }
         }
@@ -65,7 +65,7 @@ class CalendarController extends Controller
             if ($e->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN) {
                 $json = json_decode($e->getResponse()->getBody()->getContents());
                 if ($json->identifier === "A116") {
-                    $this->addFlash("danger", "PDF download quota exeeded, please retry tomorrow");
+                    $this->addFlash("danger", "PDF download quota exeeded, please retry later");
                 }
             }
         } catch (\Exception $e) {
