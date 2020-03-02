@@ -62,6 +62,7 @@ class CalendarController extends Controller
 
             return new Response($response->getBody(), Response::HTTP_OK, $headers);
         } catch (ClientException $e) {
+            $logger->critical($e->getMessage());
             if ($e->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN) {
                 $json = json_decode($e->getResponse()->getBody()->getContents());
                 if ($json->identifier === "A116") {
