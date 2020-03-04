@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\API;
+namespace AppBundle\Controller\API\V2;
 
 use AppBundle\Entity\Configuration;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
- * @Route("/api/{version}/hadith", requirements={"version"="1.0.0|2.0"}, defaults={"version":"2.0"})
+ * @Route("/api/2.0/hadith", options={"i18n"="false"})
  */
 class HadithController extends Controller
 {
 
     /**
-     * @Route("/random", name="random_hadith", options={"i18n"="false"})
+     * @Route("/random", name="random_hadith")
      * @Cache(public=true, maxage="7200", smaxage="7200", expires="+7200 sec")
      * @Method("GET")
      * @param Request $request

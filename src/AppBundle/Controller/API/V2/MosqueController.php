@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\API;
+namespace AppBundle\Controller\API\V2;
 
 use AppBundle\Entity\Mosque;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,13 +11,18 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @Route("/api/2.0/mosque", options={"i18n"="false"})
  */
-class MosqueV2Controller extends Controller
+class MosqueController extends Controller
 {
     /**
      * @Route("/search")
@@ -69,6 +74,66 @@ class MosqueV2Controller extends Controller
         $calendar = $request->query->has('calendar');
         $result = $this->get('app.prayer_times')->prayTimes($mosque, $calendar);
         return new JsonResponse($result);
+    }
+
+    /**
+     * Get all data of mosque
+     * @Route("/{id}/data")
+     * @Method("GET")
+     *
+     * @param Mosque $mosque
+     *
+     * @return Response
+     */
+    public function dataAction(Mosque $mosque)
+    {
+        if ($mosque->getUser() !== $this->getUser()) {
+            throw new HttpException(Response::HTTP_FORBIDDEN);
+        }
+
+        if (!$mosque->isValidated()) {
+            throw new NotFoundHttpException();
+        }
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes([
+            'user',
+            'id',
+            'uuid',
+            'created',
+            'updated',
+            'image1',
+            'image2',
+            'image3',
+            'localisation',
+            'justificatory',
+            'location',
+            "conf",
+            "enabledMessages",
+            "comments",
+            'nbOfEnabledMessages',
+            'calendarCompleted',
+            'gpsCoordinates',
+            'title',
+            'types',
+            'synchronized',
+            'slug',
+            'locale',
+            'status',
+            'url',
+            'flashMessage',
+            'messages',
+        ]);
+
+        $normalizer->setCircularReferenceHandler(function ($mosque) {
+            return $mosque->getId();
+        });
+
+        $serializer = new Serializer([new DateTimeNormalizer(), $normalizer], [new JsonEncoder()]);
+        $mosque->setSite($mosque->getUrl());
+        $result = $serializer->serialize($mosque, 'json');
+
+        return new Response($result, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
 
 }
