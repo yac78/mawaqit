@@ -49,7 +49,7 @@
                 {% endif %}
             {% endif %}
 
-            {% if isNotLocal() and (is_granted('ROLE_ADMIN') or mosque.new ) %}
+            {% if isNotLocal() and (is_granted('ROLE_ADMIN') or mosque.new or not mosque.mosque) %}
                 <li role="separator" class="divider"></li>
                 <li><a href="#" class="delete-button" data-id="{{ mosque.id }}"><i class="fa fa-trash"></i> {{ 'form.delete.action'|trans }}</a></li>
             {% endif %}

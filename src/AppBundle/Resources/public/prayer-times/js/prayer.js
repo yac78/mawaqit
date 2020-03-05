@@ -932,13 +932,17 @@ var prayer = {
      * Check if we are in praying moment (10 min before afhan and and 19 min after iqamah)
      */
     isPrayingMoment: function () {
-        var isPrayingMoment = false;
-        var date = new Date();
-        var beginDateTime, endDateTime, prayerDateTime;
+        let isPrayingMoment = false;
+        let date = new Date();
+        let beginDateTime, endDateTime, prayerDateTime;
+
         $(prayer.getTimes()).each(function (i, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
-            beginDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() - 10);
-            endDateTime = prayerDateTime.setMinutes(prayerDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 11);
+            beginDateTime = new Date(prayerDateTime.getTime());
+            endDateTime = new Date(prayerDateTime.getTime());
+            beginDateTime.setMinutes(beginDateTime.getMinutes() - 10);
+            endDateTime.setMinutes(endDateTime.getMinutes() + prayer.getWaitingByIndex(i) + 11);
+
             if (date > beginDateTime && date < endDateTime) {
                 isPrayingMoment = true;
                 return false;

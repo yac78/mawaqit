@@ -231,8 +231,17 @@ class MosqueController extends Controller
     public function deleteAction(Mosque $mosque)
     {
         $user = $this->getUser();
-        if (!$this->isGranted("ROLE_ADMIN") && ($user !== $mosque->getUser() || !$mosque->isNew())) {
-            throw new AccessDeniedException;
+
+        if ($mosque->isMosque()) {
+            if (!$this->isGranted("ROLE_ADMIN")) {
+                if ($user !== $mosque->getUser()) {
+                    throw new AccessDeniedException;
+                }
+
+                if (!$mosque->isNew()) {
+                    throw new AccessDeniedException;
+                }
+            }
         }
 
         $em = $this->getDoctrine()->getManager();
