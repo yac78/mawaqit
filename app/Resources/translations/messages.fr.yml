@@ -355,7 +355,7 @@ mosque:
     paymentWebsite:
       label: Site de paiement en ligne
       placeholder: https://paypal.me/mosquee-essunna
-      help: Lien vers le site de paiement en ligne de lamosquée pour les dons
+      help: Lien vers le site de paiement en ligne de la mosquée pour les dons
     addOnMap:
       label: Ajouter sur la carte google
     justificatoryFile:
