@@ -166,14 +166,4 @@ class MosqueController extends Controller
         $hasBeenUpdated = $this->get("app.prayer_times")->mosqueHasBeenUpdated($mosque, $lastUpdatedDate);
         return new JsonResponse(["hasBeenUpdated" => $hasBeenUpdated]);
     }
-
-    /**
-     * get weather of the mosque city
-     * @Route("/{slug}/weather", name="weather")
-     * @ParamConverter("mosque", options={"mapping": {"slug": "slug"}})
-     */
-    public function getTemperatureAjaxAction(Mosque $mosque)
-    {
-        return new JsonResponse($this->get("app.weather_service")->getWeather($mosque));
-    }
 }

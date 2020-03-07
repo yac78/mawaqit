@@ -87,12 +87,13 @@
 <div id="black-screen" class="display-none"></div>
 
 <!-- main screen -->
-<div class="main display-none" data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}">
+<div class="main display-none"
+     data-remote="{{ path('mosque_has_been_updated', {slug: mosque.slug}) }}"
+     data-api-access-token="{{ mawaqitApiAccessToken }}">
     <div class="sub-main">
         <!-- Random hadith container -->
         <div class="random-hadith display-none"
-             data-remote="{{ path('random_hadith', {lang: mosque.configuration.hadithLang}) }}"
-             data-api-access-token="{{ mawaqitApiAccessToken }}">
+             data-remote="{{ path('random_hadith', {lang: mosque.configuration.hadithLang}) }}">
             <div class="text ltr">
                 <div></div>
             </div>
@@ -138,7 +139,7 @@
             <!-- temperature container -->
             {% if mosque.configuration.temperatureEnabled %}
                 <div class="ltr">
-                    <div id="weather" class="hidden ltr" data-remote="{{ path('weather', {slug: mosque.slug}) }}">
+                    <div id="weather" class="hidden ltr" data-remote="{{ path('weather', {uuid: mosque.uuid}) }}">
                         <i style="color: #FFF;"></i> <span></span><sup>°{{ mosque.conf.temperatureUnit }}</sup>
                     </div>
                 </div>
