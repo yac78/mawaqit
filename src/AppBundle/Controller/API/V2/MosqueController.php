@@ -31,7 +31,7 @@ class MosqueController extends Controller
      *
      * @return JsonResponse
      */
-    public function search(Request $request)
+    public function searchAction(Request $request)
     {
         $word = $request->query->get('word');
         $lat = $request->query->get('lat');
@@ -50,7 +50,7 @@ class MosqueController extends Controller
      *
      * @return JsonResponse
      */
-    public function listUUID(Request $request)
+    public function listUUIDAction(Request $request)
     {
         $page = (int)$request->query->get('page', 1);
         $mosques = $this->get('app.mosque_service')->listUUID($page);
@@ -69,7 +69,7 @@ class MosqueController extends Controller
      *
      * @return Response
      */
-    public function prayTimes(Request $request, Mosque $mosque)
+    public function prayTimesAction(Request $request, Mosque $mosque)
     {
 
         if (!$mosque->isMosque()) {
@@ -101,7 +101,7 @@ class MosqueController extends Controller
      *
      * @return Response
      */
-    public function data(Mosque $mosque)
+    public function dataAction(Mosque $mosque)
     {
         if ($mosque->getUser() !== $this->getUser()) {
             throw new HttpException(Response::HTTP_FORBIDDEN);
