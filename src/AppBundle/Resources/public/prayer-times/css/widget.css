@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 3vw;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .current-time {
@@ -52,4 +52,9 @@ body {
 
 .iqama {
     font-size: 3vw;
+}
+
+small {
+    font-size: 3vw;
+    margin-left: 3px;
 }

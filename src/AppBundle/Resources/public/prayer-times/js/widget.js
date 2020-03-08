@@ -1,11 +1,12 @@
 $(".date").text(dateTime.getCurrentDate(lang));
-$('.current-time').text(dateTime.getCurrentTime(true));
+$('.current-time').html(dateTime.formatTime(dateTime.getCurrentTime(true), format));
+
 setInterval(function () {
-    $('.current-time').text(dateTime.getCurrentTime(true));
+    $('.current-time').html(dateTime.formatTime(dateTime.getCurrentTime(true), format));
 }, 1000);
 
 const widget = $('.widget');
-$('iframe').resizable();
+
 $.ajax({
     url: widget.data("remote"),
     headers: {'Api-Access-Token': widget.data("apiAccessToken")},
@@ -14,11 +15,11 @@ $.ajax({
         $(".hijriDate").text(writeIslamicDate(mosque.hijriAdjustment, lang));
 
         // shuruq
-        $('.shuruq .time').text(mosque.shuruq);
+        $('.shuruq .time').html(dateTime.formatTime(mosque.shuruq, format));
 
         // jumua
         if(mosque.jumua) {
-            $('.jumua .time').text(mosque.jumua);
+            $('.jumua .time').html(dateTime.formatTime(mosque.jumua, format));
         }
 
         if(!mosque.jumua){
@@ -27,7 +28,7 @@ $.ajax({
 
         // times
         $.each(mosque.times, function (i, time) {
-            $('.prayers .time').eq(i).text(time);
+            $('.prayers .time').eq(i).html(dateTime.formatTime(time, format));
         });
 
         //iqama
