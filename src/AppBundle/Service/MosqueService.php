@@ -68,6 +68,37 @@ class MosqueService
         $this->logger = $logger;
     }
 
+
+    public function listUUID(int $page, int $size = 20)
+    {
+
+        $query = [
+            "_source" => ["uuid"],
+            "sort" => "id",
+            "size" => $size,
+            "from" => ($page - 1) * $size
+        ];
+
+        try {
+            $uri = sprintf("%s/%s/_search", self::ELASTIC_INDEX, self::ELASTIC_TYPE);
+            $mosques = $this->elasticClient->get($uri, [
+                "json" => $query
+            ]);
+
+            $mosques = json_decode($mosques->getBody()->getContents(), true);
+        } catch (\Exception $e) {
+            $this->logger->error("Elastic: query KO on $uri", [$query, $e->getMessage()]);
+            return [];
+        }
+
+        $result = [];
+        foreach ($mosques["hits"]["hits"] as $hit) {
+            $result[] = $hit["_source"]["uuid"];
+        }
+
+        return $result;
+    }
+
     /**
      * @param string $word
      * @param string $lat
