@@ -794,7 +794,8 @@ var prayer = {
 
         var beginDateTime = prayer.getCurrentDateForPrayerTime(prayer.getJumuaTime());
         var beginTime = beginDateTime.getTime();
-        var endTime = beginDateTime.setMinutes(beginDateTime.getMinutes() + prayer.confData.jumuaTimeout);
+        var endTime = new Date(beginTime);
+        endTime.setMinutes(endTime.getMinutes() + prayer.confData.jumuaTimeout);
 
         if (date.getTime() < beginTime || date.getTime() > endTime) {
             return false;
@@ -935,6 +936,11 @@ var prayer = {
         let isPrayingMoment = false;
         let date = new Date();
         let beginDateTime, endDateTime, prayerDateTime;
+
+        if(prayer.isJumuaMoment())
+        {
+            return true;
+        }
 
         $(prayer.getTimes()).each(function (i, time) {
             prayerDateTime = prayer.getCurrentDateForPrayerTime(time);
