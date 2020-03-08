@@ -98,7 +98,15 @@
                     {% endif %}
                     <td>
                         {{ mosque.name }}<br/>
-
+                        {% if is_granted('ROLE_SUPER_ADMIN') and mosque.isNew and mosque.similar is not empty %}
+                            <div>
+                                Mosquées similaires:
+                                {% for id in mosque.similar %}
+                                    <a href="{{ path('mosque_edit', {id: id}) }}" target="_blank">{{ id }}</a>
+                                    {% if not loop.last %} | {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                         {% if mosque.image1 is not null %}
                             <a href="{{ vich_uploader_asset(mosque, 'file1') }}" target="_blank">
                                 <img src="{{ vich_uploader_asset(mosque, 'file1') | imagine_filter('thumb_100x56') }}"
@@ -223,6 +231,13 @@
                             <h4><strong>{{ mosque.name }}</strong>
                                 <small>ID {{ mosque.id }}</small>
                             </h4>
+                            {% if is_granted('ROLE_SUPER_ADMIN') and mosque.isNew and mosque.similar is not empty %}
+                                Mosquées similaires:
+                                {% for id in mosque.similar %}
+                                    <a href="{{ path('mosque_edit', {id: id}) }}" target="_blank">{{ id }}</a>
+                                    {% if not loop.last %} | {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="col-xs-2">
                             {% include 'partial/mosque_actions.html.twig' %}

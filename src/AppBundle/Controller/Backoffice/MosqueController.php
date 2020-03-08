@@ -60,6 +60,14 @@ class MosqueController extends Controller
         $paginator = $this->get('knp_paginator');
         $mosques = $paginator->paginate($qb, $request->query->getInt('page', 1), 10);
 
+        if ($this->isGranted("ROLE_SUPER_ADMIN")) {
+            foreach ($mosques as $mosque) {
+                if($mosque->isNew()){
+                    $mosque->setSimilar($this->get("app.mosque_service")->getSimilarByLocalization($mosque));
+                }
+            }
+        }
+
         $result = [
             "form" => $form->createView(),
             "mosques" => $mosques,

@@ -282,6 +282,11 @@ class Mosque
      */
     private $emailScreenPhotoReminder;
 
+    /**
+     * @var array
+     */
+    private $similar;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -1603,6 +1608,25 @@ class Mosque
     function getJumua2()
     {
         return $this->getConf()->getJumuaTime2();
+    }
+
+    /**
+     * @return array
+     */
+    public function getSimilar(): array
+    {
+        return $this->similar;
+    }
+
+    /**
+     * @param array $similar
+     *
+     * @return Mosque
+     */
+    public function setSimilar(array $similar): Mosque
+    {
+        $this->similar = $similar;
+        return $this;
     }
 
 }
