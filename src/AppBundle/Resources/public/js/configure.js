@@ -17,7 +17,8 @@ $("#predefined-calendar").autocomplete({
     },
     minLength: 2,
     select: function (event, ui) {
-        window.location.href = $("#predefined-calendar").data("copyPath").replace("-id-", ui.item.id);;
+        window.location.href = $("#predefined-calendar").data("copyPath").replace("-id-", ui.item.id);
+        ;
     }
 });
 
@@ -176,8 +177,7 @@ function processFillMonthPrayerTimes(csv, inputFile) {
         checkAndHilightIncompletedMonths();
         if (error) {
             $(panel).find(".alert-danger").removeClass("hidden");
-        }
-        else {
+        } else {
             $(panel).find(".alert-success").removeClass("hidden");
         }
     } catch (e) {
@@ -314,6 +314,11 @@ function themeIllustrationHandler() {
 
 $("#configuration_theme").bind("change", function (event) {
     themeIllustrationHandler()
+});
+
+$("input[name*='configuration[calendar][1][28]']").bind("change keyup", function (event) {
+    let name = $(this).attr("name").replace('28', '29');
+    $("input[name='" + name + "']").val($(this).val());
 });
 
 dstDisplayHandler();
