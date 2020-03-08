@@ -89,7 +89,7 @@
                 </li>
                 <li>
                     <a class="page-scroll" target="_blank"
-                       href="https://app.swaggerhub.com/apis/ibra/Mawaqit/1.0.0">api</a>
+                       href="https://app.swaggerhub.com/apis/ibra/Mawaqit">api</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="{{ path('homepage') }}#contact">{{ 'home.menu.contactUs'|trans }}</a>
@@ -132,7 +132,8 @@
                 <div class="intro-subheading">{{ 'home.title.header2'|trans }}</div>
                 <div class="intro-lead-in" style="font-size: 2rem">{{ 'home.title.header2_2'|trans }}</div>
 
-                <div class="text-center" style="color: #f9deaf; text-transform: uppercase; font-weight: bold; font-size: 1.5rem">
+                <div class="text-center"
+                     style="color: #f9deaf; text-transform: uppercase; font-weight: bold; font-size: 1.5rem">
                     <div>{{ 'home.title.header3'|trans }}</div>
                     <div>{{ 'home.title.header4'|trans }}</div>
                 </div>
@@ -171,7 +172,7 @@
                                     <select id="whatsapp-select" class="form-control">
                                         <option value="">{{ 'home.text.contactUsSelectNumber'|trans }}</option>
                                         <optgroup label="{{ 'FR'|country(app.request.locale) }}">
-{#                                            <option value="0033651061498">Mohammed</option>#}
+                                            {#<option value="0033651061498">Mohammed</option>#}
                                             <option value="0033629111641">Ibrahim</option>
                                         </optgroup>
                                         <optgroup label="{{ 'DZ'|country(app.request.locale) }}">
@@ -183,6 +184,19 @@
                                         </optgroup>
                                         <optgroup label="{{ 'MA'|country(app.request.locale) }}">
                                             <option value="0033638159980">Yassine</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'DE'|country(app.request.locale) }}">
+                                            <option value="004917664781538">Salahaldeen</option>
+                                            <option value="004917683229377">Abdelatif</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'NL'|country(app.request.locale) }}">
+                                            <option value="0031624203464">Hichem</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'IT'|country(app.request.locale) }}">
+                                            <option value="00393207729274">Youssef</option>
+                                        </optgroup>
+                                        <optgroup label="{{ 'ES'|country(app.request.locale) }}">
+                                            <option value="0034632059111">Khalifa</option>
                                         </optgroup>
                                         <optgroup label="{{ 'home.text.contactUsOtherCountry'|trans }}">
                                             <option value="0033638159980">Yassine</option>
