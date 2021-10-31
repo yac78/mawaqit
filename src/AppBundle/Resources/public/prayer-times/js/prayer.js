@@ -14,7 +14,7 @@ var prayer = {
      * time to wait before hilight next prayer time  (in minutes)
      * @type Number
      */
-    nextPrayerHilightWait: 5,
+    nextPrayerHilightWait: 10,
     /**
      * prayer times
      * @type Array
@@ -144,13 +144,16 @@ var prayer = {
     },
     /**
      * get today prayer times, array of only five prayer times
+     * @param {boolean} afterIsha
      * @returns {Array}
      */
-    getTimes: function () {
+    getTimes: function (afterIsha) {
         var times = this.times;
         times = [times[1], times[3], times[4], times[5], times[6]];
         $.each(times, function (i, time) {
-            times[i] = prayer.dstConvertTimeForCalendarMode(time);
+            if (typeof afterIsha === 'undefined') {
+                times[i] = prayer.dstConvertTimeForCalendarMode(time);
+            }
             if (prayer.confData.prayerTimesFixing[i] && prayer.confData.prayerTimesFixing[i] > times[i]) {
                 times[i] = prayer.confData.prayerTimesFixing[i];
             }
@@ -209,7 +212,7 @@ var prayer = {
     /**
      * +1|-1 hour for time depending DST
      * @param {String} time
-     * @returns {Array}
+     * @returns {String}
      */
     dstConvertTimeForCalendarMode: function (time) {
         if (prayer.confData.calculChoice === "calendar" && dateTime.isLastSundayDst()) {
@@ -275,7 +278,7 @@ var prayer = {
                 prayer.loadTimes();
                 prayer.setTimes();
                 prayer.initNextTimeHilight();
-                prayer.setCustomTime();
+                prayer.setSpecialTimes();
             }
 
         }, prayer.oneMinute);
@@ -301,7 +304,7 @@ var prayer = {
     initAdhanFlash: function () {
         setInterval(function () {
             if (!prayer.adhanIsFlashing) {
-                var currentTime  = dateTime.getCurrentTime()
+                var currentTime = dateTime.getCurrentTime()
                 $(prayer.getTimes()).each(function (currentPrayerIndex, time) {
                     if (time === currentTime) {
                         // if jumua time we don't flash adhan
@@ -360,7 +363,7 @@ var prayer = {
                 if (date.getDay() === 5) {
                     var currentTime = dateTime.getCurrentTime(false);
                     // show reminder
-                    if (currentTime === prayer.getJoumouaaTime()) {
+                    if (currentTime === prayer.getJumuaTime()) {
 
                         // hilight asr
                         prayer.setNextTimeHilight(1);
@@ -461,7 +464,6 @@ var prayer = {
      *  @param {integer} currentPrayerIndex 
      */
     getAdhanFlashingTime: function (currentPrayerIndex) {
-        console.log(currentPrayerIndex)
         if (prayer.confData.azanVoiceEnabled === true) {
             // if fajr
             if (currentPrayerIndex === 0) {
@@ -607,7 +609,7 @@ var prayer = {
             var date = new Date();
             if (nextTimeIndex === 0 && date.getHours() !== 0) {
                 prayer.loadTimes(true);
-                prayer.setTimes();
+                prayer.setTimes(true);
             }
         }, prayer.nextPrayerHilightWait * prayer.oneMinute);
     },
@@ -686,10 +688,10 @@ var prayer = {
         }
     },
     /**
-     * get joumouaa time depending dst
+     * get jumu`a time depending dst
      * @returns {String}
      */
-    getJoumouaaTime: function () {
+    getJumuaTime: function () {
         if (this.confData.jumuaAsDuhr === true) {
             // return duhr
             return this.getTimeByIndex(1);
@@ -727,7 +729,9 @@ var prayer = {
      * aid time if enabled
      * imsak time if enabled
      */
-    setCustomTime: function () {
+    setSpecialTimes: function () {
+        $(".joumouaa-id").text(this.getJumuaTime());
+
         // hide all custom times
         $(".custom-time").hide();
 
@@ -779,13 +783,12 @@ var prayer = {
     /**
      * set all prayer times 
      */
-    setTimes: function () {
-        $(".sobh").text(this.getTimes()[0]);
-        $(".dohr").text(this.getTimes()[1]);
-        $(".asr").text(this.getTimes()[2]);
-        $(".maghrib").text(this.getTimes()[3]);
-        $(".ichaa").text(this.getIchaTime());
-        $(".joumouaa-id").text(this.getJoumouaaTime());
+    setTimes: function (afterIsha) {
+        $(".sobh").text(this.getTimes(afterIsha)[0]);
+        $(".dohr").text(this.getTimes(afterIsha)[1]);
+        $(".asr").text(this.getTimes(afterIsha)[2]);
+        $(".maghrib").text(this.getTimes(afterIsha)[3]);
+        $(".ichaa").text(this.getTimes(afterIsha)[4]);
     },
     /**
      * set wating times
@@ -907,17 +910,16 @@ var prayer = {
                         randomHadith.get();
                         setTimeout(function () {
                             randomHadith.hide();
-                            // flash iqama
-                            prayer.confData.iqamaDisplayTime = 5;
-                            prayer.flashIqama(4);
-
+                            prayer.flashAdhan(2);
                             setTimeout(function () {
-                                prayer.stopIqamaFlashing();
+                                prayer.stopAdhanFlashing();
+                                // flash iqama
+                                prayer.confData.iqamaDisplayTime = 5;
+                                prayer.flashIqama(4);
                                 // flash adhan
-                                prayer.flashAdhan(2);
                                 setTimeout(function () {
                                     location.reload();
-                                }, 10000);
+                                }, 5000);
                             }, 5000);
                         }, 5000);
                     }, 5000);

@@ -10,7 +10,7 @@ prayer.initNextTimeHilight();
 prayer.initAdhanFlash();
 prayer.initIqamaFlash();
 prayer.initCronHandlingTimes();
-prayer.setCustomTime();
+prayer.setSpecialTimes();
 prayer.initUpdateConfData();
 prayer.translateToArabic();
 prayer.hideSpinner();

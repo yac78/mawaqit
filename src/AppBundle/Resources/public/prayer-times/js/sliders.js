@@ -241,22 +241,12 @@ var messageInfoSlider = {
 
                 // 5 min before jumu`a time
                 if (date.getDay() === 5) {
-                    diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(prayer.getJoumouaaTime())) / prayer.oneMinute);
+                    diffTimeInMiniute = Math.floor((date - prayer.getCurrentDateForPrayerTime(prayer.getJumuaTime())) / prayer.oneMinute);
                     if (diffTimeInMiniute === -5) {
                         messageInfoSlider.get();
                         return;
                     }
                 }
-
-                // At defined time
-//                prayer.confData.messageDefinedTimes = ["21:00", "21:05", "21:10"]
-//                $.each(prayer.confData.messageDefinedTimes, function (i, time) {
-//                    time = time.split(":");
-//                    if (date.getHours() === parseInt(time[0]) && date.getMinutes() === parseInt(time[1])) {
-//                        messageInfoSlider.show();
-//                        return false;
-//                    }
-//                });
             }
         }, prayer.oneMinute);
     },
